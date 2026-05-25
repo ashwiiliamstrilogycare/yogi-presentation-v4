@@ -1735,11 +1735,11 @@
         let tracerState = { active: false, t0: 0, duration: 0.9 };
 
         // -------- Orbit controls ------------------------------------
-        let camDistance = 28;
+        let camDistance = 55;
         let camAzimuth = -0.4;
         let camPolar = THREE.MathUtils.degToRad(72);
         const minDistance = 8;
-        const maxDistance = 42;
+        const maxDistance = 65;
         const minPolar = THREE.MathUtils.degToRad(35);
         const maxPolar = THREE.MathUtils.degToRad(125);
 
@@ -2116,8 +2116,8 @@
         const CINEMA_AZIMUTH_RATE = 0.038;
         const CINEMA_POLAR_AMP = THREE.MathUtils.degToRad(6.5);
         const CINEMA_POLAR_BASE = THREE.MathUtils.degToRad(72);
-        const CINEMA_DIST_BASE = 27;
-        const CINEMA_DIST_AMP = 3.0;
+        const CINEMA_DIST_BASE = 55;
+        const CINEMA_DIST_AMP = 2.5;
 
         function applyCinematicCamera(t) {
           const u = (t % CINEMA_PERIOD) / CINEMA_PERIOD;

@@ -565,7 +565,7 @@
 
         const camera = new THREE.PerspectiveCamera(54, viewW / viewH, 0.1, 240);
         // Start a touch above and back so the brain reads as anatomical
-        camera.position.set(0, 1.8, 18);
+        camera.position.set(0, 1.8, 42);
         camera.lookAt(0, 0, 0);
 
         // -------- Gradient sky sphere ---------------------------
@@ -1259,8 +1259,8 @@
         let autoYaw = 0;       // base yaw set by autopilot
         let yawOffset = 0;     // user offset
         let pitchOffset = 0;
-        let targetDist = 16;
-        let cameraDist = 18;
+        let targetDist = 42;
+        let cameraDist = 42;
 
         function onPointerDown(e) {
           dragging = true;
@@ -1287,7 +1287,7 @@
         function onWheel(e) {
           e.preventDefault();
           targetDist += e.deltaY * 0.012;
-          targetDist = Math.max(10, Math.min(28, targetDist));
+          targetDist = Math.max(8, Math.min(55, targetDist));
           userInteractedAt = performance.now();
         }
         renderer.domElement.style.cursor = 'grab';
@@ -1364,7 +1364,7 @@
           if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
             // Breath dist between 14 and 21 over ~40s
             const breath = 17.5 + Math.sin(t * (Math.PI * 2 / 40)) * 3.5;
-            targetDist += (breath - targetDist) * 0.02;
+            // cinema breath disabled — start fully zoomed out, user controls zoom
           }
           cameraDist += (targetDist - cameraDist) * 0.06;
 
