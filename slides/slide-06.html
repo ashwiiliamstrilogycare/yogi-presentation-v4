@@ -1,2359 +1,705 @@
-<section class="slide" data-audio="06" id="slide-06">
+<section class="slide" data-audio="06">
   <style>
-    /* ============================================================
-       SLIDE 06 · AGENT GALAXY 3D · v4 MEGA-UPGRADE
-       1 + 10 + 12 + 3,300 + 2,000 + 12 systems = 5,335 nodes
-       Vanilla Three.js — NASA × Anthropic × Apple
-       ============================================================ */
+    /* ─────────────────────────────────────────────────────────────
+       SLIDE 05 — Chatbots respond. Yogi acts.
+       The key differentiator.
+       ───────────────────────────────────────────────────────────── */
 
-    #slide-06 {
+    .slide[data-audio="06"] {
+      --navy:        #2C4C79;
+      --honey:       #FEBD33;
+      --honey-soft:  #FFD876;
+      --teal:        #43C0BE;
+      --dark-teal:   #007F7E;
+      --sky:         #64BCEA;
+      --red:         #E04B51;
+
+      --bg:          #0a0d12;
+      --bg-elev:     #11161f;
+      --bg-glass:    rgba(255,255,255,0.04);
+      --border:      rgba(255,255,255,0.08);
+      --border-warm: rgba(254,189,51,0.28);
+      --border-cold: rgba(161,161,170,0.18);
+
+      --fg:          #f4f4f5;
+      --fg-muted:    #a1a1aa;
+      --fg-dim:      #71717a;
+      --fg-ghost:    #52525b;
+
+      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
       position: relative;
       width: 100%;
-      height: 100vh;
       min-height: 100vh;
-      background: radial-gradient(ellipse at center,
-                  #0c1322 0%,
-                  #05070C 55%,
-                  #03050a 100%);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
       overflow: hidden;
-      color: var(--fg, #f4f4f5);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       isolation: isolate;
     }
 
-    /* Subtle starfield via radial-gradient noise */
-    #slide-06::before {
-      content: '';
+    /* Ambient atmosphere — two soft pools, one cold-grey (left), one honey (right) */
+    .slide[data-audio="06"]::before,
+    .slide[data-audio="06"]::after {
+      content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 23% 41%, rgba(255,255,255,0.42) 50%, transparent 100%),
-        radial-gradient(1px 1px at 71% 17%, rgba(254,189,51,0.38) 50%, transparent 100%),
-        radial-gradient(1px 1px at 88% 73%, rgba(100,188,234,0.32) 50%, transparent 100%),
-        radial-gradient(1px 1px at 12% 84%, rgba(255,255,255,0.28) 50%, transparent 100%),
-        radial-gradient(1px 1px at 47% 9%, rgba(67,192,190,0.38) 50%, transparent 100%),
-        radial-gradient(1px 1px at 55% 62%, rgba(255,255,255,0.22) 50%, transparent 100%);
-      opacity: 0.55;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
-
-    /* Vignette wash */
-    #slide-06::after {
-      content: '';
-      position: absolute;
-      inset: 0;
+    .slide[data-audio="06"]::before {
       background:
-        radial-gradient(ellipse 82% 62% at 50% 50%,
-                        transparent 0%,
-                        transparent 55%,
-                        rgba(3,5,10,0.62) 100%);
-      pointer-events: none;
-      z-index: 5;
-      mix-blend-mode: multiply;
+        radial-gradient(ellipse 60% 50% at 20% 35%, rgba(113,113,122,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 82% 60%, rgba(254,189,51,0.10) 0%, transparent 60%);
+    }
+    .slide[data-audio="06"]::after {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      opacity: 0.6;
     }
 
-    #slide-06 .galaxy-canvas-wrap {
-      position: absolute;
-      inset: 0;
+    .slide[data-audio="06"] .content {
+      position: relative;
       z-index: 2;
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: clamp(24px, 2.8vh, 44px) clamp(40px, 4vw, 80px);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: clamp(14px, 1.8vh, 26px);
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
-    #slide-06 canvas {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    /* -------- HUD Top Left -------------------------------------- */
-    #slide-06 .hud-top-left {
-      position: absolute;
-      top: clamp(20px, 3vh, 36px);
-      left: clamp(24px, 3vw, 56px);
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      pointer-events: none;
-      max-width: min(54ch, 56vw);
-    }
-
-    #slide-06 .hud-eyebrow {
+    /* ─── Eyebrow ───────────────────────────────────────────────── */
+    .s05-eyebrow {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 10px;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: #FEBD33;
-      font-weight: 600;
+      color: var(--fg-dim);
+      opacity: 0;
+      transform: translateY(8px);
     }
-
-    #slide-06 .hud-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #FEBD33;
-      box-shadow: 0 0 10px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
-      animation: pulseDot 2.4s ease-in-out infinite;
-    }
-
-    #slide-06 .hud-title {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: clamp(22px, 2.6vw, 38px);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      color: #f4f4f5;
-      line-height: 1.02;
-      margin-top: 4px;
-    }
-
-    #slide-06 .hud-title em {
-      font-style: normal;
-      color: #FEBD33;
-      font-weight: 800;
-    }
-
-    #slide-06 .hud-subtitle {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-      margin-top: 10px;
-      font-weight: 500;
-    }
-
-    /* -------- HUD Top Right ------------------------------------- */
-    #slide-06 .hud-top-right {
-      position: absolute;
-      top: clamp(20px, 3vh, 36px);
-      right: clamp(24px, 3vw, 56px);
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    #slide-06 .pause-btn {
-      pointer-events: auto;
-      cursor: pointer;
-      background: rgba(67, 192, 190, 0.10);
-      border: 1px solid rgba(67, 192, 190, 0.45);
-      color: #D7FAF9;
-      padding: 8px 16px 8px 14px;
-      border-radius: 999px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5),
-                  inset 0 1px 0 rgba(255,255,255,0.05);
-      transition: all 200ms ease;
+    .s05-eyebrow .pill {
       display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #slide-06 .pause-btn:hover {
-      background: rgba(67, 192, 190, 0.20);
-      border-color: rgba(67, 192, 190, 0.75);
-      transform: translateY(-1px);
-    }
-
-    #slide-06 .pause-btn[data-paused="true"] {
-      background: rgba(224,75,81,0.10);
-      border-color: rgba(224,75,81,0.55);
-      color: #FFD7D9;
-    }
-
-    #slide-06 .pause-btn .led {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #43C0BE;
-      box-shadow: 0 0 8px #43C0BE;
-    }
-
-    #slide-06 .pause-btn[data-paused="true"] .led {
-      background: #E04B51;
-      box-shadow: 0 0 8px #E04B51;
-    }
-
-    #slide-06 .telemetry {
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: 4px 18px;
-      padding: 12px 16px;
-      background: rgba(8,14,28,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(254,189,51,0.18);
-      border-radius: 6px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      color: #C7D6EA;
-      min-width: 240px;
-    }
-
-    #slide-06 .telemetry .k {
-      color: #71717a;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 9px;
-    }
-
-    #slide-06 .telemetry .v {
-      color: #f4f4f5;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-
-    #slide-06 .telemetry .v.live {
-      color: #FEBD33;
-    }
-
-    /* -------- LIVE TELEMETRY ------------------------------------ */
-    #slide-06 .live-telemetry {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px 8px 12px;
-      background: rgba(8,14,28,0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(67,192,190,0.22);
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.16em;
-      color: #C7D6EA;
-      text-transform: uppercase;
-      min-width: 240px;
-    }
-
-    #slide-06 .live-telemetry .lt-led {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #43C0BE;
-      box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.4);
-      flex: 0 0 auto;
-      animation: ltPulse 1.4s ease-in-out infinite;
-    }
-
-    #slide-06 .live-telemetry .lt-head {
-      color: #43C0BE;
-      letter-spacing: 0.22em;
-      font-weight: 700;
-      margin-right: 4px;
-    }
-
-    #slide-06 .live-telemetry .lt-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: #a1a1aa;
-    }
-
-    #slide-06 .live-telemetry .lt-row b {
-      color: #f4f4f5;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    #slide-06 .live-telemetry .lt-row .gate b {
-      color: #FEBD33;
-    }
-
-    /* -------- Tier legend (mid-left) ----------------------------- */
-    #slide-06 .tier-legend {
-      position: absolute;
-      left: clamp(24px, 3vw, 56px);
-      bottom: clamp(124px, 16vh, 178px);
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      pointer-events: none;
-    }
-
-    #slide-06 .tier-row {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      padding: 6px 14px 6px 10px;
-      border-left: 2px solid var(--c, #FEBD33);
-      background: linear-gradient(90deg,
-                  rgba(255,255,255,0.04) 0%,
-                  transparent 100%);
-    }
-
-    #slide-06 .tier-row .num {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--c, #FEBD33);
-      font-variant-numeric: tabular-nums;
-      min-width: 4ch;
-      text-align: right;
-      line-height: 1;
-      text-shadow: 0 0 14px var(--c, #FEBD33);
-    }
-
-    #slide-06 .tier-row .meta {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    #slide-06 .tier-row .label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #f4f4f5;
-      font-weight: 600;
-    }
-
-    #slide-06 .tier-row .sub {
-      font-size: 9.5px;
-      color: #71717a;
-      letter-spacing: 0.06em;
-    }
-
-    /* -------- Headline ribbon (above systems strip) ------------- */
-    #slide-06 .headline-ribbon {
-      position: absolute;
-      bottom: clamp(76px, 10vh, 110px);
-      left: 0;
-      right: 0;
-      z-index: 10;
-      text-align: center;
-      pointer-events: none;
-    }
-
-    #slide-06 .headline-ribbon .hl {
-      display: inline-flex;
-      align-items: baseline;
-      gap: clamp(10px, 1.2vw, 18px);
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(15px, 1.6vw, 22px);
-      font-weight: 700;
-      letter-spacing: -0.018em;
-      color: #f4f4f5;
-    }
-
-    #slide-06 .headline-ribbon .hl b {
-      color: #FEBD33;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      text-shadow: 0 0 16px rgba(254,189,51,0.5);
-    }
-
-    #slide-06 .headline-ribbon .hl .dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: rgba(254,189,51,0.7);
-      box-shadow: 0 0 6px rgba(254,189,51,0.6);
-      transform: translateY(-4px);
-    }
-
-    /* -------- Systems strip (bottom) ---------------------------- */
-    #slide-06 .systems-strip {
-      position: absolute;
-      bottom: clamp(22px, 3vh, 36px);
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 8px;
-      pointer-events: none;
+      padding: 6px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: 999px;
+      background: rgba(254,189,51,0.05);
+      color: var(--honey);
+      letter-spacing: 0.24em;
     }
-
-    #slide-06 .systems-strip .ss-eyebrow {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.36em;
-      text-transform: uppercase;
-      color: #71717a;
-    }
-
-    #slide-06 .systems-strip .ss-eyebrow b {
-      color: #FEBD33;
-      font-weight: 700;
-      margin-right: 6px;
-    }
-
-    #slide-06 .systems-strip .ss-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: clamp(8px, 1.1vw, 16px);
-      padding: 0 24px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 0.78vw, 11px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #c7d6ea;
-    }
-
-    #slide-06 .systems-strip .ss-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 600;
-    }
-
-    #slide-06 .systems-strip .ss-pill .ss-dot {
+    .s05-eyebrow .pill::before {
+      content: "";
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--c, #FEBD33);
-      box-shadow: 0 0 8px var(--c, #FEBD33),
-                  0 0 16px color-mix(in srgb, var(--c, #FEBD33) 40%, transparent);
-      animation: ssDotPulse 2.6s ease-in-out infinite var(--d, 0s);
+      background: var(--honey);
+      box-shadow: 0 0 8px var(--honey);
+      animation: s05-pulse 2.4s ease-in-out infinite;
+    }
+    .s05-eyebrow .sep {
+      flex: 0 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+    .s05-eyebrow .num { color: var(--fg-muted); }
+
+    @keyframes s05-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.8); }
     }
 
-    #slide-06 .systems-strip .ss-pill .ss-name {
-      color: #e6edf7;
+    /* ─── Headline — the spine of the slide ─────────────────────── */
+    .s05-headline {
+      font-size: clamp(44px, 6.6vw, 118px);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-
-    #slide-06 .systems-strip .ss-pill .ss-sep {
-      color: #3f4451;
-      margin-left: 8px;
+    .s05-headline .line {
+      display: block;
+      overflow: hidden;
     }
-
-    #slide-06 .systems-strip .ss-hint {
-      margin-top: 4px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #52525b;
-    }
-
-    /* -------- Tooltip ------------------------------------------ */
-    #slide-06 .tooltip {
-      position: absolute;
-      z-index: 12;
-      pointer-events: none;
-      transform: translate(-50%, calc(-100% - 14px));
+    .s05-headline .word {
+      display: inline-block;
       opacity: 0;
-      transition: opacity 140ms ease;
+      transform: translateY(110%);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform, opacity;
     }
-
-    #slide-06 .tooltip.show { opacity: 1; }
-
-    #slide-06 .tooltip-card {
-      background: rgba(8,14,28,0.94);
-      border: 1px solid rgba(254,189,51,0.7);
-      border-radius: 8px;
-      padding: 10px 14px;
-      min-width: 160px;
-      box-shadow:
-        0 12px 36px rgba(0,0,0,0.7),
-        0 0 24px rgba(254,189,51,0.15);
-      font-family: 'Inter', system-ui, sans-serif;
+    .s05-headline .w-chatbots {
+      font-weight: 300;
+      font-style: italic;
+      color: var(--fg-ghost);
+    }
+    .s05-headline .w-respond {
+      font-weight: 800;
+      color: var(--fg-dim);
+      letter-spacing: -0.04em;
+    }
+    .s05-headline .w-yogi {
+      font-weight: 300;
+      font-style: italic;
+      color: var(--honey);
+    }
+    .s05-headline .w-acts {
+      font-weight: 900;
+      color: var(--honey);
+      letter-spacing: -0.05em;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.45),
+        0 0 80px rgba(254,189,51,0.18);
+    }
+    .s05-headline .period-honey {
+      color: var(--honey);
+      text-shadow: 0 0 24px rgba(254,189,51,0.6);
     }
 
-    #slide-06 .tooltip-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #FEBD33;
-      letter-spacing: -0.01em;
-      margin-bottom: 2px;
+    /* Hairline scratched through the headline */
+    .s05-headline .line.bottom {
+      position: relative;
     }
 
-    #slide-06 .tooltip-role {
-      font-size: 11px;
-      color: #C7D6EA;
-      letter-spacing: 0.02em;
+    /* ─── Active state — staggered word reveal ──────────────────── */
+    .slide[data-audio="06"].is-active .s05-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .slide[data-audio="06"].is-active .s05-headline .word {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .slide[data-audio="06"].is-active .s05-headline .word.w1 { transition-delay: 0.15s; }
+    .slide[data-audio="06"].is-active .s05-headline .word.w2 { transition-delay: 0.28s; }
+    .slide[data-audio="06"].is-active .s05-headline .word.w3 { transition-delay: 0.70s; }
+    .slide[data-audio="06"].is-active .s05-headline .word.w4 { transition-delay: 0.85s; }
+
+    /* ─── The split — two columns under the headline ────────────── */
+    .s05-split {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: clamp(28px, 3vw, 64px);
+      align-items: stretch;
     }
 
-    #slide-06 .tooltip-tier {
-      font-size: 9px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: #71717a;
-      margin-top: 6px;
-      font-family: 'JetBrains Mono', monospace;
+    /* Diagonal honey hairline as divider */
+    .s05-split .divider {
+      position: relative;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(254,189,51,0.05) 8%,
+        rgba(254,189,51,0.42) 50%,
+        rgba(254,189,51,0.05) 92%,
+        transparent 100%
+      );
     }
-
-    #slide-06 .tooltip-card::after {
-      content: '';
+    .s05-split .divider::after {
+      content: "VS";
       position: absolute;
-      bottom: -6px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      width: 10px;
-      height: 10px;
-      background: rgba(8,14,28,0.94);
-      border-right: 1px solid rgba(254,189,51,0.7);
-      border-bottom: 1px solid rgba(254,189,51,0.7);
+      transform: translate(-50%, -50%);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.36em;
+      color: var(--honey);
+      background: var(--bg);
+      padding: 8px 6px;
+      writing-mode: vertical-rl;
+      opacity: 0;
+      transition: opacity 1s ease 1.4s;
+    }
+    .slide[data-audio="06"].is-active .s05-split .divider::after { opacity: 1; }
+
+    /* ─── Column shell ──────────────────────────────────────────── */
+    .s05-col {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 0.8vh, 12px);
+      padding: clamp(14px, 1.6vh, 22px) clamp(18px, 1.8vw, 26px);
+      border-radius: 14px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .slide[data-audio="06"].is-active .s05-col.left  { transition-delay: 1.0s; opacity: 1; transform: translateY(0); }
+    .slide[data-audio="06"].is-active .s05-col.right { transition-delay: 1.1s; opacity: 1; transform: translateY(0); }
+
+    .s05-col.left {
+      background: rgba(255,255,255,0.015);
+      border: 1px dashed var(--border-cold);
+      filter: saturate(0.4) brightness(0.85);
+    }
+    .s05-col.left::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 9px,
+          rgba(255,255,255,0.012) 9px 10px
+        );
+      pointer-events: none;
+    }
+    .s05-col.right {
+      background: var(--bg-elev);
+      border: 1px solid var(--border-warm);
+      box-shadow:
+        0 0 0 1px rgba(254,189,51,0.04),
+        0 20px 60px -20px rgba(254,189,51,0.20),
+        0 40px 120px -40px rgba(254,189,51,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .s05-col.right::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(254,189,51,0.18) 0%, transparent 65%);
+      filter: blur(20px);
+      pointer-events: none;
+      transform: translate(35%, -35%);
     }
 
-    /* -------- Tier-ring callouts -------------------------------- */
-    #slide-06 .tier-callout {
-      position: absolute;
-      z-index: 8;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9.5px;
+    /* Column header */
+    .s05-col-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: clamp(10px, 1.2vh, 14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .s05-col.left .s05-col-head { border-bottom-style: dashed; border-bottom-color: var(--border-cold); }
+    .s05-col.right .s05-col-head { border-bottom-color: rgba(254,189,51,0.18); }
+
+    .s05-col-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--cc, #FEBD33);
-      opacity: 0;
-      transition: opacity 380ms ease;
-      will-change: transform, opacity;
-      white-space: nowrap;
-      filter: drop-shadow(0 0 6px rgba(0,0,0,0.7));
     }
-
-    #slide-06 .tier-callout.show { opacity: 0.92; }
-
-    #slide-06 .tier-callout .tc-bar {
-      display: inline-block;
-      width: 18px;
-      height: 1px;
-      background: currentColor;
-      vertical-align: middle;
-      margin-right: 8px;
-      box-shadow: 0 0 6px currentColor;
+    .s05-col.left .s05-col-label  { color: var(--fg-dim); }
+    .s05-col.right .s05-col-label { color: var(--honey); }
+    .s05-col-label .dot {
+      width: 7px; height: 7px; border-radius: 50%;
     }
-
-    #slide-06 .tier-callout .tc-num {
-      font-weight: 700;
-      color: currentColor;
-      text-shadow: 0 0 10px currentColor;
+    .s05-col.left  .s05-col-label .dot { background: var(--fg-ghost); }
+    .s05-col.right .s05-col-label .dot {
+      background: var(--honey);
+      box-shadow: 0 0 10px var(--honey);
+      animation: s05-pulse 2.4s ease-in-out infinite;
     }
-
-    #slide-06 .tier-callout .tc-lbl {
-      color: #f4f4f5;
-      font-weight: 600;
-      margin-left: 6px;
-    }
-
-    /* -------- System billboard labels --------------------------- */
-    #slide-06 .system-label {
-      position: absolute;
-      z-index: 9;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 10.5px;
-      letter-spacing: 0.26em;
+    .s05-col-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #f4f4f5;
-      opacity: 0;
-      transition: opacity 260ms ease;
-      white-space: nowrap;
-      filter: drop-shadow(0 0 6px rgba(0,0,0,0.85));
-      will-change: transform, opacity;
+    }
+    .s05-col.left  .s05-col-meta { color: var(--fg-ghost); }
+    .s05-col.right .s05-col-meta { color: var(--fg-muted); }
+
+    /* ─── Comparison rows ───────────────────────────────────────── */
+    .s05-row {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 5px;
+      padding: clamp(8px, 1vh, 12px) 0;
+    }
+    .s05-row + .s05-row {
+      border-top: 1px solid var(--border);
+    }
+    .s05-col.left .s05-row + .s05-row  { border-top-style: dashed; border-top-color: var(--border-cold); }
+    .s05-col.right .s05-row + .s05-row { border-top-color: rgba(254,189,51,0.08); }
+
+    .s05-row-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s05-col.right .s05-row-label {
+      color: var(--teal);
     }
 
-    #slide-06 .system-label.show { opacity: 0.95; }
-
-    #slide-06 .system-label .sl-tick {
-      display: inline-block;
-      width: 14px;
-      height: 1px;
-      background: var(--lc, #FEBD33);
-      vertical-align: middle;
-      margin-right: 8px;
-      box-shadow: 0 0 6px var(--lc, #FEBD33);
+    .s05-row-body {
+      font-family: var(--font-display);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
     }
+    .s05-col.left .s05-row-body {
+      font-size: clamp(14px, 1.15vw, 18px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+    .s05-col.left .s05-row-body .quote { color: var(--fg-dim); }
 
-    #slide-06 .system-label .sl-name {
-      color: #f4f4f5;
+    .s05-col.right .s05-row-body {
+      font-size: clamp(14px, 1.2vw, 19px);
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.4;
+    }
+    .s05-col.right .s05-row-body .verb {
+      color: var(--honey);
       font-weight: 700;
     }
-
-    #slide-06 .system-label .sl-tag {
-      color: var(--lc, #FEBD33);
-      margin-left: 8px;
-      font-size: 8.5px;
-      letter-spacing: 0.32em;
+    .s05-col.right .s05-row-body .conj {
+      color: var(--fg-dim);
+      font-style: italic;
+      font-weight: 300;
+      margin: 0 6px;
     }
 
-    /* -------- Corner ticks ------------------------------------- */
-    #slide-06 .corner {
+    /* Receipt strip under each Yogi row */
+    .s05-receipt {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: rgba(254,189,51,0.06);
+      border: 1px solid rgba(254,189,51,0.18);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--honey-soft);
+      width: fit-content;
+    }
+    .s05-receipt::before {
+      content: "▸";
+      color: var(--honey);
+      font-size: 9px;
+    }
+    .s05-receipt .sep {
+      color: var(--fg-ghost);
+      margin: 0 2px;
+    }
+    .s05-receipt .amt {
+      color: var(--honey);
+      font-weight: 600;
+    }
+
+    /* Left side gets a faded "no receipt" stub */
+    .s05-stub {
+      margin-top: 4px;
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px dashed var(--border-cold);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      width: fit-content;
+    }
+
+    /* ─── Footer band — the killer line + key numbers ───────────── */
+    .s05-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      padding-top: clamp(12px, 1.4vh, 18px);
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s ease 1.4s, transform 0.9s ease 1.4s;
+    }
+    .slide[data-audio="06"].is-active .s05-footer { opacity: 1; transform: translateY(0); }
+
+    .s05-footer-q {
+      font-family: var(--font-display);
+      font-size: clamp(13px, 1.05vw, 17px);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--fg-muted);
+      max-width: 60ch;
+      font-style: italic;
+      font-weight: 300;
+      margin: 0;
+    }
+    .s05-footer-q strong {
+      color: var(--fg);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .s05-footer-q .em {
+      color: var(--honey);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .s05-stats {
+      display: flex;
+      gap: clamp(20px, 2vw, 36px);
+      align-items: flex-end;
+    }
+    .s05-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .s05-stat .v {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.1vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--honey);
+      line-height: 1;
+    }
+    .s05-stat .k {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s05-stat .sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--fg-ghost);
+    }
+
+    /* ─── Tiny touches ──────────────────────────────────────────── */
+    .s05-corner {
       position: absolute;
-      width: 18px;
-      height: 18px;
-      z-index: 6;
-      pointer-events: none;
-      opacity: 0.45;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--honey);
+      opacity: 0.55;
     }
+    .s05-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+    .s05-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
+    .s05-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
+    .s05-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
 
-    #slide-06 .corner.tl { top: 12px; left: 12px;
-      border-top: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
-    #slide-06 .corner.tr { top: 12px; right: 12px;
-      border-top: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
-    #slide-06 .corner.bl { bottom: 12px; left: 12px;
-      border-bottom: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
-    #slide-06 .corner.br { bottom: 12px; right: 12px;
-      border-bottom: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
-
-    /* -------- Animations --------------------------------------- */
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.65; }
-    }
-
-    @keyframes ltPulse {
-      0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.4); }
-      50% { transform: scale(1.35); opacity: 0.7; box-shadow: 0 0 12px #43C0BE, 0 0 26px rgba(67,192,190,0.7); }
-    }
-
-    @keyframes ssDotPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.55; transform: scale(1.35); }
-    }
-
-    @keyframes telemetryTick {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.55; }
-    }
-
-    #slide-06 .live-tick {
-      animation: telemetryTick 1.8s ease-in-out infinite;
-    }
-
-    /* -------- Reduced motion ----------------------------------- */
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      #slide-06 .hud-eyebrow .dot,
-      #slide-06 .live-telemetry .lt-led,
-      #slide-06 .live-tick,
-      #slide-06 .systems-strip .ss-pill .ss-dot {
-        animation: none;
+      .slide[data-audio="06"] *,
+      .slide[data-audio="06"] *::before,
+      .slide[data-audio="06"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0s !important;
       }
     }
 
-    /* -------- Responsive --------------------------------------- */
-    @media (max-width: 1100px) {
-      #slide-06 .system-label { display: none; }
-    }
-    @media (max-width: 900px) {
-      #slide-06 .tier-legend { display: none; }
-      #slide-06 .telemetry { display: none; }
-      #slide-06 .live-telemetry { display: none; }
-      #slide-06 .tier-callout { display: none; }
-      #slide-06 .headline-ribbon .hl { font-size: 13px; }
+    /* Smaller laptops */
+    @media (max-width: 1280px) {
+      .slide[data-audio="06"] .content { padding: 40px 48px; }
+      .s05-split { grid-template-columns: 1fr 1px 1fr; gap: 28px; }
     }
   </style>
 
-  <!-- Corner ticks -->
-  <span class="corner tl"></span>
-  <span class="corner tr"></span>
-  <span class="corner bl"></span>
-  <span class="corner br"></span>
+  <div class="content">
 
-  <!-- WebGL canvas mount -->
-  <div class="galaxy-canvas-wrap" id="galaxy-canvas-wrap"></div>
+    <!-- Corner crosshairs -->
+    <span class="s05-corner tl"></span>
+    <span class="s05-corner tr"></span>
+    <span class="s05-corner bl"></span>
+    <span class="s05-corner br"></span>
 
-  <!-- HUD: top left -->
-  <div class="hud-top-left">
-    <div class="hud-eyebrow">
-      <span class="dot"></span>
-      <span>BEAR'S UNIVERSE · 5,323 NODES · 12 SYSTEMS · 5 TIERS</span>
+    <!-- ── Eyebrow ─────────────────────────────────────────────── -->
+    <div class="s05-eyebrow">
+      <span class="num">05 / 22</span>
+      <span class="sep"></span>
+      <span>the key differentiator</span>
+      <span class="sep"></span>
+      <span class="pill">tagline</span>
     </div>
-    <div class="hud-title">The <em>architecture</em>.<br/>One bear. Five thousand specialists. Twelve systems.</div>
-    <div class="hud-subtitle">Narrow agents · narrow memories · one orchestrator · real authority</div>
-  </div>
 
-  <!-- HUD: top right -->
-  <div class="hud-top-right">
-    <button type="button" class="pause-btn" id="galaxy-pause" data-paused="false" aria-pressed="true">
-      <span class="led"></span>
-      <span class="lbl">Orbits Live</span>
-    </button>
-    <div class="telemetry" aria-hidden="true">
-      <span class="k">Nodes</span><span class="v">5,323</span>
-      <span class="k">Systems</span><span class="v">12</span>
-      <span class="k">Draw calls</span><span class="v" id="galaxy-draws">—</span>
-      <span class="k">Tools</span><span class="v">328</span>
-      <span class="k">Status</span><span class="v live live-tick" id="galaxy-status">RENDERING</span>
-    </div>
-    <div class="live-telemetry" aria-hidden="true">
-      <span class="lt-led"></span>
-      <span class="lt-head">LIVE TELEMETRY</span>
-      <span class="lt-row">
-        <span>tools <b>328</b></span>
-        <span>evals <b>12</b></span>
-        <span>mem/hr <b>47</b></span>
-        <span class="gate">gate <b>tess</b></span>
+    <!-- ── Headline ────────────────────────────────────────────── -->
+    <h1 class="s05-headline">
+      <span class="line top">
+        <span class="word w-chatbots w1">Chatbots</span>
+        <span class="word w-respond w2">respond.</span>
       </span>
+      <span class="line bottom">
+        <span class="word w-yogi w3">Yogi</span>
+        <span class="word w-acts w4">acts<span class="period-honey">.</span></span>
+      </span>
+    </h1>
+
+    <!-- ── Split comparison ────────────────────────────────────── -->
+    <div class="s05-split">
+
+      <!-- LEFT: Chatbot — greyed, tired, dashed -->
+      <div class="s05-col left">
+        <div class="s05-col-head">
+          <div class="s05-col-label">
+            <span class="dot"></span>
+            <span>Chatbot</span>
+          </div>
+          <div class="s05-col-meta">search box</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Discovery</div>
+          <div class="s05-row-body">
+            <span class="quote">"</span>Sure, I can help you investigate that complaint. Here are some steps you could take<span class="quote">…"</span>
+          </div>
+          <div class="s05-stub">no action taken</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Memory</div>
+          <div class="s05-row-body">
+            Forgets the moment the tab closes. New chat, new stranger, every time.
+          </div>
+          <div class="s05-stub">session-bound</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Authority</div>
+          <div class="s05-row-body">
+            Cannot open Outlook. Cannot touch the CRM. Cannot post on Teams.
+          </div>
+          <div class="s05-stub">text only · 0 tools</div>
+        </div>
+
+      </div>
+
+      <!-- Diagonal honey hairline -->
+      <div class="divider"></div>
+
+      <!-- RIGHT: Yogi — alive, honey-glow, real receipts -->
+      <div class="s05-col right">
+        <div class="s05-col-head">
+          <div class="s05-col-label">
+            <span class="dot"></span>
+            <span>Yogi</span>
+          </div>
+          <div class="s05-col-meta">coworker · 328 tools</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Discovery</div>
+          <div class="s05-row-body">
+            Scans Zoho × MYOB × Aircall × Confluence <span class="conj">—</span> <span class="verb">attaches the draft response.</span>
+          </div>
+          <div class="s05-receipt">
+            <span>TJ Gardening</span><span class="sep">·</span><span>4 clients · 81 invoices</span><span class="sep">·</span><span class="amt">~$69K recovered</span>
+          </div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Memory</div>
+          <div class="s05-row-body">
+            <span class="verb">79 memory files</span> load every session <span class="conj">—</span> persistent since January, rsynced to private git weekly.
+          </div>
+          <div class="s05-receipt">
+            <span>Yogi repo</span><span class="sep">·</span><span>git snapshot 08:13 Mon</span><span class="sep">·</span><span>survives wipes</span>
+          </div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Authority</div>
+          <div class="s05-row-body">
+            <span class="verb">Sends</span> the email. <span class="verb">Schedules</span> the meeting. <span class="verb">Pushes</span> the fix. <span class="verb">Replies</span> on Teams.
+          </div>
+          <div class="s05-receipt">
+            <span>Phantom Batch</span><span class="sep">·</span><span>8 May · pipeline restored 4pm</span><span class="sep">·</span><span class="amt">$415K averted</span>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- ── Footer band ─────────────────────────────────────────── -->
+    <div class="s05-footer">
+      <p class="s05-footer-q">
+        <strong>TC Assist Home is not another search box.</strong>
+        It is <em class="em">a coworker named Yogi</em> — the unit of work moves from minutes-of-doing to <em class="em">seconds-of-checking</em>.
+      </p>
+      <div class="s05-stats">
+        <div class="s05-stat">
+          <span class="v">47s</span>
+          <span class="k">investigation</span>
+          <span class="sub">draft attached</span>
+        </div>
+        <div class="s05-stat">
+          <span class="v">328</span>
+          <span class="k">tools</span>
+          <span class="sub">authority to act</span>
+        </div>
+        <div class="s05-stat">
+          <span class="v">$415K</span>
+          <span class="k">averted</span>
+          <span class="sub">phantom batch · 8 May</span>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- Tier legend (mid-left) -->
-  <div class="tier-legend">
-    <div class="tier-row" style="--c:#FEBD33">
-      <div class="num">1</div>
-      <div class="meta">
-        <div class="label">Yogi</div>
-        <div class="sub">Tier 0 · origin</div>
-      </div>
-    </div>
-    <div class="tier-row" style="--c:#43C0BE">
-      <div class="num">10</div>
-      <div class="meta">
-        <div class="label">Specialist Crew</div>
-        <div class="sub">Tier 1 · engineers of Yogi</div>
-      </div>
-    </div>
-    <div class="tier-row" style="--c:#64BCEA">
-      <div class="num">12</div>
-      <div class="meta">
-        <div class="label">Domain Leads</div>
-        <div class="sub">Tier 2 · sales, AI, ops, devops</div>
-      </div>
-    </div>
-    <div class="tier-row" style="--c:#007F7E">
-      <div class="num">3,300</div>
-      <div class="meta">
-        <div class="label">Specialists</div>
-        <div class="sub">Tier 3 · 11 cluster spirals</div>
-      </div>
-    </div>
-    <div class="tier-row" style="--c:#9B7BD4">
-      <div class="num">2,000</div>
-      <div class="meta">
-        <div class="label">Cubs</div>
-        <div class="sub">Tier 4 · micro-agents · on-demand</div>
-      </div>
-    </div>
-    <div class="tier-row" style="--c:#F39B5A">
-      <div class="num">12</div>
-      <div class="meta">
-        <div class="label">Enterprise Systems</div>
-        <div class="sub">Outer ring · real write access</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Headline ribbon -->
-  <div class="headline-ribbon">
-    <div class="hl">
-      <span><b>5,323</b> nodes.</span>
-      <span class="dot"></span>
-      <span><b>12</b> systems.</span>
-      <span class="dot"></span>
-      <span><b>1</b> brain.</span>
-    </div>
-  </div>
-
-  <!-- Systems strip (bottom) -->
-  <div class="systems-strip">
-    <div class="ss-eyebrow"><b>WIRED IN</b>12 ENTERPRISE SYSTEMS · DATA FLOW ACTIVE</div>
-    <div class="ss-row" id="systems-row"><!-- populated by JS --></div>
-    <div class="ss-hint">Drag to rotate · scroll to zoom · hover any orb</div>
-  </div>
-
-  <!-- DOM tooltip -->
-  <div class="tooltip" id="galaxy-tooltip">
-    <div class="tooltip-card">
-      <div class="tooltip-name" id="tt-name">Rocco</div>
-      <div class="tooltip-role" id="tt-role">AWS / CDK / infra</div>
-      <div class="tooltip-tier" id="tt-tier">Tier 1 · Specialist Crew</div>
-    </div>
-  </div>
-
-  <!-- Tier callouts (billboarded HTML labels) -->
-  <div class="tier-callout" id="tc-0" style="--cc:#FEBD33"><span class="tc-bar"></span><span class="tc-num">TIER 0</span><span class="tc-lbl">Orchestrator</span></div>
-  <div class="tier-callout" id="tc-1" style="--cc:#43C0BE"><span class="tc-bar"></span><span class="tc-num">TIER 1</span><span class="tc-lbl">10 Specialist Crew</span></div>
-  <div class="tier-callout" id="tc-2" style="--cc:#64BCEA"><span class="tc-bar"></span><span class="tc-num">TIER 2</span><span class="tc-lbl">12 Domain Leads</span></div>
-  <div class="tier-callout" id="tc-3" style="--cc:#007F7E"><span class="tc-bar"></span><span class="tc-num">TIER 3</span><span class="tc-lbl">3,300 Specialists</span></div>
-  <div class="tier-callout" id="tc-4" style="--cc:#9B7BD4"><span class="tc-bar"></span><span class="tc-num">TIER 4</span><span class="tc-lbl">2,000 Cubs</span></div>
-  <div class="tier-callout" id="tc-5" style="--cc:#F39B5A"><span class="tc-bar"></span><span class="tc-num">SYSTEMS</span><span class="tc-lbl">12 Enterprise Wires</span></div>
-
-  <!-- System labels (populated by JS) -->
-  <div id="system-labels"></div>
 
   <script>
     (function () {
-      window.onSlideEnter = window.onSlideEnter || {};
-      window.onSlideLeave = window.onSlideLeave || {};
+      const slide = document.currentScript.closest('.slide');
+      if (!slide) return;
 
-      let state = null;
-
-      function loadThree(cb) {
-        if (window.THREE) { cb(); return; }
-        const s = document.createElement('script');
-        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
-        s.onload = cb;
-        s.onerror = () => console.error('[slide-06] failed to load three.js');
-        document.head.appendChild(s);
+      function enter() {
+        slide.classList.add('is-active');
+      }
+      function leave() {
+        slide.classList.remove('is-active');
       }
 
-      function initGalaxy() {
-        const wrap = document.getElementById('galaxy-canvas-wrap');
-        if (!wrap || !window.THREE) return;
-        const THREE = window.THREE;
+      // Hook into the deck runtime if it exposes one
+      slide.onSlideEnter = enter;
+      slide.onSlideLeave = leave;
 
-        // -------- Brand palette -------------------------------------
-        const HONEY = 0xFEBD33;
-        const TEAL = 0x43C0BE;
-        const DARK_TEAL = 0x007F7E;
-        const SKY = 0x64BCEA;
-        const RED = 0xE04B51;
-        const VIOLET = 0x9B7BD4;
-        const CORAL = 0xF39B5A;
-        const NAVY = 0x2C4C79;
-
-        const CLUSTER_COLORS = [
-          HONEY, TEAL, SKY, DARK_TEAL, RED, VIOLET,
-          HONEY, TEAL, SKY, DARK_TEAL, CORAL
-        ];
-
-        // -------- Data ----------------------------------------------
-        const SPECIALIST_CREW = [
-          { name: 'Rocco',  role: 'AWS / CDK / infra' },
-          { name: 'Otto',   role: 'Surgical code fixes' },
-          { name: 'Bram',   role: 'Data archaeology' },
-          { name: 'Ferra',  role: 'Pre-flight frontend audit' },
-          { name: 'Hoot',   role: 'Independent code review' },
-          { name: 'Buzz',   role: 'Build pipeline + static assets' },
-          { name: 'Pip',    role: 'Narrow read-only investigation' },
-          { name: 'Briar',  role: 'JS/TS concurrency + retry' },
-          { name: 'Lumi',   role: 'UI polish + micro-interactions' },
-          { name: 'Tess',   role: 'E2E test orchestration' }
-        ];
-
-        const DOMAIN_LEADS = [
-          { name: 'Orion',   role: 'Sales' },
-          { name: 'Sequoia', role: 'Product' },
-          { name: 'Sable',   role: 'Domain experts' },
-          { name: 'Ember',   role: 'AI / ML' },
-          { name: 'Vella',   role: 'Communications' },
-          { name: 'Aspen',   role: 'Backend languages' },
-          { name: 'Birch',   role: 'Frontend frameworks' },
-          { name: 'Alder',   role: 'Backend patterns' },
-          { name: 'Heron',   role: 'Testing' },
-          { name: 'Kelpie',  role: 'Databases' },
-          { name: 'Falcon',  role: 'Cloud' },
-          { name: 'Magpie',  role: 'DevOps' }
-        ];
-
-        // System ring — 12 enterprise systems with brand-token colors
-        const SYSTEMS = [
-          { name: 'Zoho CRM',         tag: 'CRM',        color: HONEY,     short: 'ZOHO' },
-          { name: 'Databricks',       tag: 'WAREHOUSE',  color: SKY,       short: 'DBX' },
-          { name: 'MYOB',             tag: 'FINANCE',    color: RED,       short: 'MYOB' },
-          { name: 'EzyCollect',       tag: 'COLLECT',    color: DARK_TEAL, short: 'EZY' },
-          { name: 'Employment Hero',  tag: 'HRIS',       color: HONEY,     short: 'EH' },
-          { name: 'Aircall',          tag: 'TELEPHONY',  color: CORAL,     short: 'AIRCALL' },
-          { name: 'Microsoft 365',    tag: 'OFFICE',     color: TEAL,      short: 'M365' },
-          { name: 'SharePoint',       tag: 'DOCS',       color: TEAL,      short: 'SHAREPOINT' },
-          { name: 'Confluence',       tag: 'KNOWLEDGE',  color: VIOLET,    short: 'CONFLUENCE' },
-          { name: 'Linear',           tag: 'TICKETS',    color: SKY,       short: 'LINEAR' },
-          { name: 'TC Portal',        tag: 'PORTAL',     color: HONEY,     short: 'PORTAL' },
-          { name: 'CareVicinity Zoho',tag: 'PARTNER CRM',color: TEAL,      short: 'CV-ZOHO' }
-        ];
-
-        const TIER3_COUNT = 3300;
-        const TIER3_CLUSTERS = 11;
-        const TIER4_COUNT = 2000;
-
-        // -------- Ring geometry -------------------------------------
-        const TIER1_RADIUS = 3;
-        const TIER1_TILT = THREE.MathUtils.degToRad(18);
-        const TIER2_RADIUS = 5.5;
-        const TIER2_TILT = THREE.MathUtils.degToRad(-22);
-        const TIER3_INNER = 7.5;
-        const TIER3_OUTER = 11;
-        const TIER4_INNER = 13;
-        const TIER4_OUTER = 16;
-        const SYSTEMS_RADIUS = 22;
-
-        // -------- Reduced motion ------------------------------------
-        const reduced = window.matchMedia &&
-                        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // -------- Renderer / Scene / Camera -------------------------
-        const renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          alpha: false,
-          powerPreference: 'high-performance'
+      // Also auto-activate when the slide scrolls into view
+      // (graceful fallback if the deck doesn't drive enter/leave)
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
         });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        const w = wrap.clientWidth, h = wrap.clientHeight;
-        renderer.setSize(w, h, false);
-        renderer.setClearColor(0x05070C, 1);
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.05;
-        wrap.appendChild(renderer.domElement);
-
-        const scene = new THREE.Scene();
-
-        const camera = new THREE.PerspectiveCamera(58, w / h, 0.1, 240);
-        camera.position.set(0, 6, 22);
-        camera.lookAt(0, 0, 0);
-
-        // -------- Gradient sky sphere -------------------------------
-        const skyGeo = new THREE.SphereGeometry(80, 32, 32);
-        const skyMat = new THREE.ShaderMaterial({
-          side: THREE.BackSide,
-          depthWrite: false,
-          uniforms: {
-            uTop:    { value: new THREE.Color(0x2C4C79).multiplyScalar(0.55) },
-            uBottom: { value: new THREE.Color(0x05070C) }
-          },
-          vertexShader: [
-            'varying vec3 vWorld;',
-            'void main() {',
-            '  vWorld = position;',
-            '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
-            '}'
-          ].join('\n'),
-          fragmentShader: [
-            'varying vec3 vWorld;',
-            'uniform vec3 uTop;',
-            'uniform vec3 uBottom;',
-            'void main() {',
-            '  float t = clamp(vWorld.y * 0.5 + 0.5, 0.0, 1.0);',
-            '  t = smoothstep(0.05, 0.95, t);',
-            '  vec3 col = mix(uBottom, uTop, t);',
-            '  gl_FragColor = vec4(col, 1.0);',
-            '}'
-          ].join('\n')
-        });
-        scene.add(new THREE.Mesh(skyGeo, skyMat));
-
-        // -------- Floor grid (navy wireframe) -----------------------
-        {
-          const gridSize = 60;
-          const gridDiv = 60;
-          const grid = new THREE.GridHelper(gridSize, gridDiv, 0x2C4C79, 0x2C4C79);
-          grid.position.y = -3.5;
-          grid.material.transparent = true;
-          grid.material.opacity = 0.10;
-          grid.material.depthWrite = false;
-          grid.material.fog = false;
-          scene.add(grid);
-
-          const floorMat = new THREE.MeshBasicMaterial({
-            color: 0x0a1422,
-            transparent: true,
-            opacity: 0.35,
-            depthWrite: false,
-            side: THREE.DoubleSide
-          });
-          const floor = new THREE.Mesh(
-            new THREE.PlaneGeometry(gridSize, gridSize, 1, 1),
-            floorMat
-          );
-          floor.rotation.x = -Math.PI / 2;
-          floor.position.y = -3.52;
-          scene.add(floor);
-        }
-
-        // -------- Background stars (denser for systems ring) ---------
-        {
-          const starCount = 320;
-          const sg = new THREE.BufferGeometry();
-          const positions = new Float32Array(starCount * 3);
-          for (let i = 0; i < starCount; i++) {
-            const r = 32 + Math.random() * 24;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(2 * Math.random() - 1);
-            positions[i*3+0] = r * Math.sin(phi) * Math.cos(theta);
-            positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-            positions[i*3+2] = r * Math.cos(phi);
-          }
-          sg.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-          const sm = new THREE.PointsMaterial({
-            color: 0xC7D6EA,
-            size: 0.06,
-            sizeAttenuation: true,
-            transparent: true,
-            opacity: 0.55,
-            depthWrite: false
-          });
-          scene.add(new THREE.Points(sg, sm));
-        }
-
-        // -------- Atmospheric dust ----------------------------------
-        let dustMaterial = null;
-        let dustGeometry = null;
-        {
-          const DUST_COUNT = 900;
-          const positions = new Float32Array(DUST_COUNT * 3);
-          const phases    = new Float32Array(DUST_COUNT);
-          const sizes     = new Float32Array(DUST_COUNT);
-
-          const rng = (i, salt) => {
-            const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
-            return v - Math.floor(v);
-          };
-
-          for (let i = 0; i < DUST_COUNT; i++) {
-            const r = 3.5 + rng(i, 1) * 17;            // 3.5 .. 20.5 (covers tier4 + systems)
-            const theta = rng(i, 2) * Math.PI * 2;
-            const y = (rng(i, 3) - 0.5) * 5.0;
-            positions[i*3+0] = Math.cos(theta) * r;
-            positions[i*3+1] = y;
-            positions[i*3+2] = Math.sin(theta) * r;
-            phases[i] = rng(i, 4) * Math.PI * 2;
-            sizes[i]  = 0.6 + rng(i, 5) * 1.4;
-          }
-
-          dustGeometry = new THREE.BufferGeometry();
-          dustGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-          dustGeometry.setAttribute('aPhase',   new THREE.BufferAttribute(phases, 1));
-          dustGeometry.setAttribute('aSize',    new THREE.BufferAttribute(sizes, 1));
-
-          dustMaterial = new THREE.ShaderMaterial({
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-            uniforms: {
-              uTime: { value: 0 },
-              uPixelRatio: { value: renderer.getPixelRatio() }
-            },
-            vertexShader: [
-              'attribute float aPhase;',
-              'attribute float aSize;',
-              'uniform float uTime;',
-              'uniform float uPixelRatio;',
-              'varying float vTwinkle;',
-              'void main() {',
-              '  vec3 p = position;',
-              '  float driftSpeed = 0.04 + sin(aPhase) * 0.015;',
-              '  float a = uTime * driftSpeed + aPhase;',
-              '  float r = length(p.xz);',
-              '  float ang = atan(p.z, p.x) + a * 0.10;',
-              '  vec3 q = vec3(cos(ang) * r, p.y + sin(uTime * 0.2 + aPhase) * 0.12, sin(ang) * r);',
-              '  vec4 mv = modelViewMatrix * vec4(q, 1.0);',
-              '  gl_Position = projectionMatrix * mv;',
-              '  float ps = aSize * (220.0 / -mv.z) * uPixelRatio;',
-              '  gl_PointSize = clamp(ps, 0.6, 4.0);',
-              '  vTwinkle = 0.45 + 0.55 * (0.5 + 0.5 * sin(uTime * 1.4 + aPhase * 3.0));',
-              '}'
-            ].join('\n'),
-            fragmentShader: [
-              'varying float vTwinkle;',
-              'void main() {',
-              '  vec2 c = gl_PointCoord - 0.5;',
-              '  float d = length(c);',
-              '  if (d > 0.5) discard;',
-              '  float alpha = smoothstep(0.5, 0.0, d) * 0.50 * vTwinkle;',
-              '  vec3 col = mix(vec3(0.78, 0.84, 0.92), vec3(0.99, 0.74, 0.20), 0.18);',
-              '  gl_FragColor = vec4(col, alpha);',
-              '}'
-            ].join('\n')
-          });
-
-          const dust = new THREE.Points(dustGeometry, dustMaterial);
-          dust.frustumCulled = false;
-          scene.add(dust);
-        }
-
-        // -------- Lighting ------------------------------------------
-        scene.add(new THREE.AmbientLight(0xffffff, 0.40));
-        const keyHoney = new THREE.PointLight(HONEY, 32, 38, 2);
-        keyHoney.position.set(0, 6, 4);
-        scene.add(keyHoney);
-        const fillSky = new THREE.PointLight(SKY, 20, 48, 2);
-        fillSky.position.set(-10, -3, -8);
-        scene.add(fillSky);
-        const fillTeal = new THREE.PointLight(TEAL, 14, 48, 2);
-        fillTeal.position.set(12, 2, -2);
-        scene.add(fillTeal);
-
-        // -------- Reusable radial sprite texture --------------------
-        function makeRadialTexture() {
-          const size = 128;
-          const c = document.createElement('canvas');
-          c.width = c.height = size;
-          const ctx = c.getContext('2d');
-          const grd = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
-          grd.addColorStop(0.0,  'rgba(255,255,255,1.0)');
-          grd.addColorStop(0.18, 'rgba(255,255,255,0.55)');
-          grd.addColorStop(0.45, 'rgba(255,255,255,0.18)');
-          grd.addColorStop(1.0,  'rgba(255,255,255,0.0)');
-          ctx.fillStyle = grd;
-          ctx.fillRect(0, 0, size, size);
-          const tex = new THREE.CanvasTexture(c);
-          tex.colorSpace = THREE.SRGBColorSpace;
-          tex.needsUpdate = true;
-          return tex;
-        }
-        const sharedRadialTex = makeRadialTexture();
-
-        // -------- Yogi (Tier 0) -------------------------------------
-        const yogiGroup = new THREE.Group();
-        scene.add(yogiGroup);
-
-        const haloMat = new THREE.MeshBasicMaterial({
-          color: HONEY,
-          transparent: true,
-          opacity: 0.22,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-        const halo = new THREE.Mesh(new THREE.SphereGeometry(1.6, 32, 32), haloMat);
-        yogiGroup.add(halo);
-
-        const auraMat = new THREE.MeshBasicMaterial({
-          color: HONEY,
-          transparent: true,
-          opacity: 0.08,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-        const aura = new THREE.Mesh(new THREE.SphereGeometry(2.6, 32, 32), auraMat);
-        yogiGroup.add(aura);
-
-        const coronaMat = new THREE.SpriteMaterial({
-          map: sharedRadialTex,
-          color: HONEY,
-          transparent: true,
-          opacity: 0.55,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-        const corona = new THREE.Sprite(coronaMat);
-        corona.scale.set(7.5, 7.5, 1);
-        yogiGroup.add(corona);
-
-        const yogiCore = new THREE.Mesh(
-          new THREE.IcosahedronGeometry(0.9, 2),
-          new THREE.MeshStandardMaterial({
-            color: HONEY,
-            emissive: HONEY,
-            emissiveIntensity: 1.4,
-            roughness: 0.25,
-            metalness: 0.15
-          })
-        );
-        yogiGroup.add(yogiCore);
-        yogiCore.userData = {
-          tierLabel: 'Tier 0 · Origin',
-          name: 'Yogi',
-          role: 'Persistent enterprise AGI · 79 memory files',
-          isHoverable: true
-        };
-
-        // -------- Tier 1 nodes (10) ---------------------------------
-        const tier1Group = new THREE.Group();
-        scene.add(tier1Group);
-        const tier1Nodes = [];
-        for (let i = 0; i < SPECIALIST_CREW.length; i++) {
-          const agent = SPECIALIST_CREW[i];
-          const isHoney = (i % 2 === 0);
-          const c = isHoney ? HONEY : TEAL;
-          const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.35, 24, 24),
-            new THREE.MeshStandardMaterial({
-              color: c,
-              emissive: c,
-              emissiveIntensity: 1.0,
-              roughness: 0.3,
-              metalness: 0.25
-            })
-          );
-          const nodeHalo = new THREE.Mesh(
-            new THREE.SphereGeometry(0.62, 16, 16),
-            new THREE.MeshBasicMaterial({
-              color: c,
-              transparent: true,
-              opacity: 0.20,
-              depthWrite: false,
-              blending: THREE.AdditiveBlending
-            })
-          );
-          const bloomSprite = new THREE.Sprite(new THREE.SpriteMaterial({
-            map: sharedRadialTex,
-            color: c,
-            transparent: true,
-            opacity: 0.45,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-          }));
-          bloomSprite.scale.set(1.8, 1.8, 1);
-
-          const g = new THREE.Group();
-          g.add(bloomSprite);
-          g.add(nodeHalo);
-          g.add(mesh);
-          tier1Group.add(g);
-          mesh.userData = {
-            tierLabel: 'Tier 1 · Specialist Crew',
-            name: agent.name,
-            role: agent.role,
-            isHoverable: true,
-            baseEmissive: 1.0
-          };
-          tier1Nodes.push({
-            group: g,
-            mesh: mesh,
-            halo: nodeHalo,
-            bloom: bloomSprite,
-            baseAngle: (i / SPECIALIST_CREW.length) * Math.PI * 2,
-            speed: 0.18,
-            radius: TIER1_RADIUS,
-            tilt: TIER1_TILT,
-            agent: agent
-          });
-        }
-
-        // -------- Tier 2 nodes (12, counter-orbit) ------------------
-        const tier2Group = new THREE.Group();
-        scene.add(tier2Group);
-        const tier2Nodes = [];
-        for (let i = 0; i < DOMAIN_LEADS.length; i++) {
-          const agent = DOMAIN_LEADS[i];
-          const mesh = new THREE.Mesh(
-            new THREE.SphereGeometry(0.22, 20, 20),
-            new THREE.MeshStandardMaterial({
-              color: SKY,
-              emissive: SKY,
-              emissiveIntensity: 1.0,
-              roughness: 0.3,
-              metalness: 0.25
-            })
-          );
-          const nodeHalo = new THREE.Mesh(
-            new THREE.SphereGeometry(0.42, 14, 14),
-            new THREE.MeshBasicMaterial({
-              color: SKY,
-              transparent: true,
-              opacity: 0.16,
-              depthWrite: false,
-              blending: THREE.AdditiveBlending
-            })
-          );
-          const bloomSprite = new THREE.Sprite(new THREE.SpriteMaterial({
-            map: sharedRadialTex,
-            color: SKY,
-            transparent: true,
-            opacity: 0.35,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-          }));
-          bloomSprite.scale.set(1.25, 1.25, 1);
-
-          const g = new THREE.Group();
-          g.add(bloomSprite);
-          g.add(nodeHalo);
-          g.add(mesh);
-          tier2Group.add(g);
-          mesh.userData = {
-            tierLabel: 'Tier 2 · Domain Lead',
-            name: agent.name,
-            role: agent.role,
-            isHoverable: true,
-            baseEmissive: 1.0
-          };
-          tier2Nodes.push({
-            group: g,
-            mesh: mesh,
-            halo: nodeHalo,
-            bloom: bloomSprite,
-            baseAngle: (i / DOMAIN_LEADS.length) * Math.PI * 2,
-            speed: -0.11,
-            radius: TIER2_RADIUS,
-            tilt: TIER2_TILT,
-            agent: agent
-          });
-        }
-
-        // -------- Tier 3 (3,300 nodes · 11 InstancedMesh draws) -----
-        const tier3Clusters = [];
-        {
-          const perCluster = Math.floor(TIER3_COUNT / TIER3_CLUSTERS);
-          const remainder = TIER3_COUNT - perCluster * TIER3_CLUSTERS;
-          let idx = 0;
-
-          const tmpMat = new THREE.Matrix4();
-          const tmpScale = new THREE.Vector3();
-          const tmpPos = new THREE.Vector3();
-          const tmpQuat = new THREE.Quaternion();
-
-          for (let c = 0; c < TIER3_CLUSTERS; c++) {
-            const n = perCluster + (c < remainder ? 1 : 0);
-            const color = new THREE.Color(CLUSTER_COLORS[c]);
-
-            // Low-poly geometry — 8x8 segments is fine for tiny instances
-            const geo = new THREE.SphereGeometry(1, 8, 8);
-            const mat = new THREE.MeshStandardMaterial({
-              color: color,
-              emissive: color,
-              emissiveIntensity: 0.9,
-              roughness: 0.5,
-              metalness: 0.1
-            });
-            const inst = new THREE.InstancedMesh(geo, mat, n);
-            inst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-
-            const wedgeStart = (c / TIER3_CLUSTERS) * Math.PI * 2;
-            const wedgeWidth = (Math.PI * 2) / TIER3_CLUSTERS;
-
-            const localPositions = new Float32Array(n * 3);
-            const baseSizes = new Float32Array(n);
-
-            // Multiple spiral arms per wedge to keep the spirals
-            // legible at 300/cluster instead of jumbled.
-            const arms = 3;
-
-            for (let i = 0; i < n; i++) {
-              const tInCluster = n > 1 ? i / (n - 1) : 0.5;
-              const arm = i % arms;
-              const armT = Math.floor(i / arms) / Math.max(1, Math.floor(n / arms));
-              const angle = wedgeStart
-                          + (arm / arms) * wedgeWidth
-                          + armT * 1.4
-                          + tInCluster * 0.3;
-              const radius = TIER3_INNER + armT * (TIER3_OUTER - TIER3_INNER);
-
-              const rnd = (Math.sin(idx * 12.9898) * 43758.5453) % 1;
-              const yOffset = ((rnd + 1) % 1 - 0.5) * 1.6;
-
-              const driftAmp = 0.08 + (Math.cos(idx * 7.7) * 0.5 + 0.5) * 0.12;
-              const driftPhase = (idx * 0.37) % (Math.PI * 2);
-
-              const x = Math.cos(angle) * radius;
-              const z = Math.sin(angle) * radius;
-              const y = yOffset + Math.sin(driftPhase) * driftAmp * 0.5;
-
-              // Slightly smaller base size at high density so they don't blob
-              const size = (0.038 + ((idx * 0.123) % 1) * 0.022) * 1.25;
-
-              localPositions[i*3+0] = x;
-              localPositions[i*3+1] = y;
-              localPositions[i*3+2] = z;
-              baseSizes[i] = size;
-
-              tmpPos.set(x, y, z);
-              tmpScale.set(size, size, size);
-              tmpQuat.identity();
-              tmpMat.compose(tmpPos, tmpQuat, tmpScale);
-              inst.setMatrixAt(i, tmpMat);
-              idx++;
-            }
-            inst.instanceMatrix.needsUpdate = true;
-            const clusterGroup = new THREE.Group();
-            clusterGroup.add(inst);
-            scene.add(clusterGroup);
-            tier3Clusters.push({
-              group: clusterGroup,
-              inst: inst,
-              localPositions: localPositions,
-              baseSizes: baseSizes,
-              count: n,
-              color: color,
-              speed: 0.04 + (c % 2 === 0 ? 0.02 : -0.015),
-              phase: c * 0.4,
-              firingIndex: -1,
-              firingT0: 0
-            });
-          }
-        }
-
-        // -------- Tier 4 (2,000 micro-agents · 1 InstancedMesh) -----
-        // Smaller, dimmer, more numerous. Distributed evenly around the
-        // outer band r=13..16 with vertical spread. Color cycled through
-        // palette at 60% saturation.
-        let tier4Inst = null;
-        let tier4Group = null;
-        let tier4Positions = null;
-        let tier4Speed = 0.018;
-        {
-          const geo = new THREE.SphereGeometry(1, 4, 4); // very low-poly, never seen up close
-          // Use vertex color path so a single material handles all 2,000.
-          const mat = new THREE.MeshBasicMaterial({
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.78,
-            depthWrite: true,
-            blending: THREE.NormalBlending
-          });
-          tier4Inst = new THREE.InstancedMesh(geo, mat, TIER4_COUNT);
-          tier4Inst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-
-          // Per-instance color buffer
-          const colorAttr = new THREE.InstancedBufferAttribute(new Float32Array(TIER4_COUNT * 3), 3);
-          tier4Inst.instanceColor = colorAttr;
-
-          tier4Positions = new Float32Array(TIER4_COUNT * 3);
-
-          const tmpMat = new THREE.Matrix4();
-          const tmpScale = new THREE.Vector3();
-          const tmpPos = new THREE.Vector3();
-          const tmpQuat = new THREE.Quaternion();
-          const tmpColor = new THREE.Color();
-
-          const palette = [HONEY, TEAL, SKY, DARK_TEAL, RED, VIOLET, CORAL];
-
-          const rng = (i, salt) => {
-            const v = Math.sin((i + 1) * 17.5453 + salt * 91.121) * 43758.5453;
-            return v - Math.floor(v);
-          };
-
-          for (let i = 0; i < TIER4_COUNT; i++) {
-            // Polar in the outer band
-            const tBand = rng(i, 1);                            // 0..1 — radial
-            const theta = rng(i, 2) * Math.PI * 2 + (i * 0.012); // pseudo-random + sequenced
-            const radius = TIER4_INNER + tBand * (TIER4_OUTER - TIER4_INNER);
-            // Slight vertical spread that thins toward outer rim
-            const yJitter = (rng(i, 3) - 0.5) * 2.2 * (1.0 - tBand * 0.4);
-
-            const x = Math.cos(theta) * radius;
-            const z = Math.sin(theta) * radius;
-            const y = yJitter;
-
-            tier4Positions[i*3+0] = x;
-            tier4Positions[i*3+1] = y;
-            tier4Positions[i*3+2] = z;
-
-            // Half the Tier 3 size
-            const size = (0.020 + rng(i, 4) * 0.012) * 1.0;
-
-            tmpPos.set(x, y, z);
-            tmpScale.set(size, size, size);
-            tmpQuat.identity();
-            tmpMat.compose(tmpPos, tmpQuat, tmpScale);
-            tier4Inst.setMatrixAt(i, tmpMat);
-
-            // Cycle palette, desaturate to 60% saturation
-            const baseHex = palette[i % palette.length];
-            tmpColor.setHex(baseHex);
-            // Desaturate via HSL
-            const hsl = { h: 0, s: 0, l: 0 };
-            tmpColor.getHSL(hsl);
-            tmpColor.setHSL(hsl.h, hsl.s * 0.6, hsl.l * 0.85);
-            colorAttr.setXYZ(i, tmpColor.r, tmpColor.g, tmpColor.b);
-          }
-          tier4Inst.instanceMatrix.needsUpdate = true;
-          colorAttr.needsUpdate = true;
-
-          tier4Group = new THREE.Group();
-          tier4Group.add(tier4Inst);
-          scene.add(tier4Group);
-        }
-
-        // -------- Systems ring (12 enterprise systems) --------------
-        // 12 individual meshes — each a luminous orb with bloom sprite.
-        // Each one is a hoverable target and gets a billboarded HTML label.
-        const systemsGroup = new THREE.Group();
-        scene.add(systemsGroup);
-        const systemNodes = [];
-
-        // Pre-create label elements
-        const systemLabelsHost = document.getElementById('system-labels');
-        for (let i = 0; i < SYSTEMS.length; i++) {
-          const sys = SYSTEMS[i];
-          const angle = (i / SYSTEMS.length) * Math.PI * 2;
-          const x = Math.cos(angle) * SYSTEMS_RADIUS;
-          const z = Math.sin(angle) * SYSTEMS_RADIUS;
-          const y = Math.sin(angle * 2.0) * 0.6;  // gentle wave for visual interest
-
-          const orb = new THREE.Mesh(
-            new THREE.SphereGeometry(0.52, 24, 24),  // 1.5× Tier 1 size
-            new THREE.MeshStandardMaterial({
-              color: sys.color,
-              emissive: sys.color,
-              emissiveIntensity: 1.3,
-              roughness: 0.28,
-              metalness: 0.2
-            })
-          );
-          orb.position.set(x, y, z);
-
-          const innerHalo = new THREE.Mesh(
-            new THREE.SphereGeometry(0.9, 18, 18),
-            new THREE.MeshBasicMaterial({
-              color: sys.color,
-              transparent: true,
-              opacity: 0.20,
-              depthWrite: false,
-              blending: THREE.AdditiveBlending
-            })
-          );
-          innerHalo.position.set(x, y, z);
-
-          const bloom = new THREE.Sprite(new THREE.SpriteMaterial({
-            map: sharedRadialTex,
-            color: sys.color,
-            transparent: true,
-            opacity: 0.55,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-          }));
-          bloom.scale.set(2.6, 2.6, 1);
-          bloom.position.set(x, y, z);
-
-          systemsGroup.add(bloom);
-          systemsGroup.add(innerHalo);
-          systemsGroup.add(orb);
-
-          orb.userData = {
-            tierLabel: 'Outer Ring · Enterprise System',
-            name: sys.name,
-            role: sys.tag,
-            isHoverable: true,
-            baseEmissive: 1.3
-          };
-
-          // Build label element
-          const lbl = document.createElement('div');
-          lbl.className = 'system-label';
-          lbl.style.setProperty('--lc', '#' + sys.color.toString(16).padStart(6,'0'));
-          lbl.innerHTML = '<span class="sl-tick"></span><span class="sl-name">' + sys.name + '</span><span class="sl-tag">' + sys.tag + '</span>';
-          systemLabelsHost.appendChild(lbl);
-
-          systemNodes.push({
-            orb,
-            halo: innerHalo,
-            bloom,
-            baseAngle: angle,
-            yBase: y,
-            radius: SYSTEMS_RADIUS,
-            speed: 0.015,  // very slow, mostly stationary
-            color: sys.color,
-            sys: sys,
-            label: lbl
-          });
-        }
-
-        // -------- Honey beams from Yogi to each system --------------
-        // SINGLE BufferGeometry, SINGLE ShaderMaterial. 12 line strips,
-        // each split into 32 segments for smooth pulse animation along beam.
-        // Total verts: 12 * 33 = 396, vert attribute aBeam = beam index (0..11),
-        // aT = position along beam (0..1).
-        let beamsLine = null;
-        let beamsMaterial = null;
-        let beamsGeometry = null;
-        const beamEndsLocal = []; // store end-world positions to update if needed
-        {
-          const SEGS = 32;
-          const VERTS_PER_BEAM = SEGS + 1;
-          const TOTAL_VERTS = SYSTEMS.length * VERTS_PER_BEAM;
-
-          const positions = new Float32Array(TOTAL_VERTS * 3);
-          const aT = new Float32Array(TOTAL_VERTS);
-          const aBeam = new Float32Array(TOTAL_VERTS);
-          const aColor = new Float32Array(TOTAL_VERTS * 3);
-
-          // Indices: line segments (each beam is a line strip rendered as segments)
-          const indices = new Uint16Array(SYSTEMS.length * SEGS * 2);
-          let idxPtr = 0;
-
-          const cTmp = new THREE.Color();
-
-          for (let b = 0; b < SYSTEMS.length; b++) {
-            const sys = SYSTEMS[b];
-            cTmp.setHex(sys.color);
-            const angle = (b / SYSTEMS.length) * Math.PI * 2;
-            const ex = Math.cos(angle) * SYSTEMS_RADIUS;
-            const ez = Math.sin(angle) * SYSTEMS_RADIUS;
-            const ey = Math.sin(angle * 2.0) * 0.6;
-            beamEndsLocal.push({ x: ex, y: ey, z: ez });
-
-            for (let s = 0; s <= SEGS; s++) {
-              const t = s / SEGS;
-              const vIdx = b * VERTS_PER_BEAM + s;
-
-              // Lerp from origin to system orb
-              // Slight arc upward at midpoint
-              const px = ex * t;
-              const py = ey * t + Math.sin(t * Math.PI) * 0.6;  // gentle arc
-              const pz = ez * t;
-
-              positions[vIdx*3+0] = px;
-              positions[vIdx*3+1] = py;
-              positions[vIdx*3+2] = pz;
-              aT[vIdx] = t;
-              aBeam[vIdx] = b;
-
-              // Tint beam toward system color at far end, honey at center
-              const honeyC = new THREE.Color(HONEY);
-              const blended = honeyC.clone().lerp(cTmp, t * 0.5);
-              aColor[vIdx*3+0] = blended.r;
-              aColor[vIdx*3+1] = blended.g;
-              aColor[vIdx*3+2] = blended.b;
-
-              if (s < SEGS) {
-                indices[idxPtr++] = vIdx;
-                indices[idxPtr++] = vIdx + 1;
-              }
-            }
-          }
-
-          beamsGeometry = new THREE.BufferGeometry();
-          beamsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-          beamsGeometry.setAttribute('aT', new THREE.BufferAttribute(aT, 1));
-          beamsGeometry.setAttribute('aBeam', new THREE.BufferAttribute(aBeam, 1));
-          beamsGeometry.setAttribute('aColor', new THREE.BufferAttribute(aColor, 3));
-          beamsGeometry.setIndex(new THREE.BufferAttribute(indices, 1));
-
-          beamsMaterial = new THREE.ShaderMaterial({
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-            uniforms: {
-              uTime: { value: 0 },
-              uBeamCount: { value: SYSTEMS.length }
-            },
-            vertexShader: [
-              'attribute float aT;',
-              'attribute float aBeam;',
-              'attribute vec3 aColor;',
-              'uniform float uTime;',
-              'uniform float uBeamCount;',
-              'varying float vT;',
-              'varying float vPulse;',
-              'varying vec3 vColor;',
-              'void main() {',
-              '  vT = aT;',
-              '  vColor = aColor;',
-              '  // Pulse rolls outward: each beam staggered by aBeam/count * 3s',
-              '  float stagger = aBeam / uBeamCount * 3.0;',
-              '  float pulseTime = mod(uTime + stagger, 3.0) / 3.0;  // 0..1',
-              '  // Bell-shaped bump that travels along the beam',
-              '  float dist = abs(aT - pulseTime);',
-              '  vPulse = exp(-dist * dist * 60.0);  // narrow gaussian',
-              '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
-              '}'
-            ].join('\n'),
-            fragmentShader: [
-              'varying float vT;',
-              'varying float vPulse;',
-              'varying vec3 vColor;',
-              'void main() {',
-              '  // Base intensity dims toward the far end so the beam fades into system orb',
-              '  float base = mix(0.55, 0.25, vT);',
-              '  // Pulse adds bright honey-white bump',
-              '  float pulse = vPulse * 1.6;',
-              '  vec3 col = vColor * base + vec3(1.0, 0.85, 0.45) * pulse;',
-              '  float alpha = clamp(base + pulse * 0.9, 0.0, 1.0);',
-              '  gl_FragColor = vec4(col, alpha);',
-              '}'
-            ].join('\n')
-          });
-
-          beamsLine = new THREE.LineSegments(beamsGeometry, beamsMaterial);
-          beamsLine.frustumCulled = false;
-          scene.add(beamsLine);
-        }
-
-        // -------- Internal connection lattice (Yogi → T1 → T2) ------
-        const tier1Rest = [];
-        for (let i = 0; i < SPECIALIST_CREW.length; i++) {
-          const angle = (i / SPECIALIST_CREW.length) * Math.PI * 2;
-          const x = Math.cos(angle) * TIER1_RADIUS;
-          const z = Math.sin(angle) * TIER1_RADIUS;
-          const y = z * Math.sin(TIER1_TILT);
-          const zT = z * Math.cos(TIER1_TILT);
-          tier1Rest.push(new THREE.Vector3(x, y, zT));
-        }
-        const tier2Rest = [];
-        for (let i = 0; i < DOMAIN_LEADS.length; i++) {
-          const angle = (i / DOMAIN_LEADS.length) * Math.PI * 2;
-          const x = Math.cos(angle) * TIER2_RADIUS;
-          const z = Math.sin(angle) * TIER2_RADIUS;
-          const y = z * Math.sin(TIER2_TILT);
-          const zT = z * Math.cos(TIER2_TILT);
-          tier2Rest.push(new THREE.Vector3(x, y, zT));
-        }
-        const origin = new THREE.Vector3(0, 0, 0);
-
-        function buildLineSegments(pairs, colorHex, opacity) {
-          const positions = new Float32Array(pairs.length * 6);
-          for (let i = 0; i < pairs.length; i++) {
-            const [a, b] = pairs[i];
-            positions[i*6+0] = a.x; positions[i*6+1] = a.y; positions[i*6+2] = a.z;
-            positions[i*6+3] = b.x; positions[i*6+4] = b.y; positions[i*6+5] = b.z;
-          }
-          const g = new THREE.BufferGeometry();
-          g.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-          const m = new THREE.LineBasicMaterial({
-            color: colorHex,
-            transparent: true,
-            opacity: opacity,
-            depthWrite: false
-          });
-          return new THREE.LineSegments(g, m);
-        }
-
-        const yogi2t1Pairs = tier1Rest.map(p => [origin, p]);
-        const yogi2t1 = buildLineSegments(yogi2t1Pairs, HONEY, 0.2);
-        scene.add(yogi2t1);
-
-        const t1t2Pairs = [];
-        tier1Rest.forEach((p1) => {
-          const ranked = tier2Rest
-            .map((p2, idx) => ({ idx, d: p1.distanceTo(p2) }))
-            .sort((a, b) => a.d - b.d)
-            .slice(0, 2);
-          ranked.forEach(({ idx }) => t1t2Pairs.push([p1, tier2Rest[idx]]));
-        });
-        const t1t2 = buildLineSegments(t1t2Pairs, TEAL, 0.15);
-        scene.add(t1t2);
-
-        const t1rimPairs = [];
-        tier1Rest.forEach((p1, i) => {
-          const angle = (i / SPECIALIST_CREW.length) * Math.PI * 2 + 0.3;
-          const r = TIER3_OUTER - 0.5;
-          const rim = new THREE.Vector3(
-            Math.cos(angle) * r,
-            Math.sin(angle * 1.7) * 0.5,
-            Math.sin(angle) * r
-          );
-          t1rimPairs.push([p1, rim]);
-        });
-        const t1rim = buildLineSegments(t1rimPairs, SKY, 0.1);
-        scene.add(t1rim);
-
-        const allLineMaterials = [yogi2t1.material, t1t2.material, t1rim.material];
-
-        // -------- Tracer for active fire ----------------------------
-        const tracerGeom = new THREE.BufferGeometry();
-        const tracerPositions = new Float32Array(2 * 3);
-        tracerGeom.setAttribute('position', new THREE.BufferAttribute(tracerPositions, 3));
-        const tracerMat = new THREE.LineBasicMaterial({
-          color: HONEY,
-          transparent: true,
-          opacity: 0.0,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-        const tracerLine = new THREE.LineSegments(tracerGeom, tracerMat);
-        scene.add(tracerLine);
-        let tracerState = { active: false, t0: 0, duration: 0.9 };
-
-        // -------- Orbit controls ------------------------------------
-        let camDistance = 28;
-        let camAzimuth = -0.4;
-        let camPolar = THREE.MathUtils.degToRad(72);
-        const minDistance = 8;
-        const maxDistance = 42;
-        const minPolar = THREE.MathUtils.degToRad(35);
-        const maxPolar = THREE.MathUtils.degToRad(125);
-
-        let dragging = false;
-        let lastX = 0, lastY = 0;
-        let userInteractedAt = 0;
-        const AUTO_RESUME_AFTER = 4500;
-
-        function applyCameraSpherical() {
-          const sinP = Math.sin(camPolar);
-          camera.position.set(
-            camDistance * sinP * Math.cos(camAzimuth),
-            camDistance * Math.cos(camPolar),
-            camDistance * sinP * Math.sin(camAzimuth)
-          );
-          camera.lookAt(0, 0, 0);
-        }
-
-        function onPointerDown(e) {
-          dragging = true;
-          lastX = e.clientX; lastY = e.clientY;
-          renderer.domElement.style.cursor = 'grabbing';
-        }
-        function onPointerMove(e) {
-          updateHoverFromEvent(e);
-          if (!dragging) return;
-          const dx = e.clientX - lastX;
-          const dy = e.clientY - lastY;
-          lastX = e.clientX; lastY = e.clientY;
-          camAzimuth -= dx * 0.005;
-          camPolar = Math.max(minPolar, Math.min(maxPolar, camPolar - dy * 0.005));
-          userInteractedAt = performance.now();
-          applyCameraSpherical();
-        }
-        function onPointerUp() {
-          dragging = false;
-          renderer.domElement.style.cursor = 'grab';
-          userInteractedAt = performance.now();
-        }
-        function onWheel(e) {
-          e.preventDefault();
-          camDistance = Math.max(minDistance,
-                       Math.min(maxDistance, camDistance + e.deltaY * 0.018));
-          userInteractedAt = performance.now();
-          applyCameraSpherical();
-        }
-
-        renderer.domElement.style.cursor = 'grab';
-        renderer.domElement.addEventListener('pointerdown', onPointerDown);
-        window.addEventListener('pointermove', onPointerMove);
-        window.addEventListener('pointerup', onPointerUp);
-        renderer.domElement.addEventListener('wheel', onWheel, { passive: false });
-
-        applyCameraSpherical();
-
-        // -------- Hover / raycasting --------------------------------
-        const raycaster = new THREE.Raycaster();
-        const ndc = new THREE.Vector2();
-        const hoverables = [
-          yogiCore,
-          ...tier1Nodes.map(n => n.mesh),
-          ...tier2Nodes.map(n => n.mesh),
-          ...systemNodes.map(s => s.orb)
-        ];
-        const tooltipEl = document.getElementById('galaxy-tooltip');
-        const tName = document.getElementById('tt-name');
-        const tRole = document.getElementById('tt-role');
-        const tTier = document.getElementById('tt-tier');
-        let hoveredMesh = null;
-        let lastPointer = { x: 0, y: 0, inside: false };
-
-        function updateHoverFromEvent(e) {
-          const rect = renderer.domElement.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          lastPointer.x = e.clientX;
-          lastPointer.y = e.clientY;
-          lastPointer.inside = (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height);
-        }
-
-        function pickHover() {
-          if (!lastPointer.inside) { setHovered(null); return; }
-          const rect = renderer.domElement.getBoundingClientRect();
-          ndc.x = ((lastPointer.x - rect.left) / rect.width) * 2 - 1;
-          ndc.y = -((lastPointer.y - rect.top) / rect.height) * 2 + 1;
-          raycaster.setFromCamera(ndc, camera);
-          const hits = raycaster.intersectObjects(hoverables, false);
-          if (hits.length > 0) setHovered(hits[0].object);
-          else setHovered(null);
-        }
-
-        function setHovered(mesh) {
-          if (mesh === hoveredMesh) {
-            if (mesh) positionTooltip();
-            return;
-          }
-          if (hoveredMesh) {
-            const mat = hoveredMesh.material;
-            if (mat && hoveredMesh.userData.baseEmissive !== undefined) {
-              mat.emissiveIntensity = hoveredMesh.userData.baseEmissive;
-            }
-          }
-          hoveredMesh = mesh;
-          if (mesh && mesh.userData.isHoverable) {
-            const ud = mesh.userData;
-            tName.textContent = ud.name;
-            tRole.textContent = ud.role;
-            tTier.textContent = ud.tierLabel;
-            tooltipEl.classList.add('show');
-            positionTooltip();
-            const mat = mesh.material;
-            if (mat) mat.emissiveIntensity = 2.4;
-            renderer.domElement.style.cursor = 'pointer';
-          } else {
-            tooltipEl.classList.remove('show');
-            renderer.domElement.style.cursor = dragging ? 'grabbing' : 'grab';
-          }
-        }
-
-        // Reusable projection scratch
-        const _projOut = new THREE.Vector3();
-        const _projVec = new THREE.Vector3();
-        const _slideEl = document.getElementById('slide-06');
-
-        function projectToScreen(worldVec3, outXY) {
-          _projVec.copy(worldVec3).project(camera);
-          const rect = renderer.domElement.getBoundingClientRect();
-          const slideRect = _slideEl.getBoundingClientRect();
-          outXY.x = (_projVec.x * 0.5 + 0.5) * rect.width + rect.left - slideRect.left;
-          outXY.y = (-_projVec.y * 0.5 + 0.5) * rect.height + rect.top - slideRect.top;
-          outXY.behind = _projVec.z > 1;
-        }
-
-        const _screenXY = { x: 0, y: 0, behind: false };
-
-        function positionTooltip() {
-          if (!hoveredMesh) return;
-          hoveredMesh.getWorldPosition(_projOut);
-          projectToScreen(_projOut, _screenXY);
-          tooltipEl.style.left = _screenXY.x + 'px';
-          tooltipEl.style.top  = _screenXY.y + 'px';
-        }
-
-        // -------- Tier callouts -------------------------------------
-        const tcEls = {
-          0: document.getElementById('tc-0'),
-          1: document.getElementById('tc-1'),
-          2: document.getElementById('tc-2'),
-          3: document.getElementById('tc-3'),
-          4: document.getElementById('tc-4'),
-          5: document.getElementById('tc-5')
-        };
-        const tcAnchors = {
-          0: new THREE.Vector3(0, 1.6, 0),
-          1: new THREE.Vector3(TIER1_RADIUS + 0.6, 0.5, 0),
-          2: new THREE.Vector3(TIER2_RADIUS + 0.6, 0.0, 0),
-          3: new THREE.Vector3(TIER3_OUTER + 0.4, -0.4, 0),
-          4: new THREE.Vector3(TIER4_OUTER + 0.4, -0.4, 0),
-          5: new THREE.Vector3(SYSTEMS_RADIUS - 1.6, 1.4, 0)
-        };
-        const tcWorld = {
-          0: new THREE.Vector3(),
-          1: new THREE.Vector3(),
-          2: new THREE.Vector3(),
-          3: new THREE.Vector3(),
-          4: new THREE.Vector3(),
-          5: new THREE.Vector3()
-        };
-
-        function updateCallouts(t) {
-          const slowSpin = t * 0.08;
-          for (let tier = 0; tier <= 5; tier++) {
-            const a = tcAnchors[tier];
-            const r = Math.sqrt(a.x * a.x + a.z * a.z);
-            const baseAng = Math.atan2(a.z, a.x);
-            const ang = baseAng + slowSpin * (tier % 2 === 0 ? 1 : -1) * 0.6;
-            tcWorld[tier].set(Math.cos(ang) * r, a.y, Math.sin(ang) * r);
-          }
-
-          for (let tier = 0; tier <= 5; tier++) {
-            projectToScreen(tcWorld[tier], _screenXY);
-            const el = tcEls[tier];
-            if (_screenXY.behind) {
-              el.classList.remove('show');
-              continue;
-            }
-            el.style.left = _screenXY.x + 'px';
-            el.style.top = _screenXY.y + 'px';
-            const dist = Math.abs(camDistance);
-            const closeness = THREE.MathUtils.clamp((maxDistance - dist) / (maxDistance - minDistance), 0, 1);
-            el.style.opacity = (0.40 + closeness * 0.50).toFixed(3);
-            el.classList.add('show');
-          }
-        }
-
-        // -------- System label projection ---------------------------
-        const _sysAnchor = new THREE.Vector3();
-        function updateSystemLabels() {
-          for (let i = 0; i < systemNodes.length; i++) {
-            const sn = systemNodes[i];
-            sn.orb.getWorldPosition(_sysAnchor);
-            // Offset label outward radially so it doesn't sit on top of orb
-            const ang = Math.atan2(_sysAnchor.z, _sysAnchor.x);
-            _sysAnchor.x += Math.cos(ang) * 1.1;
-            _sysAnchor.z += Math.sin(ang) * 1.1;
-            _sysAnchor.y += 0.55;
-            projectToScreen(_sysAnchor, _screenXY);
-            if (_screenXY.behind) {
-              sn.label.classList.remove('show');
-              continue;
-            }
-            sn.label.style.left = _screenXY.x + 'px';
-            sn.label.style.top = _screenXY.y + 'px';
-            sn.label.classList.add('show');
-          }
-        }
-
-        // -------- Pause toggle --------------------------------------
-        let paused = !!reduced;
-        const pauseBtn = document.getElementById('galaxy-pause');
-        const statusEl = document.getElementById('galaxy-status');
-        function syncPauseUi() {
-          pauseBtn.dataset.paused = paused ? 'true' : 'false';
-          pauseBtn.querySelector('.lbl').textContent = paused ? 'Orbits Paused' : 'Orbits Live';
-          pauseBtn.setAttribute('aria-pressed', paused ? 'false' : 'true');
-          statusEl.textContent = paused ? 'PAUSED' : 'RENDERING';
-        }
-        syncPauseUi();
-        pauseBtn.addEventListener('click', () => {
-          paused = !paused;
-          syncPauseUi();
-        });
-
-        // -------- Bottom systems strip (DOM build) ------------------
-        // Built here in JS so we can use the same color tokens that drive
-        // the WebGL orbs — single source of truth.
-        {
-          const row = document.getElementById('systems-row');
-          // Order to match SHORT names requested in brief
-          const stripOrder = [
-            { short: 'ZOHO', color: HONEY },
-            { short: 'DATABRICKS', color: SKY },
-            { short: 'MYOB', color: RED },
-            { short: 'EZYCOLLECT', color: DARK_TEAL },
-            { short: 'EH', color: HONEY },
-            { short: 'AIRCALL', color: CORAL },
-            { short: 'M365', color: TEAL },
-            { short: 'SHAREPOINT', color: TEAL },
-            { short: 'CONFLUENCE', color: VIOLET },
-            { short: 'LINEAR', color: SKY },
-            { short: 'PORTAL', color: HONEY },
-            { short: 'CV-ZOHO', color: TEAL }
-          ];
-          for (let i = 0; i < stripOrder.length; i++) {
-            const it = stripOrder[i];
-            const hex = '#' + it.color.toString(16).padStart(6,'0');
-            const pill = document.createElement('span');
-            pill.className = 'ss-pill';
-            pill.style.setProperty('--c', hex);
-            pill.style.setProperty('--d', (i * 0.2) + 's');
-            pill.innerHTML = '<span class="ss-name">' + it.short + '</span><span class="ss-dot"></span>';
-            row.appendChild(pill);
-          }
-        }
-
-        // -------- Active node "fire" --------------------------------
-        let fireSeed = 0x13579bdf;
-        function nextFireSeed() {
-          fireSeed = (fireSeed * 1664525 + 1013904223) >>> 0;
-          return fireSeed;
-        }
-        let nextFireAt = 1.2;
-        const tmpMat4 = new THREE.Matrix4();
-        const tmpScale = new THREE.Vector3();
-        const tmpPos = new THREE.Vector3();
-        const tmpQuat = new THREE.Quaternion();
-        const _fireLocalV = new THREE.Vector3();
-        const _fireT2World = new THREE.Vector3();
-        const _fireEndWorld = new THREE.Vector3();
-
-        function triggerFire(t) {
-          const cIdx = nextFireSeed() % tier3Clusters.length;
-          const cluster = tier3Clusters[cIdx];
-          const iIdx = nextFireSeed() % cluster.count;
-
-          cluster.firingIndex = iIdx;
-          cluster.firingT0 = t;
-
-          const lx = cluster.localPositions[iIdx*3+0];
-          const ly = cluster.localPositions[iIdx*3+1];
-          const lz = cluster.localPositions[iIdx*3+2];
-          _fireLocalV.set(lx, ly, lz);
-          cluster.group.updateMatrixWorld();
-          _fireLocalV.applyMatrix4(cluster.group.matrixWorld);
-
-          let closest = tier2Nodes[0];
-          let bestD = Infinity;
-          for (let k = 0; k < tier2Nodes.length; k++) {
-            tier2Nodes[k].mesh.getWorldPosition(_fireT2World);
-            const d = _fireT2World.distanceTo(_fireLocalV);
-            if (d < bestD) { bestD = d; closest = tier2Nodes[k]; }
-          }
-          closest.mesh.getWorldPosition(_fireEndWorld);
-
-          tracerPositions[0] = _fireLocalV.x; tracerPositions[1] = _fireLocalV.y; tracerPositions[2] = _fireLocalV.z;
-          tracerPositions[3] = _fireEndWorld.x; tracerPositions[4] = _fireEndWorld.y; tracerPositions[5] = _fireEndWorld.z;
-          tracerGeom.attributes.position.needsUpdate = true;
-          tracerMat.color.setHex(cluster.color.getHex());
-          tracerState.active = true;
-          tracerState.t0 = t;
-          tracerState.duration = 0.8;
-        }
-
-        function updateFireHighlight(t) {
-          for (let c = 0; c < tier3Clusters.length; c++) {
-            const cluster = tier3Clusters[c];
-            if (cluster.firingIndex < 0) continue;
-            const dt = t - cluster.firingT0;
-            const lifetime = 1.4;
-            if (dt > lifetime) {
-              const i = cluster.firingIndex;
-              tmpPos.set(
-                cluster.localPositions[i*3+0],
-                cluster.localPositions[i*3+1],
-                cluster.localPositions[i*3+2]
-              );
-              const s = cluster.baseSizes[i];
-              tmpScale.set(s, s, s);
-              tmpQuat.identity();
-              tmpMat4.compose(tmpPos, tmpQuat, tmpScale);
-              cluster.inst.setMatrixAt(i, tmpMat4);
-              cluster.inst.instanceMatrix.needsUpdate = true;
-              cluster.firingIndex = -1;
-              continue;
-            }
-            const norm = dt / lifetime;
-            const spike = norm < 0.12
-              ? norm / 0.12
-              : 1.0 - (norm - 0.12) / (1.0 - 0.12);
-            const boost = 1.0 + Math.max(0, spike) * 4.0;
-            const i = cluster.firingIndex;
-            tmpPos.set(
-              cluster.localPositions[i*3+0],
-              cluster.localPositions[i*3+1],
-              cluster.localPositions[i*3+2]
-            );
-            const s = cluster.baseSizes[i] * boost;
-            tmpScale.set(s, s, s);
-            tmpQuat.identity();
-            tmpMat4.compose(tmpPos, tmpQuat, tmpScale);
-            cluster.inst.setMatrixAt(i, tmpMat4);
-            cluster.inst.instanceMatrix.needsUpdate = true;
-          }
-        }
-
-        function updateTracer(t) {
-          if (!tracerState.active) {
-            tracerMat.opacity = 0;
-            return;
-          }
-          const dt = t - tracerState.t0;
-          if (dt > tracerState.duration) {
-            tracerState.active = false;
-            tracerMat.opacity = 0;
-            return;
-          }
-          const norm = dt / tracerState.duration;
-          const env = Math.sin(norm * Math.PI);
-          tracerMat.opacity = 0.85 * env;
-        }
-
-        // -------- Cinematic camera ---------------------------------
-        const CINEMA_PERIOD = 32.0;
-        const CINEMA_AZIMUTH_RATE = 0.038;
-        const CINEMA_POLAR_AMP = THREE.MathUtils.degToRad(6.5);
-        const CINEMA_POLAR_BASE = THREE.MathUtils.degToRad(72);
-        const CINEMA_DIST_BASE = 27;
-        const CINEMA_DIST_AMP = 3.0;
-
-        function applyCinematicCamera(t) {
-          const u = (t % CINEMA_PERIOD) / CINEMA_PERIOD;
-          camAzimuth = (camAzimuth + CINEMA_AZIMUTH_RATE * (1/60)) % (Math.PI * 2);
-          camPolar = CINEMA_POLAR_BASE + Math.sin(u * Math.PI * 2) * CINEMA_POLAR_AMP;
-          camDistance = CINEMA_DIST_BASE + Math.cos(u * Math.PI * 2) * CINEMA_DIST_AMP;
-          applyCameraSpherical();
-        }
-
-        // -------- Animation loop ------------------------------------
-        let rafId = null;
-        const clock = new THREE.Clock();
-        let frameIdx = 0;
-
-        function tick() {
-          const t = clock.getElapsedTime();
-          frameIdx++;
-
-          if (!paused) {
-            // Yogi pulse
-            const yScale = 1 + Math.sin(t * 1.6) * 0.03;
-            yogiCore.scale.setScalar(yScale);
-            const haloScale = 1 + Math.sin(t * 1.2) * 0.06;
-            halo.scale.setScalar(haloScale);
-            haloMat.opacity = 0.22 + Math.sin(t * 1.2) * 0.06;
-            auraMat.opacity = 0.08 + Math.sin(t * 0.7) * 0.03;
-            const coronaScale = 7.5 + Math.sin(t * 0.55) * 0.6;
-            corona.scale.set(coronaScale, coronaScale, 1);
-            coronaMat.opacity = 0.50 + Math.sin(t * 0.55) * 0.08;
-
-            // Tier 1 orbit
-            for (let i = 0; i < tier1Nodes.length; i++) {
-              const n = tier1Nodes[i];
-              const a = n.baseAngle + t * n.speed;
-              const x = Math.cos(a) * n.radius;
-              const z = Math.sin(a) * n.radius;
-              const y = z * Math.sin(n.tilt);
-              const zT = z * Math.cos(n.tilt);
-              n.group.position.set(x, y, zT);
-            }
-            // Tier 2 counter-orbit
-            for (let i = 0; i < tier2Nodes.length; i++) {
-              const n = tier2Nodes[i];
-              const a = n.baseAngle + t * n.speed;
-              const x = Math.cos(a) * n.radius;
-              const z = Math.sin(a) * n.radius;
-              const y = z * Math.sin(n.tilt);
-              const zT = z * Math.cos(n.tilt);
-              n.group.position.set(x, y, zT);
-            }
-            // Tier 3 cluster spin + bob
-            for (let i = 0; i < tier3Clusters.length; i++) {
-              const c = tier3Clusters[i];
-              c.group.rotation.y = t * c.speed;
-              c.group.position.y = Math.sin(t * 0.4 + c.phase) * 0.08;
-            }
-            // Tier 4 — single slow rotation + gentle bob
-            if (tier4Group) {
-              tier4Group.rotation.y = t * tier4Speed;
-              tier4Group.position.y = Math.sin(t * 0.25) * 0.04;
-            }
-            // Systems ring — barely-perceptible wobble (mostly stationary)
-            // Update only every 3 frames since 12 orbs is cheap.
-            if ((frameIdx % 3) === 0) {
-              for (let i = 0; i < systemNodes.length; i++) {
-                const sn = systemNodes[i];
-                const wobble = Math.sin(t * 0.5 + i * 0.7) * 0.08;
-                const yNow = sn.yBase + wobble;
-                sn.orb.position.y = yNow;
-                sn.halo.position.y = yNow;
-                sn.bloom.position.y = yNow;
-                // Subtle emissive breathing on each system orb
-                sn.orb.material.emissiveIntensity = 1.3 + Math.sin(t * 1.1 + i * 0.5) * 0.25;
-              }
-            }
-            // Beams shader time
-            if (beamsMaterial) beamsMaterial.uniforms.uTime.value = t;
-
-            // Line shimmer
-            const op = 0.175 + Math.sin(t * 0.9) * 0.075;
-            allLineMaterials[0].opacity = op;
-            allLineMaterials[1].opacity = op * 0.85;
-            allLineMaterials[2].opacity = op * 0.6;
-
-            // Fire scheduling
-            if (t >= nextFireAt) {
-              triggerFire(t);
-              nextFireAt = t + 2.0 + (nextFireSeed() % 1000) / 5000.0;
-            }
-            updateFireHighlight(t);
-            updateTracer(t);
-
-            // Dust shader
-            if (dustMaterial) dustMaterial.uniforms.uTime.value = t;
-
-            // Cinematic camera
-            if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
-              applyCinematicCamera(t);
-            }
-          }
-
-          // Hover follow
-          if (hoveredMesh) positionTooltip();
-
-          // Callouts every 2 frames, system labels every 3 frames
-          if ((frameIdx & 1) === 0) updateCallouts(t);
-          if ((frameIdx % 3) === 0) updateSystemLabels();
-
-          renderer.render(scene, camera);
-          rafId = requestAnimationFrame(tick);
-        }
-
-        function onResize() {
-          const w = wrap.clientWidth, h = wrap.clientHeight;
-          if (!w || !h) return;
-          renderer.setSize(w, h, false);
-          camera.aspect = w / h;
-          camera.updateProjectionMatrix();
-          if (dustMaterial) dustMaterial.uniforms.uPixelRatio.value = renderer.getPixelRatio();
-        }
-        const ro = new ResizeObserver(onResize);
-        ro.observe(wrap);
-
-        // Hover sampling
-        let hoverRaf = null;
-        function hoverLoop() {
-          pickHover();
-          hoverRaf = requestAnimationFrame(hoverLoop);
-        }
-        hoverLoop();
-
-        rafId = requestAnimationFrame(tick);
-
-        // -------- Init perf info ------------------------------------
-        renderer.render(scene, camera);
-        try {
-          const info = renderer.info;
-          console.debug('[slide-06 v4]', {
-            calls: info.render.calls,
-            triangles: info.render.triangles,
-            geometries: info.memory.geometries,
-            textures: info.memory.textures,
-            programs: info.programs ? info.programs.length : null,
-            tier3: TIER3_COUNT,
-            tier4: TIER4_COUNT,
-            systems: SYSTEMS.length
-          });
-          const drawEl = document.getElementById('galaxy-draws');
-          if (drawEl) drawEl.textContent = String(info.render.calls);
-        } catch (e) { /* no-op */ }
-
-        // -------- Cleanup ------------------------------------------
-        state = {
-          dispose() {
-            cancelAnimationFrame(rafId);
-            cancelAnimationFrame(hoverRaf);
-            ro.disconnect();
-            renderer.domElement.removeEventListener('pointerdown', onPointerDown);
-            window.removeEventListener('pointermove', onPointerMove);
-            window.removeEventListener('pointerup', onPointerUp);
-            renderer.domElement.removeEventListener('wheel', onWheel);
-
-            const disposedMats = new Set();
-            const disposedGeos = new Set();
-            const disposedTexs = new Set();
-
-            function disposeMaterial(m) {
-              if (!m || disposedMats.has(m)) return;
-              disposedMats.add(m);
-              for (const k in m) {
-                const v = m[k];
-                if (v && v.isTexture && !disposedTexs.has(v)) {
-                  disposedTexs.add(v);
-                  try { v.dispose(); } catch (_) {}
-                }
-              }
-              try { m.dispose(); } catch (_) {}
-            }
-
-            scene.traverse(obj => {
-              if (obj.geometry && !disposedGeos.has(obj.geometry)) {
-                disposedGeos.add(obj.geometry);
-                try { obj.geometry.dispose(); } catch (_) {}
-              }
-              if (obj.material) {
-                if (Array.isArray(obj.material)) obj.material.forEach(disposeMaterial);
-                else disposeMaterial(obj.material);
-              }
-            });
-
-            try { if (dustGeometry) dustGeometry.dispose(); } catch (_) {}
-            try { if (dustMaterial) dustMaterial.dispose(); } catch (_) {}
-            try { tracerGeom.dispose(); } catch (_) {}
-            try { tracerMat.dispose(); } catch (_) {}
-            try { if (beamsGeometry) beamsGeometry.dispose(); } catch (_) {}
-            try { if (beamsMaterial) beamsMaterial.dispose(); } catch (_) {}
-            try { sharedRadialTex.dispose(); } catch (_) {}
-
-            // Detach system labels
-            const lblHost = document.getElementById('system-labels');
-            if (lblHost) lblHost.innerHTML = '';
-            const sysRow = document.getElementById('systems-row');
-            if (sysRow) sysRow.innerHTML = '';
-
-            while (scene.children.length) scene.remove(scene.children[0]);
-
-            try { renderer.forceContextLoss && renderer.forceContextLoss(); } catch (_) {}
-            try { renderer.dispose(); } catch (_) {}
-            if (renderer.domElement.parentNode) {
-              renderer.domElement.parentNode.removeChild(renderer.domElement);
-            }
-          }
-        };
-      }
-
-      window.onSlideEnter[6] = function () {
-        if (state) return;
-        loadThree(initGalaxy);
+      }, { threshold: [0, 0.4, 0.8] });
+      io.observe(slide);
+
+      // If the deck calls window.onSlideEnter('05'), respect it too
+      const prev = window.onSlideEnter;
+      window.onSlideEnter = function (id) {
+        if (typeof prev === 'function') try { prev(id); } catch (_) {}
+        if (id === '05' || id === 5) enter();
       };
-
-      window.onSlideLeave[6] = function () {
-        if (state) {
-          try { state.dispose(); } catch (e) { console.warn('[slide-06] dispose error', e); }
-          state = null;
-        }
-      };
-
-      const slideEl = document.getElementById('slide-06');
-      if (slideEl) {
-        const rect = slideEl.getBoundingClientRect();
-        const visible = rect.width > 0 && rect.height > 0 &&
-                        rect.top < window.innerHeight && rect.bottom > 0;
-        if (visible) {
-          requestAnimationFrame(() => window.onSlideEnter[6]());
-        }
-      }
     })();
   </script>
 </section>

@@ -1,989 +1,1080 @@
-<section class="slide" data-audio="13">
+<section class="slide" data-audio="13" id="slide-12">
   <style>
     /* ============================================================
-       SLIDE 14 — TC ECOSYSTEM · 328 TOOLS ACROSS 9 SYSTEMS
-       Satellite mission map. Yogi at the centre, 9 systems
-       orbiting in an asymmetric scatter. Animated dashed
-       connection lines. Bottom: a typed-call receipt.
-       Aesthetic: NASA mission console × Anthropic systems
-       diagram × sci-fi terminal.
+       SLIDE 12 · ARCHITECTURE BLUEPRINT · "Drafting table"
+       The flat, readable counterpart to slide-06's 3D galaxy.
+       Aesthetic: engineering blueprint × Anthropic systems paper.
        ============================================================ */
 
-    .slide[data-audio="13"] {
-      --s14-bg:         #0a0d12;
-      --s14-bg-deep:    #070a0e;
-      --s14-bg-elev:    #11161f;
-      --s14-bg-card:    rgba(17, 22, 31, 0.78);
-
-      --s14-honey:      #FEBD33;
-      --s14-honey-soft: rgba(254, 189, 51, 0.14);
-      --s14-honey-glow: rgba(254, 189, 51, 0.55);
-      --s14-honey-line: rgba(254, 189, 51, 0.85);
-
-      --s14-teal:       #43C0BE;
-      --s14-dark-teal:  #007F7E;
-      --s14-sky:        #64BCEA;
-      --s14-violet:     #9B7BD4;
-      --s14-coral:      #F39B5A;
-      --s14-red:        #E04B51;
-
-      --s14-fg:         #f4f4f5;
-      --s14-fg-muted:   #a1a1aa;
-      --s14-fg-dim:     #71717a;
-      --s14-fg-faint:   #52525b;
-
-      --s14-border:     rgba(255, 255, 255, 0.07);
-      --s14-border-warm:rgba(254, 189, 51, 0.28);
-      --s14-border-hot: rgba(254, 189, 51, 0.55);
-
+    #slide-12 {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       min-height: 100vh;
-      background: var(--s14-bg);
-      color: var(--s14-fg);
-      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -10%, rgba(254,189,51,0.06), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 50% 110%, rgba(67,192,190,0.045), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(0,127,126,0.025), transparent 70%),
+        #0a0d12;
+      color: #f4f4f5;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       overflow: hidden;
-      isolation: isolate;
+      box-sizing: border-box;
       letter-spacing: -0.01em;
+      isolation: isolate;
     }
 
-    /* ---------- Atmosphere layers ---------- */
-    .slide[data-audio="13"] .s14-atmos {
-      position: absolute;
-      inset: 0;
+    /* drafting-table graph paper grid */
+    #slide-12::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(rgba(254,189,51,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(254,189,51,0.045) 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+      mask-image: radial-gradient(ellipse 90% 95% at center, black 50%, transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
-    .slide[data-audio="13"] .s14-glow-core {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 110vmin; height: 110vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.16) 0%,
-        rgba(254, 189, 51, 0.06) 22%,
-        rgba(67, 192, 190, 0.04) 45%,
-        transparent 70%);
-      filter: blur(6px);
-      opacity: 0;
-      animation: s14-fade 2400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="13"] .s14-grid {
+
+    /* subtle film grain */
+    #slide-12::after {
+      content: "";
       position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 80% 70% at center, #000 30%, transparent 90%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, #000 30%, transparent 90%);
-      opacity: 0.6;
-    }
-    .slide[data-audio="13"] .s14-noise {
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
-      opacity: 0.5;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.35;
       mix-blend-mode: overlay;
-    }
-    .slide[data-audio="13"] .s14-stars { position: absolute; inset: 0; }
-    .slide[data-audio="13"] .s14-stars i {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: rgba(255,255,255,0.6);
-      border-radius: 50%;
-      box-shadow: 0 0 4px rgba(255,255,255,0.5);
-      opacity: 0;
-      animation: s14-twinkle 4200ms ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    /* ---------- Frame ---------- */
-    .slide[data-audio="13"] .s14-frame {
+    /* corner registration marks */
+    #slide-12 .reg {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.35);
+      z-index: 4;
+      pointer-events: none;
+    }
+    #slide-12 .reg.tl { top: 28px; left: 28px; border-right: none; border-bottom: none; }
+    #slide-12 .reg.tr { top: 28px; right: 28px; border-left: none; border-bottom: none; }
+    #slide-12 .reg.bl { bottom: 28px; left: 28px; border-right: none; border-top: none; }
+    #slide-12 .reg.br { bottom: 28px; right: 28px; border-left: none; border-top: none; }
+
+    #slide-12 .doc-stamp {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: #71717a;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    /* main layout */
+    #slide-12 .frame {
       position: relative;
       z-index: 2;
       width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(28px, 3.2vmin, 56px) clamp(40px, 5vmin, 84px);
+      height: 100vh;
+      padding: clamp(56px, 5.5vh, 88px) clamp(48px, 4.5vw, 88px) clamp(40px, 4vh, 60px);
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: clamp(10px, 1.6vmin, 24px);
+      grid-template-columns: 1fr 320px;
+      grid-template-rows: auto 1fr;
+      gap: clamp(20px, 2.4vh, 36px) clamp(28px, 3vw, 56px);
+      box-sizing: border-box;
     }
 
-    /* ---------- Header band ---------- */
-    .slide[data-audio="13"] .s14-head {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-      opacity: 0;
-      animation: s14-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 250ms forwards;
+    /* ----- header ----- */
+    #slide-12 .header {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .slide[data-audio="13"] .s14-eyebrow {
+
+    #slide-12 .eyebrow {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 14px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.95vmin, 12px);
-      letter-spacing: 0.32em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(10px, 0.72vw, 11.5px);
+      letter-spacing: 0.36em;
       text-transform: uppercase;
-      color: var(--s14-fg-dim);
-    }
-    .slide[data-audio="13"] .s14-eyebrow .dot {
-      width: 8px; height: 8px;
-      background: var(--s14-honey);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--s14-honey-glow);
-      animation: s14-pulse 2200ms ease-in-out infinite;
-    }
-    .slide[data-audio="13"] .s14-eyebrow .sep {
-      width: 24px; height: 1px;
-      background: linear-gradient(90deg, var(--s14-honey-line), transparent);
-    }
-    .slide[data-audio="13"] .s14-title {
-      font-size: clamp(72px, 11vmin, 168px);
-      font-weight: 800;
-      line-height: 0.92;
-      letter-spacing: -0.045em;
-      color: var(--s14-fg);
-      margin: 0;
-    }
-    .slide[data-audio="13"] .s14-title em {
-      font-style: normal;
-      color: var(--s14-honey);
-      text-shadow: 0 0 32px rgba(254,189,51,0.35);
-    }
-    .slide[data-audio="13"] .s14-subhead {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-      align-items: center;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.05vmin, 13px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s14-honey);
-    }
-    .slide[data-audio="13"] .s14-subhead .pipe {
-      color: var(--s14-fg-faint);
-      font-weight: 400;
-    }
-    .slide[data-audio="13"] .s14-subhead .muted { color: var(--s14-fg-muted); }
-
-    /* ---------- Mission readout (top-right) ---------- */
-    .slide[data-audio="13"] .s14-readout {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: 28px;
-      padding: 16px 22px;
-      border: 1px solid var(--s14-border);
-      background: var(--s14-bg-card);
-      backdrop-filter: blur(10px);
-      border-radius: 4px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-    .slide[data-audio="13"] .s14-readout .kv {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 80px;
-    }
-    .slide[data-audio="13"] .s14-readout .k {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--s14-fg-faint);
-    }
-    .slide[data-audio="13"] .s14-readout .v {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 18px;
+      color: #FEBD33;
       font-weight: 600;
-      color: var(--s14-fg);
-      letter-spacing: -0.02em;
     }
-    .slide[data-audio="13"] .s14-readout .v.honey { color: var(--s14-honey); }
-    .slide[data-audio="13"] .s14-readout .v.teal { color: var(--s14-teal); }
+    #slide-12 .eyebrow .rule {
+      width: 56px; height: 1px;
+      background: linear-gradient(90deg, #FEBD33, transparent);
+    }
+    #slide-12 .eyebrow .dot {
+      width: 6px; height: 6px;
+      background: #FEBD33; border-radius: 50%;
+      box-shadow: 0 0 12px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
+      animation: s12-pulse 2.4s ease-in-out infinite;
+    }
+    #slide-12 .eyebrow .code {
+      color: #71717a;
+      letter-spacing: 0.32em;
+    }
 
-    /* ============================================================
-       MAP STAGE
-       ============================================================ */
-    .slide[data-audio="13"] .s14-stage {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 0;
-      opacity: 0;
-      animation: s14-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 550ms forwards;
+    #slide-12 .headline {
+      font-size: clamp(28px, 3.2vw, 52px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      margin: 0;
+      max-width: 24ch;
     }
-    .slide[data-audio="13"] .s14-stage svg.s14-lines {
+    #slide-12 .headline .em {
+      color: #FEBD33;
+      font-style: normal;
+    }
+    #slide-12 .headline .quiet {
+      color: #a1a1aa;
+      font-weight: 600;
+    }
+
+    #slide-12 .subhead {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.04em;
+      color: #FEBD33;
+      font-weight: 500;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    #slide-12 .subhead .op { color: #71717a; margin: 0 6px; font-weight: 400; }
+    #slide-12 .subhead .eq { color: #f4f4f5; margin: 0 8px; }
+    #slide-12 .subhead .total { color: #f4f4f5; font-weight: 700; }
+
+    /* ----- diagram column ----- */
+    #slide-12 .diagram {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: clamp(8px, 1.4vh, 16px);
+      min-height: 0;
+    }
+
+    /* SVG connection layer pinned behind chips */
+    #slide-12 .wires {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
+      pointer-events: none;
       z-index: 1;
-      pointer-events: none;
     }
+    #slide-12 .wires path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: s12-draw 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    #slide-12 .wires .w-t0t1 { stroke: rgba(254,189,51,0.55); stroke-width: 1.1; animation-delay: 300ms; }
+    #slide-12 .wires .w-t1t2 { stroke: rgba(67,192,190,0.40); stroke-width: 1.0; animation-delay: 650ms; }
+    #slide-12 .wires .w-t2t3 { stroke: rgba(100,188,234,0.28); stroke-width: 0.9; animation-delay: 1000ms; }
 
-    /* concentric rings */
-    .slide[data-audio="13"] .s14-rings {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .slide[data-audio="13"] .s14-rings span {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      border: 1px dashed rgba(254,189,51,0.10);
-      opacity: 0;
-      animation: s14-ring-in 1800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="13"] .s14-rings span:nth-child(1) { width: 26vmin; height: 26vmin; animation-delay: 600ms; }
-    .slide[data-audio="13"] .s14-rings span:nth-child(2) { width: 44vmin; height: 44vmin; animation-delay: 720ms; border-color: rgba(67,192,190,0.10); }
-    .slide[data-audio="13"] .s14-rings span:nth-child(3) { width: 64vmin; height: 64vmin; animation-delay: 840ms; border-color: rgba(254,189,51,0.07); }
-    .slide[data-audio="13"] .s14-rings span:nth-child(4) { width: 86vmin; height: 86vmin; animation-delay: 960ms; border-color: rgba(255,255,255,0.05); }
-
-    /* center hub */
-    .slide[data-audio="13"] .s14-core {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
+    /* tier band wrapper */
+    #slide-12 .tier {
+      position: relative;
+      z-index: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      gap: 8px;
       opacity: 0;
-      animation: s14-pop 900ms cubic-bezier(0.16, 1, 0.3, 1) 800ms forwards;
+      transform: translateY(8px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
     }
-    .slide[data-audio="13"] .s14-core-orb {
+    #slide-12 .tier.t0 { animation-delay: 80ms; }
+    #slide-12 .tier.t1 { animation-delay: 280ms; }
+    #slide-12 .tier.t2 { animation-delay: 480ms; }
+    #slide-12 .tier.t3 { animation-delay: 700ms; min-height: 0; flex: 1; }
+
+    #slide-12 .tier-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      font-weight: 600;
+    }
+    #slide-12 .tier-label .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--tc, rgba(254,189,51,0.4));
+      color: var(--tc, #FEBD33);
+      background: rgba(255,255,255,0.02);
+      letter-spacing: 0.24em;
+      font-size: 9.5px;
+    }
+    #slide-12 .tier-label .role {
+      color: #f4f4f5;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+    }
+    #slide-12 .tier-label .meta {
+      color: #52525b;
+      letter-spacing: 0.22em;
+      font-weight: 500;
+    }
+    #slide-12 .tier-label .meta b {
+      color: #a1a1aa;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    #slide-12 .tier-label .flex { flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent 80%);
+    }
+
+    /* ----- T0 (Yogi) ----- */
+    #slide-12 .t0-row {
+      display: flex;
+      justify-content: center;
+      padding: 4px 0 2px;
+    }
+    #slide-12 .yogi-chip {
       position: relative;
-      width: 22vmin; height: 22vmin;
-      max-width: 220px; max-height: 220px;
-      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 22px 12px 16px;
+      border-radius: 14px;
       background:
-        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.18) 0%, transparent 35%),
-        radial-gradient(circle at center, #FEBD33 0%, #c89425 55%, #2a1e08 100%);
+        linear-gradient(180deg, rgba(254,189,51,0.12), rgba(254,189,51,0.04)),
+        rgba(17,22,31,0.85);
+      border: 1px solid rgba(254,189,51,0.55);
       box-shadow:
-        0 0 0 1px rgba(254,189,51,0.55),
-        0 0 60px rgba(254,189,51,0.55),
-        0 0 140px rgba(254,189,51,0.30),
-        inset 0 0 40px rgba(0,0,0,0.45);
+        0 0 0 1px rgba(254,189,51,0.08) inset,
+        0 8px 36px rgba(254,189,51,0.18),
+        0 0 60px rgba(254,189,51,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    #slide-12 .yogi-orb {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #FFE5A0 0%, #FEBD33 45%, #c98908 100%);
+      box-shadow:
+        0 0 12px rgba(254,189,51,0.65),
+        0 0 28px rgba(254,189,51,0.35),
+        inset 0 0 6px rgba(255,235,180,0.55);
+      position: relative;
+      flex-shrink: 0;
+    }
+    #slide-12 .yogi-orb::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(254,189,51,0.45);
+      animation: s12-rotate 18s linear infinite;
+    }
+    #slide-12 .yogi-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFE9B0;
+      text-shadow: 0 0 12px rgba(254,189,51,0.4);
+    }
+    #slide-12 .yogi-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C7D6EA;
+      margin-top: 2px;
+    }
+    #slide-12 .yogi-role .sep { color: rgba(254,189,51,0.5); margin: 0 7px; }
+
+    /* ----- T1 / T2 chip rows ----- */
+    #slide-12 .chip-row {
       display: grid;
-      place-items: center;
+      gap: clamp(6px, 0.55vw, 10px);
+      align-items: stretch;
     }
-    .slide[data-audio="13"] .s14-core-orb::after {
+    #slide-12 .chip-row.t1 { grid-template-columns: repeat(10, 1fr); }
+    #slide-12 .chip-row.t2 { grid-template-columns: repeat(12, 1fr); }
+
+    #slide-12 .chip {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 9px 10px 9px 11px;
+      border-radius: 7px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid var(--bord, rgba(255,255,255,0.08));
+      border-left: 2px solid var(--accent, #FEBD33);
+      transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
+                  box-shadow 220ms ease,
+                  border-color 220ms ease,
+                  background 220ms ease;
+      cursor: default;
+      overflow: hidden;
+    }
+    #slide-12 .chip::before {
       content: '';
       position: absolute;
-      inset: -10%;
-      border-radius: 50%;
-      border: 1px solid rgba(254,189,51,0.35);
-      animation: s14-core-ring 3200ms ease-in-out infinite;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent, #FEBD33), transparent);
+      opacity: 0.35;
     }
-    .slide[data-audio="13"] .s14-core-orb::before {
-      content: '';
-      position: absolute;
-      inset: -22%;
-      border-radius: 50%;
-      border: 1px dashed rgba(254,189,51,0.18);
-      animation: s14-core-ring 3200ms ease-in-out infinite reverse;
-    }
-    .slide[data-audio="13"] .s14-core-mark {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+    #slide-12 .chip .name {
+      font-size: 12.5px;
       font-weight: 700;
-      font-size: clamp(28px, 4.4vmin, 56px);
-      letter-spacing: -0.04em;
-      color: #1a0f00;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+      letter-spacing: -0.015em;
+      color: #f4f4f5;
+      line-height: 1.1;
     }
-    .slide[data-audio="13"] .s14-core-cap {
+    #slide-12 .chip .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      color: #8b95a3;
+      line-height: 1.25;
+      text-transform: lowercase;
+    }
+    #slide-12 .chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(254,189,51,0.5);
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.07), rgba(254,189,51,0.02));
+      box-shadow:
+        0 6px 22px rgba(254,189,51,0.18),
+        0 0 0 1px rgba(254,189,51,0.18) inset;
+    }
+    #slide-12 .chip:hover .name { color: #FFE9B0; }
+
+    /* T2 chips are smaller */
+    #slide-12 .chip.small {
+      padding: 7px 8px 7px 9px;
+      border-radius: 6px;
+      gap: 1px;
+    }
+    #slide-12 .chip.small .name { font-size: 11px; }
+    #slide-12 .chip.small .role { font-size: 8.5px; letter-spacing: 0.04em; }
+
+    /* ----- T3 cluster strip ----- */
+    #slide-12 .t3-area {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      flex: 1;
+      gap: 6px;
+    }
+    #slide-12 .t3-grid {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: clamp(4px, 0.45vw, 8px);
+      flex: 1;
+      min-height: 0;
+    }
+    #slide-12 .cluster {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 9px 9px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--cbord, rgba(255,255,255,0.08));
+      background:
+        linear-gradient(180deg, var(--cbg, rgba(255,255,255,0.025)) 0%, transparent 100%),
+        rgba(17,22,31,0.55);
+      overflow: hidden;
+      min-height: 0;
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+    #slide-12 .cluster:hover {
+      border-color: var(--c, #FEBD33);
+      transform: translateY(-1px);
+    }
+    #slide-12 .cluster::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c, #FEBD33), transparent);
+      opacity: 0.55;
+    }
+    #slide-12 .cluster-head {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+    #slide-12 .cluster-count {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--c, #FEBD33);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.04em;
+      text-shadow: 0 0 14px var(--c, #FEBD33);
+    }
+    #slide-12 .cluster-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #f4f4f5;
+      line-height: 1.18;
+      word-break: break-word;
+    }
+    #slide-12 .cluster-disc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7480;
+      margin-bottom: 5px;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+    #slide-12 .dots {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      align-content: start;
+      gap: 2px;
+    }
+    #slide-12 .dots .d {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 5px;
+      max-height: 5px;
+      border-radius: 50%;
+      background: var(--c, #FEBD33);
+      opacity: 0.85;
+      box-shadow: 0 0 3px var(--c, #FEBD33);
+      animation: s12-pop 380ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    }
+    /* cluster lead chip (Tier 2 mirror) */
+    #slide-12 .cluster .lead {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c, #FEBD33);
+      opacity: 0.85;
+      margin-top: 6px;
+      padding-top: 5px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      text-align: left;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    #slide-12 .cluster .lead::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--c, #FEBD33);
+      box-shadow: 0 0 5px var(--c, #FEBD33);
+      flex-shrink: 0;
+    }
+
+    /* ----- right rail spec table ----- */
+    #slide-12 .sidebar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+    #slide-12 .spec-card {
+      background:
+        linear-gradient(180deg, rgba(17,22,31,0.85), rgba(10,13,18,0.85));
+      border: 1px solid rgba(254,189,51,0.22);
+      border-radius: 10px;
+      padding: 18px 20px 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation-delay: 950ms;
+    }
+    #slide-12 .spec-card .head {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1vmin, 12px);
-      letter-spacing: 0.28em;
+      margin-bottom: 16px;
+    }
+    #slide-12 .spec-card .head .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #FEBD33;
+      box-shadow: 0 0 10px #FEBD33;
+    }
+    #slide-12 .spec-card .head .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
-      color: var(--s14-honey);
-      padding: 6px 14px;
-      border: 1px solid var(--s14-border-warm);
-      background: rgba(254,189,51,0.06);
-      border-radius: 999px;
-      box-shadow: 0 0 24px rgba(254,189,51,0.15);
+      color: #FEBD33;
+      font-weight: 700;
     }
-    .slide[data-audio="13"] .s14-core-cap .num {
-      font-weight: 800;
-      color: var(--s14-fg);
-      font-size: 14px;
-      letter-spacing: -0.02em;
+    #slide-12 .spec-card .head .filename {
+      flex: 1;
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #52525b;
+      letter-spacing: 0.16em;
     }
-
-    /* ---------- System node ---------- */
-    .slide[data-audio="13"] .s14-node {
-      position: absolute;
-      z-index: 3;
-      transform: translate(-50%, -50%);
+    #slide-12 .spec-grid {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 11px 16px 11px 12px;
-      min-width: 178px;
-      background: var(--s14-bg-card);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--s14-border);
-      border-radius: 10px;
-      box-shadow:
-        0 12px 32px -16px rgba(0,0,0,0.85),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-      opacity: 0;
-      animation: s14-node-in 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      transition: transform 360ms cubic-bezier(0.16,1,0.3,1), box-shadow 360ms, border-color 360ms;
+      gap: 10px 14px;
     }
-    .slide[data-audio="13"] .s14-node::before {
-      content: '';
-      position: absolute;
-      left: -5px; top: 50%;
-      width: 3px; height: 60%;
-      transform: translateY(-50%);
-      background: var(--node-c, var(--s14-honey));
-      border-radius: 2px;
-      box-shadow: 0 0 14px var(--node-c, var(--s14-honey));
-      opacity: 0.9;
+    #slide-12 .spec-row {
+      display: contents;
     }
-    .slide[data-audio="13"] .s14-node:hover {
-      transform: translate(-50%, -50%) translateY(-2px);
-      border-color: var(--node-c, var(--s14-honey));
-      box-shadow:
-        0 18px 40px -16px rgba(0,0,0,0.95),
-        0 0 22px -2px var(--node-c, var(--s14-honey));
+    #slide-12 .spec-row .k {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rc, #FEBD33);
+      font-weight: 700;
+      padding-top: 1px;
+      white-space: nowrap;
     }
-
-    /* icon glyph */
-    .slide[data-audio="13"] .s14-glyph {
-      width: 38px; height: 38px;
-      display: grid; place-items: center;
-      border-radius: 8px;
-      background: linear-gradient(140deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid var(--s14-border);
-      color: var(--node-c, var(--s14-honey));
-      flex-shrink: 0;
-      position: relative;
-    }
-    .slide[data-audio="13"] .s14-glyph svg {
-      width: 22px; height: 22px;
-      display: block;
-    }
-    .slide[data-audio="13"] .s14-glyph::after {
-      content: '';
-      position: absolute; inset: -1px;
-      border-radius: 8px;
-      box-shadow: 0 0 18px -4px var(--node-c, var(--s14-honey));
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .slide[data-audio="13"] .s14-meta {
+    #slide-12 .spec-row .v {
       display: flex;
       flex-direction: column;
       gap: 2px;
-      min-width: 0;
     }
-    .slide[data-audio="13"] .s14-name {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(13px, 1.25vmin, 16px);
+    #slide-12 .spec-row .v .count {
+      font-size: 13px;
+      font-weight: 800;
+      color: #f4f4f5;
       letter-spacing: -0.015em;
-      color: var(--s14-fg);
-      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
-    .slide[data-audio="13"] .s14-count {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-    }
-    .slide[data-audio="13"] .s14-count .n {
-      font-size: clamp(20px, 2.2vmin, 28px);
-      font-weight: 700;
-      color: var(--node-c, var(--s14-honey));
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .slide[data-audio="13"] .s14-count .l {
-      font-size: 9px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s14-fg-dim);
-    }
-    .slide[data-audio="13"] .s14-tag {
-      margin-top: 2px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
+    #slide-12 .spec-row .v .count .nodes {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #71717a;
       letter-spacing: 0.16em;
+      margin-left: 4px;
+      font-weight: 500;
       text-transform: uppercase;
-      color: var(--s14-fg-faint);
-      white-space: nowrap;
+    }
+    #slide-12 .spec-row .v .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #8b95a3;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+    #slide-12 .spec-row .v .meta .model {
+      color: #43C0BE;
+    }
+    #slide-12 .spec-row + .spec-row .k,
+    #slide-12 .spec-row + .spec-row .v {
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      margin-top: -1px;
     }
 
-    /* ---------- Receipt strip (bottom) ---------- */
-    .slide[data-audio="13"] .s14-receipt {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 24px;
-      align-items: center;
-      padding: 16px 22px;
-      border: 1px solid var(--s14-border);
-      border-left: 2px solid var(--s14-honey);
+    /* fits-in-git footer card */
+    #slide-12 .git-card {
       background:
-        linear-gradient(90deg, rgba(254,189,51,0.06) 0%, transparent 35%),
-        var(--s14-bg-card);
-      backdrop-filter: blur(10px);
-      border-radius: 4px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+        linear-gradient(180deg, rgba(67,192,190,0.06), rgba(67,192,190,0.02));
+      border: 1px solid rgba(67,192,190,0.25);
+      border-radius: 10px;
+      padding: 14px 18px 16px;
       opacity: 0;
-      animation: s14-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 1800ms forwards;
+      transform: translateY(10px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation-delay: 1100ms;
     }
-    .slide[data-audio="13"] .s14-receipt-label {
+    #slide-12 .git-card .head {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--s14-fg-dim);
+      margin-bottom: 8px;
     }
-    .slide[data-audio="13"] .s14-receipt-label .led {
-      width: 8px; height: 8px;
-      background: var(--s14-teal);
+    #slide-12 .git-card .head .dot {
+      width: 6px; height: 6px;
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--s14-teal);
-      animation: s14-pulse 1600ms ease-in-out infinite;
+      background: #43C0BE;
+      box-shadow: 0 0 10px #43C0BE;
     }
-    .slide[data-audio="13"] .s14-receipt-call {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(13px, 1.32vmin, 17px);
-      letter-spacing: -0.005em;
-      color: var(--s14-fg);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .slide[data-audio="13"] .s14-receipt-call .ns { color: var(--s14-honey); }
-    .slide[data-audio="13"] .s14-receipt-call .fn { color: var(--s14-teal); }
-    .slide[data-audio="13"] .s14-receipt-call .arg { color: var(--s14-fg-muted); }
-    .slide[data-audio="13"] .s14-receipt-call .str { color: var(--s14-sky); }
-    .slide[data-audio="13"] .s14-receipt-call .arrow { color: var(--s14-fg-faint); margin: 0 8px; }
-    .slide[data-audio="13"] .s14-receipt-call .ok { color: var(--s14-teal); }
-    .slide[data-audio="13"] .s14-receipt-call .cur {
-      display: inline-block;
-      width: 8px; height: 1em;
-      background: var(--s14-honey);
-      vertical-align: -2px;
-      margin-left: 2px;
-      animation: s14-cursor 900ms steps(2,end) infinite;
-    }
-    .slide[data-audio="13"] .s14-receipt-meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+    #slide-12 .git-card .head .label {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #43C0BE;
+      font-weight: 700;
+    }
+    #slide-12 .git-card .lines {
+      display: grid;
+      gap: 6px;
+    }
+    #slide-12 .git-card .line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: #C7D6EA;
+      letter-spacing: 0.02em;
+    }
+    #slide-12 .git-card .line .k {
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 9px;
+    }
+    #slide-12 .git-card .line .v {
+      color: #f4f4f5;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* legend strip under diagram */
+    #slide-12 .legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--s14-fg-faint);
+      color: #71717a;
+      margin-top: 4px;
     }
-    .slide[data-audio="13"] .s14-receipt-meta .ok {
-      color: var(--s14-teal);
+    #slide-12 .legend .item { display: inline-flex; align-items: center; gap: 7px; }
+    #slide-12 .legend .item .swatch {
+      width: 14px; height: 1.5px;
+      border-radius: 1px;
     }
-    .slide[data-audio="13"] .s14-receipt-meta .lat {
-      color: var(--s14-honey);
-    }
+    #slide-12 .legend .item .swatch.honey { background: #FEBD33; box-shadow: 0 0 6px rgba(254,189,51,0.5); }
+    #slide-12 .legend .item .swatch.teal  { background: #43C0BE; box-shadow: 0 0 6px rgba(67,192,190,0.5); }
+    #slide-12 .legend .item .swatch.sky   { background: #64BCEA; box-shadow: 0 0 6px rgba(100,188,234,0.5); }
+    #slide-12 .legend .item b { color: #C7D6EA; font-weight: 700; font-variant-numeric: tabular-nums; }
 
-    /* ---------- SVG line styles ---------- */
-    .slide[data-audio="13"] svg.s14-lines .conn {
-      fill: none;
-      stroke-width: 1.1;
-      stroke-linecap: round;
-      stroke-dasharray: 4 6;
-      stroke-dashoffset: 600;
-      opacity: 0;
-      animation:
-        s14-line-reveal 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
-        s14-line-drift 18s linear infinite;
-    }
-    .slide[data-audio="13"] svg.s14-lines .conn.solid {
-      stroke-dasharray: none;
-    }
-    .slide[data-audio="13"] svg.s14-lines .pulse {
-      fill: none;
-      stroke-linecap: round;
-      stroke-width: 2;
-      opacity: 0;
-      animation: s14-pulse-travel 3200ms cubic-bezier(0.42, 0, 0.58, 1) infinite;
-    }
-
-    /* ---------- Animations ---------- */
-    @keyframes s14-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s14-rise {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes s14-pop {
-      from { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
-    @keyframes s14-pulse {
+    /* ----- animations ----- */
+    @keyframes s12-pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.55; transform: scale(1.18); }
+      50%      { opacity: 0.55; transform: scale(0.85); }
     }
-    @keyframes s14-twinkle {
-      0%, 100% { opacity: 0; }
-      40%, 60% { opacity: 0.7; }
+    @keyframes s12-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
-    @keyframes s14-ring-in {
-      from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    @keyframes s12-rise {
+      to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes s14-core-ring {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50%      { transform: scale(1.06); opacity: 0.2; }
+    @keyframes s12-draw {
+      to { stroke-dashoffset: 0; }
     }
-    @keyframes s14-node-in {
-      from { opacity: 0; transform: translate(-50%, -50%) translateY(6px) scale(0.96); }
-      to   { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
-    }
-    @keyframes s14-line-reveal {
-      from { stroke-dashoffset: 600; opacity: 0; }
-      to   { stroke-dashoffset: 0; opacity: 0.65; }
-    }
-    @keyframes s14-line-drift {
-      to { stroke-dashoffset: -600; }
-    }
-    @keyframes s14-pulse-travel {
-      0%   { stroke-dasharray: 0 600; stroke-dashoffset: 0; opacity: 0; }
-      10%  { opacity: 0.9; }
-      50%  { stroke-dasharray: 30 600; stroke-dashoffset: -300; opacity: 0.85; }
-      90%  { opacity: 0; }
-      100% { stroke-dasharray: 0 600; stroke-dashoffset: -600; opacity: 0; }
-    }
-    @keyframes s14-cursor {
-      50% { opacity: 0; }
+    @keyframes s12-pop {
+      from { opacity: 0; transform: scale(0.3); }
+      to   { opacity: 0.85; transform: scale(1); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="13"] * {
-        animation-duration: 0ms !important;
-        animation-delay: 0ms !important;
+      #slide-12 .yogi-orb::after,
+      #slide-12 .eyebrow .dot { animation: none; }
+      #slide-12 .wires path,
+      #slide-12 .tier,
+      #slide-12 .spec-card,
+      #slide-12 .git-card,
+      #slide-12 .dots .d {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        stroke-dashoffset: 0;
       }
     }
 
-    /* Stagger node entry */
-    .slide[data-audio="13"] .s14-node:nth-of-type(1) { animation-delay: 1000ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(2) { animation-delay: 1080ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(3) { animation-delay: 1160ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(4) { animation-delay: 1240ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(5) { animation-delay: 1320ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(6) { animation-delay: 1400ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(7) { animation-delay: 1480ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(8) { animation-delay: 1560ms; }
-    .slide[data-audio="13"] .s14-node:nth-of-type(9) { animation-delay: 1640ms; }
-
-    /* Stagger line reveal */
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(1) { animation-delay: 900ms, 2500ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(2) { animation-delay: 980ms, 2580ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(3) { animation-delay: 1060ms, 2660ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(4) { animation-delay: 1140ms, 2740ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(5) { animation-delay: 1220ms, 2820ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(6) { animation-delay: 1300ms, 2900ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(7) { animation-delay: 1380ms, 2980ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(8) { animation-delay: 1460ms, 3060ms; }
-    .slide[data-audio="13"] svg.s14-lines .conn:nth-of-type(9) { animation-delay: 1540ms, 3140ms; }
-
-    /* pulse stagger */
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(1) { animation-delay: 2400ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(2) { animation-delay: 2700ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(3) { animation-delay: 3000ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(4) { animation-delay: 3300ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(5) { animation-delay: 3600ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(6) { animation-delay: 3900ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(7) { animation-delay: 4200ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(8) { animation-delay: 4500ms; }
-    .slide[data-audio="13"] svg.s14-lines .pulse:nth-of-type(9) { animation-delay: 4800ms; }
+    /* responsive — squeeze chip rows on narrower screens */
+    @media (max-width: 1400px) {
+      #slide-12 .chip .role { font-size: 8.5px; }
+      #slide-12 .chip.small .role { font-size: 8px; }
+      #slide-12 .frame { grid-template-columns: 1fr 280px; }
+    }
+    @media (max-width: 1180px) {
+      #slide-12 .frame { grid-template-columns: 1fr 240px; padding: 48px 32px 32px; }
+      #slide-12 .chip .role,
+      #slide-12 .chip.small .role { font-size: 7.5px; }
+      #slide-12 .cluster-count { font-size: 16px; }
+    }
   </style>
 
-  <!-- =====================  ATMOSPHERE  ===================== -->
-  <div class="s14-atmos">
-    <div class="s14-grid"></div>
-    <div class="s14-glow-core"></div>
-    <div class="s14-noise"></div>
-    <div class="s14-stars">
-      <i style="top:8%;  left:14%; animation-delay: 200ms;"></i>
-      <i style="top:18%; left:78%; animation-delay: 1100ms;"></i>
-      <i style="top:32%; left:6%;  animation-delay: 2300ms;"></i>
-      <i style="top:42%; left:92%; animation-delay: 700ms;"></i>
-      <i style="top:55%; left:3%;  animation-delay: 1900ms;"></i>
-      <i style="top:68%; left:88%; animation-delay: 400ms;"></i>
-      <i style="top:78%; left:18%; animation-delay: 1500ms;"></i>
-      <i style="top:88%; left:62%; animation-delay: 2700ms;"></i>
-      <i style="top:14%; left:46%; animation-delay: 3100ms;"></i>
-      <i style="top:74%; left:52%; animation-delay: 800ms;"></i>
-      <i style="top:25%; left:32%; animation-delay: 2000ms;"></i>
-      <i style="top:62%; left:72%; animation-delay: 1200ms;"></i>
-    </div>
-  </div>
+  <span class="reg tl"></span>
+  <span class="reg tr"></span>
+  <span class="reg bl"></span>
+  <span class="reg br"></span>
+  <div class="doc-stamp">Y · 012 · ARCH-BLUEPRINT · REV.05.24</div>
 
-  <!-- =====================  FRAME  ===================== -->
-  <div class="s14-frame">
+  <div class="frame">
 
-    <!-- ============ HEADER ============ -->
-    <div class="s14-head">
-      <div>
-        <div class="s14-eyebrow">
-          <span class="dot"></span>
-          <span>Mission Map · 14 / 22</span>
-          <span class="sep"></span>
-          <span>TC.ECOSYSTEM</span>
-        </div>
-        <h1 class="s14-title">Reach<em>.</em></h1>
-        <div class="s14-subhead">
-          <span>9 Enterprise Systems</span>
-          <span class="pipe">/</span>
-          <span>328 Typed MCP Tools</span>
-          <span class="pipe">/</span>
-          <span class="muted">Write access · Not read-only</span>
-        </div>
+    <!-- ============= HEADER ============= -->
+    <div class="header">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span>Architecture · Flat View</span>
+        <span class="rule"></span>
+        <span class="code">FIG 12.A · 1 + 10 + 12 + 649</span>
       </div>
-
-      <div class="s14-readout" aria-hidden="true">
-        <div class="kv"><span class="k">Tools</span><span class="v honey">328</span></div>
-        <div class="kv"><span class="k">Systems</span><span class="v">9</span></div>
-        <div class="kv"><span class="k">Auth</span><span class="v teal">WRITE</span></div>
+      <h1 class="headline">
+        One bear. <span class="quiet">Three tiers below.</span> Routes <span class="em">top-down</span>.
+      </h1>
+      <div class="subhead">
+        <span class="total">1</span><span class="op">+</span><span>10</span><span class="op">+</span><span>12</span><span class="op">+</span><span>649</span><span class="eq">=</span><span class="total">1,000</span><span style="color:#a1a1aa;font-weight:500"> specialists</span>
       </div>
     </div>
 
-    <!-- ============ STAGE ============ -->
-    <div class="s14-stage" id="s14-stage">
+    <!-- ============= DIAGRAM ============= -->
+    <div class="diagram">
 
-      <!-- Concentric rings -->
-      <div class="s14-rings">
-        <span></span><span></span><span></span><span></span>
-      </div>
-
-      <!-- ============ SVG SHARED DEFS + CONNECTION LINES ============ -->
-      <svg class="s14-lines" viewBox="0 0 1000 600" preserveAspectRatio="none">
-        <defs>
-          <!-- Per-system gradients (faded near edges) -->
-          <linearGradient id="g-honey"    x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#FEBD33" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#FEBD33" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#FEBD33" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-teal"     x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#43C0BE" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#43C0BE" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#43C0BE" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-sky"      x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#64BCEA" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#64BCEA" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#64BCEA" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-violet"   x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#9B7BD4" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#9B7BD4" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#9B7BD4" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-coral"    x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#F39B5A" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#F39B5A" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#F39B5A" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-red"      x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#E04B51" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#E04B51" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#E04B51" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="g-dteal"    x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"  stop-color="#007F7E" stop-opacity="0.05"/>
-            <stop offset="55%" stop-color="#007F7E" stop-opacity="0.8"/>
-            <stop offset="100%" stop-color="#007F7E" stop-opacity="0.2"/>
-          </linearGradient>
-        </defs>
-
-        <!--
-          All lines run from CENTER (500,300) outward to each node anchor.
-          ViewBox is 1000x600 with preserveAspectRatio="none" so the
-          coordinates map proportionally to the stage. Node positions in
-          CSS use the SAME percentages so endpoints align.
-          Node anchors (cx,cy in viewBox units):
-            zoho      : 22%, 30%  →  220, 180
-            m365      : 78%, 22%  →  780, 132
-            databricks: 12%, 60%  →  120, 360
-            confluence: 86%, 56%  →  860, 336
-            aircall   : 32%, 80%  →  320, 480
-            myob      : 70%, 84%  →  700, 504
-            ezycollect: 6%,  44%  →  60,  264
-            ehero     : 94%, 38%  →  940, 228
-            cv-zoho   : 52%, 88%  →  520, 528
-        -->
-
-        <!-- BASE DASHED CONNECTIONS -->
-        <path class="conn" d="M 500 300 L 220 180" stroke="url(#g-honey)"/>
-        <path class="conn" d="M 500 300 L 780 132" stroke="url(#g-teal)"/>
-        <path class="conn" d="M 500 300 L 120 360" stroke="url(#g-sky)"/>
-        <path class="conn" d="M 500 300 L 860 336" stroke="url(#g-violet)"/>
-        <path class="conn" d="M 500 300 L 320 480" stroke="url(#g-coral)"/>
-        <path class="conn" d="M 500 300 L 700 504" stroke="url(#g-red)"/>
-        <path class="conn" d="M 500 300 L 60 264"  stroke="url(#g-dteal)"/>
-        <path class="conn" d="M 500 300 L 940 228" stroke="url(#g-honey)"/>
-        <path class="conn" d="M 500 300 L 520 528" stroke="url(#g-teal)"/>
-
-        <!-- TRAVELING PULSES (solid bright sliver moves along the line) -->
-        <path class="pulse" d="M 500 300 L 220 180" stroke="#FEBD33"/>
-        <path class="pulse" d="M 500 300 L 780 132" stroke="#43C0BE"/>
-        <path class="pulse" d="M 500 300 L 120 360" stroke="#64BCEA"/>
-        <path class="pulse" d="M 500 300 L 860 336" stroke="#9B7BD4"/>
-        <path class="pulse" d="M 500 300 L 320 480" stroke="#F39B5A"/>
-        <path class="pulse" d="M 500 300 L 700 504" stroke="#E04B51"/>
-        <path class="pulse" d="M 500 300 L 60 264"  stroke="#007F7E"/>
-        <path class="pulse" d="M 500 300 L 940 228" stroke="#FEBD33"/>
-        <path class="pulse" d="M 500 300 L 520 528" stroke="#43C0BE"/>
+      <!-- SVG wires drawn beneath chips -->
+      <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Tier 0 → Tier 1 (10 fan-outs from center) -->
+        <g>
+          <path class="w-t0t1" d="M 500 30 C 500 60, 50 75, 50 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 150 75, 150 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 250 75, 250 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 350 75, 350 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 450 75, 450 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 550 75, 550 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 650 75, 650 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 750 75, 750 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 850 75, 850 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 950 75, 950 110" />
+        </g>
+        <!-- Tier 1 → Tier 2 (sampled connections, 24 lines) -->
+        <g>
+          <path class="w-t1t2" d="M 50 150 C 50 195, 41 230, 41 260" />
+          <path class="w-t1t2" d="M 50 150 C 50 195, 125 230, 125 260" />
+          <path class="w-t1t2" d="M 150 150 C 150 195, 125 230, 125 260" />
+          <path class="w-t1t2" d="M 150 150 C 150 195, 208 230, 208 260" />
+          <path class="w-t1t2" d="M 250 150 C 250 195, 208 230, 208 260" />
+          <path class="w-t1t2" d="M 250 150 C 250 195, 292 230, 292 260" />
+          <path class="w-t1t2" d="M 350 150 C 350 195, 292 230, 292 260" />
+          <path class="w-t1t2" d="M 350 150 C 350 195, 375 230, 375 260" />
+          <path class="w-t1t2" d="M 450 150 C 450 195, 458 230, 458 260" />
+          <path class="w-t1t2" d="M 450 150 C 450 195, 541 230, 541 260" />
+          <path class="w-t1t2" d="M 550 150 C 550 195, 541 230, 541 260" />
+          <path class="w-t1t2" d="M 550 150 C 550 195, 625 230, 625 260" />
+          <path class="w-t1t2" d="M 650 150 C 650 195, 625 230, 625 260" />
+          <path class="w-t1t2" d="M 650 150 C 650 195, 708 230, 708 260" />
+          <path class="w-t1t2" d="M 750 150 C 750 195, 708 230, 708 260" />
+          <path class="w-t1t2" d="M 750 150 C 750 195, 791 230, 791 260" />
+          <path class="w-t1t2" d="M 850 150 C 850 195, 875 230, 875 260" />
+          <path class="w-t1t2" d="M 850 150 C 850 195, 958 230, 958 260" />
+          <path class="w-t1t2" d="M 950 150 C 950 195, 958 230, 958 260" />
+          <path class="w-t1t2" d="M 950 150 C 950 195, 875 230, 875 260" />
+        </g>
+        <!-- Tier 2 → Tier 3 (12 fans to 11 cluster columns) -->
+        <g>
+          <path class="w-t2t3" d="M 41 300 C 41 340, 45 360, 45 380" />
+          <path class="w-t2t3" d="M 125 300 C 125 340, 136 360, 136 380" />
+          <path class="w-t2t3" d="M 208 300 C 208 340, 227 360, 227 380" />
+          <path class="w-t2t3" d="M 292 300 C 292 340, 318 360, 318 380" />
+          <path class="w-t2t3" d="M 375 300 C 375 340, 409 360, 409 380" />
+          <path class="w-t2t3" d="M 458 300 C 458 340, 500 360, 500 380" />
+          <path class="w-t2t3" d="M 541 300 C 541 340, 591 360, 591 380" />
+          <path class="w-t2t3" d="M 625 300 C 625 340, 682 360, 682 380" />
+          <path class="w-t2t3" d="M 708 300 C 708 340, 773 360, 773 380" />
+          <path class="w-t2t3" d="M 791 300 C 791 340, 864 360, 864 380" />
+          <path class="w-t2t3" d="M 875 300 C 875 340, 955 360, 955 380" />
+          <path class="w-t2t3" d="M 958 300 C 958 340, 955 360, 955 380" />
+        </g>
       </svg>
 
-      <!-- ============ CENTER HUB ============ -->
-      <div class="s14-core">
-        <div class="s14-core-orb">
-          <span class="s14-core-mark">Y</span>
+      <!-- TIER 0 -->
+      <div class="tier t0">
+        <div class="tier-label" style="--tc: rgba(254,189,51,0.55)">
+          <span class="tag">T0</span>
+          <span class="role">Orchestrator</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>1</b> · 200K ctx · Opus 4.6</span>
         </div>
-        <div class="s14-core-cap">
-          <span>Yogi</span>
-          <span class="num">328</span>
-          <span>tools</span>
-        </div>
-      </div>
-
-      <!-- ============ SYSTEM NODES ============
-           Positioned at the SAME percentages as the SVG anchors.
-           Each gets --node-c for accent line + glyph color.
-      -->
-
-      <!-- 1 · Zoho CRM (honey, top-left) -->
-      <div class="s14-node" style="top:30%; left:22%; --node-c: #FEBD33;">
-        <div class="s14-glyph">
-          <!-- "Z" mark -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 5h14L5 19h14"/>
-          </svg>
-        </div>
-        <div class="s14-meta">
-          <span class="s14-name">Zoho CRM</span>
-          <span class="s14-count"><span class="n">89</span><span class="l">tools</span></span>
-          <span class="s14-tag">Contacts · Notes · Care plans</span>
+        <div class="t0-row">
+          <div class="yogi-chip">
+            <div class="yogi-orb"></div>
+            <div>
+              <div class="yogi-name">Yogi</div>
+              <div class="yogi-role">Orchestrator <span class="sep">·</span> Memory <span class="sep">·</span> Identity</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 2 · Microsoft 365 (teal, top-right) -->
-      <div class="s14-node" style="top:22%; left:78%; --node-c: #43C0BE;">
-        <div class="s14-glyph">
-          <!-- Window pane -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3"  y="3"  width="8" height="8"/>
-            <rect x="13" y="3"  width="8" height="8"/>
-            <rect x="3"  y="13" width="8" height="8"/>
-            <rect x="13" y="13" width="8" height="8"/>
-          </svg>
+      <!-- TIER 1 -->
+      <div class="tier t1">
+        <div class="tier-label" style="--tc: rgba(67,192,190,0.55)">
+          <span class="tag" style="border-color:rgba(67,192,190,0.55); color:#43C0BE">T1</span>
+          <span class="role">Crew</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>10</b> · daily drivers · Sonnet 4.6</span>
         </div>
-        <div class="s14-meta">
-          <span class="s14-name">Microsoft 365</span>
-          <span class="s14-count"><span class="n">47</span><span class="l">tools</span></span>
-          <span class="s14-tag">Email · Calendar · Teams · SP</span>
-        </div>
-      </div>
-
-      <!-- 3 · Databricks (sky, mid-left) -->
-      <div class="s14-node" style="top:60%; left:12%; --node-c: #64BCEA;">
-        <div class="s14-glyph">
-          <!-- Delta -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 4 L21 20 H3 Z"/>
-            <path d="M12 11 V20" opacity="0.5"/>
-          </svg>
-        </div>
-        <div class="s14-meta">
-          <span class="s14-name">Databricks</span>
-          <span class="s14-count"><span class="n">14</span><span class="l">tools</span></span>
-          <span class="s14-tag">SQL warehouse · Analytics</span>
+        <div class="chip-row t1">
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Rocco</span><span class="role">aws · cdk · infra</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Otto</span><span class="role">surgical fixes</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Bram</span><span class="role">data archaeology</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Ferra</span><span class="role">pre-flight audit</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Hoot</span><span class="role">code review</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Buzz</span><span class="role">build pipeline</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Pip</span><span class="role">read-only probe</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Briar</span><span class="role">concurrency · retry</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Lumi</span><span class="role">ui polish</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Tess</span><span class="role">e2e tests</span></div>
         </div>
       </div>
 
-      <!-- 4 · Confluence (violet, mid-right) -->
-      <div class="s14-node" style="top:56%; left:86%; --node-c: #9B7BD4;">
-        <div class="s14-glyph">
-          <!-- C + page -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 7c-3-3-9-3-13 0s-4 8 0 11"/>
-            <path d="M4 17c3 3 9 3 13 0s4-8 0-11"/>
-          </svg>
+      <!-- TIER 2 -->
+      <div class="tier t2">
+        <div class="tier-label" style="--tc: rgba(100,188,234,0.55)">
+          <span class="tag" style="border-color:rgba(100,188,234,0.55); color:#64BCEA">T2</span>
+          <span class="role">Domain Leads</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>12</b> · disciplines · Sonnet 4.6</span>
         </div>
-        <div class="s14-meta">
-          <span class="s14-name">Confluence</span>
-          <span class="s14-count"><span class="n">28</span><span class="l">tools</span></span>
-          <span class="s14-tag">Knowledge base · Pages</span>
-        </div>
-      </div>
-
-      <!-- 5 · Aircall (coral, bottom-left) -->
-      <div class="s14-node" style="top:80%; left:32%; --node-c: #F39B5A;">
-        <div class="s14-glyph">
-          <!-- Phone wave -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 4h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2A16 16 0 0 1 3 6c0-1 1-2 2-2z"/>
-          </svg>
-        </div>
-        <div class="s14-meta">
-          <span class="s14-name">Aircall</span>
-          <span class="s14-count"><span class="n">22</span><span class="l">tools</span></span>
-          <span class="s14-tag">Call transcripts · Search</span>
+        <div class="chip-row t2">
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Orion</span><span class="role">sales</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sequoia</span><span class="role">product</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sable</span><span class="role">domain</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Ember</span><span class="role">ai · ml</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Vella</span><span class="role">comms</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Aspen</span><span class="role">backend langs</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Birch</span><span class="role">frontend</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Alder</span><span class="role">patterns</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Heron</span><span class="role">testing</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Kelpie</span><span class="role">databases</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Falcon</span><span class="role">cloud</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Magpie</span><span class="role">devops</span></div>
         </div>
       </div>
 
-      <!-- 6 · MYOB (red, bottom-right) -->
-      <div class="s14-node" style="top:84%; left:70%; --node-c: #E04B51;">
-        <div class="s14-glyph">
-          <!-- Bill icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/>
-            <path d="M9 8h6M9 12h6M9 16h4" opacity="0.7"/>
-          </svg>
+      <!-- TIER 3 -->
+      <div class="tier t3">
+        <div class="tier-label" style="--tc: rgba(0,127,126,0.5)">
+          <span class="tag" style="border-color:rgba(0,127,126,0.55); color:#43C0BE">T3</span>
+          <span class="role">Specialists</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>649</b> · 11 clusters · Sonnet 4.6 / Haiku 4.5</span>
         </div>
-        <div class="s14-meta">
-          <span class="s14-name">MYOB</span>
-          <span class="s14-count"><span class="n">18</span><span class="l">tools</span></span>
-          <span class="s14-tag">Bills · Supplier ledger</span>
+        <div class="t3-area">
+          <div class="t3-grid" id="s12-clusters"></div>
         </div>
-      </div>
-
-      <!-- 7 · EzyCollect (dark-teal, far-left) -->
-      <div class="s14-node" style="top:44%; left:6%; --node-c: #00A39F;">
-        <div class="s14-glyph">
-          <!-- Stack of coins -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <ellipse cx="12" cy="6"  rx="8" ry="2.5"/>
-            <path d="M4 6v5c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V6"/>
-            <path d="M4 11v5c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-5"/>
-          </svg>
-        </div>
-        <div class="s14-meta">
-          <span class="s14-name">EzyCollect</span>
-          <span class="s14-count"><span class="n">12</span><span class="l">tools</span></span>
-          <span class="s14-tag">Payments · AR</span>
+        <div class="legend">
+          <span class="item"><span class="swatch honey"></span>T0→T1 <b>10</b></span>
+          <span class="item"><span class="swatch teal"></span>T1→T2 <b>20</b></span>
+          <span class="item"><span class="swatch sky"></span>T2→T3 <b>12</b></span>
+          <span class="item" style="margin-left:auto">routes top-down · reports bottom-up</span>
         </div>
       </div>
 
-      <!-- 8 · Employment Hero (honey, far-right) -->
-      <div class="s14-node" style="top:38%; left:94%; --node-c: #FEBD33;">
-        <div class="s14-glyph">
-          <!-- Person -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>
-          </svg>
+    </div><!-- /.diagram -->
+
+    <!-- ============= SIDEBAR ============= -->
+    <aside class="sidebar">
+
+      <div class="spec-card">
+        <div class="head">
+          <span class="dot"></span>
+          <span class="label">Tier Spec</span>
+          <span class="filename">~/yogi/agents.toml</span>
         </div>
-        <div class="s14-meta">
-          <span class="s14-name">Employment Hero</span>
-          <span class="s14-count"><span class="n">38</span><span class="l">tools</span></span>
-          <span class="s14-tag">Staff · Roster · Payroll</span>
+        <div class="spec-grid">
+          <div class="spec-row" style="--rc:#FEBD33">
+            <div class="k">T0</div>
+            <div class="v">
+              <div class="count">1<span class="nodes">node</span></div>
+              <div class="meta">context · <b style="color:#f4f4f5">200K</b> tokens<br/>model · <span class="model">claude-opus-4-6</span><br/>identity · 79 memory files</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#43C0BE">
+            <div class="k">T1</div>
+            <div class="v">
+              <div class="count">10<span class="nodes">nodes</span></div>
+              <div class="meta">spawn · on demand<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · daily delivery</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#64BCEA">
+            <div class="k">T2</div>
+            <div class="v">
+              <div class="count">12<span class="nodes">nodes</span></div>
+              <div class="meta">memory · per-discipline<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · 1 discipline each</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#007F7E">
+            <div class="k">T3</div>
+            <div class="v">
+              <div class="count">649<span class="nodes">nodes</span></div>
+              <div class="meta">scope · narrow<br/>model · <span class="model">sonnet 4.6 / haiku 4.5</span><br/>cluster · 11 disciplines</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 9 · CareVicinity Zoho (teal, bottom-center) -->
-      <div class="s14-node" style="top:88%; left:52%; --node-c: #43C0BE;">
-        <div class="s14-glyph">
-          <!-- Linked-Z -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 4h7L4 12h7"/>
-            <path d="M13 12h7l-6 8h7"/>
-            <path d="M11 11l2 2" opacity="0.6"/>
-          </svg>
+      <div class="git-card">
+        <div class="head">
+          <span class="dot"></span>
+          <span class="label">Fits in git</span>
         </div>
-        <div class="s14-meta">
-          <span class="s14-name">CareVicinity Zoho</span>
-          <span class="s14-count"><span class="n">60</span><span class="l">tools</span></span>
-          <span class="s14-tag">Cross-org · Supplier scans</span>
+        <div class="lines">
+          <div class="line"><span class="k">Repo</span><span class="v">Trilogy-Care/yogi</span></div>
+          <div class="line"><span class="k">Agents</span><span class="v">1,000</span></div>
+          <div class="line"><span class="k">Memory</span><span class="v">79 files</span></div>
+          <div class="line"><span class="k">Tools</span><span class="v">328 MCP</span></div>
         </div>
       </div>
 
-    </div>
+    </aside>
 
-    <!-- ============ RECEIPT STRIP ============ -->
-    <div class="s14-receipt">
-      <div class="s14-receipt-label">
-        <span class="led"></span>
-        <span>Live · Typed Call</span>
-      </div>
-      <div class="s14-receipt-call">
-        <span class="ns">yogi.zoho.</span><span class="fn">search_zoho_contacts</span><span class="arg">(</span><span class="arg">query=</span><span class="str">"Mehdi"</span><span class="arg">)</span>
-        <span class="arrow">→</span>
-        <span class="ok">47 rows</span>
-        <span class="arrow">·</span>
-        <span class="ok">380 ms</span>
-        <span class="cur"></span>
-      </div>
-      <div class="s14-receipt-meta">
-        <span class="ok">HTTP 200</span>
-        <span>·</span>
-        <span class="lat">P95 612 ms</span>
-        <span>·</span>
-        <span>session #a7f1</span>
-      </div>
-    </div>
-
-  </div>
+  </div><!-- /.frame -->
 
   <script>
-    // Optional: on slide enter, trigger a quick "burst" pulse on all lines.
-    // The presentation harness calls window.onSlideEnter when this slide
-    // becomes active. We piggyback to re-trigger animations if the slide
-    // is revisited.
     (function () {
-      const slide = document.currentScript.closest('.slide');
-      if (!slide) return;
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideLeave = window.onSlideLeave || {};
 
-      function retrigger() {
-        const animated = slide.querySelectorAll(
-          '.s14-head, .s14-stage, .s14-receipt, .s14-node, .s14-core'
-        );
-        animated.forEach((el) => {
+      // ---- Tier 3 cluster definitions (deterministic) ----
+      // 11 clusters · 649 specialists total.
+      // Distribution: 88 + 71 + 64 + 60 + 60 + 58 + 56 + 54 + 50 + 48 + 40 = 649
+      const CLUSTERS = [
+        { name: 'Frontend libs',  disc: 'react · vue · svelte',     count: 88, color: '#FEBD33', lead: 'Birch' },
+        { name: 'Backend langs',  disc: 'py · ts · go · rs',        count: 71, color: '#43C0BE', lead: 'Aspen' },
+        { name: 'AI / ML',        disc: 'llm · embed · rag',        count: 64, color: '#64BCEA', lead: 'Ember' },
+        { name: 'Domain experts', disc: 'sah · acqsc · zoho',       count: 60, color: '#007F7E', lead: 'Sable' },
+        { name: 'Patterns',       disc: 'design · refactor',        count: 60, color: '#E04B51', lead: 'Alder' },
+        { name: 'Communications', disc: 'teams · email · sms',      count: 58, color: '#9B7BD4', lead: 'Vella' },
+        { name: 'DevOps',         disc: 'ci · cd · pipelines',      count: 56, color: '#FEBD33', lead: 'Magpie' },
+        { name: 'Cloud',          disc: 'aws · azure · gcp',        count: 54, color: '#43C0BE', lead: 'Falcon' },
+        { name: 'Testing',        disc: 'e2e · unit · fuzz',        count: 50, color: '#64BCEA', lead: 'Heron' },
+        { name: 'Sales / GTM',    disc: 'pipeline · forecast',      count: 48, color: '#F39B5A', lead: 'Orion' },
+        { name: 'Databases',      disc: 'sql · vector · cache',     count: 40, color: '#007F7E', lead: 'Kelpie' }
+      ];
+
+      function buildClusters() {
+        const wrap = document.getElementById('s12-clusters');
+        if (!wrap) return;
+        if (wrap.dataset.built === '1') return; // idempotent
+        wrap.dataset.built = '1';
+
+        // Quick verify the total — keeps the math honest.
+        const total = CLUSTERS.reduce((s, c) => s + c.count, 0);
+        if (total !== 649) {
+          console.warn('[slide-12] cluster total mismatch:', total);
+        }
+
+        const frag = document.createDocumentFragment();
+
+        CLUSTERS.forEach((cl, ci) => {
+          const cell = document.createElement('div');
+          cell.className = 'cluster';
+          cell.style.setProperty('--c', cl.color);
+          cell.style.setProperty('--cbord', hexToRgba(cl.color, 0.22));
+          cell.style.setProperty('--cbg', hexToRgba(cl.color, 0.04));
+
+          const head = document.createElement('div');
+          head.className = 'cluster-head';
+          // Big count first (the number is the story), name underneath as caption.
+          const ct = document.createElement('div');
+          ct.className = 'cluster-count';
+          ct.textContent = cl.count;
+          const nm = document.createElement('div');
+          nm.className = 'cluster-name';
+          nm.textContent = cl.name;
+          head.appendChild(ct);
+          head.appendChild(nm);
+
+          const disc = document.createElement('div');
+          disc.className = 'cluster-disc';
+          disc.textContent = cl.disc;
+
+          const dots = document.createElement('div');
+          dots.className = 'dots';
+
+          // Deterministic dot grid. 6 columns gives each cluster a solid
+          // 10–15 row brick of dots — reads as "intentional density."
+          const cols = 6;
+          dots.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+          for (let i = 0; i < cl.count; i++) {
+            const d = document.createElement('span');
+            d.className = 'd';
+            // Stagger pop-in: 380ms cascade per cluster + per-dot offset.
+            const delay = 900 + ci * 60 + i * 6;
+            d.style.animationDelay = delay + 'ms';
+            dots.appendChild(d);
+          }
+
+          const lead = document.createElement('div');
+          lead.className = 'lead';
+          lead.textContent = cl.lead;
+
+          cell.appendChild(head);
+          cell.appendChild(disc);
+          cell.appendChild(dots);
+          cell.appendChild(lead);
+          frag.appendChild(cell);
+        });
+
+        wrap.appendChild(frag);
+      }
+
+      function hexToRgba(hex, a) {
+        const h = hex.replace('#', '');
+        const r = parseInt(h.substring(0, 2), 16);
+        const g = parseInt(h.substring(2, 4), 16);
+        const b = parseInt(h.substring(4, 6), 16);
+        return `rgba(${r},${g},${b},${a})`;
+      }
+
+      function resetAnimations() {
+        // Force reflow so CSS animations restart on slide re-entry.
+        const slide = document.getElementById('slide-12');
+        if (!slide) return;
+        slide.querySelectorAll('.tier, .spec-card, .git-card, .wires path, .dots .d').forEach(el => {
+          const anim = el.style.animation;
           el.style.animation = 'none';
-          // force reflow
-          void el.offsetWidth;
-          el.style.animation = '';
+          // eslint-disable-next-line no-unused-expressions
+          el.offsetHeight; // reflow
+          el.style.animation = anim || '';
         });
       }
 
-      // Hook into the deck's slide-enter callback if present.
-      const prev = window.onSlideEnter;
-      window.onSlideEnter = function (n) {
-        if (typeof prev === 'function') {
-          try { prev(n); } catch (e) {}
-        }
-        if (n === 14 || n === '14') {
-          retrigger();
-        }
+      window.onSlideEnter[12] = function () {
+        buildClusters();
+        resetAnimations();
       };
+
+      // If already visible at parse, kick off.
+      const el = document.getElementById('slide-12');
+      if (el) {
+        const r = el.getBoundingClientRect();
+        const visible = r.width > 0 && r.height > 0 &&
+                        r.top < window.innerHeight && r.bottom > 0;
+        if (visible) requestAnimationFrame(() => window.onSlideEnter[12]());
+      }
     })();
   </script>
 </section>

@@ -120,6 +120,38 @@
       z-index: 100;
     }
 
+    /* Play button — manual audio trigger */
+    .vo-play {
+      position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-warm);
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      color: var(--fg);
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; z-index: 100;
+      transition: all 0.2s;
+    }
+    .vo-play:hover {
+      border-color: var(--honey);
+      background: rgba(254,189,51,0.08);
+      box-shadow: 0 0 16px rgba(254,189,51,0.3);
+    }
+    .vo-play .icon {
+      width: 14px; height: 14px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--honey);
+    }
+    .vo-play.playing .icon-play { display: none; }
+    .vo-play:not(.playing) .icon-pause { display: none; }
+    .vo-play .label-play { display: inline; }
+    .vo-play .label-pause { display: none; }
+    .vo-play.playing .label-play { display: none; }
+    .vo-play.playing .label-pause { display: inline; }
+
     /* Loader fallback */
     .loader {
       position: fixed; inset: 0;
@@ -151,6 +183,13 @@
   <div class="dots" id="dots"></div>
 
   <div class="meta-chrome">ASH WILLIAMS · INNOVATION & TRANSFORMATION</div>
+
+  <button class="vo-play" id="vo-play" title="Play / pause Yogi voice (M to mute)" aria-label="Play voice">
+    <span class="icon icon-play"><svg width="10" height="11" viewBox="0 0 10 11" fill="currentColor" aria-hidden="true"><path d="M1 1 L9 5.5 L1 10 Z"/></svg></span>
+    <span class="icon icon-pause"><svg width="10" height="11" viewBox="0 0 10 11" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="3" height="9"/><rect x="6" y="1" width="3" height="9"/></svg></span>
+    <span class="label-play">Play Yogi</span>
+    <span class="label-pause">Pause</span>
+  </button>
 
   <audio id="vo" preload="auto"></audio>
 
@@ -233,17 +272,32 @@
       slideMarker.textContent = `SLIDE ${String(n).padStart(2,'0')} / ${TOTAL}`;
       progressFill.style.width = ((n-1)/(TOTAL-1) * 100) + '%';
       updateDots();
-      playAudio(slides[n].dataset.audio);
+      loadAudio(slides[n].dataset.audio);
       if (window.onSlideEnter[n]) {
         try { window.onSlideEnter[n](); } catch(e) { console.warn(e); }
       }
     }
 
-    function playAudio(key){
+    function loadAudio(key){
       if (!key) return;
       vo.src = `assets/audio/slide-${key}.mp3`;
-      vo.play().catch(() => { /* autoplay block — user must click */ });
+      vo.pause();
+      vo.currentTime = 0;
+      voPlayBtn.classList.remove('playing');
     }
+
+    const voPlayBtn = document.getElementById('vo-play');
+    voPlayBtn.onclick = () => {
+      if (vo.paused) {
+        vo.play().then(() => voPlayBtn.classList.add('playing')).catch(()=>{});
+      } else {
+        vo.pause();
+        voPlayBtn.classList.remove('playing');
+      }
+    };
+    vo.onended = () => voPlayBtn.classList.remove('playing');
+    vo.onpause = () => voPlayBtn.classList.remove('playing');
+    vo.onplay = () => voPlayBtn.classList.add('playing');
 
     document.getElementById('prev').onclick = () => goTo(current - 1);
     document.getElementById('next').onclick = () => goTo(current + 1);

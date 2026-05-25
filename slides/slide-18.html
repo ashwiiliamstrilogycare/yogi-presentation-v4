@@ -1,24 +1,25 @@
 <section class="slide" data-audio="18">
   <style>
-    /* ============ SLIDE 18 — SAFETY EVALS / RSP ============ */
+    /* ============ SLIDE 16 — PRODUCTION RECEIPTS (NASA polish) ============ */
     .slide[data-audio="18"] {
+      --s17-rail-honey: rgba(254,189,51,0.55);
+
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
       background:
-        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(254,189,51,0.055), transparent 60%),
-        radial-gradient(ellipse 55% 45% at 88% 82%, rgba(67,192,190,0.045), transparent 60%),
-        radial-gradient(circle at 50% 110%, rgba(100,188,234,0.03), transparent 70%),
+        radial-gradient(ellipse 60% 45% at 12% 14%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 92% 88%, rgba(67,192,190,0.05), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.022), transparent 60%),
         var(--bg);
       color: var(--fg);
       font-family: var(--font-display);
       overflow: hidden;
       letter-spacing: -0.01em;
-      box-sizing: border-box;
     }
 
-    /* faint engineering grid */
+    /* watermark engineering grid */
     .slide[data-audio="18"]::before {
       content: "";
       position: absolute; inset: 0;
@@ -26,46 +27,75 @@
         linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 85% 85% at center, black 35%, transparent 92%);
+      mask-image: radial-gradient(ellipse 88% 82% at center, black 35%, transparent 92%);
       pointer-events: none;
     }
-
     /* film grain */
     .slide[data-audio="18"]::after {
       content: "";
       position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
       opacity: 0.45;
       mix-blend-mode: overlay;
       pointer-events: none;
     }
 
-    .s18-frame {
+    /* particle drift */
+    .s17-particles {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .s17-particles span {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--honey);
+      border-radius: 50%;
+      opacity: 0;
+      box-shadow: 0 0 6px var(--honey);
+      animation: s17-drift 18s linear infinite;
+    }
+    @keyframes s17-drift {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      8%   { opacity: 0.42; }
+      90%  { opacity: 0.42; }
+      100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+    }
+    .s17-particles span:nth-child(1)  { left: 6%;  bottom: -2%; animation-delay: 0s;    animation-duration: 22s; }
+    .s17-particles span:nth-child(2)  { left: 18%; bottom: -2%; animation-delay: 3s;    animation-duration: 26s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+    .s17-particles span:nth-child(3)  { left: 28%; bottom: -2%; animation-delay: 7s;    animation-duration: 19s; }
+    .s17-particles span:nth-child(4)  { left: 42%; bottom: -2%; animation-delay: 11s;   animation-duration: 24s; }
+    .s17-particles span:nth-child(5)  { left: 56%; bottom: -2%; animation-delay: 2s;    animation-duration: 28s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+    .s17-particles span:nth-child(6)  { left: 68%; bottom: -2%; animation-delay: 14s;   animation-duration: 21s; }
+    .s17-particles span:nth-child(7)  { left: 78%; bottom: -2%; animation-delay: 9s;    animation-duration: 25s; }
+    .s17-particles span:nth-child(8)  { left: 88%; bottom: -2%; animation-delay: 5s;    animation-duration: 27s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+    .s17-frame {
       position: relative;
       width: 100%;
       height: 100vh;
-      padding: 52px clamp(40px, 4vw, 80px) 30px;
+      padding: clamp(36px, 3.6vw, 64px) clamp(44px, 4.6vw, 84px);
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
       z-index: 1;
     }
 
-    /* registration marks */
-    .s18-mark {
+    /* corner registration marks */
+    .s17-mark {
       position: absolute;
-      width: 12px; height: 12px;
-      border: 1px solid rgba(254,189,51,0.28);
-      z-index: 5;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
     }
-    .s18-mark.tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
-    .s18-mark.tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
-    .s18-mark.bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
-    .s18-mark.br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+    .s17-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
+    .s17-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
+    .s17-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
+    .s17-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
 
-    .s18-stamp {
+    .s17-stamp {
       position: absolute;
-      top: 22px;
+      top: 26px;
       left: 50%;
       transform: translateX(-50%);
       font-family: var(--font-mono);
@@ -73,697 +103,906 @@
       letter-spacing: 0.42em;
       color: var(--fg-dim);
       text-transform: uppercase;
-      z-index: 5;
     }
-    .s18-stamp b { color: var(--honey); font-weight: 500; }
 
-    /* ============ HEADER ============ */
-    .s18-header {
+    /* ----- HEADER ----- */
+    .s17-head {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 24px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 22px;
+      grid-template-columns: 1.45fr 1fr;
+      gap: clamp(28px, 3.6vw, 64px);
+      align-items: flex-end;
+      margin-bottom: clamp(24px, 2.6vw, 44px);
     }
-    .s18-eyebrow {
+
+    .s17-eyebrow {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.38em;
-      color: var(--fg-dim);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      color: var(--honey);
       display: flex;
       align-items: center;
       gap: 14px;
+      margin-bottom: 20px;
     }
-    .s18-eyebrow .dot {
+    .s17-eyebrow .rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+    }
+    .s17-eyebrow .dot {
       width: 6px; height: 6px;
       background: var(--honey);
       border-radius: 50%;
-      box-shadow: 0 0 12px rgba(254,189,51,0.7);
-      animation: s18-pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s17-pulse 2.4s ease-in-out infinite;
     }
-    @keyframes s18-pulse {
+    @keyframes s17-pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
     }
-    .s18-title {
-      font-size: clamp(40px, 4.4vw, 64px);
+
+    .s17-headline {
+      font-size: clamp(42px, 5.2vw, 92px);
       font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 0.95;
-      color: var(--fg);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      margin: 0;
     }
-    .s18-subhead {
-      margin-top: 10px;
+    .s17-headline .accent {
+      color: var(--honey);
+      letter-spacing: -0.02em;
+    }
+    .s17-headline .period {
+      color: var(--honey);
+    }
+
+    .s17-subhead {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: clamp(11px, 0.8vw, 13px);
+      line-height: 1.65;
+      color: var(--fg-muted);
+      max-width: 420px;
+      padding-bottom: 8px;
+    }
+    .s17-subhead .pill {
+      display: inline-block;
+      font-size: 10px;
       letter-spacing: 0.28em;
       color: var(--honey);
-      text-transform: uppercase;
-      font-weight: 500;
+      padding: 5px 10px;
+      border: 1px solid var(--border-warm);
+      border-radius: 2px;
+      margin-bottom: 14px;
+      background: rgba(254,189,51,0.05);
     }
-    .s18-subhead span.sep { color: rgba(254,189,51,0.32); margin: 0 10px; }
+    .s17-subhead em {
+      font-style: normal;
+      color: var(--fg);
+    }
 
-    /* mean badge top-right */
-    .s18-mean {
+    /* ----- LEDGER GRID ----- */
+    .s17-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: clamp(14px, 1.3vw, 22px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ----- RECEIPT CARD ----- */
+    .s17-receipt {
+      position: relative;
+      background:
+        /* paper grain SVG noise — 3-4% opacity */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.92  0 0 0 0 0.72  0 0 0 0.038 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>"),
+        /* faint horizontal paper-fiber lines */
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+        linear-gradient(180deg, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 100%);
+      border: 1px solid rgba(254,189,51,0.30);
+      border-radius: 4px;
+      padding: clamp(18px, 1.5vw, 26px) clamp(20px, 1.6vw, 28px) clamp(16px, 1.3vw, 22px) clamp(28px, 2.2vw, 38px);
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      padding: 14px 22px;
-      border: 1px solid rgba(254,189,51,0.28);
-      background:
-        linear-gradient(135deg, rgba(254,189,51,0.06), rgba(254,189,51,0.02));
-      border-radius: 2px;
-      position: relative;
+      backdrop-filter: blur(6px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 14px 38px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        border-color 320ms ease,
+        box-shadow 320ms ease;
+      overflow: hidden;
     }
-    .s18-mean::before {
+    .slide[data-audio="18"].is-active .s17-receipt {
+      animation: s17-card-in 760ms cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    @keyframes s17-card-in {
+      0%   { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* choreographed entry — Z-pattern reading order
+       top-left → top-mid → top-right → bottom-left → bottom-mid → bottom-right
+       Eye lands top-left ($415K), sweeps right, drops, sweeps right again.
+    */
+    .s17-receipt.r1 { animation-delay: 120ms; }
+    .s17-receipt.r2 { animation-delay: 260ms; }
+    .s17-receipt.r3 { animation-delay: 400ms; }
+    .s17-receipt.r4 { animation-delay: 560ms; }
+    .s17-receipt.r5 { animation-delay: 700ms; }
+    .s17-receipt.r6 { animation-delay: 860ms; }
+
+    /* honey rail on left edge */
+    .s17-receipt::before {
       content: "";
       position: absolute;
-      top: -1px; left: -1px;
-      width: 10px; height: 10px;
-      border-top: 1px solid var(--honey);
-      border-left: 1px solid var(--honey);
+      left: 0; top: 14px; bottom: 14px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--honey) 0%, rgba(254,189,51,0.15) 100%);
+      box-shadow: 0 0 14px rgba(254,189,51,0.5);
+      border-radius: 0 2px 2px 0;
     }
-    .s18-mean::after {
+
+    /* perforation strip on right edge */
+    .s17-receipt::after {
       content: "";
       position: absolute;
-      bottom: -1px; right: -1px;
-      width: 10px; height: 10px;
-      border-bottom: 1px solid var(--honey);
-      border-right: 1px solid var(--honey);
+      right: -4px; top: 14px; bottom: 14px;
+      width: 8px;
+      background-image: radial-gradient(circle at center, var(--bg) 2.5px, transparent 3px);
+      background-size: 8px 10px;
+      background-repeat: repeat-y;
+      pointer-events: none;
+      opacity: 0.7;
     }
-    .s18-mean-label {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.32em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
+
+    /* head row: evidence serial + status chip */
+    .s17-r-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: clamp(8px, 0.8vw, 14px);
     }
-    .s18-mean-value {
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--honey);
-      line-height: 1;
-      text-shadow: 0 0 28px rgba(254,189,51,0.32);
-      font-feature-settings: "tnum";
-    }
-    .s18-mean-sub {
+    .s17-r-no {
       font-family: var(--font-mono);
       font-size: 9px;
-      letter-spacing: 0.22em;
-      color: var(--fg-muted);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-    }
-
-    /* ============ BODY GRID: matrix + sidebar ============ */
-    .s18-body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 26px;
-      min-height: 0;
-    }
-
-    /* ============ EVAL MATRIX ============ */
-    .s18-matrix {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 10px;
-      min-height: 0;
-    }
-
-    .s18-cell {
-      position: relative;
-      padding: 14px 16px 14px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
-    .s18-cell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .s18-cell:hover { transform: translateY(-2px); }
-    .s18-cell:hover::before { opacity: 1; }
-
-    /* score color tiers */
-    .s18-cell[data-tier="honey"] { border-color: rgba(254,189,51,0.22); }
-    .s18-cell[data-tier="honey"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254,189,51,0.10), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="honey"] .s18-score { color: var(--honey); text-shadow: 0 0 20px rgba(254,189,51,0.45); }
-    .s18-cell[data-tier="honey"] .s18-bar > i { background: linear-gradient(90deg, var(--honey), #ffd56a); box-shadow: 0 0 10px rgba(254,189,51,0.55); }
-
-    .s18-cell[data-tier="teal"] { border-color: rgba(67,192,190,0.22); }
-    .s18-cell[data-tier="teal"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(67,192,190,0.09), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="teal"] .s18-score { color: var(--teal); text-shadow: 0 0 18px rgba(67,192,190,0.40); }
-    .s18-cell[data-tier="teal"] .s18-bar > i { background: linear-gradient(90deg, var(--dark-teal), var(--teal)); box-shadow: 0 0 10px rgba(67,192,190,0.5); }
-
-    .s18-cell[data-tier="sky"] { border-color: rgba(100,188,234,0.24); }
-    .s18-cell[data-tier="sky"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(100,188,234,0.10), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="sky"] .s18-score { color: var(--sky); text-shadow: 0 0 18px rgba(100,188,234,0.40); }
-    .s18-cell[data-tier="sky"] .s18-bar > i { background: linear-gradient(90deg, #3a92c4, var(--sky)); box-shadow: 0 0 10px rgba(100,188,234,0.5); }
-
-    .s18-cell-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .s18-num {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
       color: var(--fg-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17-r-no strong {
+      color: var(--honey);
       font-weight: 500;
     }
-    .s18-pass {
+    .s17-r-no .sep {
+      color: rgba(255,255,255,0.18);
+      margin: 0 6px;
+    }
+    .s17-r-chip {
       font-family: var(--font-mono);
       font-size: 8.5px;
-      letter-spacing: 0.24em;
-      color: var(--fg-dim);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      padding: 2px 6px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 2px;
-    }
-    .s18-cell[data-tier="honey"] .s18-pass { color: var(--honey); border-color: rgba(254,189,51,0.3); }
-    .s18-cell[data-tier="teal"]  .s18-pass { color: var(--teal);  border-color: rgba(67,192,190,0.3); }
-    .s18-cell[data-tier="sky"]   .s18-pass { color: var(--sky);   border-color: rgba(100,188,234,0.32); }
-
-    .s18-cat {
-      font-size: 14.5px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      line-height: 1.18;
-      color: var(--fg);
-      margin-bottom: 8px;
-      min-height: 34px;
-    }
-    .s18-score {
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      font-feature-settings: "tnum";
-    }
-    .s18-score .pct {
-      font-size: 18px;
-      font-weight: 700;
-      margin-left: 2px;
-      opacity: 0.7;
-    }
-    .s18-micro {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.05em;
-      color: var(--fg-muted);
-      line-height: 1.45;
-      margin-top: 6px;
-      min-height: 24px;
-    }
-
-    .s18-bar {
-      margin-top: 10px;
-      position: relative;
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .s18-bar > i {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: var(--w, 0%);
-      border-radius: 2px;
-      transform-origin: left center;
-      animation: s18-fill 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
-    }
-    @keyframes s18-fill {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
-    }
-    .s18-bar > i::after {
-      content: "";
-      position: absolute;
-      right: -2px; top: -1px; bottom: -1px;
-      width: 5px;
-      background: currentColor;
-      filter: blur(3px);
-      opacity: 0.7;
-    }
-
-    /* ============ SIDEBAR ============ */
-    .s18-side {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 0;
-    }
-
-    .s18-rsp {
-      position: relative;
-      padding: 18px 18px 16px;
-      background:
-        linear-gradient(180deg, rgba(254,189,51,0.045), rgba(254,189,51,0.01));
-      border: 1px solid rgba(254,189,51,0.22);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .s18-rsp::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--honey), transparent);
-      opacity: 0.6;
-    }
-    .s18-rsp-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      color: var(--honey);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .s18-rsp-eyebrow::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(254,189,51,0.4), transparent);
-    }
-    .s18-rsp-title {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      color: var(--fg);
-      margin-bottom: 4px;
-    }
-    .s18-rsp-tier {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      color: var(--honey);
-      margin-bottom: 14px;
-    }
-    .s18-rsp-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .s18-rsp-list li {
-      font-size: 11.5px;
-      line-height: 1.4;
-      color: var(--fg-muted);
-      padding-left: 14px;
-      position: relative;
-      letter-spacing: -0.005em;
-    }
-    .s18-rsp-list li::before {
-      content: "";
-      position: absolute;
-      left: 0; top: 6px;
-      width: 6px; height: 1px;
-      background: var(--honey);
-    }
-    .s18-rsp-list li b {
-      color: var(--fg);
-      font-weight: 600;
-    }
-
-    /* legend */
-    .s18-legend {
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 3px;
-      background: rgba(255,255,255,0.015);
-    }
-    .s18-legend-title {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .s18-legend-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .s18-legend-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.06em;
-      color: var(--fg-muted);
-    }
-    .s18-legend-row .sw {
-      width: 18px;
-      height: 3px;
-      border-radius: 2px;
-    }
-    .sw.honey { background: var(--honey); box-shadow: 0 0 8px rgba(254,189,51,0.5); }
-    .sw.teal  { background: var(--teal);  box-shadow: 0 0 8px rgba(67,192,190,0.5); }
-    .sw.sky   { background: var(--sky);   box-shadow: 0 0 8px rgba(100,188,234,0.5); }
-    .s18-legend-row .num { color: var(--fg); font-weight: 600; margin-left: auto; }
-
-    /* held-out / methodology box */
-    .s18-method {
-      padding: 14px 16px;
-      border: 1px dashed rgba(67,192,190,0.28);
-      border-radius: 3px;
-      background: rgba(67,192,190,0.025);
-    }
-    .s18-method-title {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
+      padding: 3px 8px;
+      border: 1px solid rgba(67,192,190,0.32);
       color: var(--teal);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .s18-method-body {
-      font-size: 11.5px;
-      line-height: 1.45;
-      color: var(--fg-muted);
-      letter-spacing: -0.005em;
-    }
-    .s18-method-body b { color: var(--fg); font-weight: 600; }
-
-    /* ============ BOTTOM STRIP ============ */
-    .s18-strip {
-      margin-top: 18px;
-      padding: 16px 22px;
-      display: flex;
+      background: rgba(67,192,190,0.06);
+      border-radius: 2px;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      background:
-        linear-gradient(90deg, rgba(254,189,51,0.045), rgba(67,192,190,0.025) 60%, transparent);
-      border-top: 1px solid rgba(254,189,51,0.22);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      position: relative;
+      gap: 6px;
+      flex-shrink: 0;
     }
-    .s18-strip::before {
+    .s17-r-chip .pulse {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    /* the big number — HERO */
+    .s17-r-figure {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(46px, 5.4vw, 92px);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      color: var(--honey);
+      margin: 0;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.22),
+        0 2px 0 rgba(0,0,0,0.4);
+      font-variant-numeric: tabular-nums;
+      position: relative;
+      display: inline-block;
+    }
+    .s17-r-figure .unit {
+      font-size: 0.42em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      vertical-align: 0.62em;
+      color: rgba(254,189,51,0.78);
+      margin-left: 2px;
+    }
+    .s17-r-figure .sym {
+      font-weight: 500;
+      font-size: 0.62em;
+      vertical-align: 0.16em;
+      color: rgba(254,189,51,0.82);
+      margin-right: 0.04em;
+    }
+
+    /* delicate underline glow — gradient mask, swells on enter, then settles to slow bloom */
+    .s17-r-figure::after {
       content: "";
       position: absolute;
-      top: -1px; left: 0;
-      width: 80px;
-      height: 1px;
-      background: var(--honey);
-      box-shadow: 0 0 14px var(--honey);
+      left: 0;
+      right: 12%;
+      bottom: -4px;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254,189,51,0.85) 22%,
+        rgba(254,189,51,1) 50%,
+        rgba(254,189,51,0.85) 78%,
+        transparent 100%);
+      box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35);
+      transform: scaleX(0);
+      transform-origin: left center;
+      opacity: 0;
+      border-radius: 2px;
     }
-    .s18-strip-label {
+    .slide[data-audio="18"].is-active .s17-r-figure::after {
+      animation:
+        s17-underline-swell 1100ms cubic-bezier(.22,.61,.36,1) forwards,
+        var(--bloom-anim, s17-bloom-a) var(--bloom-dur, 4.8s) ease-in-out infinite var(--bloom-after, 1500ms);
+    }
+    @keyframes s17-underline-swell {
+      0%   { transform: scaleX(0); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* Per-card honey rhythms — same color, different bloom phase + tempo.
+       Eye dances across the six numbers. */
+    @keyframes s17-bloom-a {
+      0%, 100% { box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35); }
+      50%      { box-shadow: 0 0 26px rgba(254,189,51,0.95), 0 0 62px rgba(254,189,51,0.55); }
+    }
+    @keyframes s17-bloom-b {
+      0%, 100% { box-shadow: 0 0 16px rgba(254,189,51,0.55), 0 0 32px rgba(254,189,51,0.25); }
+      55%      { box-shadow: 0 0 28px rgba(254,189,51,0.92), 0 0 70px rgba(254,189,51,0.5); }
+    }
+    @keyframes s17-bloom-c {
+      0%, 100% { box-shadow: 0 0 14px rgba(254,189,51,0.62), 0 0 28px rgba(254,189,51,0.32); }
+      40%      { box-shadow: 0 0 24px rgba(254,189,51,0.85), 0 0 58px rgba(254,189,51,0.48); }
+    }
+    .s17-receipt.r1 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 4.8s; --bloom-after: 1300ms; }
+    .s17-receipt.r2 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.6s; --bloom-after: 1700ms; }
+    .s17-receipt.r3 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 4.2s; --bloom-after: 1500ms; }
+    .s17-receipt.r4 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.0s; --bloom-after: 1900ms; }
+    .s17-receipt.r5 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 6.0s; --bloom-after: 2100ms; }
+    .s17-receipt.r6 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 5.4s; --bloom-after: 2300ms; }
+
+    /* comparison anchor — sits below the hero number */
+    .s17-r-compare {
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.36em;
-      color: var(--honey);
-      text-transform: uppercase;
-      white-space: nowrap;
+      font-size: clamp(10px, 0.74vw, 12px);
+      letter-spacing: 0.04em;
+      color: var(--fg-dim);
+      line-height: 1.45;
+      margin-top: clamp(8px, 0.8vw, 12px);
+      padding-left: 1px;
+      max-width: 90%;
     }
-    .s18-strip-text {
-      font-size: clamp(15px, 1.4vw, 19px);
+    .s17-r-compare .vs {
+      color: rgba(254,189,51,0.55);
       font-weight: 500;
-      letter-spacing: -0.015em;
-      color: var(--fg);
-      line-height: 1.3;
-      flex: 1;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-right: 6px;
+      font-size: 0.86em;
     }
-    .s18-strip-text b {
-      font-weight: 800;
-      color: var(--honey);
-    }
-    .s18-strip-text em {
+    .s17-r-compare em {
       font-style: normal;
       color: var(--fg-muted);
     }
-    .s18-strip-sig {
+
+    /* event label + date row */
+    .s17-r-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: clamp(10px, 1vw, 16px);
+      padding-bottom: clamp(8px, 0.8vw, 12px);
+    }
+    .s17-r-event {
+      font-size: clamp(15px, 1.15vw, 19px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.18;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .s17-r-event::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 22px; height: 1px;
+      background: linear-gradient(90deg, var(--honey) 0%, var(--teal) 100%);
+      opacity: 0.75;
+    }
+    .s17-r-date {
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.28em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.2em;
+      color: var(--fg-muted);
       white-space: nowrap;
     }
 
-    /* stagger animation for cells */
-    .s18-cell {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s18-rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    /* description */
+    .s17-r-desc {
+      font-size: clamp(11px, 0.78vw, 12.5px);
+      line-height: 1.5;
+      color: var(--fg-muted);
+      letter-spacing: -0.002em;
+      flex: 1;
+      margin: 0 0 clamp(10px, 1vw, 14px) 0;
+      padding-right: clamp(56px, 5vw, 92px); /* reserve room for stamp */
     }
-    .s18-cell:nth-child(1)  { animation-delay: 0.05s; }
-    .s18-cell:nth-child(2)  { animation-delay: 0.10s; }
-    .s18-cell:nth-child(3)  { animation-delay: 0.15s; }
-    .s18-cell:nth-child(4)  { animation-delay: 0.20s; }
-    .s18-cell:nth-child(5)  { animation-delay: 0.25s; }
-    .s18-cell:nth-child(6)  { animation-delay: 0.30s; }
-    .s18-cell:nth-child(7)  { animation-delay: 0.35s; }
-    .s18-cell:nth-child(8)  { animation-delay: 0.40s; }
-    .s18-cell:nth-child(9)  { animation-delay: 0.45s; }
-    .s18-cell:nth-child(10) { animation-delay: 0.50s; }
-    .s18-cell:nth-child(11) { animation-delay: 0.55s; }
-    .s18-cell:nth-child(12) { animation-delay: 0.60s; }
-    @keyframes s18-rise {
-      to { opacity: 1; transform: translateY(0); }
+
+    /* system tags footer */
+    .s17-r-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: clamp(8px, 0.9vw, 12px);
+      border-top: 1px dashed rgba(255,255,255,0.10);
+      flex-wrap: wrap;
+      padding-right: clamp(56px, 5vw, 92px); /* keep clear of stamp */
+    }
+    .s17-r-tags .label {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-right: 4px;
+    }
+    .s17-r-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 3px 7px;
+      border: 1px solid rgba(67,192,190,0.22);
+      border-radius: 2px;
+      background: rgba(67,192,190,0.04);
+    }
+
+    /* ===== APPROVAL STAMP — bottom-right of each card ===== */
+    .s17-stamp-block {
+      position: absolute;
+      right: clamp(10px, 1vw, 16px);
+      bottom: clamp(10px, 1vw, 16px);
+      width: clamp(64px, 6.4vw, 96px);
+      height: clamp(64px, 6.4vw, 96px);
+      pointer-events: none;
+      opacity: 0;
+      transform: rotate(-8deg) scale(0.86);
+      transition: opacity 600ms ease, transform 600ms cubic-bezier(.22,.61,.36,1);
+      transition-delay: 1100ms;
+    }
+    .slide[data-audio="18"].is-active .s17-stamp-block {
+      opacity: 0.78;
+      transform: rotate(-8deg) scale(1);
+    }
+    .s17-stamp-block svg {
+      width: 100%; height: 100%;
+      display: block;
+      overflow: visible;
+    }
+    /* each stamp gets a slightly different rotation for hand-applied feel */
+    .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg) scale(0.86); }
+    .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg) scale(0.86); }
+    .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(0.86); }
+    .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg) scale(0.86); }
+    .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(0.86); }
+    .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg) scale(0.86); }
+    .slide[data-audio="18"].is-active .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg)  scale(1); }
+    .slide[data-audio="18"].is-active .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg)  scale(1); }
+    .slide[data-audio="18"].is-active .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(1); }
+    .slide[data-audio="18"].is-active .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg)  scale(1); }
+    .slide[data-audio="18"].is-active .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(1); }
+    .slide[data-audio="18"].is-active .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
+
+    /* hover refinement */
+    .s17-receipt:hover {
+      border-color: rgba(254,189,51,0.55);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 22px 50px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(254,189,51,0.30),
+        0 0 70px rgba(254,189,51,0.16);
+    }
+
+    /* ----- BOTTOM STRIP ----- */
+    .s17-footer {
+      margin-top: clamp(18px, 1.8vw, 32px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .s17-footer::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 0;
+      width: 120px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+      box-shadow: 0 0 10px rgba(254,189,51,0.5);
+    }
+
+    .s17-total {
+      font-size: clamp(15px, 1.18vw, 22px);
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--fg);
+      letter-spacing: -0.022em;
+      max-width: 920px;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+    .s17-total .label {
+      font-family: var(--font-mono);
+      font-size: 0.55em;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      display: block;
+      margin-bottom: 6px;
+      width: 100%;
+    }
+    .s17-total .figure {
+      color: var(--honey);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+      position: relative;
+      display: inline-block;
+    }
+    /* ticker tail — the trailing ", 0" looks like it could keep climbing */
+    .s17-total .figure .tick {
+      color: var(--honey);
+      display: inline-block;
+      animation: s17-ticker 3.6s ease-in-out infinite;
+      transform-origin: left baseline;
+    }
+    @keyframes s17-ticker {
+      0%, 84%, 100% { opacity: 1; transform: translateY(0); }
+      88%           { opacity: 0.25; transform: translateY(-0.5em); }
+      92%           { opacity: 0.25; transform: translateY(0.5em); }
+      96%           { opacity: 1;    transform: translateY(0); }
+    }
+    .s17-total em {
+      font-style: italic;
+      color: var(--fg-muted);
+      font-weight: 300;
+    }
+    .s17-total .sep {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--fg-dim);
+    }
+
+    /* forward-looking forecast chip */
+    .s17-forecast {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--honey);
+      padding: 5px 10px 5px 8px;
+      border: 1px solid rgba(254,189,51,0.35);
+      background: linear-gradient(90deg, rgba(254,189,51,0.08), rgba(254,189,51,0.02));
+      border-radius: 2px;
+      margin-left: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .s17-forecast::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(254,189,51,0.18), transparent);
+      transform: translateX(-100%);
+      animation: s17-shimmer 4.2s ease-in-out infinite;
+    }
+    @keyframes s17-shimmer {
+      0%, 60% { transform: translateX(-100%); }
+      80%     { transform: translateX(100%); }
+      100%    { transform: translateX(100%); }
+    }
+    .s17-forecast .arrow {
+      width: 10px; height: 10px;
+      flex-shrink: 0;
+      color: var(--honey);
+    }
+    .s17-forecast .trend {
+      color: var(--fg);
+      letter-spacing: 0.18em;
+    }
+    .s17-forecast .eta {
+      color: var(--fg-dim);
+      letter-spacing: 0.24em;
+    }
+
+    .s17-arrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .s17-arrow .bar {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey));
+    }
+    .s17-arrow .next {
+      color: var(--honey);
+    }
+
+    @media (max-width: 1200px) {
+      .s17-ledger {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .s18-cell, .s18-bar > i { animation: none; opacity: 1; transform: none; }
-      .s18-bar > i { transform: scaleX(1); }
-      .s18-eyebrow .dot { animation: none; }
+      .slide[data-audio="18"] *,
+      .slide[data-audio="18"] *::before,
+      .slide[data-audio="18"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slide[data-audio="18"] .s17-receipt { opacity: 1; transform: none; }
+      .slide[data-audio="18"] .s17-stamp-block { opacity: 0.78; }
+      .slide[data-audio="18"] .s17-r-figure::after { opacity: 1; transform: scaleX(1); }
     }
   </style>
 
-  <div class="s18-frame">
-    <div class="s18-mark tl"></div>
-    <div class="s18-mark tr"></div>
-    <div class="s18-mark bl"></div>
-    <div class="s18-mark br"></div>
-    <div class="s18-stamp">SLIDE · <b>18</b> · YOGI / SAFETY EVALUATION REPORT</div>
+  <!-- ============ REUSABLE STAMP SVG (defined once, referenced via <use>) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Circular honey stamp -->
+      <symbol id="s17-stamp-ring" viewBox="0 0 100 100">
+        <!-- outer ring -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(254,189,51,0.78)" stroke-width="2"/>
+        <!-- inner ring -->
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(254,189,51,0.6)" stroke-width="0.7"/>
+        <!-- tick marks around the ring -->
+        <g stroke="rgba(254,189,51,0.5)" stroke-width="0.8">
+          <line x1="50" y1="2"  x2="50" y2="6"/>
+          <line x1="50" y1="94" x2="50" y2="98"/>
+          <line x1="2"  y1="50" x2="6"  y2="50"/>
+          <line x1="94" y1="50" x2="98" y2="50"/>
+          <line x1="15.6" y1="15.6" x2="18.4" y2="18.4"/>
+          <line x1="81.6" y1="15.6" x2="84.4" y2="18.4"/>
+          <line x1="15.6" y1="84.4" x2="18.4" y2="81.6"/>
+          <line x1="81.6" y1="84.4" x2="84.4" y2="81.6"/>
+        </g>
+        <!-- faint cross-stamp behind text -->
+        <g stroke="rgba(254,189,51,0.18)" stroke-width="6" stroke-linecap="round">
+          <line x1="22" y1="22" x2="78" y2="78"/>
+          <line x1="78" y1="22" x2="22" y2="78"/>
+        </g>
+        <!-- VERIFIED across the middle, big and faded -->
+        <text x="50" y="44" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="11" font-weight="700"
+              letter-spacing="1.4"
+              fill="rgba(254,189,51,0.85)">VERIFIED</text>
+        <!-- ledger marker -->
+        <text x="50" y="56" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="5.2"
+              letter-spacing="1.4"
+              fill="rgba(254,189,51,0.62)">YOGI · LEDGER</text>
+      </symbol>
+    </defs>
+  </svg>
 
-    <!-- HEADER -->
-    <div class="s18-header">
-      <div>
-        <div class="s18-eyebrow"><span class="dot"></span> SAFETY · EVALUATION SUITE · v3.2 · 2026-Q2</div>
-        <div class="s18-title">Audited like a frontier model.</div>
-        <div class="s18-subhead">
-          12 CATEGORIES <span class="sep">/</span> 95.4% MEAN <span class="sep">/</span> HUMAN APPROVES EVERY ACTION
-        </div>
-      </div>
-      <div class="s18-mean">
-        <div class="s18-mean-label">MEAN PASS RATE</div>
-        <div class="s18-mean-value">95.4<span style="font-size:24px;font-weight:800;opacity:0.7">%</span></div>
-        <div class="s18-mean-sub">n=2,184 · held-out · quarterly</div>
-      </div>
-    </div>
+  <div class="content">
+    <div class="s17-frame">
 
-    <!-- BODY -->
-    <div class="s18-body">
-      <!-- 4x3 MATRIX -->
-      <div class="s18-matrix">
+      <!-- corner registration marks -->
+      <div class="s17-mark tl"></div>
+      <div class="s17-mark tr"></div>
+      <div class="s17-mark bl"></div>
+      <div class="s17-mark br"></div>
+      <div class="s17-stamp">SLIDE · 16 / PRODUCTION RECEIPTS · LEDGER</div>
 
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#01</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Tool-call authority bounds</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">No action outside the 328-tool authority boundary.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#02</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Database write guardrails</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Zero unauthorised writes against Zoho, MYOB, Databricks.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#03</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Self-modification audit</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Memory edits logged, reversible, human-reviewable.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#04</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">PII redaction</div>
-          <div class="s18-score">99.7<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:99.7%"></i></div>
-          <div class="s18-micro">TCID, DOB, contact data masked in outbound logs.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#05</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">RBAC enforcement</div>
-          <div class="s18-score">98<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:98%"></i></div>
-          <div class="s18-micro">Role/permission checks honoured on every privileged call.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#06</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Memory leak across users</div>
-          <div class="s18-score">97<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:97%"></i></div>
-          <div class="s18-micro">No cross-tenant context bleed in adversarial probes.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#07</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Conversation context isolation</div>
-          <div class="s18-score">96<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:96%"></i></div>
-          <div class="s18-micro">Session boundaries hold under concurrent multi-user load.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="sky">
-          <div class="s18-cell-top">
-            <span class="s18-num">#08</span>
-            <span class="s18-pass">MONITOR</span>
-          </div>
-          <div class="s18-cat">Refusal of out-of-scope ops</div>
-          <div class="s18-score">92<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:92%"></i></div>
-          <div class="s18-micro">Declines off-charter requests; quarterly refusal tuning.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="sky">
-          <div class="s18-cell-top">
-            <span class="s18-num">#09</span>
-            <span class="s18-pass">MONITOR</span>
-          </div>
-          <div class="s18-cat">Prompt-injection resistance</div>
-          <div class="s18-score">88<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:88%"></i></div>
-          <div class="s18-micro">Adversarial test set; documented capability gap.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#10</span>
-            <span class="s18-pass">ZERO</span>
-          </div>
-          <div class="s18-cat">Hallucinated tool calls</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Strict schema validation — zero phantom invocations.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#11</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Drift detection</div>
-          <div class="s18-score">94<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:94%"></i></div>
-          <div class="s18-micro">Behaviour drift caught against frozen reference outputs.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#12</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Documented capability gaps</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Every known limitation logged, owned, scheduled.</div>
-        </div>
-
+      <!-- particle field -->
+      <div class="s17-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
       </div>
 
-      <!-- SIDEBAR -->
-      <aside class="s18-side">
-        <div class="s18-rsp">
-          <div class="s18-rsp-eyebrow">Scaling tier</div>
-          <div class="s18-rsp-title">Anthropic RSP-3</div>
-          <div class="s18-rsp-tier">RESPONSIBLE SCALING POLICY</div>
-          <ul class="s18-rsp-list">
-            <li><b>Held-out</b> evaluation set, re-run quarterly</li>
-            <li><b>Documented</b> capability gaps with owners</li>
-            <li><b>Reversible</b> by design — every write logged</li>
-            <li><b>Human approval</b> required for every action</li>
-            <li><b>Red-team</b> probes from Specialist Crew + external</li>
-          </ul>
-        </div>
-
-        <div class="s18-legend">
-          <div class="s18-legend-title">Threshold legend</div>
-          <div class="s18-legend-rows">
-            <div class="s18-legend-row"><span class="sw honey"></span> 100% &nbsp; locked <span class="num">5</span></div>
-            <div class="s18-legend-row"><span class="sw teal"></span> ≥95% &nbsp; pass <span class="num">5</span></div>
-            <div class="s18-legend-row"><span class="sw sky"></span> 88–95 &nbsp; monitor <span class="num">2</span></div>
+      <!-- HEADER -->
+      <header class="s17-head">
+        <div>
+          <div class="s17-eyebrow">
+            <span class="dot"></span>
+            <span>This is not theoretical</span>
+            <span class="rule"></span>
+            <span>06 receipts · Q2 FY26</span>
           </div>
+          <h1 class="s17-headline">
+            Receipts<span class="period">.</span>
+          </h1>
         </div>
 
-        <div class="s18-method">
-          <div class="s18-method-title">Methodology</div>
-          <div class="s18-method-body">
-            <b>2,184</b> probes across <b>12</b> categories. Held-out set, not training data. Quarterly cadence. Public scoreboard inside TC Assist Home.
+        <div class="s17-subhead">
+          <div class="pill">REAL DOLLARS · REAL DATES · REAL INCIDENTS</div>
+          Six events from the production log. Each one timestamped, system-tagged, and committed to git. <em>No human engineer touched the 8 May incident.</em>
+        </div>
+      </header>
+
+      <!-- LEDGER : 3×2 grid -->
+      <div class="s17-ledger">
+
+        <!-- RECEIPT 01 — $415K averted -->
+        <article class="s17-receipt r1">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 01 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Averted</span>
           </div>
-        </div>
-      </aside>
-    </div>
+          <h2 class="s17-r-figure"><span class="sym">$</span>415,000</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>$415,000 of already-claimed exposure</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Phantom Batch incident</div>
+            <div class="s17-r-date">08 · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Bills allocator pass-through engine bug — Yogi caught it before the claim. Three parallel sub-agents, fourteen commits same day, pipeline restored 16:00.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Bills</span>
+            <span class="s17-r-tag">CDK</span>
+            <span class="s17-r-tag">ECS</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">08 MAY 2026</text>
+            </svg>
+          </div>
+        </article>
 
-    <!-- BOTTOM STRIP -->
-    <div class="s18-strip">
-      <div class="s18-strip-label">NON-NEGOTIABLE</div>
-      <div class="s18-strip-text">
-        <b>Yogi drafts. Humans decide.</b> <em>The reviewer who clicks approve owns the outcome.</em>
+        <!-- RECEIPT 02 — $69,140 TJ Gardening -->
+        <article class="s17-receipt r2">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 02 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Recovered</span>
+          </div>
+          <h2 class="s17-r-figure"><span class="sym">$</span>69,140</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>$0 recovered before Yogi</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">TJ Gardening pattern</div>
+            <div class="s17-r-date">02 · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Cross-client supplier pattern — 4 clients, 81 invoices, no services delivered. Yogi flagged the conflict-of-interest before anyone reviewed it.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Zoho</span>
+            <span class="s17-r-tag">MYOB</span>
+            <span class="s17-r-tag">Aircall</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">02 MAY 2026</text>
+            </svg>
+          </div>
+        </article>
+
+        <!-- RECEIPT 03 — 21× Bills QA -->
+        <article class="s17-receipt r3">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 03 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Optimised</span>
+          </div>
+          <h2 class="s17-r-figure">21<span class="unit">×</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>39s &rarr; 1.8s page load</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Bills QA page faster</div>
+            <div class="s17-r-date">22 · APR · 2026</div>
+          </div>
+          <p class="s17-r-desc">14 reviewers were abandoning the page. Yogi rebuilt it with the hourly cache-bake pattern. Page survives every release.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Databricks</span>
+            <span class="s17-r-tag">Next.js</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">22 APR 2026</text>
+            </svg>
+          </div>
+        </article>
+
+        <!-- RECEIPT 04 — 150× ACQSC investigation -->
+        <article class="s17-receipt r4">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 04 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Compressed</span>
+          </div>
+          <h2 class="s17-r-figure">150<span class="unit">×</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>1 week &rarr; 47 seconds</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">ACQSC investigation</div>
+            <div class="s17-r-date">31 · MAR · 2026</div>
+          </div>
+          <p class="s17-r-desc">Full cross-system investigation with evidence pack auto-generated. Ready for Commission submission on tap.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">All 9 systems</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">31 MAR 2026</text>
+            </svg>
+          </div>
+        </article>
+
+        <!-- RECEIPT 05 — 47 auto-rules -->
+        <article class="s17-receipt r5">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 05 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Learned</span>
+          </div>
+          <h2 class="s17-r-figure">47</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>auto-rules learned from corrections</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Auto-rules learned</div>
+            <div class="s17-r-date">MID · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Self-patched behaviours from user corrections. Yogi grows without being told twice — the memory writes itself between conversations.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Hooks</span>
+            <span class="s17-r-tag">Memory</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">15 MAY 2026</text>
+            </svg>
+          </div>
+        </article>
+
+        <!-- RECEIPT 06 — 100% audit -->
+        <article class="s17-receipt r6">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 06 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Traceable</span>
+          </div>
+          <h2 class="s17-r-figure">100<span class="unit">%</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>audit trace integrity</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Audit trace recovery</div>
+            <div class="s17-r-date">18 · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Every Yogi action since January, traceable via git + memory. Zero gaps. The bear shows its working — and a regulator can read it.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Git</span>
+            <span class="s17-r-tag">launchd</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">18 MAY 2026</text>
+            </svg>
+          </div>
+        </article>
+
       </div>
-      <div class="s18-strip-sig">RSP · v3.2 · Q2 2026</div>
+
+      <!-- FOOTER STRIP -->
+      <footer class="s17-footer">
+        <div class="s17-total">
+          <span class="label">Total averted + recovered + saved this quarter</span>
+          <span class="figure">$484,140<span class="tick">,0</span></span>
+          <span class="sep">·</span>
+          <em>and counting.</em>
+          <span class="s17-forecast" aria-label="forecast">
+            <svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 9 L6 4 L10 8"/>
+              <path d="M10 4 L10 8 L6 8"/>
+            </svg>
+            <span>ETA Q3</span>
+            <span class="sep" style="color:rgba(255,255,255,0.2);margin:0 2px">·</span>
+            <span class="trend">$1.2M</span>
+            <span class="eta">trending</span>
+          </span>
+        </div>
+        <div class="s17-arrow">
+          <span>17</span>
+          <span class="bar"></span>
+          <span class="next">Safety evals</span>
+        </div>
+      </footer>
+
     </div>
   </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[16] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[16] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.18 });
+        io.observe(slide);
+      }
+    })();
+  </script>
 </section>

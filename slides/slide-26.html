@@ -1,34 +1,36 @@
 <section class="slide" data-audio="26">
   <style>
     /* ============================================================
-       SLIDE 22 — OUTRO / Q&A · "Questions. Stand by for orders."
-       Endcard. Symmetrical inverse of the cold open.
-       Honey horizon. Quiet bear. Hold the room.
+       SLIDE 24 · THE 500-LIGHTBULB MOMENT
+       500 deterministic dots cascade from center → starfield ambient.
+       One deployment. One instant. Every staffer gets the realization.
        ============================================================ */
 
     .slide[data-audio="26"] {
-      --s22-bg:        #0a0d12;
-      --s22-bg-deep:   #06080c;
-      --s22-honey:     #FEBD33;
-      --s22-honey-warm:#FFD06B;            /* slightly warmer endcard honey */
-      --s22-honey-soft:rgba(254, 189, 51, 0.13);
-      --s22-honey-glow:rgba(254, 189, 51, 0.55);
-      --s22-honey-line:rgba(254, 189, 51, 0.85);
-      --s22-teal:      #43C0BE;
-      --s22-fg:        #f4f4f5;
-      --s22-fg-muted:  #a1a1aa;
-      --s22-fg-dim:    #71717a;
-      --s22-fg-faint:  #52525b;
-      --s22-border:    rgba(255, 255, 255, 0.06);
-      --s22-border-warm: rgba(254, 189, 51, 0.22);
+      --s24-bg:           #0a0d12;
+      --s24-bg-elev:      #11161f;
+      --s24-bg-deep:      #070a0e;
+      --s24-honey:        #FEBD33;
+      --s24-honey-hot:    #FFD27A;
+      --s24-honey-soft:   rgba(254, 189, 51, 0.10);
+      --s24-honey-line:   rgba(254, 189, 51, 0.28);
+      --s24-honey-glow:   rgba(254, 189, 51, 0.55);
+      --s24-teal:         #43C0BE;
+      --s24-teal-soft:    rgba(67, 192, 190, 0.12);
+      --s24-sky:          #64BCEA;
+      --s24-fg:           #f4f4f5;
+      --s24-fg-muted:     #a1a1aa;
+      --s24-fg-dim:       #71717a;
+      --s24-fg-faint:     #52525b;
+      --s24-border:       rgba(255, 255, 255, 0.07);
+      --s24-border-warm:  rgba(254, 189, 51, 0.28);
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 50% 60%, #0c1117 0%, var(--s22-bg) 55%, var(--s22-bg-deep) 100%);
-      color: var(--s22-fg);
+      background: var(--s24-bg);
+      color: var(--s24-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
       isolation: isolate;
@@ -36,564 +38,568 @@
     }
 
     /* ---------- Atmosphere ---------- */
-    .slide[data-audio="26"] .s22-atmos {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    .slide[data-audio="26"] .s24-atmos {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
     }
-
-    /* Warm ambient honey behind the wordmark — slowly breathes */
-    .slide[data-audio="26"] .s22-ambient {
+    .slide[data-audio="26"] .s24-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
+    }
+    .slide[data-audio="26"] .s24-glow-center {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 110vmin;
-      height: 110vmin;
+      top: 50%; left: 50%;
+      width: 110vmin; height: 70vmin;
       transform: translate(-50%, -50%);
-      background: radial-gradient(
-        circle at center,
-        rgba(255, 208, 107, 0.16) 0%,
-        rgba(254, 189, 51, 0.08) 22%,
-        rgba(254, 189, 51, 0.025) 45%,
-        transparent 68%
-      );
-      filter: blur(10px);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.18) 0%,
+        rgba(254, 189, 51, 0.06) 30%,
+        rgba(254, 189, 51, 0.02) 55%,
+        transparent 75%);
+      filter: blur(40px);
       opacity: 0;
-      animation:
-        s22-fade 2800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards,
-        s22-breathe 9000ms ease-in-out 3200ms infinite;
+      animation: s24-glow-build 6800ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards,
+                 s24-glow-breathe 7s ease-in-out 7400ms infinite;
     }
-
-    /* Cool counter-wash near the bottom — subtle depth, not focal */
-    .slide[data-audio="26"] .s22-counter {
+    .slide[data-audio="26"] .s24-glow-rim {
       position: absolute;
-      bottom: -30%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90vmin;
-      height: 50vmin;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(67, 192, 190, 0.05) 0%,
-        rgba(67, 192, 190, 0.015) 40%,
-        transparent 65%
-      );
-      filter: blur(14px);
+      top: 50%; left: 50%;
+      width: 140vmin; height: 90vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        transparent 35%,
+        rgba(67, 192, 190, 0.04) 55%,
+        transparent 75%);
+      filter: blur(20px);
       opacity: 0;
-      animation: s22-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+      animation: s24-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 5000ms forwards;
     }
-
-    /* Faint engineering grid — same DNA as slide 01 */
-    .slide[data-audio="26"] .s22-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-      background-size: 96px 96px;
-      mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 28%, transparent 72%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 28%, transparent 72%);
-      opacity: 0;
-      animation: s22-fade 2000ms ease 700ms forwards;
-    }
-
-    /* Slow film grain — barely perceptible */
-    .slide[data-audio="26"] .s22-grain {
-      position: absolute;
-      inset: -50%;
-      background-image:
-        radial-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-      background-size: 3px 3px;
-      opacity: 0;
-      animation:
-        s22-fade 2000ms ease 1200ms forwards,
-        s22-grain-drift 8000ms steps(2) infinite;
-      mix-blend-mode: overlay;
-    }
-
-    /* ---------- Particles (drift up, fade off top) ---------- */
-    .slide[data-audio="26"] .s22-particles {
-      position: absolute;
-      inset: 0;
+    .slide[data-audio="26"] .s24-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 55%,
+        transparent 30%,
+        rgba(0,0,0,0.35) 75%,
+        rgba(0,0,0,0.6) 100%);
       pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .slide[data-audio="26"] .s22-particle {
-      position: absolute;
-      bottom: -10px;
-      width: 2px;
-      height: 2px;
-      border-radius: 50%;
-      background: var(--s22-honey);
-      box-shadow: 0 0 6px var(--s22-honey-glow);
-      opacity: 0;
-      animation: s22-drift linear infinite;
-    }
-    .slide[data-audio="26"] .s22-particle.dim {
-      width: 1px;
-      height: 1px;
-      box-shadow: 0 0 3px rgba(254, 189, 51, 0.4);
     }
 
-    /* ---------- Honey horizon line (the eye-rest) ---------- */
-    .slide[data-audio="26"] .s22-horizon {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 26%;
-      height: 1px;
-      pointer-events: none;
-      z-index: 1;
+    @keyframes s24-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
-    .slide[data-audio="26"] .s22-horizon::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 1px;
-      width: 0;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(254, 189, 51, 0.0) 8%,
-        rgba(254, 189, 51, 0.45) 30%,
-        rgba(254, 189, 51, 0.85) 50%,
-        rgba(254, 189, 51, 0.45) 70%,
-        rgba(254, 189, 51, 0.0) 92%,
-        transparent 100%);
-      box-shadow: 0 0 12px rgba(254, 189, 51, 0.35);
-      animation: s22-draw 3400ms cubic-bezier(0.6, 0, 0.2, 1) 2200ms forwards;
+    @keyframes s24-glow-build {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
-    /* Tiny anchor pip at horizon centre */
-    .slide[data-audio="26"] .s22-horizon::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: -2px;
-      width: 5px;
-      height: 5px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: var(--s22-honey);
-      box-shadow: 0 0 14px var(--s22-honey-glow), 0 0 4px var(--s22-honey-warm);
-      opacity: 0;
-      animation: s22-fade 1200ms ease 5400ms forwards;
+    @keyframes s24-glow-breathe {
+      0%, 100% { opacity: 0.85; }
+      50%      { opacity: 1; }
     }
 
-    /* ---------- Corner crosshairs (bookend, symmetry) ---------- */
-    .slide[data-audio="26"] .s22-corner {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-color: var(--s22-fg-faint);
-      opacity: 0;
-      animation: s22-fade 900ms ease 400ms forwards;
-      z-index: 3;
-    }
-    .slide[data-audio="26"] .s22-corner.tl { top: 28px; left: 28px; border-top: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="26"] .s22-corner.tr { top: 28px; right: 28px; border-top: 1px solid; border-right: 1px solid; }
-    .slide[data-audio="26"] .s22-corner.bl { bottom: 28px; left: 28px; border-bottom: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="26"] .s22-corner.br { bottom: 28px; right: 28px; border-bottom: 1px solid; border-right: 1px solid; }
-
-    /* ---------- Frame ---------- */
-    .slide[data-audio="26"] .s22-frame {
+    /* ---------- Content scaffold ---------- */
+    .slide[data-audio="26"] .s24-stage {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       min-height: 100vh;
-      padding: clamp(56px, 6vmin, 96px) clamp(56px, 7vmin, 112px);
       display: grid;
       grid-template-rows: auto 1fr auto;
-      align-items: center;
+      padding: clamp(28px, 3.4vh, 52px) clamp(48px, 6vw, 96px);
+      box-sizing: border-box;
+      gap: clamp(8px, 1vh, 18px);
     }
 
-    /* ---------- Top eyebrow (centred, quiet) ---------- */
-    .slide[data-audio="26"] .s22-top {
-      text-align: center;
-      opacity: 0;
-      animation: s22-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 800ms forwards;
-    }
-    .slide[data-audio="26"] .s22-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 18px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.15vmin, 14px);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--s22-honey);
-      font-weight: 500;
-    }
-    .slide[data-audio="26"] .s22-eyebrow .sep {
-      color: var(--s22-fg-faint);
-      letter-spacing: 0;
-    }
-    .slide[data-audio="26"] .s22-eyebrow .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--s22-honey);
-      box-shadow: 0 0 12px var(--s22-honey-glow);
-      animation: s22-pulse 3000ms ease-in-out infinite;
-    }
-
-    /* ---------- Centerpiece: "Questions." ---------- */
-    .slide[data-audio="26"] .s22-center {
+    /* ---------- Top: eyebrow + headline ---------- */
+    .slide[data-audio="26"] .s24-top {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(40px, 5vmin, 80px);
-      position: relative;
-    }
-
-    .slide[data-audio="26"] .s22-hero {
-      position: relative;
-      display: inline-block;
-      font-size: clamp(96px, 14vw, 200px);
-      font-weight: 800;
-      letter-spacing: -0.055em;
-      line-height: 0.92;
-      color: var(--s22-honey-warm);
-      text-shadow:
-        0 0 32px rgba(254, 189, 51, 0.32),
-        0 0 80px rgba(254, 189, 51, 0.16),
-        0 0 140px rgba(254, 189, 51, 0.08);
+      gap: clamp(14px, 1.6vh, 22px);
       opacity: 0;
-      transform: translateY(18px) scale(0.985);
-      animation: s22-hero-in 1800ms cubic-bezier(0.16, 1, 0.3, 1) 1200ms forwards;
+      transform: translateY(14px);
+      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
     }
-    .slide[data-audio="26"] .s22-hero .period {
-      color: var(--s22-honey);
-      text-shadow:
-        0 0 36px rgba(254, 189, 51, 0.55),
-        0 0 100px rgba(254, 189, 51, 0.25);
+    @keyframes s24-rise {
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Underline mark — slim honey line, hair below the wordmark */
-    .slide[data-audio="26"] .s22-hero-mark {
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(254, 189, 51, 0.7) 50%,
-        transparent 100%);
-      box-shadow: 0 0 8px rgba(254, 189, 51, 0.45);
-      animation: s22-mark-grow 1800ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms forwards;
-    }
-
-    /* ---------- Recap asks (3 lines, indented, left-aligned within the centred column) ---------- */
-    .slide[data-audio="26"] .s22-recap {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(14px, 1.6vmin, 22px);
-      max-width: 640px;
-      width: 100%;
-    }
-    .slide[data-audio="26"] .s22-ask {
-      display: flex;
-      align-items: baseline;
-      gap: clamp(18px, 2vmin, 28px);
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s22-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="26"] .s22-ask:nth-child(1) { animation-delay: 3000ms; }
-    .slide[data-audio="26"] .s22-ask:nth-child(2) { animation-delay: 3180ms; }
-    .slide[data-audio="26"] .s22-ask:nth-child(3) { animation-delay: 3360ms; }
-
-    .slide[data-audio="26"] .s22-ask-chip {
-      flex: 0 0 auto;
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
-      border: 1px solid var(--s22-border-warm);
-      background: var(--s22-honey-soft);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--s22-honey);
-      font-weight: 600;
-      box-shadow: 0 0 0 1px rgba(254, 189, 51, 0.05),
-                  inset 0 0 12px rgba(254, 189, 51, 0.04);
-    }
-    .slide[data-audio="26"] .s22-ask-text {
-      font-size: clamp(15px, 1.55vmin, 19px);
-      line-height: 1.45;
-      color: var(--s22-fg-muted);
-      letter-spacing: -0.005em;
-      font-weight: 400;
-    }
-    .slide[data-audio="26"] .s22-ask-text strong {
-      color: var(--s22-fg);
-      font-weight: 500;
-    }
-    .slide[data-audio="26"] .s22-ask-text .dot {
-      color: var(--s22-fg-faint);
-      margin: 0 12px;
-      font-weight: 400;
-    }
-
-    /* ---------- Bottom strip ---------- */
-    .slide[data-audio="26"] .s22-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 32px;
-      opacity: 0;
-      animation: s22-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 3700ms forwards;
-    }
-
-    /* Far-bottom-left: end-of-briefing caption */
-    .slide[data-audio="26"] .s22-end {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 12px);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--s22-fg-dim);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .slide[data-audio="26"] .s22-end .pip {
-      color: var(--s22-fg-faint);
-    }
-    .slide[data-audio="26"] .s22-end .live {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s22-teal);
-      box-shadow: 0 0 10px rgba(67, 192, 190, 0.7);
-      animation: s22-pulse 2200ms ease-in-out infinite;
-    }
-
-    /* Far-bottom-right: bear silhouette + signature */
-    .slide[data-audio="26"] .s22-sig {
+    .slide[data-audio="26"] .s24-eyebrow {
       display: flex;
       align-items: center;
       gap: 14px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 12px);
+      font-size: clamp(10px, 0.85vw, 12px);
       letter-spacing: 0.22em;
-      text-transform: lowercase;
-      color: var(--s22-fg-dim);
+      color: var(--s24-fg-dim);
+      text-transform: uppercase;
     }
-    .slide[data-audio="26"] .s22-sig-bear {
-      width: 26px;
-      height: 26px;
-      display: inline-block;
+    .slide[data-audio="26"] .s24-eyebrow .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--s24-honey);
+      box-shadow: 0 0 14px var(--s24-honey-glow);
+      animation: s24-pulse-eyebrow 2400ms ease-in-out infinite;
+    }
+    @keyframes s24-pulse-eyebrow {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50%      { opacity: 1;    transform: scale(1.25); }
+    }
+    .slide[data-audio="26"] .s24-eyebrow .sep {
+      color: var(--s24-fg-faint);
+    }
+    .slide[data-audio="26"] .s24-eyebrow .label-honey {
+      color: var(--s24-honey);
+    }
+
+    .slide[data-audio="26"] .s24-headline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 4.4vw, 66px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: var(--s24-fg);
+      max-width: 22ch;
+    }
+    .slide[data-audio="26"] .s24-headline .num {
+      color: var(--s24-honey);
+      text-shadow: 0 0 28px rgba(254, 189, 51, 0.35);
+    }
+    .slide[data-audio="26"] .s24-headline .period {
+      color: var(--s24-honey);
+      text-shadow: 0 0 32px rgba(254, 189, 51, 0.55);
+    }
+
+    /* ---------- Center: grid stage ---------- */
+    .slide[data-audio="26"] .s24-grid-stage {
       position: relative;
-      color: var(--s22-honey);
-      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.45));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 2vh, 32px) 0;
     }
-    .slide[data-audio="26"] .s22-sig-bear svg {
+
+    .slide[data-audio="26"] .s24-grid-wrap {
+      position: relative;
+      width: min(58vw, 880px);
+      aspect-ratio: 25 / 20;
+      max-height: 48vh;
+    }
+
+    /* Corner brackets — whisper-thin */
+    .slide[data-audio="26"] .s24-bracket {
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1px solid var(--s24-border-warm);
+      opacity: 0;
+      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+    }
+    .slide[data-audio="26"] .s24-bracket.tl {
+      top: -18px; left: -18px;
+      border-right: none; border-bottom: none;
+    }
+    .slide[data-audio="26"] .s24-bracket.tr {
+      top: -18px; right: -18px;
+      border-left: none; border-bottom: none;
+    }
+    .slide[data-audio="26"] .s24-bracket.bl {
+      bottom: -18px; left: -18px;
+      border-right: none; border-top: none;
+    }
+    .slide[data-audio="26"] .s24-bracket.br {
+      bottom: -18px; right: -18px;
+      border-left: none; border-top: none;
+    }
+
+    /* Side counter chips */
+    .slide[data-audio="26"] .s24-counter {
+      position: absolute;
+      top: -34px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--s24-fg-faint);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+    }
+    .slide[data-audio="26"] .s24-counter.left  { left: 0; }
+    .slide[data-audio="26"] .s24-counter.right { right: 0; }
+    .slide[data-audio="26"] .s24-counter b {
+      color: var(--s24-honey);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+    }
+
+    /* The SVG itself */
+    .slide[data-audio="26"] .s24-svg {
       width: 100%;
       height: 100%;
       display: block;
-    }
-    .slide[data-audio="26"] .s22-sig .accent {
-      color: var(--s22-honey);
-    }
-    .slide[data-audio="26"] .s22-sig .pip {
-      color: var(--s22-fg-faint);
+      overflow: visible;
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s22-fade { to { opacity: 1; } }
-    @keyframes s22-rise { to { opacity: 1; transform: translateY(0); } }
-    @keyframes s22-hero-in {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes s22-mark-grow {
-      to { width: min(420px, 60%); }
-    }
-    @keyframes s22-draw {
-      to { width: 100%; }
-    }
-    @keyframes s22-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.45; transform: scale(0.85); }
-    }
-    @keyframes s22-breathe {
-      0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      50%      { opacity: 0.78; transform: translate(-50%, -50%) scale(1.04); }
-    }
-    @keyframes s22-grain-drift {
-      0%   { transform: translate(0, 0); }
-      25%  { transform: translate(-1px, 1px); }
-      50%  { transform: translate(1px, -1px); }
-      75%  { transform: translate(-1px, -1px); }
-      100% { transform: translate(0, 0); }
-    }
-    @keyframes s22-drift {
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      8%   { opacity: 0.75; }
-      85%  { opacity: 0.55; }
-      100% { transform: translateY(-110vh) translateX(var(--xdrift, 0px)); opacity: 0; }
+    /* Per-dot styling — controlled by CSS vars set inline per <circle> */
+    .slide[data-audio="26"] .s24-dot {
+      fill: #1c2230;
+      transform-origin: var(--cx) var(--cy);
+      transform-box: fill-box;
+      opacity: 0.55;
+      animation:
+        s24-light-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
+        s24-ambient 4200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
     }
 
+    /* Hero dots — same animation, but brighter + with halo ring */
+    .slide[data-audio="26"] .s24-dot.hero {
+      animation:
+        s24-light-up-hero 1000ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
+        s24-ambient-hero 5200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+    }
+    .slide[data-audio="26"] .s24-halo {
+      fill: none;
+      stroke: var(--s24-honey);
+      stroke-width: 0.6;
+      opacity: 0;
+      transform-origin: var(--cx) var(--cy);
+      transform-box: fill-box;
+      animation:
+        s24-halo-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms) + 200ms) forwards,
+        s24-halo-breathe 5200ms ease-in-out calc(var(--delay, 0ms) + 1900ms) infinite;
+    }
+    /* Patient-zero dot — center dot, lights first, slightly larger */
+    .slide[data-audio="26"] .s24-dot.zero {
+      animation:
+        s24-light-up-zero 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards,
+        s24-ambient-zero 4400ms ease-in-out 2500ms infinite;
+    }
+
+    @keyframes s24-light-up {
+      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      40%  { fill: #FFD27A;            opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 4px rgba(254,189,51,0.85)); }
+      100% { fill: var(--lit, #FEBD33); opacity: var(--lit-opacity, 1); transform: scale(1); filter: drop-shadow(0 0 2.5px rgba(254,189,51,0.55)); }
+    }
+    @keyframes s24-light-up-hero {
+      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      45%  { fill: #FFE2A0;            opacity: 1;    transform: scale(1.32); filter: drop-shadow(0 0 7px rgba(254,189,51,1)); }
+      100% { fill: var(--lit, #FFD27A); opacity: 1;   transform: scale(1.05); filter: drop-shadow(0 0 4.5px rgba(254,189,51,0.85)); }
+    }
+    @keyframes s24-light-up-zero {
+      0%   { fill: #1c2230;  opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      40%  { fill: #FFFFFF;  opacity: 1;    transform: scale(1.6); filter: drop-shadow(0 0 14px rgba(255,255,255,0.95)); }
+      75%  { fill: #FFE2A0;  opacity: 1;    transform: scale(1.25); filter: drop-shadow(0 0 9px rgba(254,189,51,0.95)); }
+      100% { fill: #FFD27A;  opacity: 1;    transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(254,189,51,0.9)); }
+    }
+
+    @keyframes s24-ambient {
+      0%, 100% { opacity: var(--amb-low, 0.78); transform: scale(1); filter: drop-shadow(0 0 2px rgba(254,189,51,0.35)); }
+      50%      { opacity: var(--amb-high, 1);   transform: scale(1.06); filter: drop-shadow(0 0 4px rgba(254,189,51,0.65)); }
+    }
+    @keyframes s24-ambient-hero {
+      0%, 100% { opacity: 0.9; transform: scale(1.02); filter: drop-shadow(0 0 4px rgba(254,189,51,0.7)); }
+      50%      { opacity: 1;   transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(254,189,51,1)); }
+    }
+    @keyframes s24-ambient-zero {
+      0%, 100% { opacity: 0.92; transform: scale(1.08); filter: drop-shadow(0 0 5px rgba(254,189,51,0.85)); }
+      50%      { opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 10px rgba(255,220,140,1)); }
+    }
+
+    @keyframes s24-halo-in {
+      0%   { opacity: 0; stroke-width: 0.4; r: 0; }
+      50%  { opacity: 0.85; }
+      100% { opacity: 0.55; stroke-width: 0.55; }
+    }
+    @keyframes s24-halo-breathe {
+      0%, 100% { opacity: 0.4; stroke-width: 0.5; }
+      50%      { opacity: 0.7; stroke-width: 0.65; }
+    }
+
+    /* ---------- Bottom: supporting copy ---------- */
+    .slide[data-audio="26"] .s24-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.4vh, 18px);
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 5800ms forwards;
+    }
+    .slide[data-audio="26"] .s24-bottom-line {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: clamp(16px, 1.5vw, 24px);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--s24-honey);
+      max-width: 56ch;
+      margin: 0;
+    }
+    .slide[data-audio="26"] .s24-bottom-line .punctuation {
+      color: var(--s24-honey-hot);
+    }
+    .slide[data-audio="26"] .s24-bottom-mono {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 0.85vw, 12px);
+      letter-spacing: 0.22em;
+      color: var(--s24-fg-dim);
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+    .slide[data-audio="26"] .s24-bottom-mono .sep {
+      color: var(--s24-fg-faint);
+    }
+    .slide[data-audio="26"] .s24-bottom-mono .hot {
+      color: var(--s24-honey);
+    }
+    .slide[data-audio="26"] .s24-bottom-rule {
+      width: clamp(120px, 14vw, 220px);
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent,
+        var(--s24-honey-line) 30%,
+        var(--s24-honey-line) 70%,
+        transparent);
+      opacity: 0.8;
+    }
+
+    /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="26"] *,
-      .slide[data-audio="26"] *::before,
-      .slide[data-audio="26"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-delay: 0ms !important;
-        transition: none !important;
+      .slide[data-audio="26"] .s24-dot,
+      .slide[data-audio="26"] .s24-dot.hero,
+      .slide[data-audio="26"] .s24-dot.zero,
+      .slide[data-audio="26"] .s24-halo,
+      .slide[data-audio="26"] .s24-glow-center,
+      .slide[data-audio="26"] .s24-glow-rim,
+      .slide[data-audio="26"] .s24-top,
+      .slide[data-audio="26"] .s24-bottom,
+      .slide[data-audio="26"] .s24-bracket,
+      .slide[data-audio="26"] .s24-counter,
+      .slide[data-audio="26"] .s24-eyebrow .dot {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
-      .slide[data-audio="26"] .s22-hero { opacity: 1; transform: none; }
-      .slide[data-audio="26"] .s22-hero-mark { width: 60%; }
-      .slide[data-audio="26"] .s22-horizon::before { width: 100%; }
-      .slide[data-audio="26"] .s22-particle { display: none; }
-    }
-
-    @media (max-width: 1280px) {
-      .slide[data-audio="26"] .s22-ask-text { font-size: 15px; }
+      .slide[data-audio="26"] .s24-dot { fill: var(--s24-honey); opacity: 0.85; }
+      .slide[data-audio="26"] .s24-dot.hero { fill: var(--s24-honey-hot); }
+      .slide[data-audio="26"] .s24-dot.zero { fill: #FFE2A0; }
+      .slide[data-audio="26"] .s24-halo { opacity: 0.55; }
     }
   </style>
 
-  <div class="content">
+  <div class="s24-atmos">
+    <div class="s24-grid"></div>
+    <div class="s24-glow-center"></div>
+    <div class="s24-glow-rim"></div>
+    <div class="s24-vignette"></div>
+  </div>
 
-    <!-- atmosphere layers -->
-    <div class="s22-atmos">
-      <div class="s22-ambient"></div>
-      <div class="s22-counter"></div>
-      <div class="s22-grid"></div>
-      <div class="s22-grain"></div>
+  <div class="s24-stage">
+    <header class="s24-top">
+      <div class="s24-eyebrow">
+        <span class="dot"></span>
+        <span>SLIDE 24 / 27</span>
+        <span class="sep">·</span>
+        <span class="label-honey">THE 500-LIGHTBULB MOMENT</span>
+        <span class="sep">·</span>
+        <span>TC WORKSPACES · GA OCT 2026</span>
+      </div>
+      <h1 class="s24-headline">
+        <span class="num">500</span> staff. <span class="num">500</span> lightbulbs.<br>
+        <span class="num">1</span> deployment<span class="period">.</span>
+      </h1>
+    </header>
+
+    <div class="s24-grid-stage">
+      <div class="s24-grid-wrap">
+        <span class="s24-counter left">N <b>= 500</b> · staffers</span>
+        <span class="s24-counter right">T <b>= 1</b> · instant</span>
+        <span class="s24-bracket tl"></span>
+        <span class="s24-bracket tr"></span>
+        <span class="s24-bracket bl"></span>
+        <span class="s24-bracket br"></span>
+        <svg class="s24-svg" viewBox="0 0 250 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- circles are injected by script below -->
+        </svg>
+      </div>
     </div>
 
-    <!-- particles drifting up -->
-    <div class="s22-particles" id="s22-particles"></div>
-
-    <!-- horizon line -->
-    <div class="s22-horizon"></div>
-
-    <!-- corner crosshairs -->
-    <div class="s22-corner tl"></div>
-    <div class="s22-corner tr"></div>
-    <div class="s22-corner bl"></div>
-    <div class="s22-corner br"></div>
-
-    <div class="s22-frame">
-
-      <!-- TOP eyebrow -->
-      <div class="s22-top">
-        <div class="s22-eyebrow">
-          <span class="dot"></span>
-          <span>Cheers for listening</span>
-          <span class="sep">—</span>
-          <span>Stand by for orders</span>
-        </div>
+    <footer class="s24-bottom">
+      <div class="s24-bottom-rule"></div>
+      <p class="s24-bottom-line">
+        One deployment<span class="punctuation">.</span> One instant<span class="punctuation">.</span> Every staffer gets the same realization<span class="punctuation">.</span>
+      </p>
+      <div class="s24-bottom-mono">
+        <span class="hot">OCT 2026</span>
+        <span class="sep">·</span>
+        <span>WORKSPACES HOME GA</span>
+        <span class="sep">·</span>
+        <span class="hot">YOGI INSIDE</span>
+        <span class="sep">·</span>
+        <span>COMPANION INTERACTION</span>
+        <span class="sep">·</span>
+        <span>SUPERCHARGED FROM DAY ONE</span>
       </div>
-
-      <!-- CENTERPIECE -->
-      <div class="s22-center">
-        <h1 class="s22-hero">Questions<span class="period">.</span></h1>
-        <div class="s22-hero-mark"></div>
-
-        <div class="s22-recap" role="list">
-          <div class="s22-ask" role="listitem">
-            <span class="s22-ask-chip">01</span>
-            <span class="s22-ask-text">
-              <strong>Readiness lists</strong>
-              <span class="dot">·</span>
-              by Friday
-            </span>
-          </div>
-          <div class="s22-ask" role="listitem">
-            <span class="s22-ask-chip">02</span>
-            <span class="s22-ask-text">
-              <strong>Yogi page</strong>
-              <span class="dot">·</span>
-              as the on-ramp
-            </span>
-          </div>
-          <div class="s22-ask" role="listitem">
-            <span class="s22-ask-chip">03</span>
-            <span class="s22-ask-text">
-              <strong>Two more hands</strong>
-              <span class="dot">·</span>
-              on Innovation &amp; Transformation
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOTTOM strip -->
-      <div class="s22-bottom">
-        <div class="s22-end">
-          <span class="live"></span>
-          <span>End of briefing</span>
-          <span class="pip">·</span>
-          <span>22 slides</span>
-          <span class="pip">·</span>
-          <span>12 minutes</span>
-        </div>
-
-        <div class="s22-sig">
-          <span class="s22-sig-bear" aria-hidden="true">
-            <!-- Minimal bear silhouette -->
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- ears -->
-              <circle cx="9" cy="9" r="3.2" fill="currentColor"/>
-              <circle cx="23" cy="9" r="3.2" fill="currentColor"/>
-              <!-- inner ears -->
-              <circle cx="9" cy="9" r="1.3" fill="#0a0d12"/>
-              <circle cx="23" cy="9" r="1.3" fill="#0a0d12"/>
-              <!-- head -->
-              <circle cx="16" cy="17" r="8.5" fill="currentColor"/>
-              <!-- muzzle -->
-              <ellipse cx="16" cy="20.2" rx="3.6" ry="2.8" fill="#0a0d12" opacity="0.55"/>
-              <!-- eyes -->
-              <circle cx="13" cy="16" r="0.9" fill="#0a0d12"/>
-              <circle cx="19" cy="16" r="0.9" fill="#0a0d12"/>
-              <!-- nose -->
-              <circle cx="16" cy="19" r="0.85" fill="#0a0d12"/>
-            </svg>
-          </span>
-          <span class="accent">yogi</span>
-          <span class="pip">·</span>
-          <span>ashw</span>
-          <span class="pip">·</span>
-          <span>24 may 2026</span>
-        </div>
-      </div>
-
-    </div>
+    </footer>
   </div>
 
   <script>
     (function () {
-      const root = document.currentScript.closest('.slide[data-audio="26"]');
-      if (!root) return;
-      const host = root.querySelector('#s22-particles');
-      if (!host) return;
+      const slide = document.currentScript.closest('.slide[data-audio="26"]');
+      if (!slide) return;
+      const svg = slide.querySelector('.s24-svg');
+      if (!svg) return;
+      if (svg.dataset.s24Built === '1') return;
+      svg.dataset.s24Built = '1';
 
-      // Respect reduced motion
-      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) return;
+      const SVG_NS = 'http://www.w3.org/2000/svg';
 
-      // Build a modest field of drifting particles. Keep it sparse — restraint.
-      const COUNT = 26;
-      const frag = document.createDocumentFragment();
-      for (let i = 0; i < COUNT; i++) {
-        const p = document.createElement('span');
-        p.className = 's22-particle' + (Math.random() > 0.55 ? ' dim' : '');
-        const x = Math.random() * 100;            // left %
-        const dur = 14 + Math.random() * 18;      // 14–32s (slow)
-        const delay = -Math.random() * dur;       // negative so they're mid-flight on load
-        const xdrift = (Math.random() * 60 - 30) + 'px';
-        p.style.left = x + '%';
-        p.style.animationDuration = dur + 's';
-        p.style.animationDelay = delay + 's';
-        p.style.setProperty('--xdrift', xdrift);
-        frag.appendChild(p);
+      // Grid geometry
+      const COLS = 25;
+      const ROWS = 20;
+      const W = 250;
+      const H = 200;
+      const PAD_X = 6;
+      const PAD_Y = 6;
+      const stepX = (W - PAD_X * 2) / (COLS - 1);
+      const stepY = (H - PAD_Y * 2) / (ROWS - 1);
+
+      // Center of cascade (between dots — for a wave that radiates evenly)
+      const cxCenter = (COLS - 1) / 2; // 12
+      const cyCenter = (ROWS - 1) / 2; // 9.5
+
+      // Deterministic seeded random (mulberry32)
+      function mulberry32(seed) {
+        return function () {
+          let t = (seed += 0x6D2B79F5);
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
       }
-      host.appendChild(frag);
+      const rand = mulberry32(20262024);
+
+      // Cascade timing
+      const CASCADE_START = 1500;   // ms — patient-zero settles at ~1.2s
+      const CASCADE_END   = 5400;   // ms — last corner lights up
+
+      // Max distance from center (corner)
+      const maxDist = Math.hypot(cxCenter, cyCenter);
+
+      // Hero dot picks — deterministic, ~14 of them.
+      // Patient-zero is the literal center dot (col 12, row 9) (closest to 12,9.5).
+      const heroPicks = new Set([
+        // four corners
+        rc(0, 0), rc(COLS - 1, 0), rc(0, ROWS - 1), rc(COLS - 1, ROWS - 1),
+        // four mid edges
+        rc(Math.floor(COLS / 2), 0), rc(Math.floor(COLS / 2), ROWS - 1),
+        rc(0, Math.floor(ROWS / 2)), rc(COLS - 1, Math.floor(ROWS / 2)),
+        // a few inner "champions"
+        rc(6, 4), rc(18, 4), rc(6, 15), rc(18, 15),
+        rc(9, 9), rc(15, 10),
+      ]);
+
+      // Patient zero — pick the dot closest to the geometric center
+      const zeroCol = Math.round(cxCenter);
+      const zeroRow = Math.round(cyCenter);
+      const zeroKey = rc(zeroCol, zeroRow);
+
+      // Don't mark patient-zero as hero — it has its own treatment
+      heroPicks.delete(zeroKey);
+
+      // Build all 500 circles
+      const fragMain = document.createDocumentFragment();
+      const fragHalo = document.createDocumentFragment();
+
+      let count = 0;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = PAD_X + c * stepX;
+          const y = PAD_Y + r * stepY;
+          const key = rc(c, r);
+
+          const dx = c - cxCenter;
+          const dy = r - cyCenter;
+          const dist = Math.hypot(dx, dy);
+
+          // Each dot's delay = patient-zero settle + cascade window scaled by distance
+          // + tiny jitter so ring isn't too clean
+          const jitter = (rand() - 0.5) * 90; // ±45ms
+          const t = dist / maxDist; // 0..1
+          // Ease the wave outward slightly
+          const tEased = Math.pow(t, 0.92);
+          const delay = Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter);
+
+          // Brightness variance (10-20%) — deterministic
+          const brightness = 0.85 + rand() * 0.15; // 0.85..1.0
+          const litColor = blendHoney(brightness);
+          const ambLow  = (0.62 + rand() * 0.18).toFixed(3); // 0.62..0.80
+          const ambHigh = (0.92 + rand() * 0.08).toFixed(3); // 0.92..1.0
+
+          // Radius variance — most are equal, a few subtly larger
+          let r0 = 1.55 + (rand() - 0.5) * 0.18; // ~1.46..1.64
+          if (heroPicks.has(key)) r0 = 2.1;
+          if (key === zeroKey)    r0 = 2.55;
+
+          const circle = document.createElementNS(SVG_NS, 'circle');
+          circle.setAttribute('cx', x.toFixed(3));
+          circle.setAttribute('cy', y.toFixed(3));
+          circle.setAttribute('r', r0.toFixed(3));
+          circle.style.setProperty('--cx', x.toFixed(3) + 'px');
+          circle.style.setProperty('--cy', y.toFixed(3) + 'px');
+          circle.style.setProperty('--delay', delay + 'ms');
+          circle.style.setProperty('--lit', litColor);
+          circle.style.setProperty('--lit-opacity', brightness.toFixed(3));
+          circle.style.setProperty('--amb-low', ambLow);
+          circle.style.setProperty('--amb-high', ambHigh);
+
+          let cls = 's24-dot';
+          if (key === zeroKey)        cls += ' zero';
+          else if (heroPicks.has(key)) cls += ' hero';
+          circle.setAttribute('class', cls);
+
+          // Halo ring for hero dots + patient zero
+          if (heroPicks.has(key) || key === zeroKey) {
+            const halo = document.createElementNS(SVG_NS, 'circle');
+            const hR = (key === zeroKey ? 4.4 : 3.6);
+            halo.setAttribute('cx', x.toFixed(3));
+            halo.setAttribute('cy', y.toFixed(3));
+            halo.setAttribute('r', hR.toFixed(3));
+            halo.style.setProperty('--cx', x.toFixed(3) + 'px');
+            halo.style.setProperty('--cy', y.toFixed(3) + 'px');
+            // halo waits until the dot has lit
+            const haloDelay = (key === zeroKey) ? 1200 : delay + 100;
+            halo.style.setProperty('--delay', haloDelay + 'ms');
+            halo.setAttribute('class', 's24-halo');
+            fragHalo.appendChild(halo);
+          }
+
+          fragMain.appendChild(circle);
+          count++;
+        }
+      }
+
+      // Halos render BEHIND main dots so the dot sits crisp inside the ring
+      svg.appendChild(fragHalo);
+      svg.appendChild(fragMain);
+
+      function rc(c, r) { return r * COLS + c; }
+
+      // Blend honey color toward hot-honey based on brightness 0.85..1.0
+      function blendHoney(b) {
+        // base #FEBD33  → 254, 189, 51
+        // hot  #FFD27A  → 255, 210, 122
+        const tt = (b - 0.85) / 0.15; // 0..1
+        const R = Math.round(254 + (255 - 254) * tt);
+        const G = Math.round(189 + (210 - 189) * tt);
+        const B = Math.round(51 + (122 - 51) * tt);
+        return 'rgb(' + R + ',' + G + ',' + B + ')';
+      }
     })();
   </script>
 </section>

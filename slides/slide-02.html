@@ -1,619 +1,986 @@
 <section class="slide" data-audio="02">
   <style>
-    /* ============ SLIDE 02 — THE JOURNEY ============ */
+    /* ============================================================
+       SLIDE 02 — THE PROBLEM (commercial framing)
+       Romy's brief: numbers, not narrative. Pain on left, fix on right.
+       Two-column composition with a thin honey vertical pivot line.
+
+       VO (Bill, ~30s):
+         "Here is the problem. Trilogy operations runs across nine
+          systems. Every staffer switches between five apps to complete
+          a single task. Twelve minutes lost to context recall.
+          Investigations take a week. Bills QA queue abandoned.
+          Three hundred and fifty staffers. Forty hours a week each.
+          Hundreds of thousands in productivity drag. Every week.
+          That is the problem. Yogi exists to fix it."
+       ============================================================ */
+
     .slide[data-audio="02"] {
-      --node-w: clamp(180px, 14vw, 240px);
-      --rail-y: 56%;
-      --reveal-dur: 2400ms;
+      --s02-bg:         #0a0d12;
+      --s02-bg-deep:    #06080c;
+      --s02-honey:      #FEBD33;
+      --s02-honey-soft: rgba(254, 189, 51, 0.12);
+      --s02-honey-line: rgba(254, 189, 51, 0.30);
+      --s02-honey-glow: rgba(254, 189, 51, 0.55);
+      --s02-teal:       #43C0BE;
+      --s02-teal-soft:  rgba(67, 192, 190, 0.14);
+      --s02-teal-line:  rgba(67, 192, 190, 0.28);
+      --s02-red:        #E04B51;
+      --s02-red-soft:   rgba(224, 75, 81, 0.08);
+      --s02-red-line:   rgba(224, 75, 81, 0.24);
+      --s02-fg:         #f4f4f5;
+      --s02-fg-muted:   #a1a1aa;
+      --s02-fg-dim:     #71717a;
+      --s02-fg-faint:   #52525b;
+      --s02-border:     rgba(255, 255, 255, 0.06);
+      --s02-border-dim: rgba(255, 255, 255, 0.04);
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse 80% 50% at 18% 22%, rgba(254,189,51,0.06), transparent 60%),
-        radial-gradient(ellipse 70% 60% at 88% 78%, rgba(67,192,190,0.05), transparent 60%),
-        radial-gradient(circle at 50% 56%, rgba(254,189,51,0.04), transparent 55%),
-        var(--bg);
-      color: var(--fg);
-      font-family: var(--font-display);
+      background: var(--s02-bg);
+      color: var(--s02-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
-      letter-spacing: -0.01em;
+      isolation: isolate;
     }
 
-    /* fine grid texture */
-    .slide[data-audio="02"]::before {
+    /* ============================================================
+       ATMOSPHERE
+       ============================================================ */
+    .slide[data-audio="02"] .s02-atmos {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .slide[data-audio="02"] .s02-atmos::before {
       content: "";
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 22% 60%, rgba(224, 75, 81, 0.045), transparent 52%),
+        radial-gradient(ellipse at 82% 38%, rgba(254, 189, 51, 0.06), transparent 56%),
+        linear-gradient(180deg, var(--s02-bg-deep) 0%, var(--s02-bg) 60%, #080a10 100%);
+    }
+    .slide[data-audio="02"] .s02-grid {
+      position: absolute;
+      inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 90%);
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image: radial-gradient(ellipse at 50% 55%, black 0%, black 38%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 55%, black 0%, black 38%, transparent 78%);
+      opacity: 0;
+      animation: s02-fade 1800ms ease 400ms forwards;
+    }
+    .slide[data-audio="02"] .s02-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at 50% 50%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.32) 82%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
       pointer-events: none;
     }
 
-    /* film grain */
-    .slide[data-audio="02"]::after {
-      content: "";
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.4;
-      mix-blend-mode: overlay;
-      pointer-events: none;
+    /* ============================================================
+       CHROME — top bar
+       ============================================================ */
+    .slide[data-audio="02"] .s02-brand {
+      position: absolute;
+      top: clamp(28px, 3.6vh, 52px);
+      left: clamp(28px, 3.6vw, 60px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 4;
+      opacity: 0;
+      animation: s02-rise 900ms ease 200ms forwards;
+    }
+    .slide[data-audio="02"] .s02-brand .mono { width: 22px; height: 22px; flex: 0 0 auto; }
+    .slide[data-audio="02"] .s02-brand .mono svg { width: 100%; height: 100%; display: block; }
+    .slide[data-audio="02"] .s02-brand .text { display: flex; flex-direction: column; gap: 2px; line-height: 1; }
+    .slide[data-audio="02"] .s02-brand .l-1 {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--s02-fg);
+      font-weight: 500;
+    }
+    .slide[data-audio="02"] .s02-brand .l-2 {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--s02-fg-dim);
     }
 
-    .s02-frame {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      padding: clamp(40px, 4vw, 72px) clamp(48px, 5vw, 96px);
+    .slide[data-audio="02"] .s02-tstamp {
+      position: absolute;
+      top: clamp(28px, 3.6vh, 52px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--s02-fg-dim);
+      z-index: 4;
+      opacity: 0;
+      animation: s02-rise 900ms ease 280ms forwards;
+    }
+    .slide[data-audio="02"] .s02-tstamp .pip {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--s02-red);
+      box-shadow: 0 0 8px rgba(224, 75, 81, 0.6);
+      animation: s02-pulse 2400ms ease-in-out infinite;
+    }
+    .slide[data-audio="02"] .s02-tstamp .t { color: var(--s02-red); font-variant-numeric: tabular-nums; }
+    .slide[data-audio="02"] .s02-tstamp .sep { color: var(--s02-fg-faint); }
+
+    .slide[data-audio="02"] .s02-stamp {
+      position: absolute;
+      top: clamp(28px, 3.6vh, 52px);
+      right: clamp(28px, 3.6vw, 60px);
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s02-fg-dim);
+      z-index: 4;
+      opacity: 0;
+      animation: s02-rise 900ms ease 360ms forwards;
+    }
+    .slide[data-audio="02"] .s02-stamp .line-1 { color: var(--s02-fg-muted); }
+    .slide[data-audio="02"] .s02-stamp .line-2 {
+      display: flex; align-items: center; gap: 8px; color: var(--s02-fg-dim);
+    }
+    .slide[data-audio="02"] .s02-stamp .br { color: var(--s02-red); }
+
+    /* ============================================================
+       CORNER BRACKETS
+       ============================================================ */
+    .slide[data-audio="02"] .s02-bracket {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      z-index: 4;
+      opacity: 0;
+      animation: s02-fade 800ms ease 1600ms forwards;
+    }
+    .slide[data-audio="02"] .s02-bracket.tl { top: 22px;    left: 22px;    border-top:    1px solid rgba(254,189,51,0.32); border-left:  1px solid rgba(254,189,51,0.32); }
+    .slide[data-audio="02"] .s02-bracket.tr { top: 22px;    right: 22px;   border-top:    1px solid rgba(254,189,51,0.32); border-right: 1px solid rgba(254,189,51,0.32); }
+    .slide[data-audio="02"] .s02-bracket.bl { bottom: 22px; left: 22px;    border-bottom: 1px solid rgba(254,189,51,0.32); border-left:  1px solid rgba(254,189,51,0.32); }
+    .slide[data-audio="02"] .s02-bracket.br { bottom: 22px; right: 22px;   border-bottom: 1px solid rgba(254,189,51,0.32); border-right: 1px solid rgba(254,189,51,0.32); }
+
+    /* ============================================================
+       STAGE
+       ============================================================ */
+    .slide[data-audio="02"] .s02-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      padding: clamp(96px, 12vh, 140px) clamp(40px, 5vw, 88px) clamp(80px, 10vh, 120px);
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
       box-sizing: border-box;
     }
 
-    /* ----- HEADER ----- */
-    .s02-head {
+    /* ---------- HEADER BLOCK ---------- */
+    .slide[data-audio="02"] .s02-header {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 48px;
-      margin-bottom: clamp(28px, 3vw, 56px);
+      flex-direction: column;
+      gap: clamp(10px, 1.2vh, 16px);
+      margin-bottom: clamp(28px, 3.6vh, 48px);
+      max-width: 1700px;
+      width: 100%;
     }
-
-    .s02-eyebrow {
-      font-family: var(--font-mono);
-      font-size: clamp(10px, 0.72vw, 12px);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
+    .slide[data-audio="02"] .s02-eyebrow {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 18px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--s02-fg-muted);
+      opacity: 0;
+      animation: s02-rise 900ms ease 440ms forwards;
     }
-    .s02-eyebrow .dot {
-      width: 6px; height: 6px;
-      background: var(--honey);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--honey);
-      animation: s02-pulse 2.4s ease-in-out infinite;
+    .slide[data-audio="02"] .s02-eyebrow .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--s02-red);
+      box-shadow: 0 0 8px rgba(224, 75, 81, 0.45);
     }
-    .s02-eyebrow .arrow {
-      color: var(--honey);
-      font-family: var(--font-mono);
+    .slide[data-audio="02"] .s02-eyebrow .idx { color: var(--s02-red); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .slide[data-audio="02"] .s02-eyebrow .sep { color: var(--s02-fg-faint); letter-spacing: 0; }
+    .slide[data-audio="02"] .s02-eyebrow .frame { color: var(--s02-honey); }
+
+    .slide[data-audio="02"] .s02-title {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(56px, 7.2vw, 132px);
+      line-height: 0.92;
+      letter-spacing: -0.046em;
+      color: var(--s02-fg);
+      margin: 0;
+      opacity: 0;
+      animation: s02-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 560ms forwards;
+    }
+    .slide[data-audio="02"] .s02-title .stop {
+      color: var(--s02-honey);
+      text-shadow: 0 0 28px rgba(254, 189, 51, 0.38);
+    }
+
+    .slide[data-audio="02"] .s02-subhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.0vw, 15px);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s02-honey);
+      font-weight: 500;
+      margin-top: clamp(6px, 0.8vh, 12px);
+      opacity: 0;
+      animation: s02-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 760ms forwards;
+      text-shadow: 0 0 18px rgba(254, 189, 51, 0.18);
+    }
+    .slide[data-audio="02"] .s02-subhead .sep {
+      color: var(--s02-fg-faint);
+      margin: 0 10px;
       letter-spacing: 0;
     }
-    @keyframes s02-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.45; transform: scale(0.85); }
-    }
+    .slide[data-audio="02"] .s02-subhead .ghost { color: var(--s02-fg-dim); }
 
-    .s02-headline {
-      font-size: clamp(44px, 5.2vw, 88px);
-      font-weight: 800;
-      line-height: 0.96;
-      letter-spacing: -0.035em;
-      margin: 0;
-    }
-    .s02-headline .accent {
-      font-style: italic;
-      font-weight: 300;
-      color: var(--honey);
-      letter-spacing: -0.02em;
-    }
-
-    .s02-sub {
-      max-width: 360px;
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 0.78vw, 13px);
-      line-height: 1.6;
-      color: var(--fg-muted);
-      text-align: right;
-      padding-top: 22px;
-    }
-    .s02-sub strong {
-      color: var(--fg);
-      font-weight: 500;
-    }
-    .s02-sub .rule {
-      width: 64px; height: 1px;
-      background: var(--border-warm);
-      margin: 14px 0 14px auto;
-    }
-
-    /* ----- TIMELINE STAGE ----- */
-    .s02-stage {
-      position: relative;
+    /* ============================================================
+       MAIN — two columns with center honey pivot
+       ============================================================ */
+    .slide[data-audio="02"] .s02-main {
       flex: 1;
-      min-height: 480px;
-    }
-
-    .s02-rail-svg {
-      position: absolute;
-      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: clamp(36px, 3.4vw, 64px);
+      align-items: stretch;
+      max-width: 1700px;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: visible;
+      min-height: 0;
     }
 
-    .s02-rail-path {
-      fill: none;
-      stroke: var(--honey);
-      stroke-width: 1.25;
-      stroke-dasharray: 4 6;
-      stroke-linecap: round;
-      filter: drop-shadow(0 0 6px rgba(254,189,51,0.45));
-      opacity: 0;
-    }
-    .s02-rail-glow {
-      fill: none;
-      stroke: rgba(254,189,51,0.18);
-      stroke-width: 8;
-      stroke-linecap: round;
-      filter: blur(6px);
-      opacity: 0;
-    }
-
-    .slide[data-audio="02"].is-active .s02-rail-glow { animation: s02-glow-in 1800ms ease-out 200ms forwards; }
-    .slide[data-audio="02"].is-active .s02-rail-path {
-      stroke-dashoffset: 1;
-      animation: s02-draw var(--reveal-dur) cubic-bezier(.6,.05,.25,1) 250ms forwards;
-    }
-    @keyframes s02-glow-in {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s02-draw {
-      0%   { stroke-dashoffset: var(--path-len, 1800); opacity: 0; }
-      8%   { opacity: 1; }
-      100% { stroke-dashoffset: 0; opacity: 1; }
-    }
-
-    /* tick marks along rail */
-    .s02-tick {
-      stroke: rgba(255,255,255,0.18);
-      stroke-width: 1;
-      opacity: 0;
-    }
-    .slide[data-audio="02"].is-active .s02-tick {
-      animation: s02-fade-in 600ms ease-out forwards;
-    }
-
-    /* ----- NODES ----- */
-    .s02-nodes {
-      position: absolute;
-      inset: 0;
-    }
-
-    .s02-node {
-      position: absolute;
-      width: var(--node-w);
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: transform 280ms ease;
-    }
-    .slide[data-audio="02"].is-active .s02-node {
-      animation: s02-node-in 700ms cubic-bezier(.2,.7,.2,1) forwards;
-    }
-    .s02-node:nth-child(1) { animation-delay: 380ms; }
-    .s02-node:nth-child(2) { animation-delay: 780ms; }
-    .s02-node:nth-child(3) { animation-delay: 1180ms; }
-    .s02-node:nth-child(4) { animation-delay: 1580ms; }
-    .s02-node:nth-child(5) { animation-delay: 1980ms; }
-
-    @keyframes s02-node-in {
-      from { opacity: 0; transform: translate(-50%, calc(-50% + 14px)); filter: blur(6px); }
-      to   { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
-    }
-    @keyframes s02-fade-in {
-      to { opacity: 1; }
-    }
-
-    /* leader line from node to rail */
-    .s02-leader {
-      position: absolute;
-      left: 50%;
-      width: 1px;
-      background: linear-gradient(to bottom, rgba(254,189,51,0.55), rgba(254,189,51,0));
-      transform: translateX(-50%);
-    }
-    .s02-node[data-side="up"] .s02-leader {
-      top: 100%;
-      height: 0;
-    }
-    .s02-node[data-side="down"] .s02-leader {
-      bottom: 100%;
-      height: 0;
-    }
-    .s02-node[data-side="down"] .s02-leader {
-      background: linear-gradient(to top, rgba(254,189,51,0.55), rgba(254,189,51,0));
-    }
-    .slide[data-audio="02"].is-active .s02-node .s02-leader {
-      animation: s02-leader 500ms ease-out forwards;
-      animation-delay: inherit;
-    }
-    @keyframes s02-leader {
-      to { height: var(--leader-h, 38px); }
-    }
-
-    /* the glassy chip itself */
-    .s02-chip {
+    /* ----- CENTER PIVOT LINE ----- */
+    .slide[data-audio="02"] .s02-pivot {
       position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      padding: 14px 16px 16px;
-      backdrop-filter: blur(8px);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.04) inset,
-        0 12px 32px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(254,189,51,0.12);
+      width: 1px;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(254, 189, 51, 0.10) 8%,
+        rgba(254, 189, 51, 0.55) 50%,
+        rgba(254, 189, 51, 0.10) 92%,
+        transparent 100%
+      );
+      box-shadow: 0 0 12px rgba(254, 189, 51, 0.22);
+      transform: scaleY(0);
+      transform-origin: center;
+      opacity: 0;
+      animation: s02-pivot-in 1400ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards;
     }
-    .s02-chip::before {
+    .slide[data-audio="02"] .s02-pivot::before,
+    .slide[data-audio="02"] .s02-pivot::after {
       content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 5px;
-      pointer-events: none;
-      box-shadow: 0 0 18px rgba(254,189,51,0.18);
-      opacity: 0.6;
-    }
-
-    /* node "anchor" — small dot welded onto the rail */
-    .s02-anchor {
       position: absolute;
       left: 50%;
-      width: 11px; height: 11px;
-      background: var(--bg);
-      border: 1.5px solid var(--honey);
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
+      background: var(--s02-honey);
       transform: translateX(-50%);
-      box-shadow:
-        0 0 0 4px rgba(254,189,51,0.08),
-        0 0 14px rgba(254,189,51,0.55);
-      z-index: 2;
+      box-shadow: 0 0 12px rgba(254, 189, 51, 0.7);
     }
-    .s02-anchor::after {
-      content: "";
+    .slide[data-audio="02"] .s02-pivot::before { top: 0; }
+    .slide[data-audio="02"] .s02-pivot::after  { bottom: 0; }
+    .slide[data-audio="02"] .s02-pivot .arrow {
       position: absolute;
-      inset: 2.5px;
-      background: var(--honey);
-      border-radius: 50%;
-    }
-    .s02-node[data-side="up"] .s02-anchor   { top: calc(100% + var(--leader-h, 38px) - 5.5px); }
-    .s02-node[data-side="down"] .s02-anchor { bottom: calc(100% + var(--leader-h, 38px) - 5.5px); }
-
-    /* node typography */
-    .s02-month {
-      font-family: var(--font-mono);
-      font-size: 11px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      background: var(--s02-bg);
+      border: 1px solid rgba(254, 189, 51, 0.30);
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--honey);
+      color: var(--s02-honey);
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(254, 189, 51, 0.18);
+      opacity: 0;
+      animation: s02-rise 800ms ease 2400ms forwards;
+    }
+
+    /* ============================================================
+       LEFT — "The cost of doing nothing"
+       Glassy painpoint cards. Visual energy LOW.
+       ============================================================ */
+    .slide[data-audio="02"] .s02-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .slide[data-audio="02"] .s02-col-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: clamp(18px, 2.2vh, 28px);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--s02-fg-muted);
+      font-weight: 500;
+      opacity: 0;
+      animation: s02-rise 900ms ease 1000ms forwards;
+    }
+    .slide[data-audio="02"] .s02-col-head .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s02-red);
+      box-shadow: 0 0 8px rgba(224, 75, 81, 0.55);
+    }
+    .slide[data-audio="02"] .s02-col-head .tag {
+      color: var(--s02-fg-dim);
+      font-weight: 400;
+    }
+
+    .slide[data-audio="02"] .s02-pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: clamp(10px, 1.0vw, 16px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .slide[data-audio="02"] .s02-pain {
+      position: relative;
+      padding: clamp(16px, 1.8vh, 24px) clamp(16px, 1.6vw, 22px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.012) 100%);
+      border: 1px solid var(--s02-border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: s02-card-in 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="02"] .s02-pain.p1 { animation-delay: 1100ms; }
+    .slide[data-audio="02"] .s02-pain.p2 { animation-delay: 1220ms; }
+    .slide[data-audio="02"] .s02-pain.p3 { animation-delay: 1340ms; }
+    .slide[data-audio="02"] .s02-pain.p4 { animation-delay: 1460ms; }
+    .slide[data-audio="02"] .s02-pain.p5 { animation-delay: 1580ms; }
+    .slide[data-audio="02"] .s02-pain.p6 { animation-delay: 1700ms; }
+
+    /* faint corner index */
+    .slide[data-audio="02"] .s02-pain .ix {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: var(--s02-fg-faint);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .slide[data-audio="02"] .s02-pain .num {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(40px, 4.4vw, 76px);
+      line-height: 0.92;
+      letter-spacing: -0.038em;
+      color: var(--s02-fg);
+      margin: 0;
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 4px;
     }
-    .s02-month .num {
-      color: var(--fg-dim);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-    }
-
-    .s02-title {
-      font-size: clamp(15px, 1.05vw, 19px);
+    .slide[data-audio="02"] .s02-pain .num .unit {
+      font-size: 0.42em;
       font-weight: 600;
-      line-height: 1.18;
-      letter-spacing: -0.018em;
-      color: var(--fg);
-      margin: 0 0 8px;
+      letter-spacing: 0;
+      color: var(--s02-fg-muted);
+      margin-left: 2px;
     }
+    /* honey numbers — for the "time/quantity" feel */
+    .slide[data-audio="02"] .s02-pain.honey .num { color: var(--s02-honey); text-shadow: 0 0 22px rgba(254,189,51,0.30); }
+    /* red numbers — for the "cost" feel */
+    .slide[data-audio="02"] .s02-pain.red   .num { color: var(--s02-red);   text-shadow: 0 0 22px rgba(224,75,81,0.28); }
 
-    .s02-desc {
-      font-size: clamp(11px, 0.75vw, 12.5px);
-      line-height: 1.45;
-      color: var(--fg-muted);
-      margin: 0 0 14px;
+    .slide[data-audio="02"] .s02-pain .label {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(12px, 0.95vw, 15px);
+      font-weight: 600;
+      color: var(--s02-fg);
       letter-spacing: -0.005em;
+      margin: 0;
+      line-height: 1.25;
+    }
+    .slide[data-audio="02"] .s02-pain .sub {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(10px, 0.78vw, 12.5px);
+      color: var(--s02-fg-muted);
+      letter-spacing: 0.005em;
+      margin: 0;
+      line-height: 1.45;
     }
 
-    .s02-stat {
+    /* tiny left ribbon */
+    .slide[data-audio="02"] .s02-pain::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      background: var(--s02-border);
+      border-radius: 0 2px 2px 0;
+    }
+    .slide[data-audio="02"] .s02-pain.honey::before { background: var(--s02-honey); box-shadow: 0 0 10px rgba(254,189,51,0.5); }
+    .slide[data-audio="02"] .s02-pain.red::before   { background: var(--s02-red);   box-shadow: 0 0 10px rgba(224,75,81,0.5);  }
+
+    /* ============================================================
+       RIGHT — "The commercial reframe"
+       Solid honey/teal. The fix.
+       ============================================================ */
+    .slide[data-audio="02"] .s02-right {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      position: relative;
+    }
+    .slide[data-audio="02"] .s02-right .s02-col-head .dot { background: var(--s02-honey); box-shadow: 0 0 10px rgba(254,189,51,0.6); }
+
+    .slide[data-audio="02"] .s02-fix-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(28px, 3.2vh, 44px) clamp(24px, 2.4vw, 36px);
+      position: relative;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(254, 189, 51, 0.10), transparent 58%),
+        radial-gradient(ellipse at 10% 90%, rgba(67, 192, 190, 0.07), transparent 60%),
+        linear-gradient(180deg, rgba(254, 189, 51, 0.045) 0%, rgba(11, 14, 20, 0.0) 100%);
+      border: 1px solid rgba(254, 189, 51, 0.22);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      animation: s02-rise 1200ms cubic-bezier(0.16, 1, 0.3, 1) 1300ms forwards;
+    }
+    /* inner glow scan line on fix-card */
+    .slide[data-audio="02"] .s02-fix-card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(254, 189, 51, 0.65) 50%,
+        transparent 100%
+      );
+      box-shadow: 0 0 18px rgba(254, 189, 51, 0.45);
+    }
+    .slide[data-audio="02"] .s02-fix-card::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(67, 192, 190, 0.35) 50%,
+        transparent 100%
+      );
+    }
+
+    .slide[data-audio="02"] .s02-fix-head {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--s02-honey);
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(255,255,255,0.08);
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.04em;
-      color: var(--teal);
+      gap: 10px;
+      margin-bottom: clamp(18px, 2.2vh, 28px);
     }
-    .s02-stat .glyph {
-      width: 6px; height: 6px;
-      background: var(--teal);
+    .slide[data-audio="02"] .s02-fix-head .pip {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--teal);
+      background: var(--s02-honey);
+      box-shadow: 0 0 8px var(--s02-honey-glow);
+      animation: s02-pulse 2400ms ease-in-out infinite;
+    }
+    .slide[data-audio="02"] .s02-fix-head .rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(254,189,51,0.45) 0%, transparent 100%);
     }
 
-    /* highlight final node */
-    .s02-node.is-now .s02-chip {
-      background: linear-gradient(180deg, rgba(254,189,51,0.08), rgba(254,189,51,0.015));
-      border-color: rgba(254,189,51,0.32);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.06) inset,
-        0 16px 40px rgba(0,0,0,0.45),
-        0 0 0 1px rgba(254,189,51,0.28),
-        0 0 60px rgba(254,189,51,0.18);
+    .slide[data-audio="02"] .s02-fix-headline {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(30px, 3.4vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.034em;
+      color: var(--s02-honey);
+      margin: 0;
+      text-shadow: 0 0 36px rgba(254, 189, 51, 0.30);
     }
-    .s02-node.is-now .s02-anchor {
-      width: 14px; height: 14px;
-      box-shadow:
-        0 0 0 6px rgba(254,189,51,0.12),
-        0 0 24px rgba(254,189,51,0.8);
+    .slide[data-audio="02"] .s02-fix-headline .l2 { color: var(--s02-fg); }
+    .slide[data-audio="02"] .s02-fix-headline .l3 { color: var(--s02-teal); }
+    .slide[data-audio="02"] .s02-fix-headline .stop { color: var(--s02-honey); }
+
+    .slide[data-audio="02"] .s02-fix-sub {
+      margin-top: clamp(16px, 1.8vh, 24px);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(13px, 1.05vw, 17px);
+      line-height: 1.55;
+      color: var(--s02-fg-muted);
+      max-width: 540px;
+      font-weight: 400;
     }
-    .s02-node.is-now .s02-month {
-      color: var(--honey);
-    }
-    .s02-node.is-now .s02-month::after {
-      content: "NOW";
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.24em;
-      padding: 2px 6px;
-      background: var(--honey);
-      color: var(--bg);
-      border-radius: 2px;
-      margin-left: 6px;
+    .slide[data-audio="02"] .s02-fix-sub .emph {
+      color: var(--s02-fg);
+      font-weight: 500;
     }
 
-    /* faint progress label "MONTH 01 → 05" tucked along rail */
-    .s02-rail-label {
+    /* divider rule inside fix-card */
+    .slide[data-audio="02"] .s02-fix-divider {
+      margin: clamp(20px, 2.6vh, 32px) 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(254, 189, 51, 0.40) 0%,
+        rgba(254, 189, 51, 0.15) 30%,
+        transparent 100%
+      );
+    }
+
+    /* outcome chips */
+    .slide[data-audio="02"] .s02-chips-label {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--s02-fg-dim);
+      margin-bottom: clamp(12px, 1.4vh, 18px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide[data-audio="02"] .s02-chips-label .mini {
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: var(--s02-honey);
+    }
+
+    .slide[data-audio="02"] .s02-chips {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1.2vh, 14px);
+    }
+    .slide[data-audio="02"] .s02-chip {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 1.4vw, 22px);
+      padding: clamp(12px, 1.5vh, 18px) clamp(18px, 1.6vw, 24px);
+      background: rgba(254, 189, 51, 0.06);
+      border: 1px solid rgba(254, 189, 51, 0.55);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(12px);
+      animation: s02-chip-in 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="02"] .s02-chip.c1 { animation-delay: 2000ms; }
+    .slide[data-audio="02"] .s02-chip.c2 { animation-delay: 2160ms; }
+    .slide[data-audio="02"] .s02-chip.c3 { animation-delay: 2320ms; }
+
+    .slide[data-audio="02"] .s02-chip::before {
+      content: "";
       position: absolute;
-      bottom: 6%;
-      left: clamp(48px, 5vw, 96px);
-      font-family: var(--font-mono);
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--s02-honey);
+      box-shadow: 0 0 12px rgba(254, 189, 51, 0.55);
+    }
+    .slide[data-audio="02"] .s02-chip .stat {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(20px, 2.0vw, 32px);
+      line-height: 1;
+      letter-spacing: -0.028em;
+      color: var(--s02-honey);
+      min-width: clamp(120px, 11vw, 180px);
+      text-shadow: 0 0 22px rgba(254, 189, 51, 0.32);
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums;
+    }
+    .slide[data-audio="02"] .s02-chip .stat .sign { color: var(--s02-honey); }
+    .slide[data-audio="02"] .s02-chip .stat .neg  { color: var(--s02-teal); text-shadow: 0 0 22px rgba(67,192,190,0.32); }
+    .slide[data-audio="02"] .s02-chip .stat .dollar { color: var(--s02-teal); text-shadow: 0 0 22px rgba(67,192,190,0.32); }
+    .slide[data-audio="02"] .s02-chip .desc {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(11.5px, 0.92vw, 14.5px);
+      color: var(--s02-fg-muted);
+      line-height: 1.4;
+      letter-spacing: 0.005em;
+    }
+    .slide[data-audio="02"] .s02-chip .desc .strong {
+      color: var(--s02-fg);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       FOOTER ID
+       ============================================================ */
+    .slide[data-audio="02"] .s02-id {
+      position: absolute;
+      bottom: clamp(28px, 4.2vh, 60px);
+      left: clamp(28px, 3.6vw, 60px);
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 16px;
+      row-gap: 5px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s02-fg-dim);
+      z-index: 4;
+      opacity: 0;
+      animation: s02-rise 900ms ease 2600ms forwards;
+    }
+    .slide[data-audio="02"] .s02-id .k { color: var(--s02-fg-faint); }
+    .slide[data-audio="02"] .s02-id .v { color: var(--s02-fg-muted); }
+    .slide[data-audio="02"] .s02-id .v.live { color: var(--s02-teal); }
+
+    .slide[data-audio="02"] .s02-foot-tag {
+      position: absolute;
+      bottom: clamp(28px, 4.2vh, 60px);
+      right: clamp(28px, 3.6vw, 60px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       font-size: 10px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--fg-dim);
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      color: var(--s02-fg-dim);
+      z-index: 4;
+      opacity: 0;
+      animation: s02-rise 900ms ease 2700ms forwards;
     }
-    .s02-rail-label .bar {
-      width: 80px; height: 1px;
-      background: linear-gradient(to right, var(--honey), transparent);
-    }
-
-    /* bottom-right tip */
-    .s02-tip {
-      position: absolute;
-      right: clamp(48px, 5vw, 96px);
-      bottom: clamp(36px, 4vw, 60px);
-      max-width: 320px;
-      font-family: var(--font-mono);
+    .slide[data-audio="02"] .s02-foot-tag .glyph {
+      color: var(--s02-honey);
       font-size: 11px;
-      line-height: 1.5;
-      color: var(--fg-muted);
-      text-align: right;
-      letter-spacing: -0.005em;
+      letter-spacing: 0;
     }
-    .s02-tip .label {
-      display: inline-block;
-      font-size: 9.5px;
-      letter-spacing: 0.32em;
-      color: var(--honey);
-      margin-bottom: 10px;
-    }
-    .s02-tip .body {
-      border-right: 1px solid var(--border-warm);
-      padding-right: 14px;
-    }
-    .s02-tip .body em {
-      font-style: normal;
-      color: var(--fg);
-    }
+    .slide[data-audio="02"] .s02-foot-tag .strong { color: var(--s02-fg-muted); }
 
-    /* corner registration marks for that NASA terminal feel */
-    .s02-mark {
-      position: absolute;
-      width: 14px; height: 14px;
-      border: 1px solid rgba(254,189,51,0.32);
-    }
-    .s02-mark.tl { top: 28px;    left: 28px;    border-right: none;  border-bottom: none; }
-    .s02-mark.tr { top: 28px;    right: 28px;   border-left: none;   border-bottom: none; }
-    .s02-mark.bl { bottom: 28px; left: 28px;    border-right: none;  border-top: none; }
-    .s02-mark.br { bottom: 28px; right: 28px;   border-left: none;   border-top: none; }
-
-    .s02-stamp {
-      position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.42em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
+    /* ============================================================
+       KEYFRAMES
+       ============================================================ */
+    @keyframes s02-fade      { to { opacity: 1; } }
+    @keyframes s02-rise      { to { opacity: 1; transform: translateY(0); } }
+    @keyframes s02-card-in   { to { opacity: 1; transform: translateY(0); } }
+    @keyframes s02-chip-in   { to { opacity: 1; transform: translateX(0); } }
+    @keyframes s02-pivot-in  { to { opacity: 1; transform: scaleY(1); } }
+    @keyframes s02-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.82); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="02"] *,
       .slide[data-audio="02"] *::before,
       .slide[data-audio="02"] *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: 1ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition: none !important;
       }
-      .slide[data-audio="02"] .s02-rail-path { opacity: 1; stroke-dashoffset: 0; }
-      .slide[data-audio="02"] .s02-rail-glow { opacity: 1; }
-      .slide[data-audio="02"] .s02-node      { opacity: 1; }
+    }
+
+    /* Narrow screens */
+    @media (max-width: 1100px) {
+      .slide[data-audio="02"] .s02-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .slide[data-audio="02"] .s02-pivot { display: none; }
+      .slide[data-audio="02"] .s02-tstamp { display: none; }
     }
   </style>
 
-  <div class="content">
-    <div class="s02-frame">
+  <!-- ============================================================ -->
+  <!-- ATMOSPHERE                                                   -->
+  <!-- ============================================================ -->
+  <div class="s02-atmos">
+    <div class="s02-grid"></div>
+    <div class="s02-vignette"></div>
+  </div>
 
-      <!-- corner registration marks -->
-      <div class="s02-mark tl"></div>
-      <div class="s02-mark tr"></div>
-      <div class="s02-mark bl"></div>
-      <div class="s02-mark br"></div>
-      <div class="s02-stamp">SLIDE · 02 / THE JOURNEY</div>
+  <!-- CORNER BRACKETS -->
+  <div class="s02-bracket tl"></div>
+  <div class="s02-bracket tr"></div>
+  <div class="s02-bracket bl"></div>
+  <div class="s02-bracket br"></div>
 
-      <!-- HEADER -->
-      <header class="s02-head">
-        <div>
-          <div class="s02-eyebrow">
-            <span class="dot"></span>
-            <span>5 Months</span>
-            <span class="arrow">·</span>
-            <span>1 Agent</span>
-            <span class="arrow">→</span>
-            <span>1,000 Specialists</span>
+  <!-- ============================================================ -->
+  <!-- CHROME                                                       -->
+  <!-- ============================================================ -->
+  <div class="s02-brand">
+    <div class="mono" aria-hidden="true">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2"  y="2"  width="28" height="28" rx="3" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1" />
+        <path d="M 7 9 H 17 M 12 9 V 22" stroke="#FEBD33" stroke-width="2" stroke-linecap="square" fill="none"/>
+        <path d="M 24 11 A 5 5 0 1 0 24 21" stroke="#43C0BE" stroke-width="2" stroke-linecap="square" fill="none"/>
+      </svg>
+    </div>
+    <div class="text">
+      <span class="l-1">Trilogy Care</span>
+      <span class="l-2">Innovation &amp; Transformation</span>
+    </div>
+  </div>
+
+  <div class="s02-tstamp">
+    <span class="pip"></span>
+    <span class="t">T-00:30</span>
+    <span class="sep">·</span>
+    <span>The Problem</span>
+  </div>
+
+  <div class="s02-stamp">
+    <span class="line-1">FRAME · COMMERCIAL FIRST</span>
+    <span class="line-2"><span class="br">[</span> Numbers, not narrative <span class="br">]</span></span>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- STAGE                                                        -->
+  <!-- ============================================================ -->
+  <div class="s02-stage">
+
+    <!-- HEADER -->
+    <div class="s02-header">
+      <div class="s02-eyebrow">
+        <span class="rule"></span>
+        <span class="idx">02</span>
+        <span class="sep">/</span>
+        <span>28</span>
+        <span class="sep">·</span>
+        <span>The Problem</span>
+        <span class="sep">·</span>
+        <span class="frame">Commercial Framing</span>
+      </div>
+
+      <h2 class="s02-title">The problem<span class="stop">.</span></h2>
+
+      <div class="s02-subhead">
+        <span>350 Staffers</span>
+        <span class="sep">·</span>
+        <span>9 Systems</span>
+        <span class="sep">·</span>
+        <span>Hundreds of K Weekly Drag</span>
+        <span class="sep">·</span>
+        <span class="ghost">Unseen Until Now</span>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="s02-main">
+
+      <!-- ============================================ -->
+      <!-- LEFT — Cost of doing nothing                 -->
+      <!-- ============================================ -->
+      <div class="s02-left">
+        <div class="s02-col-head">
+          <span class="dot"></span>
+          <span>The cost of doing nothing</span>
+          <span class="tag">— pre-Yogi baseline</span>
+        </div>
+
+        <div class="s02-pain-grid">
+          <div class="s02-pain honey p1">
+            <span class="ix">01</span>
+            <div class="num">5<span class="unit">apps</span></div>
+            <div class="label">Per single task</div>
+            <div class="sub">Average context switches per investigation across staffer workflow.</div>
           </div>
-          <h1 class="s02-headline">
-            Compounding,<br/>
-            <span class="accent">not linear.</span>
-          </h1>
-        </div>
 
-        <div class="s02-sub">
-          <strong>Origin log, Jan–May 2026.</strong>
-          <div class="rule"></div>
-          Each step layered on the last. Memory survived. Agents multiplied. Authority widened. The substrate held.
-        </div>
-      </header>
+          <div class="s02-pain red p2">
+            <span class="ix">02</span>
+            <div class="num">12<span class="unit">min</span></div>
+            <div class="label">Lost per session</div>
+            <div class="sub">Context recall and re-prompting tax — per staffer, per task, every time.</div>
+          </div>
 
-      <!-- TIMELINE STAGE -->
-      <div class="s02-stage">
-        <!-- SVG rail -->
-        <svg class="s02-rail-svg" viewBox="0 0 1600 560" preserveAspectRatio="none">
-          <!-- glow understroke -->
-          <path class="s02-rail-glow"
-                d="M 60 310 C 220 310, 260 200, 380 200 C 500 200, 540 360, 700 360 C 860 360, 900 220, 1020 220 C 1140 220, 1180 360, 1300 360 C 1420 360, 1480 280, 1540 280" />
-          <!-- dashed honey thread -->
-          <path class="s02-rail-path"
-                d="M 60 310 C 220 310, 260 200, 380 200 C 500 200, 540 360, 700 360 C 860 360, 900 220, 1020 220 C 1140 220, 1180 360, 1300 360 C 1420 360, 1480 280, 1540 280"
-                pathLength="1" stroke-dasharray="0.012 0.018" />
+          <div class="s02-pain red p3">
+            <span class="ix">03</span>
+            <div class="num">1<span class="unit">week</span></div>
+            <div class="label">Per ACQSC complaint</div>
+            <div class="sub">Investigation cycle time before Yogi. Ageing past compliance window weekly.</div>
+          </div>
 
-          <!-- end caps / faint ticks -->
-          <line class="s02-tick" x1="60"   y1="298" x2="60"   y2="322" style="animation-delay:300ms"/>
-          <line class="s02-tick" x1="1540" y1="268" x2="1540" y2="292" style="animation-delay:2400ms"/>
-        </svg>
+          <div class="s02-pain honey p4">
+            <span class="ix">04</span>
+            <div class="num">40<span class="unit">sec</span></div>
+            <div class="label">Bills QA page load</div>
+            <div class="sub">14 reviewers abandoning the queue daily. Yield bleed compounding.</div>
+          </div>
 
-        <!-- NODES -->
-        <div class="s02-nodes">
+          <div class="s02-pain honey p5">
+            <span class="ix">05</span>
+            <div class="num">9<span class="unit">systems</span></div>
+            <div class="label">To navigate, no unified entry</div>
+            <div class="sub">Zoho · Databricks · MYOB · Aircall · M365 · Confluence · Linear · EzyCollect · EH.</div>
+          </div>
 
-          <!-- Jan : top -->
-          <article class="s02-node" data-side="up" style="left: 9%;  top: 36%;">
-            <div class="s02-chip">
-              <div class="s02-month"><span>Jan&nbsp;·&nbsp;2026</span><span class="num">01 / 05</span></div>
-              <h3 class="s02-title">Claude lands, business analog</h3>
-              <p class="s02-desc">Mike's TC Assistant deployed; buy-in thin; the gap identified.</p>
-              <div class="s02-stat"><span class="glyph"></span><span>1 agent · 0 memory</span></div>
-            </div>
-            <span class="s02-leader" style="--leader-h: 56px;"></span>
-            <span class="s02-anchor"></span>
-          </article>
-
-          <!-- Feb : bottom -->
-          <article class="s02-node" data-side="down" style="left: 26%; top: 70%;">
-            <div class="s02-chip">
-              <div class="s02-month"><span>Feb&nbsp;·&nbsp;2026</span><span class="num">02 / 05</span></div>
-              <h3 class="s02-title">Persistent memory layer</h3>
-              <p class="s02-desc">Memory survives sessions; structured notes; rules auto-extract from corrections.</p>
-              <div class="s02-stat"><span class="glyph"></span><span>75 memory files</span></div>
-            </div>
-            <span class="s02-leader" style="--leader-h: 38px;"></span>
-            <span class="s02-anchor"></span>
-          </article>
-
-          <!-- Mar : top -->
-          <article class="s02-node" data-side="up" style="left: 47%; top: 28%;">
-            <div class="s02-chip">
-              <div class="s02-month"><span>Mar&nbsp;·&nbsp;2026</span><span class="num">03 / 05</span></div>
-              <h3 class="s02-title">Specialist Crew forms</h3>
-              <p class="s02-desc">11 named animals — Rocco, Otto, Bram, Ferra, Hoot, Buzz, Pip, Briar, Lumi, Gus, Tess.</p>
-              <div class="s02-stat"><span class="glyph"></span><span>11 inner circle</span></div>
-            </div>
-            <span class="s02-leader" style="--leader-h: 68px;"></span>
-            <span class="s02-anchor"></span>
-          </article>
-
-          <!-- Apr : bottom -->
-          <article class="s02-node" data-side="down" style="left: 67%; top: 70%;">
-            <div class="s02-chip">
-              <div class="s02-month"><span>Apr&nbsp;·&nbsp;2026</span><span class="num">04 / 05</span></div>
-              <h3 class="s02-title">Authority to act</h3>
-              <p class="s02-desc">Teams, CI/CD, email, code shipping — multichannel reach into the real world.</p>
-              <div class="s02-stat"><span class="glyph"></span><span>200+ MCP tools</span></div>
-            </div>
-            <span class="s02-leader" style="--leader-h: 38px;"></span>
-            <span class="s02-anchor"></span>
-          </article>
-
-          <!-- May : centre-right (the "now" peak) -->
-          <article class="s02-node is-now" data-side="up" style="left: 88%; top: 36%;">
-            <div class="s02-chip">
-              <div class="s02-month"><span>May&nbsp;·&nbsp;2026</span><span class="num">05 / 05</span></div>
-              <h3 class="s02-title">Enterprise AGI</h3>
-              <p class="s02-desc">1,000 specialists across 4 tiers; persistent identity; voice; cubs in production.</p>
-              <div class="s02-stat"><span class="glyph"></span><span>1,000 specialists · 328 tools</span></div>
-            </div>
-            <span class="s02-leader" style="--leader-h: 48px;"></span>
-            <span class="s02-anchor"></span>
-          </article>
-
-        </div>
-
-        <!-- faint rail label -->
-        <div class="s02-rail-label">
-          <span>Month 01</span>
-          <span class="bar"></span>
-          <span>Month 05</span>
+          <div class="s02-pain red p6">
+            <span class="ix">06</span>
+            <div class="num">$<span style="font-size:0.78em">00s of K</span></div>
+            <div class="label">Weekly productivity drag</div>
+            <div class="sub">350 staffers × 40 hrs × context-switch tax. Compounding every week.</div>
+          </div>
         </div>
       </div>
 
-      <!-- bottom-right tip -->
-      <aside class="s02-tip">
-        <div class="label">// FIELD NOTE</div>
-        <div class="body">
-          Each step compounds the last.<br/>
-          The substrate is <em>git + markdown</em>.
+      <!-- ============================================ -->
+      <!-- CENTER PIVOT                                  -->
+      <!-- ============================================ -->
+      <div class="s02-pivot">
+        <span class="arrow">→ Fix</span>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- RIGHT — Commercial reframe                    -->
+      <!-- ============================================ -->
+      <div class="s02-right">
+        <div class="s02-col-head">
+          <span class="dot"></span>
+          <span>The commercial reframe</span>
+          <span class="tag">— Yogi delivered</span>
         </div>
-      </aside>
+
+        <div class="s02-fix-card">
+          <div>
+            <div class="s02-fix-head">
+              <span class="pip"></span>
+              <span>One brain · every system</span>
+              <span class="rule"></span>
+            </div>
+
+            <h3 class="s02-fix-headline">
+              <span class="l1">One brain.</span><br>
+              <span class="l2">Every system.</span><br>
+              <span class="l3">Companion interaction<span class="stop">.</span></span>
+            </h3>
+
+            <p class="s02-fix-sub">
+              Yogi makes Trilogy operations <span class="emph">native AI-first</span>. Same desk, same screen, same flow — the brain works <span class="emph">with</span> the operator, not for them. Nine systems collapse into one persistent companion.
+            </p>
+          </div>
+
+          <div>
+            <div class="s02-fix-divider"></div>
+
+            <div class="s02-chips-label">
+              <span class="mini"></span>
+              <span>Measured outcomes · today</span>
+            </div>
+
+            <div class="s02-chips">
+              <div class="s02-chip c1">
+                <span class="stat"><span class="sign">+</span>14<span style="font-size:0.7em">×</span></span>
+                <span class="desc">
+                  <span class="strong">Decision velocity uplift</span><br>
+                  1 day of investigation → 2 hrs of checking. Across complaints, bills, intake.
+                </span>
+              </div>
+              <div class="s02-chip c2">
+                <span class="stat"><span class="neg">−</span>58<span style="font-size:0.7em">%</span></span>
+                <span class="desc">
+                  <span class="strong">Databricks compute spend</span><br>
+                  Cached QA pipeline. Hourly bake, sub-second reads. Same data, half the warehouse.
+                </span>
+              </div>
+              <div class="s02-chip c3">
+                <span class="stat"><span class="dollar">$</span>484,140</span>
+                <span class="desc">
+                  <span class="strong">Saved Q2 FY26</span><br>
+                  Phantom-batch incident averted · bills yield recovered · investigation hours redirected.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 
-  <script>
-    (function () {
-      var slide = document.currentScript.closest('.slide');
-      function activate() { slide.classList.add('is-active'); }
-      function deactivate() { slide.classList.remove('is-active'); }
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                       -->
+  <!-- ============================================================ -->
+  <div class="s02-id">
+    <span class="k">REF</span>     <span class="v">Slide&nbsp;02&thinsp;/&thinsp;28</span>
+    <span class="k">CHAN</span>    <span class="v">TC Operations · Pre-Yogi Baseline</span>
+    <span class="k">STATUS</span>  <span class="v live">● Measured · Real-Ops Data</span>
+  </div>
 
-      window.onSlideEnter = window.onSlideEnter || {};
-      window.onSlideEnter[2] = activate;
-      window.onSlideLeave = window.onSlideLeave || {};
-      window.onSlideLeave[2] = deactivate;
+  <div class="s02-foot-tag">
+    <span class="glyph">◆</span>
+    <span>Pain on left</span>
+    <span class="strong">→</span>
+    <span>Fix on right</span>
+  </div>
 
-      // self-activate if already visible (standalone preview)
-      if (slide.getBoundingClientRect().top < window.innerHeight) {
-        requestAnimationFrame(activate);
-      } else {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { activate(); io.disconnect(); }
-          });
-        }, { threshold: 0.2 });
-        io.observe(slide);
-      }
-    })();
-  </script>
 </section>

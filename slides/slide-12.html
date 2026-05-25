@@ -1,979 +1,1273 @@
 <section class="slide" data-audio="12">
   <style>
     /* ============================================================
-       SLIDE 13 — THE INNER CIRCLE
-       Penguin Books animal stamps meet Anthropic team page.
-       11 named specialists, each a tiny piece of art.
+       SLIDE 11 — ORIGIN STORY (Jan → Feb deep dive)
+       3-panel graphic novel. Anthropic blog × inked storyboard.
+       Panel 1: lost-context terminal.
+       Panel 2: memory filesystem grows from 1 → 75 files.
+       Panel 3: Inner Circle of 11 animals materialises.
        ============================================================ */
 
     .slide[data-audio="12"] {
-      --s13-bg:         #0a0d12;
-      --s13-bg-elev:    #11161f;
-      --s13-bg-deep:    #070a0e;
-      --s13-honey:      #FEBD33;
-      --s13-honey-soft: rgba(254, 189, 51, 0.12);
-      --s13-honey-glow: rgba(254, 189, 51, 0.55);
-      --s13-honey-line: rgba(254, 189, 51, 0.85);
-      --s13-teal:       #43C0BE;
-      --s13-fg:         #f4f4f5;
-      --s13-fg-muted:   #a1a1aa;
-      --s13-fg-dim:     #71717a;
-      --s13-fg-faint:   #52525b;
-      --s13-stroke:     #d4d4d8;
-      --s13-border:     rgba(255, 255, 255, 0.07);
-      --s13-border-mid: rgba(255, 255, 255, 0.13);
-      --s13-border-warm:rgba(254, 189, 51, 0.30);
-      --s13-border-hot: rgba(254, 189, 51, 0.62);
+      --s11-honey:       #FEBD33;
+      --s11-honey-soft:  rgba(254, 189, 51, 0.16);
+      --s11-honey-line:  rgba(254, 189, 51, 0.42);
+      --s11-honey-faint: rgba(254, 189, 51, 0.08);
+      --s11-teal:        #43C0BE;
+      --s11-sky:         #64BCEA;
+      --s11-violet:      #9B7BD4;
+      --s11-coral:       #F39B5A;
+      --s11-red:         #E04B51;
+      --s11-bg:          #0a0d12;
+      --s11-bg-panel:    #0d1219;
+      --s11-bg-deep:     #070a0e;
+      --s11-ink:         rgba(255,255,255,0.08);
+      --s11-ink-strong:  rgba(255,255,255,0.14);
+      --s11-fg:          #f4f4f5;
+      --s11-fg-muted:    #a1a1aa;
+      --s11-fg-dim:      #71717a;
+      --s11-fg-faint:    #52525b;
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s13-bg);
-      color: var(--s13-fg);
+      background: var(--s11-bg);
+      color: var(--s11-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
       isolation: isolate;
       letter-spacing: -0.01em;
     }
 
-    /* ---------- Atmosphere ---------- */
-    .slide[data-audio="12"] .s13-atmos {
-      position: absolute;
-      inset: 0;
+    /* ---------- atmosphere ---------- */
+    .slide[data-audio="12"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 16% 30%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 84% 76%, rgba(67,192,190,0.05), transparent 60%),
+        radial-gradient(ellipse 40% 30% at 50% 50%, rgba(254,189,51,0.025), transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
-    .slide[data-audio="12"] .s13-glow-tr {
-      position: absolute;
-      top: -18%;
-      right: -12%;
-      width: 70vmin;
-      height: 70vmin;
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.10) 0%,
-        rgba(254, 189, 51, 0.035) 35%,
-        transparent 65%);
-      filter: blur(6px);
-      opacity: 0;
-      animation: s13-fade 2200ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="12"] .s13-glow-bl {
-      position: absolute;
-      bottom: -22%;
-      left: -14%;
-      width: 65vmin;
-      height: 65vmin;
-      background: radial-gradient(circle at center,
-        rgba(67, 192, 190, 0.07) 0%,
-        rgba(67, 192, 190, 0.02) 40%,
-        transparent 65%);
-      filter: blur(10px);
-      opacity: 0;
-      animation: s13-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
-    }
-    .slide[data-audio="12"] .s13-grid-bg {
-      position: absolute;
-      inset: 0;
+    .slide[data-audio="12"]::after {
+      content: "";
+      position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.020) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.020) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
-      opacity: 0.55;
-    }
-    .slide[data-audio="12"] .s13-noise {
-      position: absolute;
-      inset: 0;
-      opacity: 0.025;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 95% 85% at center, black 30%, transparent 92%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ---------- Frame ---------- */
-    .slide[data-audio="12"] .s13-frame {
+    /* film grain overlay (subtle ink texture for graphic-novel feel) */
+    .slide[data-audio="12"] .s11-grain {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.45;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ---------- frame ---------- */
+    .s11-frame {
       position: relative;
       z-index: 2;
       width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(28px, 3.2vw, 56px) clamp(32px, 4vw, 80px);
+      height: 100vh;
+      padding: clamp(36px, 3.4vw, 64px) clamp(48px, 4.5vw, 88px);
       display: flex;
       flex-direction: column;
-      gap: clamp(20px, 2.2vw, 36px);
+      box-sizing: border-box;
     }
 
-    /* ---------- Header (asymmetric) ---------- */
-    .slide[data-audio="12"] .s13-header {
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-      gap: clamp(28px, 4vw, 80px);
-      align-items: end;
-      padding-bottom: clamp(16px, 1.8vw, 28px);
-      border-bottom: 1px solid var(--s13-border);
+    /* corner registration marks */
+    .s11-mark {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.32);
+      z-index: 3;
     }
-    .slide[data-audio="12"] .s13-eyebrow {
-      display: inline-flex;
+    .s11-mark.tl { top: 24px;    left: 24px;    border-right: none;  border-bottom: none; }
+    .s11-mark.tr { top: 24px;    right: 24px;   border-left: none;   border-bottom: none; }
+    .s11-mark.bl { bottom: 24px; left: 24px;    border-right: none;  border-top: none; }
+    .s11-mark.br { bottom: 24px; right: 24px;   border-left: none;   border-top: none; }
+
+    .s11-stamp {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--s11-fg-dim);
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    /* ---------- header ---------- */
+    .s11-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 56px;
+      margin-bottom: clamp(20px, 2vw, 36px);
+      padding-top: 14px;
+    }
+
+    .s11-eyebrow {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--s11-honey);
+      display: flex;
       align-items: center;
       gap: 12px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.78vw, 12px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s13-fg-dim);
       margin-bottom: 14px;
-      opacity: 0;
-      animation: s13-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms forwards;
     }
-    .slide[data-audio="12"] .s13-eyebrow .dot {
-      width: 6px;
-      height: 6px;
+    .s11-eyebrow .pip {
+      width: 6px; height: 6px;
+      background: var(--s11-honey);
       border-radius: 50%;
-      background: var(--s13-honey);
-      box-shadow: 0 0 12px var(--s13-honey-glow);
-      animation: s13-pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 12px var(--s11-honey);
+      animation: s11-pulse 2.4s ease-in-out infinite;
     }
-    .slide[data-audio="12"] .s13-eyebrow .chap {
-      color: var(--s13-honey);
-      letter-spacing: 0.18em;
-    }
-    .slide[data-audio="12"] .s13-title {
-      font-size: clamp(48px, 5.4vw, 88px);
-      font-weight: 800;
-      line-height: 0.96;
-      letter-spacing: -0.035em;
-      color: var(--s13-fg);
-      margin: 0;
-      opacity: 0;
-      animation: s13-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
-    }
-    .slide[data-audio="12"] .s13-title .period {
-      color: var(--s13-honey);
-    }
-    .slide[data-audio="12"] .s13-subhead {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-bottom: 6px;
-      opacity: 0;
-      animation: s13-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 650ms forwards;
-    }
-    .slide[data-audio="12"] .s13-formula {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(12px, 0.95vw, 14px);
-      letter-spacing: 0.06em;
-      color: var(--s13-fg-muted);
-    }
-    .slide[data-audio="12"] .s13-formula .seg {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .slide[data-audio="12"] .s13-formula .num {
-      font-size: clamp(20px, 1.5vw, 24px);
-      font-weight: 700;
-      color: var(--s13-honey);
-      letter-spacing: -0.02em;
-    }
-    .slide[data-audio="12"] .s13-formula .lbl {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--s13-fg-dim);
-      font-size: clamp(10px, 0.78vw, 12px);
-    }
-    .slide[data-audio="12"] .s13-formula .sep {
-      width: 18px;
-      height: 1px;
-      background: var(--s13-border-mid);
-    }
-    .slide[data-audio="12"] .s13-tag {
-      font-size: clamp(13px, 1.0vw, 15px);
-      color: var(--s13-fg-muted);
-      line-height: 1.5;
-      max-width: 44ch;
-    }
-    .slide[data-audio="12"] .s13-tag em {
-      font-style: normal;
-      color: var(--s13-fg);
-      font-weight: 500;
+    .s11-eyebrow .sep { color: var(--s11-fg-faint); letter-spacing: 0; }
+
+    @keyframes s11-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.82); }
     }
 
-    /* ---------- Grid ---------- */
-    .slide[data-audio="12"] .s13-grid {
+    .s11-headline {
+      font-size: clamp(40px, 5vw, 84px);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.038em;
+      margin: 0;
+      color: var(--s11-fg);
+    }
+    .s11-headline .ital {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--s11-honey);
+      letter-spacing: -0.025em;
+    }
+
+    .s11-subhead {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 0.8vw, 13px);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s11-honey);
+      padding-bottom: 6px;
+    }
+    .s11-subhead .rule {
+      display: inline-block;
+      width: 44px;
+      height: 1px;
+      background: var(--s11-honey-line);
+      vertical-align: middle;
+      margin: 0 14px 4px 0;
+    }
+    .s11-subhead .dim { color: var(--s11-fg-muted); }
+
+    /* ---------- panels grid ---------- */
+    .s11-strip {
+      position: relative;
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-template-rows: repeat(3, minmax(0, 1fr));
-      gap: clamp(10px, 1vw, 16px);
+      grid-template-columns: 1fr 1fr 1.05fr;
+      gap: clamp(18px, 1.6vw, 30px);
       min-height: 0;
     }
 
-    /* ---------- Card ---------- */
-    .slide[data-audio="12"] .s13-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: clamp(14px, 1.4vw, 22px) clamp(16px, 1.5vw, 24px);
-      background: linear-gradient(180deg,
-        rgba(255, 255, 255, 0.025) 0%,
-        rgba(255, 255, 255, 0.010) 100%);
-      border: 1px solid var(--s13-border);
-      border-radius: 14px;
-      overflow: hidden;
-      transition:
-        transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 380ms ease,
-        background 380ms ease,
-        box-shadow 380ms ease;
-      opacity: 0;
-      transform: translateY(14px) scale(0.985);
-      animation: s13-card-in 820ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="12"] .s13-card::before {
-      /* corner notch top-left, subtle */
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 22px;
-      height: 22px;
-      border-top: 1px solid var(--s13-border-warm);
-      border-left: 1px solid var(--s13-border-warm);
-      border-top-left-radius: 14px;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    .slide[data-audio="12"] .s13-card::after {
-      content: "";
+    /* connector arrows overlay */
+    .s11-connector {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      border-radius: 14px;
-      box-shadow: 0 0 0 0 var(--s13-honey-glow);
-      transition: box-shadow 400ms ease;
+      z-index: 5;
+      overflow: visible;
     }
-    .slide[data-audio="12"] .s13-card:hover {
-      transform: translateY(-3px) scale(1.002);
-      border-color: var(--s13-border-hot);
-      background: linear-gradient(180deg,
-        rgba(254, 189, 51, 0.04) 0%,
-        rgba(254, 189, 51, 0.01) 100%);
-    }
-    .slide[data-audio="12"] .s13-card:hover::after {
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.42),
-        0 12px 40px -10px rgba(254, 189, 51, 0.18);
-    }
-    .slide[data-audio="12"] .s13-card:hover .s13-eye {
-      animation: s13-pulse 1.2s ease-in-out infinite;
-    }
-    .slide[data-audio="12"] .s13-card:hover .s13-num {
-      color: var(--s13-honey);
-    }
-
-    /* Card header row: number + signal dot */
-    .slide[data-audio="12"] .s13-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: clamp(6px, 0.6vw, 10px);
-    }
-    .slide[data-audio="12"] .s13-num {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.78vw, 12px);
-      letter-spacing: 0.18em;
-      color: var(--s13-fg-faint);
-      transition: color 300ms ease;
-    }
-    .slide[data-audio="12"] .s13-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s13-fg-faint);
-    }
-    .slide[data-audio="12"] .s13-status .sdot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--s13-teal);
-      opacity: 0.7;
-      box-shadow: 0 0 8px rgba(67, 192, 190, 0.6);
-    }
-
-    /* SVG */
-    .slide[data-audio="12"] .s13-art {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(4px, 0.6vw, 8px) 0 clamp(8px, 0.8vw, 12px);
-      min-height: 0;
-    }
-    .slide[data-audio="12"] .s13-art svg {
-      width: clamp(64px, 6.4vw, 96px);
-      height: clamp(64px, 6.4vw, 96px);
-      display: block;
-    }
-    .slide[data-audio="12"] .s13-art svg .ln {
-      stroke: var(--s13-stroke);
-      stroke-width: 1.5;
+    .s11-arrow-path {
       fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .slide[data-audio="12"] .s13-art svg .ln-soft {
-      stroke: var(--s13-fg-muted);
-      stroke-width: 1.2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.7;
-    }
-    .slide[data-audio="12"] .s13-art svg .fill-dark {
-      fill: var(--s13-bg-deep);
-      stroke: var(--s13-stroke);
+      stroke: var(--s11-honey);
       stroke-width: 1.4;
-      stroke-linejoin: round;
+      stroke-linecap: round;
+      stroke-dasharray: 3 5;
+      filter: drop-shadow(0 0 6px rgba(254,189,51,0.45));
+      stroke-dashoffset: 200;
+      opacity: 0;
     }
-    .slide[data-audio="12"] .s13-eye {
-      fill: var(--s13-honey);
-      filter: drop-shadow(0 0 4px rgba(254, 189, 51, 0.7));
+    .slide[data-audio="12"].is-active .s11-arrow-path {
+      animation: s11-arrow-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
     }
+    .slide[data-audio="12"].is-active .s11-arrow-1 { animation-delay: 1400ms; }
+    .slide[data-audio="12"].is-active .s11-arrow-2 { animation-delay: 2600ms; }
 
-    /* Identity */
-    .slide[data-audio="12"] .s13-name {
-      font-size: clamp(18px, 1.55vw, 24px);
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1;
-      color: var(--s13-fg);
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
+    @keyframes s11-arrow-draw {
+      0%   { stroke-dashoffset: 200; opacity: 0; }
+      10%  { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
     }
-    .slide[data-audio="12"] .s13-species {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.72vw, 11px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s13-fg-faint);
-      font-weight: 500;
+    .s11-arrow-head {
+      fill: var(--s11-honey);
+      filter: drop-shadow(0 0 5px rgba(254,189,51,0.6));
+      opacity: 0;
     }
-    .slide[data-audio="12"] .s13-role {
-      margin-top: 6px;
-      font-size: clamp(12px, 0.95vw, 14px);
-      line-height: 1.35;
-      color: var(--s13-fg-muted);
-      font-weight: 400;
+    .slide[data-audio="12"].is-active .s11-arrow-head {
+      animation: s11-fade-in 400ms ease-out forwards;
     }
-    .slide[data-audio="12"] .s13-tech {
-      margin-top: clamp(8px, 0.9vw, 12px);
-      padding-top: clamp(8px, 0.8vw, 12px);
-      border-top: 1px dashed var(--s13-border-mid);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 0.72vw, 11px);
-      letter-spacing: 0.04em;
-      color: var(--s13-fg-dim);
-      line-height: 1.3;
-    }
+    .slide[data-audio="12"].is-active .s11-arrow-head-1 { animation-delay: 2800ms; }
+    .slide[data-audio="12"].is-active .s11-arrow-head-2 { animation-delay: 4000ms; }
 
-    /* The "989 more" cell */
-    .slide[data-audio="12"] .s13-more {
+    @keyframes s11-fade-in { to { opacity: 1; } }
+
+    /* ---------- panel base ---------- */
+    .s11-panel {
       position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+      border: 1px solid var(--s11-ink);
+      border-radius: 6px;
+      padding: clamp(18px, 1.6vw, 28px) clamp(20px, 1.8vw, 30px) clamp(20px, 1.8vw, 30px);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: clamp(14px, 1.4vw, 22px) clamp(16px, 1.5vw, 24px);
-      background:
-        radial-gradient(circle at 70% 30%, rgba(254, 189, 51, 0.06), transparent 60%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.005));
-      border: 1px dashed var(--s13-border-warm);
-      border-radius: 14px;
       overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.03) inset,
+        0 14px 38px rgba(0,0,0,0.4);
       opacity: 0;
-      transform: translateY(14px);
-      animation: s13-card-in 820ms cubic-bezier(0.16, 1, 0.3, 1) 760ms forwards;
+      transform: translateY(18px);
     }
-    .slide[data-audio="12"] .s13-more-num {
-      font-size: clamp(28px, 2.6vw, 42px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--s13-honey);
-      line-height: 1;
+    .slide[data-audio="12"].is-active .s11-panel {
+      animation: s11-panel-in 900ms cubic-bezier(.2,.7,.2,1) forwards;
     }
-    .slide[data-audio="12"] .s13-more-num .plus {
-      font-size: 0.55em;
-      vertical-align: top;
-      margin-right: 4px;
-      opacity: 0.85;
-    }
-    .slide[data-audio="12"] .s13-more-label {
-      margin-top: 6px;
-      font-size: clamp(11px, 0.85vw, 13px);
-      color: var(--s13-fg);
-      font-weight: 500;
-      line-height: 1.3;
-    }
-    .slide[data-audio="12"] .s13-more-sub {
-      margin-top: 4px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.72vw, 11px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s13-fg-dim);
-    }
-    .slide[data-audio="12"] .s13-dots {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      display: grid;
-      grid-template-columns: repeat(8, 4px);
-      grid-template-rows: repeat(5, 4px);
-      gap: 4px;
-      opacity: 0.55;
-    }
-    .slide[data-audio="12"] .s13-dots span {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--s13-honey);
-      opacity: 0.18;
-      animation: s13-dot 4s ease-in-out infinite;
+    .slide[data-audio="12"].is-active .s11-panel:nth-child(1) { animation-delay: 300ms; }
+    .slide[data-audio="12"].is-active .s11-panel:nth-child(2) { animation-delay: 1500ms; }
+    .slide[data-audio="12"].is-active .s11-panel:nth-child(3) { animation-delay: 2700ms; }
+
+    @keyframes s11-panel-in {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- Footer strip ---------- */
-    .slide[data-audio="12"] .s13-footer {
+    /* faint honey divider on right edge of panels 1 & 2 — comic gutter */
+    .s11-panel:nth-child(1)::after,
+    .s11-panel:nth-child(2)::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      right: -2px;
+      width: 1px;
+      height: 80%;
+      background: linear-gradient(to bottom, transparent, var(--s11-honey-line), transparent);
+      opacity: 0.5;
+    }
+
+    /* panel header */
+    .s11-panel-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: clamp(14px, 1.4vw, 22px);
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(255,255,255,0.07);
+    }
+    .s11-panel-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.36em;
+      color: var(--s11-honey);
+      text-transform: uppercase;
+    }
+    .s11-panel-num .of { color: var(--s11-fg-faint); }
+    .s11-panel-epoch {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      color: var(--s11-fg-muted);
+      text-transform: uppercase;
+    }
+    .s11-panel-epoch .tag {
+      display: inline-block;
+      padding: 2px 7px;
+      margin-right: 8px;
+      background: var(--s11-honey-soft);
+      border: 1px solid rgba(254,189,51,0.28);
+      border-radius: 2px;
+      color: var(--s11-honey);
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+    }
+
+    .s11-panel-title {
+      font-size: clamp(19px, 1.5vw, 26px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin: 0 0 6px;
+      color: var(--s11-fg);
+    }
+    .s11-panel-title .accent {
+      color: var(--s11-honey);
+      font-weight: 700;
+    }
+
+    /* panel stage (where the illustration lives) */
+    .s11-stage {
+      position: relative;
+      flex: 1;
+      margin-top: clamp(10px, 1vw, 18px);
+      min-height: 0;
+    }
+
+    /* caption */
+    .s11-caption {
+      margin-top: clamp(12px, 1.4vw, 20px);
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      font-size: clamp(11.5px, 0.82vw, 13.5px);
+      line-height: 1.5;
+      color: var(--s11-fg-muted);
+      letter-spacing: -0.005em;
+    }
+    .s11-caption strong {
+      color: var(--s11-fg);
+      font-weight: 500;
+    }
+    .s11-caption .honey { color: var(--s11-honey); font-weight: 500; }
+
+    /* =========================================================
+       PANEL 1 — TERMINAL
+       ========================================================= */
+    .s11-term {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--s11-bg-deep);
+      border-radius: 5px;
+      border: 1px solid var(--s11-ink);
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 8px 26px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+    .s11-term-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0));
+    }
+    .s11-term-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .s11-term-dot.r { background: rgba(224,75,81,0.55); border-color: rgba(224,75,81,0.7);}
+    .s11-term-dot.y { background: rgba(254,189,51,0.45); border-color: rgba(254,189,51,0.65);}
+    .s11-term-dot.g { background: rgba(67,192,190,0.4); border-color: rgba(67,192,190,0.6);}
+    .s11-term-title {
+      margin-left: 10px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      color: var(--s11-fg-dim);
+      text-transform: uppercase;
+    }
+    .s11-term-title .path { color: var(--s11-fg-muted); }
+    .s11-term-time {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: var(--s11-fg-faint);
+      letter-spacing: 0.18em;
+    }
+
+    .s11-term-body {
+      flex: 1;
+      padding: clamp(16px, 1.6vw, 22px) clamp(16px, 1.6vw, 22px);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(11.5px, 0.84vw, 13.5px);
+      line-height: 1.75;
+      color: var(--s11-fg-muted);
+      overflow: hidden;
+    }
+    .s11-term-line { opacity: 0; }
+    .slide[data-audio="12"].is-active .s11-term-line {
+      animation: s11-term-line-in 480ms ease-out forwards;
+    }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(1) { animation-delay: 750ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(2) { animation-delay: 900ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(3) { animation-delay: 1050ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(4) { animation-delay: 1200ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(5) { animation-delay: 1350ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(6) { animation-delay: 1500ms; }
+    .slide[data-audio="12"].is-active .s11-term-line:nth-child(7) { animation-delay: 1900ms; }
+
+    @keyframes s11-term-line-in {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .s11-term-line .prompt { color: var(--s11-honey); }
+    .s11-term-line .you   { color: var(--s11-fg); }
+    .s11-term-line .ai    { color: var(--s11-teal); }
+    .s11-term-line .dim   { color: var(--s11-fg-faint); }
+    .s11-term-line.lost {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      color: var(--s11-fg-faint);
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+    .s11-term-line.lost::before {
+      content: "▍";
+      color: var(--s11-red);
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+    .s11-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--s11-honey);
+      vertical-align: -2px;
+      margin-left: 4px;
+      animation: s11-blink 1.1s steps(2) infinite;
+      opacity: 0.85;
+    }
+    @keyframes s11-blink {
+      50% { opacity: 0; }
+    }
+
+    /* =========================================================
+       PANEL 2 — FILESYSTEM TREE
+       ========================================================= */
+    .s11-tree {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(11.5px, 0.82vw, 13px);
+      line-height: 1.78;
+      color: var(--s11-fg-muted);
+      display: flex;
+      flex-direction: column;
+    }
+    .s11-tree-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: clamp(14px, 1.6vw, 22px);
-      border-top: 1px solid var(--s13-border);
-      gap: 24px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: s13-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 1500ms forwards;
-    }
-    .slide[data-audio="12"] .s13-axiom {
-      font-size: clamp(13px, 1.05vw, 16px);
-      color: var(--s13-fg-muted);
-      letter-spacing: -0.005em;
-    }
-    .slide[data-audio="12"] .s13-axiom strong {
-      color: var(--s13-fg);
-      font-weight: 600;
-    }
-    .slide[data-audio="12"] .s13-axiom .sep {
-      display: inline-block;
-      width: 16px;
-      height: 1px;
-      background: var(--s13-border-mid);
-      vertical-align: middle;
-      margin: 0 10px;
-    }
-    .slide[data-audio="12"] .s13-stamp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.78vw, 12px);
-      letter-spacing: 0.22em;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed rgba(255,255,255,0.07);
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--s13-fg-dim);
+      color: var(--s11-fg-dim);
     }
-    .slide[data-audio="12"] .s13-stamp .pip {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s13-honey);
-      box-shadow: 0 0 10px var(--s13-honey-glow);
+    .s11-tree-head .root {
+      color: var(--s11-honey);
+      letter-spacing: 0.18em;
+    }
+    .s11-tree-head .counter {
+      color: var(--s11-fg);
+      font-weight: 500;
+      font-feature-settings: 'tnum';
+    }
+    .s11-tree-head .counter .num {
+      color: var(--s11-honey);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      margin: 0 2px;
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s13-fade {
-      to { opacity: 1; }
+    .s11-tree-list {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
     }
-    @keyframes s13-rise {
+    .s11-tree-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 1px 0;
+      opacity: 0;
+    }
+    .slide[data-audio="12"].is-active .s11-tree-row {
+      animation: s11-tree-row-in 380ms ease-out forwards;
+    }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(1)  { animation-delay: 1700ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(2)  { animation-delay: 1820ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(3)  { animation-delay: 1940ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(4)  { animation-delay: 2080ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(5)  { animation-delay: 2200ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(6)  { animation-delay: 2320ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(7)  { animation-delay: 2440ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(8)  { animation-delay: 2560ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(9)  { animation-delay: 2680ms; }
+    .slide[data-audio="12"].is-active .s11-tree-row:nth-child(10) { animation-delay: 2780ms; }
+
+    @keyframes s11-tree-row-in {
+      from { opacity: 0; transform: translateX(-6px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .s11-tree-row .glyph {
+      color: var(--s11-fg-faint);
+      flex: 0 0 auto;
+    }
+    .s11-tree-row .name { color: var(--s11-fg-muted); }
+    .s11-tree-row .name .ext { color: var(--s11-fg-faint); }
+    .s11-tree-row.dir .name { color: var(--s11-honey); }
+    .s11-tree-row.first .name {
+      color: var(--s11-honey);
+      font-weight: 500;
+      text-shadow: 0 0 14px rgba(254,189,51,0.55);
+    }
+    .s11-tree-row.first .glow {
+      width: 6px; height: 6px;
+      background: var(--s11-honey);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--s11-honey);
+      margin-left: 4px;
+      animation: s11-pulse 2s ease-in-out infinite;
+    }
+    .s11-tree-row .meta {
+      margin-left: auto;
+      color: var(--s11-fg-faint);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+    }
+    .s11-tree-row.more .name {
+      color: var(--s11-fg-faint);
+      font-style: italic;
+    }
+
+    /* counter ticker */
+    .s11-counter-bar {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      color: var(--s11-fg-muted);
+      letter-spacing: 0.06em;
+    }
+    .s11-counter-bar .track {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 1px;
+      overflow: hidden;
+      position: relative;
+    }
+    .s11-counter-bar .fill {
+      position: absolute;
+      inset: 0 100% 0 0;
+      background: linear-gradient(to right, var(--s11-honey), var(--s11-honey-line));
+      box-shadow: 0 0 10px rgba(254,189,51,0.55);
+    }
+    .slide[data-audio="12"].is-active .s11-counter-bar .fill {
+      animation: s11-fill 1400ms cubic-bezier(.6,.05,.25,1) 2800ms forwards;
+    }
+    @keyframes s11-fill {
+      to { right: 0; }
+    }
+    .s11-counter-bar .lo { color: var(--s11-fg-dim); }
+    .s11-counter-bar .hi {
+      color: var(--s11-honey);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* =========================================================
+       PANEL 3 — INNER CIRCLE
+       ========================================================= */
+    .s11-crew {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .s11-crew-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 10px;
+      flex: 1;
+      align-content: start;
+    }
+
+    .s11-chip {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 11px 9px 9px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.008));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      backdrop-filter: blur(6px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 6px 16px rgba(0,0,0,0.32),
+        0 0 0 1px rgba(254,189,51,0.08);
+      opacity: 0;
+      transform: translateY(8px) scale(0.94);
+    }
+    .slide[data-audio="12"].is-active .s11-chip {
+      animation: s11-chip-in 520ms cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(1)  { animation-delay: 2950ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(2)  { animation-delay: 3050ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(3)  { animation-delay: 3150ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(4)  { animation-delay: 3250ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(5)  { animation-delay: 3350ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(6)  { animation-delay: 3450ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(7)  { animation-delay: 3550ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(8)  { animation-delay: 3650ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(9)  { animation-delay: 3750ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(10) { animation-delay: 3850ms; }
+    .slide[data-audio="12"].is-active .s11-chip:nth-child(11) { animation-delay: 3950ms; }
+
+    @keyframes s11-chip-in {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .s11-chip-icon {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 30px;
+      background: radial-gradient(circle at 30% 30%, rgba(254,189,51,0.32), rgba(254,189,51,0.05) 70%);
+      border: 1px solid rgba(254,189,51,0.32);
+      box-shadow:
+        0 0 14px rgba(254,189,51,0.28),
+        0 0 0 1px rgba(254,189,51,0.08) inset;
+    }
+    .s11-chip-icon svg {
+      width: 18px; height: 18px;
+    }
+    .s11-chip-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .s11-chip-name {
+      font-size: clamp(12px, 0.85vw, 14px);
+      font-weight: 600;
+      color: var(--s11-fg);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .s11-chip-role {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s11-fg-muted);
+      line-height: 1.2;
+    }
+    .s11-chip-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      color: var(--s11-fg-faint);
+      align-self: flex-start;
+      padding-top: 1px;
+    }
+
+    /* teal accent for a varied chip */
+    .s11-chip.teal .s11-chip-icon {
+      background: radial-gradient(circle at 30% 30%, rgba(67,192,190,0.32), rgba(67,192,190,0.05) 70%);
+      border-color: rgba(67,192,190,0.35);
+      box-shadow:
+        0 0 14px rgba(67,192,190,0.28),
+        0 0 0 1px rgba(67,192,190,0.08) inset;
+    }
+
+    .s11-crew-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      color: var(--s11-fg-muted);
+      letter-spacing: 0.12em;
+    }
+    .s11-crew-foot .glow-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--s11-teal);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--s11-teal);
+      margin-right: 8px;
+      vertical-align: 1px;
+    }
+    .s11-crew-foot .count {
+      color: var(--s11-honey);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* =========================================================
+       META STRIP (bottom)
+       ========================================================= */
+    .s11-meta {
+      margin-top: clamp(20px, 2vw, 32px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 14px clamp(20px, 1.8vw, 30px);
+      border: 1px solid var(--s11-ink);
+      border-radius: 4px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(10.5px, 0.78vw, 12.5px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s11-fg-muted);
+      opacity: 0;
+    }
+    .slide[data-audio="12"].is-active .s11-meta {
+      animation: s11-meta-in 700ms ease-out 4100ms forwards;
+    }
+    @keyframes s11-meta-in {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes s13-card-in {
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .s11-meta-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
     }
-    @keyframes s13-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.45; transform: scale(0.9); }
+    .s11-meta-cell .num {
+      color: var(--s11-honey);
+      font-weight: 600;
+      font-size: clamp(18px, 1.45vw, 24px);
+      letter-spacing: -0.02em;
+      text-transform: none;
+      font-feature-settings: 'tnum';
     }
-    @keyframes s13-dot {
-      0%, 100% { opacity: 0.18; }
-      50%      { opacity: 0.6; }
+    .s11-meta-cell .lbl {
+      color: var(--s11-fg-muted);
+      line-height: 1.35;
     }
+    .s11-meta-divider {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, transparent, rgba(254,189,51,0.28), transparent);
+    }
+    .s11-meta-cell.center { justify-content: center; text-align: center; }
+    .s11-meta-cell.right { justify-content: flex-end; text-align: right; }
+    .s11-meta-cell.center .lbl,
+    .s11-meta-cell.right .lbl { letter-spacing: 0.22em; }
 
-    /* Stagger entry per card */
-    .slide[data-audio="12"] .s13-card:nth-child(1)  { animation-delay: 600ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(2)  { animation-delay: 660ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(3)  { animation-delay: 720ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(4)  { animation-delay: 780ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(5)  { animation-delay: 840ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(6)  { animation-delay: 900ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(7)  { animation-delay: 960ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(8)  { animation-delay: 1020ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(9)  { animation-delay: 1080ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(10) { animation-delay: 1140ms; }
-    .slide[data-audio="12"] .s13-card:nth-child(11) { animation-delay: 1200ms; }
-
+    /* reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="12"] * {
-        animation: none !important;
-        transition: none !important;
-        opacity: 1 !important;
-        transform: none !important;
+      .slide[data-audio="12"] *,
+      .slide[data-audio="12"] *::before,
+      .slide[data-audio="12"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
+      .slide[data-audio="12"] .s11-panel,
+      .slide[data-audio="12"] .s11-term-line,
+      .slide[data-audio="12"] .s11-tree-row,
+      .slide[data-audio="12"] .s11-chip,
+      .slide[data-audio="12"] .s11-meta,
+      .slide[data-audio="12"] .s11-arrow-path,
+      .slide[data-audio="12"] .s11-arrow-head {
+        opacity: 1;
+        transform: none;
+        stroke-dashoffset: 0;
+      }
+      .slide[data-audio="12"] .s11-counter-bar .fill { right: 0; }
     }
   </style>
 
-  <div class="s13-atmos">
-    <div class="s13-grid-bg"></div>
-    <div class="s13-glow-tr"></div>
-    <div class="s13-glow-bl"></div>
-    <div class="s13-noise"></div>
-  </div>
+  <div class="content">
+    <div class="s11-frame">
 
-  <div class="s13-frame">
+      <div class="s11-grain"></div>
 
-    <!-- =================== HEADER =================== -->
-    <header class="s13-header">
-      <div>
-        <div class="s13-eyebrow">
-          <span class="dot"></span>
-          <span class="chap">CHAPTER 13</span>
-          <span>·</span>
-          <span>TIER 1 · THE NAMED</span>
+      <!-- registration marks + stamp -->
+      <div class="s11-mark tl"></div>
+      <div class="s11-mark tr"></div>
+      <div class="s11-mark bl"></div>
+      <div class="s11-mark br"></div>
+      <div class="s11-stamp">SLIDE · 11 / ORIGIN STORY · CHAPTER ONE</div>
+
+      <!-- HEADER -->
+      <header class="s11-head">
+        <div>
+          <div class="s11-eyebrow">
+            <span class="pip"></span>
+            <span>Before the bear had a name</span>
+            <span class="sep">·</span>
+            <span>field log entry 001</span>
+          </div>
+          <h1 class="s11-headline">
+            Before the bear<br/>
+            could <span class="ital">speak.</span>
+          </h1>
         </div>
-        <h1 class="s13-title">The Inner Circle<span class="period">.</span></h1>
+        <div class="s11-subhead">
+          <span class="rule"></span>January &nbsp;·&nbsp; February &nbsp;<span class="dim">2026</span><br/>
+          <span style="display:inline-block; margin-top:8px;">8 weeks &nbsp;<span class="dim">of corrections, one at a time</span></span>
+        </div>
+      </header>
+
+      <!-- 3-PANEL STRIP -->
+      <div class="s11-strip">
+
+        <!-- connector arrows between panels -->
+        <svg class="s11-connector" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <!-- arrow 1: panel 1 -> panel 2 (around 33% mark) -->
+          <path class="s11-arrow-path s11-arrow-1"
+                d="M 32.6 50 C 33.2 50, 33.6 50, 34.0 50" pathLength="1" />
+          <!-- arrow 2: panel 2 -> panel 3 (around 66% mark) -->
+          <path class="s11-arrow-path s11-arrow-2"
+                d="M 66.0 50 C 66.6 50, 67.0 50, 67.4 50" pathLength="1" />
+        </svg>
+
+        <!-- ===================== PANEL 01 ===================== -->
+        <article class="s11-panel">
+          <header class="s11-panel-head">
+            <span class="s11-panel-num">01<span class="of"> / 03</span></span>
+            <span class="s11-panel-epoch"><span class="tag">EPOCH</span>EARLY JAN</span>
+          </header>
+          <h2 class="s11-panel-title">The first session — <span class="accent">and the last.</span></h2>
+
+          <div class="s11-stage">
+            <div class="s11-term">
+              <div class="s11-term-bar">
+                <span class="s11-term-dot r"></span>
+                <span class="s11-term-dot y"></span>
+                <span class="s11-term-dot g"></span>
+                <span class="s11-term-title">claude<span class="path">&nbsp;—&nbsp;~/trilogy</span></span>
+                <span class="s11-term-time">02:14:07</span>
+              </div>
+              <div class="s11-term-body">
+                <div class="s11-term-line"><span class="dim">$</span> <span class="prompt">claude</span></div>
+                <div class="s11-term-line"><span class="ai">claude&gt;</span> <span class="dim">how can I help?</span></div>
+                <div class="s11-term-line"><span class="prompt">&gt;</span> <span class="you">draft an ACQSC response for case 4710</span></div>
+                <div class="s11-term-line"><span class="ai">claude&gt;</span> <span class="dim">drafted. 7 paragraphs. sources cited.</span></div>
+                <div class="s11-term-line"><span class="prompt">&gt;</span> <span class="you">good. close.</span></div>
+                <div class="s11-term-line"><span class="ai">claude&gt;</span> <span class="dim">goodbye<span class="s11-cursor"></span></span></div>
+                <div class="s11-term-line lost">session closed · context lost</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="s11-caption">
+            Every conversation started from scratch. The agent forgot — names, projects, every correction. <strong>Brilliant, but amnesiac.</strong>
+          </p>
+        </article>
+
+        <!-- ===================== PANEL 02 ===================== -->
+        <article class="s11-panel">
+          <header class="s11-panel-head">
+            <span class="s11-panel-num">02<span class="of"> / 03</span></span>
+            <span class="s11-panel-epoch"><span class="tag">EPOCH</span>LATE JAN</span>
+          </header>
+          <h2 class="s11-panel-title">First memory file. <span class="accent">Then ten. Then seventy-five.</span></h2>
+
+          <div class="s11-stage">
+            <div class="s11-tree">
+              <div class="s11-tree-head">
+                <span class="root">~/.claude/memory/</span>
+                <span class="counter">files <span class="num" id="s11-counter">75</span>tracked</span>
+              </div>
+
+              <div class="s11-tree-list">
+                <div class="s11-tree-row dir">
+                  <span class="glyph">▾</span>
+                  <span class="name">memory/</span>
+                </div>
+                <div class="s11-tree-row first">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">MEMORY.md</span>
+                  <span class="glow"></span>
+                  <span class="meta">jan&nbsp;14</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">user_name<span class="ext">.md</span></span>
+                  <span class="meta">jan&nbsp;15</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">feedback_conversational_tone<span class="ext">.md</span></span>
+                  <span class="meta">jan&nbsp;18</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">project_complaints_app<span class="ext">.md</span></span>
+                  <span class="meta">jan&nbsp;22</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">feedback_always_push<span class="ext">.md</span></span>
+                  <span class="meta">jan&nbsp;25</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">auto_acknowledge-before-ping<span class="ext">.md</span></span>
+                  <span class="meta">jan&nbsp;28</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">reference_tc_credentials<span class="ext">.md</span></span>
+                  <span class="meta">feb&nbsp;01</span>
+                </div>
+                <div class="s11-tree-row">
+                  <span class="glyph">&nbsp;&nbsp;├─</span>
+                  <span class="name">persona_yogi_identity<span class="ext">.md</span></span>
+                  <span class="meta">feb&nbsp;04</span>
+                </div>
+                <div class="s11-tree-row more">
+                  <span class="glyph">&nbsp;&nbsp;└─</span>
+                  <span class="name">… 67 more (plain markdown, git-versioned)</span>
+                </div>
+              </div>
+
+              <div class="s11-counter-bar">
+                <span class="lo">1 FILE</span>
+                <span class="track"><span class="fill"></span></span>
+                <span class="hi">75 FILES</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="s11-caption">
+            <span class="honey">1 file → 75 files.</span> Plain markdown. Git-versioned. No vector store, no agent framework — the substrate that survived every session.
+          </p>
+        </article>
+
+        <!-- ===================== PANEL 03 ===================== -->
+        <article class="s11-panel">
+          <header class="s11-panel-head">
+            <span class="s11-panel-num">03<span class="of"> / 03</span></span>
+            <span class="s11-panel-epoch"><span class="tag">EPOCH</span>FEBRUARY</span>
+          </header>
+          <h2 class="s11-panel-title">The Inner Circle <span class="accent">forms.</span></h2>
+
+          <div class="s11-stage">
+            <div class="s11-crew">
+              <div class="s11-crew-grid">
+
+                <!-- 1 — Rocco -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- raccoon mask glyph -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <path d="M5 11c0-3 3-5 7-5s7 2 7 5v3a4 4 0 0 1-4 4h-6a4 4 0 0 1-4-4z"/>
+                      <path d="M7 9l2-2M17 9l-2-2"/>
+                      <circle cx="9.5" cy="13" r="1.3" fill="currentColor"/>
+                      <circle cx="14.5" cy="13" r="1.3" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Rocco</div>
+                    <div class="s11-chip-role">Cloud raccoon</div>
+                  </div>
+                  <span class="s11-chip-num">01</span>
+                </div>
+
+                <!-- 2 — Otto -->
+                <div class="s11-chip teal">
+                  <div class="s11-chip-icon">
+                    <!-- otter -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-teal);">
+                      <path d="M6 10c0-3 2.5-5 6-5s6 2 6 5v4c0 2-1.5 4-4 4h-4c-2.5 0-4-2-4-4z"/>
+                      <circle cx="10" cy="11" r="0.9" fill="currentColor"/>
+                      <circle cx="14" cy="11" r="0.9" fill="currentColor"/>
+                      <path d="M10.5 14c.5.6 2.5.6 3 0"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Otto</div>
+                    <div class="s11-chip-role">Surgical fixes</div>
+                  </div>
+                  <span class="s11-chip-num">02</span>
+                </div>
+
+                <!-- 3 — Bram -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- bear/badger -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <circle cx="12" cy="13" r="6"/>
+                      <circle cx="7" cy="8" r="2"/>
+                      <circle cx="17" cy="8" r="2"/>
+                      <circle cx="10" cy="13" r="0.9" fill="currentColor"/>
+                      <circle cx="14" cy="13" r="0.9" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Bram</div>
+                    <div class="s11-chip-role">Build &amp; ship</div>
+                  </div>
+                  <span class="s11-chip-num">03</span>
+                </div>
+
+                <!-- 4 — Ferra -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- fox -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <path d="M5 7l3 4M19 7l-3 4"/>
+                      <path d="M6 11c0-2 2.5-3 6-3s6 1 6 3v5c0 2-2 3-6 3s-6-1-6-3z"/>
+                      <circle cx="10" cy="13" r="0.9" fill="currentColor"/>
+                      <circle cx="14" cy="13" r="0.9" fill="currentColor"/>
+                      <path d="M12 15.5l-1 1h2z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Ferra</div>
+                    <div class="s11-chip-role">Frontend craft</div>
+                  </div>
+                  <span class="s11-chip-num">04</span>
+                </div>
+
+                <!-- 5 — Hoot -->
+                <div class="s11-chip teal">
+                  <div class="s11-chip-icon">
+                    <!-- owl -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-teal);">
+                      <path d="M5 9c0-3 3-5 7-5s7 2 7 5v6c0 2-2 4-7 4s-7-2-7-4z"/>
+                      <circle cx="9" cy="11" r="2"/>
+                      <circle cx="15" cy="11" r="2"/>
+                      <circle cx="9" cy="11" r="0.9" fill="currentColor"/>
+                      <circle cx="15" cy="11" r="0.9" fill="currentColor"/>
+                      <path d="M11.5 14l.5.7.5-.7" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Hoot</div>
+                    <div class="s11-chip-role">Code review</div>
+                  </div>
+                  <span class="s11-chip-num">05</span>
+                </div>
+
+                <!-- 6 — Buzz -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- bee -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <ellipse cx="12" cy="13" rx="5" ry="4"/>
+                      <path d="M9 11h6M9 14h6"/>
+                      <path d="M9 8l-2-2M15 8l2-2"/>
+                      <path d="M7 12c-2 0-3 1-3 2s1 2 3 1"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Buzz</div>
+                    <div class="s11-chip-role">Comms &amp; sync</div>
+                  </div>
+                  <span class="s11-chip-num">06</span>
+                </div>
+
+                <!-- 7 — Pip -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- mouse -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <circle cx="12" cy="13" r="5"/>
+                      <circle cx="8" cy="9" r="2"/>
+                      <circle cx="16" cy="9" r="2"/>
+                      <circle cx="10.5" cy="13" r="0.8" fill="currentColor"/>
+                      <circle cx="13.5" cy="13" r="0.8" fill="currentColor"/>
+                      <path d="M12 14.5v1"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Pip</div>
+                    <div class="s11-chip-role">Planning lead</div>
+                  </div>
+                  <span class="s11-chip-num">07</span>
+                </div>
+
+                <!-- 8 — Briar -->
+                <div class="s11-chip teal">
+                  <div class="s11-chip-icon">
+                    <!-- hedgehog -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-teal);">
+                      <path d="M5 15c0-4 3-7 7-7s7 3 7 7-3 5-7 5-7-1-7-5z"/>
+                      <path d="M7 11l-1-1M9 9l-1-1.5M12 8l0-1.5M15 9l1-1.5M17 11l1-1"/>
+                      <circle cx="9" cy="15" r="0.8" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Briar</div>
+                    <div class="s11-chip-role">Data wrangler</div>
+                  </div>
+                  <span class="s11-chip-num">08</span>
+                </div>
+
+                <!-- 9 — Lumi -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- firefly -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <circle cx="12" cy="12" r="3"/>
+                      <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.4"/>
+                      <path d="M12 5v2M12 17v2M5 12h2M17 12h2M7 7l1.4 1.4M15.6 15.6L17 17M7 17l1.4-1.4M15.6 8.4L17 7"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Lumi</div>
+                    <div class="s11-chip-role">Insight glow</div>
+                  </div>
+                  <span class="s11-chip-num">09</span>
+                </div>
+
+                <!-- 10 — Gus -->
+                <div class="s11-chip">
+                  <div class="s11-chip-icon">
+                    <!-- goose -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-honey);">
+                      <path d="M9 16c-2 0-3-2-3-4s2-4 4-4 4 1 4 4"/>
+                      <path d="M14 12c2-1 4 1 4 3M18 15l2-1"/>
+                      <circle cx="9" cy="9" r="0.8" fill="currentColor"/>
+                      <path d="M8 10l-1 1"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Gus</div>
+                    <div class="s11-chip-role">Ops watchdog</div>
+                  </div>
+                  <span class="s11-chip-num">10</span>
+                </div>
+
+                <!-- 11 — Tess -->
+                <div class="s11-chip teal">
+                  <div class="s11-chip-icon">
+                    <!-- turtle -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--s11-teal);">
+                      <ellipse cx="12" cy="13" rx="6" ry="4"/>
+                      <path d="M9 13h6M12 10v6"/>
+                      <circle cx="17" cy="11" r="1.4"/>
+                      <path d="M6 14l-1 1M18 14l1 1M9 17l-1 1M15 17l1 1"/>
+                    </svg>
+                  </div>
+                  <div class="s11-chip-body">
+                    <div class="s11-chip-name">Tess</div>
+                    <div class="s11-chip-role">E2E testing</div>
+                  </div>
+                  <span class="s11-chip-num">11</span>
+                </div>
+
+              </div>
+
+              <div class="s11-crew-foot">
+                <span><span class="glow-dot"></span>CREW <span style="color: var(--s11-fg-faint);">·</span> INNER CIRCLE</span>
+                <span><span class="count">11</span> named &nbsp;·&nbsp; each one narrow</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="s11-caption">
+            Each agent narrow. Each agent named. <strong>Not from a roadmap</strong> — from eight weeks of corrections, one at a time.
+          </p>
+        </article>
+
       </div>
-      <div class="s13-subhead">
-        <div class="s13-formula">
-          <span class="seg"><span class="num">11</span><span class="lbl">named</span></span>
-          <span class="sep"></span>
-          <span class="seg"><span class="num">989</span><span class="lbl">behind them</span></span>
-          <span class="sep"></span>
-          <span class="seg"><span class="num">1</span><span class="lbl">bear above</span></span>
+
+      <!-- META STRIP -->
+      <div class="s11-meta">
+        <div class="s11-meta-cell">
+          <span class="num">47</span>
+          <span class="lbl">self-patched rules<br/>from user corrections</span>
         </div>
-        <p class="s13-tag">
-          The animals Ash works with daily. Each <em>narrow on purpose</em>. Each named.
-          Each with their own memory and their own job.
-        </p>
+        <div class="s11-meta-divider"></div>
+        <div class="s11-meta-cell center">
+          <span class="lbl">substrate: <span style="color: var(--s11-honey);">git + markdown</span> · zero frameworks</span>
+        </div>
+        <div class="s11-meta-divider"></div>
+        <div class="s11-meta-cell right">
+          <span class="lbl">hand-written agent code</span>
+          <span class="num">0</span>
+        </div>
       </div>
-    </header>
-
-    <!-- =================== GRID =================== -->
-    <div class="s13-grid">
-
-      <!-- 01 — ROCCO THE RACCOON -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#01</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- raccoon: rounded head + ears + bandit mask + ringed tail -->
-            <path class="ln" d="M28 22 L34 14 L42 22"/>
-            <path class="ln" d="M72 22 L66 14 L58 22"/>
-            <path class="ln" d="M22 40 C22 22 38 16 50 16 C62 16 78 22 78 40 C78 58 66 70 50 70 C34 70 22 58 22 40 Z"/>
-            <!-- mask -->
-            <path class="ln-soft" d="M28 38 C34 44 42 46 50 46 C58 46 66 44 72 38"/>
-            <path class="ln-soft" d="M30 34 C36 40 42 42 50 42 C58 42 64 40 70 34"/>
-            <!-- snout -->
-            <path class="ln" d="M44 50 Q50 56 56 50"/>
-            <circle cx="50" cy="48" r="1.6" fill="#d4d4d8"/>
-            <!-- eyes -->
-            <circle class="s13-eye" cx="40" cy="40" r="2"/>
-            <circle cx="60" cy="40" r="2" fill="#d4d4d8"/>
-            <!-- ringed tail -->
-            <path class="ln" d="M74 60 C86 64 92 76 86 88 C80 96 70 92 66 84"/>
-            <path class="ln-soft" d="M78 70 L85 73"/>
-            <path class="ln-soft" d="M80 78 L88 80"/>
-            <path class="ln-soft" d="M78 86 L84 88"/>
-          </svg>
-        </div>
-        <div class="s13-name">Rocco <span class="s13-species">/ raccoon</span></div>
-        <div class="s13-role">Runs the cloud. AWS, CDK, anything with an IAM policy.</div>
-        <div class="s13-tech">CDK · ECS · ALB · IAM</div>
-      </article>
-
-      <!-- 02 — OTTO THE OTTER -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#02</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- otter: sleek elongated head + small ears, holding a stone -->
-            <ellipse class="ln" cx="50" cy="36" rx="20" ry="18"/>
-            <circle class="ln" cx="34" cy="22" r="4"/>
-            <circle class="ln" cx="66" cy="22" r="4"/>
-            <!-- snout patch -->
-            <ellipse class="ln-soft" cx="50" cy="44" rx="9" ry="6"/>
-            <circle cx="50" cy="42" r="1.6" fill="#d4d4d8"/>
-            <path class="ln" d="M46 47 Q50 50 54 47"/>
-            <circle class="s13-eye" cx="42" cy="32" r="2"/>
-            <circle cx="58" cy="32" r="2" fill="#d4d4d8"/>
-            <!-- whiskers -->
-            <path class="ln-soft" d="M40 44 L32 46"/>
-            <path class="ln-soft" d="M60 44 L68 46"/>
-            <!-- body (swimming) -->
-            <path class="ln" d="M30 50 C26 60 30 76 50 78 C72 80 76 64 70 52"/>
-            <!-- little paws + stone -->
-            <circle class="ln" cx="50" cy="68" r="3.5"/>
-          </svg>
-        </div>
-        <div class="s13-name">Otto <span class="s13-species">/ otter</span></div>
-        <div class="s13-role">Ships surgical, one-line fixes. In and out.</div>
-        <div class="s13-tech">git · gh CLI · single-file edits</div>
-      </article>
-
-      <!-- 03 — BRAM THE BADGER -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#03</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- badger: triangular head with white stripe down the middle -->
-            <path class="ln" d="M22 32 L30 22 L36 30"/>
-            <path class="ln" d="M78 32 L70 22 L64 30"/>
-            <path class="ln" d="M24 36 C24 24 36 20 50 20 C64 20 76 24 76 36 L76 56 C76 70 64 78 50 78 C36 78 24 70 24 56 Z"/>
-            <!-- white stripe (drawn as two lines flanking) -->
-            <path class="ln-soft" d="M42 24 L40 64"/>
-            <path class="ln-soft" d="M58 24 L60 64"/>
-            <!-- snout -->
-            <path class="ln" d="M44 58 Q50 64 56 58"/>
-            <circle cx="50" cy="56" r="1.6" fill="#d4d4d8"/>
-            <!-- eyes in stripes -->
-            <circle class="s13-eye" cx="38" cy="42" r="2"/>
-            <circle cx="62" cy="42" r="2" fill="#d4d4d8"/>
-            <!-- claws hint -->
-            <path class="ln-soft" d="M34 78 L32 84"/>
-            <path class="ln-soft" d="M40 80 L40 86"/>
-            <path class="ln-soft" d="M60 80 L60 86"/>
-            <path class="ln-soft" d="M66 78 L68 84"/>
-          </svg>
-        </div>
-        <div class="s13-name">Bram <span class="s13-species">/ badger</span></div>
-        <div class="s13-role">Data archaeology. Digs through every table.</div>
-        <div class="s13-tech">Databricks · Zoho · MYOB</div>
-      </article>
-
-      <!-- 04 — FERRA THE FOX -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#04</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- fox: pointed ears + sharp nose + bushy tail -->
-            <path class="ln" d="M28 36 L22 14 L40 26"/>
-            <path class="ln" d="M72 36 L78 14 L60 26"/>
-            <path class="ln" d="M24 42 C24 30 38 26 50 26 C62 26 76 30 76 42 C76 58 66 72 50 78 C34 72 24 58 24 42 Z"/>
-            <!-- snout -->
-            <path class="ln" d="M50 50 L42 64 L50 62 L58 64 Z"/>
-            <circle cx="50" cy="52" r="1.6" fill="#d4d4d8"/>
-            <!-- eyes -->
-            <circle class="s13-eye" cx="38" cy="42" r="2"/>
-            <circle cx="62" cy="42" r="2" fill="#d4d4d8"/>
-            <!-- cheek tufts -->
-            <path class="ln-soft" d="M26 50 L18 54"/>
-            <path class="ln-soft" d="M74 50 L82 54"/>
-            <!-- bushy tail tip -->
-            <path class="ln" d="M76 70 C90 72 92 88 78 90"/>
-          </svg>
-        </div>
-        <div class="s13-name">Ferra <span class="s13-species">/ fox</span></div>
-        <div class="s13-role">Frontend pre-flight. Checks before code ships.</div>
-        <div class="s13-tech">Next.js · env vars · route handlers</div>
-      </article>
-
-      <!-- 05 — HOOT THE OWL -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#05</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- owl: round body, two ear tufts, big eyes -->
-            <path class="ln" d="M28 24 L32 16 L38 24"/>
-            <path class="ln" d="M72 24 L68 16 L62 24"/>
-            <path class="ln" d="M24 40 C24 24 36 18 50 18 C64 18 76 24 76 40 L76 64 C76 78 64 86 50 86 C36 86 24 78 24 64 Z"/>
-            <!-- big eye discs -->
-            <circle class="ln" cx="40" cy="40" r="9"/>
-            <circle class="ln" cx="60" cy="40" r="9"/>
-            <circle class="s13-eye" cx="40" cy="40" r="3"/>
-            <circle cx="60" cy="40" r="3" fill="#d4d4d8"/>
-            <!-- beak -->
-            <path class="ln" d="M47 50 L50 58 L53 50 Z"/>
-            <!-- chest feather hints -->
-            <path class="ln-soft" d="M36 64 Q42 68 48 64"/>
-            <path class="ln-soft" d="M52 64 Q58 68 64 64"/>
-            <path class="ln-soft" d="M40 72 Q46 76 50 72"/>
-            <path class="ln-soft" d="M50 72 Q54 76 60 72"/>
-          </svg>
-        </div>
-        <div class="s13-name">Hoot <span class="s13-species">/ owl</span></div>
-        <div class="s13-role">Independent code review. Reads every PR.</div>
-        <div class="s13-tech">read-only · audits before merge</div>
-      </article>
-
-      <!-- 06 — BUZZ THE BEE -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#06</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- bee: oval body with stripes + wings + antennae -->
-            <ellipse class="ln" cx="50" cy="56" rx="22" ry="16"/>
-            <!-- stripes -->
-            <path class="ln-soft" d="M38 44 C38 56 38 68 38 68"/>
-            <path class="ln-soft" d="M50 42 C50 56 50 70 50 70"/>
-            <path class="ln-soft" d="M62 44 C62 56 62 68 62 68"/>
-            <!-- head -->
-            <circle class="ln" cx="28" cy="44" r="9"/>
-            <!-- antennae -->
-            <path class="ln" d="M24 36 L20 26"/>
-            <path class="ln" d="M30 34 L32 24"/>
-            <circle cx="20" cy="26" r="1.4" fill="#d4d4d8"/>
-            <circle cx="32" cy="24" r="1.4" fill="#d4d4d8"/>
-            <!-- eye -->
-            <circle class="s13-eye" cx="26" cy="42" r="2"/>
-            <!-- wings -->
-            <ellipse class="ln" cx="46" cy="34" rx="10" ry="6" transform="rotate(-20 46 34)"/>
-            <ellipse class="ln" cx="62" cy="34" rx="10" ry="6" transform="rotate(20 62 34)"/>
-            <!-- stinger -->
-            <path class="ln" d="M72 56 L80 56"/>
-          </svg>
-        </div>
-        <div class="s13-name">Buzz <span class="s13-species">/ bee</span></div>
-        <div class="s13-role">Build pipeline and static assets. Always moving.</div>
-        <div class="s13-tech">GitHub Actions · Docker · ECR</div>
-      </article>
-
-      <!-- 07 — PIP THE HEDGEHOG -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#07</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- hedgehog: half-dome of spikes over rounded body + pointy nose -->
-            <path class="ln" d="M16 64 C16 40 36 28 56 28 C76 28 84 44 84 60 C84 70 76 74 60 74 L20 74 C16 74 16 70 16 64 Z"/>
-            <!-- spike lines -->
-            <path class="ln-soft" d="M22 56 L18 48"/>
-            <path class="ln-soft" d="M28 48 L26 38"/>
-            <path class="ln-soft" d="M36 42 L36 30"/>
-            <path class="ln-soft" d="M44 38 L46 26"/>
-            <path class="ln-soft" d="M52 38 L56 26"/>
-            <path class="ln-soft" d="M62 40 L68 30"/>
-            <path class="ln-soft" d="M72 46 L80 40"/>
-            <!-- snout -->
-            <path class="ln" d="M16 64 Q8 62 4 66 Q6 70 14 70"/>
-            <circle cx="6" cy="66" r="1.6" fill="#d4d4d8"/>
-            <!-- eye -->
-            <circle class="s13-eye" cx="22" cy="64" r="2"/>
-            <!-- feet -->
-            <path class="ln" d="M28 74 L28 80"/>
-            <path class="ln" d="M50 74 L50 82"/>
-            <path class="ln" d="M70 74 L70 80"/>
-          </svg>
-        </div>
-        <div class="s13-name">Pip <span class="s13-species">/ hedgehog</span></div>
-        <div class="s13-role">Narrow read-only questions. One answer. Curled up.</div>
-        <div class="s13-tech">grep · single-question answers</div>
-      </article>
-
-      <!-- 08 — BRIAR THE RABBIT -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#08</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- rabbit: long ears + round head + small body -->
-            <path class="ln" d="M38 26 C36 14 40 6 44 6 C48 6 50 14 48 26"/>
-            <path class="ln" d="M62 26 C64 14 60 6 56 6 C52 6 50 14 52 26"/>
-            <path class="ln-soft" d="M42 22 C42 14 44 10 44 10"/>
-            <path class="ln-soft" d="M58 22 C58 14 56 10 56 10"/>
-            <!-- head -->
-            <circle class="ln" cx="50" cy="40" r="16"/>
-            <!-- snout -->
-            <path class="ln" d="M46 46 Q50 50 54 46"/>
-            <circle cx="50" cy="44" r="1.5" fill="#d4d4d8"/>
-            <path class="ln" d="M50 47 L50 52"/>
-            <!-- eyes -->
-            <circle class="s13-eye" cx="42" cy="38" r="2"/>
-            <circle cx="58" cy="38" r="2" fill="#d4d4d8"/>
-            <!-- whiskers -->
-            <path class="ln-soft" d="M42 48 L34 50"/>
-            <path class="ln-soft" d="M58 48 L66 50"/>
-            <!-- body + leaping legs -->
-            <path class="ln" d="M34 56 C30 70 38 82 50 82 C62 82 70 70 66 56"/>
-            <path class="ln" d="M40 80 L36 88"/>
-            <path class="ln" d="M60 80 L64 88"/>
-          </svg>
-        </div>
-        <div class="s13-name">Briar <span class="s13-species">/ rabbit</span></div>
-        <div class="s13-role">JS/TS concurrency and retries. Fast, careful jumps.</div>
-        <div class="s13-tech">fan-out · semaphores · debounce</div>
-      </article>
-
-      <!-- 09 — LUMI THE BUTTERFLY -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#09</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- butterfly: two pairs of wings, slim body -->
-            <!-- body -->
-            <path class="ln" d="M50 24 L50 78"/>
-            <circle class="ln" cx="50" cy="22" r="3"/>
-            <!-- antennae -->
-            <path class="ln" d="M48 20 C42 14 38 12 36 8"/>
-            <path class="ln" d="M52 20 C58 14 62 12 64 8"/>
-            <circle cx="36" cy="8" r="1.4" fill="#d4d4d8"/>
-            <circle cx="64" cy="8" r="1.4" fill="#d4d4d8"/>
-            <!-- upper wings -->
-            <path class="ln" d="M50 32 C30 26 14 36 16 50 C24 54 36 50 50 44"/>
-            <path class="ln" d="M50 32 C70 26 86 36 84 50 C76 54 64 50 50 44"/>
-            <!-- lower wings -->
-            <path class="ln" d="M50 50 C36 50 22 56 22 70 C30 74 42 70 50 64"/>
-            <path class="ln" d="M50 50 C64 50 78 56 78 70 C70 74 58 70 50 64"/>
-            <!-- wing dots -->
-            <circle class="s13-eye" cx="28" cy="44" r="2.4"/>
-            <circle cx="72" cy="44" r="2.4" fill="#d4d4d8" opacity="0.85"/>
-            <circle cx="32" cy="62" r="1.6" fill="#d4d4d8" opacity="0.7"/>
-            <circle cx="68" cy="62" r="1.6" fill="#d4d4d8" opacity="0.7"/>
-          </svg>
-        </div>
-        <div class="s13-name">Lumi <span class="s13-species">/ butterfly</span></div>
-        <div class="s13-role">UI polish. Micro-interactions. Makes it sing.</div>
-        <div class="s13-tech">CSS animations · a11y · design system</div>
-      </article>
-
-      <!-- 10 — GUS THE GOOSE -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#10</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- goose: long S-neck + body + bill -->
-            <!-- neck -->
-            <path class="ln" d="M28 18 C20 30 22 44 30 54 C38 64 50 60 56 56"/>
-            <!-- head -->
-            <ellipse class="ln" cx="28" cy="18" rx="9" ry="7"/>
-            <!-- bill -->
-            <path class="ln" d="M19 18 L8 16 L8 22 L19 22 Z"/>
-            <circle class="s13-eye" cx="28" cy="16" r="1.8"/>
-            <!-- body -->
-            <path class="ln" d="M30 54 C40 54 78 50 82 64 C84 76 70 84 54 82 C42 82 32 76 30 66 Z"/>
-            <!-- wing -->
-            <path class="ln-soft" d="M48 62 C56 60 68 62 72 70"/>
-            <path class="ln-soft" d="M52 70 C60 68 70 70 74 76"/>
-            <!-- tail feathers -->
-            <path class="ln" d="M82 64 L90 60"/>
-            <path class="ln" d="M82 68 L92 68"/>
-            <!-- legs -->
-            <path class="ln" d="M52 82 L52 92"/>
-            <path class="ln" d="M64 82 L64 92"/>
-            <path class="ln" d="M48 92 L56 92"/>
-            <path class="ln" d="M60 92 L68 92"/>
-          </svg>
-        </div>
-        <div class="s13-name">Gus <span class="s13-species">/ goose</span></div>
-        <div class="s13-role">Deploy verification. Honks on broken builds.</div>
-        <div class="s13-tech">curl · gh · log scraping</div>
-      </article>
-
-      <!-- 11 — TESS THE TURTLE -->
-      <article class="s13-card">
-        <div class="s13-card-top">
-          <span class="s13-num">#11</span>
-          <span class="s13-status"><span class="sdot"></span>online</span>
-        </div>
-        <div class="s13-art">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- turtle: dome shell + head pokes out + four legs -->
-            <!-- shell -->
-            <path class="ln" d="M16 60 C16 38 32 30 50 30 C68 30 84 38 84 60 C84 64 80 66 76 66 L24 66 C20 66 16 64 16 60 Z"/>
-            <!-- shell plates -->
-            <path class="ln-soft" d="M50 30 L50 66"/>
-            <path class="ln-soft" d="M30 36 L36 64"/>
-            <path class="ln-soft" d="M70 36 L64 64"/>
-            <path class="ln-soft" d="M22 50 L78 50"/>
-            <!-- head -->
-            <ellipse class="ln" cx="84" cy="56" rx="10" ry="7"/>
-            <circle class="s13-eye" cx="88" cy="54" r="1.8"/>
-            <path class="ln-soft" d="M92 58 L96 58"/>
-            <!-- tail -->
-            <path class="ln" d="M16 60 L8 64 L12 68"/>
-            <!-- legs -->
-            <path class="ln" d="M26 66 L24 74 L32 74 L32 66"/>
-            <path class="ln" d="M68 66 L68 74 L76 74 L74 66"/>
-          </svg>
-        </div>
-        <div class="s13-name">Tess <span class="s13-species">/ turtle</span></div>
-        <div class="s13-role">End-to-end gatekeeper. Slow, thorough, won't budge.</div>
-        <div class="s13-tech">Playwright · curl · regression</div>
-      </article>
-
-      <!-- 12 — + 989 MORE -->
-      <article class="s13-more">
-        <div class="s13-more-num"><span class="plus">+</span>989</div>
-        <div class="s13-more-label">specialists in the specialist crew</div>
-        <div class="s13-more-sub">tier 2 · tier 3 · tier 5</div>
-        <div class="s13-dots" aria-hidden="true">
-          <span style="animation-delay:0ms"></span><span style="animation-delay:60ms"></span><span style="animation-delay:120ms"></span><span style="animation-delay:180ms"></span><span style="animation-delay:240ms"></span><span style="animation-delay:300ms"></span><span style="animation-delay:360ms"></span><span style="animation-delay:420ms"></span>
-          <span style="animation-delay:80ms"></span><span style="animation-delay:140ms"></span><span style="animation-delay:200ms"></span><span style="animation-delay:260ms"></span><span style="animation-delay:320ms"></span><span style="animation-delay:380ms"></span><span style="animation-delay:440ms"></span><span style="animation-delay:500ms"></span>
-          <span style="animation-delay:160ms"></span><span style="animation-delay:220ms"></span><span style="animation-delay:280ms"></span><span style="animation-delay:340ms"></span><span style="animation-delay:400ms"></span><span style="animation-delay:460ms"></span><span style="animation-delay:520ms"></span><span style="animation-delay:580ms"></span>
-          <span style="animation-delay:240ms"></span><span style="animation-delay:300ms"></span><span style="animation-delay:360ms"></span><span style="animation-delay:420ms"></span><span style="animation-delay:480ms"></span><span style="animation-delay:540ms"></span><span style="animation-delay:600ms"></span><span style="animation-delay:660ms"></span>
-          <span style="animation-delay:320ms"></span><span style="animation-delay:380ms"></span><span style="animation-delay:440ms"></span><span style="animation-delay:500ms"></span><span style="animation-delay:560ms"></span><span style="animation-delay:620ms"></span><span style="animation-delay:680ms"></span><span style="animation-delay:740ms"></span>
-        </div>
-      </article>
 
     </div>
-
-    <!-- =================== FOOTER =================== -->
-    <footer class="s13-footer">
-      <div class="s13-axiom">
-        Each agent <strong>narrow on purpose</strong>.
-        <span class="sep"></span>
-        Each <strong>named</strong>.
-        <span class="sep"></span>
-        Each with <strong>their own memory</strong>.
-      </div>
-      <div class="s13-stamp">
-        <span class="pip"></span>
-        <span>TIER 1 · ROSTER COMPLETE</span>
-      </div>
-    </footer>
-
   </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+
+      function activate() {
+        slide.classList.add('is-active');
+
+        // counter ticker — count up from 1 to 75 over 1.4s, starting at 2800ms
+        var counterEl = slide.querySelector('#s11-counter');
+        if (!counterEl) return;
+        counterEl.textContent = '1';
+        var start = null;
+        var dur = 1400;
+        var startVal = 1;
+        var endVal = 75;
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min(1, (ts - start) / dur);
+          // ease-out cubic
+          var eased = 1 - Math.pow(1 - t, 3);
+          var v = Math.round(startVal + (endVal - startVal) * eased);
+          counterEl.textContent = v;
+          if (t < 1) requestAnimationFrame(step);
+        }
+        setTimeout(function () { requestAnimationFrame(step); }, 2800);
+      }
+
+      function deactivate() {
+        slide.classList.remove('is-active');
+      }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[11] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[11] = deactivate;
+
+      // self-activate if visible
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(slide);
+      }
+    })();
+  </script>
 </section>

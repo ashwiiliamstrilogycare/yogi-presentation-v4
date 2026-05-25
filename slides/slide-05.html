@@ -1,705 +1,899 @@
 <section class="slide" data-audio="05">
-  <style>
-    /* ─────────────────────────────────────────────────────────────
-       SLIDE 05 — Chatbots respond. Yogi acts.
-       The key differentiator.
-       ───────────────────────────────────────────────────────────── */
+<style>
+  /* ============================================================
+     SLIDE 04 — FOUR PILLARS OF ENTERPRISE AGI
+     Concept: four structural columns sewn together by one honey
+     thread. Miss one column → the roof collapses → it's a chatbot.
+     ============================================================ */
 
-    .slide[data-audio="05"] {
-      --navy:        #2C4C79;
-      --honey:       #FEBD33;
-      --honey-soft:  #FFD876;
-      --teal:        #43C0BE;
-      --dark-teal:   #007F7E;
-      --sky:         #64BCEA;
-      --red:         #E04B51;
+  .slide[data-audio="05"] {
+    --s04-bg:         #0a0d12;
+    --s04-bg-elev:    #11161f;
+    --s04-bg-deep:    #070a0f;
+    --s04-honey:      #FEBD33;
+    --s04-honey-dim:  rgba(254,189,51,0.25);
+    --s04-honey-soft: rgba(254,189,51,0.08);
+    --s04-teal:       #43C0BE;
+    --s04-sky:        #64BCEA;
+    --s04-violet:     #9B7BD4;
+    --s04-coral:      #F39B5A;
+    --s04-fg:         #f4f4f5;
+    --s04-fg-muted:   #a1a1aa;
+    --s04-fg-dim:     #71717a;
+    --s04-border:     rgba(255,255,255,0.08);
+    --s04-border-warm:rgba(254,189,51,0.25);
 
-      --bg:          #0a0d12;
-      --bg-elev:     #11161f;
-      --bg-glass:    rgba(255,255,255,0.04);
-      --border:      rgba(255,255,255,0.08);
-      --border-warm: rgba(254,189,51,0.28);
-      --border-cold: rgba(161,161,170,0.18);
+    --s04-font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+    --s04-font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
 
-      --fg:          #f4f4f5;
-      --fg-muted:    #a1a1aa;
-      --fg-dim:      #71717a;
-      --fg-ghost:    #52525b;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 110%, rgba(254,189,51,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(67,192,190,0.06) 0%, transparent 70%),
+      var(--s04-bg);
+    color: var(--s04-fg);
+    font-family: var(--s04-font-display);
+    overflow: hidden;
+    isolation: isolate;
+    padding: clamp(40px, 5vh, 72px) clamp(48px, 5.5vw, 96px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
 
-      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
-      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  /* ---------- ambient grain / dot-grid background ---------- */
+  .slide[data-audio="05"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 90%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-display);
-      overflow: hidden;
-      isolation: isolate;
-    }
+  /* ============================================================
+     HEADER — asymmetric, eyebrow + headline + honey subhead
+     ============================================================ */
 
-    /* Ambient atmosphere — two soft pools, one cold-grey (left), one honey (right) */
-    .slide[data-audio="05"]::before,
-    .slide[data-audio="05"]::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .slide[data-audio="05"]::before {
-      background:
-        radial-gradient(ellipse 60% 50% at 20% 35%, rgba(113,113,122,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 45% at 82% 60%, rgba(254,189,51,0.10) 0%, transparent 60%);
-    }
-    .slide[data-audio="05"]::after {
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
-      background-size: 32px 32px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-      opacity: 0.6;
-    }
+  .s04-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: clamp(36px, 4.5vh, 56px);
+  }
 
-    .slide[data-audio="05"] .content {
-      position: relative;
-      z-index: 2;
-      max-width: 1680px;
-      margin: 0 auto;
-      padding: clamp(24px, 2.8vh, 44px) clamp(40px, 4vw, 80px);
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: clamp(14px, 1.8vh, 26px);
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
+  .s04-header-left {
+    max-width: 64%;
+  }
 
-    /* ─── Eyebrow ───────────────────────────────────────────────── */
-    .s05-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    .s05-eyebrow .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid var(--border-warm);
-      border-radius: 999px;
-      background: rgba(254,189,51,0.05);
-      color: var(--honey);
-      letter-spacing: 0.24em;
-    }
-    .s05-eyebrow .pill::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--honey);
-      box-shadow: 0 0 8px var(--honey);
-      animation: s05-pulse 2.4s ease-in-out infinite;
-    }
-    .s05-eyebrow .sep {
-      flex: 0 0 24px;
-      height: 1px;
-      background: var(--border);
-    }
-    .s05-eyebrow .num { color: var(--fg-muted); }
+  .s04-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--s04-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--s04-fg-dim);
+    margin: 0 0 18px;
+  }
+  .s04-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--s04-honey);
+    box-shadow: 0 0 6px var(--s04-honey);
+  }
+  .s04-eyebrow-num {
+    color: var(--s04-honey);
+  }
 
-    @keyframes s05-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.5; transform: scale(0.8); }
-    }
+  .s04-headline {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    margin: 0 0 18px;
+    color: var(--s04-fg);
+  }
+  .s04-headline em {
+    font-style: normal;
+    font-weight: 800;
+    color: var(--s04-honey);
+    position: relative;
+    display: inline-block;
+  }
+  .s04-headline em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: var(--s04-honey);
+    box-shadow: 0 0 12px var(--s04-honey);
+    transform-origin: left;
+    animation: s04-underline-draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.4s backwards;
+  }
+  @keyframes s04-underline-draw {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
 
-    /* ─── Headline — the spine of the slide ─────────────────────── */
-    .s05-headline {
-      font-size: clamp(44px, 6.6vw, 118px);
-      line-height: 0.92;
-      letter-spacing: -0.035em;
-      font-weight: 400;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .s05-headline .line {
-      display: block;
-      overflow: hidden;
-    }
-    .s05-headline .word {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(110%);
-      transition:
-        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform, opacity;
-    }
-    .s05-headline .w-chatbots {
-      font-weight: 300;
-      font-style: italic;
-      color: var(--fg-ghost);
-    }
-    .s05-headline .w-respond {
-      font-weight: 800;
-      color: var(--fg-dim);
-      letter-spacing: -0.04em;
-    }
-    .s05-headline .w-yogi {
-      font-weight: 300;
-      font-style: italic;
-      color: var(--honey);
-    }
-    .s05-headline .w-acts {
-      font-weight: 900;
-      color: var(--honey);
-      letter-spacing: -0.05em;
-      text-shadow:
-        0 0 32px rgba(254,189,51,0.45),
-        0 0 80px rgba(254,189,51,0.18);
-    }
-    .s05-headline .period-honey {
-      color: var(--honey);
-      text-shadow: 0 0 24px rgba(254,189,51,0.6);
-    }
+  .s04-subhead {
+    font-family: var(--s04-font-mono);
+    font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--s04-honey);
+    margin: 0;
+  }
+  .s04-subhead-mute {
+    color: var(--s04-fg-dim);
+  }
 
-    /* Hairline scratched through the headline */
-    .s05-headline .line.bottom {
-      position: relative;
-    }
+  .s04-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+  .s04-slide-marker {
+    font-family: var(--s04-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--s04-fg-dim);
+    text-transform: uppercase;
+  }
+  .s04-slide-num {
+    font-family: var(--s04-font-mono);
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: var(--s04-fg);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    opacity: 0.55;
+  }
 
-    /* ─── Active state — staggered word reveal ──────────────────── */
-    .slide[data-audio="05"].is-active .s05-eyebrow {
+  /* ============================================================
+     STAGE — the four pillars on a baseline
+     ============================================================ */
+
+  .s04-stage {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  /* ---------- honey thread connecting all 4 pillars ---------- */
+  .s04-thread {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 96px;
+    height: 1px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .s04-thread::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--s04-honey-dim) 8%,
+      var(--s04-honey) 50%,
+      var(--s04-honey-dim) 92%,
+      transparent 100%
+    );
+    opacity: 0.5;
+  }
+  /* travelling pulse along the thread */
+  .s04-thread::after {
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: radial-gradient(ellipse, var(--s04-honey) 0%, transparent 70%);
+    filter: blur(1px);
+    animation: s04-thread-travel 6.5s linear infinite;
+  }
+  @keyframes s04-thread-travel {
+    0%   { left: -10%; opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { left: 110%; opacity: 0; }
+  }
+
+  /* ---------- pillar grid ---------- */
+  .s04-pillars {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.08fr 1fr 1fr;
+    gap: clamp(14px, 1.6vw, 22px);
+    align-items: stretch;
+  }
+
+  /* ---------- individual pillar card ---------- */
+  .s04-pillar {
+    --accent: var(--s04-honey);
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 30%),
+      var(--s04-bg-elev);
+    border: 1px solid var(--s04-border);
+    border-radius: 4px;
+    padding: clamp(20px, 2.2vh, 28px) clamp(18px, 1.6vw, 24px) clamp(22px, 2.4vh, 30px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.6vh, 20px);
+    overflow: hidden;
+    transition:
+      border-color 0.45s ease,
+      transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+      box-shadow 0.45s ease,
+      background 0.45s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: s04-pillar-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes s04-pillar-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* pillar 2 (TOOL AUTHORITY) is the load-bearing claim → slightly taller */
+  .s04-pillar--hero {
+    margin-top: -8px;
+  }
+
+  /* top accent line */
+  .s04-pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+    opacity: 0.35;
+    transition: opacity 0.45s ease, height 0.45s ease;
+  }
+
+  /* corner notch — subtle linear-tier detail */
+  .s04-pillar::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 24px;
+    height: 24px;
+    background:
+      linear-gradient(135deg, transparent 0%, transparent 49%, var(--accent) 50%, var(--accent) 52%, transparent 53%);
+    opacity: 0.4;
+  }
+
+  /* ---------- active state (rotates between pillars + on hover) ---------- */
+  .s04-pillar.is-active,
+  .s04-pillar:hover {
+    border-color: var(--s04-border-warm);
+    background:
+      linear-gradient(180deg, rgba(254,189,51,0.06) 0%, rgba(255,255,255,0) 40%),
+      var(--s04-bg-elev);
+    box-shadow:
+      0 0 0 1px rgba(254,189,51,0.15),
+      0 20px 50px -20px rgba(254,189,51,0.35),
+      0 0 80px -30px rgba(254,189,51,0.55);
+    transform: translateY(-4px);
+  }
+  .s04-pillar.is-active::before,
+  .s04-pillar:hover::before {
+    opacity: 1;
+    height: 2px;
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .s04-pillar--hero.is-active,
+  .s04-pillar--hero:hover {
+    transform: translateY(-12px);
+  }
+
+  /* ---------- pillar content ---------- */
+  .s04-pillar-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .s04-pillar-num {
+    font-family: var(--s04-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--s04-fg-dim);
+  }
+  .s04-pillar-num strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .s04-pillar-tag {
+    font-family: var(--s04-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--s04-fg-dim);
+    padding: 3px 8px;
+    border: 1px solid var(--s04-border);
+    border-radius: 2px;
+  }
+
+  /* ---------- icon ---------- */
+  .s04-pillar-icon {
+    width: clamp(48px, 5vw, 64px);
+    height: clamp(48px, 5vw, 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: clamp(4px, 1vh, 12px) 0 clamp(4px, 1vh, 8px);
+  }
+  .s04-pillar-icon svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .s04-pillar-icon svg .ic-stroke {
+    stroke: var(--s04-fg-muted);
+    stroke-width: 1.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.5s ease;
+  }
+  .s04-pillar-icon svg .ic-accent {
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px var(--accent));
+  }
+  .s04-pillar-icon svg .ic-dot {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
+  .s04-pillar.is-active .s04-pillar-icon svg .ic-stroke,
+  .s04-pillar:hover .s04-pillar-icon svg .ic-stroke {
+    stroke: var(--s04-fg);
+  }
+
+  /* icon-specific animations */
+  .s04-pillar.is-active .ic-anim-spin,
+  .s04-pillar:hover .ic-anim-spin {
+    animation: s04-icon-spin 8s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  @keyframes s04-icon-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .s04-pillar.is-active .ic-anim-pulse,
+  .s04-pillar:hover .ic-anim-pulse {
+    animation: s04-icon-pulse 1.8s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  @keyframes s04-icon-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.12); }
+  }
+
+  .s04-pillar.is-active .ic-anim-flash,
+  .s04-pillar:hover .ic-anim-flash {
+    animation: s04-icon-flash 1.4s ease-out infinite;
+  }
+  @keyframes s04-icon-flash {
+    0%, 100% { opacity: 0.4; }
+    50%      { opacity: 1; }
+  }
+
+  /* ---------- stat ---------- */
+  .s04-pillar-stat {
+    font-family: var(--s04-font-mono);
+    font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-shadow: 0 0 18px rgba(254,189,51,0.35);
+  }
+  .s04-pillar-stat .dot {
+    display: inline-block;
+    margin: 0 6px;
+    color: var(--s04-fg-dim);
+    text-shadow: none;
+  }
+  .s04-pillar-stat .sub {
+    color: var(--s04-fg-muted);
+    text-shadow: none;
+    font-weight: 400;
+  }
+
+  /* ---------- title ---------- */
+  .s04-pillar-title {
+    font-size: clamp(1.05rem, 1.4vw, 1.32rem);
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--s04-fg);
+  }
+
+  /* ---------- body ---------- */
+  .s04-pillar-body {
+    font-size: clamp(0.78rem, 0.92vw, 0.92rem);
+    line-height: 1.5;
+    color: var(--s04-fg-muted);
+    margin: 0;
+    flex: 1;
+  }
+
+  /* ---------- bottom meta strip ---------- */
+  .s04-pillar-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: clamp(10px, 1.2vh, 14px);
+    border-top: 1px dashed var(--s04-border);
+    font-family: var(--s04-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--s04-fg-dim);
+  }
+  .s04-pillar-meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ---------- productivity receipt — fifth coordinate ---------- */
+  .s04-pillar-receipt {
+    margin-top: clamp(10px, 1.2vh, 14px);
+    padding-top: clamp(10px, 1.3vh, 14px);
+    border-top: 1px dashed var(--s04-border-warm);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .s04-pillar-receipt-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--s04-font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--s04-honey);
+  }
+  .s04-pillar-receipt-eyebrow::before {
+    content: '';
+    width: 14px;
+    height: 1px;
+    background: var(--s04-honey);
+    box-shadow: 0 0 5px var(--s04-honey);
+    opacity: 0.8;
+  }
+  .s04-pillar-receipt-stat {
+    font-family: var(--s04-font-mono);
+    font-size: clamp(0.72rem, 0.88vw, 0.84rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--s04-fg);
+    line-height: 1.35;
+  }
+
+  /* ============================================================
+     BASELINE — the literal "ground" the pillars stand on
+     ============================================================ */
+  .s04-baseline {
+    position: relative;
+    margin-top: clamp(18px, 2vh, 28px);
+    z-index: 2;
+  }
+  .s04-baseline-rule {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--s04-honey-dim) 6%,
+      var(--s04-honey) 50%,
+      var(--s04-honey-dim) 94%,
+      transparent 100%);
+    opacity: 0.7;
+  }
+  .s04-baseline-rule::before {
+    content: '';
+    position: absolute;
+    inset: -1px 0;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--s04-honey-soft) 30%,
+      var(--s04-honey-soft) 70%,
+      transparent 100%);
+    filter: blur(8px);
+    pointer-events: none;
+  }
+  .s04-baseline-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-family: var(--s04-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--s04-fg-dim);
+  }
+  .s04-baseline-label strong {
+    color: var(--s04-fg-muted);
+    font-weight: 500;
+  }
+  .s04-baseline-label .punch {
+    color: var(--s04-honey);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+  /* ============================================================
+     RESPONSIVE — laptop screens
+     ============================================================ */
+  @media (max-width: 1280px) {
+    .s04-pillar-body { font-size: 0.78rem; }
+    .s04-pillars { gap: 12px; }
+  }
+  @media (max-width: 980px) {
+    .slide[data-audio="05"] { padding: 32px 28px; }
+    .s04-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .s04-header-left { max-width: 100%; }
+    .s04-pillars { grid-template-columns: 1fr 1fr; }
+    .s04-thread { display: none; }
+    .s04-pillar--hero { margin-top: 0; }
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .s04-pillar,
+    .s04-headline em::after,
+    .s04-thread::after,
+    .ic-anim-spin,
+    .ic-anim-pulse,
+    .ic-anim-flash {
+      animation: none !important;
+    }
+    .s04-pillar {
       opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: none;
     }
-    .slide[data-audio="05"].is-active .s05-headline .word {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .slide[data-audio="05"].is-active .s05-headline .word.w1 { transition-delay: 0.15s; }
-    .slide[data-audio="05"].is-active .s05-headline .word.w2 { transition-delay: 0.28s; }
-    .slide[data-audio="05"].is-active .s05-headline .word.w3 { transition-delay: 0.70s; }
-    .slide[data-audio="05"].is-active .s05-headline .word.w4 { transition-delay: 0.85s; }
+    .s04-headline em::after { transform: scaleX(1); }
+  }
+</style>
 
-    /* ─── The split — two columns under the headline ────────────── */
-    .s05-split {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      gap: clamp(28px, 3vw, 64px);
-      align-items: stretch;
-    }
-
-    /* Diagonal honey hairline as divider */
-    .s05-split .divider {
-      position: relative;
-      width: 1px;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(254,189,51,0.05) 8%,
-        rgba(254,189,51,0.42) 50%,
-        rgba(254,189,51,0.05) 92%,
-        transparent 100%
-      );
-    }
-    .s05-split .divider::after {
-      content: "VS";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.36em;
-      color: var(--honey);
-      background: var(--bg);
-      padding: 8px 6px;
-      writing-mode: vertical-rl;
-      opacity: 0;
-      transition: opacity 1s ease 1.4s;
-    }
-    .slide[data-audio="05"].is-active .s05-split .divider::after { opacity: 1; }
-
-    /* ─── Column shell ──────────────────────────────────────────── */
-    .s05-col {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(6px, 0.8vh, 12px);
-      padding: clamp(14px, 1.6vh, 22px) clamp(18px, 1.8vw, 26px);
-      border-radius: 14px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .slide[data-audio="05"].is-active .s05-col.left  { transition-delay: 1.0s; opacity: 1; transform: translateY(0); }
-    .slide[data-audio="05"].is-active .s05-col.right { transition-delay: 1.1s; opacity: 1; transform: translateY(0); }
-
-    .s05-col.left {
-      background: rgba(255,255,255,0.015);
-      border: 1px dashed var(--border-cold);
-      filter: saturate(0.4) brightness(0.85);
-    }
-    .s05-col.left::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background:
-        repeating-linear-gradient(
-          45deg,
-          transparent 0 9px,
-          rgba(255,255,255,0.012) 9px 10px
-        );
-      pointer-events: none;
-    }
-    .s05-col.right {
-      background: var(--bg-elev);
-      border: 1px solid var(--border-warm);
-      box-shadow:
-        0 0 0 1px rgba(254,189,51,0.04),
-        0 20px 60px -20px rgba(254,189,51,0.20),
-        0 40px 120px -40px rgba(254,189,51,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-    .s05-col.right::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(254,189,51,0.18) 0%, transparent 65%);
-      filter: blur(20px);
-      pointer-events: none;
-      transform: translate(35%, -35%);
-    }
-
-    /* Column header */
-    .s05-col-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: clamp(10px, 1.2vh, 14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .s05-col.left .s05-col-head { border-bottom-style: dashed; border-bottom-color: var(--border-cold); }
-    .s05-col.right .s05-col-head { border-bottom-color: rgba(254,189,51,0.18); }
-
-    .s05-col-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-    .s05-col.left .s05-col-label  { color: var(--fg-dim); }
-    .s05-col.right .s05-col-label { color: var(--honey); }
-    .s05-col-label .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-    }
-    .s05-col.left  .s05-col-label .dot { background: var(--fg-ghost); }
-    .s05-col.right .s05-col-label .dot {
-      background: var(--honey);
-      box-shadow: 0 0 10px var(--honey);
-      animation: s05-pulse 2.4s ease-in-out infinite;
-    }
-    .s05-col-meta {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
-    .s05-col.left  .s05-col-meta { color: var(--fg-ghost); }
-    .s05-col.right .s05-col-meta { color: var(--fg-muted); }
-
-    /* ─── Comparison rows ───────────────────────────────────────── */
-    .s05-row {
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 5px;
-      padding: clamp(8px, 1vh, 12px) 0;
-    }
-    .s05-row + .s05-row {
-      border-top: 1px solid var(--border);
-    }
-    .s05-col.left .s05-row + .s05-row  { border-top-style: dashed; border-top-color: var(--border-cold); }
-    .s05-col.right .s05-row + .s05-row { border-top-color: rgba(254,189,51,0.08); }
-
-    .s05-row-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-    }
-    .s05-col.right .s05-row-label {
-      color: var(--teal);
-    }
-
-    .s05-row-body {
-      font-family: var(--font-display);
-      line-height: 1.35;
-      letter-spacing: -0.015em;
-    }
-    .s05-col.left .s05-row-body {
-      font-size: clamp(14px, 1.15vw, 18px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--fg-muted);
-      line-height: 1.4;
-    }
-    .s05-col.left .s05-row-body .quote { color: var(--fg-dim); }
-
-    .s05-col.right .s05-row-body {
-      font-size: clamp(14px, 1.2vw, 19px);
-      font-weight: 500;
-      color: var(--fg);
-      line-height: 1.4;
-    }
-    .s05-col.right .s05-row-body .verb {
-      color: var(--honey);
-      font-weight: 700;
-    }
-    .s05-col.right .s05-row-body .conj {
-      color: var(--fg-dim);
-      font-style: italic;
-      font-weight: 300;
-      margin: 0 6px;
-    }
-
-    /* Receipt strip under each Yogi row */
-    .s05-receipt {
-      margin-top: 4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 9px;
-      border-radius: 4px;
-      background: rgba(254,189,51,0.06);
-      border: 1px solid rgba(254,189,51,0.18);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--honey-soft);
-      width: fit-content;
-    }
-    .s05-receipt::before {
-      content: "▸";
-      color: var(--honey);
-      font-size: 9px;
-    }
-    .s05-receipt .sep {
-      color: var(--fg-ghost);
-      margin: 0 2px;
-    }
-    .s05-receipt .amt {
-      color: var(--honey);
-      font-weight: 600;
-    }
-
-    /* Left side gets a faded "no receipt" stub */
-    .s05-stub {
-      margin-top: 4px;
-      display: inline-block;
-      padding: 3px 9px;
-      border-radius: 4px;
-      border: 1px dashed var(--border-cold);
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fg-ghost);
-      width: fit-content;
-    }
-
-    /* ─── Footer band — the killer line + key numbers ───────────── */
-    .s05-footer {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 32px;
-      padding-top: clamp(12px, 1.4vh, 18px);
-      border-top: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.9s ease 1.4s, transform 0.9s ease 1.4s;
-    }
-    .slide[data-audio="05"].is-active .s05-footer { opacity: 1; transform: translateY(0); }
-
-    .s05-footer-q {
-      font-family: var(--font-display);
-      font-size: clamp(13px, 1.05vw, 17px);
-      line-height: 1.4;
-      letter-spacing: -0.01em;
-      color: var(--fg-muted);
-      max-width: 60ch;
-      font-style: italic;
-      font-weight: 300;
-      margin: 0;
-    }
-    .s05-footer-q strong {
-      color: var(--fg);
-      font-style: normal;
-      font-weight: 600;
-    }
-    .s05-footer-q .em {
-      color: var(--honey);
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .s05-stats {
-      display: flex;
-      gap: clamp(20px, 2vw, 36px);
-      align-items: flex-end;
-    }
-    .s05-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      text-align: right;
-    }
-    .s05-stat .v {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.1vw, 32px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--honey);
-      line-height: 1;
-    }
-    .s05-stat .k {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-    }
-    .s05-stat .sub {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      color: var(--fg-ghost);
-    }
-
-    /* ─── Tiny touches ──────────────────────────────────────────── */
-    .s05-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border: 1px solid var(--honey);
-      opacity: 0.55;
-    }
-    .s05-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
-    .s05-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
-    .s05-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
-    .s05-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="05"] *,
-      .slide[data-audio="05"] *::before,
-      .slide[data-audio="05"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        transition-delay: 0s !important;
-      }
-    }
-
-    /* Smaller laptops */
-    @media (max-width: 1280px) {
-      .slide[data-audio="05"] .content { padding: 40px 48px; }
-      .s05-split { grid-template-columns: 1fr 1px 1fr; gap: 28px; }
-    }
-  </style>
-
-  <div class="content">
-
-    <!-- Corner crosshairs -->
-    <span class="s05-corner tl"></span>
-    <span class="s05-corner tr"></span>
-    <span class="s05-corner bl"></span>
-    <span class="s05-corner br"></span>
-
-    <!-- ── Eyebrow ─────────────────────────────────────────────── -->
-    <div class="s05-eyebrow">
-      <span class="num">05 / 22</span>
-      <span class="sep"></span>
-      <span>the key differentiator</span>
-      <span class="sep"></span>
-      <span class="pill">tagline</span>
-    </div>
-
-    <!-- ── Headline ────────────────────────────────────────────── -->
-    <h1 class="s05-headline">
-      <span class="line top">
-        <span class="word w-chatbots w1">Chatbots</span>
-        <span class="word w-respond w2">respond.</span>
-      </span>
-      <span class="line bottom">
-        <span class="word w-yogi w3">Yogi</span>
-        <span class="word w-acts w4">acts<span class="period-honey">.</span></span>
-      </span>
-    </h1>
-
-    <!-- ── Split comparison ────────────────────────────────────── -->
-    <div class="s05-split">
-
-      <!-- LEFT: Chatbot — greyed, tired, dashed -->
-      <div class="s05-col left">
-        <div class="s05-col-head">
-          <div class="s05-col-label">
-            <span class="dot"></span>
-            <span>Chatbot</span>
-          </div>
-          <div class="s05-col-meta">search box</div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Discovery</div>
-          <div class="s05-row-body">
-            <span class="quote">"</span>Sure, I can help you investigate that complaint. Here are some steps you could take<span class="quote">…"</span>
-          </div>
-          <div class="s05-stub">no action taken</div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Memory</div>
-          <div class="s05-row-body">
-            Forgets the moment the tab closes. New chat, new stranger, every time.
-          </div>
-          <div class="s05-stub">session-bound</div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Authority</div>
-          <div class="s05-row-body">
-            Cannot open Outlook. Cannot touch the CRM. Cannot post on Teams.
-          </div>
-          <div class="s05-stub">text only · 0 tools</div>
-        </div>
-
-      </div>
-
-      <!-- Diagonal honey hairline -->
-      <div class="divider"></div>
-
-      <!-- RIGHT: Yogi — alive, honey-glow, real receipts -->
-      <div class="s05-col right">
-        <div class="s05-col-head">
-          <div class="s05-col-label">
-            <span class="dot"></span>
-            <span>Yogi</span>
-          </div>
-          <div class="s05-col-meta">coworker · 328 tools</div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Discovery</div>
-          <div class="s05-row-body">
-            Scans Zoho × MYOB × Aircall × Confluence <span class="conj">—</span> <span class="verb">attaches the draft response.</span>
-          </div>
-          <div class="s05-receipt">
-            <span>TJ Gardening</span><span class="sep">·</span><span>4 clients · 81 invoices</span><span class="sep">·</span><span class="amt">~$69K recovered</span>
-          </div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Memory</div>
-          <div class="s05-row-body">
-            <span class="verb">79 memory files</span> load every session <span class="conj">—</span> persistent since January, rsynced to private git weekly.
-          </div>
-          <div class="s05-receipt">
-            <span>Yogi repo</span><span class="sep">·</span><span>git snapshot 08:13 Mon</span><span class="sep">·</span><span>survives wipes</span>
-          </div>
-        </div>
-
-        <div class="s05-row">
-          <div class="s05-row-label">Authority</div>
-          <div class="s05-row-body">
-            <span class="verb">Sends</span> the email. <span class="verb">Schedules</span> the meeting. <span class="verb">Pushes</span> the fix. <span class="verb">Replies</span> on Teams.
-          </div>
-          <div class="s05-receipt">
-            <span>Phantom Batch</span><span class="sep">·</span><span>8 May · pipeline restored 4pm</span><span class="sep">·</span><span class="amt">$415K averted</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Footer band ─────────────────────────────────────────── -->
-    <div class="s05-footer">
-      <p class="s05-footer-q">
-        <strong>TC Assist Home is not another search box.</strong>
-        It is <em class="em">a coworker named Yogi</em> — the unit of work moves from minutes-of-doing to <em class="em">seconds-of-checking</em>.
+<div class="content">
+  <!-- =================== HEADER =================== -->
+  <header class="s04-header">
+    <div class="s04-header-left">
+      <p class="s04-eyebrow">
+        <span class="s04-eyebrow-num">04</span>
+        <span>Architecture · Foundations</span>
       </p>
-      <div class="s05-stats">
-        <div class="s05-stat">
-          <span class="v">47s</span>
-          <span class="k">investigation</span>
-          <span class="sub">draft attached</span>
+      <h1 class="s04-headline">
+        Four pillars. One outcome — <em>productivity.</em>
+      </h1>
+      <p class="s04-subhead">
+        Miss one — <span class="s04-subhead-mute">and you lose the productivity uplift.</span>
+      </p>
+    </div>
+    <div class="s04-header-right">
+      <span class="s04-slide-marker">Slide</span>
+      <span class="s04-slide-num">04</span>
+    </div>
+  </header>
+
+  <!-- =================== STAGE =================== -->
+  <div class="s04-stage">
+    <!-- honey thread weaving all 4 together -->
+    <div class="s04-thread" aria-hidden="true"></div>
+
+    <!-- =================== PILLARS =================== -->
+    <div class="s04-pillars" role="list">
+
+      <!-- ============ PILLAR 01 — PERSISTENT MEMORY ============ -->
+      <article class="s04-pillar" role="listitem" data-pillar="0" style="--delay: 100ms;">
+        <div class="s04-pillar-top">
+          <span class="s04-pillar-num"><strong>01</strong> · Foundation</span>
+          <span class="s04-pillar-tag">Memory</span>
         </div>
-        <div class="s05-stat">
-          <span class="v">328</span>
-          <span class="k">tools</span>
-          <span class="sub">authority to act</span>
+
+        <div class="s04-pillar-icon" aria-hidden="true">
+          <!-- Brain icon: lobed silhouette + neural pulse -->
+          <svg viewBox="0 0 64 64">
+            <g class="ic-anim-pulse">
+              <path class="ic-stroke" d="M22 18c-5 0-9 4-9 9 0 3 1 5 3 7-2 2-3 4-3 7 0 5 4 9 9 9 2 0 3-1 4-1v-30c-1 0-2-1-4-1z"/>
+              <path class="ic-stroke" d="M42 18c5 0 9 4 9 9 0 3-1 5-3 7 2 2 3 4 3 7 0 5-4 9-9 9-2 0-3-1-4-1v-30c1 0 2-1 4-1z"/>
+              <path class="ic-stroke" d="M32 16v32"/>
+            </g>
+            <path class="ic-accent" d="M22 28c4 0 6 2 10 2s6-2 10-2"/>
+            <path class="ic-accent" d="M22 38c4 0 6-2 10-2s6 2 10 2"/>
+            <circle class="ic-dot" cx="32" cy="22" r="1.8"/>
+            <circle class="ic-dot" cx="32" cy="42" r="1.8"/>
+          </svg>
         </div>
-        <div class="s05-stat">
-          <span class="v">$415K</span>
-          <span class="k">averted</span>
-          <span class="sub">phantom batch · 8 May</span>
+
+        <div class="s04-pillar-stat">
+          79 files <span class="dot">·</span> <span class="sub">100% recovered</span>
         </div>
-      </div>
+
+        <h2 class="s04-pillar-title">Persistent Memory</h2>
+
+        <p class="s04-pillar-body">
+          Memory lives in markdown, version-controlled in git, snapshotted weekly via launchd. Survives sessions, survives compaction, survives full restore in under five minutes.
+        </p>
+
+        <div class="s04-pillar-meta">
+          <span class="s04-pillar-meta-dot"></span>
+          <span>Across sessions · systems · users</span>
+        </div>
+
+        <div class="s04-pillar-receipt">
+          <span class="s04-pillar-receipt-eyebrow">Productivity</span>
+          <span class="s04-pillar-receipt-stat">Saves 12 min / session — no re-context required</span>
+        </div>
+      </article>
+
+      <!-- ============ PILLAR 02 — TOOL AUTHORITY (HERO) ============ -->
+      <article class="s04-pillar s04-pillar--hero is-active" role="listitem" data-pillar="1" style="--delay: 240ms;">
+        <div class="s04-pillar-top">
+          <span class="s04-pillar-num"><strong>02</strong> · Load-bearing</span>
+          <span class="s04-pillar-tag">Authority</span>
+        </div>
+
+        <div class="s04-pillar-icon" aria-hidden="true">
+          <!-- Lightning + write circuit -->
+          <svg viewBox="0 0 64 64">
+            <path class="ic-stroke" d="M10 32h12"/>
+            <path class="ic-stroke" d="M42 32h12"/>
+            <path class="ic-stroke" d="M32 10v6"/>
+            <path class="ic-stroke" d="M32 48v6"/>
+            <circle class="ic-stroke" cx="32" cy="32" r="14"/>
+            <path class="ic-accent ic-anim-flash" d="M34 20l-8 14h6l-2 10 8-14h-6l2-10z"/>
+            <circle class="ic-dot" cx="10" cy="32" r="2"/>
+            <circle class="ic-dot" cx="54" cy="32" r="2"/>
+            <circle class="ic-dot" cx="32" cy="10" r="2"/>
+            <circle class="ic-dot" cx="32" cy="54" r="2"/>
+          </svg>
+        </div>
+
+        <div class="s04-pillar-stat">
+          328 MCP tools <span class="dot">·</span> <span class="sub">real write access</span>
+        </div>
+
+        <h2 class="s04-pillar-title">Tool Authority</h2>
+
+        <p class="s04-pillar-body">
+          Real write access to Zoho, Databricks, MYOB, Aircall, M365, Confluence, Teams, Employment Hero, EzyCollect. Not read-only. Acts — with real consequences.
+        </p>
+
+        <div class="s04-pillar-meta">
+          <span class="s04-pillar-meta-dot"></span>
+          <span>Chatbots respond · Yogi acts</span>
+        </div>
+
+        <div class="s04-pillar-receipt">
+          <span class="s04-pillar-receipt-eyebrow">Productivity</span>
+          <span class="s04-pillar-receipt-stat">Yogi acts directly — skip 5 app switches / task</span>
+        </div>
+      </article>
+
+      <!-- ============ PILLAR 03 — MULTICHANNEL REACH ============ -->
+      <article class="s04-pillar" role="listitem" data-pillar="2" style="--delay: 380ms;">
+        <div class="s04-pillar-top">
+          <span class="s04-pillar-num"><strong>03</strong> · Surface</span>
+          <span class="s04-pillar-tag">Reach</span>
+        </div>
+
+        <div class="s04-pillar-icon" aria-hidden="true">
+          <!-- Broadcast: hub + concentric signal arcs -->
+          <svg viewBox="0 0 64 64">
+            <circle class="ic-dot" cx="32" cy="32" r="3"/>
+            <path class="ic-accent" d="M24 32a8 8 0 0 1 16 0"/>
+            <path class="ic-stroke" d="M18 32a14 14 0 0 1 28 0"/>
+            <path class="ic-stroke" d="M12 32a20 20 0 0 1 40 0"/>
+            <!-- channel nodes -->
+            <circle class="ic-dot" cx="14" cy="50" r="1.8"/>
+            <circle class="ic-dot" cx="32" cy="54" r="1.8"/>
+            <circle class="ic-dot" cx="50" cy="50" r="1.8"/>
+            <circle class="ic-stroke" cx="22" cy="52" r="0" />
+            <path class="ic-stroke" d="M14 50l9-15"/>
+            <path class="ic-stroke" d="M32 54v-18"/>
+            <path class="ic-stroke" d="M50 50l-9-15"/>
+          </svg>
+        </div>
+
+        <div class="s04-pillar-stat">
+          7 channels <span class="dot">·</span> <span class="sub">one bear</span>
+        </div>
+
+        <h2 class="s04-pillar-title">Multichannel Reach</h2>
+
+        <p class="s04-pillar-body">
+          Teams, Telegram, Terminal, iMessage, voice notes, web feedback widget, browser cubs. One bear, every surface a staffer already uses.
+        </p>
+
+        <div class="s04-pillar-meta">
+          <span class="s04-pillar-meta-dot"></span>
+          <span>Meet staff where they already work</span>
+        </div>
+
+        <div class="s04-pillar-receipt">
+          <span class="s04-pillar-receipt-eyebrow">Productivity</span>
+          <span class="s04-pillar-receipt-stat">Reaches you where you are — 0 logins, 0 new apps</span>
+        </div>
+      </article>
+
+      <!-- ============ PILLAR 04 — EVOLVING IDENTITY ============ -->
+      <article class="s04-pillar" role="listitem" data-pillar="3" style="--delay: 520ms;">
+        <div class="s04-pillar-top">
+          <span class="s04-pillar-num"><strong>04</strong> · Self</span>
+          <span class="s04-pillar-tag">Identity</span>
+        </div>
+
+        <div class="s04-pillar-icon" aria-hidden="true">
+          <!-- Bear silhouette w/ fingerprint-style swirl -->
+          <svg viewBox="0 0 64 64">
+            <!-- ears -->
+            <circle class="ic-stroke" cx="20" cy="20" r="5"/>
+            <circle class="ic-stroke" cx="44" cy="20" r="5"/>
+            <!-- head -->
+            <path class="ic-stroke" d="M14 36c0-10 8-16 18-16s18 6 18 16-8 18-18 18-18-8-18-18z"/>
+            <!-- fingerprint swirl inside -->
+            <g class="ic-anim-spin">
+              <path class="ic-accent" d="M32 28a8 8 0 0 1 0 16 5 5 0 0 1 0-10 2.5 2.5 0 0 1 0 5"/>
+            </g>
+            <!-- snout dot -->
+            <circle class="ic-dot" cx="32" cy="42" r="1.6"/>
+          </svg>
+        </div>
+
+        <div class="s04-pillar-stat">
+          47 auto-rules <span class="dot">·</span> <span class="sub">1 identity</span>
+        </div>
+
+        <h2 class="s04-pillar-title">Evolving Identity</h2>
+
+        <p class="s04-pillar-body">
+          Same Yogi every conversation. Persona, voice, signature, mannerisms. Self-patches via auto-rule extractor from user corrections. Grows.
+        </p>
+
+        <div class="s04-pillar-meta">
+          <span class="s04-pillar-meta-dot"></span>
+          <span>The same bear, every time</span>
+        </div>
+
+        <div class="s04-pillar-receipt">
+          <span class="s04-pillar-receipt-eyebrow">Productivity</span>
+          <span class="s04-pillar-receipt-stat">Learns your preferences — never asks twice</span>
+        </div>
+      </article>
+
     </div>
 
+    <!-- =================== BASELINE =================== -->
+    <div class="s04-baseline" aria-hidden="true">
+      <div class="s04-baseline-rule"></div>
+      <div class="s04-baseline-label">
+        <strong>Foundation · one platform</strong>
+        <span class="punch">Remove any column → the productivity uplift collapses</span>
+      </div>
+    </div>
   </div>
+</div>
 
-  <script>
-    (function () {
-      const slide = document.currentScript.closest('.slide');
-      if (!slide) return;
+<script>
+  (function () {
+    // Rotate "active" highlight across pillars on slide enter,
+    // pausing on hover. Hero (02) is the default active state.
+    function activate(slideEl) {
+      if (!slideEl) return;
+      var pillars = slideEl.querySelectorAll('.s04-pillar');
+      if (!pillars.length) return;
 
-      function enter() {
-        slide.classList.add('is-active');
-      }
-      function leave() {
-        slide.classList.remove('is-active');
-      }
+      var reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
 
-      // Hook into the deck runtime if it exposes one
-      slide.onSlideEnter = enter;
-      slide.onSlideLeave = leave;
+      var idx = 1; // start on hero
+      var timer = null;
+      var paused = false;
 
-      // Also auto-activate when the slide scrolls into view
-      // (graceful fallback if the deck doesn't drive enter/leave)
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
+      function setActive(i) {
+        pillars.forEach(function (p, k) {
+          if (k === i) p.classList.add('is-active');
+          else p.classList.remove('is-active');
         });
-      }, { threshold: [0, 0.4, 0.8] });
-      io.observe(slide);
+      }
 
-      // If the deck calls window.onSlideEnter('05'), respect it too
-      const prev = window.onSlideEnter;
-      window.onSlideEnter = function (id) {
-        if (typeof prev === 'function') try { prev(id); } catch (_) {}
-        if (id === '05' || id === 5) enter();
+      function tick() {
+        if (paused) return;
+        idx = (idx + 1) % pillars.length;
+        setActive(idx);
+      }
+
+      pillars.forEach(function (p) {
+        p.addEventListener('mouseenter', function () { paused = true; });
+        p.addEventListener('mouseleave', function () { paused = false; });
+      });
+
+      setActive(idx);
+      timer = setInterval(tick, 3800);
+
+      // Cleanup hook if framework calls onSlideExit
+      slideEl._slide04Cleanup = function () {
+        if (timer) clearInterval(timer);
       };
-    })();
-  </script>
+    }
+
+    // Support both deck-driven and standalone preview
+    var current = document.currentScript && document.currentScript.closest('section.slide');
+
+    if (typeof window !== 'undefined') {
+      var prev = window.onSlideEnter;
+      window.onSlideEnter = function (el) {
+        if (typeof prev === 'function') {
+          try { prev(el); } catch (e) {}
+        }
+        if (el && el.matches && el.matches('section.slide[data-audio="05"]')) {
+          activate(el);
+        }
+      };
+    }
+
+    // If we're already inserted into the DOM (e.g. standalone preview),
+    // boot immediately.
+    if (current && document.body && document.body.contains(current)) {
+      activate(current);
+    } else if (current) {
+      // Defer until insertion
+      var obs = new MutationObserver(function () {
+        if (document.body && document.body.contains(current)) {
+          obs.disconnect();
+          activate(current);
+        }
+      });
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+    }
+  })();
+</script>
 </section>

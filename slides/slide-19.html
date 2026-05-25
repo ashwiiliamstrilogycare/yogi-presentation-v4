@@ -1,1841 +1,880 @@
 <section class="slide" data-audio="19">
   <style>
-    /* ============================================================
-       SLIDE 19 — CUBS · MAC-RESIDENT COMPANION AGENTS
-       v4: HERO VIDEO STAGE flanked by topology (L) + anatomy (R).
-       The audience SEES a cub in action — cursor moves, clicks,
-       fills forms. Companion framing: operator-in-the-loop.
-       ============================================================ */
-
+    /* ============ SLIDE 17 — RESEARCH → TC OUTCOMES ============
+       Cinematic systems-map. Six rows. Each row reads as a research-grade
+       lab note: [Pattern · citation · lab chip] → [TC operation] → [Hero number].
+       Packet pulse animates left→right on the honey arrow every ~3s.
+    */
     .slide[data-audio="19"] {
-      --s19-bg:          #0a0d12;
-      --s19-bg-elev:     #11161f;
-      --s19-bg-deep:     #070a0e;
-      --s19-bg-glass:    rgba(255, 255, 255, 0.025);
-
-      --s19-honey:       #FEBD33;
-      --s19-honey-soft:  rgba(254, 189, 51, 0.14);
-      --s19-honey-glow:  rgba(254, 189, 51, 0.55);
-      --s19-honey-line:  rgba(254, 189, 51, 0.85);
-      --s19-honey-dim:   rgba(254, 189, 51, 0.35);
-
-      --s19-teal:        #43C0BE;
-      --s19-teal-soft:   rgba(67, 192, 190, 0.14);
-      --s19-teal-glow:   rgba(67, 192, 190, 0.55);
-
-      --s19-sky:         #64BCEA;
-      --s19-sky-soft:    rgba(100, 188, 234, 0.14);
-      --s19-sky-glow:    rgba(100, 188, 234, 0.5);
-
-      --s19-red:         #E04B51;
-      --s19-red-glow:    rgba(224, 75, 81, 0.65);
-
-      --s19-fg:          #f4f4f5;
-      --s19-fg-muted:    #a1a1aa;
-      --s19-fg-dim:      #71717a;
-      --s19-fg-faint:    #52525b;
-
-      --s19-border:      rgba(255, 255, 255, 0.07);
-      --s19-border-strong: rgba(255, 255, 255, 0.14);
-      --s19-border-warm: rgba(254, 189, 51, 0.28);
-      --s19-border-cool: rgba(67, 192, 190, 0.28);
-
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s19-bg);
-      color: var(--s19-fg);
-      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      background:
+        radial-gradient(ellipse 55% 40% at 10% 12%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 92% 92%, rgba(67,192,190,0.05), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.02), transparent 60%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
       overflow: hidden;
-      isolation: isolate;
       letter-spacing: -0.01em;
     }
 
-    /* ---------- Atmosphere ---------- */
-    .slide[data-audio="19"] .s19-atmos {
+    /* engineering grid watermark */
+    .slide[data-audio="19"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 88% 82% at center, black 35%, transparent 92%);
+      pointer-events: none;
+    }
+    /* film grain */
+    .slide[data-audio="19"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.42;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s17b-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: clamp(28px, 2.6vw, 52px) clamp(44px, 4.6vw, 80px) clamp(22px, 2vw, 36px);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    /* corner registration marks */
+    .s17b-mark {
       position: absolute;
-      inset: 0;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
+    }
+    .s17b-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
+    .s17b-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
+    .s17b-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
+    .s17b-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
+
+    .s17b-stamp {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+
+    /* ---------- HEADER ---------- */
+    .s17b-head {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: clamp(28px, 3vw, 52px);
+      align-items: flex-end;
+      margin-bottom: clamp(18px, 1.8vw, 30px);
+    }
+    .s17b-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .s17b-eyebrow .rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+    }
+    .s17b-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s17b-pulse 2.4s ease-in-out infinite;
+    }
+    .s17b-eyebrow .muted {
+      color: var(--fg-muted);
+      letter-spacing: 0.32em;
+    }
+    @keyframes s17b-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
+    }
+    .s17b-headline {
+      font-size: clamp(38px, 4.6vw, 80px);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+    .s17b-headline .period { color: var(--honey); }
+
+    .s17b-subhead {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.8vw, 13px);
+      line-height: 1.6;
+      color: var(--honey);
+      max-width: 480px;
+      padding-bottom: 6px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .s17b-subhead .accent {
+      color: var(--fg);
+      letter-spacing: 0.18em;
+    }
+    .s17b-subhead .dotsep {
+      color: rgba(254,189,51,0.4);
+      margin: 0 8px;
+    }
+    .s17b-subhead .caption {
+      display: block;
+      text-transform: none;
+      letter-spacing: -0.005em;
+      color: var(--fg-muted);
+      margin-top: 10px;
+      font-size: 0.92em;
+      line-height: 1.55;
+    }
+
+    /* ---------- ROWS CONTAINER ---------- */
+    .s17b-rows {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .s17b-rows::before {
+      /* top boundary */
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254,189,51,0.42) 8%,
+        rgba(254,189,51,0.42) 92%,
+        transparent 100%);
+    }
+
+    /* ---------- INDIVIDUAL ROW ---------- */
+    .s17b-row {
+      display: grid;
+      grid-template-columns: 35% 30% 35%;
+      align-items: center;
+      padding: clamp(12px, 1.4vw, 22px) clamp(4px, 0.4vw, 8px);
+      border-bottom: 1px solid rgba(254,189,51,0.16);
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .slide[data-audio="19"].is-active .s17b-row {
+      animation: s17b-row-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    @keyframes s17b-row-in {
+      0%   { opacity: 0; transform: translateY(14px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .s17b-row.rA { animation-delay: 140ms; }
+    .s17b-row.rB { animation-delay: 230ms; }
+    .s17b-row.rC { animation-delay: 320ms; }
+    .s17b-row.rD { animation-delay: 410ms; }
+    .s17b-row.rE { animation-delay: 500ms; }
+    .s17b-row.rF { animation-delay: 590ms; }
+
+    /* row number badge — sits at the absolute leftmost edge */
+    .s17b-row-no {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      color: var(--fg-dim);
+      width: 22px;
+      text-align: right;
+    }
+
+    /* hover glow — subtle row warm-up */
+    .s17b-row:hover {
+      background: linear-gradient(90deg,
+        rgba(254,189,51,0.02) 0%,
+        rgba(254,189,51,0.04) 40%,
+        rgba(67,192,190,0.02) 100%);
+    }
+    .s17b-row:hover .s17b-arrow-path {
+      stroke: rgba(254,189,51,0.95);
+    }
+
+    /* ---------- LEFT SEGMENT — RESEARCH PATTERN ---------- */
+    .s17b-left {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1vw, 18px);
+      padding-right: clamp(16px, 1.6vw, 26px);
+    }
+    .s17b-lab {
+      width: clamp(34px, 2.6vw, 42px);
+      height: clamp(34px, 2.6vw, 42px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(11px, 0.82vw, 13px);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      border: 1px solid currentColor;
+      position: relative;
+    }
+    .s17b-lab::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px dashed currentColor;
+      opacity: 0.25;
+    }
+    .s17b-lab.l-anthropic { color: var(--honey);  background: rgba(254,189,51,0.08); }
+    .s17b-lab.l-openai    { color: var(--teal);   background: rgba(67,192,190,0.08); }
+    .s17b-lab.l-deepmind  { color: var(--sky);    background: rgba(100,188,234,0.08); }
+    .s17b-lab.l-brain     { color: var(--violet); background: rgba(155,123,212,0.08); }
+    .s17b-lab.l-stanford  { color: var(--coral);  background: rgba(243,155,90,0.08); }
+
+    .s17b-left-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .s17b-pattern {
+      font-size: clamp(15px, 1.18vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      line-height: 1.15;
+      margin: 0 0 5px 0;
+    }
+    .s17b-pattern .plus {
+      color: var(--honey);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .s17b-cite {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.04em;
+      color: var(--fg-dim);
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .s17b-cite .lab-name {
+      color: var(--fg-muted);
+    }
+    .s17b-cite .arxiv {
+      color: var(--fg-dim);
+    }
+    .s17b-cite .yr {
+      color: var(--honey);
+      opacity: 0.78;
+    }
+    .s17b-cite .dot {
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ---------- MIDDLE SEGMENT — TC OPERATION (with arrow) ---------- */
+    .s17b-mid {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(8px, 1vw, 16px);
+    }
+
+    /* SVG arrow occupying the full middle column width */
+    .s17b-arrow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 18px;
       pointer-events: none;
       z-index: 0;
     }
-    .slide[data-audio="19"] .s19-glow-top {
-      position: absolute;
-      top: -25%;
-      left: 38%;
-      width: 70vmin;
-      height: 70vmin;
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.14) 0%,
-        rgba(254, 189, 51, 0.04) 35%,
-        transparent 65%);
-      filter: blur(10px);
-      opacity: 0;
-      animation: s19-fade 2400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="19"] .s19-glow-right {
-      position: absolute;
-      bottom: -20%;
-      right: -8%;
-      width: 55vmin;
-      height: 55vmin;
-      background: radial-gradient(circle at center,
-        rgba(67, 192, 190, 0.10) 0%,
-        rgba(67, 192, 190, 0.03) 40%,
-        transparent 65%);
-      filter: blur(14px);
-      opacity: 0;
-      animation: s19-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
-    }
-    .slide[data-audio="19"] .s19-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 88px 88px;
-      mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
-      opacity: 0;
-      animation: s19-fade 1800ms ease 500ms forwards;
-    }
-
-    /* Corner crosshairs */
-    .slide[data-audio="19"] .s19-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-color: var(--s19-fg-faint);
-      opacity: 0;
-      animation: s19-fade 900ms ease 300ms forwards;
-      z-index: 3;
-    }
-    .slide[data-audio="19"] .s19-corner.tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="19"] .s19-corner.tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
-    .slide[data-audio="19"] .s19-corner.bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="19"] .s19-corner.br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
-
-    /* ---------- Frame ---------- */
-    .slide[data-audio="19"] .s19-frame {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(28px, 3.4vmin, 52px) clamp(40px, 5vmin, 80px);
-      display: flex;
-      flex-direction: column;
-      gap: clamp(18px, 2.4vmin, 32px);
-    }
-
-    /* ---------- Header ---------- */
-    .slide[data-audio="19"] .s19-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
-      opacity: 0;
-      animation: s19-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="19"] .s19-header-l {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .slide[data-audio="19"] .s19-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 13px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="19"] .s19-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-honey);
-      box-shadow: 0 0 12px var(--s19-honey-glow);
-      animation: s19-pulse 2200ms ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-eyebrow .sep { color: var(--s19-fg-faint); }
-
-    .slide[data-audio="19"] .s19-title {
-      font-size: clamp(42px, 6vmin, 80px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="19"] .s19-title em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-    .slide[data-audio="19"] .s19-subhead {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.25vmin, 15px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 4px;
-    }
-    .slide[data-audio="19"] .s19-subhead .pip { color: var(--s19-fg-faint); }
-
-    .slide[data-audio="19"] .s19-header-r {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
-    }
-    .slide[data-audio="19"] .s19-stamp {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1vmin, 12px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="19"] .s19-stamp .pre {
-      color: var(--s19-sky);
-    }
-    .slide[data-audio="19"] .s19-slidenum {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.1vmin, 14px);
-      color: var(--s19-fg-faint);
-      letter-spacing: 0.12em;
-    }
-    .slide[data-audio="19"] .s19-companion-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 5px 11px;
-      border: 1px solid var(--s19-border-cool);
-      background: var(--s19-teal-soft);
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-teal);
-    }
-    .slide[data-audio="19"] .s19-companion-chip .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 8px var(--s19-teal-glow);
-    }
-
-    /* ============================================================
-       MAIN — 3 COLUMN: TOPOLOGY | HERO VIDEO | ANATOMY
-       ============================================================ */
-    .slide[data-audio="19"] .s19-split {
-      display: grid;
-      grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.1fr) minmax(0, 0.42fr);
-      gap: clamp(18px, 2.4vmin, 36px);
-      flex: 1;
-      min-height: 0;
-    }
-
-    /* ============================================================
-       LEFT — Topology (compact)
-       ============================================================ */
-    .slide[data-audio="19"] .s19-left {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(12px, 1.6vmin, 22px);
-      padding: clamp(16px, 1.9vmin, 26px) clamp(14px, 1.7vmin, 22px);
-      border: 1px solid var(--s19-border);
-      border-radius: 14px;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 18%,
-          rgba(254, 189, 51, 0.06) 0%,
-          transparent 70%),
-        linear-gradient(180deg,
-          var(--s19-bg-elev) 0%,
-          var(--s19-bg-deep) 100%);
-      overflow: hidden;
-      isolation: isolate;
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards;
-    }
-    .slide[data-audio="19"] .s19-left::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-        var(--s19-honey) 0%,
-        var(--s19-honey) 38%,
-        rgba(254, 189, 51, 0.2) 100%);
-      box-shadow: 0 0 14px rgba(254, 189, 51, 0.5);
-      z-index: 4;
-    }
-
-    .slide[data-audio="19"] .s19-panel-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11.5px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="19"] .s19-panel-head .tag {
-      color: var(--s19-honey);
-      padding: 3px 8px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-    }
-    .slide[data-audio="19"] .s19-panel-head .divider {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
-    }
-
-    /* ---------- The Yogi orb (compact) ---------- */
-    .slide[data-audio="19"] .s19-cloud {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: clamp(6px, 1vmin, 14px) 0 clamp(2px, 0.4vmin, 8px);
-    }
-    .slide[data-audio="19"] .s19-orb-wrap {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .slide[data-audio="19"] .s19-orb-rings {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, calc(-50% - 16px));
-      width: clamp(120px, 16vmin, 180px);
-      height: clamp(120px, 16vmin, 180px);
-      pointer-events: none;
-    }
-    .slide[data-audio="19"] .s19-orb-rings::before,
-    .slide[data-audio="19"] .s19-orb-rings::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1px dashed var(--s19-honey-dim);
-      opacity: 0.5;
-    }
-    .slide[data-audio="19"] .s19-orb-rings::after {
-      inset: 18%;
-      border-style: solid;
-      border-color: rgba(254, 189, 51, 0.18);
-      opacity: 0.6;
-      animation: s19-spin 22s linear infinite;
-    }
-    .slide[data-audio="19"] .s19-orb-rings::before {
-      animation: s19-spin-rev 32s linear infinite;
-    }
-
-    .slide[data-audio="19"] .s19-orb {
-      position: relative;
-      width: clamp(60px, 8vmin, 92px);
-      height: clamp(60px, 8vmin, 92px);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 32% 30%,
-          rgba(255, 220, 130, 0.95) 0%,
-          var(--s19-honey) 25%,
-          #d99720 70%,
-          #7a5210 100%);
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.45),
-        0 0 24px rgba(254, 189, 51, 0.55),
-        0 0 60px rgba(254, 189, 51, 0.32),
-        inset 0 0 16px rgba(255, 240, 200, 0.3);
-      animation: s19-orb-breathe 4.5s ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-orb::after {
-      content: '';
-      position: absolute;
-      top: 18%;
-      left: 24%;
-      width: 26%;
-      height: 22%;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center,
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0) 70%);
-      filter: blur(2px);
-    }
-
-    .slide[data-audio="19"] .s19-orb-label {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 1vmin, 11px);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      text-align: center;
-    }
-    .slide[data-audio="19"] .s19-orb-label .name {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(15px, 1.85vmin, 22px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-transform: none;
-      color: var(--s19-fg);
-      display: block;
-      margin-bottom: 2px;
-    }
-    .slide[data-audio="19"] .s19-orb-label .name em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-
-    /* ---------- Connector lines (cloud → fleet) ---------- */
-    .slide[data-audio="19"] .s19-connectors {
-      position: relative;
-      height: clamp(34px, 4.5vmin, 60px);
-      width: 100%;
-      pointer-events: none;
-    }
-    .slide[data-audio="19"] .s19-connectors svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-    .slide[data-audio="19"] .s19-connectors path {
+    .s17b-arrow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .s17b-arrow-path {
       fill: none;
-      stroke: var(--s19-honey-dim);
+      stroke: rgba(254,189,51,0.55);
       stroke-width: 1;
-      stroke-dasharray: 3 4;
-      stroke-dashoffset: 0;
-      opacity: 0;
-      animation-name: s19-dash, s19-fade-stroke;
-      animation-duration: 18s, 1200ms;
-      animation-delay: 0s, 1100ms;
-      animation-fill-mode: none, forwards;
-      animation-timing-function: linear, ease;
-      animation-iteration-count: infinite, 1;
+      stroke-dasharray: 3 3;
+      transition: stroke 320ms ease;
     }
-    .slide[data-audio="19"] .s19-connectors .pkt {
-      fill: var(--s19-honey);
-      filter: drop-shadow(0 0 4px var(--s19-honey-glow));
-      opacity: 0;
-      animation: s19-pkt 3.5s ease-in-out infinite;
+    .s17b-arrow-head {
+      fill: var(--honey);
     }
-    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(7) { animation-delay: 0.2s; }
-    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(8) { animation-delay: 0.7s; }
-    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(9) { animation-delay: 1.2s; }
-    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(10) { animation-delay: 1.7s; }
-    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(11) { animation-delay: 2.2s; }
+    /* the packet — a tiny honey blip that streams along the arrow */
+    .s17b-packet {
+      fill: var(--honey);
+    }
+    .slide[data-audio="19"].is-active .s17b-packet {
+      animation: s17b-packet 3.4s cubic-bezier(.45,.05,.55,1) infinite;
+    }
+    @keyframes s17b-packet {
+      0%   { transform: translateX(0);     opacity: 0; }
+      8%   { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateX(100%);  opacity: 0; }
+    }
+    /* stagger packet phase per row so they fire offset */
+    .s17b-row.rA .s17b-packet { animation-delay: 0.0s; }
+    .s17b-row.rB .s17b-packet { animation-delay: 0.55s; }
+    .s17b-row.rC .s17b-packet { animation-delay: 1.10s; }
+    .s17b-row.rD .s17b-packet { animation-delay: 1.65s; }
+    .s17b-row.rE .s17b-packet { animation-delay: 2.20s; }
+    .s17b-row.rF .s17b-packet { animation-delay: 2.75s; }
 
-    /* ---------- Mac fleet row (compact, 5 wide) ---------- */
-    .slide[data-audio="19"] .s19-fleet {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: clamp(5px, 0.8vmin, 10px);
-      padding: 0 2px;
-    }
-    .slide[data-audio="19"] .s19-mac {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      opacity: 0;
-      animation: s19-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="19"] .s19-mac:nth-child(1) { animation-delay: 1200ms; }
-    .slide[data-audio="19"] .s19-mac:nth-child(2) { animation-delay: 1300ms; }
-    .slide[data-audio="19"] .s19-mac:nth-child(3) { animation-delay: 1400ms; }
-    .slide[data-audio="19"] .s19-mac:nth-child(4) { animation-delay: 1500ms; }
-    .slide[data-audio="19"] .s19-mac:nth-child(5) { animation-delay: 1600ms; }
-
-    .slide[data-audio="19"] .s19-mac-shape {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1.4 / 1;
-      max-width: 78px;
-    }
-    .slide[data-audio="19"] .s19-mac-screen {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 78%;
-      border: 1.2px solid var(--s19-border-strong);
-      border-radius: 5px 5px 2px 2px;
-      background:
-        radial-gradient(ellipse at 50% 40%,
-          rgba(67, 192, 190, 0.10) 0%,
-          rgba(0, 0, 0, 0.65) 75%),
-        linear-gradient(180deg, #0d1218 0%, #060809 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .slide[data-audio="19"] .s19-mac-screen::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.02) 0px,
-          rgba(255, 255, 255, 0.02) 1px,
-          transparent 1px,
-          transparent 4px);
-      mix-blend-mode: overlay;
-    }
-    .slide[data-audio="19"] .s19-mac-base {
-      position: absolute;
-      bottom: 0;
-      left: -8%;
-      right: -8%;
-      height: 7%;
-      background: linear-gradient(180deg,
-        #2a2f3a 0%,
-        #14181f 100%);
-      border-radius: 1px 1px 4px 4px;
-    }
-    .slide[data-audio="19"] .s19-mac-base::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 36%;
-      right: 36%;
-      height: 40%;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 0 0 4px 4px;
-    }
-    .slide[data-audio="19"] .s19-mac-hinge {
-      position: absolute;
-      top: 78%;
-      left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(180deg, #1a1f28, #0a0d12);
-    }
-
-    .slide[data-audio="19"] .s19-cub {
-      position: relative;
-      width: 50%;
-      height: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      filter: drop-shadow(0 0 5px var(--s19-teal-glow));
-      animation: s19-cub-breathe 3.2s ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-cub:nth-of-type(odd) { animation-delay: 0.6s; }
-    .slide[data-audio="19"] .s19-cub svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide[data-audio="19"] .s19-mac-label {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(7px, 0.78vmin, 9px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s19-fg-faint);
-    }
-    .slide[data-audio="19"] .s19-mac-label .num {
-      color: var(--s19-teal);
-    }
-
-    .slide[data-audio="19"] .s19-fleet-caption {
-      margin-top: clamp(6px, 1vmin, 12px);
-      text-align: center;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s19-fg-muted);
-    }
-    .slide[data-audio="19"] .s19-fleet-caption strong {
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-fleet-caption .pip {
-      color: var(--s19-fg-faint);
-      margin: 0 8px;
-    }
-
-    .slide[data-audio="19"] .s19-callout {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: clamp(10px, 1.4vmin, 16px) clamp(12px, 1.6vmin, 18px);
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg,
-          rgba(254, 189, 51, 0.10) 0%,
-          rgba(254, 189, 51, 0.02) 60%,
-          transparent 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .slide[data-audio="19"] .s19-callout::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 0;
-      width: 2px;
-      background: var(--s19-honey);
-      box-shadow: 0 0 10px var(--s19-honey-glow);
-    }
-    .slide[data-audio="19"] .s19-callout .badge {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      padding: 3px 7px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      white-space: nowrap;
-    }
-    .slide[data-audio="19"] .s19-callout .copy {
-      font-size: clamp(11px, 1.2vmin, 13.5px);
-      color: var(--s19-fg);
-      letter-spacing: -0.005em;
-      line-height: 1.4;
-    }
-    .slide[data-audio="19"] .s19-callout .copy strong {
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-
-    /* ============================================================
-       CENTER — HERO VIDEO STAGE
-       ============================================================ */
-    .slide[data-audio="19"] .s19-stage {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(10px, 1.4vmin, 18px);
-      min-height: 0;
-      opacity: 0;
-      animation: s19-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 350ms forwards;
-    }
-
-    .slide[data-audio="19"] .s19-stage-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11.5px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="19"] .s19-stage-head .tag {
-      color: var(--s19-fg);
-      padding: 4px 10px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      letter-spacing: 0.22em;
-    }
-    .slide[data-audio="19"] .s19-stage-head .tag.live {
-      color: var(--s19-red);
-      border-color: rgba(224, 75, 81, 0.4);
-      background: rgba(224, 75, 81, 0.08);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .slide[data-audio="19"] .s19-stage-head .tag.live::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-red);
-      box-shadow: 0 0 10px var(--s19-red-glow);
-      animation: s19-pulse 1400ms ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-stage-head .divider {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
-    }
-    .slide[data-audio="19"] .s19-stage-head .meta {
-      color: var(--s19-fg-muted);
-    }
-
-    /* Annotation chips (positioned around the video) */
-    .slide[data-audio="19"] .s19-anno-grid {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* The screen recording window */
-    .slide[data-audio="19"] .s19-window {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 12px;
-      background: var(--s19-bg-deep);
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.12),
-        0 24px 80px -20px rgba(0, 0, 0, 0.75),
-        0 0 60px -10px rgba(254, 189, 51, 0.28),
-        0 0 120px -30px rgba(67, 192, 190, 0.18);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    /* Honey bloom on top edge */
-    .slide[data-audio="19"] .s19-window::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        var(--s19-honey) 30%,
-        var(--s19-honey) 70%,
-        transparent 100%);
-      box-shadow: 0 0 16px rgba(254, 189, 51, 0.6);
-      z-index: 5;
-    }
-
-    /* Window chrome — Mac-style titlebar */
-    .slide[data-audio="19"] .s19-chrome {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(180deg, #1a1f29 0%, #14181f 100%);
-      border-bottom: 1px solid var(--s19-border);
-      position: relative;
-      z-index: 4;
-    }
-    .slide[data-audio="19"] .s19-dots {
-      display: flex;
-      gap: 7px;
-      align-items: center;
-    }
-    .slide[data-audio="19"] .s19-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.4);
-    }
-    .slide[data-audio="19"] .s19-dot.red    { background: #ff5f57; }
-    .slide[data-audio="19"] .s19-dot.yellow { background: #febc2e; }
-    .slide[data-audio="19"] .s19-dot.green  { background: #28c840; }
-
-    .slide[data-audio="19"] .s19-urlbar {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 12px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--s19-border);
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.1vmin, 12.5px);
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.02em;
-      max-width: 70%;
-      margin: 0 auto;
-    }
-    .slide[data-audio="19"] .s19-urlbar .scheme {
-      color: var(--s19-teal);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-urlbar .path {
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="19"] .s19-urlbar .lock {
-      color: var(--s19-teal);
-      font-size: 0.9em;
-    }
-    .slide[data-audio="19"] .s19-urlbar .cursor-blink {
-      width: 6px;
-      height: 12px;
-      background: var(--s19-honey);
-      box-shadow: 0 0 6px var(--s19-honey-glow);
-      animation: s19-blink 1.1s ease-in-out infinite;
-      margin-left: 2px;
-    }
-
-    .slide[data-audio="19"] .s19-chrome-meta {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11px);
-      color: var(--s19-fg-faint);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .slide[data-audio="19"] .s19-chrome-meta strong {
-      color: var(--s19-teal);
-      font-weight: 600;
-    }
-
-    /* The actual GIF surface */
-    .slide[data-audio="19"] .s19-screen {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      background: #000;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide[data-audio="19"] .s19-screen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    /* Subtle scanline / CRT overlay on the video */
-    .slide[data-audio="19"] .s19-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.015) 0px,
-          rgba(255, 255, 255, 0.015) 1px,
-          transparent 1px,
-          transparent 3px),
-        radial-gradient(ellipse at center,
-          transparent 55%,
-          rgba(0, 0, 0, 0.35) 100%);
-      pointer-events: none;
-      mix-blend-mode: overlay;
-      z-index: 2;
-    }
-
-    /* Annotation chips floating around the video */
-    .slide[data-audio="19"] .s19-anno {
-      position: absolute;
-      z-index: 6;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 11px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.95vmin, 11px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      opacity: 0;
-      animation: s19-fade 800ms cubic-bezier(0.16, 1, 0.3, 1) 1600ms forwards;
-      white-space: nowrap;
-    }
-    .slide[data-audio="19"] .s19-anno.tl {
-      top: 12px;
-      left: 12px;
-      color: var(--s19-honey);
-      background: rgba(10, 13, 18, 0.78);
-      border: 1px solid var(--s19-border-warm);
-    }
-    .slide[data-audio="19"] .s19-anno.tl .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-honey);
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-      animation: s19-pulse 2200ms ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-anno.tr {
-      top: 12px;
-      right: 12px;
-      color: var(--s19-red);
-      background: rgba(10, 13, 18, 0.78);
-      border: 1px solid rgba(224, 75, 81, 0.4);
-      animation-delay: 1800ms;
-    }
-    .slide[data-audio="19"] .s19-anno.tr .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-red);
-      box-shadow: 0 0 8px var(--s19-red-glow);
-      animation: s19-pulse 1100ms ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-anno.bl {
-      bottom: 12px;
-      left: 12px;
-      color: var(--s19-teal);
-      background: rgba(10, 13, 18, 0.82);
-      border: 1px solid var(--s19-border-cool);
-      text-transform: none;
-      letter-spacing: 0.04em;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      animation-delay: 2000ms;
-    }
-    .slide[data-audio="19"] .s19-anno.bl .accent {
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="19"] .s19-anno.br {
-      bottom: 12px;
-      right: 12px;
-      color: var(--s19-honey);
-      background: rgba(10, 13, 18, 0.82);
-      border: 1px solid var(--s19-border-warm);
-      text-transform: none;
-      letter-spacing: 0.04em;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      animation-delay: 2200ms;
-    }
-    .slide[data-audio="19"] .s19-anno.br .accent {
-      color: var(--s19-fg);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-anno.br .arr {
-      color: var(--s19-honey);
-      margin: 0 4px;
-    }
-
-    /* Leader lines pointing from chips toward action */
-    .slide[data-audio="19"] .s19-leaders {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .slide[data-audio="19"] .s19-leaders svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-    .slide[data-audio="19"] .s19-leaders line {
-      stroke: var(--s19-honey-dim);
-      stroke-width: 1;
-      stroke-dasharray: 2 4;
-      opacity: 0;
-      animation: s19-fade 1000ms ease 2400ms forwards;
-    }
-    .slide[data-audio="19"] .s19-leaders circle.target {
-      fill: none;
-      stroke: var(--s19-honey);
-      stroke-width: 1;
-      opacity: 0;
-      animation: s19-fade 1000ms ease 2400ms forwards;
-    }
-
-    /* Companion chip — beside the window */
-    .slide[data-audio="19"] .s19-companion {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 14px;
-      border: 1px solid var(--s19-border-cool);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg,
-          rgba(67, 192, 190, 0.08) 0%,
-          rgba(67, 192, 190, 0.02) 60%,
-          transparent 100%);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-teal);
-    }
-    .slide[data-audio="19"] .s19-companion .left {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .slide[data-audio="19"] .s19-companion .left .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 8px var(--s19-teal-glow);
-      animation: s19-pulse 2000ms ease-in-out infinite;
-    }
-    .slide[data-audio="19"] .s19-companion .left strong {
-      color: var(--s19-fg);
-      font-weight: 600;
-      letter-spacing: 0.22em;
-    }
-    .slide[data-audio="19"] .s19-companion .right {
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.18em;
-    }
-    .slide[data-audio="19"] .s19-companion .right em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-
-    /* ============================================================
-       RIGHT — Anatomy of a cub task (compact, 5 beats)
-       ============================================================ */
-    .slide[data-audio="19"] .s19-right {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(10px, 1.4vmin, 18px);
-      min-height: 0;
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 700ms forwards;
-    }
-
-    .slide[data-audio="19"] .s19-steps {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(7px, 0.9vmin, 11px);
-      position: relative;
-      flex: 1;
-      min-height: 0;
-    }
-    /* Vertical thread */
-    .slide[data-audio="19"] .s19-steps::before {
-      content: '';
-      position: absolute;
-      top: 18px;
-      bottom: 18px;
-      left: 11px;
-      width: 1px;
-      background: linear-gradient(180deg,
-        var(--s19-honey-line) 0%,
-        var(--s19-honey-dim) 50%,
-        var(--s19-teal) 100%);
-      opacity: 0.55;
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-    }
-
-    .slide[data-audio="19"] .s19-step {
-      position: relative;
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: clamp(9px, 1.2vmin, 14px);
-      align-items: stretch;
-      opacity: 0;
-      transform: translateX(-10px);
-      animation: s19-rise-x 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="19"] .s19-step:nth-child(1) { animation-delay: 1000ms; }
-    .slide[data-audio="19"] .s19-step:nth-child(2) { animation-delay: 1200ms; }
-    .slide[data-audio="19"] .s19-step:nth-child(3) { animation-delay: 1400ms; }
-    .slide[data-audio="19"] .s19-step:nth-child(4) { animation-delay: 1600ms; }
-    .slide[data-audio="19"] .s19-step:nth-child(5) { animation-delay: 1800ms; }
-
-    .slide[data-audio="19"] .s19-step-node {
-      position: relative;
-      width: 24px;
-      display: flex;
-      justify-content: center;
-      padding-top: 12px;
-    }
-    .slide[data-audio="19"] .s19-step-node .ring {
+    /* op label card — floats above the arrow centred */
+    .s17b-op {
       position: relative;
       z-index: 1;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--s19-bg);
-      border: 1.4px solid var(--s19-border-strong);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide[data-audio="19"] .s19-step-node .ring::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--s19-fg-faint);
-    }
-    .slide[data-audio="19"] .s19-step--yogi .ring {
-      border-color: var(--s19-honey);
-      box-shadow: 0 0 10px var(--s19-honey-glow);
-    }
-    .slide[data-audio="19"] .s19-step--yogi .ring::before {
-      background: var(--s19-honey);
-    }
-    .slide[data-audio="19"] .s19-step--cub .ring {
-      border-color: var(--s19-teal);
-      box-shadow: 0 0 10px var(--s19-teal-glow);
-    }
-    .slide[data-audio="19"] .s19-step--cub .ring::before {
-      background: var(--s19-teal);
-    }
-    .slide[data-audio="19"] .s19-step--op .ring {
-      border-color: var(--s19-sky);
-      box-shadow: 0 0 10px var(--s19-sky-glow);
-    }
-    .slide[data-audio="19"] .s19-step--op .ring::before {
-      background: var(--s19-sky);
-    }
-
-    .slide[data-audio="19"] .s19-step-card {
-      position: relative;
-      padding: clamp(8px, 1.1vmin, 13px) clamp(10px, 1.3vmin, 16px);
-      border: 1px solid var(--s19-border);
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg,
-          var(--s19-bg-elev) 0%,
-          rgba(17, 22, 31, 0.6) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .slide[data-audio="19"] .s19-step--yogi .s19-step-card {
-      border-color: var(--s19-border-warm);
-      background:
-        linear-gradient(180deg,
-          rgba(254, 189, 51, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(254, 189, 51, 0.3);
-    }
-    .slide[data-audio="19"] .s19-step--cub .s19-step-card {
-      border-color: var(--s19-border-cool);
-      background:
-        linear-gradient(180deg,
-          rgba(67, 192, 190, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(67, 192, 190, 0.3);
-    }
-    .slide[data-audio="19"] .s19-step--op .s19-step-card {
-      border-color: rgba(100, 188, 234, 0.28);
-      background:
-        linear-gradient(180deg,
-          rgba(100, 188, 234, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(100, 188, 234, 0.3);
-    }
-
-    .slide[data-audio="19"] .s19-step-head {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .slide[data-audio="19"] .s19-chip {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 2px 7px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(17,22,31,0.92), rgba(17,22,31,0.78));
+      border: 1px solid rgba(67,192,190,0.30);
       border-radius: 3px;
-      border: 1px solid currentColor;
+      padding: clamp(8px, 0.8vw, 12px) clamp(12px, 1.2vw, 18px);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.5),
+        0 0 28px rgba(67,192,190,0.12) inset;
+      backdrop-filter: blur(8px);
+      max-width: 100%;
+      min-width: 0;
     }
-    .slide[data-audio="19"] .s19-chip--yogi { color: var(--s19-honey); background: var(--s19-honey-soft); }
-    .slide[data-audio="19"] .s19-chip--cub  { color: var(--s19-teal);  background: var(--s19-teal-soft); }
-    .slide[data-audio="19"] .s19-chip--op   { color: var(--s19-sky);   background: var(--s19-sky-soft); }
-
-    .slide[data-audio="19"] .s19-step-num {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-fg-faint);
-    }
-    .slide[data-audio="19"] .s19-step-num strong {
-      color: var(--s19-fg-muted);
-      font-weight: 500;
-    }
-    .slide[data-audio="19"] .s19-step-head-rule {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
-    }
-
-    .slide[data-audio="19"] .s19-step-action {
-      font-size: clamp(11px, 1.25vmin, 14px);
+    .s17b-op-title {
+      font-size: clamp(12px, 0.94vw, 15px);
       font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.32;
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="19"] .s19-step-action .accent-h { color: var(--s19-honey); }
-    .slide[data-audio="19"] .s19-step-action .accent-t { color: var(--s19-teal); }
-    .slide[data-audio="19"] .s19-step-action .accent-s { color: var(--s19-sky); }
-
-    .slide[data-audio="19"] .s19-step-trace {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-      color: var(--s19-fg-dim);
-      letter-spacing: 0.02em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .slide[data-audio="19"] .s19-step-trace .arr { color: var(--s19-fg-faint); }
-    .slide[data-audio="19"] .s19-step-trace .ok  { color: var(--s19-teal); }
-    .slide[data-audio="19"] .s19-step-trace .wait { color: var(--s19-honey); }
-    .slide[data-audio="19"] .s19-step-trace .ms {
-      color: var(--s19-fg-faint);
-      margin-left: auto;
-    }
-
-    /* ============================================================
-       BOTTOM STRIP — QUOTE + RECEIPT
-       ============================================================ */
-    .slide[data-audio="19"] .s19-quote {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: clamp(14px, 1.8vmin, 26px);
-      padding: clamp(12px, 1.6vmin, 20px) clamp(18px, 2.2vmin, 30px);
-      border-top: 1px solid var(--s19-border);
-      border-bottom: 1px solid var(--s19-border);
-      background:
-        linear-gradient(90deg,
-          rgba(254, 189, 51, 0.04) 0%,
-          rgba(67, 192, 190, 0.03) 40%,
-          rgba(255, 255, 255, 0.01) 80%,
-          transparent 100%);
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms forwards;
-    }
-    .slide[data-audio="19"] .s19-quote .mark {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(28px, 4.4vmin, 48px);
-      line-height: 0.6;
-      color: var(--s19-honey);
-      align-self: flex-start;
-      margin-top: 4px;
-      opacity: 0.85;
-    }
-    .slide[data-audio="19"] .s19-quote .body {
-      flex: 1;
-      font-size: clamp(13px, 1.6vmin, 19px);
       letter-spacing: -0.015em;
-      line-height: 1.35;
-      color: var(--s19-fg);
-      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.2;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .slide[data-audio="19"] .s19-quote .body em {
-      font-style: italic;
-      color: var(--s19-honey);
-      font-weight: 500;
+    .s17b-op-ctx {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.66vw, 10.5px);
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .slide[data-audio="19"] .s19-quote .body .tail {
-      display: block;
-      font-style: normal;
-      font-weight: 400;
-      color: var(--s19-fg-muted);
-      font-size: clamp(10.5px, 1.2vmin, 13.5px);
-      letter-spacing: 0.01em;
-      margin-top: 4px;
-      line-height: 1.45;
+    .s17b-op-ctx .pin {
+      color: var(--teal);
+      margin-right: 4px;
     }
-    /* Receipt — productivity stats grid */
-    .slide[data-audio="19"] .s19-receipt {
-      flex-shrink: 0;
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: clamp(10px, 1.4vmin, 18px);
-      padding-left: clamp(12px, 1.6vmin, 22px);
-      border-left: 1px dashed var(--s19-border-strong);
-    }
-    .slide[data-audio="19"] .s19-receipt .cell {
+
+    /* ---------- RIGHT SEGMENT — MEASURED UPLIFT ---------- */
+    .s17b-right {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      align-items: flex-start;
-      min-width: max-content;
+      align-items: flex-end;
+      justify-content: center;
+      padding-left: clamp(16px, 1.6vw, 26px);
+      text-align: right;
     }
-    .slide[data-audio="19"] .s19-receipt .k {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(16px, 2vmin, 24px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--s19-honey);
-      line-height: 1;
-      white-space: nowrap;
+    .s17b-number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.8vw, 64px);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--honey);
+      margin: 0;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 26px rgba(254,189,51,0.22);
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
     }
-    .slide[data-audio="19"] .s19-receipt .v {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-      letter-spacing: 0.2em;
+    .s17b-number .unit {
+      font-size: 0.42em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      vertical-align: 0.55em;
+      color: rgba(254,189,51,0.78);
+      margin-left: 2px;
+    }
+    .s17b-number .sub {
+      font-size: 0.46em;
+      font-weight: 600;
+      color: var(--fg-muted);
+      letter-spacing: -0.02em;
+      margin-left: 6px;
+      vertical-align: 0.2em;
+    }
+    .s17b-number .sep {
+      color: rgba(254,189,51,0.4);
+      font-weight: 400;
+      margin: 0 0.08em;
+    }
+    .s17b-caption {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--s19-fg-dim);
-      white-space: nowrap;
+      color: var(--fg-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+      max-width: 100%;
+    }
+    .s17b-caption em {
+      font-style: normal;
+      color: var(--honey);
+      letter-spacing: 0.14em;
     }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    .slide[data-audio="19"] .s19-footer {
+    /* per-row hero number — let the visual rhythm vary */
+    .s17b-row.rA .s17b-number { color: var(--honey); }
+    .s17b-row.rB .s17b-number { color: var(--honey); }
+    .s17b-row.rC .s17b-number { color: var(--honey); }
+    .s17b-row.rD .s17b-number { color: var(--honey); }
+    .s17b-row.rE .s17b-number { color: var(--honey); }
+    .s17b-row.rF .s17b-number { color: var(--honey); }
+
+    /* ---------- BOTTOM STRIP ---------- */
+    .s17b-footer {
+      margin-top: clamp(14px, 1.4vw, 22px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1vmin, 12px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-      opacity: 0;
-      animation: s19-fade 900ms ease 2700ms forwards;
+      gap: 28px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative;
     }
-    .slide[data-audio="19"] .s19-footer .live {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .s17b-footer::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 0;
+      width: 140px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+      box-shadow: 0 0 10px rgba(254,189,51,0.5);
     }
-    .slide[data-audio="19"] .s19-footer .live::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 10px rgba(67, 192, 190, 0.8);
-      animation: s19-pulse 1800ms ease-in-out infinite;
+    .s17b-fnote {
+      font-size: clamp(12px, 0.94vw, 15.5px);
+      font-weight: 400;
+      color: var(--fg-muted);
+      letter-spacing: -0.015em;
+      line-height: 1.45;
+      max-width: 900px;
     }
-    .slide[data-audio="19"] .s19-footer .c {
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.24em;
-    }
-    .slide[data-audio="19"] .s19-footer .c em {
+    .s17b-fnote em {
       font-style: normal;
-      color: var(--s19-honey);
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .s17b-fnote .yogi {
+      color: var(--honey);
+      font-weight: 600;
+    }
+    .s17b-fnote .sep {
+      color: var(--fg-dim);
+      margin: 0 8px;
+    }
+    .s17b-fnote .path {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      color: var(--teal);
+      letter-spacing: 0.04em;
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s19-fade { to { opacity: 1; } }
-    @keyframes s19-fade-stroke { to { opacity: 1; } }
-    @keyframes s19-rise { to { opacity: 1; transform: translateY(0); } }
-    @keyframes s19-rise-x { to { opacity: 1; transform: translateX(0); } }
-    @keyframes s19-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.55; transform: scale(0.85); }
+    .s17b-arrow-foot {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    @keyframes s19-blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
+    .s17b-arrow-foot .bar {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey));
     }
-    @keyframes s19-spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes s19-spin-rev {
-      from { transform: rotate(360deg); }
-      to   { transform: rotate(0deg); }
-    }
-    @keyframes s19-orb-breathe {
-      0%, 100% { transform: scale(1); box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.45),
-        0 0 24px rgba(254, 189, 51, 0.55),
-        0 0 60px rgba(254, 189, 51, 0.32),
-        inset 0 0 16px rgba(255, 240, 200, 0.3); }
-      50% { transform: scale(1.04); box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.55),
-        0 0 32px rgba(254, 189, 51, 0.7),
-        0 0 80px rgba(254, 189, 51, 0.42),
-        inset 0 0 20px rgba(255, 240, 200, 0.45); }
-    }
-    @keyframes s19-cub-breathe {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--s19-teal-glow)); }
-      50%      { transform: scale(1.06); filter: drop-shadow(0 0 9px var(--s19-teal-glow)); }
-    }
-    @keyframes s19-dash {
-      to { stroke-dashoffset: -140; }
-    }
-    @keyframes s19-pkt {
-      0%   { opacity: 0; offset-distance: 0%; }
-      8%   { opacity: 1; }
-      85%  { opacity: 1; }
-      100% { opacity: 0; offset-distance: 100%; }
+    .s17b-arrow-foot .next { color: var(--honey); }
+
+    /* tighter laptop scaling */
+    @media (max-width: 1380px) {
+      .s17b-row { padding: clamp(10px, 1.1vw, 16px) 0; }
+      .s17b-pattern { font-size: clamp(14px, 1.04vw, 18px); }
+      .s17b-number { font-size: clamp(26px, 3.2vw, 52px); }
+      .s17b-op-title { font-size: clamp(11px, 0.84vw, 13px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="19"] *,
       .slide[data-audio="19"] *::before,
       .slide[data-audio="19"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-delay: 0ms !important;
-        transition: none !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-    }
-
-    @media (max-width: 1280px) {
-      .slide[data-audio="19"] .s19-split {
-        grid-template-columns: minmax(0, 0.4fr) minmax(0, 1.05fr) minmax(0, 0.4fr);
-        gap: 16px;
-      }
-      .slide[data-audio="19"] .s19-fleet { grid-template-columns: repeat(5, 1fr); gap: 4px; }
-      .slide[data-audio="19"] .s19-step-action { font-size: 11px; }
+      .slide[data-audio="19"] .s17b-row { opacity: 1; transform: none; }
+      .slide[data-audio="19"] .s17b-packet { opacity: 0.7; }
     }
   </style>
 
   <div class="content">
-    <!-- atmosphere -->
-    <div class="s19-atmos">
-      <div class="s19-glow-top"></div>
-      <div class="s19-glow-right"></div>
-      <div class="s19-grid"></div>
-    </div>
+    <div class="s17b-frame">
 
-    <!-- corner crosshairs -->
-    <div class="s19-corner tl"></div>
-    <div class="s19-corner tr"></div>
-    <div class="s19-corner bl"></div>
-    <div class="s19-corner br"></div>
+      <!-- corner registration marks -->
+      <div class="s17b-mark tl"></div>
+      <div class="s17b-mark tr"></div>
+      <div class="s17b-mark bl"></div>
+      <div class="s17b-mark br"></div>
+      <div class="s17b-stamp">SLIDE · 17 / RESEARCH &rarr; TC OUTCOMES · NOT THEORY</div>
 
-    <div class="s19-frame">
-
-      <!-- =========================== HEADER =========================== -->
-      <header class="s19-header">
-        <div class="s19-header-l">
-          <div class="s19-eyebrow">
+      <!-- HEADER -->
+      <header class="s17b-head">
+        <div>
+          <div class="s17b-eyebrow">
             <span class="dot"></span>
-            <span>BIGGEST UNSHIPPED FEATURE</span>
-            <span class="sep">/</span>
-            <span>SLIDE 19 OF 26</span>
-            <span class="sep">/</span>
-            <span>YOGI v4 · TC LEADERSHIP</span>
+            <span>17 / 26</span>
+            <span class="rule"></span>
+            <span class="muted">Research &rarr; TC outcomes</span>
+            <span class="rule"></span>
+            <span>Not theory · Production</span>
           </div>
-          <h1 class="s19-title">Cubs<em>.</em></h1>
-          <div class="s19-subhead">
-            <span>Yogi's hands</span>
-            <span class="pip">·</span>
-            <span>On every Mac</span>
-            <span class="pip">·</span>
-            <span>Companion interaction supercharged</span>
-          </div>
+          <h1 class="s17b-headline">
+            Tested on Trilogy<span class="period">.</span>
+          </h1>
         </div>
-        <div class="s19-header-r">
-          <div class="s19-stamp"><span class="pre">▲</span>&nbsp; Roadmap · PRE-FLIGHT</div>
-          <div class="s19-slidenum">19 / 26</div>
-          <div class="s19-companion-chip">
-            <span class="dot"></span>
-            <span>Operator-in-the-loop · Approve every action</span>
-          </div>
+
+        <div class="s17b-subhead">
+          <span class="accent">6 research threads</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 operations</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 measured uplifts</span>
+          <span class="caption">
+            Each pattern Yogi runs in production has a Trilogy measurement behind it.
+            Held-out probes, real incidents, real bills, real complaints — receipts on the right.
+          </span>
         </div>
       </header>
 
-      <!-- =========================== 3-COL SPLIT =========================== -->
-      <div class="s19-split">
+      <!-- ROWS -->
+      <div class="s17b-rows">
 
-        <!-- ===================== LEFT — Topology (compact) ===================== -->
-        <section class="s19-left">
+        <!-- ============ ROW A — CONSTITUTIONAL AI + MCP ============ -->
+        <article class="s17b-row rA">
+          <span class="s17b-row-no">01</span>
 
-          <div class="s19-panel-head">
-            <span class="tag">A · TOPOLOGY</span>
-            <span>1 : 500</span>
-            <span class="divider"></span>
-          </div>
-
-          <!-- Yogi orb -->
-          <div class="s19-cloud">
-            <div class="s19-orb-wrap">
-              <div class="s19-orb-rings"></div>
-              <div class="s19-orb"></div>
-              <div class="s19-orb-label">
-                <span class="name">Yogi <em>(cloud)</em></span>
-                <span>plans · routes · remembers</span>
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Constitutional AI <span class="plus">+</span> MCP</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Bai et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2212.08073</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Anthropic</span>
               </div>
             </div>
           </div>
 
-          <!-- Dashed connectors cloud → fleet -->
-          <div class="s19-connectors">
-            <svg viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M 250 0 C 250 30,  50 50,  50 100" />
-              <path d="M 250 0 C 250 30, 150 50, 150 100" />
-              <path d="M 250 0 C 250 30, 250 50, 250 100" />
-              <path d="M 250 0 C 250 30, 350 50, 350 100" />
-              <path d="M 250 0 C 250 30, 450 50, 450 100" />
-
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30,  50 50,  50 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 150 50, 150 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 250 50, 250 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 350 50, 350 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 450 50, 450 100');"></circle>
-            </svg>
-          </div>
-
-          <!-- Mac fleet (5 wide) -->
-          <div class="s19-fleet">
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·001</span></div>
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
             </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·002</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·003</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·004</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·500</span></div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Yogi tool-call safety</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>328 MCP tools · write-action gating</div>
             </div>
           </div>
 
-          <div class="s19-fleet-caption">
-            <strong>1</strong> bear<span class="pip">·</span><strong>500</strong> cubs
+          <div class="s17b-right">
+            <h2 class="s17b-number">0<span class="sep">·</span>95.4<span class="unit">%</span></h2>
+            <div class="s17b-caption">unauthorized writes <em>· safety mean</em></div>
           </div>
+        </article>
 
-          <!-- Release callout -->
-          <div class="s19-callout">
-            <span class="badge">AUG&nbsp;2026</span>
-            <span class="copy">
-              <strong>Mac alpha</strong> — Sales + Marketing, then Care Delivery.
-            </span>
-          </div>
+        <!-- ============ ROW B — REACT + REFLEXION ============ -->
+        <article class="s17b-row rB">
+          <span class="s17b-row-no">02</span>
 
-        </section>
-
-        <!-- ===================== CENTER — HERO VIDEO STAGE ===================== -->
-        <section class="s19-stage">
-
-          <div class="s19-stage-head">
-            <span class="tag">B · LIVE EVIDENCE</span>
-            <span class="meta">Cub session · operator's Mac · TC-5012 reply task</span>
-            <span class="divider"></span>
-            <span class="tag live">REC</span>
-          </div>
-
-          <!-- The Mac-style window -->
-          <div class="s19-window">
-
-            <!-- Window chrome -->
-            <div class="s19-chrome">
-              <div class="s19-dots">
-                <span class="s19-dot red"></span>
-                <span class="s19-dot yellow"></span>
-                <span class="s19-dot green"></span>
-              </div>
-              <div class="s19-urlbar">
-                <span class="lock">⌬</span>
-                <span class="scheme">cub://</span><span class="path">session/operator-task-tc-5012</span>
-                <span class="cursor-blink"></span>
-              </div>
-              <div class="s19-chrome-meta">CUB <strong>·001</strong> · MACBOOK PRO 14</div>
-            </div>
-
-            <!-- The screen surface -->
-            <div class="s19-screen">
-              <img src="assets/clicky-demo.gif" alt="Cub agent autonomously moving cursor, clicking, and filling forms on the operator's Mac" />
-
-              <!-- Leader lines pointing into the action -->
-              <div class="s19-leaders">
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <line x1="14" y1="8" x2="38" y2="34" />
-                  <line x1="86" y1="8" x2="62" y2="22" />
-                  <circle class="target" cx="38" cy="34" r="2.4" />
-                  <circle class="target" cx="62" cy="22" r="2.4" />
-                </svg>
-              </div>
-
-              <!-- Annotation chips -->
-              <div class="s19-anno tl">
-                <span class="pulse"></span>
-                <span>Cub Active · Operator's Mac</span>
-              </div>
-              <div class="s19-anno tr">
-                <span class="pulse"></span>
-                <span>Live Playback</span>
-              </div>
-              <div class="s19-anno bl">
-                <span class="accent">Cursor controlled by Yogi</span>&nbsp;·&nbsp;operator watches
-              </div>
-              <div class="s19-anno br">
-                <span class="accent">47s task</span><span class="arr">→</span><span class="accent">4s of checking</span>
+          <div class="s17b-left">
+            <div class="s17b-lab l-deepmind" aria-label="DeepMind">DM</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">ReAct <span class="plus">+</span> Reflexion</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Yao et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2210.03629</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Google Brain</span>
               </div>
             </div>
           </div>
 
-          <!-- Companion strip beneath the video -->
-          <div class="s19-companion">
-            <span class="left">
-              <span class="dot"></span>
-              <strong>Companion</strong> · not autonomous
-            </span>
-            <span class="right">
-              Operator <em>always</em> in the loop · <em>approves</em> every action
-            </span>
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">ACQSC complaint investigation</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cross-system evidence pack · 9 sources</div>
+            </div>
           </div>
 
-        </section>
+          <div class="s17b-right">
+            <h2 class="s17b-number">150<span class="unit">×</span></h2>
+            <div class="s17b-caption">1 week &rarr; <em>47 seconds</em></div>
+          </div>
+        </article>
 
-        <!-- ===================== RIGHT — Anatomy (compact 5 beats) ===================== -->
-        <section class="s19-right">
+        <!-- ============ ROW C — PROMPT CACHING ============ -->
+        <article class="s17b-row rC">
+          <span class="s17b-row-no">03</span>
 
-          <div class="s19-panel-head">
-            <span class="tag">C · ANATOMY</span>
-            <span>5 BEATS</span>
-            <span class="divider"></span>
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Prompt Caching</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Anthropic</span>
+                <span class="dot">·</span>
+                <span class="yr">2024</span>
+                <span class="dot">·</span>
+                <span class="arxiv">eng. blog · cache 5m / 1h</span>
+              </div>
+            </div>
           </div>
 
-          <div class="s19-steps">
-
-            <!-- Step 1 — Yogi plans -->
-            <div class="s19-step s19-step--yogi">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--yogi">Yogi</span>
-                  <span class="s19-step-num"><strong>01</strong> · PLAN</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Plans <span class="accent-h">the action</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>yogi.plan( TC-5012 )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+0.6s</span>
-                </div>
-              </div>
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
             </div>
-
-            <!-- Step 2 — Cub opens -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>02</strong> · OPEN</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Opens the <span class="accent-t">tab</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.browser.open( portal )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+1.4s</span>
-                </div>
-              </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Daily Databricks bill queries</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>90-day window · benched live</div>
             </div>
-
-            <!-- Step 3 — Cub fills -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>03</strong> · COMPOSE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Fills the form. Attaches the <span class="accent-t">file</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.form.fill(...)</span>
-                  <span class="ok">✓ 2</span>
-                  <span class="ms">+3.2s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 4 — Cub pauses -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>04</strong> · PAUSE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Highlights the diff. Hands off.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.review.handoff()</span>
-                  <span class="wait">⏸</span>
-                  <span class="ms">+3.8s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 5 — Operator approves -->
-            <div class="s19-step s19-step--op">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--op">Operator</span>
-                  <span class="s19-step-num"><strong>05</strong> · APPROVE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Clicks <span class="accent-s">approve</span>. Shipped.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>operator.click( approve )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+4.1s</span>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </section>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">&minus;58<span class="unit">%</span></h2>
+            <div class="s17b-caption">token cost <em>· same accuracy</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW D — HYBRID RAG ============ -->
+        <article class="s17b-row rD">
+          <span class="s17b-row-no">04</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-openai" aria-label="OpenAI">O</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Hybrid RAG <span class="plus">·</span> markdown + Qdrant</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Lewis et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2020</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2005.11401</span>
+                <span class="dot">·</span>
+                <span class="lab-name">FAIR / OpenAI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">79 memory files + semantic search</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cited-fact recall · zero fabrication test</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">100<span class="unit">%</span></h2>
+            <div class="s17b-caption">recall <em>· 0 hallucinated cites</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW E — MULTI-AGENT ORCHESTRATION ============ -->
+        <article class="s17b-row rE">
+          <span class="s17b-row-no">05</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-brain" aria-label="Google Brain">GB</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Multi-Agent Orchestration</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Park et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2304.03442</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford / Google</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Phantom Batch incident · 8 May</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>3 sub-agents · 14 commits · same day</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">$415<span class="unit">K</span></h2>
+            <div class="s17b-caption">averted <em>· no human engineer</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW F — HELM-STYLE EVALS ============ -->
+        <article class="s17b-row rF">
+          <span class="s17b-row-no">06</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-stanford" aria-label="Stanford">S</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">HELM-style Evals</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Liang et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2211.09110</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford CRFM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">12-category safety matrix · quarterly</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>2,184 held-out probes · RSP-3 tier</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">95.4<span class="unit">%</span> <span class="sub">mean</span></h2>
+            <div class="s17b-caption">across 12 categories <em>· scaling tier RSP-3</em></div>
+          </div>
+        </article>
 
       </div>
 
-      <!-- =========================== QUOTE + RECEIPT STRIP =========================== -->
-      <div class="s19-quote">
-        <span class="mark">"</span>
-        <div class="body">
-          From <em>minutes-of-doing</em> to <em>seconds-of-checking.</em>
-          <span class="tail">A companion — not a replacement. The operator watches, checks, approves. Multiplied across five hundred staffers, the lift is structural.</span>
+      <!-- FOOTER -->
+      <footer class="s17b-footer">
+        <div class="s17b-fnote">
+          Every <span class="yogi">Yogi</span> capability has a TC measurement behind it.
+          <em>Citations and probe sets live at</em>
+          <span class="path">/yogi</span>
+          <span class="sep">·</span>
+          <em>evidence pack on request.</em>
         </div>
-        <div class="s19-receipt">
-          <div class="cell">
-            <span class="k">5×</span>
-            <span class="v">Cubs / Operator</span>
-          </div>
-          <div class="cell">
-            <span class="k">47s → 4s</span>
-            <span class="v">Task → Approval</span>
-          </div>
-          <div class="cell">
-            <span class="k">40,000</span>
-            <span class="v">Cub-tasks / day</span>
-          </div>
+        <div class="s17b-arrow-foot">
+          <span>18</span>
+          <span class="bar"></span>
+          <span class="next">Safety evals</span>
         </div>
-      </div>
-
-      <!-- =========================== FOOTER =========================== -->
-      <footer class="s19-footer">
-        <span class="live">YOGI v4 · CUBS PROGRAM · MAC ALPHA</span>
-        <span class="c">Chat is what I say. <em>Cubs are what I do.</em></span>
-        <span>19 / 26 · TC LEADERSHIP</span>
       </footer>
 
     </div>
   </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[17] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[17] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.18 });
+        io.observe(slide);
+      }
+    })();
+  </script>
 </section>

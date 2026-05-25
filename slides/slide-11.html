@@ -1,1079 +1,1961 @@
-<section class="slide" data-audio="11" id="slide-12">
+<section class="slide" data-audio="11">
+  <!--
+    VOICEOVER · slide 09 · Bill · ~30s (regenerate via ElevenLabs Bill voice)
+    ----------------------------------------------------------------------------
+    "Yogi is built on twelve research threads. Anthropic — constitutional AI,
+     MCP, prompt caching, computer use. OpenAI — function calling, structured
+     output. DeepMind — chain of thought. Google Brain — ReAct, Reflexion.
+     Stanford — HELM. Plus RAG and multi-agent orchestration. Every thread
+     tested against real Trilogy operations. Two thousand one hundred and
+     eighty-four eval probes. Ninety-day Databricks billing measurements.
+     Fourteen-commit incident traces. Forty-seven self-patched rules.
+     Citations real. Measurements real. Not theory — production."
+    ----------------------------------------------------------------------------
+  -->
   <style>
-    /* ============================================================
-       SLIDE 12 · ARCHITECTURE BLUEPRINT · "Drafting table"
-       The flat, readable counterpart to slide-06's 3D galaxy.
-       Aesthetic: engineering blueprint × Anthropic systems paper.
-       ============================================================ */
+    /* ============ SLIDE 09 — THE ANTHROPIC MYTHOS ============ */
+    .slide[data-audio="11"] {
+      --row-h: 38px;
+      --row-gap: 2px;
+      --col-pad-x: clamp(40px, 4vw, 80px);
 
-    #slide-12 {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       min-height: 100vh;
       background:
-        radial-gradient(ellipse 70% 55% at 50% -10%, rgba(254,189,51,0.06), transparent 60%),
-        radial-gradient(ellipse 60% 50% at 50% 110%, rgba(67,192,190,0.045), transparent 65%),
-        radial-gradient(circle at 50% 50%, rgba(0,127,126,0.025), transparent 70%),
-        #0a0d12;
-      color: #f4f4f5;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(254,189,51,0.05), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 88% 80%, rgba(67,192,190,0.04), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.025), transparent 70%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
       overflow: hidden;
-      box-sizing: border-box;
       letter-spacing: -0.01em;
-      isolation: isolate;
+      box-sizing: border-box;
     }
 
-    /* drafting-table graph paper grid */
-    #slide-12::before {
+    /* faint grid */
+    .slide[data-audio="11"]::before {
       content: "";
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(rgba(254,189,51,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(254,189,51,0.045) 1px, transparent 1px);
-      background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
-      mask-image: radial-gradient(ellipse 90% 95% at center, black 50%, transparent 100%);
+        linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 92%);
+      pointer-events: none;
+    }
+
+    /* film grain */
+    .slide[data-audio="11"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s09-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: 56px clamp(40px, 4vw, 80px) 36px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    /* registration marks */
+    .s09-mark {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.32);
+      z-index: 5;
+    }
+    .s09-mark.tl { top: 24px; left: 24px; border-right: none; border-bottom: none; }
+    .s09-mark.tr { top: 24px; right: 24px; border-left: none; border-bottom: none; }
+    .s09-mark.bl { bottom: 24px; left: 24px; border-right: none; border-top: none; }
+    .s09-mark.br { bottom: 24px; right: 24px; border-left: none; border-top: none; }
+    .s09-stamp {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      z-index: 5;
+    }
+
+    /* ---------- HEADER ---------- */
+    .s09-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 18px;
+      padding-top: 4px;
+    }
+
+    .s09-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .s09-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s09-pulse 2.4s ease-in-out infinite;
+    }
+    .s09-eyebrow .arrow { color: var(--honey); }
+    @keyframes s09-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .s09-headline {
+      font-size: clamp(36px, 3.8vw, 64px);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin: 0;
+    }
+    .s09-headline .accent {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--honey);
+      letter-spacing: -0.02em;
+    }
+
+    .s09-sub {
+      max-width: 380px;
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.78vw, 13px);
+      line-height: 1.65;
+      color: var(--fg-muted);
+      text-align: right;
+      padding-bottom: 6px;
+    }
+    .s09-sub strong { color: var(--fg); font-weight: 500; }
+    .s09-sub .rule {
+      width: 64px; height: 1px;
+      background: var(--border-warm);
+      margin: 0 0 12px auto;
+    }
+
+    /* ---------- INDEX BOARD ---------- */
+    .s09-board {
+      position: relative;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr clamp(80px, 9vw, 140px) 1fr;
+      gap: 0;
+      min-height: 0;
+    }
+
+    /* faint vertical honey rail on the right edge — mirror of centre spine */
+    .s09-board::after {
+      content: "";
+      position: absolute;
+      top: 30px; bottom: 0;
+      right: -2px;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(254,189,51,0.06) 8%,
+        rgba(254,189,51,0.14) 50%,
+        rgba(254,189,51,0.06) 92%,
+        transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* subtle film grain */
-    #slide-12::after {
-      content: "";
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.35;
-      mix-blend-mode: overlay;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* corner registration marks */
-    #slide-12 .reg {
-      position: absolute;
-      width: 14px; height: 14px;
-      border: 1px solid rgba(254,189,51,0.35);
-      z-index: 4;
-      pointer-events: none;
-    }
-    #slide-12 .reg.tl { top: 28px; left: 28px; border-right: none; border-bottom: none; }
-    #slide-12 .reg.tr { top: 28px; right: 28px; border-left: none; border-bottom: none; }
-    #slide-12 .reg.bl { bottom: 28px; left: 28px; border-right: none; border-top: none; }
-    #slide-12 .reg.br { bottom: 28px; right: 28px; border-left: none; border-top: none; }
-
-    #slide-12 .doc-stamp {
-      position: absolute;
-      top: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.42em;
-      color: #71717a;
+    /* column headers */
+    .s09-colhead {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      pointer-events: none;
-    }
-
-    /* main layout */
-    #slide-12 .frame {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100vh;
-      padding: clamp(56px, 5.5vh, 88px) clamp(48px, 4.5vw, 88px) clamp(40px, 4vh, 60px);
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      grid-template-rows: auto 1fr;
-      gap: clamp(20px, 2.4vh, 36px) clamp(28px, 3vw, 56px);
+      color: var(--fg-dim);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 8px;
+      height: 22px;
       box-sizing: border-box;
     }
+    .s09-colhead .num {
+      color: var(--honey);
+      font-weight: 600;
+    }
+    .s09-colhead.right { justify-content: flex-end; }
+    .s09-colhead .ico {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--honey);
+    }
+    .s09-colhead.right .ico {
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
 
-    /* ----- header ----- */
-    #slide-12 .header {
-      grid-column: 1 / -1;
+    .s09-col {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-    }
-
-    #slide-12 .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(10px, 0.72vw, 11.5px);
-      letter-spacing: 0.36em;
-      text-transform: uppercase;
-      color: #FEBD33;
-      font-weight: 600;
-    }
-    #slide-12 .eyebrow .rule {
-      width: 56px; height: 1px;
-      background: linear-gradient(90deg, #FEBD33, transparent);
-    }
-    #slide-12 .eyebrow .dot {
-      width: 6px; height: 6px;
-      background: #FEBD33; border-radius: 50%;
-      box-shadow: 0 0 12px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
-      animation: s12-pulse 2.4s ease-in-out infinite;
-    }
-    #slide-12 .eyebrow .code {
-      color: #71717a;
-      letter-spacing: 0.32em;
-    }
-
-    #slide-12 .headline {
-      font-size: clamp(28px, 3.2vw, 52px);
-      font-weight: 800;
-      line-height: 1.02;
-      letter-spacing: -0.035em;
-      margin: 0;
-      max-width: 24ch;
-    }
-    #slide-12 .headline .em {
-      color: #FEBD33;
-      font-style: normal;
-    }
-    #slide-12 .headline .quiet {
-      color: #a1a1aa;
-      font-weight: 600;
-    }
-
-    #slide-12 .subhead {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(11px, 0.85vw, 14px);
-      letter-spacing: 0.04em;
-      color: #FEBD33;
-      font-weight: 500;
-      margin-top: 4px;
-      font-variant-numeric: tabular-nums;
-    }
-    #slide-12 .subhead .op { color: #71717a; margin: 0 6px; font-weight: 400; }
-    #slide-12 .subhead .eq { color: #f4f4f5; margin: 0 8px; }
-    #slide-12 .subhead .total { color: #f4f4f5; font-weight: 700; }
-
-    /* ----- diagram column ----- */
-    #slide-12 .diagram {
-      position: relative;
-      display: grid;
-      grid-template-rows: auto auto auto 1fr;
-      gap: clamp(8px, 1.4vh, 16px);
-      min-height: 0;
-    }
-
-    /* SVG connection layer pinned behind chips */
-    #slide-12 .wires {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-    #slide-12 .wires path {
-      fill: none;
-      stroke-linecap: round;
-      stroke-dasharray: 1200;
-      stroke-dashoffset: 1200;
-      animation: s12-draw 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-    }
-    #slide-12 .wires .w-t0t1 { stroke: rgba(254,189,51,0.55); stroke-width: 1.1; animation-delay: 300ms; }
-    #slide-12 .wires .w-t1t2 { stroke: rgba(67,192,190,0.40); stroke-width: 1.0; animation-delay: 650ms; }
-    #slide-12 .wires .w-t2t3 { stroke: rgba(100,188,234,0.28); stroke-width: 0.9; animation-delay: 1000ms; }
-
-    /* tier band wrapper */
-    #slide-12 .tier {
+      gap: var(--row-gap);
       position: relative;
       z-index: 2;
+    }
+    .s09-col.left  { padding-right: clamp(14px, 1.4vw, 24px); }
+    .s09-col.right { padding-left:  clamp(14px, 1.4vw, 24px); }
+
+    /* ---------- LAB CLUSTER BACKGROUND TINTS ---------- */
+    /* draws faint colored bands behind groups of consecutive same-lab rows */
+    .s09-col.left::before,
+    .s09-col.left::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: clamp(14px, 1.4vw, 24px);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 800ms ease;
+    }
+    /* Anthropic cluster — rows 1-4 (header height 30 + 4 rows × 60 stride) */
+    .s09-col.left::before {
+      top: 30px;
+      height: 240px;
+      background: linear-gradient(to right, rgba(254,189,51,0.075), rgba(254,189,51,0.022) 70%, transparent);
+      border-left: 1.5px solid rgba(254,189,51,0.32);
+    }
+    /* OpenAI cluster — rows 5-6 */
+    .s09-col.left::after {
+      top: 270px;
+      height: 120px;
+      background: linear-gradient(to right, rgba(67,192,190,0.07), rgba(67,192,190,0.02) 70%, transparent);
+      border-left: 1.5px solid rgba(67,192,190,0.32);
+    }
+    .slide[data-audio="11"].is-active .s09-col.left::before { opacity: 1; }
+    .slide[data-audio="11"].is-active .s09-col.left::after  { opacity: 1; }
+
+    /* extra cluster bands via dedicated absolute layers */
+    .s09-cluster {
+      position: absolute;
+      left: 0;
+      right: clamp(14px, 1.4vw, 24px);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 800ms ease;
+    }
+    .slide[data-audio="11"].is-active .s09-cluster { opacity: 1; }
+    .s09-cluster.dm {
+      top: 390px; height: 60px;
+      background: linear-gradient(to right, rgba(100,188,234,0.07), rgba(100,188,234,0.02) 70%, transparent);
+      border-left: 1.5px solid rgba(100,188,234,0.32);
+    }
+    .s09-cluster.gb {
+      top: 450px; height: 120px;
+      background: linear-gradient(to right, rgba(155,123,212,0.07), rgba(155,123,212,0.02) 70%, transparent);
+      border-left: 1.5px solid rgba(155,123,212,0.32);
+    }
+    .s09-cluster.st {
+      top: 570px; height: 60px;
+      background: linear-gradient(to right, rgba(243,155,90,0.07), rgba(243,155,90,0.02) 70%, transparent);
+      border-left: 1.5px solid rgba(243,155,90,0.32);
+    }
+    .s09-cluster.fb {
+      top: 630px; height: 60px;
+      background: linear-gradient(to right, rgba(0,127,126,0.062), rgba(0,127,126,0.02) 70%, transparent);
+      border-left: 1.5px solid rgba(0,127,126,0.32);
+    }
+    .s09-cluster.mm {
+      top: 690px; height: 60px;
+      background: linear-gradient(to right, rgba(161,161,170,0.055), rgba(161,161,170,0.018) 70%, transparent);
+      border-left: 1.5px solid rgba(161,161,170,0.28);
+    }
+
+    /* connector SVG sits in the middle column gutter only */
+    .s09-wires {
+      position: absolute;
+      top: 30px;     /* align below column headers (22 + 8 margin) */
+      left: -10px;
+      right: -10px;
+      bottom: 0;
+      width: calc(100% + 20px);
+      height: calc(100% - 30px);
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+      display: block;
+    }
+    .s09-wire {
+      fill: none;
+      stroke: rgba(254,189,51,0.6);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 4px rgba(254,189,51,0.65));
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      opacity: 0;
+    }
+    .s09-wire-glow {
+      fill: none;
+      stroke: rgba(254,189,51,0.22);
+      stroke-width: 4;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      filter: blur(4px);
+      opacity: 0;
+    }
+    .slide[data-audio="11"].is-active .s09-wire-glow {
+      animation: s09-glow 1200ms ease-out forwards;
+    }
+    .slide[data-audio="11"].is-active .s09-wire {
+      animation: s09-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
+    }
+    @keyframes s09-draw {
+      0%   { stroke-dashoffset: 100; opacity: 0; }
+      10%  { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes s09-glow {
+      to { opacity: 1; }
+    }
+
+    /* per-wire delay using nth-of-type via inline style */
+    .s09-wire { animation-delay: var(--wd, 0ms) !important; }
+    .s09-wire-glow { animation-delay: var(--wd, 0ms) !important; }
+
+    /* honey "packet" pulse — single dot rotating through 12 wires */
+    .s09-packet {
+      r: 2.2;
+      fill: var(--honey);
+      filter: drop-shadow(0 0 5px rgba(254,189,51,0.95)) drop-shadow(0 0 12px rgba(254,189,51,0.55));
+      opacity: 0;
+    }
+
+    /* central spine label */
+    .s09-spine {
+      grid-column: 2;
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      align-items: center;
+      justify-content: center;
+      padding-top: 30px;
     }
-    #slide-12 .tier.t0 { animation-delay: 80ms; }
-    #slide-12 .tier.t1 { animation-delay: 280ms; }
-    #slide-12 .tier.t2 { animation-delay: 480ms; }
-    #slide-12 .tier.t3 { animation-delay: 700ms; min-height: 0; flex: 1; }
+    .s09-spine-rail {
+      position: absolute;
+      top: 30px; bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(254,189,51,0.10) 8%,
+        rgba(254,189,51,0.18) 50%,
+        rgba(254,189,51,0.10) 92%,
+        transparent 100%);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .s09-spine-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      transform-origin: center;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--honey);
+      white-space: nowrap;
+      padding: 4px 12px;
+      background: var(--bg);
+      border: 1px solid rgba(254,189,51,0.28);
+      border-radius: 2px;
+      box-shadow: 0 0 18px rgba(254,189,51,0.18);
+      z-index: 3;
+    }
 
-    #slide-12 .tier-label {
+    /* ---------- ROWS ---------- */
+    .s09-row {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-      font-weight: 600;
-    }
-    #slide-12 .tier-label .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 9px;
+      gap: 10px;
+      height: var(--row-h);
+      padding: 4px 10px;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.018);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 3px;
-      border: 1px solid var(--tc, rgba(254,189,51,0.4));
-      color: var(--tc, #FEBD33);
-      background: rgba(255,255,255,0.02);
-      letter-spacing: 0.24em;
-      font-size: 9.5px;
+      opacity: 0;
+      transform: translateX(var(--enter-x, -10px));
+      transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
     }
-    #slide-12 .tier-label .role {
-      color: #f4f4f5;
-      letter-spacing: 0.22em;
-      font-weight: 600;
+    .s09-col.left  .s09-row { --enter-x: -10px; }
+    .s09-col.right .s09-row { --enter-x:  10px; }
+
+    .slide[data-audio="11"].is-active .s09-row {
+      animation: s09-row-in 480ms cubic-bezier(.2,.7,.2,1) forwards;
     }
-    #slide-12 .tier-label .meta {
-      color: #52525b;
-      letter-spacing: 0.22em;
+
+    /* staggered row reveals — left and right alternate */
+    .s09-col.left  .s09-row:nth-of-type(1) { animation-delay: 260ms; }
+    .s09-col.right .s09-row:nth-of-type(1) { animation-delay: 360ms; }
+    .s09-col.left  .s09-row:nth-of-type(2) { animation-delay: 320ms; }
+    .s09-col.right .s09-row:nth-of-type(2) { animation-delay: 420ms; }
+    .s09-col.left  .s09-row:nth-of-type(3) { animation-delay: 380ms; }
+    .s09-col.right .s09-row:nth-of-type(3) { animation-delay: 480ms; }
+    .s09-col.left  .s09-row:nth-of-type(4) { animation-delay: 440ms; }
+    .s09-col.right .s09-row:nth-of-type(4) { animation-delay: 540ms; }
+    .s09-col.left  .s09-row:nth-of-type(5) { animation-delay: 500ms; }
+    .s09-col.right .s09-row:nth-of-type(5) { animation-delay: 600ms; }
+    .s09-col.left  .s09-row:nth-of-type(6) { animation-delay: 560ms; }
+    .s09-col.right .s09-row:nth-of-type(6) { animation-delay: 660ms; }
+    .s09-col.left  .s09-row:nth-of-type(7) { animation-delay: 620ms; }
+    .s09-col.right .s09-row:nth-of-type(7) { animation-delay: 720ms; }
+    .s09-col.left  .s09-row:nth-of-type(8) { animation-delay: 680ms; }
+    .s09-col.right .s09-row:nth-of-type(8) { animation-delay: 780ms; }
+    .s09-col.left  .s09-row:nth-of-type(9) { animation-delay: 740ms; }
+    .s09-col.right .s09-row:nth-of-type(9) { animation-delay: 840ms; }
+    .s09-col.left  .s09-row:nth-of-type(10) { animation-delay: 800ms; }
+    .s09-col.right .s09-row:nth-of-type(10) { animation-delay: 900ms; }
+    .s09-col.left  .s09-row:nth-of-type(11) { animation-delay: 860ms; }
+    .s09-col.right .s09-row:nth-of-type(11) { animation-delay: 960ms; }
+    .s09-col.left  .s09-row:nth-of-type(12) { animation-delay: 920ms; }
+    .s09-col.right .s09-row:nth-of-type(12) { animation-delay: 1020ms; }
+    .s09-col.left  .s09-row:nth-of-type(13) { animation-delay: 980ms; }
+    .s09-col.right .s09-row:nth-of-type(13) { animation-delay: 1080ms; }
+    .s09-col.left  .s09-row:nth-of-type(14) { animation-delay: 1040ms; }
+    .s09-col.right .s09-row:nth-of-type(14) { animation-delay: 1140ms; }
+    .s09-col.left  .s09-row:nth-of-type(15) { animation-delay: 1100ms; }
+    .s09-col.right .s09-row:nth-of-type(15) { animation-delay: 1200ms; }
+    .s09-col.left  .s09-row:nth-of-type(16) { animation-delay: 1160ms; }
+    .s09-col.right .s09-row:nth-of-type(16) { animation-delay: 1260ms; }
+    .s09-col.left  .s09-row:nth-of-type(17) { animation-delay: 1220ms; }
+    .s09-col.right .s09-row:nth-of-type(17) { animation-delay: 1320ms; }
+    .s09-col.left  .s09-row:nth-of-type(18) { animation-delay: 1280ms; }
+    .s09-col.right .s09-row:nth-of-type(18) { animation-delay: 1380ms; }
+    .s09-col.left  .s09-row:nth-of-type(19) { animation-delay: 1340ms; }
+    .s09-col.right .s09-row:nth-of-type(19) { animation-delay: 1440ms; }
+    .s09-col.left  .s09-row:nth-of-type(20) { animation-delay: 1400ms; }
+    .s09-col.right .s09-row:nth-of-type(20) { animation-delay: 1500ms; }
+
+    @keyframes s09-row-in {
+      from { opacity: 0; transform: translateX(var(--enter-x)); filter: blur(4px); }
+      to   { opacity: 1; transform: translateX(0); filter: blur(0); }
+    }
+
+    .s09-row:hover {
+      background: rgba(254,189,51,0.05);
+      border-color: rgba(254,189,51,0.28);
+      transform: translateX(0) scale(1.005);
+      z-index: 6;
+    }
+
+    /* row number ordinal */
+    .s09-ord {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--fg-dim);
+      width: 20px;
+      flex-shrink: 0;
       font-weight: 500;
     }
-    #slide-12 .tier-label .meta b {
-      color: #a1a1aa;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-    }
-    #slide-12 .tier-label .flex { flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent 80%);
-    }
 
-    /* ----- T0 (Yogi) ----- */
-    #slide-12 .t0-row {
-      display: flex;
-      justify-content: center;
-      padding: 4px 0 2px;
+    /* paper thumbnail — tiny abstracted first page */
+    .s09-thumb {
+      width: 18px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.78;
+      transition: opacity 200ms ease, transform 200ms ease;
     }
-    #slide-12 .yogi-chip {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 22px 12px 16px;
-      border-radius: 14px;
-      background:
-        linear-gradient(180deg, rgba(254,189,51,0.12), rgba(254,189,51,0.04)),
-        rgba(17,22,31,0.85);
-      border: 1px solid rgba(254,189,51,0.55);
-      box-shadow:
-        0 0 0 1px rgba(254,189,51,0.08) inset,
-        0 8px 36px rgba(254,189,51,0.18),
-        0 0 60px rgba(254,189,51,0.12);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    .s09-row:hover .s09-thumb {
+      opacity: 1;
+      transform: translateY(-1px) rotate(-1.5deg);
     }
-    #slide-12 .yogi-orb {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 32%, #FFE5A0 0%, #FEBD33 45%, #c98908 100%);
-      box-shadow:
-        0 0 12px rgba(254,189,51,0.65),
-        0 0 28px rgba(254,189,51,0.35),
-        inset 0 0 6px rgba(255,235,180,0.55);
-      position: relative;
+    .s09-thumb-spacer {
+      width: 18px;
       flex-shrink: 0;
     }
-    #slide-12 .yogi-orb::after {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1px dashed rgba(254,189,51,0.45);
-      animation: s12-rotate 18s linear infinite;
-    }
-    #slide-12 .yogi-name {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #FFE9B0;
-      text-shadow: 0 0 12px rgba(254,189,51,0.4);
-    }
-    #slide-12 .yogi-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #C7D6EA;
-      margin-top: 2px;
-    }
-    #slide-12 .yogi-role .sep { color: rgba(254,189,51,0.5); margin: 0 7px; }
 
-    /* ----- T1 / T2 chip rows ----- */
-    #slide-12 .chip-row {
-      display: grid;
-      gap: clamp(6px, 0.55vw, 10px);
-      align-items: stretch;
+    /* lab chip */
+    .s09-lab {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 1px solid currentColor;
+      background: color-mix(in srgb, currentColor 14%, transparent);
+      box-shadow: 0 0 10px color-mix(in srgb, currentColor 26%, transparent);
+      opacity: 0.92;
     }
-    #slide-12 .chip-row.t1 { grid-template-columns: repeat(10, 1fr); }
-    #slide-12 .chip-row.t2 { grid-template-columns: repeat(12, 1fr); }
+    .s09-lab.lab-anthropic { color: var(--honey); }
+    .s09-lab.lab-openai    { color: var(--teal); }
+    .s09-lab.lab-deepmind  { color: var(--sky); }
+    .s09-lab.lab-google    { color: var(--violet); }
+    .s09-lab.lab-stanford  { color: var(--coral); }
+    .s09-lab.lab-fb        { color: var(--dark-teal); }
+    .s09-lab.lab-multi     { color: var(--fg-muted); }
 
-    #slide-12 .chip {
-      position: relative;
+    /* row body */
+    .s09-body {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      padding: 9px 10px 9px 11px;
-      border-radius: 7px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-      border: 1px solid var(--bord, rgba(255,255,255,0.08));
-      border-left: 2px solid var(--accent, #FEBD33);
-      transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
-                  box-shadow 220ms ease,
-                  border-color 220ms ease,
-                  background 220ms ease;
-      cursor: default;
-      overflow: hidden;
-    }
-    #slide-12 .chip::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent, #FEBD33), transparent);
-      opacity: 0.35;
-    }
-    #slide-12 .chip .name {
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      color: #f4f4f5;
+      gap: 2px;
       line-height: 1.1;
     }
-    #slide-12 .chip .role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.06em;
-      color: #8b95a3;
-      line-height: 1.25;
-      text-transform: lowercase;
-    }
-    #slide-12 .chip:hover {
-      transform: translateY(-2px);
-      border-color: rgba(254,189,51,0.5);
-      background:
-        linear-gradient(180deg, rgba(254,189,51,0.07), rgba(254,189,51,0.02));
-      box-shadow:
-        0 6px 22px rgba(254,189,51,0.18),
-        0 0 0 1px rgba(254,189,51,0.18) inset;
-    }
-    #slide-12 .chip:hover .name { color: #FFE9B0; }
-
-    /* T2 chips are smaller */
-    #slide-12 .chip.small {
-      padding: 7px 8px 7px 9px;
-      border-radius: 6px;
-      gap: 1px;
-    }
-    #slide-12 .chip.small .name { font-size: 11px; }
-    #slide-12 .chip.small .role { font-size: 8.5px; letter-spacing: 0.04em; }
-
-    /* ----- T3 cluster strip ----- */
-    #slide-12 .t3-area {
+    .s09-body .top {
       display: flex;
-      flex-direction: column;
-      min-height: 0;
-      flex: 1;
-      gap: 6px;
+      align-items: baseline;
+      gap: 8px;
     }
-    #slide-12 .t3-grid {
-      display: grid;
-      grid-template-columns: repeat(11, 1fr);
-      gap: clamp(4px, 0.45vw, 8px);
-      flex: 1;
-      min-height: 0;
-    }
-    #slide-12 .cluster {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 9px 9px 7px;
-      border-radius: 6px;
-      border: 1px solid var(--cbord, rgba(255,255,255,0.08));
-      background:
-        linear-gradient(180deg, var(--cbg, rgba(255,255,255,0.025)) 0%, transparent 100%),
-        rgba(17,22,31,0.55);
+    /* THREAD NAME — primary hierarchy */
+    .s09-thread {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--fg);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
       overflow: hidden;
-      min-height: 0;
-      transition: border-color 220ms ease, transform 220ms ease;
+      text-overflow: ellipsis;
     }
-    #slide-12 .cluster:hover {
-      border-color: var(--c, #FEBD33);
-      transform: translateY(-1px);
-    }
-    #slide-12 .cluster::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--c, #FEBD33), transparent);
-      opacity: 0.55;
-    }
-    #slide-12 .cluster-head {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-      margin-bottom: 4px;
-    }
-    #slide-12 .cluster-count {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1;
-      color: var(--c, #FEBD33);
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.04em;
-      text-shadow: 0 0 14px var(--c, #FEBD33);
-    }
-    #slide-12 .cluster-name {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: #f4f4f5;
-      line-height: 1.18;
-      word-break: break-word;
-    }
-    #slide-12 .cluster-disc {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 7.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6b7480;
-      margin-bottom: 5px;
-      line-height: 1.25;
-      word-break: break-word;
-    }
-    #slide-12 .dots {
-      flex: 1;
-      min-height: 0;
-      display: grid;
-      align-content: start;
-      gap: 2px;
-    }
-    #slide-12 .dots .d {
-      width: 100%;
-      aspect-ratio: 1;
-      max-width: 5px;
-      max-height: 5px;
-      border-radius: 50%;
-      background: var(--c, #FEBD33);
-      opacity: 0.85;
-      box-shadow: 0 0 3px var(--c, #FEBD33);
-      animation: s12-pop 380ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
-    }
-    /* cluster lead chip (Tier 2 mirror) */
-    #slide-12 .cluster .lead {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px;
+    /* meta line — year + lab name demoted */
+    .s09-meta {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
       letter-spacing: 0.18em;
+      color: var(--fg-dim);
       text-transform: uppercase;
-      color: var(--c, #FEBD33);
-      opacity: 0.85;
-      margin-top: 6px;
-      padding-top: 5px;
-      border-top: 1px dashed rgba(255,255,255,0.07);
-      text-align: left;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    #slide-12 .cluster .lead::before {
-      content: '';
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--c, #FEBD33);
-      box-shadow: 0 0 5px var(--c, #FEBD33);
       flex-shrink: 0;
     }
-
-    /* ----- right rail spec table ----- */
-    #slide-12 .sidebar {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      min-width: 0;
+    .s09-meta .yr { color: var(--fg-muted); }
+    .s09-year { /* legacy fallback, unused */
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      color: var(--fg-dim);
+      flex-shrink: 0;
     }
-    #slide-12 .spec-card {
-      background:
-        linear-gradient(180deg, rgba(17,22,31,0.85), rgba(10,13,18,0.85));
-      border: 1px solid rgba(254,189,51,0.22);
-      border-radius: 10px;
-      padding: 18px 20px 18px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
-      opacity: 0;
-      transform: translateY(10px);
-      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-      animation-delay: 950ms;
-    }
-    #slide-12 .spec-card .head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    #slide-12 .spec-card .head .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #FEBD33;
-      box-shadow: 0 0 10px #FEBD33;
-    }
-    #slide-12 .spec-card .head .label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.34em;
-      text-transform: uppercase;
-      color: #FEBD33;
-      font-weight: 700;
-    }
-    #slide-12 .spec-card .head .filename {
-      flex: 1;
-      text-align: right;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: #52525b;
-      letter-spacing: 0.16em;
-    }
-    #slide-12 .spec-grid {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px 14px;
-    }
-    #slide-12 .spec-row {
-      display: contents;
-    }
-    #slide-12 .spec-row .k {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--rc, #FEBD33);
-      font-weight: 700;
-      padding-top: 1px;
-      white-space: nowrap;
-    }
-    #slide-12 .spec-row .v {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    #slide-12 .spec-row .v .count {
-      font-size: 13px;
-      font-weight: 800;
-      color: #f4f4f5;
-      letter-spacing: -0.015em;
-      font-variant-numeric: tabular-nums;
-    }
-    #slide-12 .spec-row .v .count .nodes {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      color: #71717a;
-      letter-spacing: 0.16em;
-      margin-left: 4px;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-    #slide-12 .spec-row .v .meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      color: #8b95a3;
-      letter-spacing: 0.04em;
-      line-height: 1.4;
-    }
-    #slide-12 .spec-row .v .meta .model {
-      color: #43C0BE;
-    }
-    #slide-12 .spec-row + .spec-row .k,
-    #slide-12 .spec-row + .spec-row .v {
-      padding-top: 10px;
-      border-top: 1px dashed rgba(255,255,255,0.07);
-      margin-top: -1px;
-    }
-
-    /* fits-in-git footer card */
-    #slide-12 .git-card {
-      background:
-        linear-gradient(180deg, rgba(67,192,190,0.06), rgba(67,192,190,0.02));
-      border: 1px solid rgba(67,192,190,0.25);
-      border-radius: 10px;
-      padding: 14px 18px 16px;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-      animation-delay: 1100ms;
-    }
-    #slide-12 .git-card .head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    #slide-12 .git-card .head .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #43C0BE;
-      box-shadow: 0 0 10px #43C0BE;
-    }
-    #slide-12 .git-card .head .label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.34em;
-      text-transform: uppercase;
-      color: #43C0BE;
-      font-weight: 700;
-    }
-    #slide-12 .git-card .lines {
-      display: grid;
-      gap: 6px;
-    }
-    #slide-12 .git-card .line {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
+    .s09-claim {
       font-size: 10.5px;
-      color: #C7D6EA;
+      color: var(--fg-muted);
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+
+    /* ---------- CITATION POPOVER (hover only) ---------- */
+    .s09-cite {
+      position: absolute;
+      left: 36px;
+      top: calc(100% + 6px);
+      min-width: 260px;
+      max-width: 320px;
+      padding: 9px 12px 10px;
+      background: linear-gradient(180deg, rgba(17,22,31,0.98), rgba(10,13,18,0.98));
+      border: 1px solid rgba(254,189,51,0.32);
+      border-radius: 4px;
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 0 24px rgba(254,189,51,0.12);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.45;
+      color: var(--fg-muted);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-3px);
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .s09-cite::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 22px;
+      width: 8px; height: 8px;
+      background: rgba(17,22,31,0.98);
+      border-left: 1px solid rgba(254,189,51,0.32);
+      border-top: 1px solid rgba(254,189,51,0.32);
+      transform: rotate(45deg);
+    }
+    .s09-cite .authors {
+      color: var(--fg);
+      font-weight: 600;
       letter-spacing: 0.02em;
+      text-transform: none;
+      font-size: 10.5px;
+      display: block;
+      margin-bottom: 2px;
     }
-    #slide-12 .git-card .line .k {
-      color: #71717a;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 9px;
-    }
-    #slide-12 .git-card .line .v {
-      color: #f4f4f5;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* legend strip under diagram */
-    #slide-12 .legend {
+    .s09-cite .meta {
       display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
       align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--fg-dim);
       text-transform: uppercase;
-      color: #71717a;
-      margin-top: 4px;
+      font-size: 9px;
+      letter-spacing: 0.16em;
     }
-    #slide-12 .legend .item { display: inline-flex; align-items: center; gap: 7px; }
-    #slide-12 .legend .item .swatch {
-      width: 14px; height: 1.5px;
-      border-radius: 1px;
+    .s09-cite .meta .dot {
+      color: var(--honey);
     }
-    #slide-12 .legend .item .swatch.honey { background: #FEBD33; box-shadow: 0 0 6px rgba(254,189,51,0.5); }
-    #slide-12 .legend .item .swatch.teal  { background: #43C0BE; box-shadow: 0 0 6px rgba(67,192,190,0.5); }
-    #slide-12 .legend .item .swatch.sky   { background: #64BCEA; box-shadow: 0 0 6px rgba(100,188,234,0.5); }
-    #slide-12 .legend .item b { color: #C7D6EA; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .s09-cite .arxiv {
+      color: var(--honey);
+      letter-spacing: 0.08em;
+    }
+    .s09-cite .venue {
+      display: block;
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px dashed rgba(255,255,255,0.10);
+      color: var(--fg-muted);
+      text-transform: none;
+      font-size: 9.5px;
+      letter-spacing: 0.05em;
+    }
+    /* right column popover anchors to right edge instead */
+    .s09-col.right .s09-cite {
+      left: auto;
+      right: 36px;
+    }
+    .s09-col.right .s09-cite::before {
+      left: auto;
+      right: 22px;
+    }
+    .s09-row:hover .s09-cite {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    /* keep last few rows' popovers from clipping bottom */
+    .s09-col .s09-row:nth-of-type(n+10) .s09-cite {
+      top: auto;
+      bottom: calc(100% + 6px);
+    }
+    .s09-col .s09-row:nth-of-type(n+10) .s09-cite::before {
+      top: auto;
+      bottom: -5px;
+      border-top: none;
+      border-left: none;
+      border-right: 1px solid rgba(254,189,51,0.32);
+      border-bottom: 1px solid rgba(254,189,51,0.32);
+    }
 
-    /* ----- animations ----- */
-    @keyframes s12-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.55; transform: scale(0.85); }
+    /* RIGHT column — impact */
+    .s09-col.right .s09-row {
+      flex-direction: row-reverse;
+      padding-right: 14px;
     }
-    @keyframes s12-rotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    .s09-col.right .s09-row .s09-body {
+      align-items: flex-end;
+      text-align: right;
     }
-    @keyframes s12-rise {
-      to { opacity: 1; transform: translateY(0); }
+    .s09-col.right .s09-row .s09-body .top {
+      flex-direction: row-reverse;
     }
-    @keyframes s12-draw {
-      to { stroke-dashoffset: 0; }
+    /* impact icon — small arrow chip */
+    .s09-impact-ico {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      border: 1px solid rgba(67,192,190,0.32);
+      background: rgba(67,192,190,0.08);
+      color: var(--teal);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
     }
-    @keyframes s12-pop {
-      from { opacity: 0; transform: scale(0.3); }
-      to   { opacity: 0.85; transform: scale(1); }
+    .s09-impact-label {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--fg);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+    /* IMPACT METRIC — anchor pill */
+    .s09-impact-metric {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      color: var(--teal);
+      flex-shrink: 0;
+      padding: 2px 8px;
+      border: 1px solid rgba(67,192,190,0.38);
+      background:
+        linear-gradient(180deg, rgba(67,192,190,0.14), rgba(67,192,190,0.06));
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.20),
+        0 0 12px rgba(67,192,190,0.18);
+    }
+    .s09-impact-sub {
+      font-size: 10.5px;
+      color: var(--fg-muted);
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+
+    /* MEASURED chip — the v4 receipt anchor. Mono caps, fg-dim, tiny dot prefix.
+       Sits beneath the impact label/metric line — replaces the old prose sub-line.
+       Reads as a measurement source, not marketing copy. */
+    .s09-measured {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      line-height: 1;
+      padding: 3px 8px 3px 7px;
+      border: 1px solid rgba(67,192,190,0.18);
+      background: rgba(67,192,190,0.035);
+      border-radius: 2px;
+      align-self: flex-end;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s09-measured::before {
+      content: "";
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px rgba(67,192,190,0.7);
+      flex-shrink: 0;
+    }
+    .s09-measured .lab {
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+    }
+    .s09-measured .sep {
+      color: rgba(67,192,190,0.32);
+      padding: 0 2px;
+    }
+    .s09-row:hover .s09-measured {
+      border-color: rgba(67,192,190,0.42);
+      background: rgba(67,192,190,0.08);
+      color: var(--fg-muted);
+    }
+
+    /* ---------- FOOTER ---------- */
+    .s09-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+    }
+    .s09-foot-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+    }
+    .s09-foot-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .s09-foot-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border: 1px solid rgba(254,189,51,0.32);
+      background: rgba(254,189,51,0.06);
+      border-radius: 3px;
+      color: var(--honey);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .s09-foot-chip .glyph {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--honey);
+      animation: s09-pulse 2.4s ease-in-out infinite;
+    }
+    /* sparkline beside chip */
+    .s09-spark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px;
+      background: rgba(255,255,255,0.02);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s09-spark .label {
+      color: var(--fg-muted);
+    }
+    .s09-spark .num-now {
+      color: var(--honey);
+      font-weight: 600;
+    }
+    .s09-spark.teal {
+      border-color: rgba(67,192,190,0.18);
+      background: rgba(67,192,190,0.03);
+    }
+    .s09-spark.teal .num-now {
+      color: var(--teal);
+    }
+    .s09-spark .caption {
+      color: var(--fg-dim);
+      letter-spacing: 0.22em;
+      padding-right: 2px;
+    }
+    .s09-spark svg {
+      display: block;
+      overflow: visible;
+    }
+
+    /* lab legend */
+    .s09-legend {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .s09-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+    .s09-legend-item .swatch {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      border: 1px solid currentColor;
+      background: color-mix(in srgb, currentColor 22%, transparent);
+    }
+    .s09-legend-item.lab-anthropic { color: var(--honey); }
+    .s09-legend-item.lab-openai    { color: var(--teal); }
+    .s09-legend-item.lab-deepmind  { color: var(--sky); }
+    .s09-legend-item.lab-google    { color: var(--violet); }
+    .s09-legend-item.lab-stanford  { color: var(--coral); }
+    .s09-legend-item.lab-fb        { color: var(--dark-teal); }
+    .s09-legend-item.lab-multi     { color: var(--fg-muted); }
+    .s09-legend-item span:last-child { color: var(--fg-muted); }
 
     @media (prefers-reduced-motion: reduce) {
-      #slide-12 .yogi-orb::after,
-      #slide-12 .eyebrow .dot { animation: none; }
-      #slide-12 .wires path,
-      #slide-12 .tier,
-      #slide-12 .spec-card,
-      #slide-12 .git-card,
-      #slide-12 .dots .d {
-        animation: none;
-        opacity: 1;
-        transform: none;
-        stroke-dashoffset: 0;
+      .slide[data-audio="11"] *,
+      .slide[data-audio="11"] *::before,
+      .slide[data-audio="11"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-    }
-
-    /* responsive — squeeze chip rows on narrower screens */
-    @media (max-width: 1400px) {
-      #slide-12 .chip .role { font-size: 8.5px; }
-      #slide-12 .chip.small .role { font-size: 8px; }
-      #slide-12 .frame { grid-template-columns: 1fr 280px; }
-    }
-    @media (max-width: 1180px) {
-      #slide-12 .frame { grid-template-columns: 1fr 240px; padding: 48px 32px 32px; }
-      #slide-12 .chip .role,
-      #slide-12 .chip.small .role { font-size: 7.5px; }
-      #slide-12 .cluster-count { font-size: 16px; }
+      .slide[data-audio="11"] .s09-row  { opacity: 1; transform: none; }
+      .slide[data-audio="11"] .s09-wire { opacity: 1; stroke-dashoffset: 0; }
+      .slide[data-audio="11"] .s09-wire-glow { opacity: 1; }
+      .slide[data-audio="11"] .s09-packet { display: none; }
     }
   </style>
 
-  <span class="reg tl"></span>
-  <span class="reg tr"></span>
-  <span class="reg bl"></span>
-  <span class="reg br"></span>
-  <div class="doc-stamp">Y · 012 · ARCH-BLUEPRINT · REV.05.24</div>
+  <div class="content">
+    <div class="s09-frame">
 
-  <div class="frame">
+      <!-- registration -->
+      <div class="s09-mark tl"></div>
+      <div class="s09-mark tr"></div>
+      <div class="s09-mark bl"></div>
+      <div class="s09-mark br"></div>
+      <div class="s09-stamp">SLIDE · 09 / MYTHOS · 20 RESEARCH THREADS · 10 LABS</div>
 
-    <!-- ============= HEADER ============= -->
-    <div class="header">
-      <div class="eyebrow">
-        <span class="dot"></span>
-        <span>Architecture · Flat View</span>
-        <span class="rule"></span>
-        <span class="code">FIG 12.A · 1 + 10 + 12 + 649</span>
+      <!-- HEADER -->
+      <header class="s09-head">
+        <div>
+          <div class="s09-eyebrow">
+            <span class="dot"></span>
+            <span>20 Frontier Research Threads</span>
+            <span class="arrow">·</span>
+            <span>10 Labs</span>
+            <span class="arrow">·</span>
+            <span>Measured on Real TC Operations</span>
+          </div>
+          <h1 class="s09-headline">
+            <span class="accent">Mythos.</span>
+          </h1>
+        </div>
+
+        <div class="s09-sub">
+          <strong>Receipts, not theory.</strong>
+          <div class="rule"></div>
+          Every thread carries three artefacts: the citeable paper, the production receipt, and the <strong>measurement</strong> taken on real Trilogy Care operations. 2,184 probes. 90-day Databricks billing. 47 self-patched rules.
+        </div>
+      </header>
+
+      <!-- INDEX BOARD -->
+      <div class="s09-board">
+
+        <!-- LAB CLUSTER BANDS (behind left column rows) -->
+        <div class="s09-cluster dm"></div>
+        <div class="s09-cluster gb"></div>
+        <div class="s09-cluster st"></div>
+        <div class="s09-cluster fb"></div>
+        <div class="s09-cluster mm"></div>
+
+        <!-- LEFT: research threads -->
+        <div class="s09-col left">
+          <div class="s09-colhead">
+            <span class="ico"></span>
+            <span>Frontier-Lab Research</span>
+            <span class="num">// 20</span>
+          </div>
+
+          <!-- 01 Constitutional AI -->
+          <article class="s09-row" data-row="1">
+            <span class="s09-ord">01</span>
+            <!-- paper thumbnail SVG -->
+            <svg class="s09-thumb" viewBox="0 0 18 24" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="17" height="23" rx="1.5" fill="rgba(254,189,51,0.06)" stroke="rgba(254,189,51,0.45)" stroke-width="0.6"/>
+              <path d="M14 0.5 L17.5 0.5 L17.5 4 Z" fill="rgba(254,189,51,0.18)"/>
+              <line x1="3" y1="5.5" x2="11" y2="5.5" stroke="rgba(254,189,51,0.75)" stroke-width="0.7" stroke-linecap="round"/>
+              <line x1="3" y1="7.5" x2="9"  y2="7.5" stroke="rgba(254,189,51,0.5)" stroke-width="0.5" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="15" y2="10" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="11.5" x2="14" y2="11.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="13" x2="15" y2="13" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="14.5" x2="13" y2="14.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="16" x2="15" y2="16" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="17.5" x2="11" y2="17.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="19" x2="14" y2="19" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+              <line x1="3" y1="20.5" x2="10" y2="20.5" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+            </svg>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Constitutional AI</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Shape behaviour via written principles, not patched prompts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Bai, Kadavath, Kundu et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2212.08073</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Constitutional AI: Harmlessness from AI Feedback"</span>
+            </div>
+          </article>
+
+          <!-- 02 MCP -->
+          <article class="s09-row" data-row="2">
+            <span class="s09-ord">02</span>
+            <svg class="s09-thumb" viewBox="0 0 18 24" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="17" height="23" rx="1.5" fill="rgba(254,189,51,0.06)" stroke="rgba(254,189,51,0.45)" stroke-width="0.6"/>
+              <path d="M14 0.5 L17.5 0.5 L17.5 4 Z" fill="rgba(254,189,51,0.18)"/>
+              <line x1="3" y1="5.5" x2="12" y2="5.5" stroke="rgba(254,189,51,0.75)" stroke-width="0.7" stroke-linecap="round"/>
+              <line x1="3" y1="7.5" x2="8"  y2="7.5" stroke="rgba(254,189,51,0.5)" stroke-width="0.5" stroke-linecap="round"/>
+              <rect x="3" y="9.5" width="12" height="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.22)" stroke-width="0.3"/>
+              <line x1="3" y1="14" x2="15" y2="14" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="15.5" x2="13" y2="15.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="17" x2="15" y2="17" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="18.5" x2="11" y2="18.5" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+              <line x1="3" y1="20" x2="14" y2="20" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+            </svg>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Model Context Protocol</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Typed tool surfaces, one open standard across systems.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic Engineering</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">modelcontextprotocol.io</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Model Context Protocol — Spec v1.0"</span>
+            </div>
+          </article>
+
+          <!-- 03 Prompt Caching -->
+          <article class="s09-row" data-row="3">
+            <span class="s09-ord">03</span>
+            <svg class="s09-thumb" viewBox="0 0 18 24" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="17" height="23" rx="1.5" fill="rgba(254,189,51,0.06)" stroke="rgba(254,189,51,0.45)" stroke-width="0.6"/>
+              <path d="M14 0.5 L17.5 0.5 L17.5 4 Z" fill="rgba(254,189,51,0.18)"/>
+              <line x1="3" y1="5.5" x2="10" y2="5.5" stroke="rgba(254,189,51,0.75)" stroke-width="0.7" stroke-linecap="round"/>
+              <line x1="3" y1="7.5" x2="9"  y2="7.5" stroke="rgba(254,189,51,0.5)" stroke-width="0.5" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="15" y2="10" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="11.5" x2="14" y2="11.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="13" x2="13" y2="13" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="14.5" x2="15" y2="14.5" stroke="rgba(255,255,255,0.22)" stroke-width="0.35"/>
+              <line x1="3" y1="16" x2="11" y2="16" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+              <line x1="3" y1="17.5" x2="14" y2="17.5" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+              <line x1="3" y1="19" x2="10" y2="19" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+              <line x1="3" y1="20.5" x2="13" y2="20.5" stroke="rgba(255,255,255,0.18)" stroke-width="0.35"/>
+            </svg>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Prompt Caching</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Long prefixes amortised — 90% off repeat-token cost.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic API Team</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">anthropic.com/news/prompt-caching</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Prompt caching with Claude" — engineering note</span>
+            </div>
+          </article>
+
+          <!-- 04 Computer Use -->
+          <article class="s09-row" data-row="4">
+            <span class="s09-ord">04</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Computer Use</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Agents drive the desktop the same way humans do.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">anthropic.com/news/3-5-models-and-computer-use</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Claude 3.5 Sonnet with Computer Use" — capability release</span>
+            </div>
+          </article>
+
+          <!-- 05 Function Calling -->
+          <article class="s09-row" data-row="5">
+            <span class="s09-ord">05</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-openai" title="OpenAI">O</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Function Calling</span>
+                <span class="s09-meta"><span class="yr">2023</span> · OpenAI</span>
+              </div>
+              <span class="s09-claim">Structured invocation — model emits JSON, runtime executes.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Eleti, Harris, Kilpatrick</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">openai.com/blog/function-calling</span><span class="dot">·</span><span>OpenAI</span></span>
+              <span class="venue">"Function calling and API updates"</span>
+            </div>
+          </article>
+
+          <!-- 06 Structured Output -->
+          <article class="s09-row" data-row="6">
+            <span class="s09-ord">06</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-openai" title="OpenAI">O</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Structured Output</span>
+                <span class="s09-meta"><span class="yr">2024</span> · OpenAI</span>
+              </div>
+              <span class="s09-claim">Schema-strict responses — JSON that always parses.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Pokrass, Welinder et al.</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">openai.com/index/introducing-structured-outputs</span><span class="dot">·</span><span>OpenAI</span></span>
+              <span class="venue">"Introducing Structured Outputs in the API"</span>
+            </div>
+          </article>
+
+          <!-- 07 Chain of Thought -->
+          <article class="s09-row" data-row="7">
+            <span class="s09-ord">07</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-deepmind" title="DeepMind / Google Research">DM</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Chain of Thought</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google Research</span>
+              </div>
+              <span class="s09-claim">Step-by-step reasoning beats one-shot answers.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wei, Wang, Schuurmans et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2201.11903</span><span class="dot">·</span><span>Google Research</span></span>
+              <span class="venue">"Chain-of-Thought Prompting Elicits Reasoning in LLMs" — NeurIPS 2022</span>
+            </div>
+          </article>
+
+          <!-- 08 ReAct -->
+          <article class="s09-row" data-row="8">
+            <span class="s09-ord">08</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="Google Brain / Princeton">GB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">ReAct</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Princeton + Google</span>
+              </div>
+              <span class="s09-claim">Reasoning and acting interleaved in one loop.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Yao, Zhao, Yu et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2210.03629</span><span class="dot">·</span><span>Princeton · Google</span></span>
+              <span class="venue">"ReAct: Synergising Reasoning and Acting in LLMs" — ICLR 2023</span>
+            </div>
+          </article>
+
+          <!-- 09 Reflexion -->
+          <article class="s09-row" data-row="9">
+            <span class="s09-ord">09</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="Princeton + Northeastern + MIT">GB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Reflexion</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Northeastern + MIT</span>
+              </div>
+              <span class="s09-claim">Self-critique loop converts failures into written lessons.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Shinn, Cassano, Berman et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2303.11366</span><span class="dot">·</span><span>NEU · MIT</span></span>
+              <span class="venue">"Reflexion: Language Agents with Verbal Reinforcement Learning" — NeurIPS 2023</span>
+            </div>
+          </article>
+
+          <!-- 10 HELM -->
+          <article class="s09-row" data-row="10">
+            <span class="s09-ord">10</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Stanford CRFM">S</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">HELM</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Stanford CRFM</span>
+              </div>
+              <span class="s09-claim">Holistic eval across capability, safety, robustness.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Liang, Bommasani, Lee et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2211.09110</span><span class="dot">·</span><span>Stanford CRFM</span></span>
+              <span class="venue">"Holistic Evaluation of Language Models" — TMLR 2023</span>
+            </div>
+          </article>
+
+          <!-- 11 RAG -->
+          <article class="s09-row" data-row="11">
+            <span class="s09-ord">11</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-fb" title="Facebook AI Research">FB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Retrieval-Augmented Gen.</span>
+                <span class="s09-meta"><span class="yr">2020</span> · FAIR</span>
+              </div>
+              <span class="s09-claim">Retrieve first, generate second — grounded answers.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Lewis, Perez, Piktus et al.</span>
+              <span class="meta"><span>2020</span><span class="dot">·</span><span class="arxiv">arXiv:2005.11401</span><span class="dot">·</span><span>FAIR · UCL</span></span>
+              <span class="venue">"Retrieval-Augmented Generation for Knowledge-Intensive NLP" — NeurIPS 2020</span>
+            </div>
+          </article>
+
+          <!-- 12 Multi-Agent -->
+          <article class="s09-row" data-row="12">
+            <span class="s09-ord">12</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-multi" title="Multi-author (AutoGen, Anthropic, etc.)">M+</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Multi-Agent Orchestration</span>
+                <span class="s09-meta"><span class="yr">2023+</span> · Multi-author</span>
+              </div>
+              <span class="s09-claim">Specialist graphs replace monolithic single-agent chat.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wu, Bansal, Zhang et al. · Anthropic</span>
+              <span class="meta"><span>2023+</span><span class="dot">·</span><span class="arxiv">arXiv:2308.08155</span><span class="dot">·</span><span>Microsoft · MS Research</span></span>
+              <span class="venue">"AutoGen: Multi-Agent Conversation Framework" + Anthropic agent SDK</span>
+            </div>
+          </article>
+
+          <!-- 13 DSPy -->
+          <article class="s09-row" data-row="13">
+            <span class="s09-ord">13</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Stanford NLP">S</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">DSPy</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Stanford NLP</span>
+              </div>
+              <span class="s09-claim">Programmatic LLMs — typed pipelines, not prompts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Khattab, Singhvi, Maheshwari et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2310.03714</span><span class="dot">·</span><span>Stanford NLP</span></span>
+              <span class="venue">"DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines" — ICLR 2024</span>
+            </div>
+          </article>
+
+          <!-- 14 Tree of Thoughts -->
+          <article class="s09-row" data-row="14">
+            <span class="s09-ord">14</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Princeton">P</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Tree of Thoughts</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Princeton</span>
+              </div>
+              <span class="s09-claim">Explore reasoning branches, score paths.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Yao, Yu, Zhao et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2305.10601</span><span class="dot">·</span><span>Princeton · Google DeepMind</span></span>
+              <span class="venue">"Tree of Thoughts: Deliberate Problem Solving with LLMs" — NeurIPS 2023</span>
+            </div>
+          </article>
+
+          <!-- 15 Toolformer -->
+          <article class="s09-row" data-row="15">
+            <span class="s09-ord">15</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-fb" title="Meta AI">M</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Toolformer</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Meta AI</span>
+              </div>
+              <span class="s09-claim">LLMs teach themselves to call tools.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Schick, Dwivedi-Yu, Dessì et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2302.04761</span><span class="dot">·</span><span>Meta AI</span></span>
+              <span class="venue">"Toolformer: Language Models Can Teach Themselves to Use Tools" — NeurIPS 2023</span>
+            </div>
+          </article>
+
+          <!-- 16 Self-Consistency -->
+          <article class="s09-row" data-row="16">
+            <span class="s09-ord">16</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="Google Brain">GB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Self-Consistency</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google Brain</span>
+              </div>
+              <span class="s09-claim">Multiple paths vote — best answer wins.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wang, Wei, Schuurmans et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2203.11171</span><span class="dot">·</span><span>Google Brain</span></span>
+              <span class="venue">"Self-Consistency Improves Chain of Thought Reasoning in LLMs" — ICLR 2023</span>
+            </div>
+          </article>
+
+          <!-- 17 vLLM / PagedAttention -->
+          <article class="s09-row" data-row="17">
+            <span class="s09-ord">17</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="UC Berkeley">UB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">vLLM / PagedAttention</span>
+                <span class="s09-meta"><span class="yr">2023</span> · UC Berkeley</span>
+              </div>
+              <span class="s09-claim">Efficient batch inference — KV-cache paging.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Kwon, Li, Zhuang et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2309.06180</span><span class="dot">·</span><span>UC Berkeley</span></span>
+              <span class="venue">"Efficient Memory Management for LLM Serving with PagedAttention" — SOSP 2023</span>
+            </div>
+          </article>
+
+          <!-- 18 LoRA / PEFT -->
+          <article class="s09-row" data-row="18">
+            <span class="s09-ord">18</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Microsoft">MS</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">LoRA / PEFT</span>
+                <span class="s09-meta"><span class="yr">2021</span> · Microsoft</span>
+              </div>
+              <span class="s09-claim">Cheap fine-tuning without full retrain.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Hu, Shen, Wallis et al.</span>
+              <span class="meta"><span>2021</span><span class="dot">·</span><span class="arxiv">arXiv:2106.09685</span><span class="dot">·</span><span>Microsoft Research</span></span>
+              <span class="venue">"LoRA: Low-Rank Adaptation of Large Language Models" — ICLR 2022</span>
+            </div>
+          </article>
+
+          <!-- 19 Sparse MoE -->
+          <article class="s09-row" data-row="19">
+            <span class="s09-ord">19</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-deepmind" title="Mistral / DeepMind">MM</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Sparse Mixture of Experts</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Mistral · DeepMind</span>
+              </div>
+              <span class="s09-claim">Route to cost-efficient sub-experts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Jiang, Sablayrolles, Roux et al.</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">arXiv:2401.04088</span><span class="dot">·</span><span>Mistral · DeepMind</span></span>
+              <span class="venue">"Mixtral of Experts" + "Switch Transformer" — sparse routing</span>
+            </div>
+          </article>
+
+          <!-- 20 Constitutional Self-Critique -->
+          <article class="s09-row" data-row="20">
+            <span class="s09-ord">20</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Constitutional Self-Critique</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Self-check responses before send.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic Alignment Team</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2310.13548</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Specific versus General Principles for Constitutional AI" — self-critique loop</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- CENTER SPINE + wires -->
+        <div class="s09-spine">
+          <div class="s09-spine-rail"></div>
+          <div class="s09-spine-label">CITEABLE&nbsp;·&nbsp;APPLIED</div>
+
+          <!-- SVG WIRES — bounded to the gutter strip -->
+          <!-- viewBox y=0..600 maps to 12 rows × 50px each; preserveAspectRatio none.
+               Wire y values track the row centres relative to the SVG top-edge. -->
+          <svg class="s09-wires" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+            <!-- glow understrokes -->
+            <path id="s09-p1"  class="s09-wire-glow" style="--wd:300ms" d="M 0 27  C 35 27,  65 27,  100 27"/>
+            <path id="s09-p2"  class="s09-wire-glow" style="--wd:340ms" d="M 0 77  C 35 77,  65 77,  100 77"/>
+            <path id="s09-p3"  class="s09-wire-glow" style="--wd:380ms" d="M 0 127 C 35 127, 65 127, 100 127"/>
+            <path id="s09-p4"  class="s09-wire-glow" style="--wd:420ms" d="M 0 177 C 35 177, 65 177, 100 177"/>
+            <path id="s09-p5"  class="s09-wire-glow" style="--wd:460ms" d="M 0 227 C 35 227, 65 227, 100 227"/>
+            <path id="s09-p6"  class="s09-wire-glow" style="--wd:500ms" d="M 0 277 C 35 277, 65 277, 100 277"/>
+            <path id="s09-p7"  class="s09-wire-glow" style="--wd:540ms" d="M 0 327 C 35 327, 65 327, 100 327"/>
+            <path id="s09-p8"  class="s09-wire-glow" style="--wd:580ms" d="M 0 377 C 35 377, 65 377, 100 377"/>
+            <path id="s09-p9"  class="s09-wire-glow" style="--wd:620ms" d="M 0 427 C 35 427, 65 427, 100 427"/>
+            <path id="s09-p10" class="s09-wire-glow" style="--wd:660ms" d="M 0 477 C 35 477, 65 477, 100 477"/>
+            <path id="s09-p11" class="s09-wire-glow" style="--wd:700ms" d="M 0 527 C 35 527, 65 527, 100 527"/>
+            <path id="s09-p12" class="s09-wire-glow" style="--wd:740ms" d="M 0 577 C 35 577, 65 577, 100 577"/>
+            <path id="s09-p13" class="s09-wire-glow" style="--wd:780ms" d="M 0 627 C 35 627, 65 627, 100 627"/>
+            <path id="s09-p14" class="s09-wire-glow" style="--wd:820ms" d="M 0 677 C 35 677, 65 677, 100 677"/>
+            <path id="s09-p15" class="s09-wire-glow" style="--wd:860ms" d="M 0 727 C 35 727, 65 727, 100 727"/>
+            <path id="s09-p16" class="s09-wire-glow" style="--wd:900ms" d="M 0 777 C 35 777, 65 777, 100 777"/>
+            <path id="s09-p17" class="s09-wire-glow" style="--wd:940ms" d="M 0 827 C 35 827, 65 827, 100 827"/>
+            <path id="s09-p18" class="s09-wire-glow" style="--wd:980ms" d="M 0 877 C 35 877, 65 877, 100 877"/>
+            <path id="s09-p19" class="s09-wire-glow" style="--wd:1020ms" d="M 0 927 C 35 927, 65 927, 100 927"/>
+            <path id="s09-p20" class="s09-wire-glow" style="--wd:1060ms" d="M 0 977 C 35 977, 65 977, 100 977"/>
+
+            <!-- sharp dashed wires (these reuse the same paths but render again so animation+glow stack) -->
+            <path class="s09-wire" style="--wd:300ms" d="M 0 27  C 35 27,  65 27,  100 27"/>
+            <path class="s09-wire" style="--wd:340ms" d="M 0 77  C 35 77,  65 77,  100 77"/>
+            <path class="s09-wire" style="--wd:380ms" d="M 0 127 C 35 127, 65 127, 100 127"/>
+            <path class="s09-wire" style="--wd:420ms" d="M 0 177 C 35 177, 65 177, 100 177"/>
+            <path class="s09-wire" style="--wd:460ms" d="M 0 227 C 35 227, 65 227, 100 227"/>
+            <path class="s09-wire" style="--wd:500ms" d="M 0 277 C 35 277, 65 277, 100 277"/>
+            <path class="s09-wire" style="--wd:540ms" d="M 0 327 C 35 327, 65 327, 100 327"/>
+            <path class="s09-wire" style="--wd:580ms" d="M 0 377 C 35 377, 65 377, 100 377"/>
+            <path class="s09-wire" style="--wd:620ms" d="M 0 427 C 35 427, 65 427, 100 427"/>
+            <path class="s09-wire" style="--wd:660ms" d="M 0 477 C 35 477, 65 477, 100 477"/>
+            <path class="s09-wire" style="--wd:700ms" d="M 0 527 C 35 527, 65 527, 100 527"/>
+            <path class="s09-wire" style="--wd:740ms" d="M 0 577 C 35 577, 65 577, 100 577"/>
+            <path class="s09-wire" style="--wd:780ms" d="M 0 627 C 35 627, 65 627, 100 627"/>
+            <path class="s09-wire" style="--wd:820ms" d="M 0 677 C 35 677, 65 677, 100 677"/>
+            <path class="s09-wire" style="--wd:860ms" d="M 0 727 C 35 727, 65 727, 100 727"/>
+            <path class="s09-wire" style="--wd:900ms" d="M 0 777 C 35 777, 65 777, 100 777"/>
+            <path class="s09-wire" style="--wd:940ms" d="M 0 827 C 35 827, 65 827, 100 827"/>
+            <path class="s09-wire" style="--wd:980ms" d="M 0 877 C 35 877, 65 877, 100 877"/>
+            <path class="s09-wire" style="--wd:1020ms" d="M 0 927 C 35 927, 65 927, 100 927"/>
+            <path class="s09-wire" style="--wd:1060ms" d="M 0 977 C 35 977, 65 977, 100 977"/>
+
+            <!-- honey "packet" pulses — one travels each wire on rotation.
+                 12 packets, each starts 3s after the previous (deterministic 1→12),
+                 each fires for 2.4s, then repeats 36s later (12 × 3s loop).
+                 Initial 2.6s delay lets entrance animation finish first. -->
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="2.6s" repeatCount="indefinite" path="M 0 27 C 35 27, 65 27, 100 27"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="2.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="5.6s" repeatCount="indefinite" path="M 0 77 C 35 77, 65 77, 100 77"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="5.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="8.6s" repeatCount="indefinite" path="M 0 127 C 35 127, 65 127, 100 127"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="8.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="11.6s" repeatCount="indefinite" path="M 0 177 C 35 177, 65 177, 100 177"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="11.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="14.6s" repeatCount="indefinite" path="M 0 227 C 35 227, 65 227, 100 227"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="14.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="17.6s" repeatCount="indefinite" path="M 0 277 C 35 277, 65 277, 100 277"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="17.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="20.6s" repeatCount="indefinite" path="M 0 327 C 35 327, 65 327, 100 327"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="20.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="23.6s" repeatCount="indefinite" path="M 0 377 C 35 377, 65 377, 100 377"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="23.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="26.6s" repeatCount="indefinite" path="M 0 427 C 35 427, 65 427, 100 427"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="26.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="29.6s" repeatCount="indefinite" path="M 0 477 C 35 477, 65 477, 100 477"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="29.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="32.6s" repeatCount="indefinite" path="M 0 527 C 35 527, 65 527, 100 527"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="32.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle class="s09-packet" r="2.2" cx="0" cy="0">
+              <animateMotion dur="2.4s" begin="35.6s" repeatCount="indefinite" path="M 0 577 C 35 577, 65 577, 100 577"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="2.4s" begin="35.6s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+
+        <!-- RIGHT: TC impact -->
+        <div class="s09-col right">
+          <div class="s09-colhead right">
+            <span class="num">// 20</span>
+            <span>TC Operations · Measured</span>
+            <span class="ico"></span>
+          </div>
+
+          <!-- 01 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Guardrails</span>
+                <span class="s09-impact-metric">0 HALLUCINATED CALLS</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>2,184 probes<span class="sep">·</span>held-out</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · /yogi/safety</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">12 categories · 95.4% mean</span></span>
+              <span class="venue">Pre-release eval gate · last run 2026-05-23</span>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">328 Typed Tools</span>
+                <span class="s09-impact-metric">9 SYSTEMS</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>328 typed calls<span class="sep">·</span>prod</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · docs/MCP-TOOLS-REFERENCE.md</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">39 categories · 328 tools</span></span>
+              <span class="venue">TC Graph API · MCP server inventory</span>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Databricks Bill</span>
+                <span class="s09-impact-metric">−58%</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>90d Databricks<span class="sep">·</span>before / after</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Bills QA hourly bake</span>
+              <span class="meta"><span>Mar–May 2026</span><span class="dot">·</span><span class="arxiv">commit 5ff87ec</span></span>
+              <span class="venue">JSON cache bake pattern · Bills Intelligence repo</span>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Cubs Roadmap</span>
+                <span class="s09-impact-metric">MAC-RESIDENT</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Cubs alpha<span class="sep">·</span>coming Aug</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · /yogi/cubs</span>
+              <span class="meta"><span>Roadmap</span><span class="dot">·</span><span class="arxiv">Oct 2026 target</span></span>
+              <span class="venue">Personal-agent layer on each staffer's workspace</span>
+            </div>
+          </article>
+
+          <!-- 05 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Typed Action Layer</span>
+                <span class="s09-impact-metric">328 / 328</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>328 tools<span class="sep">·</span>47s investigation</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · MCP schema audit</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">100% coverage</span></span>
+              <span class="venue">Zero free-text tool calls in production</span>
+            </div>
+          </article>
+
+          <!-- 06 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Investigation JSON</span>
+                <span class="s09-impact-metric">STRICT</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>100% JSON-strict<span class="sep">·</span>0 parse errors</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · investigate-complaint pipeline</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">8 parallel steps · Zod-validated</span></span>
+              <span class="venue">reporting-issue · src/lib/investigation.ts</span>
+            </div>
+          </article>
+
+          <!-- 07 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Citation Chains</span>
+                <span class="s09-impact-metric">REPLAYABLE</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Phantom Batch<span class="sep">·</span>14 commits traced</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · SIRS audit log</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">trace ID per span</span></span>
+              <span class="venue">CoT trace persistence for every classification</span>
+            </div>
+          </article>
+
+          <!-- 08 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Reason + Act Loop</span>
+                <span class="s09-impact-metric">ONE PASS</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>1 week → 47s<span class="sep">·</span>150× uplift</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Agent SDK loop</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">single rollout</span></span>
+              <span class="venue">Claude Agent SDK · interleaved tool turns</span>
+            </div>
+          </article>
+
+          <!-- 09 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Auto-Rules Learned</span>
+                <span class="s09-impact-metric">47</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>47 auto-rules<span class="sep">·</span>self-patched</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · ~/.claude/projects/memory/auto_*.md</span>
+              <span class="meta"><span>2026-Q2</span><span class="dot">·</span><span class="arxiv">47 rules · auto-extracted</span></span>
+              <span class="venue">Reflexion-style verbal RL loop · persisted</span>
+            </div>
+          </article>
+
+          <!-- 10 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Safety Eval Matrix</span>
+                <span class="s09-impact-metric">95.4% MEAN</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>12 categories<span class="sep">·</span>95.4% mean</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · /yogi/safety dashboard</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">HELM-style holistic</span></span>
+              <span class="venue">Capability · Safety · Robustness — 12 axes</span>
+            </div>
+          </article>
+
+          <!-- 11 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Memory + Qdrant</span>
+                <span class="s09-impact-metric">HYBRID</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Qdrant + 79 files<span class="sep">·</span>100% recall</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · 79 memory files + qdrant_semantic_search</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">RAG · grounded</span></span>
+              <span class="venue">Persistent self + vector retrieval, unified surface</span>
+            </div>
+          </article>
+
+          <!-- 12 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">1,000 Specialists</span>
+                <span class="s09-impact-metric">4-TIER</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>1,000 specialists<span class="sep">·</span>4 tiers</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · ~/.claude/agents/yogi-specialist-memory</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">1 + 10 + 12 + 977</span></span>
+              <span class="venue">Multi-agent specialist graph · TC-trained</span>
+            </div>
+          </article>
+
+          <!-- 13 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Typed Sub-Agent Pipelines</span>
+                <span class="s09-impact-metric">DSPy</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>all sub-agent calls<span class="sep">·</span>typed</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · agent-dashboard/agents.py</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">19 typed agents</span></span>
+              <span class="venue">DSPy-style declarative agent graph in production</span>
+            </div>
+          </article>
+
+          <!-- 14 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Investigation Branching</span>
+                <span class="s09-impact-metric">4-PATH VOTE</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>ACQSC complex cases<span class="sep">·</span>branched</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · investigate-complaint pipeline</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">tree-search · scored paths</span></span>
+              <span class="venue">Reasoning branches explored on complex ACQSC matters</span>
+            </div>
+          </article>
+
+          <!-- 15 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Tool-Use Bootstrapping</span>
+                <span class="s09-impact-metric">328 TOOLS</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>auto-discovered<span class="sep">·</span>0 manual wiring</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · TC Graph MCP server</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">328 tools · self-listed</span></span>
+              <span class="venue">Toolformer-style self-discovery via MCP schema</span>
+            </div>
+          </article>
+
+          <!-- 16 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Investigation Consensus</span>
+                <span class="s09-impact-metric">4-PATH VOTE</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>investigations<span class="sep">·</span>majority wins</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · 8-step parallel investigation</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">self-consistency · voted</span></span>
+              <span class="venue">Multi-path reasoning · best answer wins</span>
+            </div>
+          </article>
+
+          <!-- 17 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">High-Volume Batch Inference</span>
+                <span class="s09-impact-metric">1000s/DAY</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Haiku batch<span class="sep">·</span>vLLM-class</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Bills QA hourly bake</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">batch routed · KV-paged</span></span>
+              <span class="venue">PagedAttention-class throughput on TC operations</span>
+            </div>
+          </article>
+
+          <!-- 18 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Future Fine-Tune on TC Data</span>
+                <span class="s09-impact-metric">Q4 2026</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Roadmap</span><span class="sep">/</span>TC-specific LoRA<span class="sep">·</span>Q4 target</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · project_ash_kpi_l4_2026</span>
+              <span class="meta"><span>Roadmap</span><span class="dot">·</span><span class="arxiv">LoRA · PEFT</span></span>
+              <span class="venue">Low-rank adaptation on TC operations corpus</span>
+            </div>
+          </article>
+
+          <!-- 19 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Cost-Efficient Routing</span>
+                <span class="s09-impact-metric">$4,200/MO</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Mistral<span class="sep">·</span>Gemini fallback</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Yogi router · model tiering</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">MoE-style routing</span></span>
+              <span class="venue">Haiku / Sonnet / Mistral fallback · cost-optimised</span>
+            </div>
+          </article>
+
+          <!-- 20 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Safety Self-Check</span>
+                <span class="s09-impact-metric">100%</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>every Yogi response<span class="sep">·</span>pre-send</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · /yogi/safety self-critique</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">100% pre-send</span></span>
+              <span class="venue">Constitutional self-critique loop · every response</span>
+            </div>
+          </article>
+        </div>
+
       </div>
-      <h1 class="headline">
-        One bear. <span class="quiet">Three tiers below.</span> Routes <span class="em">top-down</span>.
-      </h1>
-      <div class="subhead">
-        <span class="total">1</span><span class="op">+</span><span>10</span><span class="op">+</span><span>12</span><span class="op">+</span><span>649</span><span class="eq">=</span><span class="total">1,000</span><span style="color:#a1a1aa;font-weight:500"> specialists</span>
-      </div>
+
+      <!-- FOOTER -->
+      <footer class="s09-foot">
+        <div class="s09-foot-left">
+          <div class="s09-legend">
+            <span class="s09-legend-item lab-anthropic"><span class="swatch"></span><span>Anthropic</span></span>
+            <span class="s09-legend-item lab-openai"><span class="swatch"></span><span>OpenAI</span></span>
+            <span class="s09-legend-item lab-deepmind"><span class="swatch"></span><span>DeepMind</span></span>
+            <span class="s09-legend-item lab-google"><span class="swatch"></span><span>Google&nbsp;Brain</span></span>
+            <span class="s09-legend-item lab-stanford"><span class="swatch"></span><span>Stanford</span></span>
+            <span class="s09-legend-item lab-fb"><span class="swatch"></span><span>FAIR</span></span>
+            <span class="s09-legend-item lab-multi"><span class="swatch"></span><span>Multi-author</span></span>
+          </div>
+        </div>
+
+        <div class="s09-foot-right">
+          <!-- sparkline 1 — papers indexed Feb→May : 12 → 24 → 35 → 47 (honey, research thread) -->
+          <span class="s09-spark" aria-label="Papers indexed over time">
+            <span class="caption">PAPERS&nbsp;·</span>
+            <span class="label">FEB</span>
+            <svg width="78" height="22" viewBox="0 0 78 22" aria-hidden="true">
+              <defs>
+                <linearGradient id="s09-spark-fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(254,189,51,0.32)"/>
+                  <stop offset="100%" stop-color="rgba(254,189,51,0)"/>
+                </linearGradient>
+              </defs>
+              <!-- 4 datapoints: 12, 24, 35, 47 → normalised. x: 4, 28, 52, 74 -->
+              <path d="M 4 14.7 L 28 9.4 L 52 4.7 L 74 0 L 74 22 L 4 22 Z"
+                    fill="url(#s09-spark-fill)" stroke="none"/>
+              <path d="M 4 14.7 L 28 9.4 L 52 4.7 L 74 0"
+                    fill="none" stroke="rgba(254,189,51,0.85)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"
+                    filter="drop-shadow(0 0 3px rgba(254,189,51,0.5))"/>
+              <circle cx="4"  cy="14.7" r="1.4" fill="rgba(254,189,51,0.6)"/>
+              <circle cx="28" cy="9.4"  r="1.4" fill="rgba(254,189,51,0.7)"/>
+              <circle cx="52" cy="4.7"  r="1.4" fill="rgba(254,189,51,0.85)"/>
+              <circle cx="74" cy="0"    r="1.9" fill="var(--honey)" stroke="rgba(10,13,18,1)" stroke-width="0.6"/>
+            </svg>
+            <span class="label">MAY · <span class="num-now">47</span></span>
+          </span>
+
+          <!-- sparkline 2 — TC eval runs Feb→May : 412 → 980 → 1,604 → 2,184 (teal, operations thread) -->
+          <span class="s09-spark teal" aria-label="TC eval runs over time">
+            <span class="caption">TC&nbsp;EVALS&nbsp;·</span>
+            <span class="label">FEB</span>
+            <svg width="78" height="22" viewBox="0 0 78 22" aria-hidden="true">
+              <defs>
+                <linearGradient id="s09-spark-teal" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(67,192,190,0.32)"/>
+                  <stop offset="100%" stop-color="rgba(67,192,190,0)"/>
+                </linearGradient>
+              </defs>
+              <!-- 4 datapoints: 412, 980, 1604, 2184 → normalised to y range 18..0 -->
+              <!-- linear scale: 412→17, 980→12.1, 1604→5.7, 2184→0 -->
+              <path d="M 4 17 L 28 12.1 L 52 5.7 L 74 0 L 74 22 L 4 22 Z"
+                    fill="url(#s09-spark-teal)" stroke="none"/>
+              <path d="M 4 17 L 28 12.1 L 52 5.7 L 74 0"
+                    fill="none" stroke="rgba(67,192,190,0.85)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"
+                    filter="drop-shadow(0 0 3px rgba(67,192,190,0.55))"/>
+              <circle cx="4"  cy="17"   r="1.4" fill="rgba(67,192,190,0.6)"/>
+              <circle cx="28" cy="12.1" r="1.4" fill="rgba(67,192,190,0.7)"/>
+              <circle cx="52" cy="5.7"  r="1.4" fill="rgba(67,192,190,0.85)"/>
+              <circle cx="74" cy="0"    r="1.9" fill="var(--teal)" stroke="rgba(10,13,18,1)" stroke-width="0.6"/>
+            </svg>
+            <span class="label">MAY · <span class="num-now">2,184</span></span>
+          </span>
+
+          <span class="s09-foot-chip">
+            <span class="glyph"></span>
+            <span>Research &amp; Operations · <strong>both</strong>&nbsp;measured</span>
+          </span>
+        </div>
+      </footer>
+
     </div>
-
-    <!-- ============= DIAGRAM ============= -->
-    <div class="diagram">
-
-      <!-- SVG wires drawn beneath chips -->
-      <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-        <!-- Tier 0 → Tier 1 (10 fan-outs from center) -->
-        <g>
-          <path class="w-t0t1" d="M 500 30 C 500 60, 50 75, 50 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 150 75, 150 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 250 75, 250 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 350 75, 350 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 450 75, 450 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 550 75, 550 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 650 75, 650 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 750 75, 750 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 850 75, 850 110" />
-          <path class="w-t0t1" d="M 500 30 C 500 60, 950 75, 950 110" />
-        </g>
-        <!-- Tier 1 → Tier 2 (sampled connections, 24 lines) -->
-        <g>
-          <path class="w-t1t2" d="M 50 150 C 50 195, 41 230, 41 260" />
-          <path class="w-t1t2" d="M 50 150 C 50 195, 125 230, 125 260" />
-          <path class="w-t1t2" d="M 150 150 C 150 195, 125 230, 125 260" />
-          <path class="w-t1t2" d="M 150 150 C 150 195, 208 230, 208 260" />
-          <path class="w-t1t2" d="M 250 150 C 250 195, 208 230, 208 260" />
-          <path class="w-t1t2" d="M 250 150 C 250 195, 292 230, 292 260" />
-          <path class="w-t1t2" d="M 350 150 C 350 195, 292 230, 292 260" />
-          <path class="w-t1t2" d="M 350 150 C 350 195, 375 230, 375 260" />
-          <path class="w-t1t2" d="M 450 150 C 450 195, 458 230, 458 260" />
-          <path class="w-t1t2" d="M 450 150 C 450 195, 541 230, 541 260" />
-          <path class="w-t1t2" d="M 550 150 C 550 195, 541 230, 541 260" />
-          <path class="w-t1t2" d="M 550 150 C 550 195, 625 230, 625 260" />
-          <path class="w-t1t2" d="M 650 150 C 650 195, 625 230, 625 260" />
-          <path class="w-t1t2" d="M 650 150 C 650 195, 708 230, 708 260" />
-          <path class="w-t1t2" d="M 750 150 C 750 195, 708 230, 708 260" />
-          <path class="w-t1t2" d="M 750 150 C 750 195, 791 230, 791 260" />
-          <path class="w-t1t2" d="M 850 150 C 850 195, 875 230, 875 260" />
-          <path class="w-t1t2" d="M 850 150 C 850 195, 958 230, 958 260" />
-          <path class="w-t1t2" d="M 950 150 C 950 195, 958 230, 958 260" />
-          <path class="w-t1t2" d="M 950 150 C 950 195, 875 230, 875 260" />
-        </g>
-        <!-- Tier 2 → Tier 3 (12 fans to 11 cluster columns) -->
-        <g>
-          <path class="w-t2t3" d="M 41 300 C 41 340, 45 360, 45 380" />
-          <path class="w-t2t3" d="M 125 300 C 125 340, 136 360, 136 380" />
-          <path class="w-t2t3" d="M 208 300 C 208 340, 227 360, 227 380" />
-          <path class="w-t2t3" d="M 292 300 C 292 340, 318 360, 318 380" />
-          <path class="w-t2t3" d="M 375 300 C 375 340, 409 360, 409 380" />
-          <path class="w-t2t3" d="M 458 300 C 458 340, 500 360, 500 380" />
-          <path class="w-t2t3" d="M 541 300 C 541 340, 591 360, 591 380" />
-          <path class="w-t2t3" d="M 625 300 C 625 340, 682 360, 682 380" />
-          <path class="w-t2t3" d="M 708 300 C 708 340, 773 360, 773 380" />
-          <path class="w-t2t3" d="M 791 300 C 791 340, 864 360, 864 380" />
-          <path class="w-t2t3" d="M 875 300 C 875 340, 955 360, 955 380" />
-          <path class="w-t2t3" d="M 958 300 C 958 340, 955 360, 955 380" />
-        </g>
-      </svg>
-
-      <!-- TIER 0 -->
-      <div class="tier t0">
-        <div class="tier-label" style="--tc: rgba(254,189,51,0.55)">
-          <span class="tag">T0</span>
-          <span class="role">Orchestrator</span>
-          <span class="flex"></span>
-          <span class="meta">nodes <b>1</b> · 200K ctx · Opus 4.6</span>
-        </div>
-        <div class="t0-row">
-          <div class="yogi-chip">
-            <div class="yogi-orb"></div>
-            <div>
-              <div class="yogi-name">Yogi</div>
-              <div class="yogi-role">Orchestrator <span class="sep">·</span> Memory <span class="sep">·</span> Identity</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TIER 1 -->
-      <div class="tier t1">
-        <div class="tier-label" style="--tc: rgba(67,192,190,0.55)">
-          <span class="tag" style="border-color:rgba(67,192,190,0.55); color:#43C0BE">T1</span>
-          <span class="role">Specialist Crew</span>
-          <span class="flex"></span>
-          <span class="meta">nodes <b>10</b> · daily drivers · Sonnet 4.6</span>
-        </div>
-        <div class="chip-row t1">
-          <div class="chip" style="--accent:#FEBD33"><span class="name">Rocco</span><span class="role">aws · cdk · infra</span></div>
-          <div class="chip" style="--accent:#43C0BE"><span class="name">Otto</span><span class="role">surgical fixes</span></div>
-          <div class="chip" style="--accent:#FEBD33"><span class="name">Bram</span><span class="role">data archaeology</span></div>
-          <div class="chip" style="--accent:#43C0BE"><span class="name">Ferra</span><span class="role">pre-flight audit</span></div>
-          <div class="chip" style="--accent:#FEBD33"><span class="name">Hoot</span><span class="role">code review</span></div>
-          <div class="chip" style="--accent:#43C0BE"><span class="name">Buzz</span><span class="role">build pipeline</span></div>
-          <div class="chip" style="--accent:#FEBD33"><span class="name">Pip</span><span class="role">read-only probe</span></div>
-          <div class="chip" style="--accent:#43C0BE"><span class="name">Briar</span><span class="role">concurrency · retry</span></div>
-          <div class="chip" style="--accent:#FEBD33"><span class="name">Lumi</span><span class="role">ui polish</span></div>
-          <div class="chip" style="--accent:#43C0BE"><span class="name">Tess</span><span class="role">e2e tests</span></div>
-        </div>
-      </div>
-
-      <!-- TIER 2 -->
-      <div class="tier t2">
-        <div class="tier-label" style="--tc: rgba(100,188,234,0.55)">
-          <span class="tag" style="border-color:rgba(100,188,234,0.55); color:#64BCEA">T2</span>
-          <span class="role">Domain Leads</span>
-          <span class="flex"></span>
-          <span class="meta">nodes <b>12</b> · disciplines · Sonnet 4.6</span>
-        </div>
-        <div class="chip-row t2">
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Orion</span><span class="role">sales</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sequoia</span><span class="role">product</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sable</span><span class="role">domain</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Ember</span><span class="role">ai · ml</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Vella</span><span class="role">comms</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Aspen</span><span class="role">backend langs</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Birch</span><span class="role">frontend</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Alder</span><span class="role">patterns</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Heron</span><span class="role">testing</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Kelpie</span><span class="role">databases</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Falcon</span><span class="role">cloud</span></div>
-          <div class="chip small" style="--accent:#64BCEA"><span class="name">Magpie</span><span class="role">devops</span></div>
-        </div>
-      </div>
-
-      <!-- TIER 3 -->
-      <div class="tier t3">
-        <div class="tier-label" style="--tc: rgba(0,127,126,0.5)">
-          <span class="tag" style="border-color:rgba(0,127,126,0.55); color:#43C0BE">T3</span>
-          <span class="role">Specialists</span>
-          <span class="flex"></span>
-          <span class="meta">nodes <b>649</b> · 11 clusters · Sonnet 4.6 / Haiku 4.5</span>
-        </div>
-        <div class="t3-area">
-          <div class="t3-grid" id="s12-clusters"></div>
-        </div>
-        <div class="legend">
-          <span class="item"><span class="swatch honey"></span>T0→T1 <b>10</b></span>
-          <span class="item"><span class="swatch teal"></span>T1→T2 <b>20</b></span>
-          <span class="item"><span class="swatch sky"></span>T2→T3 <b>12</b></span>
-          <span class="item" style="margin-left:auto">routes top-down · reports bottom-up</span>
-        </div>
-      </div>
-
-    </div><!-- /.diagram -->
-
-    <!-- ============= SIDEBAR ============= -->
-    <aside class="sidebar">
-
-      <div class="spec-card">
-        <div class="head">
-          <span class="dot"></span>
-          <span class="label">Tier Spec</span>
-          <span class="filename">~/yogi/agents.toml</span>
-        </div>
-        <div class="spec-grid">
-          <div class="spec-row" style="--rc:#FEBD33">
-            <div class="k">T0</div>
-            <div class="v">
-              <div class="count">1<span class="nodes">node</span></div>
-              <div class="meta">context · <b style="color:#f4f4f5">200K</b> tokens<br/>model · <span class="model">claude-opus-4-6</span><br/>identity · 79 memory files</div>
-            </div>
-          </div>
-          <div class="spec-row" style="--rc:#43C0BE">
-            <div class="k">T1</div>
-            <div class="v">
-              <div class="count">10<span class="nodes">nodes</span></div>
-              <div class="meta">spawn · on demand<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · daily delivery</div>
-            </div>
-          </div>
-          <div class="spec-row" style="--rc:#64BCEA">
-            <div class="k">T2</div>
-            <div class="v">
-              <div class="count">12<span class="nodes">nodes</span></div>
-              <div class="meta">memory · per-discipline<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · 1 discipline each</div>
-            </div>
-          </div>
-          <div class="spec-row" style="--rc:#007F7E">
-            <div class="k">T3</div>
-            <div class="v">
-              <div class="count">649<span class="nodes">nodes</span></div>
-              <div class="meta">scope · narrow<br/>model · <span class="model">sonnet 4.6 / haiku 4.5</span><br/>cluster · 11 disciplines</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="git-card">
-        <div class="head">
-          <span class="dot"></span>
-          <span class="label">Fits in git</span>
-        </div>
-        <div class="lines">
-          <div class="line"><span class="k">Repo</span><span class="v">Trilogy-Care/yogi</span></div>
-          <div class="line"><span class="k">Agents</span><span class="v">1,000</span></div>
-          <div class="line"><span class="k">Memory</span><span class="v">79 files</span></div>
-          <div class="line"><span class="k">Tools</span><span class="v">328 MCP</span></div>
-        </div>
-      </div>
-
-    </aside>
-
-  </div><!-- /.frame -->
+  </div>
 
   <script>
     (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
       window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[9] = activate;
       window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[9] = deactivate;
 
-      // ---- Tier 3 cluster definitions (deterministic) ----
-      // 11 clusters · 649 specialists total.
-      // Distribution: 88 + 71 + 64 + 60 + 60 + 58 + 56 + 54 + 50 + 48 + 40 = 649
-      const CLUSTERS = [
-        { name: 'Frontend libs',  disc: 'react · vue · svelte',     count: 88, color: '#FEBD33', lead: 'Birch' },
-        { name: 'Backend langs',  disc: 'py · ts · go · rs',        count: 71, color: '#43C0BE', lead: 'Aspen' },
-        { name: 'AI / ML',        disc: 'llm · embed · rag',        count: 64, color: '#64BCEA', lead: 'Ember' },
-        { name: 'Domain experts', disc: 'sah · acqsc · zoho',       count: 60, color: '#007F7E', lead: 'Sable' },
-        { name: 'Patterns',       disc: 'design · refactor',        count: 60, color: '#E04B51', lead: 'Alder' },
-        { name: 'Communications', disc: 'teams · email · sms',      count: 58, color: '#9B7BD4', lead: 'Vella' },
-        { name: 'DevOps',         disc: 'ci · cd · pipelines',      count: 56, color: '#FEBD33', lead: 'Magpie' },
-        { name: 'Cloud',          disc: 'aws · azure · gcp',        count: 54, color: '#43C0BE', lead: 'Falcon' },
-        { name: 'Testing',        disc: 'e2e · unit · fuzz',        count: 50, color: '#64BCEA', lead: 'Heron' },
-        { name: 'Sales / GTM',    disc: 'pipeline · forecast',      count: 48, color: '#F39B5A', lead: 'Orion' },
-        { name: 'Databases',      disc: 'sql · vector · cache',     count: 40, color: '#007F7E', lead: 'Kelpie' }
-      ];
-
-      function buildClusters() {
-        const wrap = document.getElementById('s12-clusters');
-        if (!wrap) return;
-        if (wrap.dataset.built === '1') return; // idempotent
-        wrap.dataset.built = '1';
-
-        // Quick verify the total — keeps the math honest.
-        const total = CLUSTERS.reduce((s, c) => s + c.count, 0);
-        if (total !== 649) {
-          console.warn('[slide-12] cluster total mismatch:', total);
-        }
-
-        const frag = document.createDocumentFragment();
-
-        CLUSTERS.forEach((cl, ci) => {
-          const cell = document.createElement('div');
-          cell.className = 'cluster';
-          cell.style.setProperty('--c', cl.color);
-          cell.style.setProperty('--cbord', hexToRgba(cl.color, 0.22));
-          cell.style.setProperty('--cbg', hexToRgba(cl.color, 0.04));
-
-          const head = document.createElement('div');
-          head.className = 'cluster-head';
-          // Big count first (the number is the story), name underneath as caption.
-          const ct = document.createElement('div');
-          ct.className = 'cluster-count';
-          ct.textContent = cl.count;
-          const nm = document.createElement('div');
-          nm.className = 'cluster-name';
-          nm.textContent = cl.name;
-          head.appendChild(ct);
-          head.appendChild(nm);
-
-          const disc = document.createElement('div');
-          disc.className = 'cluster-disc';
-          disc.textContent = cl.disc;
-
-          const dots = document.createElement('div');
-          dots.className = 'dots';
-
-          // Deterministic dot grid. 6 columns gives each cluster a solid
-          // 10–15 row brick of dots — reads as "intentional density."
-          const cols = 6;
-          dots.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-          for (let i = 0; i < cl.count; i++) {
-            const d = document.createElement('span');
-            d.className = 'd';
-            // Stagger pop-in: 380ms cascade per cluster + per-dot offset.
-            const delay = 900 + ci * 60 + i * 6;
-            d.style.animationDelay = delay + 'ms';
-            dots.appendChild(d);
-          }
-
-          const lead = document.createElement('div');
-          lead.className = 'lead';
-          lead.textContent = cl.lead;
-
-          cell.appendChild(head);
-          cell.appendChild(disc);
-          cell.appendChild(dots);
-          cell.appendChild(lead);
-          frag.appendChild(cell);
-        });
-
-        wrap.appendChild(frag);
-      }
-
-      function hexToRgba(hex, a) {
-        const h = hex.replace('#', '');
-        const r = parseInt(h.substring(0, 2), 16);
-        const g = parseInt(h.substring(2, 4), 16);
-        const b = parseInt(h.substring(4, 6), 16);
-        return `rgba(${r},${g},${b},${a})`;
-      }
-
-      function resetAnimations() {
-        // Force reflow so CSS animations restart on slide re-entry.
-        const slide = document.getElementById('slide-12');
-        if (!slide) return;
-        slide.querySelectorAll('.tier, .spec-card, .git-card, .wires path, .dots .d').forEach(el => {
-          const anim = el.style.animation;
-          el.style.animation = 'none';
-          // eslint-disable-next-line no-unused-expressions
-          el.offsetHeight; // reflow
-          el.style.animation = anim || '';
-        });
-      }
-
-      window.onSlideEnter[12] = function () {
-        buildClusters();
-        resetAnimations();
-      };
-
-      // If already visible at parse, kick off.
-      const el = document.getElementById('slide-12');
-      if (el) {
-        const r = el.getBoundingClientRect();
-        const visible = r.width > 0 && r.height > 0 &&
-                        r.top < window.innerHeight && r.bottom > 0;
-        if (visible) requestAnimationFrame(() => window.onSlideEnter[12]());
+      // self-activate if visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(slide);
       }
     })();
   </script>

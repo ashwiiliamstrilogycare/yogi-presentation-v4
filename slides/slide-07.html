@@ -1,752 +1,1609 @@
-<section class="slide" data-audio="07">
+<section class="slide" data-audio="07" id="slide-07-brain">
   <style>
     /* ============================================================
-       SLIDE 07 — WHAT YOGI DOES TODAY (capability grid)
-       Stripe status dashboard × mission-control telemetry.
-       10 capability tiles. Hairline glass. Honey accents.
-       Phase-synced pulsing dots. Mono receipts.
+       SLIDE 07 · THE BRAIN
+       5,000 neural nodes · ~3,000 synapses · 328 MCP tools
+       · 9 enterprise systems · 1 brain
+       Vanilla Three.js — NASA × Anthropic × Apple
+       Sister of the Agent Galaxy: same lifecycle, different organ.
        ============================================================ */
 
-    .slide[data-audio="07"] {
-      --s07-bg:         #0a0d12;
-      --s07-bg-elev:    #11161f;
-      --s07-bg-tile:    #0e1219;
-      --s07-honey:      #FEBD33;
-      --s07-honey-soft: rgba(254, 189, 51, 0.10);
-      --s07-honey-glow: rgba(254, 189, 51, 0.45);
-      --s07-honey-line: rgba(254, 189, 51, 0.25);
-      --s07-teal:       #43C0BE;
-      --s07-green:      #5ee08a;
-      --s07-fg:         #f4f4f5;
-      --s07-fg-muted:   #a1a1aa;
-      --s07-fg-dim:     #71717a;
-      --s07-fg-faint:   #52525b;
-      --s07-border:     rgba(255, 255, 255, 0.08);
-      --s07-border-hi:  rgba(255, 255, 255, 0.14);
-
+    #slide-07-brain {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       min-height: 100vh;
-      background: var(--s07-bg);
-      color: var(--s07-fg);
-      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      background: radial-gradient(ellipse at center,
+                  #0d1426 0%,
+                  #06080f 55%,
+                  #03050a 100%);
       overflow: hidden;
+      color: #f4f4f5;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       isolation: isolate;
-      letter-spacing: -0.01em;
     }
 
-    /* ---------- Atmosphere: faint engineering grid + offset glow ---------- */
-    .slide[data-audio="07"] .s07-atmos {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .slide[data-audio="07"] .s07-grid {
+    /* Faint star field */
+    #slide-07-brain::before {
+      content: '';
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at 50% 38%, black 30%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 38%, black 30%, transparent 80%);
+        radial-gradient(1px 1px at 14% 22%, rgba(255,255,255,0.34) 50%, transparent 100%),
+        radial-gradient(1px 1px at 78% 11%, rgba(254,189,51,0.32) 50%, transparent 100%),
+        radial-gradient(1px 1px at 88% 64%, rgba(100,188,234,0.28) 50%, transparent 100%),
+        radial-gradient(1px 1px at 9% 78%, rgba(255,255,255,0.22) 50%, transparent 100%),
+        radial-gradient(1px 1px at 52% 92%, rgba(67,192,190,0.30) 50%, transparent 100%),
+        radial-gradient(1px 1px at 38% 8%, rgba(255,255,255,0.20) 50%, transparent 100%);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .slide[data-audio="07"] .s07-glow {
-      position: absolute;
-      top: 18%;
-      left: 50%;
-      width: 90vmin;
-      height: 60vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(
-        ellipse at center,
-        rgba(254, 189, 51, 0.10) 0%,
-        rgba(254, 189, 51, 0.03) 35%,
-        transparent 70%
-      );
-      filter: blur(14px);
-    }
-
-    .slide[data-audio="07"] .s07-grain {
+    /* Cinematic vignette */
+    #slide-07-brain::after {
+      content: '';
       position: absolute;
       inset: 0;
-      opacity: 0.04;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+      background:
+        radial-gradient(ellipse 78% 58% at 50% 50%,
+                        transparent 0%,
+                        transparent 55%,
+                        rgba(3,5,10,0.7) 100%);
+      pointer-events: none;
+      z-index: 5;
+      mix-blend-mode: multiply;
     }
 
-    /* ---------- Content frame ---------- */
-    .slide[data-audio="07"] .s07-frame {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(40px, 5vh, 64px) clamp(48px, 6vw, 96px);
+    #slide-07-brain .brain-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    #slide-07-brain canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* -------- HUD: top-left -------------------------------------- */
+    #slide-07-brain .br-hud-tl {
+      position: absolute;
+      top: clamp(20px, 3vh, 36px);
+      left: clamp(24px, 3vw, 56px);
+      z-index: 10;
       display: flex;
       flex-direction: column;
-      gap: clamp(28px, 3vh, 40px);
+      gap: 6px;
+      pointer-events: none;
+      max-width: min(58ch, 58vw);
     }
 
-    /* ---------- Header ---------- */
-    .slide[data-audio="07"] .s07-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-      padding-bottom: clamp(18px, 2vh, 28px);
-      border-bottom: 1px solid var(--s07-border);
-      position: relative;
-    }
-
-    .slide[data-audio="07"] .s07-header::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -1px;
-      width: 96px;
-      height: 1px;
-      background: var(--s07-honey);
-      box-shadow: 0 0 12px var(--s07-honey-glow);
-    }
-
-    .slide[data-audio="07"] .s07-eyebrow {
-      display: inline-flex;
+    #slide-07-brain .br-eyebrow {
+      display: flex;
       align-items: center;
       gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.9vw, 12px);
-      font-weight: 500;
-      color: var(--s07-honey);
-      letter-spacing: 0.22em;
+      font-size: 10px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      color: #FEBD33;
+      font-weight: 600;
     }
 
-    .slide[data-audio="07"] .s07-eyebrow::before {
-      content: "";
+    #slide-07-brain .br-eyebrow .dot {
       width: 6px;
       height: 6px;
-      background: var(--s07-honey);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--s07-honey-glow);
-      animation: s07-pulse 2.4s ease-in-out infinite;
+      background: #FEBD33;
+      box-shadow: 0 0 10px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
+      animation: brBeat 1.2s ease-in-out infinite;
     }
 
-    .slide[data-audio="07"] .s07-title {
-      font-size: clamp(40px, 5vw, 68px);
+    #slide-07-brain .br-title {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: clamp(22px, 2.7vw, 40px);
       font-weight: 800;
-      line-height: 0.96;
-      letter-spacing: -0.035em;
-      margin: 0;
-      color: var(--s07-fg);
+      letter-spacing: -0.028em;
+      color: #f4f4f5;
+      line-height: 1.02;
+      margin-top: 4px;
     }
 
-    .slide[data-audio="07"] .s07-title em {
+    #slide-07-brain .br-title em {
       font-style: normal;
-      color: var(--s07-honey);
+      color: #FEBD33;
       font-weight: 800;
+      text-shadow: 0 0 20px rgba(254,189,51,0.42);
     }
 
-    .slide[data-audio="07"] .s07-meta {
+    #slide-07-brain .br-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* -------- HUD: top-right (telemetry) ------------------------- */
+    #slide-07-brain .br-hud-tr {
+      position: absolute;
+      top: clamp(20px, 3vh, 36px);
+      right: clamp(24px, 3vw, 56px);
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 10px;
-      text-align: right;
-    }
-
-    .slide[data-audio="07"] .s07-meta-row {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--s07-fg-muted);
-      letter-spacing: 0.04em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .slide[data-audio="07"] .s07-meta-row .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s07-green);
-      box-shadow: 0 0 8px rgba(94, 224, 138, 0.6);
-      animation: s07-pulse 2.4s ease-in-out infinite;
-    }
-
-    .slide[data-audio="07"] .s07-meta-row .label {
-      color: var(--s07-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 10px;
-    }
-
-    /* ---------- Capability grid ---------- */
-    .slide[data-audio="07"] .s07-grid-wrap {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: clamp(12px, 1.2vw, 18px);
-      min-height: 0;
-    }
-
-    .slide[data-audio="07"] .s07-tile {
-      position: relative;
-      background: var(--s07-bg-tile);
-      border: 1px solid var(--s07-border);
-      border-radius: 14px;
-      padding: clamp(16px, 1.4vw, 22px) clamp(16px, 1.4vw, 22px) clamp(14px, 1.2vw, 18px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow: hidden;
-      transition: border-color 280ms ease, transform 280ms ease, background 280ms ease;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s07-tile-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .slide[data-audio="07"] .s07-tile::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(254, 189, 51, 0.06) 0%,
-          transparent 45%
-        );
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 280ms ease;
-    }
-
-    .slide[data-audio="07"] .s07-tile::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 36px;
-      height: 36px;
-      background:
-        linear-gradient(225deg, var(--s07-honey-line), transparent 60%);
-      mask: linear-gradient(225deg, black 50%, transparent 50%);
-      -webkit-mask: linear-gradient(225deg, black 50%, transparent 50%);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .slide[data-audio="07"] .s07-tile:hover {
-      border-color: var(--s07-honey-line);
-      transform: translateY(-2px);
-      background: linear-gradient(180deg, #131923 0%, #0e1219 100%);
-    }
-
-    .slide[data-audio="07"] .s07-tile:hover::before {
-      opacity: 1;
-    }
-
-    /* Staggered entry */
-    .slide[data-audio="07"] .s07-tile:nth-child(1)  { animation-delay: 120ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(2)  { animation-delay: 180ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(3)  { animation-delay: 240ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(4)  { animation-delay: 300ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(5)  { animation-delay: 360ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(6)  { animation-delay: 420ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(7)  { animation-delay: 480ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(8)  { animation-delay: 540ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(9)  { animation-delay: 600ms; }
-    .slide[data-audio="07"] .s07-tile:nth-child(10) { animation-delay: 660ms; }
-
-    /* Tile internals */
-    .slide[data-audio="07"] .s07-tile-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       gap: 12px;
     }
 
-    .slide[data-audio="07"] .s07-tile-num {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--s07-fg-dim);
-      letter-spacing: 0.16em;
-    }
-
-    .slide[data-audio="07"] .s07-tile-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--s07-fg-muted);
-    }
-
-    .slide[data-audio="07"] .s07-tile-status .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      animation: s07-pulse 2.4s ease-in-out infinite;
-    }
-
-    .slide[data-audio="07"] .s07-tile-status.active .pulse {
-      background: var(--s07-green);
-      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
-    }
-    .slide[data-audio="07"] .s07-tile-status.active { color: var(--s07-green); }
-
-    .slide[data-audio="07"] .s07-tile-status.scheduled .pulse {
-      background: var(--s07-honey);
-      box-shadow: 0 0 6px var(--s07-honey-glow);
-    }
-    .slide[data-audio="07"] .s07-tile-status.scheduled { color: var(--s07-honey); }
-
-    .slide[data-audio="07"] .s07-tile-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--s07-bg-elev);
-      border: 1px solid var(--s07-border);
+    #slide-07-brain .br-telemetry {
       display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .slide[data-audio="07"] .s07-tile-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--s07-fg);
-      stroke-width: 1.4;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .slide[data-audio="07"] .s07-tile-icon svg .accent {
-      stroke: var(--s07-honey);
-    }
-    .slide[data-audio="07"] .s07-tile-icon svg .fillaccent {
-      fill: var(--s07-honey);
-      stroke: none;
-    }
-
-    .slide[data-audio="07"] .s07-tile-title {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(15px, 1.2vw, 17px);
-      font-weight: 700;
-      color: var(--s07-fg);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin: 4px 0 0;
-    }
-
-    .slide[data-audio="07"] .s07-tile-desc {
-      font-size: clamp(11px, 0.85vw, 12.5px);
-      line-height: 1.45;
-      color: var(--s07-fg-muted);
-      flex: 1;
-      margin: 0;
-      letter-spacing: -0.005em;
-    }
-
-    .slide[data-audio="07"] .s07-tile-stat {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(255,255,255,0.06);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      grid-template-columns: auto auto;
+      gap: 4px 18px;
+      padding: 12px 16px;
+      background: rgba(8,14,28,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(254,189,51,0.18);
+      border-radius: 6px;
       font-size: 10px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
+      color: #C7D6EA;
+      min-width: 240px;
     }
 
-    .slide[data-audio="07"] .s07-tile-stat .k {
-      color: var(--s07-fg-dim);
+    #slide-07-brain .br-telemetry .k {
+      color: #71717a;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       font-size: 9px;
     }
 
-    .slide[data-audio="07"] .s07-tile-stat .v {
-      color: var(--s07-fg);
+    #slide-07-brain .br-telemetry .v {
+      color: #f4f4f5;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
       font-weight: 600;
     }
 
-    .slide[data-audio="07"] .s07-tile-stat .v.honey {
-      color: var(--s07-honey);
+    #slide-07-brain .br-telemetry .v.live {
+      color: #FEBD33;
     }
 
-    /* ---------- Bottom receipt strip ---------- */
-    .slide[data-audio="07"] .s07-receipt {
+    #slide-07-brain .br-live {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 22px;
-      background: linear-gradient(90deg, rgba(254, 189, 51, 0.04) 0%, transparent 100%);
-      border: 1px solid var(--s07-border);
-      border-radius: 999px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 0.9vw, 13px);
-      letter-spacing: 0.05em;
-      color: var(--s07-fg-muted);
+      gap: 10px;
+      padding: 8px 14px 8px 12px;
+      background: rgba(8,14,28,0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(67,192,190,0.22);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      color: #C7D6EA;
+      text-transform: uppercase;
+      min-width: 240px;
     }
 
-    .slide[data-audio="07"] .s07-receipt-left {
+    #slide-07-brain .br-live .led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #43C0BE;
+      box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.4);
+      flex: 0 0 auto;
+      animation: brLed 1.4s ease-in-out infinite;
+    }
+
+    #slide-07-brain .br-live .head {
+      color: #43C0BE;
+      letter-spacing: 0.22em;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    #slide-07-brain .br-live .row {
       display: flex;
-      align-items: center;
       gap: 14px;
       flex-wrap: wrap;
+      color: #a1a1aa;
     }
 
-    .slide[data-audio="07"] .s07-receipt-tag {
-      color: var(--s07-honey);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 10px;
-      padding: 4px 9px;
-      border: 1px solid var(--s07-honey-line);
-      border-radius: 4px;
-      background: var(--s07-honey-soft);
+    #slide-07-brain .br-live .row b {
+      color: #f4f4f5;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
     }
 
-    .slide[data-audio="07"] .s07-receipt-line {
-      color: var(--s07-fg);
-      font-weight: 500;
+    #slide-07-brain .br-live .row .gate b {
+      color: #FEBD33;
     }
 
-    .slide[data-audio="07"] .s07-receipt-line .sep {
-      color: var(--s07-fg-faint);
-      margin: 0 8px;
-    }
-
-    .slide[data-audio="07"] .s07-receipt-line .n {
-      color: var(--s07-honey);
-      font-weight: 600;
-    }
-
-    .slide[data-audio="07"] .s07-receipt-right {
+    /* -------- Hemisphere ribbon (bottom-center) ------------------ */
+    #slide-07-brain .br-ribbon {
+      position: absolute;
+      bottom: clamp(24px, 3vh, 36px);
+      left: 0;
+      right: 0;
+      z-index: 10;
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: var(--s07-fg-dim);
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      pointer-events: none;
+    }
+
+    #slide-07-brain .br-ribbon .rb-eyebrow {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
+      color: #71717a;
     }
 
-    .slide[data-audio="07"] .s07-receipt-right .dot {
-      width: 6px;
-      height: 6px;
+    #slide-07-brain .br-ribbon .rb-eyebrow b {
+      color: #FEBD33;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    #slide-07-brain .br-ribbon .rb-row {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.4vw, 36px);
+      padding: 0 24px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 0.82vw, 12px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #c7d6ea;
+    }
+
+    #slide-07-brain .br-ribbon .hemi {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #slide-07-brain .br-ribbon .hemi .swatch {
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-      background: var(--s07-green);
-      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
-      animation: s07-pulse 2.4s ease-in-out infinite;
+      background: var(--c, #FEBD33);
+      box-shadow: 0 0 10px var(--c, #FEBD33),
+                  0 0 22px color-mix(in srgb, var(--c, #FEBD33) 40%, transparent);
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s07-pulse {
-      0%, 100% { opacity: 1;   transform: scale(1); }
-      50%      { opacity: 0.35; transform: scale(0.88); }
+    #slide-07-brain .br-ribbon .hemi .lbl {
+      color: #e6edf7;
+      font-weight: 700;
     }
 
-    @keyframes s07-tile-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+    #slide-07-brain .br-ribbon .hemi .count {
+      color: var(--c, #FEBD33);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      margin: 0 2px;
     }
 
-    /* ---------- Responsive: 1366×768 laptops still need to breathe ---------- */
-    @media (max-height: 820px) {
-      .slide[data-audio="07"] .s07-frame {
-        padding: 32px 56px;
-        gap: 22px;
-      }
-      .slide[data-audio="07"] .s07-tile-desc {
-        -webkit-line-clamp: 2;
-      }
+    #slide-07-brain .br-ribbon .hemi .role {
+      color: #71717a;
+      font-weight: 500;
+      letter-spacing: 0.16em;
     }
 
-    @media (max-width: 1400px) {
-      .slide[data-audio="07"] .s07-grid-wrap {
-        gap: 12px;
-      }
-      .slide[data-audio="07"] .s07-tile {
-        padding: 14px 16px 14px;
-      }
+    #slide-07-brain .br-ribbon .rb-sep {
+      width: 1px;
+      height: 22px;
+      background: linear-gradient(to bottom,
+                  transparent 0%,
+                  rgba(254,189,51,0.55) 50%,
+                  transparent 100%);
     }
 
+    #slide-07-brain .br-ribbon .rb-hint {
+      margin-top: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #52525b;
+    }
+
+    /* -------- System billboard labels --------------------------- */
+    #slide-07-brain .sys-label {
+      position: absolute;
+      z-index: 9;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #f4f4f5;
+      opacity: 0;
+      transition: opacity 280ms ease;
+      white-space: nowrap;
+      filter: drop-shadow(0 0 8px rgba(0,0,0,0.85));
+      will-change: transform, opacity;
+    }
+
+    #slide-07-brain .sys-label.show { opacity: 0.95; }
+
+    #slide-07-brain .sys-label .tick {
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: var(--lc, #FEBD33);
+      vertical-align: middle;
+      margin-right: 8px;
+      box-shadow: 0 0 6px var(--lc, #FEBD33);
+    }
+
+    #slide-07-brain .sys-label .nm {
+      color: #f4f4f5;
+      font-weight: 700;
+    }
+
+    #slide-07-brain .sys-label .tg {
+      color: var(--lc, #FEBD33);
+      margin-left: 8px;
+      font-size: 8.5px;
+      letter-spacing: 0.32em;
+    }
+
+    /* -------- Corner crosshairs ---------------------------------- */
+    #slide-07-brain .corner {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      z-index: 6;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    #slide-07-brain .corner.tl { top: 12px; left: 12px;
+      border-top: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
+    #slide-07-brain .corner.tr { top: 12px; right: 12px;
+      border-top: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
+    #slide-07-brain .corner.bl { bottom: 12px; left: 12px;
+      border-bottom: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
+    #slide-07-brain .corner.br { bottom: 12px; right: 12px;
+      border-bottom: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
+
+    /* -------- Animations ---------------------------------------- */
+    @keyframes brBeat {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      35%      { transform: scale(1.55); opacity: 0.55; }
+      55%      { transform: scale(1.2);  opacity: 0.8; }
+    }
+    @keyframes brLed {
+      0%, 100% { transform: scale(1); opacity: 1;
+                 box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.4); }
+      50%      { transform: scale(1.35); opacity: 0.7;
+                 box-shadow: 0 0 12px #43C0BE, 0 0 26px rgba(67,192,190,0.7); }
+    }
+    @keyframes brTick {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.55; }
+    }
+    #slide-07-brain .br-tick { animation: brTick 1.8s ease-in-out infinite; }
+
+    /* -------- Reduced motion ------------------------------------ */
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="07"] *,
-      .slide[data-audio="07"] *::before,
-      .slide[data-audio="07"] *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-      .slide[data-audio="07"] .s07-tile {
-        opacity: 1;
-        transform: none;
-      }
+      #slide-07-brain .br-eyebrow .dot,
+      #slide-07-brain .br-live .led,
+      #slide-07-brain .br-tick { animation: none; }
+    }
+
+    /* -------- Responsive ---------------------------------------- */
+    @media (max-width: 1100px) {
+      #slide-07-brain .sys-label { display: none; }
+    }
+    @media (max-width: 900px) {
+      #slide-07-brain .br-telemetry { display: none; }
+      #slide-07-brain .br-live { display: none; }
+      #slide-07-brain .br-ribbon .rb-row { font-size: 9.5px; gap: 14px; }
     }
   </style>
 
-  <div class="s07-atmos">
-    <div class="s07-grid"></div>
-    <div class="s07-glow"></div>
-    <div class="s07-grain"></div>
-  </div>
+  <!-- Corner ticks -->
+  <span class="corner tl"></span>
+  <span class="corner tr"></span>
+  <span class="corner bl"></span>
+  <span class="corner br"></span>
 
-  <div class="s07-frame">
+  <!-- WebGL mount -->
+  <div class="brain-canvas-wrap" id="brain-canvas-wrap"></div>
 
-    <!-- ============================== HEADER ============================== -->
-    <header class="s07-header">
-      <div>
-        <div class="s07-eyebrow">IN PRODUCTION &nbsp;·&nbsp; 24 MAY 2026</div>
-        <h1 class="s07-title">What Yogi does <em>today.</em></h1>
-      </div>
-      <div class="s07-meta">
-        <div class="s07-meta-row"><span class="dot"></span><span class="label">System status</span><span>All surfaces nominal</span></div>
-        <div class="s07-meta-row"><span class="label">Telemetry · live</span><span>uptime 99.8% · 30d</span></div>
-      </div>
-    </header>
-
-    <!-- ============================== GRID ============================== -->
-    <div class="s07-grid-wrap">
-
-      <!-- 01 — Morning Voice Briefs -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#01</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>6 days / wk</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="6"  cy="12" r="1.2" class="accent"/>
-            <circle cx="12" cy="12" r="1.2"/>
-            <circle cx="18" cy="12" r="1.2"/>
-            <path d="M3 12c0-4.5 4-8 9-8s9 3.5 9 8"/>
-            <path d="M3 12c0 4.5 4 8 9 8" class="accent"/>
-            <path d="M21 12c0 4.5-4 8-9 8"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Morning Voice Briefs</h3>
-        <p class="s07-tile-desc">Daily 06:30 Sydney. ElevenLabs Bill voice. iMessage + Telegram.</p>
-        <div class="s07-tile-stat"><span class="k">cadence</span><span class="v honey">06:30 AEST</span></div>
-      </article>
-
-      <!-- 02 — Feedback Widget -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#02</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Ash-only</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="13" rx="2"/>
-            <path d="M8 21l4-4 4 4" class="accent"/>
-            <circle cx="9"  cy="10.5" r="1" class="fillaccent"/>
-            <circle cx="12" cy="10.5" r="1" class="fillaccent"/>
-            <circle cx="15" cy="10.5" r="1" class="fillaccent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Feedback Widget</h3>
-        <p class="s07-tile-desc">Floating on every tc-operations page. Voice + text. DB-persisted.</p>
-        <div class="s07-tile-stat"><span class="k">inbox</span><span class="v">/feedback-inbox</span></div>
-      </article>
-
-      <!-- 03 — /updates Release Notes -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#03</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Live</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 6h12"/>
-            <path d="M4 12h16" class="accent"/>
-            <path d="M4 18h10"/>
-            <circle cx="20" cy="6"  r="1.6" class="fillaccent"/>
-            <circle cx="20" cy="18" r="1.6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">/updates Release Notes</h3>
-        <p class="s07-tile-desc">GitHub-backed. Version-grouped. Plain-English impact per commit.</p>
-        <div class="s07-tile-stat"><span class="k">source</span><span class="v">github → /updates</span></div>
-      </article>
-
-      <!-- 04 — 328 MCP Tools -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#04</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Write authority</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3" class="accent"/>
-            <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">328 MCP Tools</h3>
-        <p class="s07-tile-desc">Zoho · Databricks · MYOB · Aircall · M365 · Confluence · Teams · EH.</p>
-        <div class="s07-tile-stat"><span class="k">tools</span><span class="v honey">328 wired</span></div>
-      </article>
-
-      <!-- 05 — 1,000 Sub-Agents -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#05</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>4 tiers</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="4"  r="1.6" class="fillaccent"/>
-            <circle cx="5"  cy="11" r="1.3"/>
-            <circle cx="12" cy="11" r="1.3"/>
-            <circle cx="19" cy="11" r="1.3"/>
-            <circle cx="3"  cy="19" r="1"/>
-            <circle cx="7"  cy="19" r="1"/>
-            <circle cx="11" cy="19" r="1"/>
-            <circle cx="15" cy="19" r="1"/>
-            <circle cx="19" cy="19" r="1"/>
-            <circle cx="21" cy="19" r="1"/>
-            <path d="M12 5.6V9.5M12 5.6L5.5 9.7M12 5.6L18.5 9.7" class="accent"/>
-            <path d="M5 12.3l-2 5.7M5 12.3l2 5.7M12 12.3l-1 5.7M12 12.3l3 5.7M19 12.3l-4 5.7M19 12.3l2 5.7"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">1,000 Sub-Agents</h3>
-        <p class="s07-tile-desc">Specialist crew spawned on demand. Yogi is the brain — they are the muscle.</p>
-        <div class="s07-tile-stat"><span class="k">specialists</span><span class="v honey">1 + 10 + 12 + 977</span></div>
-      </article>
-
-      <!-- 06 — ElevenLabs Voice -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#06</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Locked</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 14V10"/>
-            <path d="M8  16V8" class="accent"/>
-            <path d="M12 19V5"/>
-            <path d="M16 16V8" class="accent"/>
-            <path d="M20 14V10"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">ElevenLabs Voice</h3>
-        <p class="s07-tile-desc">Bill voice ID · turbo_v2_5. Every Yogi audio is real-voice.</p>
-        <div class="s07-tile-stat"><span class="k">voice id</span><span class="v">yU0E···AVB</span></div>
-      </article>
-
-      <!-- 07 — Multichannel Reach -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#07</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>7 surfaces</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="2.2" class="fillaccent"/>
-            <circle cx="4"  cy="6"  r="1.4"/>
-            <circle cx="20" cy="6"  r="1.4"/>
-            <circle cx="4"  cy="18" r="1.4"/>
-            <circle cx="20" cy="18" r="1.4"/>
-            <circle cx="12" cy="3"  r="1.2"/>
-            <circle cx="3"  cy="12" r="1.2"/>
-            <circle cx="21" cy="12" r="1.2"/>
-            <path d="M11 11L5 7M13 11l6-4M11 13l-6 4M13 13l6 4M12 10V4M10 12H4M14 12h6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Multichannel Reach</h3>
-        <p class="s07-tile-desc">Teams · Telegram · Terminal · iMessage · Voice notes · Web · Cub.</p>
-        <div class="s07-tile-stat"><span class="k">surfaces</span><span class="v honey">7 active</span></div>
-      </article>
-
-      <!-- 08 — Weekly Memory Snapshot -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#08</span>
-          <span class="s07-tile-status scheduled"><span class="pulse"></span>Mondays 03:00</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <ellipse cx="12" cy="6"  rx="7" ry="2.4" class="accent"/>
-            <path d="M5 6v6c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4V6"/>
-            <path d="M5 12v6c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4v-6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Weekly Memory Snapshot</h3>
-        <p class="s07-tile-desc">launchd → rsync → git → Trilogy-Care/yogi private repo.</p>
-        <div class="s07-tile-stat"><span class="k">archive</span><span class="v honey">62 snapshots</span></div>
-      </article>
-
-      <!-- 09 — Evolving Memory -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#09</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Mid-conversation</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 4a6 6 0 016 6c0 2.5-1.5 4-3 5.2V18a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2.8C7.5 14 6 12.5 6 10a6 6 0 016-6z"/>
-            <path d="M10 22h4"/>
-            <path d="M9 12l2 2 4-4" class="accent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Evolving Memory</h3>
-        <p class="s07-tile-desc">Auto-rule extractor — correction → markdown → git. Self-patches live.</p>
-        <div class="s07-tile-stat"><span class="k">auto-rules</span><span class="v honey">47 learned</span></div>
-      </article>
-
-      <!-- 10 — Cloud Routines -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#10</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Always-on</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M7 17a4 4 0 010-8 5 5 0 019.6-1.4A4 4 0 0117 17"/>
-            <path d="M12 12v6" class="accent"/>
-            <path d="M9.5 15.5L12 18l2.5-2.5" class="accent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Cloud Routines</h3>
-        <p class="s07-tile-desc">Bills push 12·2·6 pm. Feedback scanner hourly. Laptop-independent.</p>
-        <div class="s07-tile-stat"><span class="k">runtime</span><span class="v">Anthropic Cloud</span></div>
-      </article>
-
+  <!-- HUD: top-left -->
+  <div class="br-hud-tl">
+    <div class="br-eyebrow">
+      <span class="dot"></span>
+      <span>THE BRAIN · 5,000 NEURAL NODES · 328 MCP TOOLS · 9 ENTERPRISE SYSTEMS</span>
     </div>
-
-    <!-- ============================== RECEIPT ============================== -->
-    <footer class="s07-receipt">
-      <div class="s07-receipt-left">
-        <span class="s07-receipt-tag">Footprint</span>
-        <span class="s07-receipt-line">
-          <span class="n">7</span> channels<span class="sep">·</span>
-          <span class="n">328</span> tools<span class="sep">·</span>
-          <span class="n">1,000</span> specialists<span class="sep">·</span>
-          <span class="n">62</span> git snapshots<span class="sep">·</span>
-          <span class="n">47</span> self-patched rules
-        </span>
-      </div>
-      <div class="s07-receipt-right">
-        <span class="dot"></span>
-        <span>Telemetry verified</span>
-      </div>
-    </footer>
-
+    <div class="br-title">Yogi <em>thinks</em>.<br/>Every system responds.</div>
+    <div class="br-subtitle">Memory layer · reasoning layer · action layer · one organ</div>
   </div>
+
+  <!-- HUD: top-right -->
+  <div class="br-hud-tr">
+    <div class="br-telemetry" aria-hidden="true">
+      <span class="k">Neural nodes</span><span class="v">5,000</span>
+      <span class="k">Synapses</span><span class="v">~3,000</span>
+      <span class="k">MCP tools</span><span class="v">328</span>
+      <span class="k">Systems</span><span class="v">9</span>
+      <span class="k">Status</span><span class="v live br-tick" id="brain-status">THINKING</span>
+    </div>
+    <div class="br-live" aria-hidden="true">
+      <span class="led"></span>
+      <span class="head">LIVE</span>
+      <span class="row">
+        <span>signals/sec <b>~250</b></span>
+        <span>tools <b>328</b></span>
+        <span>hot calls <b>~12</b></span>
+        <span class="gate">gate <b>tess</b></span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Hemisphere census ribbon -->
+  <div class="br-ribbon">
+    <div class="rb-eyebrow"><b>WIRED IN</b>NEURAL MESH · TWO HEMISPHERES · 328 TOOLS RETURNING TO MEMORY</div>
+    <div class="rb-row">
+      <span class="hemi" style="--c:#FEBD33">
+        <span class="swatch"></span>
+        <span class="lbl">Left Hemisphere</span>
+        <span class="count">2,500 nodes</span>
+        <span class="role">memory + reasoning</span>
+      </span>
+      <span class="rb-sep"></span>
+      <span class="hemi" style="--c:#F39B5A">
+        <span class="swatch"></span>
+        <span class="lbl">Right Hemisphere</span>
+        <span class="count">2,500 nodes</span>
+        <span class="role">action + reflection</span>
+      </span>
+    </div>
+    <div class="rb-hint">Drag to rotate · scroll to zoom · 120s revolution · 7s synaptic pulse</div>
+  </div>
+
+  <!-- System labels (populated by JS) -->
+  <div id="brain-system-labels"></div>
+
+  <script>
+    (function () {
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideLeave = window.onSlideLeave || {};
+
+      let state = null;
+
+      function loadThree(cb) {
+        if (window.THREE) { cb(); return; }
+        const s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+        s.onload = cb;
+        s.onerror = () => console.error('[slide-07 brain] failed to load three.js');
+        document.head.appendChild(s);
+      }
+
+      function initBrain() {
+        const wrap = document.getElementById('brain-canvas-wrap');
+        if (!wrap || !window.THREE) return;
+        const THREE = window.THREE;
+
+        // -------- Brand palette ---------------------------------
+        const HONEY      = 0xFEBD33;
+        const HONEY_WARM = 0xF39B5A; // right hemisphere accent (warmer honey)
+        const TEAL       = 0x43C0BE;
+        const DARK_TEAL  = 0x007F7E;
+        const SKY        = 0x64BCEA;
+        const RED        = 0xE04B51;
+        const VIOLET     = 0x9B7BD4;
+        const CORAL      = 0xF39B5A;
+        const NAVY       = 0x2C4C79;
+
+        // -------- 9 enterprise systems --------------------------
+        // Distributed evenly on a tilted ring around the brain.
+        const SYSTEMS = [
+          { name: 'Zoho',             tag: 'CRM',         color: HONEY,     short: 'ZOHO' },
+          { name: 'Databricks',       tag: 'WAREHOUSE',   color: SKY,       short: 'DBX' },
+          { name: 'MYOB',             tag: 'FINANCE',     color: RED,       short: 'MYOB' },
+          { name: 'EzyCollect',       tag: 'COLLECT',     color: DARK_TEAL, short: 'EZY' },
+          { name: 'Employment Hero',  tag: 'HRIS',        color: HONEY,     short: 'EH' },
+          { name: 'Aircall',          tag: 'TELEPHONY',   color: CORAL,     short: 'AIRCALL' },
+          { name: 'Microsoft 365',    tag: 'OFFICE',      color: TEAL,      short: 'M365' },
+          { name: 'SharePoint',       tag: 'DOCS',        color: TEAL,      short: 'SHAREPOINT' },
+          { name: 'Confluence',       tag: 'KNOWLEDGE',   color: VIOLET,    short: 'CONFLUENCE' }
+        ];
+
+        // -------- Reduced motion --------------------------------
+        const reduced = window.matchMedia &&
+                        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // -------- Geometry constants ----------------------------
+        const NEURONS         = 5000;
+        const SYNAPSES        = 3000;
+        const TOOLS           = 328;
+        const SYSTEMS_RADIUS  = 22;
+        const TOOLS_RADIUS_IN = 12;
+        const TOOLS_RADIUS_OUT= 17;
+
+        // Brain shape — two ellipsoids side by side (hemispheres),
+        // squished, with bumpy displacement. Brain extents:
+        //   half-width  X ≈ 5.6 (two lobes ±2.5 + slit gap)
+        //   height      Y ≈ 4.0
+        //   depth       Z ≈ 4.6 (slightly longer front-to-back)
+        const HEMI_OFFSET_X = 1.6;   // each hemisphere centered at ±1.6
+        const HEMI_RX = 2.4;         // hemisphere ellipsoid half-extents
+        const HEMI_RY = 2.0;
+        const HEMI_RZ = 2.6;
+        const SLIT_GAP = 0.18;       // dim slit between hemispheres
+
+        // -------- Renderer / Scene / Camera ---------------------
+        const renderer = new THREE.WebGLRenderer({
+          antialias: true,
+          alpha: false,
+          powerPreference: 'high-performance'
+        });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        let viewW = wrap.clientWidth, viewH = wrap.clientHeight;
+        renderer.setSize(viewW, viewH, false);
+        renderer.setClearColor(0x05070C, 1);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.08;
+        wrap.appendChild(renderer.domElement);
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0x05070C, 28, 60);
+
+        const camera = new THREE.PerspectiveCamera(54, viewW / viewH, 0.1, 240);
+        // Start a touch above and back so the brain reads as anatomical
+        camera.position.set(0, 1.8, 18);
+        camera.lookAt(0, 0, 0);
+
+        // -------- Gradient sky sphere ---------------------------
+        {
+          const skyGeo = new THREE.SphereGeometry(80, 24, 24);
+          const skyMat = new THREE.ShaderMaterial({
+            side: THREE.BackSide,
+            depthWrite: false,
+            uniforms: {
+              uTop:    { value: new THREE.Color(0x2C4C79).multiplyScalar(0.45) },
+              uBottom: { value: new THREE.Color(0x05070C) }
+            },
+            vertexShader: [
+              'varying vec3 vW;',
+              'void main() {',
+              '  vW = position;',
+              '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+              '}'
+            ].join('\n'),
+            fragmentShader: [
+              'varying vec3 vW;',
+              'uniform vec3 uTop;',
+              'uniform vec3 uBottom;',
+              'void main() {',
+              '  float t = clamp(vW.y * 0.5 + 0.5, 0.0, 1.0);',
+              '  t = smoothstep(0.05, 0.95, t);',
+              '  gl_FragColor = vec4(mix(uBottom, uTop, t), 1.0);',
+              '}'
+            ].join('\n')
+          });
+          scene.add(new THREE.Mesh(skyGeo, skyMat));
+        }
+
+        // -------- Background stars ------------------------------
+        {
+          const N = 260;
+          const sg = new THREE.BufferGeometry();
+          const pos = new Float32Array(N * 3);
+          for (let i = 0; i < N; i++) {
+            const r = 32 + Math.random() * 24;
+            const th = Math.random() * Math.PI * 2;
+            const ph = Math.acos(2 * Math.random() - 1);
+            pos[i*3+0] = r * Math.sin(ph) * Math.cos(th);
+            pos[i*3+1] = r * Math.sin(ph) * Math.sin(th);
+            pos[i*3+2] = r * Math.cos(ph);
+          }
+          sg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+          const sm = new THREE.PointsMaterial({
+            color: 0xC7D6EA,
+            size: 0.05,
+            sizeAttenuation: true,
+            transparent: true,
+            opacity: 0.55,
+            depthWrite: false
+          });
+          scene.add(new THREE.Points(sg, sm));
+        }
+
+        // -------- Lighting --------------------------------------
+        scene.add(new THREE.AmbientLight(0xffffff, 0.42));
+        const keyHoney = new THREE.PointLight(HONEY, 28, 36, 2);
+        keyHoney.position.set(-2.5, 5, 4);
+        scene.add(keyHoney);
+        const fillCoral = new THREE.PointLight(HONEY_WARM, 18, 36, 2);
+        fillCoral.position.set(3.5, -2, 4);
+        scene.add(fillCoral);
+        const rimSky = new THREE.PointLight(SKY, 14, 50, 2);
+        rimSky.position.set(-10, 0, -10);
+        scene.add(rimSky);
+        const rimTeal = new THREE.PointLight(TEAL, 12, 50, 2);
+        rimTeal.position.set(10, 1, -8);
+        scene.add(rimTeal);
+
+        // -------- Reusable radial sprite texture ----------------
+        function makeRadialTexture() {
+          const size = 128;
+          const c = document.createElement('canvas');
+          c.width = c.height = size;
+          const ctx = c.getContext('2d');
+          const g = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+          g.addColorStop(0.0,  'rgba(255,255,255,1)');
+          g.addColorStop(0.18, 'rgba(255,255,255,0.55)');
+          g.addColorStop(0.45, 'rgba(255,255,255,0.18)');
+          g.addColorStop(1.0,  'rgba(255,255,255,0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, size, size);
+          const tex = new THREE.CanvasTexture(c);
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.needsUpdate = true;
+          return tex;
+        }
+        const sharedRadialTex = makeRadialTexture();
+
+        // -------- Brain root (rotates as one) -------------------
+        const brainRoot = new THREE.Group();
+        brainRoot.rotation.x = THREE.MathUtils.degToRad(-6); // slight forward tilt
+        scene.add(brainRoot);
+
+        // -------- Deterministic RNG -----------------------------
+        // Hash-based so the brain shape is identical across reloads.
+        function hash01(i, salt) {
+          const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+          return v - Math.floor(v);
+        }
+
+        // -------- Brain surface sampler -------------------------
+        // We don't need a full SDF — instead, sample candidate points
+        // on each hemisphere ellipsoid surface with light radial
+        // jitter, then push points away from the central slit to
+        // preserve the longitudinal fissure.
+        function sampleBrainSurface(idx) {
+          // Choose hemisphere
+          const left = hash01(idx, 1.0) < 0.5;
+          const cx = left ? -HEMI_OFFSET_X : HEMI_OFFSET_X;
+
+          // Random direction on unit sphere
+          const u = hash01(idx, 2.7) * 2 - 1;
+          const th = hash01(idx, 3.3) * Math.PI * 2;
+          const s = Math.sqrt(1 - u*u);
+          let dx = s * Math.cos(th);
+          let dy = u;
+          let dz = s * Math.sin(th);
+
+          // Point on hemisphere ellipsoid (slightly inside, then walk to surface)
+          let x = cx + dx * HEMI_RX * (0.85 + hash01(idx, 4.1) * 0.18);
+          let y =      dy * HEMI_RY * (0.85 + hash01(idx, 5.1) * 0.18);
+          let z =      dz * HEMI_RZ * (0.85 + hash01(idx, 6.1) * 0.18);
+
+          // Avoid the central slit between hemispheres — push outward
+          // if x is too close to 0
+          if (Math.abs(x) < SLIT_GAP) {
+            x = x < 0 ? -SLIT_GAP : SLIT_GAP;
+          }
+          return { x, y, z, left };
+        }
+
+        // -------- 5,000 neural nodes (InstancedMesh) ------------
+        // Two-tone via per-instance color: left hemisphere = honey,
+        // right hemisphere = warmer honey/coral. Vertex colors path.
+        let neuronInst = null;
+        const neuronPositions = new Float32Array(NEURONS * 3);
+        const neuronIsLeft = new Uint8Array(NEURONS);
+        const neuronPhase  = new Float32Array(NEURONS);     // pulse phase
+        const neuronBaseSize = new Float32Array(NEURONS);
+        {
+          const geo = new THREE.SphereGeometry(1, 5, 4); // ultra-low-poly — read as a dot
+          const mat = new THREE.MeshStandardMaterial({
+            vertexColors: false,
+            color: 0xffffff,
+            emissive: 0xffffff,
+            emissiveIntensity: 0.8,
+            roughness: 0.55,
+            metalness: 0.08
+          });
+          neuronInst = new THREE.InstancedMesh(geo, mat, NEURONS);
+          neuronInst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+
+          // Per-instance color buffer
+          const colors = new Float32Array(NEURONS * 3);
+          const cLeft  = new THREE.Color(HONEY);
+          const cRight = new THREE.Color(HONEY_WARM);
+
+          const tmpMat   = new THREE.Matrix4();
+          const tmpPos   = new THREE.Vector3();
+          const tmpQuat  = new THREE.Quaternion();
+          const tmpScale = new THREE.Vector3();
+          tmpQuat.identity();
+
+          let placed = 0;
+          let attempts = 0;
+          while (placed < NEURONS && attempts < NEURONS * 8) {
+            attempts++;
+            const samp = sampleBrainSurface(attempts);
+            // Slight thickness — push along radial outward from origin
+            const len = Math.sqrt(samp.x*samp.x + samp.y*samp.y + samp.z*samp.z) || 1;
+            const inner = 0.78 + hash01(attempts, 9.1) * 0.22; // 0.78..1.00
+            const x = samp.x * inner;
+            const y = samp.y * inner;
+            const z = samp.z * inner;
+
+            const i = placed;
+            neuronPositions[i*3+0] = x;
+            neuronPositions[i*3+1] = y;
+            neuronPositions[i*3+2] = z;
+            neuronIsLeft[i] = samp.left ? 1 : 0;
+            neuronPhase[i]  = hash01(attempts, 10.5) * Math.PI * 2;
+
+            const sz = 0.03 + hash01(attempts, 11.7) * 0.025;
+            neuronBaseSize[i] = sz;
+
+            tmpPos.set(x, y, z);
+            tmpScale.set(sz, sz, sz);
+            tmpMat.compose(tmpPos, tmpQuat, tmpScale);
+            neuronInst.setMatrixAt(i, tmpMat);
+
+            const col = samp.left ? cLeft : cRight;
+            // Add tiny per-node variation to break up banding
+            const j = hash01(attempts, 12.9) * 0.18 - 0.09;
+            colors[i*3+0] = Math.min(1, Math.max(0, col.r + j));
+            colors[i*3+1] = Math.min(1, Math.max(0, col.g + j * 0.6));
+            colors[i*3+2] = Math.min(1, Math.max(0, col.b + j * 0.3));
+
+            placed++;
+          }
+          if (placed < NEURONS) {
+            console.warn('[slide-07 brain] only placed', placed, '/ ', NEURONS);
+          }
+
+          neuronInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
+          neuronInst.instanceMatrix.needsUpdate = true;
+          neuronInst.instanceColor.needsUpdate = true;
+          // Enable vertex colors path
+          mat.vertexColors = true;
+          mat.needsUpdate = true;
+
+          brainRoot.add(neuronInst);
+        }
+
+        // -------- ~3,000 synaptic connections (LineSegments) ----
+        // Each synapse links a neuron to a nearby neuron. We build a
+        // simple spatial-bucket nearest-neighbor pass — O(N) ish.
+        let synapseLines = null;
+        let synapseGeom  = null;
+        let synapseMat   = null;
+        const synapseEndpoints = new Float32Array(SYNAPSES * 2 * 3);
+        const synapseMidpoints = new Float32Array(SYNAPSES * 3); // for pulse-wave intensity
+        {
+          // Spatial hash
+          const cellSize = 0.6;
+          const grid = new Map();
+          function key(ix, iy, iz) { return ix + ',' + iy + ',' + iz; }
+          for (let i = 0; i < NEURONS; i++) {
+            const x = neuronPositions[i*3+0];
+            const y = neuronPositions[i*3+1];
+            const z = neuronPositions[i*3+2];
+            const ix = Math.floor(x / cellSize);
+            const iy = Math.floor(y / cellSize);
+            const iz = Math.floor(z / cellSize);
+            const k = key(ix, iy, iz);
+            let arr = grid.get(k);
+            if (!arr) { arr = []; grid.set(k, arr); }
+            arr.push(i);
+          }
+
+          let written = 0;
+          for (let i = 0; i < NEURONS && written < SYNAPSES; i++) {
+            // Roughly half the neurons get a synapse — distribute evenly
+            // by skipping based on a hash of i.
+            if (hash01(i, 13.1) > (SYNAPSES / NEURONS) * 1.05) continue;
+
+            const x = neuronPositions[i*3+0];
+            const y = neuronPositions[i*3+1];
+            const z = neuronPositions[i*3+2];
+            const ix = Math.floor(x / cellSize);
+            const iy = Math.floor(y / cellSize);
+            const iz = Math.floor(z / cellSize);
+
+            // Search 3x3x3 neighbourhood for a nearby neuron
+            let bestJ = -1;
+            let bestD2 = Infinity;
+            for (let dx = -1; dx <= 1; dx++) {
+              for (let dy = -1; dy <= 1; dy++) {
+                for (let dz = -1; dz <= 1; dz++) {
+                  const arr = grid.get(key(ix+dx, iy+dy, iz+dz));
+                  if (!arr) continue;
+                  // Probe a few random members of the bucket
+                  const probes = Math.min(arr.length, 5);
+                  for (let p = 0; p < probes; p++) {
+                    const j = arr[(p * 7 + i) % arr.length];
+                    if (j === i) continue;
+                    // Same hemisphere preferred (cross-hemi rare → "corpus callosum")
+                    const sameHemi = neuronIsLeft[i] === neuronIsLeft[j];
+                    if (!sameHemi && hash01(i * 17 + j, 14.5) > 0.08) continue;
+                    const xj = neuronPositions[j*3+0];
+                    const yj = neuronPositions[j*3+1];
+                    const zj = neuronPositions[j*3+2];
+                    const ddx = x - xj, ddy = y - yj, ddz = z - zj;
+                    const d2 = ddx*ddx + ddy*ddy + ddz*ddz;
+                    if (d2 > 0.0001 && d2 < bestD2 && d2 < 1.2) {
+                      bestD2 = d2;
+                      bestJ = j;
+                    }
+                  }
+                }
+              }
+            }
+            if (bestJ < 0) continue;
+
+            const xj = neuronPositions[bestJ*3+0];
+            const yj = neuronPositions[bestJ*3+1];
+            const zj = neuronPositions[bestJ*3+2];
+
+            const off = written * 6;
+            synapseEndpoints[off + 0] = x;
+            synapseEndpoints[off + 1] = y;
+            synapseEndpoints[off + 2] = z;
+            synapseEndpoints[off + 3] = xj;
+            synapseEndpoints[off + 4] = yj;
+            synapseEndpoints[off + 5] = zj;
+
+            synapseMidpoints[written * 3 + 0] = (x + xj) * 0.5;
+            synapseMidpoints[written * 3 + 1] = (y + yj) * 0.5;
+            synapseMidpoints[written * 3 + 2] = (z + zj) * 0.5;
+            written++;
+          }
+
+          // Build geometry (may be slightly under SYNAPSES — that's fine)
+          const usedSegments = written;
+          synapseGeom = new THREE.BufferGeometry();
+          const finalEnds = synapseEndpoints.slice(0, usedSegments * 6);
+          synapseGeom.setAttribute('position', new THREE.BufferAttribute(finalEnds, 3));
+
+          // Per-vertex aMid for pulse wave (2 vertices per segment share mid)
+          const aMid = new Float32Array(usedSegments * 2 * 3);
+          for (let s = 0; s < usedSegments; s++) {
+            aMid[s*6+0] = synapseMidpoints[s*3+0];
+            aMid[s*6+1] = synapseMidpoints[s*3+1];
+            aMid[s*6+2] = synapseMidpoints[s*3+2];
+            aMid[s*6+3] = synapseMidpoints[s*3+0];
+            aMid[s*6+4] = synapseMidpoints[s*3+1];
+            aMid[s*6+5] = synapseMidpoints[s*3+2];
+          }
+          synapseGeom.setAttribute('aMid', new THREE.BufferAttribute(aMid, 3));
+
+          synapseMat = new THREE.ShaderMaterial({
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            uniforms: {
+              uTime:    { value: 0 },
+              uWaveDir: { value: new THREE.Vector3(1, 0.2, 0.3).normalize() },
+              uWavePos: { value: 0 },       // moves -8 .. 8 over pulse cycle
+              uPulse:   { value: 0 }         // 0..1 amplitude
+            },
+            vertexShader: [
+              'attribute vec3 aMid;',
+              'uniform float uTime;',
+              'uniform vec3  uWaveDir;',
+              'uniform float uWavePos;',
+              'uniform float uPulse;',
+              'varying float vGlow;',
+              'void main() {',
+              '  // Distance of segment midpoint along wave axis',
+              '  float along = dot(aMid, uWaveDir);',
+              '  float band  = exp(-pow((along - uWavePos) * 0.85, 2.0));',
+              '  float idle  = 0.32 + 0.08 * sin(uTime * 1.6 + aMid.x * 2.1 + aMid.y * 1.7);',
+              '  vGlow = idle + band * uPulse * 1.4;',
+              '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+              '}'
+            ].join('\n'),
+            fragmentShader: [
+              'varying float vGlow;',
+              'void main() {',
+              '  // Warm honey-to-coral as glow rises',
+              '  vec3 cool = vec3(0.99, 0.74, 0.20);',   // honey
+              '  vec3 hot  = vec3(1.00, 0.84, 0.42);',   // hot-honey
+              '  vec3 col  = mix(cool, hot, clamp(vGlow - 0.4, 0.0, 1.0));',
+              '  float a   = clamp(vGlow * 0.55, 0.0, 0.9);',
+              '  gl_FragColor = vec4(col, a);',
+              '}'
+            ].join('\n')
+          });
+
+          synapseLines = new THREE.LineSegments(synapseGeom, synapseMat);
+          synapseLines.frustumCulled = false;
+          brainRoot.add(synapseLines);
+        }
+
+        // -------- Faint longitudinal fissure (inside brain) -----
+        // Thin dim box between hemispheres — reads as the slit
+        // separating left + right cortex.
+        {
+          const fissureBox = new THREE.Mesh(
+            new THREE.BoxGeometry(0.06, HEMI_RY * 1.85, HEMI_RZ * 1.85),
+            new THREE.MeshBasicMaterial({
+              color: 0x000308,
+              transparent: true,
+              opacity: 0.32,
+              depthWrite: false
+            })
+          );
+          brainRoot.add(fissureBox);
+        }
+
+        // -------- 328 MCP tool dots (shell around brain) --------
+        // InstancedMesh, distributed in a sphere shell r=12..17.
+        let toolsInst = null;
+        const toolPhase = new Float32Array(TOOLS);
+        {
+          const geo = new THREE.SphereGeometry(1, 4, 4); // tiny dots, never seen up close
+          const mat = new THREE.MeshBasicMaterial({
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.85,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          });
+          toolsInst = new THREE.InstancedMesh(geo, mat, TOOLS);
+          toolsInst.instanceMatrix.setUsage(THREE.StaticDrawUsage);
+
+          const colors = new Float32Array(TOOLS * 3);
+          const palette = [
+            new THREE.Color(HONEY),
+            new THREE.Color(TEAL),
+            new THREE.Color(SKY),
+            new THREE.Color(VIOLET),
+            new THREE.Color(CORAL)
+          ];
+
+          const tmpMat = new THREE.Matrix4();
+          const tmpPos = new THREE.Vector3();
+          const tmpQuat = new THREE.Quaternion();
+          tmpQuat.identity();
+          const tmpScale = new THREE.Vector3();
+
+          for (let i = 0; i < TOOLS; i++) {
+            // Sphere shell sampling — uniform on sphere with radial jitter
+            const u = hash01(i, 21.3) * 2 - 1;
+            const th = hash01(i, 22.7) * Math.PI * 2;
+            const s = Math.sqrt(1 - u*u);
+            const r = TOOLS_RADIUS_IN + hash01(i, 23.9) * (TOOLS_RADIUS_OUT - TOOLS_RADIUS_IN);
+            // Slight equator preference — flatten by 70% on Y
+            const x = s * Math.cos(th) * r;
+            const y = u * r * 0.7;
+            const z = s * Math.sin(th) * r;
+
+            const sz = 0.06 + hash01(i, 24.5) * 0.05;
+            tmpPos.set(x, y, z);
+            tmpScale.set(sz, sz, sz);
+            tmpMat.compose(tmpPos, tmpQuat, tmpScale);
+            toolsInst.setMatrixAt(i, tmpMat);
+
+            const col = palette[i % palette.length];
+            colors[i*3+0] = col.r;
+            colors[i*3+1] = col.g;
+            colors[i*3+2] = col.b;
+            toolPhase[i] = hash01(i, 25.7) * Math.PI * 2;
+          }
+          toolsInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
+          toolsInst.instanceMatrix.needsUpdate = true;
+          toolsInst.instanceColor.needsUpdate = true;
+          // No vertex colors needed since MeshBasicMaterial gets vertexColors flag
+          mat.vertexColors = true;
+          mat.needsUpdate = true;
+
+          brainRoot.add(toolsInst);
+        }
+
+        // -------- 9 enterprise system orbs ----------------------
+        // Distributed evenly on a tilted ring outside the brain at
+        // radius 22, with halos and sprite glows.
+        const systemNodes = [];
+        const systemLabelsHost = document.getElementById('brain-system-labels');
+        {
+          const ringTilt = THREE.MathUtils.degToRad(14);
+          for (let i = 0; i < SYSTEMS.length; i++) {
+            const sys = SYSTEMS[i];
+            const ang = (i / SYSTEMS.length) * Math.PI * 2 - Math.PI / 2;
+            const x = Math.cos(ang) * SYSTEMS_RADIUS;
+            const z = Math.sin(ang) * SYSTEMS_RADIUS;
+            // Tilt the plane slightly
+            const y = Math.sin(ang) * Math.sin(ringTilt) * SYSTEMS_RADIUS * 0.18;
+
+            const g = new THREE.Group();
+            g.position.set(x, y, z);
+
+            // Core
+            const core = new THREE.Mesh(
+              new THREE.SphereGeometry(0.42, 22, 22),
+              new THREE.MeshStandardMaterial({
+                color: sys.color,
+                emissive: sys.color,
+                emissiveIntensity: 1.1,
+                roughness: 0.3,
+                metalness: 0.25
+              })
+            );
+            g.add(core);
+
+            // Inner halo
+            const halo = new THREE.Mesh(
+              new THREE.SphereGeometry(0.78, 16, 16),
+              new THREE.MeshBasicMaterial({
+                color: sys.color,
+                transparent: true,
+                opacity: 0.22,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
+              })
+            );
+            g.add(halo);
+
+            // Sprite bloom
+            const bloom = new THREE.Sprite(new THREE.SpriteMaterial({
+              map: sharedRadialTex,
+              color: sys.color,
+              transparent: true,
+              opacity: 0.55,
+              depthWrite: false,
+              blending: THREE.AdditiveBlending
+            }));
+            bloom.scale.set(3.2, 3.2, 1);
+            g.add(bloom);
+
+            scene.add(g); // NOT brainRoot — systems stay fixed, brain rotates inside
+
+            // HTML billboard label
+            const label = document.createElement('div');
+            label.className = 'sys-label';
+            const colHex = '#' + sys.color.toString(16).padStart(6, '0');
+            label.style.setProperty('--lc', colHex);
+            label.innerHTML =
+              '<span class="tick"></span><span class="nm">' + sys.name + '</span>' +
+              '<span class="tg">' + sys.tag + '</span>';
+            systemLabelsHost.appendChild(label);
+
+            systemNodes.push({
+              group: g,
+              core: core,
+              halo: halo,
+              bloom: bloom,
+              label: label,
+              color: new THREE.Color(sys.color),
+              angle: ang,
+              data: sys
+            });
+          }
+        }
+
+        // -------- 9 honey beams: brain core -> each system ------
+        // Single BufferGeometry shader — additive, pulse rotation.
+        let beamsGeom = null;
+        let beamsMat  = null;
+        let beamsMesh = null;
+        {
+          const SEG_PER_BEAM = 32;
+          const beams = SYSTEMS.length;
+          // 2 triangles per quad segment, 6 vertices per quad (no index)
+          const vertsPerBeam = SEG_PER_BEAM * 6;
+          const total = beams * vertsPerBeam;
+
+          const positions = new Float32Array(total * 3);
+          const aT        = new Float32Array(total);          // 0..1 along beam
+          const aSide     = new Float32Array(total);          // -1 or +1 for ribbon width
+          const aBeamIdx  = new Float32Array(total);
+          const aColor    = new Float32Array(total * 3);
+
+          let v = 0;
+          for (let b = 0; b < beams; b++) {
+            const sys = SYSTEMS[b];
+            const node = systemNodes[b];
+            const target = node.group.position;
+            const col = new THREE.Color(sys.color);
+            for (let s = 0; s < SEG_PER_BEAM; s++) {
+              const t0 = s / SEG_PER_BEAM;
+              const t1 = (s + 1) / SEG_PER_BEAM;
+              // Path: brain center (0,0,0) → target
+              const x0 = target.x * t0;
+              const y0 = target.y * t0;
+              const z0 = target.z * t0;
+              const x1 = target.x * t1;
+              const y1 = target.y * t1;
+              const z1 = target.z * t1;
+
+              // 6 verts per quad (two triangles)
+              const quad = [
+                [x0, y0, z0, t0, -1],
+                [x1, y1, z1, t1, -1],
+                [x1, y1, z1, t1, +1],
+                [x0, y0, z0, t0, -1],
+                [x1, y1, z1, t1, +1],
+                [x0, y0, z0, t0, +1]
+              ];
+              for (let q = 0; q < 6; q++) {
+                positions[v*3+0] = quad[q][0];
+                positions[v*3+1] = quad[q][1];
+                positions[v*3+2] = quad[q][2];
+                aT[v]            = quad[q][3];
+                aSide[v]         = quad[q][4];
+                aBeamIdx[v]      = b;
+                aColor[v*3+0]    = col.r;
+                aColor[v*3+1]    = col.g;
+                aColor[v*3+2]    = col.b;
+                v++;
+              }
+            }
+          }
+
+          beamsGeom = new THREE.BufferGeometry();
+          beamsGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+          beamsGeom.setAttribute('aT',       new THREE.BufferAttribute(aT, 1));
+          beamsGeom.setAttribute('aSide',    new THREE.BufferAttribute(aSide, 1));
+          beamsGeom.setAttribute('aBeamIdx', new THREE.BufferAttribute(aBeamIdx, 1));
+          beamsGeom.setAttribute('aColor',   new THREE.BufferAttribute(aColor, 3));
+
+          beamsMat = new THREE.ShaderMaterial({
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            uniforms: {
+              uTime:   { value: 0 },
+              uWidth:  { value: 0.10 }
+            },
+            vertexShader: [
+              'attribute float aT;',
+              'attribute float aSide;',
+              'attribute float aBeamIdx;',
+              'attribute vec3  aColor;',
+              'uniform float uTime;',
+              'uniform float uWidth;',
+              'varying float vT;',
+              'varying float vSide;',
+              'varying float vBeam;',
+              'varying vec3  vCol;',
+              'void main() {',
+              '  vT = aT; vSide = aSide; vBeam = aBeamIdx; vCol = aColor;',
+              '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
+              '  // Ribbon in view space: perpendicular offset',
+              '  vec3 viewDir = normalize(-mv.xyz);',
+              '  vec3 forward = vec3(0.0);',
+              '  // Cheap: just offset on X in view space',
+              '  mv.x += aSide * uWidth;',
+              '  gl_Position = projectionMatrix * mv;',
+              '}'
+            ].join('\n'),
+            fragmentShader: [
+              'varying float vT;',
+              'varying float vSide;',
+              'varying float vBeam;',
+              'varying vec3  vCol;',
+              'uniform float uTime;',
+              'void main() {',
+              '  // Soft edge across ribbon (-1..+1 → 0 at center)',
+              '  float edge = 1.0 - abs(vSide);',
+              '  edge = pow(edge, 1.6);',
+              '  // Moving pulse along the beam, per beam offset',
+              '  float speed = 0.35;',
+              '  float pulse = fract(vT - uTime * speed + vBeam * 0.13);',
+              '  float head  = smoothstep(0.85, 1.0, pulse) - smoothstep(1.0, 1.05, pulse);',
+              '  float idle  = 0.18 + 0.06 * sin(uTime * 1.1 + vT * 6.2832 + vBeam * 1.7);',
+              '  float bright = idle + head * 1.6;',
+              '  // Taper at ends',
+              '  float taper = smoothstep(0.0, 0.08, vT) * smoothstep(1.0, 0.92, vT);',
+              '  vec3 col = mix(vCol, vec3(1.0, 0.92, 0.62), head * 0.85);',
+              '  float a  = edge * bright * taper * 0.62;',
+              '  gl_FragColor = vec4(col, a);',
+              '}'
+            ].join('\n')
+          });
+
+          beamsMesh = new THREE.Mesh(beamsGeom, beamsMat);
+          beamsMesh.frustumCulled = false;
+          scene.add(beamsMesh);
+        }
+
+        // -------- Yogi core (anatomical centerpoint) ------------
+        // Tiny honey glow at brain center so the "thinking source"
+        // is visible. Sits inside the fissure.
+        let yogiCore = null;
+        let yogiCorona = null;
+        {
+          const coreMat = new THREE.MeshStandardMaterial({
+            color: HONEY,
+            emissive: HONEY,
+            emissiveIntensity: 1.6,
+            roughness: 0.22,
+            metalness: 0.18
+          });
+          yogiCore = new THREE.Mesh(new THREE.IcosahedronGeometry(0.32, 1), coreMat);
+          brainRoot.add(yogiCore);
+
+          yogiCorona = new THREE.Sprite(new THREE.SpriteMaterial({
+            map: sharedRadialTex,
+            color: HONEY,
+            transparent: true,
+            opacity: 0.45,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          }));
+          yogiCorona.scale.set(2.4, 2.4, 1);
+          brainRoot.add(yogiCorona);
+        }
+
+        // -------- Interaction: drag + scroll ---------------------
+        // Same pattern as Galaxy slide: user spherical-rotates the
+        // brainRoot; scroll → camera dolly. Auto-resume after idle.
+        let userInteractedAt = 0;
+        const AUTO_RESUME_AFTER = 5000;
+        let dragging = false;
+        let lastX = 0, lastY = 0;
+        let autoYaw = 0;       // base yaw set by autopilot
+        let yawOffset = 0;     // user offset
+        let pitchOffset = 0;
+        let targetDist = 16;
+        let cameraDist = 18;
+
+        function onPointerDown(e) {
+          dragging = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          userInteractedAt = performance.now();
+          renderer.domElement.style.cursor = 'grabbing';
+        }
+        function onPointerMove(e) {
+          if (!dragging) return;
+          const dx = e.clientX - lastX;
+          const dy = e.clientY - lastY;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          yawOffset   += dx * 0.005;
+          pitchOffset += dy * 0.004;
+          pitchOffset = Math.max(-0.8, Math.min(0.8, pitchOffset));
+          userInteractedAt = performance.now();
+        }
+        function onPointerUp() {
+          dragging = false;
+          renderer.domElement.style.cursor = 'grab';
+        }
+        function onWheel(e) {
+          e.preventDefault();
+          targetDist += e.deltaY * 0.012;
+          targetDist = Math.max(10, Math.min(28, targetDist));
+          userInteractedAt = performance.now();
+        }
+        renderer.domElement.style.cursor = 'grab';
+        renderer.domElement.addEventListener('pointerdown', onPointerDown);
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup',   onPointerUp);
+        renderer.domElement.addEventListener('wheel', onWheel, { passive: false });
+
+        // -------- System label projection ------------------------
+        const proj = new THREE.Vector3();
+        function updateSystemLabels() {
+          if (!systemNodes.length) return;
+          const halfW = viewW * 0.5;
+          const halfH = viewH * 0.5;
+          for (let i = 0; i < systemNodes.length; i++) {
+            const node = systemNodes[i];
+            proj.copy(node.group.position);
+            proj.project(camera);
+            const x = proj.x * halfW + halfW;
+            const y = -proj.y * halfH + halfH;
+            const visible = proj.z < 1 && x > -120 && x < viewW + 120 && y > 40 && y < viewH - 130;
+            // Offset label outward from brain center (in screen space)
+            // so it never lands on top of the orb
+            const dx = x - halfW;
+            const dy = y - halfH;
+            const m = Math.sqrt(dx*dx + dy*dy) || 1;
+            const ox = dx / m * 22;
+            const oy = dy / m * 22;
+            node.label.style.transform =
+              'translate(' + (x + ox) + 'px, ' + (y + oy) + 'px) translate(-50%, -50%)';
+            if (visible) {
+              if (!node.label.classList.contains('show')) node.label.classList.add('show');
+            } else {
+              if (node.label.classList.contains('show')) node.label.classList.remove('show');
+            }
+          }
+        }
+
+        // -------- Animation loop --------------------------------
+        let rafId = 0;
+        let frameIdx = 0;
+        const clock = new THREE.Clock();
+
+        // Hoisted scratch
+        const _vec3 = new THREE.Vector3();
+        const _mat  = new THREE.Matrix4();
+        const _quat = new THREE.Quaternion();
+        const _scale = new THREE.Vector3();
+        _quat.identity();
+
+        // Synaptic pulse — every 7s a wave sweeps through the brain.
+        // We rotate the wave direction each cycle so it doesn't repeat.
+        let pulseStart = 0;
+        let pulseDir = new THREE.Vector3(1, 0.2, 0.3).normalize();
+        const PULSE_PERIOD = 7.0;
+        const PULSE_DURATION = 2.4; // seconds active
+
+        function nextPulseDir(t) {
+          const a = t * 0.13;
+          const b = t * 0.07;
+          pulseDir.set(Math.cos(a), Math.sin(b) * 0.45, Math.sin(a)).normalize();
+        }
+
+        function tick() {
+          const t = clock.getElapsedTime();
+          frameIdx++;
+
+          // -- Auto-rotate (very slow: 120s revolution) ----------
+          if (!reduced) {
+            autoYaw += 0.0008; // ~ (2π / 120s) per 16ms, slightly slower
+          }
+
+          // -- Camera dolly breath ------------------------------
+          if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
+            // Breath dist between 14 and 21 over ~40s
+            const breath = 17.5 + Math.sin(t * (Math.PI * 2 / 40)) * 3.5;
+            targetDist += (breath - targetDist) * 0.02;
+          }
+          cameraDist += (targetDist - cameraDist) * 0.06;
+
+          // -- Apply brain rotation -----------------------------
+          brainRoot.rotation.y = autoYaw + yawOffset;
+          brainRoot.rotation.x = THREE.MathUtils.degToRad(-6) + pitchOffset;
+
+          // -- Camera position around brain (slow drift) --------
+          if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
+            const camAng = t * 0.02;
+            const camY   = 1.2 + Math.sin(t * 0.13) * 0.6;
+            camera.position.set(
+              Math.sin(camAng) * cameraDist * 0.1,   // very small horizontal drift
+              camY,
+              cameraDist
+            );
+          } else {
+            camera.position.z = cameraDist;
+          }
+          camera.lookAt(0, 0, 0);
+
+          // -- Synaptic pulse update ----------------------------
+          if (synapseMat) {
+            const cyclePos = (t - pulseStart);
+            if (cyclePos > PULSE_PERIOD) {
+              pulseStart = t;
+              nextPulseDir(t);
+              synapseMat.uniforms.uWaveDir.value.copy(pulseDir);
+            }
+            const localT = t - pulseStart;
+            // Wave sweeps from -8 → +8 over PULSE_DURATION, then idle
+            let pulseAmp = 0;
+            let wavePos = 0;
+            if (localT < PULSE_DURATION) {
+              const f = localT / PULSE_DURATION;
+              wavePos = -8 + f * 16;
+              // Bell shape: rises then falls
+              pulseAmp = Math.sin(f * Math.PI);
+            } else {
+              wavePos = 8;
+              pulseAmp = 0;
+            }
+            if (reduced) { pulseAmp = 0; wavePos = 0; }
+            synapseMat.uniforms.uTime.value    = t;
+            synapseMat.uniforms.uWavePos.value = wavePos;
+            synapseMat.uniforms.uPulse.value   = pulseAmp;
+          }
+
+          // -- Yogi core breathing ------------------------------
+          if (yogiCore) {
+            const s = 1 + Math.sin(t * 1.4) * 0.08;
+            yogiCore.scale.set(s, s, s);
+            yogiCore.material.emissiveIntensity = 1.4 + Math.sin(t * 2.1) * 0.35;
+          }
+          if (yogiCorona) {
+            const s = 2.4 + Math.sin(t * 1.4) * 0.18;
+            yogiCorona.scale.set(s, s, 1);
+            yogiCorona.material.opacity = 0.42 + Math.sin(t * 2.1) * 0.10;
+          }
+
+          // -- System orbs gentle bob + counter-orbit -----------
+          for (let i = 0; i < systemNodes.length; i++) {
+            const n = systemNodes[i];
+            // Slow counter-orbit so orbs slowly drift around brain
+            // Speed: 240s revolution (very slow)
+            const ang = n.angle + (reduced ? 0 : t * 0.026);
+            const px = Math.cos(ang) * SYSTEMS_RADIUS;
+            const pz = Math.sin(ang) * SYSTEMS_RADIUS;
+            const py = Math.sin(ang) * 0.18 * SYSTEMS_RADIUS * 0.18
+                     + Math.sin(t * 0.6 + i) * 0.18;
+            n.group.position.set(px, py, pz);
+            const breath = 1 + Math.sin(t * 1.2 + i * 0.7) * 0.06;
+            n.core.scale.set(breath, breath, breath);
+            n.halo.material.opacity = 0.18 + Math.sin(t * 1.0 + i) * 0.06;
+          }
+
+          // -- Beams: rebuild per-vertex positions every frame? --
+          // No — beams use brain center (0,0,0) on one end and a
+          // FIXED system position on the other. But systems orbit, so
+          // we should re-anchor beams to live system positions. We do
+          // this cheaply by rebuilding the position buffer only every
+          // ~4 frames, since systems move very slowly.
+          if (beamsGeom && (frameIdx % 4) === 0) {
+            const positions = beamsGeom.attributes.position.array;
+            const SEG_PER_BEAM = 32;
+            for (let b = 0; b < SYSTEMS.length; b++) {
+              const target = systemNodes[b].group.position;
+              const base = b * SEG_PER_BEAM * 6 * 3;
+              for (let s = 0; s < SEG_PER_BEAM; s++) {
+                const t0 = s / SEG_PER_BEAM;
+                const t1 = (s + 1) / SEG_PER_BEAM;
+                const x0 = target.x * t0, y0 = target.y * t0, z0 = target.z * t0;
+                const x1 = target.x * t1, y1 = target.y * t1, z1 = target.z * t1;
+                // 6 verts per quad — order matches the original build
+                const off = base + s * 6 * 3;
+                // v0 = (t0,-1)
+                positions[off+0]=x0; positions[off+1]=y0; positions[off+2]=z0;
+                // v1 = (t1,-1)
+                positions[off+3]=x1; positions[off+4]=y1; positions[off+5]=z1;
+                // v2 = (t1,+1)
+                positions[off+6]=x1; positions[off+7]=y1; positions[off+8]=z1;
+                // v3 = (t0,-1)
+                positions[off+9]=x0; positions[off+10]=y0; positions[off+11]=z0;
+                // v4 = (t1,+1)
+                positions[off+12]=x1; positions[off+13]=y1; positions[off+14]=z1;
+                // v5 = (t0,+1)
+                positions[off+15]=x0; positions[off+16]=y0; positions[off+17]=z0;
+              }
+            }
+            beamsGeom.attributes.position.needsUpdate = true;
+          }
+          if (beamsMat) beamsMat.uniforms.uTime.value = t;
+
+          // -- Tools: counter-rotate around brain very slowly ---
+          if (toolsInst && !reduced) {
+            // We just rotate the entire instanced mesh as a group via
+            // its parent (brainRoot rotates with brain). To make tools
+            // counter-orbit relative to the brain so they don't appear
+            // glued, rotate the toolsInst itself by -autoYaw * 0.5.
+            toolsInst.rotation.y = -autoYaw * 0.5;
+          }
+
+          // System labels every 2 frames
+          if ((frameIdx & 1) === 0) updateSystemLabels();
+
+          renderer.render(scene, camera);
+          rafId = requestAnimationFrame(tick);
+        }
+
+        // -------- Resize ----------------------------------------
+        function onResize() {
+          const w = wrap.clientWidth, h = wrap.clientHeight;
+          if (!w || !h) return;
+          viewW = w; viewH = h;
+          renderer.setSize(w, h, false);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        }
+        const ro = new ResizeObserver(onResize);
+        ro.observe(wrap);
+
+        rafId = requestAnimationFrame(tick);
+
+        // -------- Init perf info --------------------------------
+        renderer.render(scene, camera);
+        try {
+          const info = renderer.info;
+          console.debug('[slide-07 brain]', {
+            calls: info.render.calls,
+            triangles: info.render.triangles,
+            geometries: info.memory.geometries,
+            textures: info.memory.textures,
+            programs: info.programs ? info.programs.length : null,
+            neurons: NEURONS,
+            tools: TOOLS,
+            systems: SYSTEMS.length
+          });
+        } catch (e) {}
+
+        // -------- Cleanup ---------------------------------------
+        state = {
+          dispose() {
+            cancelAnimationFrame(rafId);
+            ro.disconnect();
+            renderer.domElement.removeEventListener('pointerdown', onPointerDown);
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerup',   onPointerUp);
+            renderer.domElement.removeEventListener('wheel', onWheel);
+
+            const disposedMats = new Set();
+            const disposedGeos = new Set();
+            const disposedTexs = new Set();
+
+            function disposeMaterial(m) {
+              if (!m || disposedMats.has(m)) return;
+              disposedMats.add(m);
+              for (const k in m) {
+                const v = m[k];
+                if (v && v.isTexture && !disposedTexs.has(v)) {
+                  disposedTexs.add(v);
+                  try { v.dispose(); } catch (_) {}
+                }
+              }
+              try { m.dispose(); } catch (_) {}
+            }
+
+            scene.traverse(obj => {
+              if (obj.geometry && !disposedGeos.has(obj.geometry)) {
+                disposedGeos.add(obj.geometry);
+                try { obj.geometry.dispose(); } catch (_) {}
+              }
+              if (obj.material) {
+                if (Array.isArray(obj.material)) obj.material.forEach(disposeMaterial);
+                else disposeMaterial(obj.material);
+              }
+            });
+
+            try { sharedRadialTex.dispose(); } catch (_) {}
+            try { synapseGeom && synapseGeom.dispose(); } catch (_) {}
+            try { synapseMat  && synapseMat.dispose();  } catch (_) {}
+            try { beamsGeom   && beamsGeom.dispose();   } catch (_) {}
+            try { beamsMat    && beamsMat.dispose();    } catch (_) {}
+
+            const lblHost = document.getElementById('brain-system-labels');
+            if (lblHost) lblHost.innerHTML = '';
+
+            while (scene.children.length) scene.remove(scene.children[0]);
+
+            try { renderer.forceContextLoss && renderer.forceContextLoss(); } catch (_) {}
+            try { renderer.dispose(); } catch (_) {}
+            if (renderer.domElement.parentNode) {
+              renderer.domElement.parentNode.removeChild(renderer.domElement);
+            }
+          }
+        };
+      }
+
+      window.onSlideEnter[8] = function () {
+        if (state) return;
+        loadThree(initBrain);
+      };
+
+      window.onSlideLeave[8] = function () {
+        if (state) {
+          try { state.dispose(); } catch (e) { console.warn('[slide-07 brain] dispose error', e); }
+          state = null;
+        }
+      };
+
+      // Self-bootstrap if slide is already visible on load
+      const slideEl = document.getElementById('slide-07-brain');
+      if (slideEl) {
+        const rect = slideEl.getBoundingClientRect();
+        const visible = rect.width > 0 && rect.height > 0 &&
+                        rect.top < window.innerHeight && rect.bottom > 0;
+        if (visible) {
+          requestAnimationFrame(() => window.onSlideEnter[8]());
+        }
+      }
+    })();
+  </script>
 </section>
