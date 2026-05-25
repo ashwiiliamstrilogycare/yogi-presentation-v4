@@ -1,11 +1,13 @@
 <section class="slide" data-audio="07" id="slide-07-brain">
   <style>
     /* ============================================================
-       SLIDE 07 · THE BRAIN
-       5,000 neural nodes · ~3,000 synapses · 328 MCP tools
-       · 9 enterprise systems · 1 brain
-       Vanilla Three.js — NASA × Anthropic × Apple
-       Sister of the Agent Galaxy: same lifecycle, different organ.
+       SLIDE 07 · THE BRAIN  (rebuild)
+       A single, elegant, recognizable 3D brain.
+       Deformed twin-ellipsoid mesh + wireframe overlay = honey
+       neural fabric. 1,500 surface-locked firing nodes, 24 MCP
+       cluster orbs in a slow ring, 9 enterprise system orbs in an
+       outer constellation, 9 honey beams with traveling pulses.
+       NASA × Anthropic × medical-illustration tier. Restrained.
        ============================================================ */
 
     #slide-07-brain {
@@ -13,31 +15,15 @@
       width: 100%;
       height: 100vh;
       min-height: 100vh;
-      background: radial-gradient(ellipse at center,
-                  #0d1426 0%,
-                  #06080f 55%,
-                  #03050a 100%);
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 48%,
+                        #11192c 0%,
+                        #070b14 55%,
+                        #03050a 100%);
       overflow: hidden;
       color: #f4f4f5;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       isolation: isolate;
-    }
-
-    /* Faint star field */
-    #slide-07-brain::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 14% 22%, rgba(255,255,255,0.34) 50%, transparent 100%),
-        radial-gradient(1px 1px at 78% 11%, rgba(254,189,51,0.32) 50%, transparent 100%),
-        radial-gradient(1px 1px at 88% 64%, rgba(100,188,234,0.28) 50%, transparent 100%),
-        radial-gradient(1px 1px at 9% 78%, rgba(255,255,255,0.22) 50%, transparent 100%),
-        radial-gradient(1px 1px at 52% 92%, rgba(67,192,190,0.30) 50%, transparent 100%),
-        radial-gradient(1px 1px at 38% 8%, rgba(255,255,255,0.20) 50%, transparent 100%);
-      opacity: 0.5;
-      pointer-events: none;
-      z-index: 1;
     }
 
     /* Cinematic vignette */
@@ -46,10 +32,10 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 78% 58% at 50% 50%,
+        radial-gradient(ellipse 80% 60% at 50% 50%,
                         transparent 0%,
-                        transparent 55%,
-                        rgba(3,5,10,0.7) 100%);
+                        transparent 58%,
+                        rgba(3,5,10,0.78) 100%);
       pointer-events: none;
       z-index: 5;
       mix-blend-mode: multiply;
@@ -70,22 +56,22 @@
     /* -------- HUD: top-left -------------------------------------- */
     #slide-07-brain .br-hud-tl {
       position: absolute;
-      top: clamp(20px, 3vh, 36px);
-      left: clamp(24px, 3vw, 56px);
+      top: clamp(56px, 7vh, 88px);
+      left: clamp(28px, 3.2vw, 60px);
       z-index: 10;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       pointer-events: none;
-      max-width: min(58ch, 58vw);
+      max-width: min(62ch, 60vw);
     }
 
     #slide-07-brain .br-eyebrow {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-size: 10px;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
       color: #FEBD33;
       font-weight: 600;
@@ -96,223 +82,128 @@
       height: 6px;
       border-radius: 50%;
       background: #FEBD33;
-      box-shadow: 0 0 10px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
+      box-shadow: 0 0 10px #FEBD33, 0 0 22px rgba(254,189,51,0.45);
       animation: brBeat 1.2s ease-in-out infinite;
     }
 
     #slide-07-brain .br-title {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: clamp(22px, 2.7vw, 40px);
-      font-weight: 800;
-      letter-spacing: -0.028em;
-      color: #f4f4f5;
-      line-height: 1.02;
-      margin-top: 4px;
-    }
-
-    #slide-07-brain .br-title em {
-      font-style: normal;
-      color: #FEBD33;
-      font-weight: 800;
-      text-shadow: 0 0 20px rgba(254,189,51,0.42);
-    }
-
-    #slide-07-brain .br-subtitle {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-      margin-top: 10px;
+      font-size: clamp(13px, 1.05vw, 16px);
       font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #c7d6ea;
+      line-height: 1.4;
+      margin-top: 8px;
     }
 
-    /* -------- HUD: top-right (telemetry) ------------------------- */
+    #slide-07-brain .br-title b {
+      color: #f4f4f5;
+      font-weight: 700;
+    }
+
+    /* -------- HUD: top-right (single legend) --------------------- */
     #slide-07-brain .br-hud-tr {
       position: absolute;
-      top: clamp(20px, 3vh, 36px);
-      right: clamp(24px, 3vw, 56px);
+      top: clamp(56px, 7vh, 88px);
+      right: clamp(28px, 3.2vw, 60px);
       z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    #slide-07-brain .br-telemetry {
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: 4px 18px;
-      padding: 12px 16px;
-      background: rgba(8,14,28,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(254,189,51,0.18);
-      border-radius: 6px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      color: #C7D6EA;
-      min-width: 240px;
-    }
-
-    #slide-07-brain .br-telemetry .k {
-      color: #71717a;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 9px;
-    }
-
-    #slide-07-brain .br-telemetry .v {
-      color: #f4f4f5;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-
-    #slide-07-brain .br-telemetry .v.live {
-      color: #FEBD33;
-    }
-
-    #slide-07-brain .br-live {
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 8px 14px 8px 12px;
-      background: rgba(8,14,28,0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(67,192,190,0.22);
-      border-radius: 4px;
+      background: rgba(8,14,28,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(67,192,190,0.20);
+      border-radius: 3px;
       font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 9.5px;
-      letter-spacing: 0.16em;
-      color: #C7D6EA;
+      letter-spacing: 0.22em;
+      color: #c7d6ea;
       text-transform: uppercase;
-      min-width: 240px;
     }
 
-    #slide-07-brain .br-live .led {
+    #slide-07-brain .br-hud-tr .led {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #43C0BE;
-      box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.4);
-      flex: 0 0 auto;
+      box-shadow: 0 0 8px #43C0BE, 0 0 16px rgba(67,192,190,0.45);
       animation: brLed 1.4s ease-in-out infinite;
     }
 
-    #slide-07-brain .br-live .head {
+    #slide-07-brain .br-hud-tr .head {
       color: #43C0BE;
-      letter-spacing: 0.22em;
-      font-weight: 700;
-      margin-right: 4px;
-    }
-
-    #slide-07-brain .br-live .row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: #a1a1aa;
-    }
-
-    #slide-07-brain .br-live .row b {
-      color: #f4f4f5;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    #slide-07-brain .br-live .row .gate b {
-      color: #FEBD33;
-    }
-
-    /* -------- Hemisphere ribbon (bottom-center) ------------------ */
-    #slide-07-brain .br-ribbon {
-      position: absolute;
-      bottom: clamp(24px, 3vh, 36px);
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      pointer-events: none;
-    }
-
-    #slide-07-brain .br-ribbon .rb-eyebrow {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: #71717a;
-    }
-
-    #slide-07-brain .br-ribbon .rb-eyebrow b {
-      color: #FEBD33;
+      letter-spacing: 0.26em;
       font-weight: 700;
       margin-right: 6px;
     }
 
-    #slide-07-brain .br-ribbon .rb-row {
+    #slide-07-brain .br-hud-tr .sep {
+      width: 1px;
+      height: 12px;
+      background: rgba(255,255,255,0.16);
+      margin: 0 4px;
+    }
+
+    /* -------- Bottom system census row --------------------------- */
+    #slide-07-brain .br-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: clamp(28px, 3.4vh, 44px);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    #slide-07-brain .br-bottom .eb {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #71717a;
+    }
+
+    #slide-07-brain .br-bottom .eb b {
+      color: #FEBD33;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    #slide-07-brain .br-bottom .row {
       display: flex;
       align-items: center;
-      gap: clamp(18px, 2.4vw, 36px);
+      gap: clamp(14px, 1.8vw, 30px);
       padding: 0 24px;
       font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.82vw, 12px);
+      font-size: clamp(9.5px, 0.78vw, 11.5px);
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #c7d6ea;
     }
 
-    #slide-07-brain .br-ribbon .hemi {
+    #slide-07-brain .br-bottom .sys {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    #slide-07-brain .br-ribbon .hemi .swatch {
-      width: 9px;
-      height: 9px;
+    #slide-07-brain .br-bottom .sys .sw {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--c, #FEBD33);
-      box-shadow: 0 0 10px var(--c, #FEBD33),
-                  0 0 22px color-mix(in srgb, var(--c, #FEBD33) 40%, transparent);
+      box-shadow: 0 0 8px var(--c, #FEBD33),
+                  0 0 18px color-mix(in srgb, var(--c, #FEBD33) 40%, transparent);
     }
 
-    #slide-07-brain .br-ribbon .hemi .lbl {
+    #slide-07-brain .br-bottom .sys .nm {
       color: #e6edf7;
-      font-weight: 700;
-    }
-
-    #slide-07-brain .br-ribbon .hemi .count {
-      color: var(--c, #FEBD33);
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      margin: 0 2px;
-    }
-
-    #slide-07-brain .br-ribbon .hemi .role {
-      color: #71717a;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-    }
-
-    #slide-07-brain .br-ribbon .rb-sep {
-      width: 1px;
-      height: 22px;
-      background: linear-gradient(to bottom,
-                  transparent 0%,
-                  rgba(254,189,51,0.55) 50%,
-                  transparent 100%);
-    }
-
-    #slide-07-brain .br-ribbon .rb-hint {
-      margin-top: 4px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #52525b;
+      font-weight: 600;
     }
 
     /* -------- System billboard labels --------------------------- */
@@ -323,17 +214,17 @@
       transform: translate(-50%, -50%);
       font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 10.5px;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: #f4f4f5;
       opacity: 0;
-      transition: opacity 280ms ease;
+      transition: opacity 320ms ease;
       white-space: nowrap;
-      filter: drop-shadow(0 0 8px rgba(0,0,0,0.85));
+      filter: drop-shadow(0 0 6px rgba(0,0,0,0.85));
       will-change: transform, opacity;
     }
 
-    #slide-07-brain .sys-label.show { opacity: 0.95; }
+    #slide-07-brain .sys-label.show { opacity: 0.94; }
 
     #slide-07-brain .sys-label .tick {
       display: inline-block;
@@ -354,7 +245,7 @@
       color: var(--lc, #FEBD33);
       margin-left: 8px;
       font-size: 8.5px;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.34em;
     }
 
     /* -------- Corner crosshairs ---------------------------------- */
@@ -364,16 +255,16 @@
       height: 18px;
       z-index: 6;
       pointer-events: none;
-      opacity: 0.45;
+      opacity: 0.4;
     }
 
-    #slide-07-brain .corner.tl { top: 12px; left: 12px;
+    #slide-07-brain .corner.tl { top: 14px; left: 14px;
       border-top: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
-    #slide-07-brain .corner.tr { top: 12px; right: 12px;
+    #slide-07-brain .corner.tr { top: 14px; right: 14px;
       border-top: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
-    #slide-07-brain .corner.bl { bottom: 12px; left: 12px;
+    #slide-07-brain .corner.bl { bottom: 14px; left: 14px;
       border-bottom: 1px solid #FEBD33; border-left: 1px solid #FEBD33; }
-    #slide-07-brain .corner.br { bottom: 12px; right: 12px;
+    #slide-07-brain .corner.br { bottom: 14px; right: 14px;
       border-bottom: 1px solid #FEBD33; border-right: 1px solid #FEBD33; }
 
     /* -------- Animations ---------------------------------------- */
@@ -388,17 +279,11 @@
       50%      { transform: scale(1.35); opacity: 0.7;
                  box-shadow: 0 0 12px #43C0BE, 0 0 26px rgba(67,192,190,0.7); }
     }
-    @keyframes brTick {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.55; }
-    }
-    #slide-07-brain .br-tick { animation: brTick 1.8s ease-in-out infinite; }
 
     /* -------- Reduced motion ------------------------------------ */
     @media (prefers-reduced-motion: reduce) {
       #slide-07-brain .br-eyebrow .dot,
-      #slide-07-brain .br-live .led,
-      #slide-07-brain .br-tick { animation: none; }
+      #slide-07-brain .br-hud-tr .led { animation: none; }
     }
 
     /* -------- Responsive ---------------------------------------- */
@@ -406,9 +291,8 @@
       #slide-07-brain .sys-label { display: none; }
     }
     @media (max-width: 900px) {
-      #slide-07-brain .br-telemetry { display: none; }
-      #slide-07-brain .br-live { display: none; }
-      #slide-07-brain .br-ribbon .rb-row { font-size: 9.5px; gap: 14px; }
+      #slide-07-brain .br-hud-tr { display: none; }
+      #slide-07-brain .br-bottom .row { font-size: 9px; gap: 12px; }
     }
   </style>
 
@@ -425,52 +309,27 @@
   <div class="br-hud-tl">
     <div class="br-eyebrow">
       <span class="dot"></span>
-      <span>THE BRAIN · 5,000 NEURAL NODES · 328 MCP TOOLS · 9 ENTERPRISE SYSTEMS</span>
+      <span>THE BRAIN · YOGI INSIDE TC WORKSPACES</span>
     </div>
-    <div class="br-title">Yogi <em>thinks</em>.<br/>Every system responds.</div>
-    <div class="br-subtitle">Memory layer · reasoning layer · action layer · one organ</div>
-  </div>
-
-  <!-- HUD: top-right -->
-  <div class="br-hud-tr">
-    <div class="br-telemetry" aria-hidden="true">
-      <span class="k">Neural nodes</span><span class="v">5,000</span>
-      <span class="k">Synapses</span><span class="v">~3,000</span>
-      <span class="k">MCP tools</span><span class="v">328</span>
-      <span class="k">Systems</span><span class="v">9</span>
-      <span class="k">Status</span><span class="v live br-tick" id="brain-status">THINKING</span>
-    </div>
-    <div class="br-live" aria-hidden="true">
-      <span class="led"></span>
-      <span class="head">LIVE</span>
-      <span class="row">
-        <span>signals/sec <b>~250</b></span>
-        <span>tools <b>328</b></span>
-        <span>hot calls <b>~12</b></span>
-        <span class="gate">gate <b>tess</b></span>
-      </span>
+    <div class="br-title">
+      <b>1,500 neural nodes</b> · <b>328 MCP tools</b> · <b>9 enterprise systems</b>
     </div>
   </div>
 
-  <!-- Hemisphere census ribbon -->
-  <div class="br-ribbon">
-    <div class="rb-eyebrow"><b>WIRED IN</b>NEURAL MESH · TWO HEMISPHERES · 328 TOOLS RETURNING TO MEMORY</div>
-    <div class="rb-row">
-      <span class="hemi" style="--c:#FEBD33">
-        <span class="swatch"></span>
-        <span class="lbl">Left Hemisphere</span>
-        <span class="count">2,500 nodes</span>
-        <span class="role">memory + reasoning</span>
-      </span>
-      <span class="rb-sep"></span>
-      <span class="hemi" style="--c:#F39B5A">
-        <span class="swatch"></span>
-        <span class="lbl">Right Hemisphere</span>
-        <span class="count">2,500 nodes</span>
-        <span class="role">action + reflection</span>
-      </span>
-    </div>
-    <div class="rb-hint">Drag to rotate · scroll to zoom · 120s revolution · 7s synaptic pulse</div>
+  <!-- HUD: top-right (single live legend) -->
+  <div class="br-hud-tr" aria-hidden="true">
+    <span class="led"></span>
+    <span class="head">LIVE</span>
+    <span class="sep"></span>
+    <span>DRAG TO ROTATE</span>
+    <span class="sep"></span>
+    <span>SCROLL TO ZOOM</span>
+  </div>
+
+  <!-- Bottom: just the 9 system names -->
+  <div class="br-bottom">
+    <div class="eb"><b>WIRED IN</b>9 ENTERPRISE SYSTEMS · 328 MCP TOOLS · ONE BRAIN</div>
+    <div class="row" id="brain-system-row"></div>
   </div>
 
   <!-- System labels (populated by JS) -->
@@ -499,7 +358,7 @@
 
         // -------- Brand palette ---------------------------------
         const HONEY      = 0xFEBD33;
-        const HONEY_WARM = 0xF39B5A; // right hemisphere accent (warmer honey)
+        const HONEY_WARM = 0xF39B5A;
         const TEAL       = 0x43C0BE;
         const DARK_TEAL  = 0x007F7E;
         const SKY        = 0x64BCEA;
@@ -509,41 +368,50 @@
         const NAVY       = 0x2C4C79;
 
         // -------- 9 enterprise systems --------------------------
-        // Distributed evenly on a tilted ring around the brain.
         const SYSTEMS = [
-          { name: 'Zoho',             tag: 'CRM',         color: HONEY,     short: 'ZOHO' },
-          { name: 'Databricks',       tag: 'WAREHOUSE',   color: SKY,       short: 'DBX' },
-          { name: 'MYOB',             tag: 'FINANCE',     color: RED,       short: 'MYOB' },
-          { name: 'EzyCollect',       tag: 'COLLECT',     color: DARK_TEAL, short: 'EZY' },
-          { name: 'Employment Hero',  tag: 'HRIS',        color: HONEY,     short: 'EH' },
-          { name: 'Aircall',          tag: 'TELEPHONY',   color: CORAL,     short: 'AIRCALL' },
-          { name: 'Microsoft 365',    tag: 'OFFICE',      color: TEAL,      short: 'M365' },
-          { name: 'SharePoint',       tag: 'DOCS',        color: TEAL,      short: 'SHAREPOINT' },
-          { name: 'Confluence',       tag: 'KNOWLEDGE',   color: VIOLET,    short: 'CONFLUENCE' }
+          { name: 'Zoho',            tag: 'CRM',       color: HONEY },
+          { name: 'Databricks',      tag: 'WAREHOUSE', color: SKY },
+          { name: 'MYOB',            tag: 'FINANCE',   color: RED },
+          { name: 'EzyCollect',      tag: 'COLLECT',   color: DARK_TEAL },
+          { name: 'Employment Hero', tag: 'HRIS',      color: HONEY_WARM },
+          { name: 'Aircall',         tag: 'TELEPHONY', color: CORAL },
+          { name: 'Microsoft 365',   tag: 'OFFICE',    color: TEAL },
+          { name: 'SharePoint',      tag: 'DOCS',      color: TEAL },
+          { name: 'Confluence',      tag: 'KNOWLEDGE', color: VIOLET }
         ];
+
+        // Populate the bottom row
+        (function buildBottomRow() {
+          const row = document.getElementById('brain-system-row');
+          if (!row) return;
+          row.innerHTML = '';
+          for (const s of SYSTEMS) {
+            const span = document.createElement('span');
+            span.className = 'sys';
+            const colHex = '#' + s.color.toString(16).padStart(6, '0');
+            span.style.setProperty('--c', colHex);
+            span.innerHTML = '<span class="sw"></span><span class="nm">' + s.name + '</span>';
+            row.appendChild(span);
+          }
+        })();
 
         // -------- Reduced motion --------------------------------
         const reduced = window.matchMedia &&
                         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // -------- Geometry constants ----------------------------
-        const NEURONS         = 5000;
-        const SYNAPSES        = 3000;
-        const TOOLS           = 328;
-        const SYSTEMS_RADIUS  = 22;
-        const TOOLS_RADIUS_IN = 12;
-        const TOOLS_RADIUS_OUT= 17;
+        // -------- Constants -------------------------------------
+        const SURFACE_NODES   = 1500;          // dots ON the brain surface
+        const MCP_CLUSTERS    = 24;            // grouped MCP orbs in a ring
+        const SYSTEMS_RADIUS  = 22;            // outer constellation radius
+        const MCP_RING_RADIUS = 13.5;          // MCP orbital ring radius
+        const STAR_COUNT      = 220;
 
-        // Brain shape — two ellipsoids side by side (hemispheres),
-        // squished, with bumpy displacement. Brain extents:
-        //   half-width  X ≈ 5.6 (two lobes ±2.5 + slit gap)
-        //   height      Y ≈ 4.0
-        //   depth       Z ≈ 4.6 (slightly longer front-to-back)
-        const HEMI_OFFSET_X = 1.6;   // each hemisphere centered at ±1.6
-        const HEMI_RX = 2.4;         // hemisphere ellipsoid half-extents
-        const HEMI_RY = 2.0;
-        const HEMI_RZ = 2.6;
-        const SLIT_GAP = 0.18;       // dim slit between hemispheres
+        // Brain anatomical extents — two squashed hemispheres joined.
+        // Half-extents PER hemisphere ellipsoid:
+        const HEMI_RX = 3.0;
+        const HEMI_RY = 2.7;
+        const HEMI_RZ = 3.8;
+        const HEMI_OFFSET_X = 1.55;   // hemisphere center X offset
 
         // -------- Renderer / Scene / Camera ---------------------
         const renderer = new THREE.WebGLRenderer({
@@ -557,55 +425,47 @@
         renderer.setClearColor(0x05070C, 1);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.08;
+        renderer.toneMappingExposure = 1.10;
         wrap.appendChild(renderer.domElement);
 
         const scene = new THREE.Scene();
-        scene.fog = new THREE.Fog(0x05070C, 28, 60);
+        scene.fog = new THREE.Fog(0x05070C, 32, 70);
 
-        const camera = new THREE.PerspectiveCamera(54, viewW / viewH, 0.1, 240);
-        // Start a touch above and back so the brain reads as anatomical
-        camera.position.set(0, 1.8, 42);
+        const camera = new THREE.PerspectiveCamera(50, viewW / viewH, 0.1, 240);
+        camera.position.set(0, 2.0, 42);
         camera.lookAt(0, 0, 0);
 
-        // -------- Gradient sky sphere ---------------------------
+        // -------- Soft sky dome ---------------------------------
         {
-          const skyGeo = new THREE.SphereGeometry(80, 24, 24);
+          const skyGeo = new THREE.SphereGeometry(90, 24, 24);
           const skyMat = new THREE.ShaderMaterial({
             side: THREE.BackSide,
             depthWrite: false,
             uniforms: {
-              uTop:    { value: new THREE.Color(0x2C4C79).multiplyScalar(0.45) },
+              uTop:    { value: new THREE.Color(0x2C4C79).multiplyScalar(0.42) },
               uBottom: { value: new THREE.Color(0x05070C) }
             },
-            vertexShader: [
-              'varying vec3 vW;',
-              'void main() {',
-              '  vW = position;',
-              '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+            vertexShader:
+              'varying vec3 vW;' +
+              'void main(){ vW = position;' +
+              'gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+            fragmentShader:
+              'varying vec3 vW; uniform vec3 uTop; uniform vec3 uBottom;' +
+              'void main(){' +
+              ' float t = clamp(vW.y * 0.5 + 0.5, 0.0, 1.0);' +
+              ' t = smoothstep(0.05, 0.95, t);' +
+              ' gl_FragColor = vec4(mix(uBottom, uTop, t), 1.0);' +
               '}'
-            ].join('\n'),
-            fragmentShader: [
-              'varying vec3 vW;',
-              'uniform vec3 uTop;',
-              'uniform vec3 uBottom;',
-              'void main() {',
-              '  float t = clamp(vW.y * 0.5 + 0.5, 0.0, 1.0);',
-              '  t = smoothstep(0.05, 0.95, t);',
-              '  gl_FragColor = vec4(mix(uBottom, uTop, t), 1.0);',
-              '}'
-            ].join('\n')
           });
           scene.add(new THREE.Mesh(skyGeo, skyMat));
         }
 
-        // -------- Background stars ------------------------------
+        // -------- Starfield (tiny + dim) ------------------------
         {
-          const N = 260;
           const sg = new THREE.BufferGeometry();
-          const pos = new Float32Array(N * 3);
-          for (let i = 0; i < N; i++) {
-            const r = 32 + Math.random() * 24;
+          const pos = new Float32Array(STAR_COUNT * 3);
+          for (let i = 0; i < STAR_COUNT; i++) {
+            const r = 38 + Math.random() * 28;
             const th = Math.random() * Math.PI * 2;
             const ph = Math.acos(2 * Math.random() - 1);
             pos[i*3+0] = r * Math.sin(ph) * Math.cos(th);
@@ -618,25 +478,25 @@
             size: 0.05,
             sizeAttenuation: true,
             transparent: true,
-            opacity: 0.55,
+            opacity: 0.5,
             depthWrite: false
           });
           scene.add(new THREE.Points(sg, sm));
         }
 
         // -------- Lighting --------------------------------------
-        scene.add(new THREE.AmbientLight(0xffffff, 0.42));
-        const keyHoney = new THREE.PointLight(HONEY, 28, 36, 2);
-        keyHoney.position.set(-2.5, 5, 4);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.32));
+        const keyHoney = new THREE.PointLight(HONEY, 36, 50, 2);
+        keyHoney.position.set(-2.5, 5, 5);
         scene.add(keyHoney);
-        const fillCoral = new THREE.PointLight(HONEY_WARM, 18, 36, 2);
-        fillCoral.position.set(3.5, -2, 4);
+        const fillCoral = new THREE.PointLight(HONEY_WARM, 18, 50, 2);
+        fillCoral.position.set(3.5, -1.5, 5);
         scene.add(fillCoral);
-        const rimSky = new THREE.PointLight(SKY, 14, 50, 2);
-        rimSky.position.set(-10, 0, -10);
+        const rimSky = new THREE.PointLight(SKY, 16, 60, 2);
+        rimSky.position.set(-12, 1, -10);
         scene.add(rimSky);
-        const rimTeal = new THREE.PointLight(TEAL, 12, 50, 2);
-        rimTeal.position.set(10, 1, -8);
+        const rimTeal = new THREE.PointLight(TEAL, 14, 60, 2);
+        rimTeal.position.set(11, 1, -8);
         scene.add(rimTeal);
 
         // -------- Reusable radial sprite texture ----------------
@@ -661,318 +521,325 @@
 
         // -------- Brain root (rotates as one) -------------------
         const brainRoot = new THREE.Group();
-        brainRoot.rotation.x = THREE.MathUtils.degToRad(-6); // slight forward tilt
+        brainRoot.rotation.x = THREE.MathUtils.degToRad(-8);
         scene.add(brainRoot);
 
-        // -------- Deterministic RNG -----------------------------
-        // Hash-based so the brain shape is identical across reloads.
-        function hash01(i, salt) {
-          const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
-          return v - Math.floor(v);
+        // -------- Deterministic noise ---------------------------
+        // 3D value-noise from hashed sines. Good enough for surface
+        // bumpiness — we don't need Perlin quality here.
+        function hash3(x, y, z) {
+          const s = Math.sin(x * 12.9898 + y * 78.233 + z * 37.719) * 43758.5453;
+          return s - Math.floor(s);
+        }
+        function smoothNoise(x, y, z) {
+          const ix = Math.floor(x), iy = Math.floor(y), iz = Math.floor(z);
+          const fx = x - ix, fy = y - iy, fz = z - iz;
+          // Smoothstep weights
+          const sx = fx*fx*(3-2*fx), sy = fy*fy*(3-2*fy), sz = fz*fz*(3-2*fz);
+          function mix(a,b,t){ return a*(1-t)+b*t; }
+          const c000 = hash3(ix,   iy,   iz);
+          const c100 = hash3(ix+1, iy,   iz);
+          const c010 = hash3(ix,   iy+1, iz);
+          const c110 = hash3(ix+1, iy+1, iz);
+          const c001 = hash3(ix,   iy,   iz+1);
+          const c101 = hash3(ix+1, iy,   iz+1);
+          const c011 = hash3(ix,   iy+1, iz+1);
+          const c111 = hash3(ix+1, iy+1, iz+1);
+          const x00 = mix(c000, c100, sx);
+          const x10 = mix(c010, c110, sx);
+          const x01 = mix(c001, c101, sx);
+          const x11 = mix(c011, c111, sx);
+          const y0  = mix(x00, x10, sy);
+          const y1  = mix(x01, x11, sy);
+          return mix(y0, y1, sz);
+        }
+        function fbm(x, y, z) {
+          let v = 0, amp = 0.5, freq = 1.0;
+          for (let i = 0; i < 3; i++) {
+            v += amp * smoothNoise(x*freq, y*freq, z*freq);
+            amp *= 0.5; freq *= 2.0;
+          }
+          return v;
         }
 
-        // -------- Brain surface sampler -------------------------
-        // We don't need a full SDF — instead, sample candidate points
-        // on each hemisphere ellipsoid surface with light radial
-        // jitter, then push points away from the central slit to
-        // preserve the longitudinal fissure.
-        function sampleBrainSurface(idx) {
-          // Choose hemisphere
-          const left = hash01(idx, 1.0) < 0.5;
-          const cx = left ? -HEMI_OFFSET_X : HEMI_OFFSET_X;
+        // -------- Brain mesh ------------------------------------
+        // Strategy: build a high-res IcosahedronGeometry, then per-
+        // vertex remap to the nearest point on a twin-hemisphere
+        // ellipsoid surface, then apply gyri/sulci displacement via
+        // fbm noise along the surface normal.
+        //
+        // For each vertex (vx,vy,vz):
+        //   - Pick the hemisphere by sign of vx
+        //   - Local pos relative to hemisphere center = (vx ± offset, vy, vz)
+        //   - Normalize local pos to a sphere direction
+        //   - Project onto ellipsoid (multiply by radii)
+        //   - Add fbm displacement along outward normal
+        //   - Pinch the central slit (longitudinal fissure)
+        function buildBrainGeometry(detail) {
+          const g = new THREE.IcosahedronGeometry(1, detail);
+          const pos = g.attributes.position;
+          const arr = pos.array;
+          for (let i = 0; i < pos.count; i++) {
+            const vx = arr[i*3+0];
+            const vy = arr[i*3+1];
+            const vz = arr[i*3+2];
 
-          // Random direction on unit sphere
-          const u = hash01(idx, 2.7) * 2 - 1;
-          const th = hash01(idx, 3.3) * Math.PI * 2;
-          const s = Math.sqrt(1 - u*u);
-          let dx = s * Math.cos(th);
-          let dy = u;
-          let dz = s * Math.sin(th);
+            // Hemisphere selection
+            const left = vx < 0;
+            const cx = left ? -HEMI_OFFSET_X : HEMI_OFFSET_X;
 
-          // Point on hemisphere ellipsoid (slightly inside, then walk to surface)
-          let x = cx + dx * HEMI_RX * (0.85 + hash01(idx, 4.1) * 0.18);
-          let y =      dy * HEMI_RY * (0.85 + hash01(idx, 5.1) * 0.18);
-          let z =      dz * HEMI_RZ * (0.85 + hash01(idx, 6.1) * 0.18);
+            // Direction from hemisphere center (use original sphere dir
+            // but biased so the slit between hemispheres is pinched)
+            let dx = vx;
+            let dy = vy;
+            let dz = vz;
+            const dlen = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
+            dx /= dlen; dy /= dlen; dz /= dlen;
 
-          // Avoid the central slit between hemispheres — push outward
-          // if x is too close to 0
-          if (Math.abs(x) < SLIT_GAP) {
-            x = x < 0 ? -SLIT_GAP : SLIT_GAP;
-          }
-          return { x, y, z, left };
-        }
+            // Re-bias direction so the inner (medial) face curves inward,
+            // creating the central fissure. We squash X-direction toward
+            // the hemisphere's outward side.
+            const medialPull = left ? Math.max(0, dx + 0.0) : Math.max(0, -dx + 0.0);
+            // medialPull is positive on the medial face.
+            // Apply a pinch factor toward the hemisphere center:
+            const pinch = 1.0 - medialPull * 0.45;
 
-        // -------- 5,000 neural nodes (InstancedMesh) ------------
-        // Two-tone via per-instance color: left hemisphere = honey,
-        // right hemisphere = warmer honey/coral. Vertex colors path.
-        let neuronInst = null;
-        const neuronPositions = new Float32Array(NEURONS * 3);
-        const neuronIsLeft = new Uint8Array(NEURONS);
-        const neuronPhase  = new Float32Array(NEURONS);     // pulse phase
-        const neuronBaseSize = new Float32Array(NEURONS);
-        {
-          const geo = new THREE.SphereGeometry(1, 5, 4); // ultra-low-poly — read as a dot
-          const mat = new THREE.MeshStandardMaterial({
-            vertexColors: false,
-            color: 0xffffff,
-            emissive: 0xffffff,
-            emissiveIntensity: 0.8,
-            roughness: 0.55,
-            metalness: 0.08
-          });
-          neuronInst = new THREE.InstancedMesh(geo, mat, NEURONS);
-          neuronInst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+            // Ellipsoid scaling
+            let x = cx + dx * HEMI_RX * pinch;
+            let y =       dy * HEMI_RY;
+            let z =       dz * HEMI_RZ;
 
-          // Per-instance color buffer
-          const colors = new Float32Array(NEURONS * 3);
-          const cLeft  = new THREE.Color(HONEY);
-          const cRight = new THREE.Color(HONEY_WARM);
+            // Flatten bottom slightly (brain isn't quite an ellipsoid)
+            if (y < 0) y *= 0.92;
 
-          const tmpMat   = new THREE.Matrix4();
-          const tmpPos   = new THREE.Vector3();
-          const tmpQuat  = new THREE.Quaternion();
-          const tmpScale = new THREE.Vector3();
-          tmpQuat.identity();
+            // Gyri / sulci displacement
+            // High-frequency noise along outward normal.
+            const nfreq = 2.4;
+            const nx = x * nfreq, ny = y * nfreq, nz = z * nfreq;
+            const n = fbm(nx, ny, nz) * 2 - 1; // -1..+1
+            // Outward normal = direction from hemisphere center, then renormalize
+            let outX = x - cx;
+            let outY = y;
+            let outZ = z;
+            const outLen = Math.sqrt(outX*outX + outY*outY + outZ*outZ) || 1;
+            outX /= outLen; outY /= outLen; outZ /= outLen;
+            const disp = n * 0.22; // amplitude of gyri
+            x += outX * disp;
+            y += outY * disp;
+            z += outZ * disp;
 
-          let placed = 0;
-          let attempts = 0;
-          while (placed < NEURONS && attempts < NEURONS * 8) {
-            attempts++;
-            const samp = sampleBrainSurface(attempts);
-            // Slight thickness — push along radial outward from origin
-            const len = Math.sqrt(samp.x*samp.x + samp.y*samp.y + samp.z*samp.z) || 1;
-            const inner = 0.78 + hash01(attempts, 9.1) * 0.22; // 0.78..1.00
-            const x = samp.x * inner;
-            const y = samp.y * inner;
-            const z = samp.z * inner;
-
-            const i = placed;
-            neuronPositions[i*3+0] = x;
-            neuronPositions[i*3+1] = y;
-            neuronPositions[i*3+2] = z;
-            neuronIsLeft[i] = samp.left ? 1 : 0;
-            neuronPhase[i]  = hash01(attempts, 10.5) * Math.PI * 2;
-
-            const sz = 0.03 + hash01(attempts, 11.7) * 0.025;
-            neuronBaseSize[i] = sz;
-
-            tmpPos.set(x, y, z);
-            tmpScale.set(sz, sz, sz);
-            tmpMat.compose(tmpPos, tmpQuat, tmpScale);
-            neuronInst.setMatrixAt(i, tmpMat);
-
-            const col = samp.left ? cLeft : cRight;
-            // Add tiny per-node variation to break up banding
-            const j = hash01(attempts, 12.9) * 0.18 - 0.09;
-            colors[i*3+0] = Math.min(1, Math.max(0, col.r + j));
-            colors[i*3+1] = Math.min(1, Math.max(0, col.g + j * 0.6));
-            colors[i*3+2] = Math.min(1, Math.max(0, col.b + j * 0.3));
-
-            placed++;
-          }
-          if (placed < NEURONS) {
-            console.warn('[slide-07 brain] only placed', placed, '/ ', NEURONS);
-          }
-
-          neuronInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
-          neuronInst.instanceMatrix.needsUpdate = true;
-          neuronInst.instanceColor.needsUpdate = true;
-          // Enable vertex colors path
-          mat.vertexColors = true;
-          mat.needsUpdate = true;
-
-          brainRoot.add(neuronInst);
-        }
-
-        // -------- ~3,000 synaptic connections (LineSegments) ----
-        // Each synapse links a neuron to a nearby neuron. We build a
-        // simple spatial-bucket nearest-neighbor pass — O(N) ish.
-        let synapseLines = null;
-        let synapseGeom  = null;
-        let synapseMat   = null;
-        const synapseEndpoints = new Float32Array(SYNAPSES * 2 * 3);
-        const synapseMidpoints = new Float32Array(SYNAPSES * 3); // for pulse-wave intensity
-        {
-          // Spatial hash
-          const cellSize = 0.6;
-          const grid = new Map();
-          function key(ix, iy, iz) { return ix + ',' + iy + ',' + iz; }
-          for (let i = 0; i < NEURONS; i++) {
-            const x = neuronPositions[i*3+0];
-            const y = neuronPositions[i*3+1];
-            const z = neuronPositions[i*3+2];
-            const ix = Math.floor(x / cellSize);
-            const iy = Math.floor(y / cellSize);
-            const iz = Math.floor(z / cellSize);
-            const k = key(ix, iy, iz);
-            let arr = grid.get(k);
-            if (!arr) { arr = []; grid.set(k, arr); }
-            arr.push(i);
-          }
-
-          let written = 0;
-          for (let i = 0; i < NEURONS && written < SYNAPSES; i++) {
-            // Roughly half the neurons get a synapse — distribute evenly
-            // by skipping based on a hash of i.
-            if (hash01(i, 13.1) > (SYNAPSES / NEURONS) * 1.05) continue;
-
-            const x = neuronPositions[i*3+0];
-            const y = neuronPositions[i*3+1];
-            const z = neuronPositions[i*3+2];
-            const ix = Math.floor(x / cellSize);
-            const iy = Math.floor(y / cellSize);
-            const iz = Math.floor(z / cellSize);
-
-            // Search 3x3x3 neighbourhood for a nearby neuron
-            let bestJ = -1;
-            let bestD2 = Infinity;
-            for (let dx = -1; dx <= 1; dx++) {
-              for (let dy = -1; dy <= 1; dy++) {
-                for (let dz = -1; dz <= 1; dz++) {
-                  const arr = grid.get(key(ix+dx, iy+dy, iz+dz));
-                  if (!arr) continue;
-                  // Probe a few random members of the bucket
-                  const probes = Math.min(arr.length, 5);
-                  for (let p = 0; p < probes; p++) {
-                    const j = arr[(p * 7 + i) % arr.length];
-                    if (j === i) continue;
-                    // Same hemisphere preferred (cross-hemi rare → "corpus callosum")
-                    const sameHemi = neuronIsLeft[i] === neuronIsLeft[j];
-                    if (!sameHemi && hash01(i * 17 + j, 14.5) > 0.08) continue;
-                    const xj = neuronPositions[j*3+0];
-                    const yj = neuronPositions[j*3+1];
-                    const zj = neuronPositions[j*3+2];
-                    const ddx = x - xj, ddy = y - yj, ddz = z - zj;
-                    const d2 = ddx*ddx + ddy*ddy + ddz*ddz;
-                    if (d2 > 0.0001 && d2 < bestD2 && d2 < 1.2) {
-                      bestD2 = d2;
-                      bestJ = j;
-                    }
-                  }
-                }
-              }
+            // Brain stem nudge — pinch lower-back slightly
+            if (y < -1.6 && z < -1.4) {
+              x *= 0.7; y = Math.max(y, -2.4);
             }
-            if (bestJ < 0) continue;
 
-            const xj = neuronPositions[bestJ*3+0];
-            const yj = neuronPositions[bestJ*3+1];
-            const zj = neuronPositions[bestJ*3+2];
-
-            const off = written * 6;
-            synapseEndpoints[off + 0] = x;
-            synapseEndpoints[off + 1] = y;
-            synapseEndpoints[off + 2] = z;
-            synapseEndpoints[off + 3] = xj;
-            synapseEndpoints[off + 4] = yj;
-            synapseEndpoints[off + 5] = zj;
-
-            synapseMidpoints[written * 3 + 0] = (x + xj) * 0.5;
-            synapseMidpoints[written * 3 + 1] = (y + yj) * 0.5;
-            synapseMidpoints[written * 3 + 2] = (z + zj) * 0.5;
-            written++;
+            arr[i*3+0] = x;
+            arr[i*3+1] = y;
+            arr[i*3+2] = z;
           }
-
-          // Build geometry (may be slightly under SYNAPSES — that's fine)
-          const usedSegments = written;
-          synapseGeom = new THREE.BufferGeometry();
-          const finalEnds = synapseEndpoints.slice(0, usedSegments * 6);
-          synapseGeom.setAttribute('position', new THREE.BufferAttribute(finalEnds, 3));
-
-          // Per-vertex aMid for pulse wave (2 vertices per segment share mid)
-          const aMid = new Float32Array(usedSegments * 2 * 3);
-          for (let s = 0; s < usedSegments; s++) {
-            aMid[s*6+0] = synapseMidpoints[s*3+0];
-            aMid[s*6+1] = synapseMidpoints[s*3+1];
-            aMid[s*6+2] = synapseMidpoints[s*3+2];
-            aMid[s*6+3] = synapseMidpoints[s*3+0];
-            aMid[s*6+4] = synapseMidpoints[s*3+1];
-            aMid[s*6+5] = synapseMidpoints[s*3+2];
-          }
-          synapseGeom.setAttribute('aMid', new THREE.BufferAttribute(aMid, 3));
-
-          synapseMat = new THREE.ShaderMaterial({
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-            uniforms: {
-              uTime:    { value: 0 },
-              uWaveDir: { value: new THREE.Vector3(1, 0.2, 0.3).normalize() },
-              uWavePos: { value: 0 },       // moves -8 .. 8 over pulse cycle
-              uPulse:   { value: 0 }         // 0..1 amplitude
-            },
-            vertexShader: [
-              'attribute vec3 aMid;',
-              'uniform float uTime;',
-              'uniform vec3  uWaveDir;',
-              'uniform float uWavePos;',
-              'uniform float uPulse;',
-              'varying float vGlow;',
-              'void main() {',
-              '  // Distance of segment midpoint along wave axis',
-              '  float along = dot(aMid, uWaveDir);',
-              '  float band  = exp(-pow((along - uWavePos) * 0.85, 2.0));',
-              '  float idle  = 0.32 + 0.08 * sin(uTime * 1.6 + aMid.x * 2.1 + aMid.y * 1.7);',
-              '  vGlow = idle + band * uPulse * 1.4;',
-              '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
-              '}'
-            ].join('\n'),
-            fragmentShader: [
-              'varying float vGlow;',
-              'void main() {',
-              '  // Warm honey-to-coral as glow rises',
-              '  vec3 cool = vec3(0.99, 0.74, 0.20);',   // honey
-              '  vec3 hot  = vec3(1.00, 0.84, 0.42);',   // hot-honey
-              '  vec3 col  = mix(cool, hot, clamp(vGlow - 0.4, 0.0, 1.0));',
-              '  float a   = clamp(vGlow * 0.55, 0.0, 0.9);',
-              '  gl_FragColor = vec4(col, a);',
-              '}'
-            ].join('\n')
-          });
-
-          synapseLines = new THREE.LineSegments(synapseGeom, synapseMat);
-          synapseLines.frustumCulled = false;
-          brainRoot.add(synapseLines);
+          pos.needsUpdate = true;
+          g.computeVertexNormals();
+          return g;
         }
 
-        // -------- Faint longitudinal fissure (inside brain) -----
-        // Thin dim box between hemispheres — reads as the slit
-        // separating left + right cortex.
+        const brainGeom = buildBrainGeometry(5); // 5 = good gyri detail
+
+        // Translucent honey-tinted solid pass
+        const brainSolidMat = new THREE.MeshStandardMaterial({
+          color: 0x2a1f10,
+          emissive: 0x6a4615,
+          emissiveIntensity: 0.55,
+          roughness: 0.55,
+          metalness: 0.15,
+          transparent: true,
+          opacity: 0.78,
+          side: THREE.FrontSide
+        });
+        const brainSolid = new THREE.Mesh(brainGeom, brainSolidMat);
+        brainRoot.add(brainSolid);
+
+        // Wireframe overlay — the "neural mesh" signal
+        const brainWireGeom = new THREE.WireframeGeometry(brainGeom);
+        const brainWireMat = new THREE.LineBasicMaterial({
+          color: HONEY,
+          transparent: true,
+          opacity: 0.45,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        });
+        const brainWire = new THREE.LineSegments(brainWireGeom, brainWireMat);
+        brainRoot.add(brainWire);
+
+        // Inner luminescence — back-face additive copy gives an
+        // internal glow that hints at consciousness inside the mesh.
+        const brainInnerMat = new THREE.MeshBasicMaterial({
+          color: HONEY,
+          transparent: true,
+          opacity: 0.10,
+          depthWrite: false,
+          side: THREE.BackSide,
+          blending: THREE.AdditiveBlending
+        });
+        const brainInner = new THREE.Mesh(brainGeom, brainInnerMat);
+        brainInner.scale.setScalar(0.96);
+        brainRoot.add(brainInner);
+
+        // Central honey ember at brain center — the "thinking source"
+        let coreEmber = null;
+        let coreCorona = null;
         {
-          const fissureBox = new THREE.Mesh(
-            new THREE.BoxGeometry(0.06, HEMI_RY * 1.85, HEMI_RZ * 1.85),
-            new THREE.MeshBasicMaterial({
-              color: 0x000308,
-              transparent: true,
-              opacity: 0.32,
-              depthWrite: false
+          coreEmber = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(0.34, 1),
+            new THREE.MeshStandardMaterial({
+              color: HONEY,
+              emissive: HONEY,
+              emissiveIntensity: 1.8,
+              roughness: 0.22,
+              metalness: 0.18
             })
           );
-          brainRoot.add(fissureBox);
+          brainRoot.add(coreEmber);
+          coreCorona = new THREE.Sprite(new THREE.SpriteMaterial({
+            map: sharedRadialTex,
+            color: HONEY,
+            transparent: true,
+            opacity: 0.48,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+          }));
+          coreCorona.scale.set(2.6, 2.6, 1);
+          brainRoot.add(coreCorona);
         }
 
-        // -------- 328 MCP tool dots (shell around brain) --------
-        // InstancedMesh, distributed in a sphere shell r=12..17.
-        let toolsInst = null;
-        const toolPhase = new Float32Array(TOOLS);
+        // -------- Surface-locked neural nodes -------------------
+        // Sample 1,500 candidate points on the same ellipsoid+noise
+        // surface used by the mesh. They sit slightly outside the
+        // mesh skin so they read as firing on the surface, not inside.
+        const surfaceNodeData = [];   // {pos:Vector3, isLeft, phase}
+        let surfaceInst = null;
         {
-          const geo = new THREE.SphereGeometry(1, 4, 4); // tiny dots, never seen up close
+          const geo = new THREE.SphereGeometry(1, 6, 5);
           const mat = new THREE.MeshBasicMaterial({
             vertexColors: true,
             transparent: true,
-            opacity: 0.85,
+            opacity: 0.95,
             depthWrite: false,
             blending: THREE.AdditiveBlending
           });
-          toolsInst = new THREE.InstancedMesh(geo, mat, TOOLS);
-          toolsInst.instanceMatrix.setUsage(THREE.StaticDrawUsage);
+          surfaceInst = new THREE.InstancedMesh(geo, mat, SURFACE_NODES);
+          surfaceInst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
 
-          const colors = new Float32Array(TOOLS * 3);
+          const colors = new Float32Array(SURFACE_NODES * 3);
+          const cLeft  = new THREE.Color(HONEY);
+          const cRight = new THREE.Color(HONEY_WARM);
+          const tmpMat = new THREE.Matrix4();
+          const tmpPos = new THREE.Vector3();
+          const tmpQuat = new THREE.Quaternion();
+          const tmpScale = new THREE.Vector3();
+          tmpQuat.identity();
+
+          function hash01(i, salt) {
+            const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+            return v - Math.floor(v);
+          }
+
+          for (let i = 0; i < SURFACE_NODES; i++) {
+            // Choose hemisphere
+            const left = hash01(i, 1.0) < 0.5;
+            const cx = left ? -HEMI_OFFSET_X : HEMI_OFFSET_X;
+
+            // Random direction biased outward (medial pull)
+            const u = hash01(i, 2.7) * 2 - 1;
+            const th = hash01(i, 3.3) * Math.PI * 2;
+            const s = Math.sqrt(1 - u*u);
+            let dx = s * Math.cos(th);
+            let dy = u;
+            let dz = s * Math.sin(th);
+
+            // Bias direction toward outward face (less medial)
+            if (left  && dx > 0) dx *= 0.35;
+            if (!left && dx < 0) dx *= 0.35;
+            const dlen = Math.sqrt(dx*dx + dy*dy + dz*dz) || 1;
+            dx /= dlen; dy /= dlen; dz /= dlen;
+
+            // Ellipsoid surface point
+            let x = cx + dx * HEMI_RX;
+            let y =       dy * HEMI_RY;
+            let z =       dz * HEMI_RZ;
+            if (y < 0) y *= 0.92;
+
+            // Add same noise displacement so dots ride the gyri
+            const nfreq = 2.4;
+            const nv = fbm(x * nfreq, y * nfreq, z * nfreq) * 2 - 1;
+            let outX = x - cx, outY = y, outZ = z;
+            const ol = Math.sqrt(outX*outX + outY*outY + outZ*outZ) || 1;
+            outX /= ol; outY /= ol; outZ /= ol;
+            const disp = nv * 0.22 + 0.04; // slightly outside skin
+            x += outX * disp;
+            y += outY * disp;
+            z += outZ * disp;
+
+            const sz = 0.038 + hash01(i, 11.7) * 0.028;
+            tmpPos.set(x, y, z);
+            tmpScale.set(sz, sz, sz);
+            tmpMat.compose(tmpPos, tmpQuat, tmpScale);
+            surfaceInst.setMatrixAt(i, tmpMat);
+
+            const col = left ? cLeft : cRight;
+            // Per-node brightness variation
+            const j = hash01(i, 12.9) * 0.25 - 0.12;
+            colors[i*3+0] = Math.min(1, Math.max(0, col.r + j));
+            colors[i*3+1] = Math.min(1, Math.max(0, col.g + j * 0.7));
+            colors[i*3+2] = Math.min(1, Math.max(0, col.b + j * 0.4));
+
+            surfaceNodeData.push({
+              x: x, y: y, z: z,
+              left: left,
+              size: sz,
+              phase: hash01(i, 17.3) * Math.PI * 2
+            });
+          }
+          surfaceInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
+          surfaceInst.instanceMatrix.needsUpdate = true;
+          surfaceInst.instanceColor.needsUpdate = true;
+          mat.vertexColors = true;
+          mat.needsUpdate = true;
+          brainRoot.add(surfaceInst);
+        }
+
+        // -------- 24 MCP cluster orbs in a tilted ring ---------
+        // These represent the 328 MCP tools grouped into 24 clusters
+        // (~14 tools per cluster). Tilted ring just outside the brain.
+        let mcpInst = null;
+        const mcpPhases = new Float32Array(MCP_CLUSTERS);
+        const mcpBaseAngles = new Float32Array(MCP_CLUSTERS);
+        const mcpRing = new THREE.Group();
+        // Tilt the ring — looks more cinematic than a flat orbit
+        mcpRing.rotation.x = THREE.MathUtils.degToRad(22);
+        mcpRing.rotation.z = THREE.MathUtils.degToRad(-7);
+        scene.add(mcpRing);
+        {
+          const geo = new THREE.SphereGeometry(1, 14, 14);
+          const mat = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            emissive: 0xffffff,
+            emissiveIntensity: 1.0,
+            roughness: 0.35,
+            metalness: 0.2,
+            vertexColors: false
+          });
+          mcpInst = new THREE.InstancedMesh(geo, mat, MCP_CLUSTERS);
+          mcpInst.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+
+          const colors = new Float32Array(MCP_CLUSTERS * 3);
+          // Palette cycles through brand accents
           const palette = [
             new THREE.Color(HONEY),
-            new THREE.Color(TEAL),
             new THREE.Color(SKY),
+            new THREE.Color(TEAL),
             new THREE.Color(VIOLET),
-            new THREE.Color(CORAL)
+            new THREE.Color(CORAL),
+            new THREE.Color(HONEY_WARM)
           ];
 
           const tmpMat = new THREE.Matrix4();
@@ -981,42 +848,33 @@
           tmpQuat.identity();
           const tmpScale = new THREE.Vector3();
 
-          for (let i = 0; i < TOOLS; i++) {
-            // Sphere shell sampling — uniform on sphere with radial jitter
-            const u = hash01(i, 21.3) * 2 - 1;
-            const th = hash01(i, 22.7) * Math.PI * 2;
-            const s = Math.sqrt(1 - u*u);
-            const r = TOOLS_RADIUS_IN + hash01(i, 23.9) * (TOOLS_RADIUS_OUT - TOOLS_RADIUS_IN);
-            // Slight equator preference — flatten by 70% on Y
-            const x = s * Math.cos(th) * r;
-            const y = u * r * 0.7;
-            const z = s * Math.sin(th) * r;
-
-            const sz = 0.06 + hash01(i, 24.5) * 0.05;
+          for (let i = 0; i < MCP_CLUSTERS; i++) {
+            const ang = (i / MCP_CLUSTERS) * Math.PI * 2;
+            mcpBaseAngles[i] = ang;
+            const x = Math.cos(ang) * MCP_RING_RADIUS;
+            const z = Math.sin(ang) * MCP_RING_RADIUS;
+            const y = 0;
+            const sz = 0.16 + (i % 5) * 0.012;
             tmpPos.set(x, y, z);
             tmpScale.set(sz, sz, sz);
             tmpMat.compose(tmpPos, tmpQuat, tmpScale);
-            toolsInst.setMatrixAt(i, tmpMat);
+            mcpInst.setMatrixAt(i, tmpMat);
 
             const col = palette[i % palette.length];
             colors[i*3+0] = col.r;
             colors[i*3+1] = col.g;
             colors[i*3+2] = col.b;
-            toolPhase[i] = hash01(i, 25.7) * Math.PI * 2;
+            mcpPhases[i] = (i / MCP_CLUSTERS) * Math.PI * 2;
           }
-          toolsInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
-          toolsInst.instanceMatrix.needsUpdate = true;
-          toolsInst.instanceColor.needsUpdate = true;
-          // No vertex colors needed since MeshBasicMaterial gets vertexColors flag
+          mcpInst.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
+          mcpInst.instanceMatrix.needsUpdate = true;
+          mcpInst.instanceColor.needsUpdate = true;
           mat.vertexColors = true;
           mat.needsUpdate = true;
-
-          brainRoot.add(toolsInst);
+          mcpRing.add(mcpInst);
         }
 
-        // -------- 9 enterprise system orbs ----------------------
-        // Distributed evenly on a tilted ring outside the brain at
-        // radius 22, with halos and sprite glows.
+        // -------- 9 enterprise system orbs (outer constellation) -
         const systemNodes = [];
         const systemLabelsHost = document.getElementById('brain-system-labels');
         {
@@ -1026,19 +884,18 @@
             const ang = (i / SYSTEMS.length) * Math.PI * 2 - Math.PI / 2;
             const x = Math.cos(ang) * SYSTEMS_RADIUS;
             const z = Math.sin(ang) * SYSTEMS_RADIUS;
-            // Tilt the plane slightly
-            const y = Math.sin(ang) * Math.sin(ringTilt) * SYSTEMS_RADIUS * 0.18;
+            const y = Math.sin(ang) * Math.sin(ringTilt) * SYSTEMS_RADIUS * 0.22;
 
             const g = new THREE.Group();
             g.position.set(x, y, z);
 
             // Core
             const core = new THREE.Mesh(
-              new THREE.SphereGeometry(0.42, 22, 22),
+              new THREE.SphereGeometry(0.5, 24, 24),
               new THREE.MeshStandardMaterial({
                 color: sys.color,
                 emissive: sys.color,
-                emissiveIntensity: 1.1,
+                emissiveIntensity: 1.2,
                 roughness: 0.3,
                 metalness: 0.25
               })
@@ -1047,7 +904,7 @@
 
             // Inner halo
             const halo = new THREE.Mesh(
-              new THREE.SphereGeometry(0.78, 16, 16),
+              new THREE.SphereGeometry(0.95, 16, 16),
               new THREE.MeshBasicMaterial({
                 color: sys.color,
                 transparent: true,
@@ -1058,7 +915,7 @@
             );
             g.add(halo);
 
-            // Sprite bloom
+            // Bloom sprite
             const bloom = new THREE.Sprite(new THREE.SpriteMaterial({
               map: sharedRadialTex,
               color: sys.color,
@@ -1067,12 +924,11 @@
               depthWrite: false,
               blending: THREE.AdditiveBlending
             }));
-            bloom.scale.set(3.2, 3.2, 1);
+            bloom.scale.set(3.8, 3.8, 1);
             g.add(bloom);
 
-            scene.add(g); // NOT brainRoot — systems stay fixed, brain rotates inside
+            scene.add(g);
 
-            // HTML billboard label
             const label = document.createElement('div');
             label.className = 'sys-label';
             const colHex = '#' + sys.color.toString(16).padStart(6, '0');
@@ -1083,33 +939,27 @@
             systemLabelsHost.appendChild(label);
 
             systemNodes.push({
-              group: g,
-              core: core,
-              halo: halo,
-              bloom: bloom,
-              label: label,
+              group: g, core: core, halo: halo, bloom: bloom, label: label,
               color: new THREE.Color(sys.color),
-              angle: ang,
-              data: sys
+              angle: ang, data: sys
             });
           }
         }
 
         // -------- 9 honey beams: brain core -> each system ------
-        // Single BufferGeometry shader — additive, pulse rotation.
+        // Ribbon shader with traveling pulse head.
         let beamsGeom = null;
         let beamsMat  = null;
         let beamsMesh = null;
         {
-          const SEG_PER_BEAM = 32;
+          const SEG_PER_BEAM = 28;
           const beams = SYSTEMS.length;
-          // 2 triangles per quad segment, 6 vertices per quad (no index)
           const vertsPerBeam = SEG_PER_BEAM * 6;
           const total = beams * vertsPerBeam;
 
           const positions = new Float32Array(total * 3);
-          const aT        = new Float32Array(total);          // 0..1 along beam
-          const aSide     = new Float32Array(total);          // -1 or +1 for ribbon width
+          const aT        = new Float32Array(total);
+          const aSide     = new Float32Array(total);
           const aBeamIdx  = new Float32Array(total);
           const aColor    = new Float32Array(total * 3);
 
@@ -1119,18 +969,25 @@
             const node = systemNodes[b];
             const target = node.group.position;
             const col = new THREE.Color(sys.color);
+            // Beams start at brain surface, not 0,0,0 — gives that
+            // "emerging from the cortex" look. Compute surface entry by
+            // shrinking target dir to brain extent.
+            const dirLen = Math.sqrt(target.x*target.x + target.y*target.y + target.z*target.z);
+            const startScale = 4.0 / dirLen; // ~4 units = brain radius
+            const sx = target.x * startScale;
+            const sy = target.y * startScale;
+            const sz = target.z * startScale;
+
             for (let s = 0; s < SEG_PER_BEAM; s++) {
               const t0 = s / SEG_PER_BEAM;
               const t1 = (s + 1) / SEG_PER_BEAM;
-              // Path: brain center (0,0,0) → target
-              const x0 = target.x * t0;
-              const y0 = target.y * t0;
-              const z0 = target.z * t0;
-              const x1 = target.x * t1;
-              const y1 = target.y * t1;
-              const z1 = target.z * t1;
+              const x0 = sx + (target.x - sx) * t0;
+              const y0 = sy + (target.y - sy) * t0;
+              const z0 = sz + (target.z - sz) * t0;
+              const x1 = sx + (target.x - sx) * t1;
+              const y1 = sy + (target.y - sy) * t1;
+              const z1 = sz + (target.z - sz) * t1;
 
-              // 6 verts per quad (two triangles)
               const quad = [
                 [x0, y0, z0, t0, -1],
                 [x1, y1, z1, t1, -1],
@@ -1143,12 +1000,12 @@
                 positions[v*3+0] = quad[q][0];
                 positions[v*3+1] = quad[q][1];
                 positions[v*3+2] = quad[q][2];
-                aT[v]            = quad[q][3];
-                aSide[v]         = quad[q][4];
-                aBeamIdx[v]      = b;
-                aColor[v*3+0]    = col.r;
-                aColor[v*3+1]    = col.g;
-                aColor[v*3+2]    = col.b;
+                aT[v]      = quad[q][3];
+                aSide[v]   = quad[q][4];
+                aBeamIdx[v]= b;
+                aColor[v*3+0] = col.r;
+                aColor[v*3+1] = col.g;
+                aColor[v*3+2] = col.b;
                 v++;
               }
             }
@@ -1166,15 +1023,14 @@
             depthWrite: false,
             blending: THREE.AdditiveBlending,
             uniforms: {
-              uTime:   { value: 0 },
-              uWidth:  { value: 0.10 }
+              uTime:  { value: 0 },
+              uWidth: { value: 0.14 }
             },
             vertexShader: [
               'attribute float aT;',
               'attribute float aSide;',
               'attribute float aBeamIdx;',
               'attribute vec3  aColor;',
-              'uniform float uTime;',
               'uniform float uWidth;',
               'varying float vT;',
               'varying float vSide;',
@@ -1183,10 +1039,6 @@
               'void main() {',
               '  vT = aT; vSide = aSide; vBeam = aBeamIdx; vCol = aColor;',
               '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
-              '  // Ribbon in view space: perpendicular offset',
-              '  vec3 viewDir = normalize(-mv.xyz);',
-              '  vec3 forward = vec3(0.0);',
-              '  // Cheap: just offset on X in view space',
               '  mv.x += aSide * uWidth;',
               '  gl_Position = projectionMatrix * mv;',
               '}'
@@ -1198,19 +1050,16 @@
               'varying vec3  vCol;',
               'uniform float uTime;',
               'void main() {',
-              '  // Soft edge across ribbon (-1..+1 → 0 at center)',
               '  float edge = 1.0 - abs(vSide);',
               '  edge = pow(edge, 1.6);',
-              '  // Moving pulse along the beam, per beam offset',
-              '  float speed = 0.35;',
+              '  float speed = 0.32;',
               '  float pulse = fract(vT - uTime * speed + vBeam * 0.13);',
-              '  float head  = smoothstep(0.85, 1.0, pulse) - smoothstep(1.0, 1.05, pulse);',
-              '  float idle  = 0.18 + 0.06 * sin(uTime * 1.1 + vT * 6.2832 + vBeam * 1.7);',
-              '  float bright = idle + head * 1.6;',
-              '  // Taper at ends',
-              '  float taper = smoothstep(0.0, 0.08, vT) * smoothstep(1.0, 0.92, vT);',
+              '  float head  = smoothstep(0.85, 1.0, pulse) - smoothstep(1.0, 1.06, pulse);',
+              '  float idle  = 0.22 + 0.08 * sin(uTime * 1.1 + vT * 6.2832 + vBeam * 1.7);',
+              '  float bright = idle + head * 1.8;',
+              '  float taper = smoothstep(0.0, 0.06, vT) * smoothstep(1.0, 0.92, vT);',
               '  vec3 col = mix(vCol, vec3(1.0, 0.92, 0.62), head * 0.85);',
-              '  float a  = edge * bright * taper * 0.62;',
+              '  float a  = edge * bright * taper * 0.66;',
               '  gl_FragColor = vec4(col, a);',
               '}'
             ].join('\n')
@@ -1221,43 +1070,13 @@
           scene.add(beamsMesh);
         }
 
-        // -------- Yogi core (anatomical centerpoint) ------------
-        // Tiny honey glow at brain center so the "thinking source"
-        // is visible. Sits inside the fissure.
-        let yogiCore = null;
-        let yogiCorona = null;
-        {
-          const coreMat = new THREE.MeshStandardMaterial({
-            color: HONEY,
-            emissive: HONEY,
-            emissiveIntensity: 1.6,
-            roughness: 0.22,
-            metalness: 0.18
-          });
-          yogiCore = new THREE.Mesh(new THREE.IcosahedronGeometry(0.32, 1), coreMat);
-          brainRoot.add(yogiCore);
-
-          yogiCorona = new THREE.Sprite(new THREE.SpriteMaterial({
-            map: sharedRadialTex,
-            color: HONEY,
-            transparent: true,
-            opacity: 0.45,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending
-          }));
-          yogiCorona.scale.set(2.4, 2.4, 1);
-          brainRoot.add(yogiCorona);
-        }
-
-        // -------- Interaction: drag + scroll ---------------------
-        // Same pattern as Galaxy slide: user spherical-rotates the
-        // brainRoot; scroll → camera dolly. Auto-resume after idle.
+        // -------- Interaction: drag + scroll -------------------
         let userInteractedAt = 0;
         const AUTO_RESUME_AFTER = 5000;
         let dragging = false;
         let lastX = 0, lastY = 0;
-        let autoYaw = 0;       // base yaw set by autopilot
-        let yawOffset = 0;     // user offset
+        let autoYaw = 0;
+        let yawOffset = 0;
         let pitchOffset = 0;
         let targetDist = 42;
         let cameraDist = 42;
@@ -1296,7 +1115,7 @@
         window.addEventListener('pointerup',   onPointerUp);
         renderer.domElement.addEventListener('wheel', onWheel, { passive: false });
 
-        // -------- System label projection ------------------------
+        // -------- Label projection -----------------------------
         const proj = new THREE.Vector3();
         function updateSystemLabels() {
           if (!systemNodes.length) return;
@@ -1308,14 +1127,13 @@
             proj.project(camera);
             const x = proj.x * halfW + halfW;
             const y = -proj.y * halfH + halfH;
-            const visible = proj.z < 1 && x > -120 && x < viewW + 120 && y > 40 && y < viewH - 130;
-            // Offset label outward from brain center (in screen space)
-            // so it never lands on top of the orb
+            const visible = proj.z < 1 && x > -120 && x < viewW + 120 &&
+                            y > 60 && y < viewH - 140;
             const dx = x - halfW;
             const dy = y - halfH;
             const m = Math.sqrt(dx*dx + dy*dy) || 1;
-            const ox = dx / m * 22;
-            const oy = dy / m * 22;
+            const ox = dx / m * 26;
+            const oy = dy / m * 26;
             node.label.style.transform =
               'translate(' + (x + ox) + 'px, ' + (y + oy) + 'px) translate(-50%, -50%)';
             if (visible) {
@@ -1326,58 +1144,54 @@
           }
         }
 
-        // -------- Animation loop --------------------------------
+        // -------- Surface node firing wave ---------------------
+        // Every 4.5s a wave sweeps through the brain along a rotating
+        // axis. Nodes near the wavefront flash bright; idle nodes
+        // gently pulse. Implemented by re-writing the InstancedMesh
+        // colors each frame. 1,500 instances × 3 floats = cheap.
+        const _surfaceColors = new Float32Array(SURFACE_NODES * 3);
+        const _cHoney  = new THREE.Color(HONEY);
+        const _cWarm   = new THREE.Color(HONEY_WARM);
+        const _cBright = new THREE.Color(0xfff3c7);
+        let waveStart = 0;
+        let waveDir = new THREE.Vector3(1, 0.25, 0.4).normalize();
+        const WAVE_PERIOD = 4.5;
+        const WAVE_DURATION = 2.0;
+        function nextWaveDir(t) {
+          const a = t * 0.17;
+          const b = t * 0.11;
+          waveDir.set(Math.cos(a), Math.sin(b) * 0.5, Math.sin(a)).normalize();
+        }
+
+        // -------- Animation loop -------------------------------
         let rafId = 0;
         let frameIdx = 0;
         const clock = new THREE.Clock();
-
-        // Hoisted scratch
-        const _vec3 = new THREE.Vector3();
-        const _mat  = new THREE.Matrix4();
-        const _quat = new THREE.Quaternion();
-        const _scale = new THREE.Vector3();
-        _quat.identity();
-
-        // Synaptic pulse — every 7s a wave sweeps through the brain.
-        // We rotate the wave direction each cycle so it doesn't repeat.
-        let pulseStart = 0;
-        let pulseDir = new THREE.Vector3(1, 0.2, 0.3).normalize();
-        const PULSE_PERIOD = 7.0;
-        const PULSE_DURATION = 2.4; // seconds active
-
-        function nextPulseDir(t) {
-          const a = t * 0.13;
-          const b = t * 0.07;
-          pulseDir.set(Math.cos(a), Math.sin(b) * 0.45, Math.sin(a)).normalize();
-        }
+        const _tmpMat = new THREE.Matrix4();
+        const _tmpPos = new THREE.Vector3();
+        const _tmpQuat = new THREE.Quaternion();
+        const _tmpScale = new THREE.Vector3();
+        _tmpQuat.identity();
 
         function tick() {
           const t = clock.getElapsedTime();
           frameIdx++;
 
-          // -- Auto-rotate (very slow: 120s revolution) ----------
-          if (!reduced) {
-            autoYaw += 0.0008; // ~ (2π / 120s) per 16ms, slightly slower
-          }
+          // Auto-rotate VERY slow: 180s revolution
+          if (!reduced) autoYaw += 0.00058;
 
-          // -- Camera dolly breath ------------------------------
-          if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
-            // Breath dist between 14 and 21 over ~40s
-            const breath = 17.5 + Math.sin(t * (Math.PI * 2 / 40)) * 3.5;
-            // cinema breath disabled — start fully zoomed out, user controls zoom
-          }
+          // Camera dolly toward target
           cameraDist += (targetDist - cameraDist) * 0.06;
 
-          // -- Apply brain rotation -----------------------------
           brainRoot.rotation.y = autoYaw + yawOffset;
-          brainRoot.rotation.x = THREE.MathUtils.degToRad(-6) + pitchOffset;
+          brainRoot.rotation.x = THREE.MathUtils.degToRad(-8) + pitchOffset;
 
-          // -- Camera position around brain (slow drift) --------
+          // Camera position — slight drift after idle
           if (!reduced && (performance.now() - userInteractedAt) > AUTO_RESUME_AFTER) {
-            const camAng = t * 0.02;
-            const camY   = 1.2 + Math.sin(t * 0.13) * 0.6;
+            const camAng = t * 0.018;
+            const camY   = 1.6 + Math.sin(t * 0.12) * 0.5;
             camera.position.set(
-              Math.sin(camAng) * cameraDist * 0.1,   // very small horizontal drift
+              Math.sin(camAng) * cameraDist * 0.08,
               camY,
               cameraDist
             );
@@ -1386,54 +1200,94 @@
           }
           camera.lookAt(0, 0, 0);
 
-          // -- Synaptic pulse update ----------------------------
-          if (synapseMat) {
-            const cyclePos = (t - pulseStart);
-            if (cyclePos > PULSE_PERIOD) {
-              pulseStart = t;
-              nextPulseDir(t);
-              synapseMat.uniforms.uWaveDir.value.copy(pulseDir);
-            }
-            const localT = t - pulseStart;
-            // Wave sweeps from -8 → +8 over PULSE_DURATION, then idle
-            let pulseAmp = 0;
-            let wavePos = 0;
-            if (localT < PULSE_DURATION) {
-              const f = localT / PULSE_DURATION;
-              wavePos = -8 + f * 16;
-              // Bell shape: rises then falls
-              pulseAmp = Math.sin(f * Math.PI);
-            } else {
-              wavePos = 8;
-              pulseAmp = 0;
-            }
-            if (reduced) { pulseAmp = 0; wavePos = 0; }
-            synapseMat.uniforms.uTime.value    = t;
-            synapseMat.uniforms.uWavePos.value = wavePos;
-            synapseMat.uniforms.uPulse.value   = pulseAmp;
+          // Brain solid: subtle opacity breathing
+          if (brainSolidMat) {
+            brainSolidMat.opacity = 0.74 + Math.sin(t * 0.6) * 0.06;
+          }
+          if (brainWireMat) {
+            brainWireMat.opacity = 0.40 + Math.sin(t * 0.6) * 0.08;
+          }
+          if (brainInnerMat) {
+            brainInnerMat.opacity = 0.08 + Math.sin(t * 0.85) * 0.04;
           }
 
-          // -- Yogi core breathing ------------------------------
-          if (yogiCore) {
+          // Core ember breath
+          if (coreEmber) {
             const s = 1 + Math.sin(t * 1.4) * 0.08;
-            yogiCore.scale.set(s, s, s);
-            yogiCore.material.emissiveIntensity = 1.4 + Math.sin(t * 2.1) * 0.35;
+            coreEmber.scale.set(s, s, s);
+            coreEmber.material.emissiveIntensity = 1.55 + Math.sin(t * 2.1) * 0.4;
           }
-          if (yogiCorona) {
-            const s = 2.4 + Math.sin(t * 1.4) * 0.18;
-            yogiCorona.scale.set(s, s, 1);
-            yogiCorona.material.opacity = 0.42 + Math.sin(t * 2.1) * 0.10;
+          if (coreCorona) {
+            const s = 2.6 + Math.sin(t * 1.4) * 0.2;
+            coreCorona.scale.set(s, s, 1);
+            coreCorona.material.opacity = 0.45 + Math.sin(t * 2.1) * 0.10;
           }
 
-          // -- System orbs gentle bob + counter-orbit -----------
+          // Surface node firing wave -----------------------------
+          if (surfaceInst) {
+            const cyclePos = t - waveStart;
+            if (cyclePos > WAVE_PERIOD) {
+              waveStart = t;
+              nextWaveDir(t);
+            }
+            const localT = t - waveStart;
+            let wavePos = 0;
+            let waveAmp = 0;
+            if (localT < WAVE_DURATION) {
+              const f = localT / WAVE_DURATION;
+              wavePos = -8 + f * 16;
+              waveAmp = Math.sin(f * Math.PI);
+            }
+            if (reduced) { wavePos = 0; waveAmp = 0; }
+
+            const colors = surfaceInst.instanceColor.array;
+            for (let i = 0; i < SURFACE_NODES; i++) {
+              const d = surfaceNodeData[i];
+              // Distance from wave plane
+              const along = d.x * waveDir.x + d.y * waveDir.y + d.z * waveDir.z;
+              const band = waveAmp * Math.exp(-Math.pow((along - wavePos) * 0.7, 2));
+              // Idle pulse
+              const idle = 0.55 + 0.18 * Math.sin(t * 1.8 + d.phase);
+              const k = Math.min(1.0, idle + band * 1.4);
+              const base = d.left ? _cHoney : _cWarm;
+              // Blend base → bright by k
+              const r = base.r * (1 - k * 0.45) + _cBright.r * (k * 0.45);
+              const g = base.g * (1 - k * 0.45) + _cBright.g * (k * 0.45);
+              const bl = base.b * (1 - k * 0.45) + _cBright.b * (k * 0.45);
+              const mul = Math.min(1.0, 0.6 + k * 0.8);
+              colors[i*3+0] = r * mul;
+              colors[i*3+1] = g * mul;
+              colors[i*3+2] = bl * mul;
+            }
+            surfaceInst.instanceColor.needsUpdate = true;
+          }
+
+          // MCP ring: slow counter-rotate + scale breath ---------
+          if (mcpRing && !reduced) {
+            mcpRing.rotation.y = t * 0.06;
+          }
+          if (mcpInst) {
+            for (let i = 0; i < MCP_CLUSTERS; i++) {
+              const ang = mcpBaseAngles[i];
+              const x = Math.cos(ang) * MCP_RING_RADIUS;
+              const z = Math.sin(ang) * MCP_RING_RADIUS;
+              const y = Math.sin(t * 0.8 + mcpPhases[i]) * 0.18;
+              const breath = 0.16 + Math.sin(t * 1.4 + mcpPhases[i]) * 0.03;
+              _tmpPos.set(x, y, z);
+              _tmpScale.set(breath, breath, breath);
+              _tmpMat.compose(_tmpPos, _tmpQuat, _tmpScale);
+              mcpInst.setMatrixAt(i, _tmpMat);
+            }
+            mcpInst.instanceMatrix.needsUpdate = true;
+          }
+
+          // System orbs gentle bob + counter-orbit ----------------
           for (let i = 0; i < systemNodes.length; i++) {
             const n = systemNodes[i];
-            // Slow counter-orbit so orbs slowly drift around brain
-            // Speed: 240s revolution (very slow)
-            const ang = n.angle + (reduced ? 0 : t * 0.026);
+            const ang = n.angle + (reduced ? 0 : t * 0.022);
             const px = Math.cos(ang) * SYSTEMS_RADIUS;
             const pz = Math.sin(ang) * SYSTEMS_RADIUS;
-            const py = Math.sin(ang) * 0.18 * SYSTEMS_RADIUS * 0.18
+            const py = Math.sin(ang) * 0.22 * SYSTEMS_RADIUS * 0.18
                      + Math.sin(t * 0.6 + i) * 0.18;
             n.group.position.set(px, py, pz);
             const breath = 1 + Math.sin(t * 1.2 + i * 0.7) * 0.06;
@@ -1441,36 +1295,34 @@
             n.halo.material.opacity = 0.18 + Math.sin(t * 1.0 + i) * 0.06;
           }
 
-          // -- Beams: rebuild per-vertex positions every frame? --
-          // No — beams use brain center (0,0,0) on one end and a
-          // FIXED system position on the other. But systems orbit, so
-          // we should re-anchor beams to live system positions. We do
-          // this cheaply by rebuilding the position buffer only every
-          // ~4 frames, since systems move very slowly.
+          // Beams re-anchor every 4 frames -----------------------
           if (beamsGeom && (frameIdx % 4) === 0) {
             const positions = beamsGeom.attributes.position.array;
-            const SEG_PER_BEAM = 32;
+            const SEG_PER_BEAM = 28;
             for (let b = 0; b < SYSTEMS.length; b++) {
               const target = systemNodes[b].group.position;
+              const dirLen = Math.sqrt(
+                target.x*target.x + target.y*target.y + target.z*target.z) || 1;
+              const startScale = 4.0 / dirLen;
+              const sx = target.x * startScale;
+              const sy = target.y * startScale;
+              const sz = target.z * startScale;
               const base = b * SEG_PER_BEAM * 6 * 3;
               for (let s = 0; s < SEG_PER_BEAM; s++) {
                 const t0 = s / SEG_PER_BEAM;
                 const t1 = (s + 1) / SEG_PER_BEAM;
-                const x0 = target.x * t0, y0 = target.y * t0, z0 = target.z * t0;
-                const x1 = target.x * t1, y1 = target.y * t1, z1 = target.z * t1;
-                // 6 verts per quad — order matches the original build
+                const x0 = sx + (target.x - sx) * t0;
+                const y0 = sy + (target.y - sy) * t0;
+                const z0 = sz + (target.z - sz) * t0;
+                const x1 = sx + (target.x - sx) * t1;
+                const y1 = sy + (target.y - sy) * t1;
+                const z1 = sz + (target.z - sz) * t1;
                 const off = base + s * 6 * 3;
-                // v0 = (t0,-1)
                 positions[off+0]=x0; positions[off+1]=y0; positions[off+2]=z0;
-                // v1 = (t1,-1)
                 positions[off+3]=x1; positions[off+4]=y1; positions[off+5]=z1;
-                // v2 = (t1,+1)
                 positions[off+6]=x1; positions[off+7]=y1; positions[off+8]=z1;
-                // v3 = (t0,-1)
                 positions[off+9]=x0; positions[off+10]=y0; positions[off+11]=z0;
-                // v4 = (t1,+1)
                 positions[off+12]=x1; positions[off+13]=y1; positions[off+14]=z1;
-                // v5 = (t0,+1)
                 positions[off+15]=x0; positions[off+16]=y0; positions[off+17]=z0;
               }
             }
@@ -1478,23 +1330,13 @@
           }
           if (beamsMat) beamsMat.uniforms.uTime.value = t;
 
-          // -- Tools: counter-rotate around brain very slowly ---
-          if (toolsInst && !reduced) {
-            // We just rotate the entire instanced mesh as a group via
-            // its parent (brainRoot rotates with brain). To make tools
-            // counter-orbit relative to the brain so they don't appear
-            // glued, rotate the toolsInst itself by -autoYaw * 0.5.
-            toolsInst.rotation.y = -autoYaw * 0.5;
-          }
-
-          // System labels every 2 frames
           if ((frameIdx & 1) === 0) updateSystemLabels();
 
           renderer.render(scene, camera);
           rafId = requestAnimationFrame(tick);
         }
 
-        // -------- Resize ----------------------------------------
+        // -------- Resize ---------------------------------------
         function onResize() {
           const w = wrap.clientWidth, h = wrap.clientHeight;
           if (!w || !h) return;
@@ -1508,7 +1350,7 @@
 
         rafId = requestAnimationFrame(tick);
 
-        // -------- Init perf info --------------------------------
+        // -------- Init perf info -------------------------------
         renderer.render(scene, camera);
         try {
           const info = renderer.info;
@@ -1518,13 +1360,13 @@
             geometries: info.memory.geometries,
             textures: info.memory.textures,
             programs: info.programs ? info.programs.length : null,
-            neurons: NEURONS,
-            tools: TOOLS,
+            surfaceNodes: SURFACE_NODES,
+            mcpClusters: MCP_CLUSTERS,
             systems: SYSTEMS.length
           });
         } catch (e) {}
 
-        // -------- Cleanup ---------------------------------------
+        // -------- Cleanup --------------------------------------
         state = {
           dispose() {
             cancelAnimationFrame(rafId);
@@ -1563,13 +1405,14 @@
             });
 
             try { sharedRadialTex.dispose(); } catch (_) {}
-            try { synapseGeom && synapseGeom.dispose(); } catch (_) {}
-            try { synapseMat  && synapseMat.dispose();  } catch (_) {}
-            try { beamsGeom   && beamsGeom.dispose();   } catch (_) {}
-            try { beamsMat    && beamsMat.dispose();    } catch (_) {}
+            try { brainWireGeom && brainWireGeom.dispose(); } catch (_) {}
+            try { beamsGeom    && beamsGeom.dispose();    } catch (_) {}
+            try { beamsMat     && beamsMat.dispose();     } catch (_) {}
 
             const lblHost = document.getElementById('brain-system-labels');
             if (lblHost) lblHost.innerHTML = '';
+            const rowHost = document.getElementById('brain-system-row');
+            if (rowHost) rowHost.innerHTML = '';
 
             while (scene.children.length) scene.remove(scene.children[0]);
 
