@@ -1,0 +1,1005 @@
+<section class="slide" data-audio="15">
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       SLIDE 16 — LIVE DEMO (TJ Gardening · TC-5012)
+       Mission-control framing around a self-typing console.
+       ───────────────────────────────────────────────────────────── */
+
+    .slide[data-audio="15"] {
+      --navy:        #2C4C79;
+      --honey:       #FEBD33;
+      --honey-soft:  #FFD876;
+      --honey-deep:  #C98A14;
+      --teal:        #43C0BE;
+      --dark-teal:   #007F7E;
+      --sky:         #64BCEA;
+      --red:         #E04B51;
+      --violet:      #9B7BD4;
+      --coral:       #F39B5A;
+
+      --bg:          #0a0d12;
+      --bg-elev:     #11161f;
+      --bg-glass:    rgba(255,255,255,0.04);
+      --bg-console:  #070a0f;
+      --border:      rgba(255,255,255,0.08);
+      --border-warm: rgba(254,189,51,0.28);
+      --border-cold: rgba(161,161,170,0.14);
+
+      --fg:          #f4f4f5;
+      --fg-muted:    #a1a1aa;
+      --fg-dim:      #71717a;
+      --fg-ghost:    #52525b;
+
+      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* Ambient atmosphere — honey spill from console plus cool top-left wash */
+    .slide[data-audio="15"]::before,
+    .slide[data-audio="15"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .slide[data-audio="15"]::before {
+      background:
+        radial-gradient(ellipse 55% 50% at 50% 55%, rgba(254,189,51,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 12% 18%, rgba(67,192,190,0.06) 0%, transparent 65%);
+    }
+    .slide[data-audio="15"]::after {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
+      opacity: 0.55;
+    }
+
+    .slide[data-audio="15"] .content {
+      position: relative;
+      z-index: 2;
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: clamp(24px, 2.6vh, 40px) clamp(40px, 4vw, 80px);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: clamp(12px, 1.4vh, 22px);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* ─── Corner crosshairs ──────────────────────────────────────── */
+    .s16-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--honey);
+      opacity: 0.55;
+      z-index: 3;
+    }
+    .s16-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+    .s16-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
+    .s16-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
+    .s16-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
+
+    /* ─── Top band : eyebrow + headline + LIVE pill ───────────────── */
+    .s16-topband {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .slide[data-audio="15"].is-active .s16-topband { opacity: 1; transform: translateY(0); }
+
+    .s16-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: clamp(8px, 1vh, 14px);
+    }
+    .s16-eyebrow .num { color: var(--fg-muted); }
+    .s16-eyebrow .sep {
+      flex: 0 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+    .s16-eyebrow .label { color: var(--fg-dim); }
+
+    .s16-headline {
+      font-size: clamp(40px, 5.4vw, 92px);
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+      font-weight: 300;
+      margin: 0;
+      color: var(--fg);
+      font-style: italic;
+    }
+    .s16-headline .strong {
+      font-style: normal;
+      font-weight: 800;
+      color: var(--honey);
+      letter-spacing: -0.045em;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.42),
+        0 0 80px rgba(254,189,51,0.14);
+    }
+    .s16-subhead {
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.85vw, 13.5px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .s16-subhead .dim { color: var(--fg-dim); }
+    .s16-subhead .dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--fg-ghost);
+      display: inline-block;
+    }
+
+    /* LIVE pill on the right */
+    .s16-live {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .s16-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border: 1px solid rgba(224,75,81,0.45);
+      border-radius: 999px;
+      background: rgba(224,75,81,0.10);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .s16-live-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+      animation: s16-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes s16-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.75); }
+    }
+    .s16-runtime-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s16-runtime-meta .v { color: var(--honey); }
+
+    /* ─── Main row : console + right rail ─────────────────────────── */
+    .s16-main {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: clamp(20px, 2vw, 32px);
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    /* ─── Console window ──────────────────────────────────────────── */
+    .s16-console {
+      position: relative;
+      background: var(--bg-console);
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      box-shadow:
+        0 0 0 1px rgba(254,189,51,0.04),
+        0 24px 80px -24px rgba(254,189,51,0.22),
+        0 60px 160px -60px rgba(254,189,51,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
+    }
+    .slide[data-audio="15"].is-active .s16-console {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .s16-console::after {
+      /* faint honey wash from bottom */
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 200px;
+      background: radial-gradient(ellipse 80% 100% at 50% 100%, rgba(254,189,51,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Chrome top bar */
+    .s16-chrome {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.025);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--fg-dim);
+      letter-spacing: 0.04em;
+    }
+    .s16-chrome .traffic {
+      display: flex;
+      gap: 6px;
+    }
+    .s16-chrome .traffic span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--fg-ghost);
+      opacity: 0.6;
+    }
+    .s16-chrome .traffic span:nth-child(1) { background: #ff5f57; }
+    .s16-chrome .traffic span:nth-child(2) { background: #febc2e; }
+    .s16-chrome .traffic span:nth-child(3) { background: #28c840; }
+    .s16-chrome .title {
+      flex: 1;
+      text-align: center;
+      color: var(--fg-muted);
+      letter-spacing: 0.06em;
+    }
+    .s16-chrome .title .scheme { color: var(--honey); }
+    .s16-chrome .title .path { color: var(--fg); }
+    .s16-chrome .meta {
+      color: var(--fg-ghost);
+      letter-spacing: 0.18em;
+      font-size: 10px;
+    }
+
+    /* Console body */
+    .s16-body {
+      flex: 1;
+      padding: clamp(18px, 2.2vh, 28px) clamp(22px, 2.4vw, 32px);
+      font-family: var(--font-mono);
+      font-size: clamp(12px, 0.92vw, 14.5px);
+      line-height: 1.55;
+      color: var(--fg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Each console line */
+    .s16-line {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      opacity: 0;
+      transform: translateX(-6px);
+      animation: s16-line-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-play-state: paused;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .slide[data-audio="15"].is-active .s16-line {
+      animation-play-state: running;
+    }
+    @keyframes s16-line-in {
+      0%   { opacity: 0; transform: translateX(-6px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .s16-line + .s16-line { margin-top: 5px; }
+
+    /* Prompt line */
+    .s16-line.prompt {
+      color: var(--fg);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .s16-line.prompt .ps1 {
+      color: var(--honey);
+      font-weight: 700;
+    }
+    .s16-line.prompt .cmd {
+      color: var(--fg);
+    }
+    .s16-line.prompt .arg {
+      color: var(--teal);
+    }
+
+    /* Tag chips */
+    .s16-tag {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      flex: 0 0 auto;
+    }
+    .s16-tag.ok      { background: rgba(254,189,51,0.12); color: var(--honey); border: 1px solid rgba(254,189,51,0.32); }
+    .s16-tag.pattern { background: rgba(67,192,190,0.14); color: var(--teal); border: 1px solid rgba(67,192,190,0.40); box-shadow: 0 0 12px rgba(67,192,190,0.22); }
+    .s16-tag.draft   { background: rgba(155,123,212,0.14); color: var(--violet); border: 1px solid rgba(155,123,212,0.40); }
+    .s16-tag.status  { background: rgba(224,75,81,0.12); color: var(--red); border: 1px solid rgba(224,75,81,0.40); }
+
+    /* Indent for sub-actions */
+    .s16-arrow {
+      color: var(--teal);
+      flex: 0 0 auto;
+      margin-left: 12px;
+    }
+    .s16-line.sub .text {
+      color: var(--fg-muted);
+    }
+    .s16-line .check {
+      color: var(--honey);
+      margin-left: auto;
+      padding-left: 18px;
+      flex: 0 0 auto;
+      font-weight: 700;
+    }
+    .s16-line .check .v {
+      color: var(--fg);
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    .s16-line .meta {
+      color: var(--fg-dim);
+    }
+    .s16-line .key {
+      color: var(--fg-muted);
+    }
+    .s16-line .val {
+      color: var(--fg);
+      font-weight: 600;
+    }
+    .s16-line .amt {
+      color: var(--honey);
+      font-weight: 700;
+    }
+    .s16-line .accent {
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .s16-line .dim {
+      color: var(--fg-ghost);
+    }
+    .s16-line .sep {
+      color: var(--fg-ghost);
+      margin: 0 4px;
+    }
+
+    /* Line stagger — manual delays (no JS) */
+    .s16-line:nth-child(1)  { animation-delay: 0.30s; }
+    .s16-line:nth-child(2)  { animation-delay: 0.65s; }
+    .s16-line:nth-child(3)  { animation-delay: 0.95s; }
+    .s16-line:nth-child(4)  { animation-delay: 1.25s; }
+    .s16-line:nth-child(5)  { animation-delay: 1.55s; }
+    .s16-line:nth-child(6)  { animation-delay: 1.85s; }
+    .s16-line:nth-child(7)  { animation-delay: 2.15s; }
+    .s16-line:nth-child(8)  { animation-delay: 2.45s; }
+    .s16-line:nth-child(9)  { animation-delay: 2.85s; }
+    .s16-line:nth-child(10) { animation-delay: 3.20s; }
+    .s16-line:nth-child(11) { animation-delay: 3.55s; }
+
+    /* Blinking cursor at the bottom — appears after last line */
+    .s16-cursor {
+      display: inline-block;
+      width: 9px;
+      height: 15px;
+      vertical-align: -2px;
+      background: var(--honey);
+      margin-left: 4px;
+      opacity: 0;
+      box-shadow: 0 0 8px rgba(254,189,51,0.6);
+    }
+    .slide[data-audio="15"].is-active .s16-cursor {
+      animation:
+        s16-cursor-in 0.001s linear 3.95s forwards,
+        s16-cursor-blink 1.05s steps(2, end) 3.95s infinite;
+    }
+    @keyframes s16-cursor-in   { to { opacity: 1; } }
+    @keyframes s16-cursor-blink { 50% { opacity: 0; } }
+
+    /* Scan line — subtle CRT effect */
+    .s16-body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,0.015) 3px,
+        rgba(255,255,255,0.015) 4px
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* ─── Right rail — system status indicators ───────────────────── */
+    .s16-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s;
+    }
+    .slide[data-audio="15"].is-active .s16-rail { opacity: 1; transform: translateY(0); }
+
+    .s16-rail-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      padding: 0 4px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .s16-rail-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .s16-sys {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      overflow: hidden;
+      transition: border-color 0.4s ease, background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .s16-sys .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--fg-ghost);
+      flex: 0 0 auto;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .s16-sys .name {
+      flex: 1;
+      color: var(--fg-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+    .s16-sys .stat {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      transition: color 0.4s ease;
+    }
+
+    /* Lit state — synced to console line delays */
+    .s16-sys.lit {
+      border-color: var(--border-warm);
+      background: rgba(254,189,51,0.04);
+      color: var(--fg);
+      box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
+    }
+    .s16-sys.lit .dot {
+      background: var(--honey);
+      box-shadow: 0 0 10px var(--honey);
+    }
+    .s16-sys.lit .name { color: var(--fg); }
+    .s16-sys.lit .stat { color: var(--honey); }
+
+    /* Per-system delays — sequenced to match console lines */
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    { animation: s16-sys-lit 0.001s linear 1.30s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    { animation: s16-sys-lit 0.001s linear 1.60s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] { animation: s16-sys-lit 0.001s linear 1.90s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    { animation: s16-sys-lit 0.001s linear 2.20s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      { animation: s16-sys-lit 0.001s linear 2.50s forwards; }
+    @keyframes s16-sys-lit {
+      to {
+        border-color: var(--border-warm);
+        background: rgba(254,189,51,0.04);
+        color: var(--fg);
+        box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
+      }
+    }
+    /* Apply class-driven look so the children also light */
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .dot { animation: s16-dot-lit 0.001s linear 1.30s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .dot { animation: s16-dot-lit 0.001s linear 1.60s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .dot { animation: s16-dot-lit 0.001s linear 1.90s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .dot { animation: s16-dot-lit 0.001s linear 2.20s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .dot { animation: s16-dot-lit 0.001s linear 2.50s forwards; }
+    @keyframes s16-dot-lit {
+      to { background: var(--honey); box-shadow: 0 0 10px var(--honey); }
+    }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .stat { animation: s16-stat-lit 0.001s linear 1.30s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .stat { animation: s16-stat-lit 0.001s linear 1.60s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .stat { animation: s16-stat-lit 0.001s linear 1.90s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .stat { animation: s16-stat-lit 0.001s linear 2.20s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .stat { animation: s16-stat-lit 0.001s linear 2.50s forwards; }
+    @keyframes s16-stat-lit {
+      to { color: var(--honey); }
+    }
+
+    /* Elapsed clock at the bottom of the rail */
+    .s16-clock {
+      margin-top: auto;
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: 10px;
+      background: rgba(254,189,51,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .s16-clock .k {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s16-clock .v {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.4vw, 38px);
+      font-weight: 800;
+      color: var(--honey);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(254,189,51,0.34);
+    }
+    .s16-clock .sub {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      color: var(--fg-ghost);
+      margin-top: 4px;
+    }
+
+    /* ─── Evidence cards ──────────────────────────────────────────── */
+    .s16-evidence {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.2vw, 18px);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.9s ease 0.85s, transform 0.9s ease 0.85s;
+    }
+    .slide[data-audio="15"].is-active .s16-evidence { opacity: 1; transform: translateY(0); }
+
+    .s16-card {
+      position: relative;
+      padding: clamp(14px, 1.6vh, 20px) clamp(16px, 1.4vw, 22px);
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+    .s16-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--honey);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .slide[data-audio="15"].is-active .s16-card::before { opacity: 0.55; }
+    .s16-card[data-tone="teal"]::before   { background: var(--teal); }
+    .s16-card[data-tone="violet"]::before { background: var(--violet); }
+
+    .s16-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s16-card[data-tone="honey"]  .s16-card-head .ix { color: var(--honey); }
+    .s16-card[data-tone="teal"]   .s16-card-head .ix { color: var(--teal); }
+    .s16-card[data-tone="violet"] .s16-card-head .ix { color: var(--violet); }
+    .s16-card-head .ix {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .s16-card-head .label {
+      color: var(--fg-muted);
+    }
+
+    .s16-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.2vw, 20px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.2;
+    }
+    .s16-card-body {
+      font-family: var(--font-mono);
+      font-size: clamp(11.5px, 0.78vw, 13px);
+      line-height: 1.5;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+    }
+    .s16-card-body .v { color: var(--fg); font-weight: 600; }
+    .s16-card-body .amt { color: var(--honey); font-weight: 700; }
+    .s16-card-body .sep { color: var(--fg-ghost); margin: 0 4px; }
+
+    .s16-card-foot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      margin-top: 2px;
+    }
+    .s16-card-foot .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-warm);
+      background: rgba(254,189,51,0.05);
+      color: var(--honey);
+    }
+    .s16-card[data-tone="teal"]   .s16-card-foot .badge { border-color: rgba(67,192,190,0.32); background: rgba(67,192,190,0.06); color: var(--teal); }
+    .s16-card[data-tone="violet"] .s16-card-foot .badge { border-color: rgba(155,123,212,0.32); background: rgba(155,123,212,0.06); color: var(--violet); }
+
+    /* ─── Bottom strip ────────────────────────────────────────────── */
+    .s16-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-top: clamp(10px, 1.2vh, 16px);
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s ease 1.2s, transform 0.9s ease 1.2s;
+    }
+    .slide[data-audio="15"].is-active .s16-strip { opacity: 1; transform: translateY(0); }
+
+    .s16-strip-q {
+      font-family: var(--font-display);
+      font-size: clamp(15px, 1.25vw, 22px);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: var(--fg-muted);
+      font-style: italic;
+      font-weight: 300;
+      margin: 0;
+    }
+    .s16-strip-q .strike {
+      color: var(--fg-ghost);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,255,255,0.18);
+      text-decoration-thickness: 1px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    .s16-strip-q .em {
+      color: var(--honey);
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .s16-strip-sig {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      text-align: right;
+    }
+    .s16-strip-sig .v { color: var(--honey); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="15"] *,
+      .slide[data-audio="15"] *::before,
+      .slide[data-audio="15"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0s !important;
+      }
+      .slide[data-audio="15"] .s16-line { opacity: 1; transform: none; }
+      .slide[data-audio="15"] .s16-sys { border-color: var(--border-warm); background: rgba(254,189,51,0.04); }
+    }
+
+    /* Laptop sizing */
+    @media (max-width: 1280px) {
+      .slide[data-audio="15"] .content { padding: 32px 44px; }
+      .s16-main { grid-template-columns: 1fr 240px; gap: 20px; }
+      .s16-body { font-size: 12.5px; }
+    }
+  </style>
+
+  <div class="content">
+
+    <!-- Corner crosshairs -->
+    <span class="s16-corner tl"></span>
+    <span class="s16-corner tr"></span>
+    <span class="s16-corner bl"></span>
+    <span class="s16-corner br"></span>
+
+    <!-- ── Top band ────────────────────────────────────────────── -->
+    <div class="s16-topband">
+      <div>
+        <div class="s16-eyebrow">
+          <span class="num">16 / 22</span>
+          <span class="sep"></span>
+          <span class="label">investigation runtime</span>
+          <span class="sep"></span>
+          <span class="label">tj gardening · acqsc</span>
+        </div>
+        <h1 class="s16-headline">Live <span class="strong">demo.</span></h1>
+        <div class="s16-subhead">
+          <span>TC-5012</span>
+          <span class="dot"></span>
+          <span>ACQSC investigation</span>
+          <span class="dot"></span>
+          <span>47 seconds</span>
+          <span class="dot"></span>
+          <span>5 systems</span>
+        </div>
+      </div>
+      <div class="s16-live">
+        <div class="s16-live-pill">Live</div>
+        <div class="s16-runtime-meta">session <span class="v">yogi-prd-7d2c</span></div>
+      </div>
+    </div>
+
+    <!-- ── Main row : console + right rail ─────────────────────── -->
+    <div class="s16-main">
+
+      <!-- Console -->
+      <div class="s16-console">
+        <div class="s16-chrome">
+          <div class="traffic"><span></span><span></span><span></span></div>
+          <div class="title"><span class="scheme">yogi://</span><span class="path">session/TC-5012 · fran@trilogycare</span></div>
+          <div class="meta">~/quality/investigations</div>
+        </div>
+        <div class="s16-body">
+
+          <div class="s16-line prompt">
+            <span class="ps1">›</span>
+            <span class="cmd">yogi investigate</span>
+            <span class="arg">TC-5012</span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag ok">OK</span>
+            <span class="text">Loaded complaint <span class="val">TC-5012</span><span class="sep">·</span><span class="key">received</span> <span class="val">2026-05-20 09:14</span><span class="sep">·</span><span class="key">category</span> <span class="accent">service-not-delivered</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag ok">OK</span>
+            <span class="text">Resolved client <span class="val">Margaret&nbsp;P.</span><span class="sep">·</span><span class="key">TCID</span> <span class="val">4821</span><span class="sep">·</span><span class="accent">HCP Level&nbsp;3</span><span class="sep">·</span><span class="val">Brisbane</span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Searching Zoho care package…</span>
+            <span class="check">✓<span class="v">1 active package, gardening fortnightly</span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Searching MYOB bills…</span>
+            <span class="check">✓<span class="v">3 invoices found, <span style="color:var(--honey);font-weight:700">$486</span> total</span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Searching Aircall transcripts…</span>
+            <span class="check">✓<span class="v">8 calls last 30d, 2 flag <span class="dim">“did not show”</span></span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Searching Confluence policy KB…</span>
+            <span class="check">✓<span class="v">2 prior ACQSC complaints against same supplier</span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">CareVicinity Zoho · cross-org pattern…</span>
+            <span class="check">✓<span class="v">same supplier flagged at sister org</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag pattern">PATTERN</span>
+            <span class="text"><span class="val">4 clients</span><span class="sep">×</span><span class="accent">TJ Gardening Co.</span><span class="sep">·</span><span class="key">81 invoices</span><span class="sep">·</span><span class="amt">~$69,140</span><span class="sep">·</span><span class="key">90d window</span><span class="sep">·</span><span class="val">6 complaints / 2 orgs</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag draft">DRAFT</span>
+            <span class="text">ACQSC response generated<span class="sep">·</span><span class="key">evidence pack attached as</span> <span class="val">TC-5012-evidence.docx</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag status">STATUS</span>
+            <span class="text">Ready for reviewer<span class="sep">·</span><span class="key">awaiting approval</span><span class="sep">·</span><span class="key">elapsed</span> <span class="amt">0:47s</span><span class="s16-cursor"></span></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right rail -->
+      <aside class="s16-rail">
+        <div class="s16-rail-title">Systems queried</div>
+
+        <div class="s16-sys" data-sys="zoho">
+          <span class="dot"></span>
+          <span class="name">Zoho CRM</span>
+          <span class="stat">care plan</span>
+        </div>
+        <div class="s16-sys" data-sys="myob">
+          <span class="dot"></span>
+          <span class="name">MYOB</span>
+          <span class="stat">bills</span>
+        </div>
+        <div class="s16-sys" data-sys="aircall">
+          <span class="dot"></span>
+          <span class="name">Aircall</span>
+          <span class="stat">transcripts</span>
+        </div>
+        <div class="s16-sys" data-sys="conf">
+          <span class="dot"></span>
+          <span class="name">Confluence</span>
+          <span class="stat">policy KB</span>
+        </div>
+        <div class="s16-sys" data-sys="cv">
+          <span class="dot"></span>
+          <span class="name">CareVicinity</span>
+          <span class="stat">cross-org</span>
+        </div>
+
+        <div class="s16-clock">
+          <span class="k">Elapsed</span>
+          <span class="v">0:47<span style="font-size:0.55em;color:var(--fg-muted);font-weight:500"> s</span></span>
+          <span class="sub">draft attached · ready for review</span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ── Evidence cards ──────────────────────────────────────── -->
+    <div class="s16-evidence">
+
+      <div class="s16-card" data-tone="honey">
+        <div class="s16-card-head">
+          <span class="ix">01</span>
+          <span class="label">Client snapshot</span>
+        </div>
+        <div class="s16-card-title">Margaret P.</div>
+        <div class="s16-card-body">
+          <span class="v">HCP Level 3</span><span class="sep">·</span>Brisbane<span class="sep">·</span><span class="v">4 services active</span><span class="sep">·</span>fortnightly gardening
+        </div>
+        <div class="s16-card-foot">
+          <span class="badge">TCID 4821</span>
+          <span>verified in Zoho</span>
+        </div>
+      </div>
+
+      <div class="s16-card" data-tone="teal">
+        <div class="s16-card-head">
+          <span class="ix">02</span>
+          <span class="label">Pattern flag</span>
+        </div>
+        <div class="s16-card-title">TJ Gardening Co.</div>
+        <div class="s16-card-body">
+          <span class="v">4 clients</span><span class="sep">·</span><span class="v">81 invoices</span><span class="sep">·</span><span class="amt">$69,140</span> recovered<span class="sep">·</span>cross-org confirmed
+        </div>
+        <div class="s16-card-foot">
+          <span class="badge">already shipped</span>
+          <span>Mar 2026 · Ash + Fran</span>
+        </div>
+      </div>
+
+      <div class="s16-card" data-tone="violet">
+        <div class="s16-card-head">
+          <span class="ix">03</span>
+          <span class="label">Action queued</span>
+        </div>
+        <div class="s16-card-title">Draft ACQSC response</div>
+        <div class="s16-card-body">
+          <span class="v">.docx evidence pack</span><span class="sep">·</span>supplier suspension flag<span class="sep">·</span><span class="v">reviewer queue</span>
+        </div>
+        <div class="s16-card-foot">
+          <span class="badge">awaiting approval</span>
+          <span>Fran · Quality</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Bottom strip ────────────────────────────────────────── -->
+    <div class="s16-strip">
+      <p class="s16-strip-q">
+        <span class="strike">Previously a full week of Fran's time.</span>
+        &nbsp;&nbsp;Now <span class="em">47 seconds.</span>
+      </p>
+      <div class="s16-strip-sig">
+        receipts attached<span class="dim"> · </span><span class="v">4 systems queried</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const slide = document.currentScript.closest('.slide');
+      if (!slide) return;
+
+      function enter() { slide.classList.add('is-active'); }
+      function leave() { slide.classList.remove('is-active'); }
+
+      slide.onSlideEnter = enter;
+      slide.onSlideLeave = leave;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
+        });
+      }, { threshold: [0, 0.4, 0.8] });
+      io.observe(slide);
+
+      const prev = window.onSlideEnter;
+      window.onSlideEnter = function (id) {
+        if (typeof prev === 'function') try { prev(id); } catch (_) {}
+        if (id === '16' || id === 16) enter();
+      };
+    })();
+  </script>
+</section>

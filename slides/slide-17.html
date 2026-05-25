@@ -1,0 +1,880 @@
+<section class="slide" data-audio="17">
+  <style>
+    /* ============ SLIDE 17 — RESEARCH → TC OUTCOMES ============
+       Cinematic systems-map. Six rows. Each row reads as a research-grade
+       lab note: [Pattern · citation · lab chip] → [TC operation] → [Hero number].
+       Packet pulse animates left→right on the honey arrow every ~3s.
+    */
+    .slide[data-audio="17"] {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 55% 40% at 10% 12%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 92% 92%, rgba(67,192,190,0.05), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.02), transparent 60%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    /* engineering grid watermark */
+    .slide[data-audio="17"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 88% 82% at center, black 35%, transparent 92%);
+      pointer-events: none;
+    }
+    /* film grain */
+    .slide[data-audio="17"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.42;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s17b-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: clamp(28px, 2.6vw, 52px) clamp(44px, 4.6vw, 80px) clamp(22px, 2vw, 36px);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    /* corner registration marks */
+    .s17b-mark {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
+    }
+    .s17b-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
+    .s17b-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
+    .s17b-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
+    .s17b-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
+
+    .s17b-stamp {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+
+    /* ---------- HEADER ---------- */
+    .s17b-head {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: clamp(28px, 3vw, 52px);
+      align-items: flex-end;
+      margin-bottom: clamp(18px, 1.8vw, 30px);
+    }
+    .s17b-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .s17b-eyebrow .rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+    }
+    .s17b-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s17b-pulse 2.4s ease-in-out infinite;
+    }
+    .s17b-eyebrow .muted {
+      color: var(--fg-muted);
+      letter-spacing: 0.32em;
+    }
+    @keyframes s17b-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
+    }
+    .s17b-headline {
+      font-size: clamp(38px, 4.6vw, 80px);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+    .s17b-headline .period { color: var(--honey); }
+
+    .s17b-subhead {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.8vw, 13px);
+      line-height: 1.6;
+      color: var(--honey);
+      max-width: 480px;
+      padding-bottom: 6px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .s17b-subhead .accent {
+      color: var(--fg);
+      letter-spacing: 0.18em;
+    }
+    .s17b-subhead .dotsep {
+      color: rgba(254,189,51,0.4);
+      margin: 0 8px;
+    }
+    .s17b-subhead .caption {
+      display: block;
+      text-transform: none;
+      letter-spacing: -0.005em;
+      color: var(--fg-muted);
+      margin-top: 10px;
+      font-size: 0.92em;
+      line-height: 1.55;
+    }
+
+    /* ---------- ROWS CONTAINER ---------- */
+    .s17b-rows {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .s17b-rows::before {
+      /* top boundary */
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254,189,51,0.42) 8%,
+        rgba(254,189,51,0.42) 92%,
+        transparent 100%);
+    }
+
+    /* ---------- INDIVIDUAL ROW ---------- */
+    .s17b-row {
+      display: grid;
+      grid-template-columns: 35% 30% 35%;
+      align-items: center;
+      padding: clamp(12px, 1.4vw, 22px) clamp(4px, 0.4vw, 8px);
+      border-bottom: 1px solid rgba(254,189,51,0.16);
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .slide[data-audio="17"].is-active .s17b-row {
+      animation: s17b-row-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    @keyframes s17b-row-in {
+      0%   { opacity: 0; transform: translateY(14px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .s17b-row.rA { animation-delay: 140ms; }
+    .s17b-row.rB { animation-delay: 230ms; }
+    .s17b-row.rC { animation-delay: 320ms; }
+    .s17b-row.rD { animation-delay: 410ms; }
+    .s17b-row.rE { animation-delay: 500ms; }
+    .s17b-row.rF { animation-delay: 590ms; }
+
+    /* row number badge — sits at the absolute leftmost edge */
+    .s17b-row-no {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      color: var(--fg-dim);
+      width: 22px;
+      text-align: right;
+    }
+
+    /* hover glow — subtle row warm-up */
+    .s17b-row:hover {
+      background: linear-gradient(90deg,
+        rgba(254,189,51,0.02) 0%,
+        rgba(254,189,51,0.04) 40%,
+        rgba(67,192,190,0.02) 100%);
+    }
+    .s17b-row:hover .s17b-arrow-path {
+      stroke: rgba(254,189,51,0.95);
+    }
+
+    /* ---------- LEFT SEGMENT — RESEARCH PATTERN ---------- */
+    .s17b-left {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1vw, 18px);
+      padding-right: clamp(16px, 1.6vw, 26px);
+    }
+    .s17b-lab {
+      width: clamp(34px, 2.6vw, 42px);
+      height: clamp(34px, 2.6vw, 42px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(11px, 0.82vw, 13px);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      border: 1px solid currentColor;
+      position: relative;
+    }
+    .s17b-lab::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px dashed currentColor;
+      opacity: 0.25;
+    }
+    .s17b-lab.l-anthropic { color: var(--honey);  background: rgba(254,189,51,0.08); }
+    .s17b-lab.l-openai    { color: var(--teal);   background: rgba(67,192,190,0.08); }
+    .s17b-lab.l-deepmind  { color: var(--sky);    background: rgba(100,188,234,0.08); }
+    .s17b-lab.l-brain     { color: var(--violet); background: rgba(155,123,212,0.08); }
+    .s17b-lab.l-stanford  { color: var(--coral);  background: rgba(243,155,90,0.08); }
+
+    .s17b-left-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .s17b-pattern {
+      font-size: clamp(15px, 1.18vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      line-height: 1.15;
+      margin: 0 0 5px 0;
+    }
+    .s17b-pattern .plus {
+      color: var(--honey);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .s17b-cite {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.04em;
+      color: var(--fg-dim);
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .s17b-cite .lab-name {
+      color: var(--fg-muted);
+    }
+    .s17b-cite .arxiv {
+      color: var(--fg-dim);
+    }
+    .s17b-cite .yr {
+      color: var(--honey);
+      opacity: 0.78;
+    }
+    .s17b-cite .dot {
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ---------- MIDDLE SEGMENT — TC OPERATION (with arrow) ---------- */
+    .s17b-mid {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(8px, 1vw, 16px);
+    }
+
+    /* SVG arrow occupying the full middle column width */
+    .s17b-arrow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 18px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .s17b-arrow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .s17b-arrow-path {
+      fill: none;
+      stroke: rgba(254,189,51,0.55);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+      transition: stroke 320ms ease;
+    }
+    .s17b-arrow-head {
+      fill: var(--honey);
+    }
+    /* the packet — a tiny honey blip that streams along the arrow */
+    .s17b-packet {
+      fill: var(--honey);
+    }
+    .slide[data-audio="17"].is-active .s17b-packet {
+      animation: s17b-packet 3.4s cubic-bezier(.45,.05,.55,1) infinite;
+    }
+    @keyframes s17b-packet {
+      0%   { transform: translateX(0);     opacity: 0; }
+      8%   { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateX(100%);  opacity: 0; }
+    }
+    /* stagger packet phase per row so they fire offset */
+    .s17b-row.rA .s17b-packet { animation-delay: 0.0s; }
+    .s17b-row.rB .s17b-packet { animation-delay: 0.55s; }
+    .s17b-row.rC .s17b-packet { animation-delay: 1.10s; }
+    .s17b-row.rD .s17b-packet { animation-delay: 1.65s; }
+    .s17b-row.rE .s17b-packet { animation-delay: 2.20s; }
+    .s17b-row.rF .s17b-packet { animation-delay: 2.75s; }
+
+    /* op label card — floats above the arrow centred */
+    .s17b-op {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(17,22,31,0.92), rgba(17,22,31,0.78));
+      border: 1px solid rgba(67,192,190,0.30);
+      border-radius: 3px;
+      padding: clamp(8px, 0.8vw, 12px) clamp(12px, 1.2vw, 18px);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.5),
+        0 0 28px rgba(67,192,190,0.12) inset;
+      backdrop-filter: blur(8px);
+      max-width: 100%;
+      min-width: 0;
+    }
+    .s17b-op-title {
+      font-size: clamp(12px, 0.94vw, 15px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      line-height: 1.2;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17b-op-ctx {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.66vw, 10.5px);
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17b-op-ctx .pin {
+      color: var(--teal);
+      margin-right: 4px;
+    }
+
+    /* ---------- RIGHT SEGMENT — MEASURED UPLIFT ---------- */
+    .s17b-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      padding-left: clamp(16px, 1.6vw, 26px);
+      text-align: right;
+    }
+    .s17b-number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.8vw, 64px);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      color: var(--honey);
+      margin: 0;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 26px rgba(254,189,51,0.22);
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .s17b-number .unit {
+      font-size: 0.42em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      vertical-align: 0.55em;
+      color: rgba(254,189,51,0.78);
+      margin-left: 2px;
+    }
+    .s17b-number .sub {
+      font-size: 0.46em;
+      font-weight: 600;
+      color: var(--fg-muted);
+      letter-spacing: -0.02em;
+      margin-left: 6px;
+      vertical-align: 0.2em;
+    }
+    .s17b-number .sep {
+      color: rgba(254,189,51,0.4);
+      font-weight: 400;
+      margin: 0 0.08em;
+    }
+    .s17b-caption {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+      max-width: 100%;
+    }
+    .s17b-caption em {
+      font-style: normal;
+      color: var(--honey);
+      letter-spacing: 0.14em;
+    }
+
+    /* per-row hero number — let the visual rhythm vary */
+    .s17b-row.rA .s17b-number { color: var(--honey); }
+    .s17b-row.rB .s17b-number { color: var(--honey); }
+    .s17b-row.rC .s17b-number { color: var(--honey); }
+    .s17b-row.rD .s17b-number { color: var(--honey); }
+    .s17b-row.rE .s17b-number { color: var(--honey); }
+    .s17b-row.rF .s17b-number { color: var(--honey); }
+
+    /* ---------- BOTTOM STRIP ---------- */
+    .s17b-footer {
+      margin-top: clamp(14px, 1.4vw, 22px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .s17b-footer::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 0;
+      width: 140px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+      box-shadow: 0 0 10px rgba(254,189,51,0.5);
+    }
+    .s17b-fnote {
+      font-size: clamp(12px, 0.94vw, 15.5px);
+      font-weight: 400;
+      color: var(--fg-muted);
+      letter-spacing: -0.015em;
+      line-height: 1.45;
+      max-width: 900px;
+    }
+    .s17b-fnote em {
+      font-style: normal;
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .s17b-fnote .yogi {
+      color: var(--honey);
+      font-weight: 600;
+    }
+    .s17b-fnote .sep {
+      color: var(--fg-dim);
+      margin: 0 8px;
+    }
+    .s17b-fnote .path {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+    }
+
+    .s17b-arrow-foot {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .s17b-arrow-foot .bar {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey));
+    }
+    .s17b-arrow-foot .next { color: var(--honey); }
+
+    /* tighter laptop scaling */
+    @media (max-width: 1380px) {
+      .s17b-row { padding: clamp(10px, 1.1vw, 16px) 0; }
+      .s17b-pattern { font-size: clamp(14px, 1.04vw, 18px); }
+      .s17b-number { font-size: clamp(26px, 3.2vw, 52px); }
+      .s17b-op-title { font-size: clamp(11px, 0.84vw, 13px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="17"] *,
+      .slide[data-audio="17"] *::before,
+      .slide[data-audio="17"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slide[data-audio="17"] .s17b-row { opacity: 1; transform: none; }
+      .slide[data-audio="17"] .s17b-packet { opacity: 0.7; }
+    }
+  </style>
+
+  <div class="content">
+    <div class="s17b-frame">
+
+      <!-- corner registration marks -->
+      <div class="s17b-mark tl"></div>
+      <div class="s17b-mark tr"></div>
+      <div class="s17b-mark bl"></div>
+      <div class="s17b-mark br"></div>
+      <div class="s17b-stamp">SLIDE · 17 / RESEARCH &rarr; TC OUTCOMES · NOT THEORY</div>
+
+      <!-- HEADER -->
+      <header class="s17b-head">
+        <div>
+          <div class="s17b-eyebrow">
+            <span class="dot"></span>
+            <span>17 / 26</span>
+            <span class="rule"></span>
+            <span class="muted">Research &rarr; TC outcomes</span>
+            <span class="rule"></span>
+            <span>Not theory · Production</span>
+          </div>
+          <h1 class="s17b-headline">
+            Tested on Trilogy<span class="period">.</span>
+          </h1>
+        </div>
+
+        <div class="s17b-subhead">
+          <span class="accent">6 research threads</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 operations</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 measured uplifts</span>
+          <span class="caption">
+            Each pattern Yogi runs in production has a Trilogy measurement behind it.
+            Held-out probes, real incidents, real bills, real complaints — receipts on the right.
+          </span>
+        </div>
+      </header>
+
+      <!-- ROWS -->
+      <div class="s17b-rows">
+
+        <!-- ============ ROW A — CONSTITUTIONAL AI + MCP ============ -->
+        <article class="s17b-row rA">
+          <span class="s17b-row-no">01</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Constitutional AI <span class="plus">+</span> MCP</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Bai et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2212.08073</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Anthropic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Yogi tool-call safety</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>328 MCP tools · write-action gating</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">0<span class="sep">·</span>95.4<span class="unit">%</span></h2>
+            <div class="s17b-caption">unauthorized writes <em>· safety mean</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW B — REACT + REFLEXION ============ -->
+        <article class="s17b-row rB">
+          <span class="s17b-row-no">02</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-deepmind" aria-label="DeepMind">DM</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">ReAct <span class="plus">+</span> Reflexion</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Yao et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2210.03629</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Google Brain</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">ACQSC complaint investigation</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cross-system evidence pack · 9 sources</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">150<span class="unit">×</span></h2>
+            <div class="s17b-caption">1 week &rarr; <em>47 seconds</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW C — PROMPT CACHING ============ -->
+        <article class="s17b-row rC">
+          <span class="s17b-row-no">03</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Prompt Caching</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Anthropic</span>
+                <span class="dot">·</span>
+                <span class="yr">2024</span>
+                <span class="dot">·</span>
+                <span class="arxiv">eng. blog · cache 5m / 1h</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Daily Databricks bill queries</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>90-day window · benched live</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">&minus;58<span class="unit">%</span></h2>
+            <div class="s17b-caption">token cost <em>· same accuracy</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW D — HYBRID RAG ============ -->
+        <article class="s17b-row rD">
+          <span class="s17b-row-no">04</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-openai" aria-label="OpenAI">O</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Hybrid RAG <span class="plus">·</span> markdown + Qdrant</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Lewis et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2020</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2005.11401</span>
+                <span class="dot">·</span>
+                <span class="lab-name">FAIR / OpenAI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">79 memory files + semantic search</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cited-fact recall · zero fabrication test</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">100<span class="unit">%</span></h2>
+            <div class="s17b-caption">recall <em>· 0 hallucinated cites</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW E — MULTI-AGENT ORCHESTRATION ============ -->
+        <article class="s17b-row rE">
+          <span class="s17b-row-no">05</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-brain" aria-label="Google Brain">GB</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Multi-Agent Orchestration</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Park et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2304.03442</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford / Google</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Phantom Batch incident · 8 May</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>3 sub-agents · 14 commits · same day</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">$415<span class="unit">K</span></h2>
+            <div class="s17b-caption">averted <em>· no human engineer</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW F — HELM-STYLE EVALS ============ -->
+        <article class="s17b-row rF">
+          <span class="s17b-row-no">06</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-stanford" aria-label="Stanford">S</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">HELM-style Evals</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Liang et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2211.09110</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford CRFM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">12-category safety matrix · quarterly</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>2,184 held-out probes · RSP-3 tier</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">95.4<span class="unit">%</span> <span class="sub">mean</span></h2>
+            <div class="s17b-caption">across 12 categories <em>· scaling tier RSP-3</em></div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="s17b-footer">
+        <div class="s17b-fnote">
+          Every <span class="yogi">Yogi</span> capability has a TC measurement behind it.
+          <em>Citations and probe sets live at</em>
+          <span class="path">/yogi</span>
+          <span class="sep">·</span>
+          <em>evidence pack on request.</em>
+        </div>
+        <div class="s17b-arrow-foot">
+          <span>18</span>
+          <span class="bar"></span>
+          <span class="next">Safety evals</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[17] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[17] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.18 });
+        io.observe(slide);
+      }
+    })();
+  </script>
+</section>

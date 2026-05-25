@@ -1,0 +1,1859 @@
+<section class="slide" data-audio="19">
+  <style>
+    /* ================================================================
+       SLIDE 19 v4 — WHERE YOGI LIVES
+       TC WORKSPACES (BODY) · CONSUMES YOGI'S BACKEND (BRAIN)
+       Adds a 4-layer Yogi Backend column on the left, with 4 animated
+       honey data-flow arrows piping into specific points inside the
+       TC Workspaces mockup. Productivity receipt strip at the bottom.
+       ================================================================ */
+
+    .slide[data-audio="19"] {
+      /* Brand tokens */
+      --s19-bg:           #0a0d12;
+      --s19-bg-elev:      #11161f;
+      --s19-honey:        #FEBD33;
+      --s19-honey-soft:   rgba(254, 189, 51, 0.12);
+      --s19-honey-glow:   rgba(254, 189, 51, 0.45);
+      --s19-honey-line:   rgba(254, 189, 51, 0.30);
+      --s19-honey-faint:  rgba(254, 189, 51, 0.18);
+      --s19-teal:         #43C0BE;
+      --s19-dark-teal:    #007F7E;
+      --s19-navy:         #2C4C79;
+      --s19-sky:          #64BCEA;
+      --s19-green:        #5ee08a;
+
+      --s19-fg:           #f4f4f5;
+      --s19-fg-muted:     #a1a1aa;
+      --s19-fg-dim:       #71717a;
+      --s19-fg-faint:     #52525b;
+      --s19-border:       rgba(255, 255, 255, 0.08);
+
+      /* TC Assistant light-theme neutrals */
+      --tca-bg:           #f6f8fb;
+      --tca-sidebar:      #ffffff;
+      --tca-panel:        #ffffff;
+      --tca-divider:      #e4e8ee;
+      --tca-divider-2:    #eef1f5;
+      --tca-text:         #1a2334;
+      --tca-text-mute:    #5a6478;
+      --tca-text-dim:     #8a93a4;
+      --tca-text-faint:   #adb5c3;
+      --tca-blue:         #2C4C79;
+      --tca-blue-soft:    #eaf0fa;
+      --tca-blue-deep:    #1e3a5f;
+      --tca-active-bg:    #eaf2f5;
+      --tca-active-bd:    #c4e0e2;
+      --tca-hover:        #f2f5f9;
+      --tca-warn-bg:      #fff7e3;
+      --tca-warn-bd:      #f5d98a;
+      --tca-warn-text:    #7a5a10;
+      --tca-folder:       #d4a04a;
+      --tca-folder-hi:    #e8b96b;
+      --tca-tab-active:   #ffffff;
+      --tca-tab-bg:       #f0f3f7;
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background: var(--s19-bg);
+      color: var(--s19-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.01em;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* ---------- Atmosphere ---------- */
+    .slide[data-audio="19"] .s19-atmos {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .slide[data-audio="19"] .s19-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 76px 76px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
+    }
+    .slide[data-audio="19"] .s19-glow {
+      position: absolute; top: 56%; left: 56%;
+      width: 110vmin; height: 70vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.10) 0%,
+        rgba(254, 189, 51, 0.04) 40%,
+        transparent 75%);
+      filter: blur(20px);
+    }
+    .slide[data-audio="19"] .s19-grain {
+      position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    }
+
+    /* ---------- Layout shell ---------- */
+    .slide[data-audio="19"] .s19-wrap {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      max-width: 1880px;
+      margin: 0 auto;
+      padding: clamp(18px, 2.2vh, 28px) clamp(24px, 2.4vw, 44px) clamp(14px, 1.8vh, 22px);
+      display: flex; flex-direction: column;
+      gap: clamp(10px, 1.2vh, 16px);
+    }
+
+    /* ---------- Header ---------- */
+    .slide[data-audio="19"] .s19-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 48px;
+    }
+    .slide[data-audio="19"] .s19-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      margin-bottom: 10px;
+    }
+    .slide[data-audio="19"] .s19-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s19-honey);
+      box-shadow: 0 0 10px var(--s19-honey-glow);
+    }
+    .slide[data-audio="19"] .s19-eyebrow .slash { color: var(--s19-fg-faint); }
+    .slide[data-audio="19"] .s19-eyebrow .num { color: var(--s19-fg-dim); }
+
+    .slide[data-audio="19"] .s19-title {
+      font-weight: 700;
+      font-size: clamp(34px, 4.0vw, 56px);
+      line-height: 1.0;
+      letter-spacing: -0.032em;
+      color: var(--s19-fg);
+      margin: 0;
+    }
+    .slide[data-audio="19"] .s19-title .accent {
+      color: var(--s19-honey); font-weight: 800;
+    }
+
+    .slide[data-audio="19"] .s19-subhead-block {
+      display: flex; flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      flex-shrink: 0;
+      padding-bottom: 4px;
+    }
+    .slide[data-audio="19"] .s19-subhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--s19-honey);
+      display: flex; align-items: center; gap: 12px;
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-subhead .pipe {
+      width: 1px; height: 12px; background: var(--s19-honey-line);
+    }
+    .slide[data-audio="19"] .s19-subhead .body-cap {
+      color: var(--s19-teal);
+      letter-spacing: 0.20em;
+    }
+    .slide[data-audio="19"] .s19-subhead .brain-cap {
+      color: var(--s19-honey);
+      letter-spacing: 0.20em;
+    }
+    .slide[data-audio="19"] .s19-subhead .arrow {
+      color: var(--s19-fg-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .slide[data-audio="19"] .s19-credits-strip {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s19-fg-dim);
+      display: flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-credits-strip .em-c { color: var(--s19-teal); font-weight: 600; }
+    .slide[data-audio="19"] .s19-credits-strip .em-b { color: var(--s19-honey); font-weight: 600; }
+    .slide[data-audio="19"] .s19-credits-strip .dot-sep {
+      color: var(--s19-fg-faint);
+    }
+
+    /* ============================================================
+       STAGE — Backend panel + Mockup, connected by SVG arrows
+       ============================================================ */
+    .slide[data-audio="19"] .s19-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: clamp(200px, 15.5vw, 244px) 1fr;
+      gap: clamp(36px, 4vw, 64px);
+      align-items: stretch;
+    }
+
+    /* Honey aura behind the mockup */
+    .slide[data-audio="19"] .s19-aura {
+      position: absolute;
+      top: -2%; bottom: -1%; left: 14%; right: -1%;
+      background:
+        radial-gradient(ellipse 60% 50% at 78% 50%,
+          rgba(254, 189, 51, 0.22) 0%,
+          rgba(254, 189, 51, 0.08) 40%,
+          transparent 75%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---------- Yogi BACKEND panel (LEFT column) ---------- */
+    .slide[data-audio="19"] .s19-backend {
+      position: relative;
+      z-index: 2;
+      display: flex; flex-direction: column;
+      gap: clamp(10px, 1.3vh, 16px);
+      padding-top: clamp(8px, 1vh, 14px);
+    }
+    .slide[data-audio="19"] .s19-backend-head {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      padding-bottom: 6px;
+      border-bottom: 1px dashed var(--s19-honey-line);
+    }
+    .slide[data-audio="19"] .s19-backend-head .pip {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s19-honey);
+      box-shadow: 0 0 8px var(--s19-honey-glow);
+    }
+    .slide[data-audio="19"] .s19-backend-head .end {
+      margin-left: auto;
+      color: var(--s19-fg-faint);
+      letter-spacing: 0.2em;
+    }
+
+    .slide[data-audio="19"] .s19-layer {
+      position: relative;
+      padding: 12px 14px 12px 16px;
+      background:
+        linear-gradient(135deg,
+          rgba(254, 189, 51, 0.10) 0%,
+          rgba(254, 189, 51, 0.03) 60%,
+          rgba(20, 24, 33, 0.55) 100%);
+      border: 1px solid var(--s19-honey-line);
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex; flex-direction: column;
+      gap: 4px;
+      box-shadow:
+        inset 0 0 0 1px rgba(254, 189, 51, 0.04),
+        0 4px 14px rgba(254, 189, 51, 0.06),
+        0 1px 0 rgba(0, 0, 0, 0.4);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+    .slide[data-audio="19"] .s19-layer::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 2px;
+      background: linear-gradient(180deg,
+        var(--s19-honey) 0%,
+        rgba(254, 189, 51, 0.55) 60%,
+        rgba(254, 189, 51, 0) 100%);
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 0 8px var(--s19-honey-glow);
+    }
+    .slide[data-audio="19"] .s19-layer:hover {
+      transform: translateX(2px);
+    }
+
+    .slide[data-audio="19"] .s19-layer .l-head {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .slide[data-audio="19"] .s19-layer .l-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--s19-fg-faint);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-layer .l-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      font-weight: 700;
+    }
+    .slide[data-audio="19"] .s19-layer .l-out {
+      margin-left: auto;
+      width: 16px; height: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--s19-honey);
+      opacity: 0.7;
+    }
+    .slide[data-audio="19"] .s19-layer .l-out svg {
+      width: 14px; height: 14px;
+    }
+    .slide[data-audio="19"] .s19-layer .l-detail {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.01em;
+      color: var(--s19-fg-muted);
+      line-height: 1.4;
+    }
+    .slide[data-audio="19"] .s19-layer .l-detail b {
+      color: var(--s19-fg);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-layer .l-detail .sep {
+      color: var(--s19-fg-faint);
+      margin: 0 5px;
+    }
+
+    /* ---------- SVG arrow overlay (positioned on top of stage) ---------- */
+    .slide[data-audio="19"] .s19-arrows {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: visible;
+    }
+    .slide[data-audio="19"] .s19-arrows svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .slide[data-audio="19"] .s19-arrows path.flow {
+      fill: none;
+      stroke: var(--s19-honey);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-dasharray: 5 5;
+      filter: drop-shadow(0 0 4px rgba(254, 189, 51, 0.6));
+      stroke-dashoffset: 220;
+      animation:
+        s19-flow-reveal 1000ms cubic-bezier(.4,.0,.2,1) forwards,
+        s19-flow-march 12s linear infinite;
+      opacity: 0;
+    }
+    .slide[data-audio="19"] .s19-arrows path.flow.f1 { animation-delay: 1400ms, 2400ms; }
+    .slide[data-audio="19"] .s19-arrows path.flow.f2 { animation-delay: 1550ms, 2550ms; }
+    .slide[data-audio="19"] .s19-arrows path.flow.f3 { animation-delay: 1700ms, 2700ms; }
+    .slide[data-audio="19"] .s19-arrows path.flow.f4 { animation-delay: 1850ms, 2850ms; }
+    .slide[data-audio="19"] .s19-arrows .head {
+      fill: var(--s19-honey);
+      filter: drop-shadow(0 0 4px rgba(254, 189, 51, 0.7));
+      opacity: 0;
+      animation: s19-fade-in 400ms ease forwards;
+    }
+    .slide[data-audio="19"] .s19-arrows .head.h1 { animation-delay: 2200ms; }
+    .slide[data-audio="19"] .s19-arrows .head.h2 { animation-delay: 2350ms; }
+    .slide[data-audio="19"] .s19-arrows .head.h3 { animation-delay: 2500ms; }
+    .slide[data-audio="19"] .s19-arrows .head.h4 { animation-delay: 2650ms; }
+    /* faint endpoint glow rings */
+    .slide[data-audio="19"] .s19-arrows .ring {
+      fill: none;
+      stroke: var(--s19-honey);
+      stroke-width: 1;
+      opacity: 0;
+      animation: s19-ring-pulse 2.6s ease-out infinite;
+    }
+    .slide[data-audio="19"] .s19-arrows .ring.r1 { animation-delay: 2400ms; }
+    .slide[data-audio="19"] .s19-arrows .ring.r2 { animation-delay: 2550ms; }
+    .slide[data-audio="19"] .s19-arrows .ring.r3 { animation-delay: 2700ms; }
+    .slide[data-audio="19"] .s19-arrows .ring.r4 { animation-delay: 2850ms; }
+    /* small data-packet circles travelling along arrows */
+    .slide[data-audio="19"] .s19-arrows .pkt {
+      fill: var(--s19-honey);
+      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.9));
+      opacity: 0;
+      animation: s19-pkt-travel 4.5s linear infinite;
+    }
+    .slide[data-audio="19"] .s19-arrows .pkt.p1 { animation-delay: 3000ms; }
+    .slide[data-audio="19"] .s19-arrows .pkt.p2 { animation-delay: 3400ms; }
+    .slide[data-audio="19"] .s19-arrows .pkt.p3 { animation-delay: 3800ms; }
+    .slide[data-audio="19"] .s19-arrows .pkt.p4 { animation-delay: 4200ms; }
+
+    @keyframes s19-flow-reveal {
+      from { stroke-dashoffset: 220; opacity: 0; }
+      to   { stroke-dashoffset: 0; opacity: 0.85; }
+    }
+    @keyframes s19-flow-march {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -100; }
+    }
+    @keyframes s19-fade-in {
+      to { opacity: 1; }
+    }
+    @keyframes s19-ring-pulse {
+      0%   { transform: scale(0.6); opacity: 0.8; }
+      80%  { transform: scale(2.4); opacity: 0;   }
+      100% { transform: scale(2.4); opacity: 0;   }
+    }
+    @keyframes s19-pkt-travel {
+      0%   { opacity: 0; offset-distance: 0%; }
+      6%   { opacity: 1; }
+      94%  { opacity: 1; }
+      100% { opacity: 0; offset-distance: 100%; }
+    }
+
+    /* ---------- Mockup window ---------- */
+    .slide[data-audio="19"] .s19-mockwrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      min-width: 0;
+      min-height: 0;
+    }
+    .slide[data-audio="19"] .s19-window {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      max-height: clamp(500px, 60vh, 720px);
+      background: var(--tca-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 4px 20px rgba(254, 189, 51, 0.12),
+        0 0 80px rgba(254, 189, 51, 0.08);
+      display: flex; flex-direction: column;
+      color: var(--tca-text);
+      font-size: 13px;
+      letter-spacing: -0.005em;
+    }
+
+    .slide[data-audio="19"] .s19-chrome {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 26px;
+      display: flex; align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+      background: linear-gradient(180deg, #f0f3f7 0%, #e8ecf2 100%);
+      border-bottom: 1px solid var(--tca-divider);
+      z-index: 5;
+    }
+    .slide[data-audio="19"] .s19-chrome-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .slide[data-audio="19"] .s19-chrome-dot.r { background: #ff5f57; }
+    .slide[data-audio="19"] .s19-chrome-dot.y { background: #febc2e; }
+    .slide[data-audio="19"] .s19-chrome-dot.g { background: #28c840; }
+    .slide[data-audio="19"] .s19-chrome-url {
+      flex: 1;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--tca-text-dim);
+      letter-spacing: 0.02em;
+    }
+    .slide[data-audio="19"] .s19-chrome-url .lock {
+      color: var(--tca-text-faint); margin-right: 4px;
+    }
+    .slide[data-audio="19"] .s19-chrome-url .host {
+      color: var(--tca-text);
+    }
+
+    .slide[data-audio="19"] .s19-app {
+      margin-top: 26px;
+      flex: 1;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+
+    /* TOP BAR */
+    .slide[data-audio="19"] .s19-topbar {
+      display: flex; align-items: center;
+      padding: 0 12px;
+      height: 44px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 8px;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+    .slide[data-audio="19"] .s19-tb-icon {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tca-text-mute);
+    }
+    .slide[data-audio="19"] .s19-tb-icon svg { width: 15px; height: 15px; }
+    .slide[data-audio="19"] .s19-tb-logo {
+      display: flex; align-items: center; gap: 7px;
+      margin-left: 4px;
+    }
+    .slide[data-audio="19"] .s19-tb-logo-mark {
+      width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide[data-audio="19"] .s19-tb-logo-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--tca-text);
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="19"] .s19-tb-logo-text b {
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-tb-version {
+      background: var(--tca-blue);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      margin-left: 4px;
+    }
+    .slide[data-audio="19"] .s19-tb-search {
+      flex: 1;
+      min-width: 120px;
+      max-width: 400px;
+      height: 26px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 6px;
+      display: flex; align-items: center;
+      padding: 0 10px;
+      gap: 8px;
+      color: var(--tca-text-dim);
+      font-size: 11px;
+    }
+    .slide[data-audio="19"] .s19-tb-search svg { width: 12px; height: 12px; }
+    .slide[data-audio="19"] .s19-tb-search .kbd {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      background: #fff;
+      border: 1px solid #e1e5ec;
+      color: var(--tca-text-mute);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .slide[data-audio="19"] .s19-tb-spacer { flex: 1; }
+    .slide[data-audio="19"] .s19-tb-account {
+      display: flex; align-items: center; gap: 7px;
+      padding: 3px 8px 3px 4px;
+      border-radius: 14px;
+    }
+    .slide[data-audio="19"] .s19-tb-account .av {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4906a 0%, #8a5a3a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9.5px; font-weight: 700; color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="19"] .s19-tb-account .name {
+      font-size: 11.5px; color: var(--tca-text);
+    }
+
+    /* BETA */
+    .slide[data-audio="19"] .s19-beta {
+      background: var(--tca-warn-bg);
+      border-bottom: 1px solid var(--tca-warn-bd);
+      padding: 6px 14px;
+      display: flex; align-items: center;
+      font-size: 11px;
+      color: var(--tca-warn-text);
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="19"] .s19-beta svg { width: 12px; height: 12px; color: #d49612; }
+    .slide[data-audio="19"] .s19-beta b { color: #5a4310; font-weight: 600; }
+    .slide[data-audio="19"] .s19-beta a {
+      color: #b87f10; text-decoration: underline; text-underline-offset: 2px;
+    }
+    .slide[data-audio="19"] .s19-beta .close {
+      margin-left: auto; color: #b8a06a;
+    }
+
+    /* BODY 4 cols */
+    .slide[data-audio="19"] .s19-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 52px 200px 220px 1fr;
+      min-height: 0;
+      background: var(--tca-bg);
+    }
+
+    /* RAIL */
+    .slide[data-audio="19"] .s19-rail {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 4px;
+    }
+    .slide[data-audio="19"] .s19-rail-item {
+      width: 42px;
+      padding: 8px 0 6px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      border-radius: 8px;
+      color: var(--tca-text-mute);
+      font-size: 9.5px;
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="19"] .s19-rail-item svg { width: 17px; height: 17px; }
+    .slide[data-audio="19"] .s19-rail-item.active {
+      background: var(--tca-blue-soft);
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-rail-spacer { flex: 1; }
+
+    /* WS SIDE */
+    .slide[data-audio="19"] .s19-ws-side {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      padding: 12px 10px 10px;
+      gap: 9px;
+      overflow: hidden;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-ws-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px;
+    }
+    .slide[data-audio="19"] .s19-ws-title {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="19"] .s19-ws-title svg { width: 15px; height: 15px; color: var(--tca-blue); }
+    .slide[data-audio="19"] .s19-ws-new {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 7px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      font-size: 10.5px;
+      color: var(--tca-text-mute);
+      background: #fff;
+    }
+    .slide[data-audio="19"] .s19-ws-new svg { width: 10px; height: 10px; }
+    .slide[data-audio="19"] .s19-ws-filter {
+      height: 24px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="19"] .s19-ws-filter svg { width: 11px; height: 11px; }
+    .slide[data-audio="19"] .s19-ws-toggle {
+      display: flex; gap: 4px;
+    }
+    .slide[data-audio="19"] .s19-ws-toggle button {
+      flex: 1;
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 5px;
+      border: 0;
+      background: transparent;
+      color: var(--tca-text-mute);
+      font-weight: 500;
+    }
+    .slide[data-audio="19"] .s19-ws-toggle button.on {
+      background: var(--tca-blue);
+      color: #fff;
+    }
+    .slide[data-audio="19"] .s19-ws-home {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 9px;
+      background: var(--tca-active-bg);
+      border: 1px solid var(--tca-active-bd);
+      border-radius: 6px;
+    }
+    .slide[data-audio="19"] .s19-ws-home .home-icon svg { width: 15px; height: 15px; color: var(--s19-dark-teal); }
+    .slide[data-audio="19"] .s19-ws-home .home-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="19"] .s19-ws-home .home-label .h {
+      color: var(--tca-text-mute);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+    .slide[data-audio="19"] .s19-ws-section {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 8px;
+      font-size: 12.5px;
+      color: var(--tca-text);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-ws-section .count {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--tca-text-faint);
+      font-weight: 500;
+    }
+    .slide[data-audio="19"] .s19-ws-section svg { width: 13px; height: 13px; }
+    .slide[data-audio="19"] .s19-ws-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      padding: 2px 10px 0;
+      margin-top: 2px;
+    }
+    .slide[data-audio="19"] .s19-ws-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 5px 9px;
+      font-size: 12px;
+      color: var(--tca-text);
+      border-radius: 5px;
+    }
+    .slide[data-audio="19"] .s19-ws-item .left {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .slide[data-audio="19"] .s19-ws-item .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--tca-text-faint);
+    }
+    .slide[data-audio="19"] .s19-ws-item.muted .name {
+      color: var(--tca-text-mute);
+      font-size: 11px;
+    }
+
+    /* EXPLORER */
+    .slide[data-audio="19"] .s19-explorer {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      min-height: 0;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-ex-bar {
+      height: 34px;
+      display: flex; align-items: center;
+      padding: 0 11px;
+      gap: 7px;
+      border-bottom: 1px solid var(--tca-divider-2);
+      color: var(--tca-text-mute);
+    }
+    .slide[data-audio="19"] .s19-ex-bar svg { width: 13px; height: 13px; }
+    .slide[data-audio="19"] .s19-ex-bar .title {
+      font-size: 12.5px;
+      color: var(--tca-text);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .slide[data-audio="19"] .s19-ex-bar .spacer { flex: 1; }
+    .slide[data-audio="19"] .s19-ex-bar .strike {
+      color: var(--tca-text-faint);
+      text-decoration: line-through;
+    }
+    .slide[data-audio="19"] .s19-ex-label {
+      padding: 9px 12px 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-ex-filter {
+      margin: 0 11px 7px;
+      height: 24px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 7px;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="19"] .s19-ex-filter svg { width: 11px; height: 11px; }
+    .slide[data-audio="19"] .s19-ex-tree {
+      padding: 0 7px;
+      flex: 1;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      gap: 1px;
+    }
+    .slide[data-audio="19"] .s19-ex-row {
+      display: flex; align-items: center;
+      padding: 4px 7px;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--tca-text);
+      border-radius: 4px;
+    }
+    .slide[data-audio="19"] .s19-ex-row .chev svg { width: 9px; height: 9px; color: var(--tca-text-dim); }
+    .slide[data-audio="19"] .s19-ex-row .folder { color: var(--tca-folder); }
+    .slide[data-audio="19"] .s19-ex-row .folder svg { width: 12px; height: 12px; }
+    .slide[data-audio="19"] .s19-ex-row .name { font-weight: 500; }
+    .slide[data-audio="19"] .s19-ex-row.highlight {
+      background: rgba(254, 189, 51, 0.16);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.45);
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-ex-row.highlight .folder { color: #c97f10; }
+    .slide[data-audio="19"] .s19-ex-row.highlight .name { color: #6e4a08; font-weight: 700; }
+
+    /* OneDrive group */
+    .slide[data-audio="19"] .s19-ex-onedrive {
+      margin: 6px 0 0;
+      background: var(--tca-blue-soft);
+      border-top: 1px solid var(--tca-divider-2);
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-ex-onedrive.highlight {
+      background: rgba(254, 189, 51, 0.13);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.40);
+    }
+    .slide[data-audio="19"] .s19-ex-onedrive-head {
+      display: flex; align-items: center;
+      padding: 7px 11px;
+      gap: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      color: var(--tca-blue);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .slide[data-audio="19"] .s19-ex-onedrive-head svg { width: 13px; height: 13px; color: var(--tca-blue); }
+    .slide[data-audio="19"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head { color: #b46f10; }
+    .slide[data-audio="19"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head svg { color: #b46f10; }
+    .slide[data-audio="19"] .s19-ex-od-rows {
+      padding: 2px 8px 8px;
+      display: flex; flex-direction: column;
+      gap: 1px;
+      background: #fff;
+    }
+    .slide[data-audio="19"] .s19-ex-od-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 3px 6px;
+      font-size: 11px;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="19"] .s19-ex-od-row .folder { color: var(--tca-folder-hi); }
+    .slide[data-audio="19"] .s19-ex-od-row .folder svg { width: 11px; height: 11px; }
+    .slide[data-audio="19"] .s19-ex-od-row .file svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
+    .slide[data-audio="19"] .s19-ex-od-row .size {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: var(--tca-text-faint);
+    }
+
+    /* MAIN */
+    .slide[data-audio="19"] .s19-main {
+      position: relative;
+      display: flex; flex-direction: column;
+      min-width: 0;
+      background: var(--tca-bg);
+    }
+    .slide[data-audio="19"] .s19-main-bar {
+      height: 36px;
+      display: flex; align-items: center;
+      padding: 0 16px 0 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 5px;
+      flex-shrink: 0;
+      min-width: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-main-bar .spacer { flex: 1; }
+    .slide[data-audio="19"] .s19-main-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 9px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      background: #fff;
+      font-size: 11px;
+      color: var(--tca-text);
+      font-weight: 500;
+    }
+    .slide[data-audio="19"] .s19-main-btn svg { width: 11px; height: 11px; color: var(--tca-text-mute); }
+    .slide[data-audio="19"] .s19-main-btn.active {
+      background: var(--tca-blue-soft);
+      border-color: var(--tca-blue);
+      color: var(--tca-blue);
+    }
+    .slide[data-audio="19"] .s19-main-btn.active svg { color: var(--tca-blue); }
+    .slide[data-audio="19"] .s19-main-btns-wrap {
+      display: flex; align-items: center; gap: 5px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="19"] .s19-main-btns-wrap.highlight::before {
+      content: '';
+      position: absolute;
+      inset: -5px -6px;
+      border: 1.5px dashed var(--s19-honey);
+      border-radius: 8px;
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(254, 189, 51, 0.32);
+    }
+
+    .slide[data-audio="19"] .s19-tabs {
+      display: flex; align-items: stretch;
+      background: var(--tca-tab-bg);
+      border-bottom: 1px solid var(--tca-divider);
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="19"] .s19-tab {
+      display: inline-flex; align-items: center;
+      gap: 7px;
+      padding: 6px 12px 5px;
+      font-size: 11.5px;
+      color: var(--tca-text);
+      background: var(--tca-tab-active);
+      border: 1px solid var(--tca-divider);
+      border-bottom: 0;
+      border-radius: 5px 5px 0 0;
+      margin-top: 4px;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-tab::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px; height: 1px;
+      background: var(--tca-tab-active);
+    }
+    .slide[data-audio="19"] .s19-tab .md-chip {
+      background: #2c4c79;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 1px 3px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="19"] .s19-tab .close { color: var(--tca-text-faint); font-size: 11px; line-height: 1; }
+
+    .slide[data-audio="19"] .s19-subtools {
+      display: flex; align-items: center;
+      padding: 7px 12px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="19"] .s19-subtool {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 11px;
+      color: var(--tca-text-mute);
+      background: transparent;
+      border: 1px solid transparent;
+    }
+    .slide[data-audio="19"] .s19-subtool svg { width: 11px; height: 11px; }
+    .slide[data-audio="19"] .s19-subtool.active {
+      background: #eaf0fa;
+      color: var(--tca-blue);
+      border-color: #d6e1f0;
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-subtool.active svg { color: var(--tca-blue); }
+    .slide[data-audio="19"] .s19-subtools .spacer { flex: 1; }
+    .slide[data-audio="19"] .s19-subtools .icon-only {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 5px; color: var(--tca-text-mute);
+    }
+    .slide[data-audio="19"] .s19-subtools .icon-only svg { width: 12px; height: 12px; }
+
+    /* CANVAS — Yogi is active */
+    .slide[data-audio="19"] .s19-canvas {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          rgba(254, 189, 51, 0.12) 0%,
+          rgba(254, 189, 51, 0.03) 40%,
+          rgba(254, 189, 51, 0) 75%),
+        #ffffff;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide[data-audio="19"] .s19-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(254, 189, 51, 0.22);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .slide[data-audio="19"] .s19-yogi-card {
+      position: relative;
+      width: clamp(260px, 38%, 360px);
+      background: linear-gradient(180deg, #fffaeb 0%, #fff5dc 100%);
+      border: 1.5px solid rgba(254, 189, 51, 0.65);
+      border-radius: 12px;
+      padding: 16px 18px 14px;
+      box-shadow:
+        0 0 0 4px rgba(254, 189, 51, 0.14),
+        0 12px 32px rgba(254, 189, 51, 0.22),
+        0 4px 12px rgba(0, 0, 0, 0.10);
+      display: flex; flex-direction: column;
+      gap: 9px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-head {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-bear {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 0 2px #fffaeb, 0 0 14px rgba(254, 189, 51, 0.55);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-bear::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(254, 189, 51, 0.45);
+      animation: s19-pulse 2.4s ease-out infinite;
+    }
+    @keyframes s19-pulse {
+      0%   { transform: scale(1);   opacity: 0.9; }
+      80%  { transform: scale(1.6); opacity: 0;   }
+      100% { transform: scale(1.6); opacity: 0;   }
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-text {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #3a2a08;
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8a6418;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-sub .live {
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-sub .live::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--s19-green);
+      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
+      animation: s19-blink 1.6s ease-in-out infinite;
+    }
+    @keyframes s19-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-divider {
+      height: 1px;
+      background: rgba(254, 189, 51, 0.35);
+      margin: 2px 0;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-stat {
+      display: flex; flex-direction: column;
+      gap: 2px;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-stat .n {
+      font-size: 17px;
+      font-weight: 800;
+      color: #6e4a08;
+      letter-spacing: -0.02em;
+      font-family: 'Inter', sans-serif;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-stat .l {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a6418;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-foot {
+      font-size: 10.5px;
+      color: #6e4a08;
+      letter-spacing: -0.005em;
+      line-height: 1.4;
+    }
+    .slide[data-audio="19"] .s19-yogi-card .y-foot b { color: #3a2a08; font-weight: 700; }
+
+    .slide[data-audio="19"] .s19-feedback {
+      position: absolute;
+      bottom: 12px; right: 14px;
+      background: #2c4c79;
+      color: #fff;
+      font-size: 10px;
+      padding: 4px 10px 4px 7px;
+      border-radius: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      z-index: 3;
+    }
+    .slide[data-audio="19"] .s19-feedback .b {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px;
+    }
+
+    /* "Yogi is here" badge wrapping (target for arrow 2) */
+    .slide[data-audio="19"] .s19-yogi-card.is-target {
+      animation: s19-target-glow 3s ease-in-out infinite;
+    }
+    @keyframes s19-target-glow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 4px rgba(254, 189, 51, 0.14),
+          0 12px 32px rgba(254, 189, 51, 0.22),
+          0 4px 12px rgba(0, 0, 0, 0.10);
+      }
+      50% {
+        box-shadow:
+          0 0 0 6px rgba(254, 189, 51, 0.22),
+          0 14px 36px rgba(254, 189, 51, 0.35),
+          0 4px 12px rgba(0, 0, 0, 0.10);
+      }
+    }
+
+    /* ---------- 4 CALLOUTS (Powered by Yogi X Layer) ---------- */
+    .slide[data-audio="19"] .s19-callouts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(10px, 1.2vw, 18px);
+      padding-top: clamp(4px, 0.6vh, 8px);
+    }
+    .slide[data-audio="19"] .s19-callout {
+      position: relative;
+      padding: 9px 12px 9px 13px;
+      background: linear-gradient(180deg,
+        rgba(20, 24, 33, 0.82) 0%,
+        rgba(14, 18, 25, 0.82) 100%);
+      border: 1px solid var(--s19-border);
+      border-left: 2px solid var(--s19-honey);
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      gap: 3px;
+      backdrop-filter: blur(6px);
+    }
+    .slide[data-audio="19"] .s19-callout .num {
+      position: absolute;
+      top: -8px; left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--s19-honey);
+      background: var(--s19-bg);
+      padding: 1px 6px;
+      border: 1px solid var(--s19-honey-line);
+      border-radius: 3px;
+    }
+    .slide[data-audio="19"] .s19-callout .key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-callout .label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--s19-fg);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .slide[data-audio="19"] .s19-callout .desc {
+      font-size: 11px;
+      color: var(--s19-fg-muted);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="19"] .s19-callout .desc b {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-callout .desc .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--s19-fg-dim);
+    }
+
+    /* ---------- PRODUCTIVITY RECEIPT STRIP ---------- */
+    .slide[data-audio="19"] .s19-receipt {
+      display: flex; align-items: stretch;
+      gap: 0;
+      border: 1px solid var(--s19-border);
+      border-radius: 8px;
+      background: linear-gradient(90deg,
+        rgba(254, 189, 51, 0.06) 0%,
+        rgba(20, 24, 33, 0.70) 12%,
+        rgba(14, 18, 25, 0.70) 100%);
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    }
+    .slide[data-audio="19"] .s19-receipt .r-label {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px;
+      background: var(--s19-honey);
+      color: #2a1a04;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      position: relative;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-label::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; right: -7px;
+      width: 14px;
+      background: var(--s19-honey);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      z-index: 1;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-label .bear {
+      font-size: 13px;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-items {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 0 12px 0 20px;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 9px 16px 9px 12px;
+      border-right: 1px dashed var(--s19-border);
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item:last-child {
+      border-right: 0;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item .r-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s19-fg-dim);
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item .r-val {
+      flex: 1;
+      display: flex; align-items: baseline; gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--s19-fg);
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item .r-val .from {
+      color: var(--s19-fg-muted);
+      text-decoration: line-through;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item .r-val .arr {
+      color: var(--s19-honey);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+    .slide[data-audio="19"] .s19-receipt .r-item .r-val .to {
+      color: var(--s19-honey);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* ---------- Stagger on enter ---------- */
+    @keyframes s19-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s19-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes s19-rise-x {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .slide[data-audio="19"] .s19-header { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="19"] .s19-stage  { animation: s19-fade 720ms ease-out both; animation-delay: 120ms; }
+    .slide[data-audio="19"] .s19-aura   { animation: s19-fade 1400ms ease-out both; animation-delay: 600ms; }
+    .slide[data-audio="19"] .s19-window { animation: s19-rise 720ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 280ms; }
+    .slide[data-audio="19"] .s19-backend-head { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 380ms; }
+    .slide[data-audio="19"] .s19-layer { animation: s19-rise-x 600ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="19"] .s19-layer:nth-of-type(1) { animation-delay: 460ms; }
+    .slide[data-audio="19"] .s19-layer:nth-of-type(2) { animation-delay: 580ms; }
+    .slide[data-audio="19"] .s19-layer:nth-of-type(3) { animation-delay: 700ms; }
+    .slide[data-audio="19"] .s19-layer:nth-of-type(4) { animation-delay: 820ms; }
+    .slide[data-audio="19"] .s19-callout { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="19"] .s19-callout:nth-child(1) { animation-delay: 1000ms; }
+    .slide[data-audio="19"] .s19-callout:nth-child(2) { animation-delay: 1080ms; }
+    .slide[data-audio="19"] .s19-callout:nth-child(3) { animation-delay: 1160ms; }
+    .slide[data-audio="19"] .s19-callout:nth-child(4) { animation-delay: 1240ms; }
+    .slide[data-audio="19"] .s19-receipt { animation: s19-rise 600ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 1380ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="19"] *,
+      .slide[data-audio="19"] *::before,
+      .slide[data-audio="19"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-height: 820px) {
+      .slide[data-audio="19"] .s19-title { font-size: clamp(26px, 3.0vw, 42px); }
+      .slide[data-audio="19"] .s19-window { max-height: clamp(380px, 52vh, 560px); }
+      .slide[data-audio="19"] .s19-callout .label { font-size: 12px; }
+      .slide[data-audio="19"] .s19-callout .desc { font-size: 10.5px; }
+      .slide[data-audio="19"] .s19-receipt .r-item .r-val { font-size: 12px; }
+    }
+    @media (max-width: 1700px) {
+      .slide[data-audio="19"] .s19-hide-md { display: none; }
+    }
+    @media (max-width: 1500px) {
+      .slide[data-audio="19"] .s19-stage {
+        grid-template-columns: clamp(180px, 14vw, 220px) 1fr;
+        gap: 32px;
+      }
+      .slide[data-audio="19"] .s19-body {
+        grid-template-columns: 48px 180px 200px 1fr;
+      }
+      .slide[data-audio="19"] .s19-tb-version { display: none; }
+    }
+  </style>
+
+  <div class="s19-atmos">
+    <div class="s19-grid-bg"></div>
+    <div class="s19-glow"></div>
+    <div class="s19-grain"></div>
+  </div>
+
+  <div class="s19-wrap">
+
+    <!-- HEADER -->
+    <header class="s19-header">
+      <div>
+        <div class="s19-eyebrow">
+          <span class="dot"></span>
+          <span class="num">19 / 26</span>
+          <span class="slash">//</span>
+          <span>WHERE YOGI LIVES</span>
+          <span class="slash">//</span>
+          <span>BRAIN INSIDE THE BODY</span>
+        </div>
+        <h1 class="s19-title">
+          Where Yogi <span class="accent">lives.</span>
+        </h1>
+      </div>
+      <div class="s19-subhead-block">
+        <div class="s19-subhead">
+          <span class="body-cap">TC WORKSPACES (BODY)</span>
+          <span class="arrow">⤺ CONSUMES</span>
+          <span class="brain-cap">YOGI'S BACKEND (BRAIN)</span>
+        </div>
+        <div class="s19-credits-strip">
+          <span class="em-c">MIKE WISE</span>
+          <span class="dot-sep">·</span>
+          <span>WORKSPACES</span>
+          <span class="dot-sep">·</span>
+          <span>500 STAFF</span>
+          <span class="dot-sep">·</span>
+          <span class="em-b">ASH WILLIAMS</span>
+          <span class="dot-sep">·</span>
+          <span>YOGI</span>
+          <span class="dot-sep">·</span>
+          <span>INSIDE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- STAGE: backend panel + mockup, joined by arrows -->
+    <div class="s19-stage">
+
+      <!-- LEFT — YOGI BACKEND COLUMN -->
+      <aside class="s19-backend">
+        <div class="s19-backend-head">
+          <span class="pip"></span>
+          <span>YOGI · BACKEND</span>
+          <span class="end">BRAIN</span>
+        </div>
+
+        <!-- Layer 1: MEMORY -->
+        <div class="s19-layer s19-l1">
+          <div class="l-head">
+            <span class="l-num">L1</span>
+            <span class="l-name">Memory Layer</span>
+            <span class="l-out" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+          <div class="l-detail">79 files <span class="sep">·</span> <b>markdown</b> <span class="sep">·</span> git</div>
+        </div>
+
+        <!-- Layer 2: AGENT -->
+        <div class="s19-layer s19-l2">
+          <div class="l-head">
+            <span class="l-num">L2</span>
+            <span class="l-name">Agent Layer</span>
+            <span class="l-out" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+          <div class="l-detail"><b>1,000 specialists</b> <span class="sep">·</span> on-demand</div>
+        </div>
+
+        <!-- Layer 3: TOOL -->
+        <div class="s19-layer s19-l3">
+          <div class="l-head">
+            <span class="l-num">L3</span>
+            <span class="l-name">Tool Layer</span>
+            <span class="l-out" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+          <div class="l-detail"><b>328 MCP tools</b> <span class="sep">·</span> write access</div>
+        </div>
+
+        <!-- Layer 4: EVAL -->
+        <div class="s19-layer s19-l4">
+          <div class="l-head">
+            <span class="l-num">L4</span>
+            <span class="l-name">Eval Layer</span>
+            <span class="l-out" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+          <div class="l-detail">12 categories <span class="sep">·</span> <b>95.4%</b> mean</div>
+        </div>
+      </aside>
+
+      <!-- MOCKUP -->
+      <div class="s19-mockwrap">
+        <div class="s19-aura"></div>
+
+        <div class="s19-window">
+          <div class="s19-chrome">
+            <div class="s19-chrome-dot r"></div>
+            <div class="s19-chrome-dot y"></div>
+            <div class="s19-chrome-dot g"></div>
+            <div class="s19-chrome-url">
+              <span class="lock">●</span>
+              <span class="host">assistant.trilogycare.com.au</span>
+              <span style="color:var(--tca-text-faint);">/workspaces/~ashw</span>
+            </div>
+          </div>
+
+          <div class="s19-app">
+
+            <!-- TOP BAR -->
+            <div class="s19-topbar">
+              <div class="s19-tb-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+              </div>
+              <div class="s19-tb-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+              </div>
+              <div class="s19-tb-logo">
+                <div class="s19-tb-logo-mark">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 14 L8 18 L12 14" stroke="#FEBD33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 10 L13 14 L17 10" stroke="#43C0BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 6 L18 10 L22 6" stroke="#2C4C79" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="s19-tb-logo-text">Trilogy Care <b>Assistant</b></div>
+                <div class="s19-tb-version">v1.1.504</div>
+              </div>
+              <div class="s19-tb-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Search or type a command…</span>
+                <span class="kbd">⌘K</span>
+              </div>
+              <div class="s19-tb-spacer"></div>
+              <div class="s19-tb-account">
+                <div class="av">AW</div>
+                <div class="name">Ash Williams</div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--tca-text-dim);width:10px;height:10px;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+
+            <!-- BETA -->
+            <div class="s19-beta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <b>Trilogy Care Assistant is in active beta testing.</b>
+              <span>See the <a>release notes</a>, <a>known bugs</a>, or <a>send feedback</a>.</span>
+              <span class="close">✕</span>
+            </div>
+
+            <!-- BODY -->
+            <div class="s19-body">
+
+              <!-- RAIL -->
+              <div class="s19-rail">
+                <div class="s19-rail-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span>Chat</span>
+                </div>
+                <div class="s19-rail-item active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  <span>Workspaces</span>
+                </div>
+                <div class="s19-rail-spacer"></div>
+                <div class="s19-rail-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+                  <span>Help</span>
+                </div>
+                <div class="s19-rail-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span>Settings</span>
+                </div>
+              </div>
+
+              <!-- WS SIDE -->
+              <div class="s19-ws-side">
+                <div class="s19-ws-head">
+                  <div class="s19-ws-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Workspaces
+                  </div>
+                  <div class="s19-ws-new">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    New
+                  </div>
+                </div>
+                <div class="s19-ws-filter">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Filter…</span>
+                </div>
+                <div class="s19-ws-toggle">
+                  <button class="on">Active</button>
+                  <button>Archived</button>
+                </div>
+                <div class="s19-ws-home">
+                  <div class="home-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg>
+                  </div>
+                  <div class="home-label">Home <span class="h">~ashw</span></div>
+                </div>
+                <div class="s19-ws-section">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  Workspaces
+                  <span class="count">6</span>
+                </div>
+                <div class="s19-ws-tag">Pinned</div>
+                <div class="s19-ws-item">
+                  <div class="left"><span class="name">Yogi</span></div>
+                  <span class="time">9d</span>
+                </div>
+                <div class="s19-ws-tag">Older</div>
+                <div class="s19-ws-item muted">
+                  <div class="left"><span class="name">Indigo Pulse · 5 May</span></div>
+                  <span class="time">18d</span>
+                </div>
+                <div class="s19-ws-item muted">
+                  <div class="left"><span class="name">Daily Briefing</span></div>
+                  <span class="time">15/04</span>
+                </div>
+                <div class="s19-ws-item muted">
+                  <div class="left"><span class="name">PLA Watch</span></div>
+                  <span class="time">14/04</span>
+                </div>
+              </div>
+
+              <!-- EXPLORER -->
+              <div class="s19-explorer" id="s19-explorer">
+                <div class="s19-ex-bar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                  <span class="title">~ashw</span>
+                  <span class="strike">Aa</span>
+                  <div class="spacer"></div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </div>
+                <div class="s19-ex-label">Explorer</div>
+                <div class="s19-ex-filter">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Filter files…</span>
+                </div>
+                <div class="s19-ex-tree">
+                  <div class="s19-ex-row">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">docs</span>
+                  </div>
+                  <div class="s19-ex-row">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">specialists</span>
+                  </div>
+                  <!-- ARROW 1 TARGET: memory/ -->
+                  <div class="s19-ex-row highlight" id="s19-target-memory">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">memory</span>
+                  </div>
+                  <div class="s19-ex-row">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">profiles</span>
+                  </div>
+                  <div class="s19-ex-row">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">skills</span>
+                  </div>
+                  <div class="s19-ex-row">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span class="name">trilogycare</span>
+                  </div>
+
+                  <!-- ARROW 3 TARGET: OneDrive section -->
+                  <div class="s19-ex-onedrive highlight" id="s19-target-onedrive">
+                    <div class="s19-ex-onedrive-head">
+                      <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg></span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                      OneDrive
+                    </div>
+                  </div>
+                  <div class="s19-ex-od-rows">
+                    <div class="s19-ex-od-row">
+                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                      <span>Attachments</span>
+                    </div>
+                    <div class="s19-ex-od-row">
+                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                      <span>CQCC Reporting</span>
+                    </div>
+                    <div class="s19-ex-od-row">
+                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                      <span>Meetings</span>
+                    </div>
+                    <div class="s19-ex-od-row">
+                      <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                      <span>Book.xlsx</span>
+                      <span class="size">6.0 KB</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MAIN -->
+              <div class="s19-main">
+
+                <div class="s19-main-bar">
+                  <div class="s19-main-btn s19-hide-md">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    New file
+                  </div>
+                  <div class="spacer"></div>
+
+                  <!-- ARROW 4 TARGET: Explorer / Chat / Claude buttons -->
+                  <div class="s19-main-btns-wrap highlight" id="s19-target-buttons">
+                    <div class="s19-main-btn active">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                      Explorer
+                    </div>
+                    <div class="s19-main-btn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      Chat
+                    </div>
+                    <div class="s19-main-btn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                      Claude
+                    </div>
+                  </div>
+                </div>
+
+                <div class="s19-tabs">
+                  <div class="s19-tab">
+                    <span class="md-chip">MD</span>
+                    README.md
+                    <span class="close">×</span>
+                  </div>
+                </div>
+
+                <div class="s19-subtools">
+                  <div class="s19-subtool">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+                    Edit
+                  </div>
+                  <div class="s19-subtool active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Preview
+                  </div>
+                  <div class="s19-subtool">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+                    Split
+                  </div>
+                  <div class="spacer"></div>
+                </div>
+
+                <!-- CANVAS — ARROW 2 TARGET -->
+                <div class="s19-canvas">
+                  <div class="s19-yogi-card is-target" id="s19-target-active">
+                    <div class="y-head">
+                      <div class="y-bear">🐻</div>
+                      <div class="y-text">
+                        <div class="y-title">Yogi is active in this workspace</div>
+                        <div class="y-sub"><span class="live">Standing by · Ash's substrate loaded</span></div>
+                      </div>
+                    </div>
+                    <div class="y-divider"></div>
+                    <div class="y-stats">
+                      <div class="y-stat"><div class="n">79</div><div class="l">memory files</div></div>
+                      <div class="y-stat"><div class="n">1,000</div><div class="l">specialists</div></div>
+                      <div class="y-stat"><div class="n">328</div><div class="l">tools</div></div>
+                    </div>
+                    <div class="y-foot">
+                      Same bear, <b>every desk.</b> Each staffer's Workspace becomes their <b>personal Yogi</b> — no context leak between users.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="s19-feedback">
+                  <span class="b">🐻</span>
+                  Feedback
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SVG OVERLAY: 4 honey data-flow arrows ============================== -->
+      <div class="s19-arrows" aria-hidden="true">
+        <svg viewBox="0 0 1000 700" preserveAspectRatio="none">
+          <defs>
+            <!-- Soft glow filter on dashes via stroke filter; using drop-shadow on CSS -->
+          </defs>
+
+          <!-- ARROW 1: Memory Layer (left ~22% top) → memory/ folder in Explorer -->
+          <!-- start: (218, 130) end: (510, 360) -->
+          <path class="flow f1"
+                d="M 218,130 C 320,130 360,300 510,360" />
+          <circle class="ring r1" cx="510" cy="360" r="6" />
+          <polygon class="head h1" points="500,355 514,360 500,365" />
+          <circle class="pkt p1" r="3" style="offset-path: path('M 218,130 C 320,130 360,300 510,360'); offset-rotate: auto;" />
+
+          <!-- ARROW 2: Agent Layer (left ~22% top-mid) → Yogi-active badge in main pane (center) -->
+          <!-- start: (218, 250) end: (760, 470) -->
+          <path class="flow f2"
+                d="M 218,250 C 380,250 540,450 760,470" />
+          <circle class="ring r2" cx="760" cy="470" r="6" />
+          <polygon class="head h2" points="750,465 764,470 750,475" />
+          <circle class="pkt p2" r="3" style="offset-path: path('M 218,250 C 380,250 540,450 760,470'); offset-rotate: auto;" />
+
+          <!-- ARROW 3: Tool Layer (left ~22% mid-low) → OneDrive section in Explorer -->
+          <!-- start: (218, 380) end: (510, 540) -->
+          <path class="flow f3"
+                d="M 218,380 C 320,400 360,510 510,540" />
+          <circle class="ring r3" cx="510" cy="540" r="6" />
+          <polygon class="head h3" points="500,535 514,540 500,545" />
+          <circle class="pkt p3" r="3" style="offset-path: path('M 218,380 C 320,400 360,510 510,540'); offset-rotate: auto;" />
+
+          <!-- ARROW 4: Eval Layer (left ~22% low) → Explorer/Chat/Claude buttons (top-right of main pane) -->
+          <!-- start: (218, 510) end: (900, 295) -->
+          <path class="flow f4"
+                d="M 218,510 C 420,520 600,360 900,295" />
+          <circle class="ring r4" cx="900" cy="295" r="6" />
+          <polygon class="head h4" points="890,290 904,295 890,300" />
+          <circle class="pkt p4" r="3" style="offset-path: path('M 218,510 C 420,520 600,360 900,295'); offset-rotate: auto;" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- 4 CALLOUTS — POWERED BY YOGI X LAYER -->
+    <div class="s19-callouts">
+      <div class="s19-callout">
+        <div class="num">01</div>
+        <div class="key">memory/</div>
+        <div class="label">Powered by Yogi Memory Layer</div>
+        <div class="desc"><b>79 files</b> · git-snapshotted markdown that survives every restart.</div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">02</div>
+        <div class="key">specialists/</div>
+        <div class="label">Powered by Yogi Agent Layer</div>
+        <div class="desc"><b>1,000 sub-agents</b> · spawned on demand, return only the answer.</div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">03</div>
+        <div class="key">OneDrive + M365</div>
+        <div class="label">Powered by Yogi Tool Layer</div>
+        <div class="desc"><b>328 MCP tools</b> · real write access into Zoho, MYOB, Teams, OneDrive.</div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">04</div>
+        <div class="key">Explorer · Chat · Claude</div>
+        <div class="label">Powered by Yogi Eval Layer</div>
+        <div class="desc"><b>12 categories</b> · every response gated at 95.4% mean pass.</div>
+      </div>
+    </div>
+
+    <!-- PRODUCTIVITY RECEIPT STRIP -->
+    <div class="s19-receipt">
+      <div class="r-label">
+        <span class="bear">🐻</span>
+        <span>Productivity</span>
+      </div>
+      <div class="r-items">
+        <div class="r-item">
+          <span class="r-key">App switches</span>
+          <span class="r-val"><span class="from">5</span><span class="arr">→</span><span class="to">0</span></span>
+        </div>
+        <div class="r-item">
+          <span class="r-key">Context recall</span>
+          <span class="r-val"><span class="from">12 min</span><span class="arr">→</span><span class="to">0 sec</span></span>
+        </div>
+        <div class="r-item">
+          <span class="r-key">Investigation</span>
+          <span class="r-val"><span class="from">1 day</span><span class="arr">→</span><span class="to">47 sec</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

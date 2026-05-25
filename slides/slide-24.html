@@ -1,0 +1,1102 @@
+<section class="slide" data-audio="24">
+  <style>
+    /* ============================================================
+       SLIDE 21 — THE ROADMAP + THE ASK (CLOSER)
+       Polish pass: October as destination, deliberate honey fill
+       with leading spark, balanced ASK cards, real owners/dates,
+       character-by-character closing reveal, wordmark signature.
+       ============================================================ */
+
+    .slide[data-audio="24"] {
+      --s10-bg:         #0a0d12;
+      --s10-bg-elev:    #11161f;
+      --s10-bg-deep:    #070a0e;
+      --s10-honey:      #FEBD33;
+      --s10-honey-soft: rgba(254, 189, 51, 0.14);
+      --s10-honey-glow: rgba(254, 189, 51, 0.55);
+      --s10-honey-glow-hot: rgba(254, 189, 51, 0.85);
+      --s10-honey-line: rgba(254, 189, 51, 0.85);
+      --s10-teal:       #43C0BE;
+      --s10-teal-soft:  rgba(67, 192, 190, 0.12);
+      --s10-sky:        #64BCEA;
+      --s10-fg:         #f4f4f5;
+      --s10-fg-muted:   #a1a1aa;
+      --s10-fg-dim:     #71717a;
+      --s10-fg-faint:   #52525b;
+      --s10-border:     rgba(255, 255, 255, 0.07);
+      --s10-border-warm:rgba(254, 189, 51, 0.28);
+      --s10-border-hot: rgba(254, 189, 51, 0.55);
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background: var(--s10-bg);
+      color: var(--s10-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      overflow: hidden;
+      isolation: isolate;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- Atmosphere ---------- */
+    .slide[data-audio="24"] .s10-atmos {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .slide[data-audio="24"] .s10-glow-r {
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 70vmin;
+      height: 70vmin;
+      background: radial-gradient(circle at center,
+        rgba(254, 189, 51, 0.10) 0%,
+        rgba(254, 189, 51, 0.04) 30%,
+        transparent 65%);
+      filter: blur(8px);
+      opacity: 0;
+      animation: s10-fade 2200ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+    }
+    .slide[data-audio="24"] .s10-glow-l {
+      position: absolute;
+      bottom: -20%;
+      left: -15%;
+      width: 65vmin;
+      height: 65vmin;
+      background: radial-gradient(circle at center,
+        rgba(67, 192, 190, 0.06) 0%,
+        rgba(67, 192, 190, 0.02) 40%,
+        transparent 65%);
+      filter: blur(12px);
+      opacity: 0;
+      animation: s10-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+    }
+    /* Octobery anchor glow — only fades in once the rail lands */
+    .slide[data-audio="24"] .s10-glow-oct {
+      position: absolute;
+      bottom: 18%;
+      right: 4%;
+      width: 42vmin;
+      height: 42vmin;
+      background: radial-gradient(circle at center,
+        rgba(254, 189, 51, 0.16) 0%,
+        rgba(254, 189, 51, 0.05) 35%,
+        transparent 70%);
+      filter: blur(14px);
+      opacity: 0;
+      animation: s10-fade 1800ms cubic-bezier(0.16, 1, 0.3, 1) 3200ms forwards;
+    }
+    .slide[data-audio="24"] .s10-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image: radial-gradient(ellipse at 50% 45%, black 0%, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 45%, black 0%, black 30%, transparent 75%);
+      opacity: 0;
+      animation: s10-fade 1800ms ease 600ms forwards;
+    }
+
+    /* ---------- Frame ---------- */
+    .slide[data-audio="24"] .s10-frame {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      padding: clamp(36px, 4.2vmin, 64px) clamp(48px, 6vmin, 96px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(28px, 3.4vmin, 52px);
+    }
+
+    /* ---------- Header ---------- */
+    .slide[data-audio="24"] .s10-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      opacity: 0;
+      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+    }
+    .slide[data-audio="24"] .s10-header-l {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .slide[data-audio="24"] .s10-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.05vmin, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+    }
+    .slide[data-audio="24"] .s10-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s10-honey);
+      box-shadow: 0 0 12px var(--s10-honey-glow);
+      animation: s10-pulse 2200ms ease-in-out infinite;
+    }
+    .slide[data-audio="24"] .s10-eyebrow .sep {
+      color: var(--s10-fg-faint);
+    }
+    .slide[data-audio="24"] .s10-title {
+      font-size: clamp(40px, 5.8vmin, 78px);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: var(--s10-fg);
+    }
+    .slide[data-audio="24"] .s10-title em {
+      font-style: normal;
+      color: var(--s10-honey);
+    }
+    .slide[data-audio="24"] .s10-subhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(12px, 1.35vmin, 16px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s10-honey);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .slide[data-audio="24"] .s10-subhead .pip {
+      color: var(--s10-fg-faint);
+    }
+    .slide[data-audio="24"] .s10-header-r {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+    .slide[data-audio="24"] .s10-stamp {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1vmin, 12px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+    }
+    .slide[data-audio="24"] .s10-stamp .ok {
+      color: var(--s10-teal);
+    }
+    .slide[data-audio="24"] .s10-slidenum {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.1vmin, 14px);
+      color: var(--s10-fg-faint);
+      letter-spacing: 0.12em;
+    }
+
+    /* ============================================================
+       ROADMAP STRIP
+       ============================================================ */
+    .slide[data-audio="24"] .s10-roadmap {
+      position: relative;
+      padding: clamp(28px, 3.6vmin, 48px) 0 clamp(20px, 2.4vmin, 32px);
+    }
+    .slide[data-audio="24"] .s10-roadmap-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: clamp(10px, 1.2vmin, 16px);
+      opacity: 0;
+      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards;
+    }
+    .slide[data-audio="24"] .s10-roadmap-label .tag {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.05vmin, 13px);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s10-honey);
+      padding: 5px 11px;
+      border: 1px solid var(--s10-border-warm);
+      border-radius: 4px;
+      background: var(--s10-honey-soft);
+    }
+    .slide[data-audio="24"] .s10-roadmap-label .text {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.1vmin, 14px);
+      color: var(--s10-fg-muted);
+      letter-spacing: 0.14em;
+    }
+    .slide[data-audio="24"] .s10-roadmap-label .text strong {
+      color: var(--s10-fg);
+      font-weight: 600;
+    }
+
+    /* Urgency caption above the rail */
+    .slide[data-audio="24"] .s10-urgency {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1vmin, 12.5px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+      margin-bottom: clamp(18px, 2.2vmin, 30px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 650ms forwards;
+    }
+    .slide[data-audio="24"] .s10-urgency .past {
+      color: var(--s10-fg-muted);
+    }
+    .slide[data-audio="24"] .s10-urgency .future {
+      color: var(--s10-honey);
+    }
+    .slide[data-audio="24"] .s10-urgency .glyph {
+      color: var(--s10-fg-faint);
+      letter-spacing: 0;
+    }
+
+    /* Progress rail */
+    .slide[data-audio="24"] .s10-rail-wrap {
+      position: relative;
+    }
+    .slide[data-audio="24"] .s10-rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 26px;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--s10-border) 0%,
+        var(--s10-border) 100%);
+    }
+    .slide[data-audio="24"] .s10-rail-fill {
+      position: absolute;
+      left: 0;
+      top: 26px;
+      height: 1px;
+      width: 0;
+      background: linear-gradient(90deg,
+        var(--s10-honey-line) 0%,
+        var(--s10-honey-line) 60%,
+        rgba(254, 189, 51, 0.55) 100%);
+      box-shadow: 0 0 10px var(--s10-honey-glow);
+      /* Slower, more deliberate ease-out — 2500ms, lands ~3.5s in.
+         Aligns with the audio cue "October." */
+      animation: s10-fill 2500ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms forwards;
+    }
+    /* Leading-edge spark — bright bead at the front of the fill */
+    .slide[data-audio="24"] .s10-rail-fill::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: -4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #FFF6E0;
+      box-shadow:
+        0 0 4px #FFE9A8,
+        0 0 12px var(--s10-honey-glow-hot),
+        0 0 28px var(--s10-honey-glow),
+        0 0 48px rgba(254, 189, 51, 0.35);
+      animation: s10-spark 1600ms ease-in-out infinite;
+    }
+    /* Soft cometary trail just behind the spark */
+    .slide[data-audio="24"] .s10-rail-fill::before {
+      content: '';
+      position: absolute;
+      right: 4px;
+      top: -2px;
+      width: 80px;
+      height: 5px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254, 189, 51, 0.0) 0%,
+        rgba(254, 189, 51, 0.25) 60%,
+        rgba(254, 189, 51, 0.55) 100%);
+      filter: blur(3px);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Milestone grid */
+    .slide[data-audio="24"] .s10-milestones {
+      position: relative;
+      display: grid;
+      /* Give OCT slightly more weight — destination has presence */
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.18fr;
+      gap: clamp(14px, 1.6vmin, 24px);
+      align-items: start;
+    }
+    .slide[data-audio="24"] .s10-ms {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 52px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s10-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="24"] .s10-ms:nth-child(1) { animation-delay: 700ms; }
+    .slide[data-audio="24"] .s10-ms:nth-child(2) { animation-delay: 850ms; }
+    .slide[data-audio="24"] .s10-ms:nth-child(3) { animation-delay: 1000ms; }
+    .slide[data-audio="24"] .s10-ms:nth-child(4) { animation-delay: 1150ms; }
+    .slide[data-audio="24"] .s10-ms:nth-child(5) { animation-delay: 1300ms; }
+    /* Destination lands a beat later — coincides with rail arrival */
+    .slide[data-audio="24"] .s10-ms:nth-child(6) { animation-delay: 1550ms; }
+
+    .slide[data-audio="24"] .s10-node {
+      position: absolute;
+      top: 19px;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--s10-bg);
+      border: 1.5px solid var(--s10-border);
+      z-index: 2;
+    }
+    .slide[data-audio="24"] .s10-node::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: var(--s10-fg-faint);
+    }
+    /* Anchor nodes (May start, Oct end) — honey filled */
+    .slide[data-audio="24"] .s10-ms--anchor .s10-node {
+      border-color: var(--s10-honey);
+      box-shadow: 0 0 14px var(--s10-honey-glow);
+    }
+    .slide[data-audio="24"] .s10-ms--anchor .s10-node::before {
+      background: var(--s10-honey);
+    }
+    /* Destination node — bigger, brighter, with a halo ring */
+    .slide[data-audio="24"] .s10-ms--dest .s10-node {
+      top: 16px;
+      width: 21px;
+      height: 21px;
+      border-width: 2px;
+      box-shadow:
+        0 0 0 4px rgba(254, 189, 51, 0.08),
+        0 0 20px var(--s10-honey-glow-hot),
+        0 0 40px var(--s10-honey-glow);
+      animation: s10-node-breathe 3200ms ease-in-out infinite;
+    }
+    .slide[data-audio="24"] .s10-ms--dest .s10-node::before {
+      inset: 4px;
+      background: #FFE9A8;
+    }
+
+    .slide[data-audio="24"] .s10-ms-month {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.1vmin, 13px);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+      margin-bottom: 12px;
+    }
+    .slide[data-audio="24"] .s10-ms--anchor .s10-ms-month {
+      color: var(--s10-honey);
+    }
+    .slide[data-audio="24"] .s10-ms-month .now {
+      color: var(--s10-honey);
+      margin-left: 6px;
+    }
+    .slide[data-audio="24"] .s10-ms--dest .s10-ms-month {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .slide[data-audio="24"] .s10-ms-dest-eyebrow {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 0.95vmin, 11.5px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--s10-honey);
+      padding: 3px 8px;
+      border: 1px solid var(--s10-border-hot);
+      border-radius: 3px;
+      background: var(--s10-honey-soft);
+      box-shadow: 0 0 14px rgba(254, 189, 51, 0.18);
+    }
+
+    .slide[data-audio="24"] .s10-card {
+      width: 100%;
+      background: var(--s10-bg-elev);
+      border: 1px solid var(--s10-border);
+      border-radius: 10px;
+      padding: clamp(14px, 1.6vmin, 20px) clamp(14px, 1.6vmin, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: clamp(118px, 13vmin, 160px);
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+    .slide[data-audio="24"] .s10-ms--anchor .s10-card {
+      border-color: var(--s10-border-warm);
+      background: linear-gradient(180deg,
+        rgba(254, 189, 51, 0.04) 0%,
+        var(--s10-bg-elev) 100%);
+      box-shadow: 0 0 0 1px rgba(254, 189, 51, 0.08),
+                  0 12px 32px -16px rgba(254, 189, 51, 0.25);
+    }
+    /* Destination card — heavier, brighter, taller */
+    .slide[data-audio="24"] .s10-ms--dest .s10-card {
+      border-color: var(--s10-border-hot);
+      background:
+        linear-gradient(180deg,
+          rgba(254, 189, 51, 0.10) 0%,
+          rgba(254, 189, 51, 0.02) 50%,
+          var(--s10-bg-elev) 100%);
+      box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.22),
+        0 0 32px -8px rgba(254, 189, 51, 0.35),
+        0 22px 60px -22px rgba(254, 189, 51, 0.45);
+      padding: clamp(18px, 2vmin, 26px) clamp(18px, 2vmin, 26px) clamp(20px, 2.2vmin, 28px);
+      min-height: clamp(142px, 16vmin, 192px);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Destination card inner luminance — top-right corner spotlight */
+    .slide[data-audio="24"] .s10-ms--dest .s10-card::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -30%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 70% 30%,
+        rgba(254, 189, 51, 0.18) 0%,
+        rgba(254, 189, 51, 0.04) 30%,
+        transparent 60%);
+      pointer-events: none;
+    }
+
+    .slide[data-audio="24"] .s10-ms-headline {
+      font-size: clamp(15px, 1.7vmin, 20px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--s10-fg);
+    }
+    .slide[data-audio="24"] .s10-ms--anchor .s10-ms-headline {
+      color: var(--s10-honey);
+    }
+    .slide[data-audio="24"] .s10-ms--dest .s10-ms-headline {
+      font-size: clamp(18px, 2.1vmin, 26px);
+      letter-spacing: -0.028em;
+      line-height: 1.05;
+      position: relative;
+      z-index: 1;
+    }
+    .slide[data-audio="24"] .s10-ms-detail {
+      font-size: clamp(11px, 1.2vmin, 13.5px);
+      line-height: 1.45;
+      color: var(--s10-fg-muted);
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="24"] .s10-ms--dest .s10-ms-detail {
+      font-size: clamp(12px, 1.3vmin, 14.5px);
+      color: var(--s10-fg-muted);
+      position: relative;
+      z-index: 1;
+    }
+    .slide[data-audio="24"] .s10-ms--dest .s10-ms-detail strong {
+      color: var(--s10-honey);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       THE THREE ASKS
+       ============================================================ */
+    .slide[data-audio="24"] .s10-asks-wrap {
+      position: relative;
+      margin-top: auto;
+    }
+    .slide[data-audio="24"] .s10-asks-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: clamp(16px, 2vmin, 24px);
+      opacity: 0;
+      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 1600ms forwards;
+    }
+    .slide[data-audio="24"] .s10-asks-label .tag {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.05vmin, 13px);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s10-honey);
+      padding: 5px 11px;
+      border: 1px solid var(--s10-border-warm);
+      border-radius: 4px;
+      background: var(--s10-honey-soft);
+    }
+    .slide[data-audio="24"] .s10-asks-label .text {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.1vmin, 14px);
+      color: var(--s10-fg-muted);
+      letter-spacing: 0.14em;
+    }
+    .slide[data-audio="24"] .s10-asks-label .text strong {
+      color: var(--s10-fg);
+      font-weight: 600;
+    }
+
+    .slide[data-audio="24"] .s10-asks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 1.8vmin, 28px);
+    }
+    .slide[data-audio="24"] .s10-ask {
+      position: relative;
+      background: var(--s10-bg-elev);
+      border: 1px solid var(--s10-border);
+      border-radius: 14px;
+      padding: clamp(24px, 2.8vmin, 38px) clamp(22px, 2.6vmin, 36px) clamp(24px, 2.8vmin, 38px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 1.6vmin, 22px);
+      overflow: hidden;
+      isolation: isolate;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="24"] .s10-ask:nth-child(1) { animation-delay: 1800ms; }
+    .slide[data-audio="24"] .s10-ask:nth-child(2) { animation-delay: 1950ms; }
+    .slide[data-audio="24"] .s10-ask:nth-child(3) { animation-delay: 2100ms; }
+
+    /* Honey accent bar — top edge (thicker for equal weight presence) */
+    .slide[data-audio="24"] .s10-ask::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg,
+        var(--s10-honey) 0%,
+        var(--s10-honey) 42%,
+        rgba(254, 189, 51, 0.28) 100%);
+      box-shadow: 0 0 18px rgba(254, 189, 51, 0.50);
+    }
+    /* Faint diagonal grain wash */
+    .slide[data-audio="24"] .s10-ask::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0%,
+        rgba(254, 189, 51, 0.08) 0%,
+        rgba(254, 189, 51, 0.02) 30%,
+        transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .slide[data-audio="24"] .s10-ask-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.2vmin, 14px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+    }
+    .slide[data-audio="24"] .s10-ask-num {
+      color: var(--s10-honey);
+      font-weight: 700;
+      font-size: clamp(14px, 1.55vmin, 18px);
+      letter-spacing: 0.18em;
+    }
+    .slide[data-audio="24"] .s10-ask-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--s10-border-warm) 0%,
+        transparent 100%);
+    }
+    .slide[data-audio="24"] .s10-ask-headline {
+      font-size: clamp(20px, 2.6vmin, 32px);
+      font-weight: 700;
+      letter-spacing: -0.028em;
+      line-height: 1.05;
+      color: var(--s10-fg);
+    }
+    .slide[data-audio="24"] .s10-ask-headline .accent {
+      color: var(--s10-honey);
+    }
+    .slide[data-audio="24"] .s10-ask-body {
+      font-size: clamp(13px, 1.35vmin, 16px);
+      line-height: 1.55;
+      color: var(--s10-fg-muted);
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="24"] .s10-ask-body strong {
+      color: var(--s10-fg);
+      font-weight: 600;
+    }
+
+    .slide[data-audio="24"] .s10-ask-meta {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: clamp(12px, 1.4vmin, 18px);
+      border-top: 1px dashed var(--s10-border);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.05vmin, 12px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s10-fg-faint);
+    }
+    .slide[data-audio="24"] .s10-ask-meta .who {
+      color: var(--s10-fg-muted);
+    }
+    .slide[data-audio="24"] .s10-ask-meta .when {
+      color: var(--s10-teal);
+    }
+
+    /* ---------- Footer line ---------- */
+    .slide[data-audio="24"] .s10-footer {
+      position: relative;
+      margin-top: clamp(22px, 2.6vmin, 36px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding-top: clamp(14px, 1.6vmin, 22px);
+      border-top: 1px solid var(--s10-border);
+      opacity: 0;
+      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 2300ms forwards;
+    }
+    .slide[data-audio="24"] .s10-footer-l,
+    .slide[data-audio="24"] .s10-footer-r {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.15vmin, 14px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s10-fg-dim);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Center closing line — ceremony reveal */
+    .slide[data-audio="24"] .s10-footer-c {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(13px, 1.5vmin, 17px);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s10-honey);
+      font-weight: 500;
+      text-align: center;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+    }
+    .slide[data-audio="24"] .s10-footer-c .diamond {
+      color: var(--s10-fg-faint);
+      font-size: 0.7em;
+      transform: translateY(0.1em);
+      opacity: 0;
+      animation: s10-fade 600ms ease forwards;
+    }
+    .slide[data-audio="24"] .s10-footer-c .diamond.lead {
+      animation-delay: 3600ms;
+    }
+    .slide[data-audio="24"] .s10-footer-c .diamond.tail {
+      /* tail diamond appears after final char */
+      animation-delay: calc(3600ms + var(--s10-final-tail-delay, 1800ms));
+    }
+    .slide[data-audio="24"] .s10-footer-c .ch {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(2px);
+      animation: s10-char-in 360ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    /* Slight honey flash on each character as it lands */
+    .slide[data-audio="24"] .s10-footer-c .ch::before {
+      /* placeholder for future micro-glow if desired */
+    }
+
+    .slide[data-audio="24"] .s10-footer-l .live {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--s10-teal);
+      box-shadow: 0 0 10px rgba(67, 192, 190, 0.8);
+      animation: s10-pulse 1800ms ease-in-out infinite;
+    }
+
+    /* Corner crosshair marks */
+    .slide[data-audio="24"] .s10-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--s10-fg-faint);
+      opacity: 0;
+      animation: s10-fade 900ms ease 300ms forwards;
+      z-index: 3;
+    }
+    .slide[data-audio="24"] .s10-corner.tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
+    .slide[data-audio="24"] .s10-corner.tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
+    .slide[data-audio="24"] .s10-corner.bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
+    .slide[data-audio="24"] .s10-corner.br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
+
+    /* Wordmark signature — barely-visible bottom-right */
+    .slide[data-audio="24"] .s10-wordmark {
+      position: absolute;
+      bottom: clamp(8px, 1vmin, 14px);
+      right: clamp(48px, 6vmin, 96px);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8.5px, 0.85vmin, 10.5px);
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--s10-fg-faint);
+      opacity: 0;
+      animation: s10-fade 1400ms ease 3800ms forwards;
+      z-index: 4;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+    .slide[data-audio="24"] .s10-wordmark .sep {
+      color: rgba(254, 189, 51, 0.35);
+      margin: 0 0.6em;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes s10-fade {
+      to { opacity: 1; }
+    }
+    @keyframes s10-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s10-fill {
+      to { width: 100%; }
+    }
+    @keyframes s10-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(0.85); }
+    }
+    @keyframes s10-spark {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.25);
+        filter: brightness(1.35);
+      }
+    }
+    @keyframes s10-node-breathe {
+      0%, 100% {
+        box-shadow:
+          0 0 0 4px rgba(254, 189, 51, 0.08),
+          0 0 20px var(--s10-honey-glow-hot),
+          0 0 40px var(--s10-honey-glow);
+      }
+      50% {
+        box-shadow:
+          0 0 0 6px rgba(254, 189, 51, 0.12),
+          0 0 28px var(--s10-honey-glow-hot),
+          0 0 56px var(--s10-honey-glow);
+      }
+    }
+    @keyframes s10-char-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="24"] *,
+      .slide[data-audio="24"] *::before,
+      .slide[data-audio="24"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-delay: 0ms !important;
+        transition: none !important;
+      }
+      .slide[data-audio="24"] .s10-rail-fill { width: 100%; }
+      .slide[data-audio="24"] .s10-footer-c .ch { opacity: 1; transform: none; }
+      .slide[data-audio="24"] .s10-footer-c .diamond { opacity: 1; }
+      .slide[data-audio="24"] .s10-wordmark { opacity: 1; }
+    }
+
+    /* Tighter layout on narrow viewports */
+    @media (max-width: 1280px) {
+      .slide[data-audio="24"] .s10-ms-headline { font-size: 15px; }
+      .slide[data-audio="24"] .s10-ms--dest .s10-ms-headline { font-size: 17px; }
+      .slide[data-audio="24"] .s10-ask-headline { font-size: 20px; }
+    }
+  </style>
+
+  <div class="content">
+    <!-- atmosphere -->
+    <div class="s10-atmos">
+      <div class="s10-glow-r"></div>
+      <div class="s10-glow-l"></div>
+      <div class="s10-glow-oct"></div>
+      <div class="s10-grid"></div>
+    </div>
+
+    <!-- corner crosshairs -->
+    <div class="s10-corner tl"></div>
+    <div class="s10-corner tr"></div>
+    <div class="s10-corner bl"></div>
+    <div class="s10-corner br"></div>
+
+    <div class="s10-frame">
+
+      <!-- =========================== HEADER =========================== -->
+      <header class="s10-header">
+        <div class="s10-header-l">
+          <div class="s10-eyebrow">
+            <span class="dot"></span>
+            <span>BRIEFING · CLOSING</span>
+            <span class="sep">/</span>
+            <span>SLIDE 21 OF 22</span>
+            <span class="sep">/</span>
+            <span>YOGI · TC LEADERSHIP</span>
+          </div>
+          <h1 class="s10-title">What we need <em>to win.</em></h1>
+          <div class="s10-subhead">
+            <span>October 2026</span>
+            <span class="pip">·</span>
+            <span>500 staff</span>
+            <span class="pip">·</span>
+            <span>one bear</span>
+          </div>
+        </div>
+        <div class="s10-header-r">
+          <div class="s10-stamp"><span class="ok">●</span>&nbsp; Mission Status · ON-TRACK</div>
+          <div class="s10-slidenum">21 / 22</div>
+        </div>
+      </header>
+
+      <!-- =========================== ROADMAP =========================== -->
+      <section class="s10-roadmap">
+        <div class="s10-roadmap-label">
+          <span class="tag">ROADMAP</span>
+          <span class="text"><strong>May → October 2026</strong> &nbsp;·&nbsp; six milestones to a 1:500 ratio</span>
+        </div>
+        <div class="s10-urgency">
+          <span class="past">5 months built this.</span>
+          <span class="glyph">→</span>
+          <span class="future">5 months ship it.</span>
+        </div>
+
+        <div class="s10-rail-wrap">
+          <div class="s10-rail"></div>
+          <div class="s10-rail-fill"></div>
+
+          <div class="s10-milestones">
+            <!-- MAY (anchor) -->
+            <div class="s10-ms s10-ms--anchor">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">May<span class="now">· NOW</span></div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">Yogi v2 live</div>
+                <div class="s10-ms-detail">Inside TC Assistant · Bill voice · 1,000 specialists · cloud routines firing.</div>
+              </div>
+            </div>
+
+            <!-- JUN -->
+            <div class="s10-ms">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">Jun</div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">Workspaces Home pilot</div>
+                <div class="s10-ms-detail">50 staff onboard · Care Delivery + Quality first cohort.</div>
+              </div>
+            </div>
+
+            <!-- JUL -->
+            <div class="s10-ms">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">Jul</div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">Teams integration</div>
+                <div class="s10-ms-detail">Marleze + Mike workstreams merge into one Yogi surface.</div>
+              </div>
+            </div>
+
+            <!-- AUG -->
+            <div class="s10-ms">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">Aug</div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">Cubs Mac alpha</div>
+                <div class="s10-ms-detail">Local cubs on Sales + Marketing MacBooks · first field rollout.</div>
+              </div>
+            </div>
+
+            <!-- SEP -->
+            <div class="s10-ms">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">Sep</div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">Eval matrix v2</div>
+                <div class="s10-ms-detail">Cross-tier orchestration · Innovation crew expands · safety re-audit.</div>
+              </div>
+            </div>
+
+            <!-- OCT (destination) -->
+            <div class="s10-ms s10-ms--anchor s10-ms--dest">
+              <div class="s10-node"></div>
+              <div class="s10-ms-month">
+                <span class="s10-ms-dest-eyebrow">Destination</span>
+                <span>Oct 2026 · GA</span>
+              </div>
+              <div class="s10-card">
+                <div class="s10-ms-headline">500 staff · <strong>General Availability</strong></div>
+                <div class="s10-ms-detail">Every Trilogy staffer running their own Yogi. <strong>TC Assistant + Workspaces Home, GA.</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== THE ASKS =========================== -->
+      <section class="s10-asks-wrap">
+        <div class="s10-asks-label">
+          <span class="tag">THE ASK</span>
+          <span class="text"><strong>Three things, and that is it.</strong> &nbsp;·&nbsp; everything else we own</span>
+        </div>
+
+        <div class="s10-asks">
+          <!-- ASK 01 -->
+          <article class="s10-ask">
+            <div class="s10-ask-head">
+              <span><span class="s10-ask-num">01</span> &nbsp;·&nbsp; DEPT HEADS</span>
+              <span class="s10-ask-divider"></span>
+            </div>
+            <h3 class="s10-ask-headline">Readiness lists. <span class="accent">By Friday.</span></h3>
+            <p class="s10-ask-body">
+              Every department head: a list of <strong>process areas ready for Yogi co-pilot integration.</strong>
+              Sheree compiles. We start scoping Monday.
+            </p>
+            <div class="s10-ask-meta">
+              <span class="who">Owner · Sheree</span>
+              <span class="when">Due · Fri 29 May 2026</span>
+            </div>
+          </article>
+
+          <!-- ASK 02 -->
+          <article class="s10-ask">
+            <div class="s10-ask-head">
+              <span><span class="s10-ask-num">02</span> &nbsp;·&nbsp; COMMS</span>
+              <span class="s10-ask-divider"></span>
+            </div>
+            <h3 class="s10-ask-headline">Yogi page as <span class="accent">the on-ramp.</span></h3>
+            <p class="s10-ask-body">
+              Make <strong>/yogi</strong> the front door for non-tech staff. Luke flagged this last meeting.
+              We make it real — one URL, one bear, every team.
+            </p>
+            <div class="s10-ask-meta">
+              <span class="who">Owner · Luke + Ash</span>
+              <span class="when">Due · Jun pilot 2026</span>
+            </div>
+          </article>
+
+          <!-- ASK 03 -->
+          <article class="s10-ask">
+            <div class="s10-ask-head">
+              <span><span class="s10-ask-num">03</span> &nbsp;·&nbsp; HEADCOUNT</span>
+              <span class="s10-ask-divider"></span>
+            </div>
+            <h3 class="s10-ask-headline">Two more hands on <span class="accent">Innovation &amp; Transformation.</span></h3>
+            <p class="s10-ask-body">
+              To hit the October 1:500 ratio I need <strong>two more bodies</strong> on the I&amp;T crew.
+              Ash is the bottleneck right now — let's unblock the bear.
+            </p>
+            <div class="s10-ask-meta">
+              <span class="who">Owner · Ash → Celeste</span>
+              <span class="when">Due · mid-Oct 2026</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =========================== FOOTER =========================== -->
+      <footer class="s10-footer">
+        <div class="s10-footer-l">
+          <span class="live"></span>
+          <span>EOM · 5 MONTHS · 1 → 1,000 SPECIALISTS</span>
+        </div>
+        <div class="s10-footer-c" data-reveal="Questions. Stand by for orders.">
+          <!-- characters injected by inline script below -->
+          <span class="diamond lead">◇</span><span class="s10-rev-text"></span><span class="diamond tail">◇</span>
+        </div>
+        <div class="s10-footer-r">
+          <span>YOGI · TRILOGY CARE</span>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- Bottom-right wordmark signature -->
+    <div class="s10-wordmark">
+      Trilogy Care<span class="sep">·</span>Innovation &amp; Transformation<span class="sep">·</span>2026
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Character-by-character reveal of the closing line.
+      // Starts 3600ms into slide enter — after asks have staggered in (~2100ms + 900ms).
+      // Lands as the audio finishes.
+      var slide = document.currentScript.closest('section.slide[data-audio="24"]');
+      if (!slide) return;
+
+      var holder = slide.querySelector('.s10-footer-c');
+      var target = slide.querySelector('.s10-rev-text');
+      if (!holder || !target) return;
+
+      var phrase = holder.getAttribute('data-reveal') || '';
+      var startMs = 3600;          // begin reveal
+      var perCharMs = 55;          // tempo — slow enough to read, fast enough to land cleanly
+
+      // Build chars
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < phrase.length; i++) {
+        var c = phrase.charAt(i);
+        var span = document.createElement('span');
+        span.className = 'ch';
+        // Preserve spaces visually
+        span.textContent = c === ' ' ? ' ' : c;
+        span.style.animationDelay = (startMs + i * perCharMs) + 'ms';
+        frag.appendChild(span);
+      }
+      target.appendChild(frag);
+
+      // Update tail diamond delay based on phrase length
+      var tailDelay = (phrase.length * perCharMs) + 200; // ms AFTER startMs
+      holder.style.setProperty('--s10-final-tail-delay', tailDelay + 'ms');
+
+      // Respect reduced motion: show everything instantly
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var chars = target.querySelectorAll('.ch');
+        for (var j = 0; j < chars.length; j++) {
+          chars[j].style.animation = 'none';
+          chars[j].style.opacity = '1';
+          chars[j].style.transform = 'none';
+        }
+      }
+    })();
+  </script>
+</section>

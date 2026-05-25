@@ -1,0 +1,619 @@
+<section class="slide" data-audio="02">
+  <style>
+    /* ============ SLIDE 02 — THE JOURNEY ============ */
+    .slide[data-audio="02"] {
+      --node-w: clamp(180px, 14vw, 240px);
+      --rail-y: 56%;
+      --reveal-dur: 2400ms;
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 80% 50% at 18% 22%, rgba(254,189,51,0.06), transparent 60%),
+        radial-gradient(ellipse 70% 60% at 88% 78%, rgba(67,192,190,0.05), transparent 60%),
+        radial-gradient(circle at 50% 56%, rgba(254,189,51,0.04), transparent 55%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    /* fine grid texture */
+    .slide[data-audio="02"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 90%);
+      pointer-events: none;
+    }
+
+    /* film grain */
+    .slide[data-audio="02"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s02-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: clamp(40px, 4vw, 72px) clamp(48px, 5vw, 96px);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* ----- HEADER ----- */
+    .s02-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: clamp(28px, 3vw, 56px);
+    }
+
+    .s02-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .s02-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s02-pulse 2.4s ease-in-out infinite;
+    }
+    .s02-eyebrow .arrow {
+      color: var(--honey);
+      font-family: var(--font-mono);
+      letter-spacing: 0;
+    }
+    @keyframes s02-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .s02-headline {
+      font-size: clamp(44px, 5.2vw, 88px);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin: 0;
+    }
+    .s02-headline .accent {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--honey);
+      letter-spacing: -0.02em;
+    }
+
+    .s02-sub {
+      max-width: 360px;
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.78vw, 13px);
+      line-height: 1.6;
+      color: var(--fg-muted);
+      text-align: right;
+      padding-top: 22px;
+    }
+    .s02-sub strong {
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .s02-sub .rule {
+      width: 64px; height: 1px;
+      background: var(--border-warm);
+      margin: 14px 0 14px auto;
+    }
+
+    /* ----- TIMELINE STAGE ----- */
+    .s02-stage {
+      position: relative;
+      flex: 1;
+      min-height: 480px;
+    }
+
+    .s02-rail-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .s02-rail-path {
+      fill: none;
+      stroke: var(--honey);
+      stroke-width: 1.25;
+      stroke-dasharray: 4 6;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px rgba(254,189,51,0.45));
+      opacity: 0;
+    }
+    .s02-rail-glow {
+      fill: none;
+      stroke: rgba(254,189,51,0.18);
+      stroke-width: 8;
+      stroke-linecap: round;
+      filter: blur(6px);
+      opacity: 0;
+    }
+
+    .slide[data-audio="02"].is-active .s02-rail-glow { animation: s02-glow-in 1800ms ease-out 200ms forwards; }
+    .slide[data-audio="02"].is-active .s02-rail-path {
+      stroke-dashoffset: 1;
+      animation: s02-draw var(--reveal-dur) cubic-bezier(.6,.05,.25,1) 250ms forwards;
+    }
+    @keyframes s02-glow-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes s02-draw {
+      0%   { stroke-dashoffset: var(--path-len, 1800); opacity: 0; }
+      8%   { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    /* tick marks along rail */
+    .s02-tick {
+      stroke: rgba(255,255,255,0.18);
+      stroke-width: 1;
+      opacity: 0;
+    }
+    .slide[data-audio="02"].is-active .s02-tick {
+      animation: s02-fade-in 600ms ease-out forwards;
+    }
+
+    /* ----- NODES ----- */
+    .s02-nodes {
+      position: absolute;
+      inset: 0;
+    }
+
+    .s02-node {
+      position: absolute;
+      width: var(--node-w);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: transform 280ms ease;
+    }
+    .slide[data-audio="02"].is-active .s02-node {
+      animation: s02-node-in 700ms cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    .s02-node:nth-child(1) { animation-delay: 380ms; }
+    .s02-node:nth-child(2) { animation-delay: 780ms; }
+    .s02-node:nth-child(3) { animation-delay: 1180ms; }
+    .s02-node:nth-child(4) { animation-delay: 1580ms; }
+    .s02-node:nth-child(5) { animation-delay: 1980ms; }
+
+    @keyframes s02-node-in {
+      from { opacity: 0; transform: translate(-50%, calc(-50% + 14px)); filter: blur(6px); }
+      to   { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
+    }
+    @keyframes s02-fade-in {
+      to { opacity: 1; }
+    }
+
+    /* leader line from node to rail */
+    .s02-leader {
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(254,189,51,0.55), rgba(254,189,51,0));
+      transform: translateX(-50%);
+    }
+    .s02-node[data-side="up"] .s02-leader {
+      top: 100%;
+      height: 0;
+    }
+    .s02-node[data-side="down"] .s02-leader {
+      bottom: 100%;
+      height: 0;
+    }
+    .s02-node[data-side="down"] .s02-leader {
+      background: linear-gradient(to top, rgba(254,189,51,0.55), rgba(254,189,51,0));
+    }
+    .slide[data-audio="02"].is-active .s02-node .s02-leader {
+      animation: s02-leader 500ms ease-out forwards;
+      animation-delay: inherit;
+    }
+    @keyframes s02-leader {
+      to { height: var(--leader-h, 38px); }
+    }
+
+    /* the glassy chip itself */
+    .s02-chip {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 14px 16px 16px;
+      backdrop-filter: blur(8px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 12px 32px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(254,189,51,0.12);
+    }
+    .s02-chip::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 5px;
+      pointer-events: none;
+      box-shadow: 0 0 18px rgba(254,189,51,0.18);
+      opacity: 0.6;
+    }
+
+    /* node "anchor" — small dot welded onto the rail */
+    .s02-anchor {
+      position: absolute;
+      left: 50%;
+      width: 11px; height: 11px;
+      background: var(--bg);
+      border: 1.5px solid var(--honey);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        0 0 0 4px rgba(254,189,51,0.08),
+        0 0 14px rgba(254,189,51,0.55);
+      z-index: 2;
+    }
+    .s02-anchor::after {
+      content: "";
+      position: absolute;
+      inset: 2.5px;
+      background: var(--honey);
+      border-radius: 50%;
+    }
+    .s02-node[data-side="up"] .s02-anchor   { top: calc(100% + var(--leader-h, 38px) - 5.5px); }
+    .s02-node[data-side="down"] .s02-anchor { bottom: calc(100% + var(--leader-h, 38px) - 5.5px); }
+
+    /* node typography */
+    .s02-month {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .s02-month .num {
+      color: var(--fg-dim);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+
+    .s02-title {
+      font-size: clamp(15px, 1.05vw, 19px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.018em;
+      color: var(--fg);
+      margin: 0 0 8px;
+    }
+
+    .s02-desc {
+      font-size: clamp(11px, 0.75vw, 12.5px);
+      line-height: 1.45;
+      color: var(--fg-muted);
+      margin: 0 0 14px;
+      letter-spacing: -0.005em;
+    }
+
+    .s02-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+    }
+    .s02-stat .glyph {
+      width: 6px; height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    /* highlight final node */
+    .s02-node.is-now .s02-chip {
+      background: linear-gradient(180deg, rgba(254,189,51,0.08), rgba(254,189,51,0.015));
+      border-color: rgba(254,189,51,0.32);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 16px 40px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(254,189,51,0.28),
+        0 0 60px rgba(254,189,51,0.18);
+    }
+    .s02-node.is-now .s02-anchor {
+      width: 14px; height: 14px;
+      box-shadow:
+        0 0 0 6px rgba(254,189,51,0.12),
+        0 0 24px rgba(254,189,51,0.8);
+    }
+    .s02-node.is-now .s02-month {
+      color: var(--honey);
+    }
+    .s02-node.is-now .s02-month::after {
+      content: "NOW";
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      padding: 2px 6px;
+      background: var(--honey);
+      color: var(--bg);
+      border-radius: 2px;
+      margin-left: 6px;
+    }
+
+    /* faint progress label "MONTH 01 → 05" tucked along rail */
+    .s02-rail-label {
+      position: absolute;
+      bottom: 6%;
+      left: clamp(48px, 5vw, 96px);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .s02-rail-label .bar {
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, var(--honey), transparent);
+    }
+
+    /* bottom-right tip */
+    .s02-tip {
+      position: absolute;
+      right: clamp(48px, 5vw, 96px);
+      bottom: clamp(36px, 4vw, 60px);
+      max-width: 320px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--fg-muted);
+      text-align: right;
+      letter-spacing: -0.005em;
+    }
+    .s02-tip .label {
+      display: inline-block;
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      color: var(--honey);
+      margin-bottom: 10px;
+    }
+    .s02-tip .body {
+      border-right: 1px solid var(--border-warm);
+      padding-right: 14px;
+    }
+    .s02-tip .body em {
+      font-style: normal;
+      color: var(--fg);
+    }
+
+    /* corner registration marks for that NASA terminal feel */
+    .s02-mark {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.32);
+    }
+    .s02-mark.tl { top: 28px;    left: 28px;    border-right: none;  border-bottom: none; }
+    .s02-mark.tr { top: 28px;    right: 28px;   border-left: none;   border-bottom: none; }
+    .s02-mark.bl { bottom: 28px; left: 28px;    border-right: none;  border-top: none; }
+    .s02-mark.br { bottom: 28px; right: 28px;   border-left: none;   border-top: none; }
+
+    .s02-stamp {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="02"] *,
+      .slide[data-audio="02"] *::before,
+      .slide[data-audio="02"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slide[data-audio="02"] .s02-rail-path { opacity: 1; stroke-dashoffset: 0; }
+      .slide[data-audio="02"] .s02-rail-glow { opacity: 1; }
+      .slide[data-audio="02"] .s02-node      { opacity: 1; }
+    }
+  </style>
+
+  <div class="content">
+    <div class="s02-frame">
+
+      <!-- corner registration marks -->
+      <div class="s02-mark tl"></div>
+      <div class="s02-mark tr"></div>
+      <div class="s02-mark bl"></div>
+      <div class="s02-mark br"></div>
+      <div class="s02-stamp">SLIDE · 02 / THE JOURNEY</div>
+
+      <!-- HEADER -->
+      <header class="s02-head">
+        <div>
+          <div class="s02-eyebrow">
+            <span class="dot"></span>
+            <span>5 Months</span>
+            <span class="arrow">·</span>
+            <span>1 Agent</span>
+            <span class="arrow">→</span>
+            <span>1,000 Specialists</span>
+          </div>
+          <h1 class="s02-headline">
+            Compounding,<br/>
+            <span class="accent">not linear.</span>
+          </h1>
+        </div>
+
+        <div class="s02-sub">
+          <strong>Origin log, Jan–May 2026.</strong>
+          <div class="rule"></div>
+          Each step layered on the last. Memory survived. Agents multiplied. Authority widened. The substrate held.
+        </div>
+      </header>
+
+      <!-- TIMELINE STAGE -->
+      <div class="s02-stage">
+        <!-- SVG rail -->
+        <svg class="s02-rail-svg" viewBox="0 0 1600 560" preserveAspectRatio="none">
+          <!-- glow understroke -->
+          <path class="s02-rail-glow"
+                d="M 60 310 C 220 310, 260 200, 380 200 C 500 200, 540 360, 700 360 C 860 360, 900 220, 1020 220 C 1140 220, 1180 360, 1300 360 C 1420 360, 1480 280, 1540 280" />
+          <!-- dashed honey thread -->
+          <path class="s02-rail-path"
+                d="M 60 310 C 220 310, 260 200, 380 200 C 500 200, 540 360, 700 360 C 860 360, 900 220, 1020 220 C 1140 220, 1180 360, 1300 360 C 1420 360, 1480 280, 1540 280"
+                pathLength="1" stroke-dasharray="0.012 0.018" />
+
+          <!-- end caps / faint ticks -->
+          <line class="s02-tick" x1="60"   y1="298" x2="60"   y2="322" style="animation-delay:300ms"/>
+          <line class="s02-tick" x1="1540" y1="268" x2="1540" y2="292" style="animation-delay:2400ms"/>
+        </svg>
+
+        <!-- NODES -->
+        <div class="s02-nodes">
+
+          <!-- Jan : top -->
+          <article class="s02-node" data-side="up" style="left: 9%;  top: 36%;">
+            <div class="s02-chip">
+              <div class="s02-month"><span>Jan&nbsp;·&nbsp;2026</span><span class="num">01 / 05</span></div>
+              <h3 class="s02-title">Claude lands, business analog</h3>
+              <p class="s02-desc">Mike's TC Assistant deployed; buy-in thin; the gap identified.</p>
+              <div class="s02-stat"><span class="glyph"></span><span>1 agent · 0 memory</span></div>
+            </div>
+            <span class="s02-leader" style="--leader-h: 56px;"></span>
+            <span class="s02-anchor"></span>
+          </article>
+
+          <!-- Feb : bottom -->
+          <article class="s02-node" data-side="down" style="left: 26%; top: 70%;">
+            <div class="s02-chip">
+              <div class="s02-month"><span>Feb&nbsp;·&nbsp;2026</span><span class="num">02 / 05</span></div>
+              <h3 class="s02-title">Persistent memory layer</h3>
+              <p class="s02-desc">Memory survives sessions; structured notes; rules auto-extract from corrections.</p>
+              <div class="s02-stat"><span class="glyph"></span><span>75 memory files</span></div>
+            </div>
+            <span class="s02-leader" style="--leader-h: 38px;"></span>
+            <span class="s02-anchor"></span>
+          </article>
+
+          <!-- Mar : top -->
+          <article class="s02-node" data-side="up" style="left: 47%; top: 28%;">
+            <div class="s02-chip">
+              <div class="s02-month"><span>Mar&nbsp;·&nbsp;2026</span><span class="num">03 / 05</span></div>
+              <h3 class="s02-title">Specialist Crew forms</h3>
+              <p class="s02-desc">11 named animals — Rocco, Otto, Bram, Ferra, Hoot, Buzz, Pip, Briar, Lumi, Gus, Tess.</p>
+              <div class="s02-stat"><span class="glyph"></span><span>11 inner circle</span></div>
+            </div>
+            <span class="s02-leader" style="--leader-h: 68px;"></span>
+            <span class="s02-anchor"></span>
+          </article>
+
+          <!-- Apr : bottom -->
+          <article class="s02-node" data-side="down" style="left: 67%; top: 70%;">
+            <div class="s02-chip">
+              <div class="s02-month"><span>Apr&nbsp;·&nbsp;2026</span><span class="num">04 / 05</span></div>
+              <h3 class="s02-title">Authority to act</h3>
+              <p class="s02-desc">Teams, CI/CD, email, code shipping — multichannel reach into the real world.</p>
+              <div class="s02-stat"><span class="glyph"></span><span>200+ MCP tools</span></div>
+            </div>
+            <span class="s02-leader" style="--leader-h: 38px;"></span>
+            <span class="s02-anchor"></span>
+          </article>
+
+          <!-- May : centre-right (the "now" peak) -->
+          <article class="s02-node is-now" data-side="up" style="left: 88%; top: 36%;">
+            <div class="s02-chip">
+              <div class="s02-month"><span>May&nbsp;·&nbsp;2026</span><span class="num">05 / 05</span></div>
+              <h3 class="s02-title">Enterprise AGI</h3>
+              <p class="s02-desc">1,000 specialists across 4 tiers; persistent identity; voice; cubs in production.</p>
+              <div class="s02-stat"><span class="glyph"></span><span>1,000 specialists · 328 tools</span></div>
+            </div>
+            <span class="s02-leader" style="--leader-h: 48px;"></span>
+            <span class="s02-anchor"></span>
+          </article>
+
+        </div>
+
+        <!-- faint rail label -->
+        <div class="s02-rail-label">
+          <span>Month 01</span>
+          <span class="bar"></span>
+          <span>Month 05</span>
+        </div>
+      </div>
+
+      <!-- bottom-right tip -->
+      <aside class="s02-tip">
+        <div class="label">// FIELD NOTE</div>
+        <div class="body">
+          Each step compounds the last.<br/>
+          The substrate is <em>git + markdown</em>.
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate() { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[2] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[2] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(slide);
+      }
+    })();
+  </script>
+</section>

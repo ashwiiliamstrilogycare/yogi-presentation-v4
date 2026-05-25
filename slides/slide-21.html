@@ -1,0 +1,1081 @@
+<section class="slide" data-audio="21" id="slide-mms">
+  <style>
+    /* ================================================================
+       SLIDE 20 — MULTI-MODEL STRATEGY
+       "Not locked to one model."
+       Router diagram (top) · Model scorecard (middle) · Receipts (bottom)
+       Cinematic NASA-grade systems diagram.
+       ================================================================ */
+
+    #slide-mms {
+      --s20m-bg:         #0a0d12;
+      --s20m-bg-elev:    #11161f;
+      --s20m-bg-card:    #0d1119;
+      --s20m-bg-deep:    #070a0f;
+
+      --s20m-honey:      #FEBD33;
+      --s20m-honey-2:    #FFD46A;
+      --s20m-honey-soft: rgba(254, 189, 51, 0.10);
+      --s20m-honey-glow: rgba(254, 189, 51, 0.42);
+      --s20m-honey-line: rgba(254, 189, 51, 0.28);
+      --s20m-honey-faint:rgba(254, 189, 51, 0.14);
+
+      --s20m-teal:       #43C0BE;
+      --s20m-dark-teal:  #007F7E;
+      --s20m-sky:        #64BCEA;
+      --s20m-violet:     #9B7BD4;
+      --s20m-coral:      #F39B5A;
+      --s20m-red:        #E04B51;
+      --s20m-navy:       #2C4C79;
+
+      --s20m-fg:         #f4f4f5;
+      --s20m-fg-muted:   #a1a1aa;
+      --s20m-fg-dim:     #71717a;
+      --s20m-fg-faint:   #52525b;
+      --s20m-fg-ghost:   #3a3a40;
+      --s20m-border:     rgba(255, 255, 255, 0.07);
+      --s20m-border-strong: rgba(255, 255, 255, 0.12);
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background: var(--s20m-bg);
+      color: var(--s20m-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.01em;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* ---------- Atmosphere ---------- */
+    #slide-mms .atmos { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    #slide-mms .grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 50% 38%, black 28%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 38%, black 28%, transparent 82%);
+    }
+    #slide-mms .glow-honey {
+      position: absolute; top: 28%; left: 50%;
+      width: 78vmin; height: 50vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.10) 0%,
+        rgba(67, 192, 190, 0.04) 40%,
+        transparent 70%);
+      filter: blur(28px);
+      animation: glowBreathe 11s ease-in-out infinite;
+    }
+    #slide-mms .glow-teal {
+      position: absolute; top: 72%; left: 22%;
+      width: 36vmin; height: 36vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(67, 192, 190, 0.07) 0%,
+        transparent 70%);
+      filter: blur(24px);
+    }
+    @keyframes glowBreathe {
+      0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+      50%      { opacity: 1.0;  transform: translate(-50%, -50%) scale(1.05); }
+    }
+    #slide-mms .grain {
+      position: absolute; inset: 0; opacity: 0.03; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    }
+
+    /* ---------- Layout shell ---------- */
+    #slide-mms .wrap {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      max-width: 1820px;
+      margin: 0 auto;
+      padding: clamp(20px, 2.4vh, 32px) clamp(36px, 3.6vw, 64px) clamp(18px, 2vh, 28px);
+      display: flex; flex-direction: column;
+      gap: clamp(12px, 1.4vh, 20px);
+    }
+
+    /* ---------- Top header row ---------- */
+    #slide-mms .top {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 32px;
+    }
+    #slide-mms .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--s20m-fg-muted);
+    }
+    #slide-mms .eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 12px var(--s20m-honey-glow);
+      animation: pulseDot 2.4s ease-in-out infinite;
+    }
+    #slide-mms .eyebrow .bar { width: 22px; height: 1px; background: var(--s20m-border-strong); }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50%      { opacity: 1;    transform: scale(1.15); }
+    }
+
+    #slide-mms .head-l {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    #slide-mms h1 {
+      margin: 0;
+      font-size: clamp(38px, 4.6vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.96;
+      color: var(--s20m-fg);
+    }
+    #slide-mms h1 .accent {
+      color: var(--s20m-honey);
+      font-style: italic;
+      font-weight: 700;
+    }
+    #slide-mms .subhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s20m-honey);
+      font-weight: 500;
+    }
+    #slide-mms .subhead .sep { color: var(--s20m-fg-faint); margin: 0 8px; }
+
+    #slide-mms .head-r {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-dim);
+    }
+    #slide-mms .head-r .num {
+      font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--s20m-fg); text-transform: none;
+      font-family: 'Inter', sans-serif;
+    }
+    #slide-mms .head-r .num .slash { color: var(--s20m-honey); margin: 0 4px; }
+
+    /* ================================================================
+       ROUTER DIAGRAM
+       ================================================================ */
+    #slide-mms .router {
+      position: relative;
+      background: linear-gradient(180deg,
+        rgba(15, 20, 28, 0.85) 0%,
+        rgba(11, 15, 22, 0.7) 100%);
+      border: 1px solid var(--s20m-border);
+      border-radius: 14px;
+      padding: clamp(16px, 2vh, 22px) clamp(20px, 2.4vw, 32px);
+      overflow: hidden;
+    }
+    #slide-mms .router::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(254, 189, 51, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    #slide-mms .router-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-dim);
+    }
+    #slide-mms .router-label .stat {
+      color: var(--s20m-honey);
+      font-weight: 500;
+    }
+
+    #slide-mms .router-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 220px 1fr 360px;
+      align-items: center;
+      gap: 0;
+      min-height: 220px;
+    }
+
+    /* Incoming task chip (left) */
+    #slide-mms .task-in {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; gap: 8px;
+      padding: 14px 16px;
+      background: var(--s20m-bg-deep);
+      border: 1px solid var(--s20m-border-strong);
+      border-radius: 10px;
+    }
+    #slide-mms .task-in .tlbl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--s20m-fg-dim);
+    }
+    #slide-mms .task-in .tarrow {
+      color: var(--s20m-honey); margin-right: 6px;
+    }
+    #slide-mms .task-in .tcmd {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 12.5px; color: var(--s20m-fg); font-weight: 500;
+      line-height: 1.35;
+    }
+    #slide-mms .task-in .ttag {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: var(--s20m-teal);
+      letter-spacing: 0.06em;
+    }
+
+    /* Router diamond (center) */
+    #slide-mms .router-core {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
+    }
+    #slide-mms .diamond-wrap {
+      position: relative;
+      width: 200px; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #slide-mms .diamond {
+      position: absolute; inset: 0;
+      transform: rotate(45deg);
+      background: linear-gradient(135deg,
+        rgba(254, 189, 51, 0.20) 0%,
+        rgba(254, 189, 51, 0.06) 60%,
+        transparent 100%);
+      border: 1.5px solid var(--s20m-honey);
+      border-radius: 14px;
+      box-shadow:
+        0 0 0 6px rgba(254, 189, 51, 0.04),
+        0 0 40px rgba(254, 189, 51, 0.25),
+        inset 0 0 30px rgba(254, 189, 51, 0.08);
+      animation: diamondPulse 4s ease-in-out infinite;
+    }
+    @keyframes diamondPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 0 4px rgba(254, 189, 51, 0.04),
+          0 0 32px rgba(254, 189, 51, 0.20),
+          inset 0 0 28px rgba(254, 189, 51, 0.06);
+      }
+      50% {
+        box-shadow:
+          0 0 0 8px rgba(254, 189, 51, 0.06),
+          0 0 56px rgba(254, 189, 51, 0.35),
+          inset 0 0 36px rgba(254, 189, 51, 0.12);
+      }
+    }
+    #slide-mms .diamond-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 4px;
+      width: 158px; text-align: center;
+    }
+    #slide-mms .diamond-inner .ico {
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--s20m-honey);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      transform: rotate(45deg);
+      background: rgba(254, 189, 51, 0.10);
+      margin-bottom: 2px;
+    }
+    #slide-mms .diamond-inner .ico::before {
+      content: ''; width: 8px; height: 8px;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 12px var(--s20m-honey);
+    }
+    #slide-mms .diamond-inner .ttl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s20m-honey);
+    }
+    #slide-mms .diamond-inner .sub {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-muted);
+    }
+
+    /* Decision badges floating around diamond */
+    #slide-mms .badges {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    #slide-mms .badge {
+      position: absolute;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px;
+      background: var(--s20m-bg-deep);
+      border: 1px solid var(--s20m-honey-line);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-muted);
+      white-space: nowrap;
+    }
+    #slide-mms .badge .bd {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 8px var(--s20m-honey-glow);
+    }
+    #slide-mms .badge.b1 { top: 4px; left: 50%; transform: translateX(-50%); }
+    #slide-mms .badge.b2 { bottom: 24px; left: 0; }
+    #slide-mms .badge.b3 { bottom: 24px; right: 0; }
+
+    /* SVG router lines */
+    #slide-mms .router-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    /* Model chips (right) */
+    #slide-mms .models-fan {
+      position: relative;
+      display: flex; flex-direction: column;
+      gap: 4px;
+    }
+    #slide-mms .model-chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 12px;
+      background: var(--s20m-bg-deep);
+      border: 1px solid var(--s20m-border);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      transition: all 200ms ease;
+    }
+    #slide-mms .model-chip .ch-logo {
+      width: 16px; height: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    #slide-mms .model-chip .ch-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--s20m-fg);
+      letter-spacing: 0;
+    }
+    #slide-mms .model-chip .ch-vendor {
+      font-size: 9.5px;
+      color: var(--s20m-fg-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: auto;
+    }
+    #slide-mms .model-chip.chosen {
+      background: linear-gradient(90deg,
+        rgba(254, 189, 51, 0.14) 0%,
+        rgba(254, 189, 51, 0.04) 100%);
+      border-color: var(--s20m-honey);
+      box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.18),
+        0 0 24px rgba(254, 189, 51, 0.18);
+    }
+    #slide-mms .model-chip.chosen .ch-name { color: var(--s20m-honey); }
+    #slide-mms .model-chip.chosen::after {
+      content: '→ chosen';
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s20m-honey);
+      margin-left: 8px;
+    }
+
+    /* ================================================================
+       SCORECARD
+       ================================================================ */
+    #slide-mms .card-section {
+      position: relative;
+      background: var(--s20m-bg-card);
+      border: 1px solid var(--s20m-border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    #slide-mms .card-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 22px;
+      border-bottom: 1px solid var(--s20m-border);
+      background: rgba(255, 255, 255, 0.015);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-muted);
+    }
+    #slide-mms .card-head .legend {
+      display: flex; gap: 16px; align-items: center;
+    }
+    #slide-mms .card-head .leg-item {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--s20m-fg-dim);
+      font-size: 9.5px;
+    }
+    #slide-mms .card-head .leg-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+
+    #slide-mms .scoretable {
+      display: grid;
+      grid-template-columns:
+        minmax(180px, 1.4fr)    /* Model */
+        minmax(64px, 0.7fr)     /* Vendor */
+        minmax(96px, 1fr)       /* Reasoning */
+        minmax(96px, 1fr)       /* Speed */
+        minmax(110px, 1.05fr)   /* Cost */
+        minmax(72px, 0.75fr)    /* Long ctx */
+        minmax(86px, 0.85fr)    /* Modal */
+        minmax(220px, 2.4fr);   /* Use case */
+    }
+    #slide-mms .scoretable .th {
+      padding: 9px 14px 9px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-dim);
+      border-bottom: 1px solid var(--s20m-border);
+      background: rgba(255, 255, 255, 0.012);
+    }
+    #slide-mms .scoretable .row {
+      display: contents;
+    }
+    #slide-mms .scoretable .row > div {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex; align-items: center;
+      transition: background 180ms ease;
+    }
+    #slide-mms .scoretable .row.last > div {
+      border-bottom: none;
+    }
+    #slide-mms .scoretable .row.featured > div {
+      background: linear-gradient(90deg,
+        rgba(254, 189, 51, 0.06) 0%,
+        rgba(254, 189, 51, 0.02) 70%,
+        transparent 100%);
+    }
+    #slide-mms .scoretable .row.featured > div:first-child::before {
+      content: ''; position: absolute; left: 0;
+      width: 2px; height: 70%;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 12px var(--s20m-honey-glow);
+    }
+
+    #slide-mms .cell-model {
+      position: relative;
+      display: flex !important; flex-direction: column; gap: 2px;
+      align-items: flex-start !important;
+    }
+    #slide-mms .cell-model .mn {
+      font-size: 13.5px; font-weight: 700; color: var(--s20m-fg);
+      letter-spacing: -0.005em;
+    }
+    #slide-mms .cell-model .ml {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      color: var(--s20m-fg-dim);
+      letter-spacing: 0.04em;
+    }
+    #slide-mms .row.featured .cell-model .mn { color: var(--s20m-honey); }
+    #slide-mms .row.featured .cell-model .ml::after {
+      content: ' · default';
+      color: var(--s20m-honey);
+      font-weight: 600;
+    }
+
+    #slide-mms .cell-vendor {
+      display: flex !important; align-items: center; gap: 8px;
+    }
+    #slide-mms .cell-vendor .vlogo {
+      width: 18px; height: 18px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    #slide-mms .cell-vendor .vname {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      color: var(--s20m-fg-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* Dot meters */
+    #slide-mms .meter {
+      display: inline-flex; gap: 4px;
+      align-items: center;
+    }
+    #slide-mms .meter .d {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      transition: all 200ms ease;
+    }
+    #slide-mms .meter .d.on {
+      background: var(--meter-c, var(--s20m-honey));
+      box-shadow: 0 0 6px var(--meter-glow, rgba(254, 189, 51, 0.5));
+    }
+    .col-reasoning { --meter-c: var(--s20m-honey); --meter-glow: rgba(254, 189, 51, 0.5); }
+    .col-speed     { --meter-c: var(--s20m-teal);  --meter-glow: rgba(67, 192, 190, 0.5); }
+    .col-cost      { --meter-c: var(--s20m-coral); --meter-glow: rgba(243, 155, 90, 0.5); }
+    .col-ctx       { --meter-c: var(--s20m-sky);   --meter-glow: rgba(100, 188, 234, 0.5); }
+    .col-modal     { --meter-c: var(--s20m-violet);--meter-glow: rgba(155, 123, 212, 0.5); }
+
+    #slide-mms .cell-cost {
+      display: flex !important; flex-direction: column; gap: 2px;
+      align-items: flex-start !important;
+    }
+    #slide-mms .cell-cost .cval {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px; color: var(--s20m-fg); font-weight: 500;
+    }
+    #slide-mms .cell-cost .clbl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      color: var(--s20m-fg-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #slide-mms .cell-ctx,
+    #slide-mms .cell-modal {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--s20m-fg-muted);
+      letter-spacing: 0.02em;
+    }
+
+    #slide-mms .cell-use {
+      font-size: 12px;
+      color: var(--s20m-fg-muted);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+    #slide-mms .row.featured .cell-use {
+      color: var(--s20m-fg);
+    }
+
+    /* ================================================================
+       BOTTOM RECEIPTS BAND
+       ================================================================ */
+    #slide-mms .receipts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    #slide-mms .receipt {
+      position: relative;
+      background: linear-gradient(180deg,
+        rgba(15, 20, 28, 0.7) 0%,
+        rgba(11, 15, 22, 0.5) 100%);
+      border: 1px solid var(--s20m-border);
+      border-left: 2px solid var(--receipt-c, var(--s20m-honey));
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    #slide-mms .receipt .rval {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--receipt-c, var(--s20m-honey));
+      line-height: 1;
+    }
+    #slide-mms .receipt .rval .unit {
+      font-size: 13px;
+      color: var(--s20m-fg-muted);
+      font-weight: 500;
+      margin-left: 2px;
+    }
+    #slide-mms .receipt .rlbl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-dim);
+    }
+    #slide-mms .receipt .rdesc {
+      font-size: 11.5px;
+      color: var(--s20m-fg-muted);
+      line-height: 1.35;
+    }
+    #slide-mms .receipt.r1 { --receipt-c: var(--s20m-honey); }
+    #slide-mms .receipt.r2 { --receipt-c: var(--s20m-coral); }
+    #slide-mms .receipt.r3 { --receipt-c: var(--s20m-violet); }
+    #slide-mms .receipt.r4 { --receipt-c: var(--s20m-teal);  }
+
+    /* ---------- Reveal animation ---------- */
+    #slide-mms .reveal {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: revealUp 720ms cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    #slide-mms .reveal.d1  { animation-delay: 80ms; }
+    #slide-mms .reveal.d2  { animation-delay: 200ms; }
+    #slide-mms .reveal.d3  { animation-delay: 340ms; }
+    #slide-mms .reveal.d4  { animation-delay: 480ms; }
+    #slide-mms .reveal.d5  { animation-delay: 620ms; }
+    #slide-mms .reveal.d6  { animation-delay: 760ms; }
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Routing line dash animation */
+    #slide-mms .rline {
+      stroke: var(--s20m-honey-line);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+      fill: none;
+      opacity: 0.55;
+    }
+    #slide-mms .rline.solid {
+      stroke: var(--s20m-honey);
+      stroke-width: 1.5;
+      stroke-dasharray: none;
+      opacity: 1;
+      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.55));
+    }
+    #slide-mms .rdot {
+      fill: var(--s20m-honey);
+      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.7));
+    }
+    #slide-mms .flow-dot {
+      animation: flowAlong 3.6s ease-in-out infinite;
+    }
+    @keyframes flowAlong {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #slide-mms * { animation: none !important; }
+      #slide-mms .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Footer micro-line */
+    #slide-mms .micro-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-faint);
+      margin-top: -4px;
+    }
+    #slide-mms .micro-foot .m-r {
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    #slide-mms .micro-foot .pin {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 6px var(--s20m-honey);
+    }
+  </style>
+
+  <div class="atmos">
+    <div class="grid-bg"></div>
+    <div class="glow-honey"></div>
+    <div class="glow-teal"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ========== HEADER ========== -->
+    <div class="top reveal d1">
+      <div class="head-l">
+        <span class="eyebrow">
+          <span class="dot"></span>
+          20 / 25
+          <span class="bar"></span>
+          MULTI-MODEL STRATEGY
+          <span class="bar"></span>
+          FRONTIER + COST-EFFECTIVE
+        </span>
+        <h1>Not locked to <span class="accent">one model.</span></h1>
+        <div class="subhead">
+          8 FRONTIER MODELS <span class="sep">·</span> ROUTING PER TASK <span class="sep">·</span> BEST TOOL LOWEST COST EVERY TIME
+        </div>
+      </div>
+      <div class="head-r">
+        <div class="num">8<span class="slash">/</span>vendors</div>
+        <div>ROUTER · LIVE</div>
+      </div>
+    </div>
+
+    <!-- ========== ROUTER DIAGRAM ========== -->
+    <div class="router reveal d2">
+      <div class="router-label">
+        <span>ROUTING TRACE <span style="color:var(--s20m-fg-faint); margin: 0 8px;">·</span> task → model selection</span>
+        <span class="stat">policy: best capability ∩ cost-ceiling</span>
+      </div>
+
+      <div class="router-stage">
+
+        <!-- TASK IN -->
+        <div class="task-in">
+          <div class="tlbl">INCOMING TASK</div>
+          <div class="tcmd">
+            <span class="tarrow">›</span>investigate complaint TC-5012
+          </div>
+          <div class="ttag">// ACQSC · evidence-grade · deep reasoning</div>
+        </div>
+
+        <!-- ROUTER CORE -->
+        <div class="router-core">
+          <div class="diamond-wrap">
+            <div class="diamond"></div>
+            <div class="diamond-inner">
+              <div class="ico"></div>
+              <div class="ttl">Yogi Router</div>
+              <div class="sub">decision policy</div>
+            </div>
+            <div class="badges">
+              <div class="badge b1"><span class="bd"></span>complexity</div>
+              <div class="badge b2"><span class="bd"></span>cost ceiling</div>
+              <div class="badge b3"><span class="bd"></span>modality</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODELS FAN -->
+        <div class="models-fan">
+          <div class="model-chip chosen" data-mk="opus">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="ch-name">Opus 4.6</span>
+            <span class="ch-vendor">Anthropic</span>
+          </div>
+          <div class="model-chip" data-mk="sonnet">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#a1a1aa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="ch-name">Sonnet 4.6</span>
+            <span class="ch-vendor">Anthropic</span>
+          </div>
+          <div class="model-chip" data-mk="haiku">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#a1a1aa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="ch-name">Haiku 4.5</span>
+            <span class="ch-vendor">Anthropic</span>
+          </div>
+          <div class="model-chip" data-mk="gpro">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#a1a1aa" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Gemini 2.5 Pro</span>
+            <span class="ch-vendor">Google</span>
+          </div>
+          <div class="model-chip" data-mk="gflash">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#a1a1aa" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Gemini 2.5 Flash</span>
+            <span class="ch-vendor">Google</span>
+          </div>
+          <div class="model-chip" data-mk="gpt5">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">GPT-5</span>
+            <span class="ch-vendor">OpenAI</span>
+          </div>
+          <div class="model-chip" data-mk="oseries">
+            <span class="ch-logo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">o-series</span>
+            <span class="ch-vendor">OpenAI</span>
+          </div>
+          <div class="model-chip" data-mk="llama">
+            <span class="ch-logo">
+              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
+                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Llama 4 70B</span>
+            <span class="ch-vendor">Meta · OnPrem</span>
+          </div>
+        </div>
+
+        <!-- SVG ROUTING LINES -->
+        <svg class="router-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <!-- task chip → diamond -->
+          <path class="rline solid" d="M 12.5 50 H 30" />
+          <!-- diamond → 8 model chips on right -->
+          <path class="rline solid" d="M 50 50 C 60 50, 60 7,  72 7" />
+          <path class="rline" d="M 50 50 C 60 50, 60 18, 72 18" />
+          <path class="rline" d="M 50 50 C 60 50, 60 30, 72 30" />
+          <path class="rline" d="M 50 50 C 60 50, 60 42, 72 42" />
+          <path class="rline" d="M 50 50 C 60 50, 60 55, 72 55" />
+          <path class="rline" d="M 50 50 C 60 50, 60 68, 72 68" />
+          <path class="rline" d="M 50 50 C 60 50, 60 80, 72 80" />
+          <path class="rline" d="M 50 50 C 60 50, 60 93, 72 93" />
+
+          <!-- flow dots -->
+          <circle class="rdot flow-dot" r="0.7" style="animation-delay: 0s;">
+            <animateMotion dur="3.6s" repeatCount="indefinite"
+              path="M 12.5 50 H 30 L 50 50 C 60 50, 60 7, 72 7" />
+          </circle>
+        </svg>
+
+        <!-- Chosen tag -->
+        <div style="position:absolute; right: 0; top: 8px; padding: 4px 9px; background: var(--s20m-bg-deep); border: 1px solid var(--s20m-honey); border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--s20m-honey); display: flex; align-items: center; gap: 6px;">
+          <span style="width:5px; height:5px; border-radius:50%; background:var(--s20m-honey); box-shadow:0 0 8px var(--s20m-honey);"></span>
+          → Opus 4.6
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========== SCORECARD ========== -->
+    <div class="card-section reveal d3">
+      <div class="card-head">
+        <span>MODEL SCORECARD <span style="color:var(--s20m-fg-faint); margin: 0 6px;">·</span> 8 frontier models · 6 dimensions</span>
+        <div class="legend">
+          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-honey)"></span>reasoning</span>
+          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-teal)"></span>speed</span>
+          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-coral)"></span>cost</span>
+          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-sky)"></span>context</span>
+          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-violet)"></span>modality</span>
+        </div>
+      </div>
+
+      <div class="scoretable">
+        <!-- Header row -->
+        <div class="th">Model</div>
+        <div class="th">Vendor</div>
+        <div class="th">Reasoning</div>
+        <div class="th">Speed</div>
+        <div class="th">Cost · $/M in/out</div>
+        <div class="th">Long ctx</div>
+        <div class="th">Modal</div>
+        <div class="th">TC Use Case</div>
+
+        <!-- Row 1: Opus 4.6 -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">Opus 4.6</span><span class="ml">claude-opus-4-6</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="vname">Anthropic</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$15 / $75</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">1M</div>
+          <div class="cell-modal">Text + img</div>
+          <div class="cell-use">Complex investigations <span style="color:var(--s20m-fg-faint)">·</span> Yogi orchestrator</div>
+        </div>
+
+        <!-- Row 2: Sonnet 4.6 — FEATURED -->
+        <div class="row featured">
+          <div class="cell-model"><span class="mn">Sonnet 4.6</span><span class="ml">claude-sonnet-4-6</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="vname">Anthropic</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$3 / $15</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">1M</div>
+          <div class="cell-modal">Text + img</div>
+          <div class="cell-use">Daily drafting <span style="color:var(--s20m-fg-faint)">·</span> sub-agents <span style="color:var(--s20m-fg-faint)">·</span> ~80% of calls</div>
+        </div>
+
+        <!-- Row 3: Haiku 4.5 -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">Haiku 4.5</span><span class="ml">claude-haiku-4-5</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="vname">Anthropic</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0.80 / $4</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">200K</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">Bills QA classify <span style="color:var(--s20m-fg-faint)">·</span> 1000s/day <span style="color:var(--s20m-fg-faint)">·</span> cheap</div>
+        </div>
+
+        <!-- Row 4: Gemini Pro -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">Gemini 2.5 Pro</span><span class="ml">gemini-2-5-pro</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Google</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$1.25 / $10</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">2M</div>
+          <div class="cell-modal">Text+img+aud</div>
+          <div class="cell-use">Aircall transcript ingest <span style="color:var(--s20m-fg-faint)">·</span> long docs</div>
+        </div>
+
+        <!-- Row 5: Gemini Flash -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">Gemini 2.5 Flash</span><span class="ml">gemini-2-5-flash</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Google</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0.15 / $0.60</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">1M</div>
+          <div class="cell-modal">Text+img+aud</div>
+          <div class="cell-use">Batch image OCR <span style="color:var(--s20m-fg-faint)">·</span> receipt scans</div>
+        </div>
+
+        <!-- Row 6: GPT-5 -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">GPT-5</span><span class="ml">gpt-5</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">OpenAI</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$10 / $30</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">400K</div>
+          <div class="cell-modal">Text + img</div>
+          <div class="cell-use">Ecosystem fallback <span style="color:var(--s20m-fg-faint)">·</span> structured JSON</div>
+        </div>
+
+        <!-- Row 7: o-series -->
+        <div class="row">
+          <div class="cell-model"><span class="mn">o-series · o4-mini</span><span class="ml">o4-mini-2026</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">OpenAI</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$4 / $16</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">200K</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">Formal verification <span style="color:var(--s20m-fg-faint)">·</span> math <span style="color:var(--s20m-fg-faint)">·</span> proofs</div>
+        </div>
+
+        <!-- Row 8: Llama 4 70B -->
+        <div class="row last">
+          <div class="cell-model"><span class="mn">Llama 4 70B</span><span class="ml">llama-4-70b-instruct</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
+                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Meta · OnPrem</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0 · compute</span><span class="clbl">self-hosted</span></div>
+          <div class="cell-ctx">128K</div>
+          <div class="cell-modal">Text + img</div>
+          <div class="cell-use">PII-sensitive on-prem batch <span style="color:var(--s20m-fg-faint)">·</span> sovereignty</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== RECEIPTS BAND ========== -->
+    <div class="receipts reveal d4">
+      <div class="receipt r1">
+        <div class="rval">58<span class="unit">% off</span></div>
+        <div class="rlbl">PROMPT CACHE · ANTHROPIC</div>
+        <div class="rdesc">Databricks bill cut by prompt caching across every Anthropic call.</div>
+      </div>
+      <div class="receipt r2">
+        <div class="rval">$0.15<span class="unit">/M</span></div>
+        <div class="rlbl">BATCH INGEST · GEMINI FLASH</div>
+        <div class="rdesc">Daily Aircall summarisation runs at fractional cost vs. flagship.</div>
+      </div>
+      <div class="receipt r3">
+        <div class="rval">$0<span class="unit">/token</span></div>
+        <div class="rlbl">PII REDACTION · LLAMA 4</div>
+        <div class="rdesc">Self-hosted on-prem for sensitive client data. Sovereignty maintained.</div>
+      </div>
+      <div class="receipt r4">
+        <div class="rval">~$4,200<span class="unit">/mo saved</span></div>
+        <div class="rlbl">SMART ROUTING DELTA</div>
+        <div class="rdesc">Versus naive "everything through Opus." Router earns its keep.</div>
+      </div>
+    </div>
+
+    <!-- Micro footer -->
+    <div class="micro-foot reveal d5">
+      <span>YOGI ROUTER · POLICY-AS-CODE · UPDATED 2026-05-25</span>
+      <span class="m-r">
+        <span class="pin"></span>
+        BEST TOOL <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> LOWEST COST <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> EVERY TIME
+      </span>
+    </div>
+
+  </div>
+</section>

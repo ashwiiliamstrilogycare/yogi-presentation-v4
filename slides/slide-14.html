@@ -1,0 +1,829 @@
+<section class="slide" data-audio="14">
+  <style>
+    /* ============================================================
+       SLIDE 15 — A DAY WITH YOGI
+       Vertical timeline. Luxury chronograph × mission-control telemetry.
+       Cool morning sky at top → warm honey dusk at bottom.
+       Honey rail with traveling daylight pulse. 8 timestamped moments.
+       ============================================================ */
+
+    .slide[data-audio="14"] {
+      --s15-bg:          #0a0d12;
+      --s15-bg-elev:     #11161f;
+      --s15-honey:       #FEBD33;
+      --s15-honey-soft:  rgba(254, 189, 51, 0.10);
+      --s15-honey-line:  rgba(254, 189, 51, 0.22);
+      --s15-honey-glow:  rgba(254, 189, 51, 0.45);
+      --s15-teal:        #43C0BE;
+      --s15-sky:         #64BCEA;
+      --s15-coral:       #F39B5A;
+      --s15-fg:          #f4f4f5;
+      --s15-fg-muted:    #a1a1aa;
+      --s15-fg-dim:      #71717a;
+      --s15-fg-faint:    #52525b;
+      --s15-border:      rgba(255, 255, 255, 0.08);
+      --s15-border-hi:   rgba(255, 255, 255, 0.16);
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background: var(--s15-bg);
+      color: var(--s15-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.01em;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* ---------- Atmosphere: diurnal gradient + faint grid ---------- */
+    .slide[data-audio="14"] .s15-atmos {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide[data-audio="14"] .s15-diurnal {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 40% at 18% 5%, rgba(100, 188, 234, 0.10), transparent 60%),
+        radial-gradient(ellipse 70% 35% at 82% 98%, rgba(254, 189, 51, 0.10), transparent 60%),
+        linear-gradient(180deg,
+          rgba(100, 188, 234, 0.045) 0%,
+          rgba(100, 188, 234, 0.015) 25%,
+          rgba(10, 13, 18, 0.0)     50%,
+          rgba(254, 189, 51, 0.020) 75%,
+          rgba(254, 189, 51, 0.055) 100%);
+    }
+
+    .slide[data-audio="14"] .s15-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 36% 50%, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at 36% 50%, black 40%, transparent 85%);
+    }
+
+    .slide[data-audio="14"] .s15-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* ---------- Frame ---------- */
+    .slide[data-audio="14"] .s15-frame {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100vh;
+      padding: clamp(36px, 4.2vh, 64px) clamp(48px, 5vw, 96px);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(24px, 3vh, 40px) clamp(40px, 4vw, 72px);
+      box-sizing: border-box;
+    }
+
+    /* ---------- Header ---------- */
+    .slide[data-audio="14"] .s15-header {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      padding-bottom: clamp(18px, 2.4vh, 28px);
+      border-bottom: 1px solid var(--s15-border);
+    }
+
+    .slide[data-audio="14"] .s15-slug {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s15-fg-muted);
+    }
+
+    .slide[data-audio="14"] .s15-slug .s15-mark {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s15-honey);
+      box-shadow: 0 0 14px var(--s15-honey-glow);
+      animation: s15-pulseDot 2.4s ease-in-out infinite;
+    }
+
+    .slide[data-audio="14"] .s15-slug .s15-sep {
+      width: 32px;
+      height: 1px;
+      background: var(--s15-border-hi);
+    }
+
+    .slide[data-audio="14"] .s15-title {
+      font-size: clamp(40px, 4.4vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+      margin: 14px 0 0 0;
+    }
+
+    .slide[data-audio="14"] .s15-title .s15-period {
+      color: var(--s15-honey);
+    }
+
+    .slide[data-audio="14"] .s15-subhead {
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="14"] .s15-subhead .s15-dim {
+      color: var(--s15-fg-dim);
+    }
+
+    .slide[data-audio="14"] .s15-headerRight {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slide[data-audio="14"] .s15-headerRight .s15-kicker {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+    }
+
+    .slide[data-audio="14"] .s15-headerRight .s15-headerNum {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(26px, 2.2vw, 32px);
+      color: var(--s15-fg);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .slide[data-audio="14"] .s15-headerRight .s15-headerLabel {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s15-fg-muted);
+    }
+
+    /* ---------- Timeline column ---------- */
+    .slide[data-audio="14"] .s15-timeline {
+      position: relative;
+      padding-left: clamp(120px, 11vw, 180px);
+    }
+
+    /* The rail */
+    .slide[data-audio="14"] .s15-rail {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: clamp(108px, 9.8vw, 162px);
+      width: 1px;
+      background: linear-gradient(180deg,
+        rgba(100, 188, 234, 0.55) 0%,
+        rgba(254, 189, 51, 0.45) 50%,
+        rgba(243, 155, 90, 0.55) 100%);
+      opacity: 0.5;
+    }
+    .slide[data-audio="14"] .s15-rail::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      filter: blur(3px);
+      opacity: 0.5;
+    }
+
+    /* Traveling daylight pulse */
+    .slide[data-audio="14"] .s15-pulse {
+      position: absolute;
+      left: calc(clamp(108px, 9.8vw, 162px) - 3.5px);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--s15-honey);
+      box-shadow: 0 0 18px var(--s15-honey-glow), 0 0 4px #fff;
+      top: 0%;
+      animation: s15-traverse 18s ease-in-out infinite;
+    }
+
+    /* ---------- Moment rows ---------- */
+    .slide[data-audio="14"] .s15-moment {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: clamp(10px, 1.4vh, 16px) 0 clamp(14px, 2vh, 22px) 0;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s15-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .slide[data-audio="14"] .s15-moment:nth-child(1) { animation-delay: 0.10s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(2) { animation-delay: 0.18s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(3) { animation-delay: 0.26s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(4) { animation-delay: 0.34s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(5) { animation-delay: 0.42s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(6) { animation-delay: 0.50s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(7) { animation-delay: 0.58s; }
+    .slide[data-audio="14"] .s15-moment:nth-child(8) { animation-delay: 0.66s; }
+
+    /* Big timestamp on the left */
+    .slide[data-audio="14"] .s15-time {
+      position: absolute;
+      left: 0;
+      top: clamp(10px, 1.4vh, 16px);
+      width: clamp(108px, 9.8vw, 162px);
+      padding-right: 24px;
+      box-sizing: border-box;
+      text-align: right;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(22px, 2vw, 30px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--s15-honey);
+      line-height: 1;
+    }
+    .slide[data-audio="14"] .s15-time .s15-ampm {
+      display: block;
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      color: var(--s15-fg-dim);
+      font-weight: 500;
+    }
+
+    /* Rail node */
+    .slide[data-audio="14"] .s15-node {
+      position: absolute;
+      left: clamp(108px, 9.8vw, 162px);
+      top: clamp(14px, 1.8vh, 22px);
+      width: 14px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide[data-audio="14"] .s15-node::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--s15-bg);
+      border: 1px solid var(--s15-honey);
+      box-shadow: 0 0 0 3px rgba(254, 189, 51, 0.08);
+    }
+    .slide[data-audio="14"] .s15-node::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px dashed rgba(254, 189, 51, 0.30);
+      animation: s15-ring 4s ease-in-out infinite;
+    }
+
+    /* Connector from node to body */
+    .slide[data-audio="14"] .s15-moment .s15-connector {
+      position: absolute;
+      left: calc(clamp(108px, 9.8vw, 162px) + 12px);
+      top: clamp(18px, 2.1vh, 24px);
+      width: clamp(18px, 2.4vw, 32px);
+      height: 1px;
+      background-image: linear-gradient(to right, var(--s15-honey-line) 50%, transparent 50%);
+      background-size: 6px 1px;
+    }
+
+    /* Moment body */
+    .slide[data-audio="14"] .s15-body {
+      margin-left: clamp(38px, 4.5vw, 60px);
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      column-gap: 18px;
+      align-items: start;
+    }
+
+    /* Tiny icon glyph */
+    .slide[data-audio="14"] .s15-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--s15-border-hi);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--s15-honey);
+      flex-shrink: 0;
+      box-shadow: inset 0 0 12px rgba(254, 189, 51, 0.04);
+    }
+    .slide[data-audio="14"] .s15-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .slide[data-audio="14"] .s15-content {
+      min-width: 0;
+    }
+
+    .slide[data-audio="14"] .s15-event {
+      font-size: clamp(18px, 1.55vw, 22px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--s15-fg);
+      line-height: 1.15;
+    }
+
+    .slide[data-audio="14"] .s15-detail {
+      margin-top: 4px;
+      font-size: clamp(13px, 1.05vw, 14.5px);
+      line-height: 1.45;
+      color: var(--s15-fg-muted);
+      max-width: 62ch;
+    }
+
+    .slide[data-audio="14"] .s15-detail .s15-em {
+      color: var(--s15-fg);
+      font-weight: 500;
+    }
+
+    .slide[data-audio="14"] .s15-bgline {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--s15-fg-faint);
+    }
+    .slide[data-audio="14"] .s15-bgline .s15-dash {
+      flex-shrink: 0;
+      width: 22px;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.18) 50%, transparent 50%);
+      background-size: 4px 1px;
+    }
+    .slide[data-audio="14"] .s15-bgline .s15-token {
+      color: var(--s15-teal);
+    }
+
+    /* ---------- Sidebar ---------- */
+    .slide[data-audio="14"] .s15-aside {
+      position: relative;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2.2vh, 26px);
+    }
+
+    .slide[data-audio="14"] .s15-asideCard {
+      position: relative;
+      border: 1px solid var(--s15-border);
+      border-radius: 14px;
+      padding: 20px 20px 22px 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.0)),
+        var(--s15-bg-elev);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 18px 48px -20px rgba(0,0,0,0.6);
+    }
+
+    .slide[data-audio="14"] .s15-asideCard.s15-monitoring {
+      border-color: var(--s15-honey-line);
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.05), rgba(254,189,51,0.0) 45%),
+        var(--s15-bg-elev);
+    }
+
+    .slide[data-audio="14"] .s15-asideHead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .slide[data-audio="14"] .s15-asideTitle {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="14"] .s15-livePill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border: 1px solid rgba(94, 224, 138, 0.40);
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #b9f0c8;
+      background: rgba(94, 224, 138, 0.06);
+    }
+    .slide[data-audio="14"] .s15-livePill .s15-liveDot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #5ee08a;
+      box-shadow: 0 0 8px rgba(94, 224, 138, 0.7);
+      animation: s15-pulseDot 1.6s ease-in-out infinite;
+    }
+
+    .slide[data-audio="14"] .s15-monitorList {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .slide[data-audio="14"] .s15-monitorList li {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      align-items: center;
+      column-gap: 10px;
+      padding: 6px 0;
+      border-top: 1px solid var(--s15-border);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--s15-fg);
+    }
+    .slide[data-audio="14"] .s15-monitorList li:first-child {
+      border-top: none;
+    }
+    .slide[data-audio="14"] .s15-monitorList li .s15-statDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #5ee08a;
+      box-shadow: 0 0 8px rgba(94, 224, 138, 0.55);
+    }
+    .slide[data-audio="14"] .s15-monitorList li .s15-rate {
+      color: var(--s15-fg-dim);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .slide[data-audio="14"] .s15-uptime {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--s15-border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .slide[data-audio="14"] .s15-uptime .s15-uptimeKey {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+    }
+    .slide[data-audio="14"] .s15-uptime .s15-uptimeVal {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--s15-honey);
+    }
+
+    /* The "tomorrow" card */
+    .slide[data-audio="14"] .s15-tomorrow .s15-tomLabel {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+      margin-bottom: 10px;
+    }
+    .slide[data-audio="14"] .s15-tomorrow .s15-tomTitle {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--s15-fg);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .slide[data-audio="14"] .s15-tomorrow .s15-tomMeta {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--s15-fg-muted);
+      line-height: 1.5;
+    }
+    .slide[data-audio="14"] .s15-tomorrow .s15-tomMeta .s15-tomVal {
+      color: var(--s15-teal);
+    }
+
+    /* ---------- Footer strip ---------- */
+    .slide[data-audio="14"] .s15-footer {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding-top: clamp(16px, 2vh, 22px);
+      border-top: 1px solid var(--s15-border);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+    }
+    .slide[data-audio="14"] .s15-footer .s15-footRight {
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="14"] .s15-footer .s15-foot-sep {
+      color: var(--s15-fg-faint);
+      margin: 0 10px;
+    }
+
+    /* ---------- Keyframes ---------- */
+    @keyframes s15-pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.55; transform: scale(1.18); }
+    }
+    @keyframes s15-ring {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%      { opacity: 0.05; transform: scale(1.4); }
+    }
+    @keyframes s15-reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s15-traverse {
+      0%   { top: 0%;   opacity: 0; }
+      6%   { opacity: 1; }
+      94%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="14"] * { animation: none !important; }
+      .slide[data-audio="14"] .s15-moment { opacity: 1; transform: none; }
+    }
+  </style>
+
+  <div class="s15-atmos">
+    <div class="s15-diurnal"></div>
+    <div class="s15-grid"></div>
+    <div class="s15-noise"></div>
+  </div>
+
+  <div class="s15-frame">
+    <!-- HEADER -->
+    <header class="s15-header">
+      <div>
+        <div class="s15-slug">
+          <span class="s15-mark"></span>
+          <span>Slide 15 / Day-In-Life</span>
+          <span class="s15-sep"></span>
+          <span>Care Partner Desk</span>
+        </div>
+        <h1 class="s15-title">A day <span class="s15-period">with Yogi.</span></h1>
+        <div class="s15-subhead">
+          MONDAY <span class="s15-dim">·</span> 24 MAY 2026 <span class="s15-dim">·</span> CARE PARTNER DESK
+        </div>
+      </div>
+      <div class="s15-headerRight">
+        <div class="s15-kicker">Shift window</div>
+        <div class="s15-headerNum">06:30 — 17:00</div>
+        <div class="s15-headerLabel">+ overnight cloud routines</div>
+      </div>
+    </header>
+
+    <!-- TIMELINE -->
+    <main class="s15-timeline">
+      <div class="s15-rail"></div>
+      <div class="s15-pulse"></div>
+
+      <!-- 06:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">06:30<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Morning voice brief</div>
+            <p class="s15-detail">Three things on the radar today. Sent to <span class="s15-em">iMessage</span> + <span class="s15-em">Telegram</span> before you've poured coffee.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;pulled from overnight CI runs, Aircall, calendar</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 08:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">08:00<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7l8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">First replies drafted</div>
+            <p class="s15-detail"><span class="s15-em">2 client emails</span> drafted in your voice, waiting for one-tap approval.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;memory recalled context from last week's conversation</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">10:00<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4"/><path d="M3 14l9 4 9-4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">ACQSC investigation, end to end</div>
+            <p class="s15-detail">Complaint <span class="s15-em">TC-5012</span> — 3 invoices, 2 prior complaints, draft response with evidence pack attached.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;cross-checked Zoho × MYOB × Aircall × Confluence in 47s</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">12:30<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12"/><circle cx="20" cy="17" r="1.4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Feedback inbox sweep</div>
+            <p class="s15-detail">Lunch break. <span class="s15-em">2 new feedback items</span>, both suggested replies queued, severity-ranked, awaiting your nod.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;auto-scan every hour, severity-ranked, deduped</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">14:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Bills incident triage</div>
+            <p class="s15-detail">Phantom batch flagged in the allocator. <span class="s15-em">3 sub-agents</span> dispatched, fix queued, fix verified.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;Frontend / Reality Checker / Backend running in parallel</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">15:30<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Investigation pack ready</div>
+            <p class="s15-detail">TJ Gardening cross-client report — <span class="s15-em">4 clients, $69K</span> recovered. Patterns surfaced and packaged for Fran.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;patterns surfaced via Qdrant semantic search across 81 invoices</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 16:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">16:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 12h6M9 16h4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Week in review written</div>
+            <p class="s15-detail">Sunday-format markdown with <span class="s15-em">wins / blockers / decisions</span>. Tomorrow's prep already queued underneath.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;compiled from 5 days of commits + Aircall + Zoho activity</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 17:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">17:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">You log off. Yogi keeps going.</div>
+            <p class="s15-detail">Cubs keep running. Cloud routines fire at <span class="s15-em">6 pm</span>. Morning brief is already queued for tomorrow.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;cloud routines run laptop-off, on Anthropic infra</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="s15-aside">
+      <div class="s15-asideCard s15-monitoring">
+        <div class="s15-asideHead">
+          <div class="s15-asideTitle">Monitoring</div>
+          <span class="s15-livePill"><span class="s15-liveDot"></span>Live</span>
+        </div>
+        <ul class="s15-monitorList">
+          <li><span class="s15-statDot"></span><span>bills</span><span class="s15-rate">5m</span></li>
+          <li><span class="s15-statDot"></span><span>complaints</span><span class="s15-rate">15m</span></li>
+          <li><span class="s15-statDot"></span><span>inbox</span><span class="s15-rate">1h</span></li>
+          <li><span class="s15-statDot"></span><span>CI runs</span><span class="s15-rate">on event</span></li>
+          <li><span class="s15-statDot"></span><span>calendar</span><span class="s15-rate">30m</span></li>
+          <li><span class="s15-statDot"></span><span>Aircall</span><span class="s15-rate">on event</span></li>
+        </ul>
+        <div class="s15-uptime">
+          <div class="s15-uptimeKey">Always-on</div>
+          <div class="s15-uptimeVal">24 / 7</div>
+        </div>
+      </div>
+
+      <div class="s15-asideCard s15-tomorrow">
+        <div class="s15-tomLabel">Queued for tomorrow</div>
+        <div class="s15-tomTitle">Morning brief · 06:30</div>
+        <div class="s15-tomMeta">
+          channels &nbsp;<span class="s15-tomVal">iMessage · Telegram</span><br>
+          inputs &nbsp;&nbsp;&nbsp;<span class="s15-tomVal">CI · calendar · Aircall</span><br>
+          status &nbsp;&nbsp;&nbsp;<span class="s15-tomVal">composed at 16:45</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer class="s15-footer">
+      <div>
+        Trilogy Care <span class="s15-foot-sep">/</span> Yogi <span class="s15-foot-sep">/</span> Day-in-Life telemetry
+      </div>
+      <div class="s15-footRight">
+        Chatbots respond. Yogi acts.
+      </div>
+    </footer>
+  </div>
+</section>

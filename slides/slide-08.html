@@ -1,0 +1,822 @@
+<section class="slide" data-audio="08">
+  <style>
+    /* ============ SLIDE 08 — FIVE PRACTICAL ENGINEERING LEVERS ============ */
+    .slide[data-audio="08"] {
+      --s08-card-w: clamp(220px, 16.5vw, 282px);
+      --s08-stagger: 140ms;
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 70% 50% at 14% 18%, rgba(254,189,51,0.055), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 86%, rgba(67,192,190,0.045), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.025), transparent 60%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    /* engineering paper grid */
+    .slide[data-audio="08"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 85% 80% at center, black 35%, transparent 92%);
+      pointer-events: none;
+    }
+    /* film grain */
+    .slide[data-audio="08"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.4;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s08-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: clamp(40px, 4vw, 72px) clamp(48px, 5vw, 96px);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* corner registration marks */
+    .s08-mark {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
+    }
+    .s08-mark.tl { top: 28px;    left: 28px;    border-right: none;  border-bottom: none; }
+    .s08-mark.tr { top: 28px;    right: 28px;   border-left: none;   border-bottom: none; }
+    .s08-mark.bl { bottom: 28px; left: 28px;    border-right: none;  border-top: none; }
+    .s08-mark.br { bottom: 28px; right: 28px;   border-left: none;   border-top: none; }
+
+    .s08-stamp {
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+
+    /* ----- HEADER ----- */
+    .s08-head {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(32px, 4vw, 72px);
+      align-items: flex-end;
+      margin-bottom: clamp(32px, 3.4vw, 56px);
+    }
+
+    .s08-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .s08-eyebrow .rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+    }
+    .s08-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s08-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes s08-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .s08-headline {
+      font-size: clamp(40px, 4.6vw, 80px);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin: 0;
+    }
+    .s08-headline .accent {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--honey);
+      letter-spacing: -0.02em;
+    }
+
+    .s08-subhead {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.8vw, 13px);
+      line-height: 1.6;
+      color: var(--fg-muted);
+      max-width: 380px;
+      padding-bottom: 6px;
+    }
+    .s08-subhead .pill {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: var(--honey);
+      padding: 5px 10px;
+      border: 1px solid var(--border-warm);
+      border-radius: 2px;
+      margin-bottom: 14px;
+      background: rgba(254,189,51,0.05);
+    }
+    .s08-subhead em {
+      font-style: normal;
+      color: var(--fg);
+    }
+
+    /* ----- LEVER ROW ----- */
+    .s08-row-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* honey dashed connector behind the cards */
+    .s08-connector {
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 1px;
+      pointer-events: none;
+      transform: translateY(0);
+    }
+    .s08-connector svg {
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      overflow: visible;
+    }
+    .s08-connector .path {
+      fill: none;
+      stroke: var(--honey);
+      stroke-width: 1;
+      stroke-dasharray: 4 6;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 5px rgba(254,189,51,0.4));
+      opacity: 0;
+    }
+    .s08-connector .glow {
+      fill: none;
+      stroke: rgba(254,189,51,0.16);
+      stroke-width: 6;
+      stroke-linecap: round;
+      filter: blur(4px);
+      opacity: 0;
+    }
+    .slide[data-audio="08"].is-active .s08-connector .glow { animation: s08-glow 1400ms ease-out 100ms forwards; }
+    .slide[data-audio="08"].is-active .s08-connector .path { animation: s08-draw 2200ms cubic-bezier(.6,.05,.25,1) 180ms forwards; }
+    @keyframes s08-glow { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes s08-draw {
+      0%   { stroke-dashoffset: 800; opacity: 0; }
+      8%   { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    .s08-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(14px, 1.4vw, 24px);
+      width: 100%;
+      z-index: 2;
+    }
+
+    /* ----- LEVER CARD ----- */
+    .s08-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.008) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: clamp(18px, 1.4vw, 24px) clamp(18px, 1.4vw, 24px) clamp(20px, 1.6vw, 26px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1vw, 18px);
+      min-height: 380px;
+      backdrop-filter: blur(8px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 12px 32px rgba(0,0,0,0.35);
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 800ms cubic-bezier(.22,.61,.36,1),
+        transform 800ms cubic-bezier(.22,.61,.36,1),
+        border-color 360ms ease,
+        box-shadow 360ms ease;
+    }
+    .slide[data-audio="08"].is-active .s08-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .s08-card:nth-child(1) { transition-delay: calc(var(--s08-stagger) * 1); }
+    .s08-card:nth-child(2) { transition-delay: calc(var(--s08-stagger) * 2); }
+    .s08-card:nth-child(3) { transition-delay: calc(var(--s08-stagger) * 3); }
+    .s08-card:nth-child(4) { transition-delay: calc(var(--s08-stagger) * 4); }
+    .s08-card:nth-child(5) { transition-delay: calc(var(--s08-stagger) * 5); }
+
+    .s08-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 7px;
+      pointer-events: none;
+      box-shadow: 0 0 22px rgba(254,189,51,0.10);
+      opacity: 0.5;
+    }
+
+    /* anchor dot that "welds" each card to the dashed connector */
+    .s08-card::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 9px; height: 9px;
+      background: var(--bg);
+      border: 1.5px solid var(--honey);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 4px rgba(254,189,51,0.08),
+        0 0 12px rgba(254,189,51,0.5);
+      z-index: 3;
+      opacity: 0;
+      animation: s08-anchor-pop 500ms ease-out forwards;
+      animation-delay: calc(var(--s08-stagger) * var(--idx, 1) + 1800ms);
+    }
+    @keyframes s08-anchor-pop {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .slide[data-audio="08"]:not(.is-active) .s08-card::after { animation: none; opacity: 0; }
+
+    /* card header row */
+    .s08-card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .s08-num {
+      font-family: var(--font-mono);
+      font-size: clamp(28px, 2.4vw, 40px);
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--honey);
+      opacity: 0.92;
+    }
+    .s08-lever-tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    /* icon plate */
+    .s08-icon {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2.4 / 1;
+      border-radius: 4px;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(254,189,51,0.05), transparent 70%),
+        rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+    .s08-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* title */
+    .s08-title {
+      font-size: clamp(15px, 1.05vw, 18px);
+      font-weight: 600;
+      line-height: 1.22;
+      letter-spacing: -0.018em;
+      color: var(--fg);
+      margin: 0;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    .s08-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--honey) 0%, var(--teal) 100%);
+      opacity: 0.75;
+    }
+
+    .s08-desc {
+      font-size: clamp(11.5px, 0.8vw, 13px);
+      line-height: 1.5;
+      color: var(--fg-muted);
+      margin: 0;
+      letter-spacing: -0.003em;
+      flex: 1;
+    }
+
+    /* citation chip */
+    .s08-cite {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+    }
+    .s08-cite .glyph {
+      width: 5px; height: 5px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--teal);
+      flex-shrink: 0;
+    }
+    .s08-cite span.tag {
+      color: var(--fg-dim);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+
+    /* hover refinement */
+    .s08-card:hover {
+      border-color: rgba(254,189,51,0.30);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 16px 40px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(254,189,51,0.25),
+        0 0 60px rgba(254,189,51,0.12);
+    }
+
+    /* ----- BOTTOM STRIP ----- */
+    .s08-footer {
+      margin-top: clamp(28px, 2.6vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .s08-thesis {
+      font-size: clamp(15px, 1.2vw, 22px);
+      font-weight: 300;
+      line-height: 1.35;
+      color: var(--fg);
+      letter-spacing: -0.022em;
+      max-width: 760px;
+    }
+    .s08-thesis em {
+      font-style: italic;
+      color: var(--honey);
+      font-weight: 400;
+    }
+    .s08-thesis .sep {
+      display: inline-block;
+      margin: 0 12px;
+      color: var(--fg-dim);
+    }
+    .s08-thesis .receipts {
+      font-family: var(--font-mono);
+      font-size: 0.6em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      vertical-align: middle;
+      padding-left: 4px;
+    }
+    .s08-arrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+    .s08-arrow .bar {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey));
+    }
+    .s08-arrow .next {
+      color: var(--honey);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="08"] *,
+      .slide[data-audio="08"] *::before,
+      .slide[data-audio="08"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slide[data-audio="08"] .s08-card { opacity: 1; transform: none; }
+      .slide[data-audio="08"] .s08-connector .path,
+      .slide[data-audio="08"] .s08-connector .glow { opacity: 1; }
+      .slide[data-audio="08"] .s08-card::after { opacity: 1; }
+    }
+  </style>
+
+  <div class="content">
+    <div class="s08-frame">
+
+      <!-- corner registration marks -->
+      <div class="s08-mark tl"></div>
+      <div class="s08-mark tr"></div>
+      <div class="s08-mark bl"></div>
+      <div class="s08-mark br"></div>
+      <div class="s08-stamp">SLIDE · 08 / ENGINEERING LEVERS</div>
+
+      <!-- HEADER -->
+      <header class="s08-head">
+        <div>
+          <div class="s08-eyebrow">
+            <span class="dot"></span>
+            <span>For the engineers in the room</span>
+            <span class="rule"></span>
+            <span>05 levers</span>
+          </div>
+          <h1 class="s08-headline">
+            Five practical<br/>
+            <span class="accent">levers.</span>
+          </h1>
+        </div>
+
+        <div class="s08-subhead">
+          <div class="pill">RESEARCH-GRADE · COMPOSED OVER TRILOGY DATA</div>
+          Real research papers, applied. Each lever has a citation, a code surface, and a place inside Yogi's run loop. <em>Receipts, not promises.</em>
+        </div>
+      </header>
+
+      <!-- LEVER ROW with dashed connector -->
+      <div class="s08-row-wrap">
+
+        <!-- honey dashed connector behind the cards -->
+        <div class="s08-connector" aria-hidden="true">
+          <svg viewBox="0 0 1600 60" preserveAspectRatio="none">
+            <path class="glow" d="M 60 30 L 1540 30" />
+            <path class="path" d="M 60 30 L 1540 30" />
+          </svg>
+        </div>
+
+        <div class="s08-row">
+
+          <!-- LEVER 01 : Constitutional AI + MCP -->
+          <article class="s08-card" style="--idx: 1;">
+            <div class="s08-card-head">
+              <span class="s08-num">01</span>
+              <span class="s08-lever-tag">Lever</span>
+            </div>
+            <div class="s08-icon">
+              <!-- Shield + Bridge: guardrails + tool authority -->
+              <svg viewBox="0 0 240 100" aria-hidden="true">
+                <defs>
+                  <linearGradient id="s08-l1-shield" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FEBD33" stop-opacity="0.20"/>
+                    <stop offset="100%" stop-color="#FEBD33" stop-opacity="0.03"/>
+                  </linearGradient>
+                </defs>
+                <!-- shield -->
+                <path d="M 56 24 L 86 16 L 116 24 L 116 56 C 116 70, 100 82, 86 86 C 72 82, 56 70, 56 56 Z"
+                      fill="url(#s08-l1-shield)" stroke="#FEBD33" stroke-opacity="0.75" stroke-width="1"/>
+                <path d="M 72 50 L 82 60 L 102 40" fill="none" stroke="#FEBD33" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- bridge / span (MCP) -->
+                <line x1="130" y1="58" x2="220" y2="58" stroke="#43C0BE" stroke-opacity="0.55" stroke-width="1"/>
+                <!-- two pylons -->
+                <line x1="148" y1="34" x2="148" y2="58" stroke="#43C0BE" stroke-opacity="0.7" stroke-width="1"/>
+                <line x1="200" y1="34" x2="200" y2="58" stroke="#43C0BE" stroke-opacity="0.7" stroke-width="1"/>
+                <!-- cables -->
+                <path d="M 148 34 C 165 50, 183 50, 200 34" fill="none" stroke="#43C0BE" stroke-opacity="0.45" stroke-width="1"/>
+                <path d="M 148 34 L 138 58 M 200 34 L 210 58" stroke="#43C0BE" stroke-opacity="0.32" stroke-width="0.8"/>
+                <path d="M 156 34 L 156 58 M 168 34 L 168 58 M 180 34 L 180 58 M 192 34 L 192 58"
+                      stroke="#43C0BE" stroke-opacity="0.2" stroke-width="0.7"/>
+                <!-- tool deck dots -->
+                <circle cx="140" cy="58" r="1.6" fill="#43C0BE" fill-opacity="0.8"/>
+                <circle cx="170" cy="58" r="1.6" fill="#43C0BE" fill-opacity="0.8"/>
+                <circle cx="200" cy="58" r="1.6" fill="#43C0BE" fill-opacity="0.8"/>
+                <!-- connecting filament shield → bridge -->
+                <line x1="116" y1="42" x2="130" y2="42" stroke="#FEBD33" stroke-opacity="0.5" stroke-width="0.8" stroke-dasharray="2 2"/>
+              </svg>
+            </div>
+            <h3 class="s08-title">Constitutional AI + MCP</h3>
+            <p class="s08-desc">A written value charter that constrains responses, paired with a typed tool protocol that grants explicit authority — guardrails and reach in one substrate.</p>
+            <div class="s08-cite">
+              <span class="glyph"></span>
+              <div>
+                <span class="tag">ANTHROPIC&nbsp;·&nbsp;BAI ET&nbsp;AL.</span><br/>
+                Constitutional AI 2022 · MCP spec 2024
+              </div>
+            </div>
+          </article>
+
+          <!-- LEVER 02 : ReAct + Reflexion -->
+          <article class="s08-card" style="--idx: 2;">
+            <div class="s08-card-head">
+              <span class="s08-num">02</span>
+              <span class="s08-lever-tag">Lever</span>
+            </div>
+            <div class="s08-icon">
+              <!-- Cyclic arrow: think → act → reflect loop -->
+              <svg viewBox="0 0 240 100" aria-hidden="true">
+                <!-- outer loop -->
+                <path d="M 120 18 C 168 18, 200 42, 200 64 C 200 82, 174 92, 142 88"
+                      fill="none" stroke="#FEBD33" stroke-opacity="0.75" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M 120 18 C 72 18, 40 42, 40 64 C 40 82, 66 92, 98 88"
+                      fill="none" stroke="#43C0BE" stroke-opacity="0.55" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- arrow heads -->
+                <path d="M 142 88 L 136 82 M 142 88 L 148 84" stroke="#FEBD33" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M 98 88 L 104 82 M 98 88 L 92 84" stroke="#43C0BE" stroke-opacity="0.8" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- inner triad: THINK · ACT · REFLECT -->
+                <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="7" letter-spacing="0.18em" fill="rgba(255,255,255,0.62)">
+                  <text x="120" y="42" text-anchor="middle">THINK</text>
+                  <text x="120" y="58" text-anchor="middle" fill="#FEBD33" fill-opacity="0.9">→ ACT</text>
+                  <text x="120" y="74" text-anchor="middle">REFLECT</text>
+                </g>
+                <!-- pivot dots -->
+                <circle cx="120" cy="18" r="2.4" fill="#FEBD33"/>
+                <circle cx="40"  cy="64" r="2.2" fill="#43C0BE" fill-opacity="0.85"/>
+                <circle cx="200" cy="64" r="2.2" fill="#FEBD33" fill-opacity="0.85"/>
+              </svg>
+            </div>
+            <h3 class="s08-title">ReAct + Reflexion</h3>
+            <p class="s08-desc">Reasoning interleaved with action calls, then a self-critique pass that rewrites the next plan. Agentic loops that catch their own mistakes before the operator does.</p>
+            <div class="s08-cite">
+              <span class="glyph"></span>
+              <div>
+                <span class="tag">YAO ET AL.&nbsp;·&nbsp;SHINN ET AL.</span><br/>
+                ReAct 2022 · Reflexion 2023
+              </div>
+            </div>
+          </article>
+
+          <!-- LEVER 03 : Hybrid RAG -->
+          <article class="s08-card" style="--idx: 3;">
+            <div class="s08-card-head">
+              <span class="s08-num">03</span>
+              <span class="s08-lever-tag">Lever</span>
+            </div>
+            <div class="s08-icon">
+              <!-- Layered file + vector cluster -->
+              <svg viewBox="0 0 240 100" aria-hidden="true">
+                <defs>
+                  <linearGradient id="s08-l3-md" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FEBD33" stop-opacity="0.18"/>
+                    <stop offset="100%" stop-color="#FEBD33" stop-opacity="0.03"/>
+                  </linearGradient>
+                </defs>
+                <!-- stacked md files (back, mid, front) -->
+                <path d="M 44 26 L 78 26 L 92 40 L 92 78 L 44 78 Z" fill="none" stroke="#FEBD33" stroke-opacity="0.32" stroke-width="1"/>
+                <path d="M 38 32 L 72 32 L 86 46 L 86 84 L 38 84 Z" fill="none" stroke="#FEBD33" stroke-opacity="0.5" stroke-width="1"/>
+                <path d="M 32 38 L 66 38 L 80 52 L 80 90 L 32 90 Z" fill="url(#s08-l3-md)" stroke="#FEBD33" stroke-opacity="0.75" stroke-width="1"/>
+                <path d="M 66 38 L 66 52 L 80 52" fill="none" stroke="#FEBD33" stroke-opacity="0.7" stroke-width="1"/>
+                <!-- md lines -->
+                <line x1="40" y1="60" x2="72" y2="60" stroke="#FEBD33" stroke-opacity="0.45" stroke-width="0.9"/>
+                <line x1="40" y1="68" x2="68" y2="68" stroke="#FEBD33" stroke-opacity="0.3" stroke-width="0.9"/>
+                <line x1="40" y1="76" x2="74" y2="76" stroke="#FEBD33" stroke-opacity="0.3" stroke-width="0.9"/>
+                <!-- bridge -->
+                <line x1="92" y1="64" x2="128" y2="64" stroke="#43C0BE" stroke-opacity="0.4" stroke-width="0.9" stroke-dasharray="2 2"/>
+                <!-- vector cluster (qdrant) -->
+                <g transform="translate(170,58)">
+                  <!-- orbit -->
+                  <ellipse cx="0" cy="0" rx="44" ry="22" fill="none" stroke="#43C0BE" stroke-opacity="0.22" stroke-width="0.8"/>
+                  <ellipse cx="0" cy="0" rx="44" ry="22" transform="rotate(60)" fill="none" stroke="#43C0BE" stroke-opacity="0.22" stroke-width="0.8"/>
+                  <ellipse cx="0" cy="0" rx="44" ry="22" transform="rotate(-60)" fill="none" stroke="#43C0BE" stroke-opacity="0.22" stroke-width="0.8"/>
+                  <!-- centre -->
+                  <circle cx="0" cy="0" r="5" fill="#FEBD33" fill-opacity="0.22"/>
+                  <circle cx="0" cy="0" r="2.4" fill="#FEBD33"/>
+                  <!-- satellite vectors -->
+                  <circle cx="-40" cy="-6" r="1.8" fill="#43C0BE" fill-opacity="0.85"/>
+                  <circle cx="38"  cy="8"  r="1.8" fill="#43C0BE" fill-opacity="0.85"/>
+                  <circle cx="22"  cy="-18" r="1.6" fill="#64BCEA" fill-opacity="0.85"/>
+                  <circle cx="-22" cy="18" r="1.6" fill="#64BCEA" fill-opacity="0.85"/>
+                  <circle cx="6"   cy="20" r="1.4" fill="#43C0BE" fill-opacity="0.7"/>
+                  <circle cx="-10" cy="-20" r="1.4" fill="#43C0BE" fill-opacity="0.7"/>
+                </g>
+              </svg>
+            </div>
+            <h3 class="s08-title">Hybrid RAG <span style="color: var(--fg-dim); font-weight: 400; font-size: 0.85em;">(MD + Qdrant)</span></h3>
+            <p class="s08-desc">79 markdown memory files for the bits a human edits; Qdrant semantic search for the bits a machine retrieves. Two indexes, one persistent self.</p>
+            <div class="s08-cite">
+              <span class="glyph"></span>
+              <div>
+                <span class="tag">LEWIS ET AL.&nbsp;·&nbsp;QDRANT</span><br/>
+                Retrieval-augmented generation 2020
+              </div>
+            </div>
+          </article>
+
+          <!-- LEVER 04 : Multi-Tier Model Routing -->
+          <article class="s08-card" style="--idx: 4;">
+            <div class="s08-card-head">
+              <span class="s08-num">04</span>
+              <span class="s08-lever-tag">Lever</span>
+            </div>
+            <div class="s08-icon">
+              <!-- Tiered chevron: Opus → Sonnet → Haiku -->
+              <svg viewBox="0 0 240 100" aria-hidden="true">
+                <!-- baseline -->
+                <line x1="22" y1="86" x2="218" y2="86" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+                <!-- three tiers, descending heights = ascending cheapness -->
+                <!-- Opus (tallest) -->
+                <g transform="translate(56,0)">
+                  <rect x="-22" y="22" width="44" height="64" rx="3"
+                        fill="none" stroke="#FEBD33" stroke-opacity="0.85" stroke-width="1.1"/>
+                  <rect x="-22" y="22" width="44" height="64" rx="3"
+                        fill="#FEBD33" fill-opacity="0.10"/>
+                  <text x="0" y="46" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="9" fill="#FEBD33" letter-spacing="0.06em">OPUS</text>
+                  <text x="0" y="60" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="6.5" fill="rgba(255,255,255,0.5)" letter-spacing="0.16em">HARD</text>
+                </g>
+                <!-- Sonnet (middle) -->
+                <g transform="translate(120,0)">
+                  <rect x="-22" y="42" width="44" height="44" rx="3"
+                        fill="none" stroke="#43C0BE" stroke-opacity="0.75" stroke-width="1"/>
+                  <rect x="-22" y="42" width="44" height="44" rx="3"
+                        fill="#43C0BE" fill-opacity="0.08"/>
+                  <text x="0" y="60" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="9" fill="#43C0BE" letter-spacing="0.06em">SONNET</text>
+                  <text x="0" y="74" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="6.5" fill="rgba(255,255,255,0.5)" letter-spacing="0.16em">DEFAULT</text>
+                </g>
+                <!-- Haiku (shortest) -->
+                <g transform="translate(184,0)">
+                  <rect x="-22" y="62" width="44" height="24" rx="3"
+                        fill="none" stroke="#64BCEA" stroke-opacity="0.7" stroke-width="1"/>
+                  <rect x="-22" y="62" width="44" height="24" rx="3"
+                        fill="#64BCEA" fill-opacity="0.06"/>
+                  <text x="0" y="76" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="8" fill="#64BCEA" letter-spacing="0.06em">HAIKU</text>
+                </g>
+                <!-- descending arrow connector across the top -->
+                <path d="M 56 18 C 90 18, 90 38, 120 38 C 150 38, 150 58, 184 58"
+                      fill="none" stroke="#FEBD33" stroke-opacity="0.5" stroke-width="0.9" stroke-dasharray="3 4"/>
+                <circle cx="56" cy="18" r="1.8" fill="#FEBD33"/>
+                <circle cx="120" cy="38" r="1.6" fill="#43C0BE"/>
+                <circle cx="184" cy="58" r="1.6" fill="#64BCEA"/>
+                <!-- cost glyph -->
+                <text x="218" y="22" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                      font-size="7" letter-spacing="0.22em" fill="rgba(255,255,255,0.4)">$ COST↓</text>
+              </svg>
+            </div>
+            <h3 class="s08-title">Multi-tier model routing</h3>
+            <p class="s08-desc">Opus for the hard call. Sonnet by default. Haiku for the cheap. The router reads the task, picks the tier, and stays inside budget without sacrificing the moments that matter.</p>
+            <div class="s08-cite">
+              <span class="glyph"></span>
+              <div>
+                <span class="tag">ANTHROPIC&nbsp;·&nbsp;MODEL CARD</span><br/>
+                Claude 3.5 / 4.x tier hierarchy
+              </div>
+            </div>
+          </article>
+
+          <!-- LEVER 05 : HELM Evals + Prompt Caching -->
+          <article class="s08-card" style="--idx: 5;">
+            <div class="s08-card-head">
+              <span class="s08-num">05</span>
+              <span class="s08-lever-tag">Lever</span>
+            </div>
+            <div class="s08-icon">
+              <!-- Chart + cache box -->
+              <svg viewBox="0 0 240 100" aria-hidden="true">
+                <!-- axes -->
+                <line x1="30" y1="22" x2="30" y2="86" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+                <line x1="30" y1="86" x2="118" y2="86" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
+                <!-- gridlines -->
+                <line x1="30" y1="42" x2="118" y2="42" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
+                <line x1="30" y1="62" x2="118" y2="62" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
+                <!-- baseline (lower) -->
+                <path d="M 32 78 L 48 72 L 64 66 L 80 60 L 96 58 L 116 54"
+                      fill="none" stroke="#43C0BE" stroke-opacity="0.55" stroke-width="1.1" stroke-linecap="round"/>
+                <!-- target line (upper, honey) -->
+                <path d="M 32 60 L 48 50 L 64 42 L 80 36 L 96 30 L 116 26"
+                      fill="none" stroke="#FEBD33" stroke-opacity="0.9" stroke-width="1.3" stroke-linecap="round"/>
+                <!-- markers on honey line -->
+                <circle cx="48" cy="50" r="1.8" fill="#FEBD33"/>
+                <circle cx="80" cy="36" r="1.8" fill="#FEBD33"/>
+                <circle cx="116" cy="26" r="2.2" fill="#FEBD33"/>
+                <!-- y-label -->
+                <text x="36" y="20" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="6.5"
+                      letter-spacing="0.2em" fill="rgba(255,255,255,0.42)">PASS %</text>
+                <!-- divider -->
+                <line x1="130" y1="22" x2="130" y2="86" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="2 3"/>
+                <!-- cache box -->
+                <g transform="translate(176,0)">
+                  <rect x="-32" y="28" width="64" height="50" rx="3"
+                        fill="none" stroke="#FEBD33" stroke-opacity="0.7" stroke-width="1"/>
+                  <rect x="-32" y="28" width="64" height="14" rx="3"
+                        fill="#FEBD33" fill-opacity="0.10"/>
+                  <text x="0" y="38" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="6.5" fill="#FEBD33" letter-spacing="0.22em">CACHE</text>
+                  <!-- cells inside (slots) -->
+                  <rect x="-26" y="48" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.35"/>
+                  <rect x="-10" y="48" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.55"/>
+                  <rect x="6"   y="48" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.18"/>
+                  <rect x="-26" y="60" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.18"/>
+                  <rect x="-10" y="60" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.35"/>
+                  <rect x="6"   y="60" width="14" height="10" rx="1" fill="#FEBD33" fill-opacity="0.55"/>
+                  <!-- hit indicator -->
+                  <text x="0" y="86" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+                        font-size="6.5" fill="#43C0BE" letter-spacing="0.22em">HIT 92%</text>
+                </g>
+              </svg>
+            </div>
+            <h3 class="s08-title">HELM evals + prompt caching</h3>
+            <p class="s08-desc">Stanford HELM-style harness sets the quality floor; Anthropic prompt caching sets the cost ceiling. Two dials Yogi tunes against every release.</p>
+            <div class="s08-cite">
+              <span class="glyph"></span>
+              <div>
+                <span class="tag">STANFORD CRFM&nbsp;·&nbsp;ANTHROPIC</span><br/>
+                HELM 2022 · Prompt caching 2024
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- FOOTER STRIP -->
+      <footer class="s08-footer">
+        <div class="s08-thesis">
+          <em>Not magic.</em> Composed.
+          <span class="sep">·</span>
+          Eight peer-reviewed patterns, one operator, one substrate.
+          <span class="receipts">Receipts on the next slide&nbsp;→</span>
+        </div>
+        <div class="s08-arrow">
+          <span>09</span>
+          <span class="bar"></span>
+          <span class="next">Anthropic mythos</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[8] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[8] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.18 });
+        io.observe(slide);
+      }
+    })();
+  </script>
+</section>

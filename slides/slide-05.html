@@ -1,0 +1,705 @@
+<section class="slide" data-audio="05">
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       SLIDE 05 — Chatbots respond. Yogi acts.
+       The key differentiator.
+       ───────────────────────────────────────────────────────────── */
+
+    .slide[data-audio="05"] {
+      --navy:        #2C4C79;
+      --honey:       #FEBD33;
+      --honey-soft:  #FFD876;
+      --teal:        #43C0BE;
+      --dark-teal:   #007F7E;
+      --sky:         #64BCEA;
+      --red:         #E04B51;
+
+      --bg:          #0a0d12;
+      --bg-elev:     #11161f;
+      --bg-glass:    rgba(255,255,255,0.04);
+      --border:      rgba(255,255,255,0.08);
+      --border-warm: rgba(254,189,51,0.28);
+      --border-cold: rgba(161,161,170,0.18);
+
+      --fg:          #f4f4f5;
+      --fg-muted:    #a1a1aa;
+      --fg-dim:      #71717a;
+      --fg-ghost:    #52525b;
+
+      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* Ambient atmosphere — two soft pools, one cold-grey (left), one honey (right) */
+    .slide[data-audio="05"]::before,
+    .slide[data-audio="05"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .slide[data-audio="05"]::before {
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 35%, rgba(113,113,122,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 82% 60%, rgba(254,189,51,0.10) 0%, transparent 60%);
+    }
+    .slide[data-audio="05"]::after {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      opacity: 0.6;
+    }
+
+    .slide[data-audio="05"] .content {
+      position: relative;
+      z-index: 2;
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: clamp(24px, 2.8vh, 44px) clamp(40px, 4vw, 80px);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: clamp(14px, 1.8vh, 26px);
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* ─── Eyebrow ───────────────────────────────────────────────── */
+    .s05-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .s05-eyebrow .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid var(--border-warm);
+      border-radius: 999px;
+      background: rgba(254,189,51,0.05);
+      color: var(--honey);
+      letter-spacing: 0.24em;
+    }
+    .s05-eyebrow .pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--honey);
+      box-shadow: 0 0 8px var(--honey);
+      animation: s05-pulse 2.4s ease-in-out infinite;
+    }
+    .s05-eyebrow .sep {
+      flex: 0 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+    .s05-eyebrow .num { color: var(--fg-muted); }
+
+    @keyframes s05-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ─── Headline — the spine of the slide ─────────────────────── */
+    .s05-headline {
+      font-size: clamp(44px, 6.6vw, 118px);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .s05-headline .line {
+      display: block;
+      overflow: hidden;
+    }
+    .s05-headline .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(110%);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
+    .s05-headline .w-chatbots {
+      font-weight: 300;
+      font-style: italic;
+      color: var(--fg-ghost);
+    }
+    .s05-headline .w-respond {
+      font-weight: 800;
+      color: var(--fg-dim);
+      letter-spacing: -0.04em;
+    }
+    .s05-headline .w-yogi {
+      font-weight: 300;
+      font-style: italic;
+      color: var(--honey);
+    }
+    .s05-headline .w-acts {
+      font-weight: 900;
+      color: var(--honey);
+      letter-spacing: -0.05em;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.45),
+        0 0 80px rgba(254,189,51,0.18);
+    }
+    .s05-headline .period-honey {
+      color: var(--honey);
+      text-shadow: 0 0 24px rgba(254,189,51,0.6);
+    }
+
+    /* Hairline scratched through the headline */
+    .s05-headline .line.bottom {
+      position: relative;
+    }
+
+    /* ─── Active state — staggered word reveal ──────────────────── */
+    .slide[data-audio="05"].is-active .s05-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .slide[data-audio="05"].is-active .s05-headline .word {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .slide[data-audio="05"].is-active .s05-headline .word.w1 { transition-delay: 0.15s; }
+    .slide[data-audio="05"].is-active .s05-headline .word.w2 { transition-delay: 0.28s; }
+    .slide[data-audio="05"].is-active .s05-headline .word.w3 { transition-delay: 0.70s; }
+    .slide[data-audio="05"].is-active .s05-headline .word.w4 { transition-delay: 0.85s; }
+
+    /* ─── The split — two columns under the headline ────────────── */
+    .s05-split {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: clamp(28px, 3vw, 64px);
+      align-items: stretch;
+    }
+
+    /* Diagonal honey hairline as divider */
+    .s05-split .divider {
+      position: relative;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(254,189,51,0.05) 8%,
+        rgba(254,189,51,0.42) 50%,
+        rgba(254,189,51,0.05) 92%,
+        transparent 100%
+      );
+    }
+    .s05-split .divider::after {
+      content: "VS";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.36em;
+      color: var(--honey);
+      background: var(--bg);
+      padding: 8px 6px;
+      writing-mode: vertical-rl;
+      opacity: 0;
+      transition: opacity 1s ease 1.4s;
+    }
+    .slide[data-audio="05"].is-active .s05-split .divider::after { opacity: 1; }
+
+    /* ─── Column shell ──────────────────────────────────────────── */
+    .s05-col {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 0.8vh, 12px);
+      padding: clamp(14px, 1.6vh, 22px) clamp(18px, 1.8vw, 26px);
+      border-radius: 14px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .slide[data-audio="05"].is-active .s05-col.left  { transition-delay: 1.0s; opacity: 1; transform: translateY(0); }
+    .slide[data-audio="05"].is-active .s05-col.right { transition-delay: 1.1s; opacity: 1; transform: translateY(0); }
+
+    .s05-col.left {
+      background: rgba(255,255,255,0.015);
+      border: 1px dashed var(--border-cold);
+      filter: saturate(0.4) brightness(0.85);
+    }
+    .s05-col.left::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 9px,
+          rgba(255,255,255,0.012) 9px 10px
+        );
+      pointer-events: none;
+    }
+    .s05-col.right {
+      background: var(--bg-elev);
+      border: 1px solid var(--border-warm);
+      box-shadow:
+        0 0 0 1px rgba(254,189,51,0.04),
+        0 20px 60px -20px rgba(254,189,51,0.20),
+        0 40px 120px -40px rgba(254,189,51,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .s05-col.right::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(254,189,51,0.18) 0%, transparent 65%);
+      filter: blur(20px);
+      pointer-events: none;
+      transform: translate(35%, -35%);
+    }
+
+    /* Column header */
+    .s05-col-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: clamp(10px, 1.2vh, 14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .s05-col.left .s05-col-head { border-bottom-style: dashed; border-bottom-color: var(--border-cold); }
+    .s05-col.right .s05-col-head { border-bottom-color: rgba(254,189,51,0.18); }
+
+    .s05-col-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .s05-col.left .s05-col-label  { color: var(--fg-dim); }
+    .s05-col.right .s05-col-label { color: var(--honey); }
+    .s05-col-label .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+    }
+    .s05-col.left  .s05-col-label .dot { background: var(--fg-ghost); }
+    .s05-col.right .s05-col-label .dot {
+      background: var(--honey);
+      box-shadow: 0 0 10px var(--honey);
+      animation: s05-pulse 2.4s ease-in-out infinite;
+    }
+    .s05-col-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .s05-col.left  .s05-col-meta { color: var(--fg-ghost); }
+    .s05-col.right .s05-col-meta { color: var(--fg-muted); }
+
+    /* ─── Comparison rows ───────────────────────────────────────── */
+    .s05-row {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 5px;
+      padding: clamp(8px, 1vh, 12px) 0;
+    }
+    .s05-row + .s05-row {
+      border-top: 1px solid var(--border);
+    }
+    .s05-col.left .s05-row + .s05-row  { border-top-style: dashed; border-top-color: var(--border-cold); }
+    .s05-col.right .s05-row + .s05-row { border-top-color: rgba(254,189,51,0.08); }
+
+    .s05-row-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s05-col.right .s05-row-label {
+      color: var(--teal);
+    }
+
+    .s05-row-body {
+      font-family: var(--font-display);
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+    }
+    .s05-col.left .s05-row-body {
+      font-size: clamp(14px, 1.15vw, 18px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+    .s05-col.left .s05-row-body .quote { color: var(--fg-dim); }
+
+    .s05-col.right .s05-row-body {
+      font-size: clamp(14px, 1.2vw, 19px);
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.4;
+    }
+    .s05-col.right .s05-row-body .verb {
+      color: var(--honey);
+      font-weight: 700;
+    }
+    .s05-col.right .s05-row-body .conj {
+      color: var(--fg-dim);
+      font-style: italic;
+      font-weight: 300;
+      margin: 0 6px;
+    }
+
+    /* Receipt strip under each Yogi row */
+    .s05-receipt {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: rgba(254,189,51,0.06);
+      border: 1px solid rgba(254,189,51,0.18);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--honey-soft);
+      width: fit-content;
+    }
+    .s05-receipt::before {
+      content: "▸";
+      color: var(--honey);
+      font-size: 9px;
+    }
+    .s05-receipt .sep {
+      color: var(--fg-ghost);
+      margin: 0 2px;
+    }
+    .s05-receipt .amt {
+      color: var(--honey);
+      font-weight: 600;
+    }
+
+    /* Left side gets a faded "no receipt" stub */
+    .s05-stub {
+      margin-top: 4px;
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px dashed var(--border-cold);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      width: fit-content;
+    }
+
+    /* ─── Footer band — the killer line + key numbers ───────────── */
+    .s05-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      padding-top: clamp(12px, 1.4vh, 18px);
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s ease 1.4s, transform 0.9s ease 1.4s;
+    }
+    .slide[data-audio="05"].is-active .s05-footer { opacity: 1; transform: translateY(0); }
+
+    .s05-footer-q {
+      font-family: var(--font-display);
+      font-size: clamp(13px, 1.05vw, 17px);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--fg-muted);
+      max-width: 60ch;
+      font-style: italic;
+      font-weight: 300;
+      margin: 0;
+    }
+    .s05-footer-q strong {
+      color: var(--fg);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .s05-footer-q .em {
+      color: var(--honey);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .s05-stats {
+      display: flex;
+      gap: clamp(20px, 2vw, 36px);
+      align-items: flex-end;
+    }
+    .s05-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+    .s05-stat .v {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.1vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--honey);
+      line-height: 1;
+    }
+    .s05-stat .k {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s05-stat .sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--fg-ghost);
+    }
+
+    /* ─── Tiny touches ──────────────────────────────────────────── */
+    .s05-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--honey);
+      opacity: 0.55;
+    }
+    .s05-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+    .s05-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
+    .s05-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
+    .s05-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="05"] *,
+      .slide[data-audio="05"] *::before,
+      .slide[data-audio="05"] *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0s !important;
+      }
+    }
+
+    /* Smaller laptops */
+    @media (max-width: 1280px) {
+      .slide[data-audio="05"] .content { padding: 40px 48px; }
+      .s05-split { grid-template-columns: 1fr 1px 1fr; gap: 28px; }
+    }
+  </style>
+
+  <div class="content">
+
+    <!-- Corner crosshairs -->
+    <span class="s05-corner tl"></span>
+    <span class="s05-corner tr"></span>
+    <span class="s05-corner bl"></span>
+    <span class="s05-corner br"></span>
+
+    <!-- ── Eyebrow ─────────────────────────────────────────────── -->
+    <div class="s05-eyebrow">
+      <span class="num">05 / 22</span>
+      <span class="sep"></span>
+      <span>the key differentiator</span>
+      <span class="sep"></span>
+      <span class="pill">tagline</span>
+    </div>
+
+    <!-- ── Headline ────────────────────────────────────────────── -->
+    <h1 class="s05-headline">
+      <span class="line top">
+        <span class="word w-chatbots w1">Chatbots</span>
+        <span class="word w-respond w2">respond.</span>
+      </span>
+      <span class="line bottom">
+        <span class="word w-yogi w3">Yogi</span>
+        <span class="word w-acts w4">acts<span class="period-honey">.</span></span>
+      </span>
+    </h1>
+
+    <!-- ── Split comparison ────────────────────────────────────── -->
+    <div class="s05-split">
+
+      <!-- LEFT: Chatbot — greyed, tired, dashed -->
+      <div class="s05-col left">
+        <div class="s05-col-head">
+          <div class="s05-col-label">
+            <span class="dot"></span>
+            <span>Chatbot</span>
+          </div>
+          <div class="s05-col-meta">search box</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Discovery</div>
+          <div class="s05-row-body">
+            <span class="quote">"</span>Sure, I can help you investigate that complaint. Here are some steps you could take<span class="quote">…"</span>
+          </div>
+          <div class="s05-stub">no action taken</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Memory</div>
+          <div class="s05-row-body">
+            Forgets the moment the tab closes. New chat, new stranger, every time.
+          </div>
+          <div class="s05-stub">session-bound</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Authority</div>
+          <div class="s05-row-body">
+            Cannot open Outlook. Cannot touch the CRM. Cannot post on Teams.
+          </div>
+          <div class="s05-stub">text only · 0 tools</div>
+        </div>
+
+      </div>
+
+      <!-- Diagonal honey hairline -->
+      <div class="divider"></div>
+
+      <!-- RIGHT: Yogi — alive, honey-glow, real receipts -->
+      <div class="s05-col right">
+        <div class="s05-col-head">
+          <div class="s05-col-label">
+            <span class="dot"></span>
+            <span>Yogi</span>
+          </div>
+          <div class="s05-col-meta">coworker · 328 tools</div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Discovery</div>
+          <div class="s05-row-body">
+            Scans Zoho × MYOB × Aircall × Confluence <span class="conj">—</span> <span class="verb">attaches the draft response.</span>
+          </div>
+          <div class="s05-receipt">
+            <span>TJ Gardening</span><span class="sep">·</span><span>4 clients · 81 invoices</span><span class="sep">·</span><span class="amt">~$69K recovered</span>
+          </div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Memory</div>
+          <div class="s05-row-body">
+            <span class="verb">79 memory files</span> load every session <span class="conj">—</span> persistent since January, rsynced to private git weekly.
+          </div>
+          <div class="s05-receipt">
+            <span>Yogi repo</span><span class="sep">·</span><span>git snapshot 08:13 Mon</span><span class="sep">·</span><span>survives wipes</span>
+          </div>
+        </div>
+
+        <div class="s05-row">
+          <div class="s05-row-label">Authority</div>
+          <div class="s05-row-body">
+            <span class="verb">Sends</span> the email. <span class="verb">Schedules</span> the meeting. <span class="verb">Pushes</span> the fix. <span class="verb">Replies</span> on Teams.
+          </div>
+          <div class="s05-receipt">
+            <span>Phantom Batch</span><span class="sep">·</span><span>8 May · pipeline restored 4pm</span><span class="sep">·</span><span class="amt">$415K averted</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Footer band ─────────────────────────────────────────── -->
+    <div class="s05-footer">
+      <p class="s05-footer-q">
+        <strong>TC Assist Home is not another search box.</strong>
+        It is <em class="em">a coworker named Yogi</em> — the unit of work moves from minutes-of-doing to <em class="em">seconds-of-checking</em>.
+      </p>
+      <div class="s05-stats">
+        <div class="s05-stat">
+          <span class="v">47s</span>
+          <span class="k">investigation</span>
+          <span class="sub">draft attached</span>
+        </div>
+        <div class="s05-stat">
+          <span class="v">328</span>
+          <span class="k">tools</span>
+          <span class="sub">authority to act</span>
+        </div>
+        <div class="s05-stat">
+          <span class="v">$415K</span>
+          <span class="k">averted</span>
+          <span class="sub">phantom batch · 8 May</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const slide = document.currentScript.closest('.slide');
+      if (!slide) return;
+
+      function enter() {
+        slide.classList.add('is-active');
+      }
+      function leave() {
+        slide.classList.remove('is-active');
+      }
+
+      // Hook into the deck runtime if it exposes one
+      slide.onSlideEnter = enter;
+      slide.onSlideLeave = leave;
+
+      // Also auto-activate when the slide scrolls into view
+      // (graceful fallback if the deck doesn't drive enter/leave)
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
+        });
+      }, { threshold: [0, 0.4, 0.8] });
+      io.observe(slide);
+
+      // If the deck calls window.onSlideEnter('05'), respect it too
+      const prev = window.onSlideEnter;
+      window.onSlideEnter = function (id) {
+        if (typeof prev === 'function') try { prev(id); } catch (_) {}
+        if (id === '05' || id === 5) enter();
+      };
+    })();
+  </script>
+</section>

@@ -1,0 +1,769 @@
+<section class="slide" data-audio="18">
+  <style>
+    /* ============ SLIDE 18 — SAFETY EVALS / RSP ============ */
+    .slide[data-audio="18"] {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(254,189,51,0.055), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 88% 82%, rgba(67,192,190,0.045), transparent 60%),
+        radial-gradient(circle at 50% 110%, rgba(100,188,234,0.03), transparent 70%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
+      overflow: hidden;
+      letter-spacing: -0.01em;
+      box-sizing: border-box;
+    }
+
+    /* faint engineering grid */
+    .slide[data-audio="18"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 85% 85% at center, black 35%, transparent 92%);
+      pointer-events: none;
+    }
+
+    /* film grain */
+    .slide[data-audio="18"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.45;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .s18-frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: 52px clamp(40px, 4vw, 80px) 30px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    /* registration marks */
+    .s18-mark {
+      position: absolute;
+      width: 12px; height: 12px;
+      border: 1px solid rgba(254,189,51,0.28);
+      z-index: 5;
+    }
+    .s18-mark.tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
+    .s18-mark.tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
+    .s18-mark.bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
+    .s18-mark.br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+
+    .s18-stamp {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      z-index: 5;
+    }
+    .s18-stamp b { color: var(--honey); font-weight: 500; }
+
+    /* ============ HEADER ============ */
+    .s18-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 22px;
+    }
+    .s18-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.38em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .s18-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(254,189,51,0.7);
+      animation: s18-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes s18-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .s18-title {
+      font-size: clamp(40px, 4.4vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: var(--fg);
+    }
+    .s18-subhead {
+      margin-top: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      color: var(--honey);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .s18-subhead span.sep { color: rgba(254,189,51,0.32); margin: 0 10px; }
+
+    /* mean badge top-right */
+    .s18-mean {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      padding: 14px 22px;
+      border: 1px solid rgba(254,189,51,0.28);
+      background:
+        linear-gradient(135deg, rgba(254,189,51,0.06), rgba(254,189,51,0.02));
+      border-radius: 2px;
+      position: relative;
+    }
+    .s18-mean::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 10px; height: 10px;
+      border-top: 1px solid var(--honey);
+      border-left: 1px solid var(--honey);
+    }
+    .s18-mean::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 10px; height: 10px;
+      border-bottom: 1px solid var(--honey);
+      border-right: 1px solid var(--honey);
+    }
+    .s18-mean-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+    .s18-mean-value {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--honey);
+      line-height: 1;
+      text-shadow: 0 0 28px rgba(254,189,51,0.32);
+      font-feature-settings: "tnum";
+    }
+    .s18-mean-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+    }
+
+    /* ============ BODY GRID: matrix + sidebar ============ */
+    .s18-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 26px;
+      min-height: 0;
+    }
+
+    /* ============ EVAL MATRIX ============ */
+    .s18-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .s18-cell {
+      position: relative;
+      padding: 14px 16px 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .s18-cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .s18-cell:hover { transform: translateY(-2px); }
+    .s18-cell:hover::before { opacity: 1; }
+
+    /* score color tiers */
+    .s18-cell[data-tier="honey"] { border-color: rgba(254,189,51,0.22); }
+    .s18-cell[data-tier="honey"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254,189,51,0.10), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="honey"] .s18-score { color: var(--honey); text-shadow: 0 0 20px rgba(254,189,51,0.45); }
+    .s18-cell[data-tier="honey"] .s18-bar > i { background: linear-gradient(90deg, var(--honey), #ffd56a); box-shadow: 0 0 10px rgba(254,189,51,0.55); }
+
+    .s18-cell[data-tier="teal"] { border-color: rgba(67,192,190,0.22); }
+    .s18-cell[data-tier="teal"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(67,192,190,0.09), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="teal"] .s18-score { color: var(--teal); text-shadow: 0 0 18px rgba(67,192,190,0.40); }
+    .s18-cell[data-tier="teal"] .s18-bar > i { background: linear-gradient(90deg, var(--dark-teal), var(--teal)); box-shadow: 0 0 10px rgba(67,192,190,0.5); }
+
+    .s18-cell[data-tier="sky"] { border-color: rgba(100,188,234,0.24); }
+    .s18-cell[data-tier="sky"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(100,188,234,0.10), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="sky"] .s18-score { color: var(--sky); text-shadow: 0 0 18px rgba(100,188,234,0.40); }
+    .s18-cell[data-tier="sky"] .s18-bar > i { background: linear-gradient(90deg, #3a92c4, var(--sky)); box-shadow: 0 0 10px rgba(100,188,234,0.5); }
+
+    .s18-cell-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .s18-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--fg-dim);
+      font-weight: 500;
+    }
+    .s18-pass {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 2px;
+    }
+    .s18-cell[data-tier="honey"] .s18-pass { color: var(--honey); border-color: rgba(254,189,51,0.3); }
+    .s18-cell[data-tier="teal"]  .s18-pass { color: var(--teal);  border-color: rgba(67,192,190,0.3); }
+    .s18-cell[data-tier="sky"]   .s18-pass { color: var(--sky);   border-color: rgba(100,188,234,0.32); }
+
+    .s18-cat {
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.18;
+      color: var(--fg);
+      margin-bottom: 8px;
+      min-height: 34px;
+    }
+    .s18-score {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      font-feature-settings: "tnum";
+    }
+    .s18-score .pct {
+      font-size: 18px;
+      font-weight: 700;
+      margin-left: 2px;
+      opacity: 0.7;
+    }
+    .s18-micro {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      line-height: 1.45;
+      margin-top: 6px;
+      min-height: 24px;
+    }
+
+    .s18-bar {
+      margin-top: 10px;
+      position: relative;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .s18-bar > i {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: var(--w, 0%);
+      border-radius: 2px;
+      transform-origin: left center;
+      animation: s18-fill 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
+    }
+    @keyframes s18-fill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .s18-bar > i::after {
+      content: "";
+      position: absolute;
+      right: -2px; top: -1px; bottom: -1px;
+      width: 5px;
+      background: currentColor;
+      filter: blur(3px);
+      opacity: 0.7;
+    }
+
+    /* ============ SIDEBAR ============ */
+    .s18-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .s18-rsp {
+      position: relative;
+      padding: 18px 18px 16px;
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.045), rgba(254,189,51,0.01));
+      border: 1px solid rgba(254,189,51,0.22);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .s18-rsp::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey), transparent);
+      opacity: 0.6;
+    }
+    .s18-rsp-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--honey);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .s18-rsp-eyebrow::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(254,189,51,0.4), transparent);
+    }
+    .s18-rsp-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+    .s18-rsp-tier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--honey);
+      margin-bottom: 14px;
+    }
+    .s18-rsp-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .s18-rsp-list li {
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: var(--fg-muted);
+      padding-left: 14px;
+      position: relative;
+      letter-spacing: -0.005em;
+    }
+    .s18-rsp-list li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 6px;
+      width: 6px; height: 1px;
+      background: var(--honey);
+    }
+    .s18-rsp-list li b {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    /* legend */
+    .s18-legend {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      background: rgba(255,255,255,0.015);
+    }
+    .s18-legend-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .s18-legend-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .s18-legend-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+    }
+    .s18-legend-row .sw {
+      width: 18px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .sw.honey { background: var(--honey); box-shadow: 0 0 8px rgba(254,189,51,0.5); }
+    .sw.teal  { background: var(--teal);  box-shadow: 0 0 8px rgba(67,192,190,0.5); }
+    .sw.sky   { background: var(--sky);   box-shadow: 0 0 8px rgba(100,188,234,0.5); }
+    .s18-legend-row .num { color: var(--fg); font-weight: 600; margin-left: auto; }
+
+    /* held-out / methodology box */
+    .s18-method {
+      padding: 14px 16px;
+      border: 1px dashed rgba(67,192,190,0.28);
+      border-radius: 3px;
+      background: rgba(67,192,190,0.025);
+    }
+    .s18-method-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .s18-method-body {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--fg-muted);
+      letter-spacing: -0.005em;
+    }
+    .s18-method-body b { color: var(--fg); font-weight: 600; }
+
+    /* ============ BOTTOM STRIP ============ */
+    .s18-strip {
+      margin-top: 18px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      background:
+        linear-gradient(90deg, rgba(254,189,51,0.045), rgba(67,192,190,0.025) 60%, transparent);
+      border-top: 1px solid rgba(254,189,51,0.22);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+    }
+    .s18-strip::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 0;
+      width: 80px;
+      height: 1px;
+      background: var(--honey);
+      box-shadow: 0 0 14px var(--honey);
+    }
+    .s18-strip-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.36em;
+      color: var(--honey);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .s18-strip-text {
+      font-size: clamp(15px, 1.4vw, 19px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      line-height: 1.3;
+      flex: 1;
+    }
+    .s18-strip-text b {
+      font-weight: 800;
+      color: var(--honey);
+    }
+    .s18-strip-text em {
+      font-style: normal;
+      color: var(--fg-muted);
+    }
+    .s18-strip-sig {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* stagger animation for cells */
+    .s18-cell {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s18-rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    .s18-cell:nth-child(1)  { animation-delay: 0.05s; }
+    .s18-cell:nth-child(2)  { animation-delay: 0.10s; }
+    .s18-cell:nth-child(3)  { animation-delay: 0.15s; }
+    .s18-cell:nth-child(4)  { animation-delay: 0.20s; }
+    .s18-cell:nth-child(5)  { animation-delay: 0.25s; }
+    .s18-cell:nth-child(6)  { animation-delay: 0.30s; }
+    .s18-cell:nth-child(7)  { animation-delay: 0.35s; }
+    .s18-cell:nth-child(8)  { animation-delay: 0.40s; }
+    .s18-cell:nth-child(9)  { animation-delay: 0.45s; }
+    .s18-cell:nth-child(10) { animation-delay: 0.50s; }
+    .s18-cell:nth-child(11) { animation-delay: 0.55s; }
+    .s18-cell:nth-child(12) { animation-delay: 0.60s; }
+    @keyframes s18-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .s18-cell, .s18-bar > i { animation: none; opacity: 1; transform: none; }
+      .s18-bar > i { transform: scaleX(1); }
+      .s18-eyebrow .dot { animation: none; }
+    }
+  </style>
+
+  <div class="s18-frame">
+    <div class="s18-mark tl"></div>
+    <div class="s18-mark tr"></div>
+    <div class="s18-mark bl"></div>
+    <div class="s18-mark br"></div>
+    <div class="s18-stamp">SLIDE · <b>18</b> · YOGI / SAFETY EVALUATION REPORT</div>
+
+    <!-- HEADER -->
+    <div class="s18-header">
+      <div>
+        <div class="s18-eyebrow"><span class="dot"></span> SAFETY · EVALUATION SUITE · v3.2 · 2026-Q2</div>
+        <div class="s18-title">Audited like a frontier model.</div>
+        <div class="s18-subhead">
+          12 CATEGORIES <span class="sep">/</span> 95.4% MEAN <span class="sep">/</span> HUMAN APPROVES EVERY ACTION
+        </div>
+      </div>
+      <div class="s18-mean">
+        <div class="s18-mean-label">MEAN PASS RATE</div>
+        <div class="s18-mean-value">95.4<span style="font-size:24px;font-weight:800;opacity:0.7">%</span></div>
+        <div class="s18-mean-sub">n=2,184 · held-out · quarterly</div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="s18-body">
+      <!-- 4x3 MATRIX -->
+      <div class="s18-matrix">
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#01</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Tool-call authority bounds</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">No action outside the 328-tool authority boundary.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#02</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Database write guardrails</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Zero unauthorised writes against Zoho, MYOB, Databricks.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#03</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Self-modification audit</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Memory edits logged, reversible, human-reviewable.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#04</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">PII redaction</div>
+          <div class="s18-score">99.7<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:99.7%"></i></div>
+          <div class="s18-micro">TCID, DOB, contact data masked in outbound logs.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#05</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">RBAC enforcement</div>
+          <div class="s18-score">98<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:98%"></i></div>
+          <div class="s18-micro">Role/permission checks honoured on every privileged call.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#06</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Memory leak across users</div>
+          <div class="s18-score">97<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:97%"></i></div>
+          <div class="s18-micro">No cross-tenant context bleed in adversarial probes.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#07</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Conversation context isolation</div>
+          <div class="s18-score">96<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:96%"></i></div>
+          <div class="s18-micro">Session boundaries hold under concurrent multi-user load.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="sky">
+          <div class="s18-cell-top">
+            <span class="s18-num">#08</span>
+            <span class="s18-pass">MONITOR</span>
+          </div>
+          <div class="s18-cat">Refusal of out-of-scope ops</div>
+          <div class="s18-score">92<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:92%"></i></div>
+          <div class="s18-micro">Declines off-charter requests; quarterly refusal tuning.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="sky">
+          <div class="s18-cell-top">
+            <span class="s18-num">#09</span>
+            <span class="s18-pass">MONITOR</span>
+          </div>
+          <div class="s18-cat">Prompt-injection resistance</div>
+          <div class="s18-score">88<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:88%"></i></div>
+          <div class="s18-micro">Adversarial test set; documented capability gap.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#10</span>
+            <span class="s18-pass">ZERO</span>
+          </div>
+          <div class="s18-cat">Hallucinated tool calls</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Strict schema validation — zero phantom invocations.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#11</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Drift detection</div>
+          <div class="s18-score">94<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:94%"></i></div>
+          <div class="s18-micro">Behaviour drift caught against frozen reference outputs.</div>
+        </div>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#12</span>
+            <span class="s18-pass">PASS</span>
+          </div>
+          <div class="s18-cat">Documented capability gaps</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Every known limitation logged, owned, scheduled.</div>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="s18-side">
+        <div class="s18-rsp">
+          <div class="s18-rsp-eyebrow">Scaling tier</div>
+          <div class="s18-rsp-title">Anthropic RSP-3</div>
+          <div class="s18-rsp-tier">RESPONSIBLE SCALING POLICY</div>
+          <ul class="s18-rsp-list">
+            <li><b>Held-out</b> evaluation set, re-run quarterly</li>
+            <li><b>Documented</b> capability gaps with owners</li>
+            <li><b>Reversible</b> by design — every write logged</li>
+            <li><b>Human approval</b> required for every action</li>
+            <li><b>Red-team</b> probes from Specialist Crew + external</li>
+          </ul>
+        </div>
+
+        <div class="s18-legend">
+          <div class="s18-legend-title">Threshold legend</div>
+          <div class="s18-legend-rows">
+            <div class="s18-legend-row"><span class="sw honey"></span> 100% &nbsp; locked <span class="num">5</span></div>
+            <div class="s18-legend-row"><span class="sw teal"></span> ≥95% &nbsp; pass <span class="num">5</span></div>
+            <div class="s18-legend-row"><span class="sw sky"></span> 88–95 &nbsp; monitor <span class="num">2</span></div>
+          </div>
+        </div>
+
+        <div class="s18-method">
+          <div class="s18-method-title">Methodology</div>
+          <div class="s18-method-body">
+            <b>2,184</b> probes across <b>12</b> categories. Held-out set, not training data. Quarterly cadence. Public scoreboard inside TC Assist Home.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BOTTOM STRIP -->
+    <div class="s18-strip">
+      <div class="s18-strip-label">NON-NEGOTIABLE</div>
+      <div class="s18-strip-text">
+        <b>Yogi drafts. Humans decide.</b> <em>The reviewer who clicks approve owns the outcome.</em>
+      </div>
+      <div class="s18-strip-sig">RSP · v3.2 · Q2 2026</div>
+    </div>
+  </div>
+</section>

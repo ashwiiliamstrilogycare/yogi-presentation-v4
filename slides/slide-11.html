@@ -1,0 +1,1080 @@
+<section class="slide" data-audio="11" id="slide-12">
+  <style>
+    /* ============================================================
+       SLIDE 12 · ARCHITECTURE BLUEPRINT · "Drafting table"
+       The flat, readable counterpart to slide-06's 3D galaxy.
+       Aesthetic: engineering blueprint × Anthropic systems paper.
+       ============================================================ */
+
+    #slide-12 {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -10%, rgba(254,189,51,0.06), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 50% 110%, rgba(67,192,190,0.045), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(0,127,126,0.025), transparent 70%),
+        #0a0d12;
+      color: #f4f4f5;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      box-sizing: border-box;
+      letter-spacing: -0.01em;
+      isolation: isolate;
+    }
+
+    /* drafting-table graph paper grid */
+    #slide-12::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(rgba(254,189,51,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(254,189,51,0.045) 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+      mask-image: radial-gradient(ellipse 90% 95% at center, black 50%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* subtle film grain */
+    #slide-12::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* corner registration marks */
+    #slide-12 .reg {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.35);
+      z-index: 4;
+      pointer-events: none;
+    }
+    #slide-12 .reg.tl { top: 28px; left: 28px; border-right: none; border-bottom: none; }
+    #slide-12 .reg.tr { top: 28px; right: 28px; border-left: none; border-bottom: none; }
+    #slide-12 .reg.bl { bottom: 28px; left: 28px; border-right: none; border-top: none; }
+    #slide-12 .reg.br { bottom: 28px; right: 28px; border-left: none; border-top: none; }
+
+    #slide-12 .doc-stamp {
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: #71717a;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    /* main layout */
+    #slide-12 .frame {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100vh;
+      padding: clamp(56px, 5.5vh, 88px) clamp(48px, 4.5vw, 88px) clamp(40px, 4vh, 60px);
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      grid-template-rows: auto 1fr;
+      gap: clamp(20px, 2.4vh, 36px) clamp(28px, 3vw, 56px);
+      box-sizing: border-box;
+    }
+
+    /* ----- header ----- */
+    #slide-12 .header {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #slide-12 .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(10px, 0.72vw, 11.5px);
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: #FEBD33;
+      font-weight: 600;
+    }
+    #slide-12 .eyebrow .rule {
+      width: 56px; height: 1px;
+      background: linear-gradient(90deg, #FEBD33, transparent);
+    }
+    #slide-12 .eyebrow .dot {
+      width: 6px; height: 6px;
+      background: #FEBD33; border-radius: 50%;
+      box-shadow: 0 0 12px #FEBD33, 0 0 24px rgba(254,189,51,0.4);
+      animation: s12-pulse 2.4s ease-in-out infinite;
+    }
+    #slide-12 .eyebrow .code {
+      color: #71717a;
+      letter-spacing: 0.32em;
+    }
+
+    #slide-12 .headline {
+      font-size: clamp(28px, 3.2vw, 52px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      margin: 0;
+      max-width: 24ch;
+    }
+    #slide-12 .headline .em {
+      color: #FEBD33;
+      font-style: normal;
+    }
+    #slide-12 .headline .quiet {
+      color: #a1a1aa;
+      font-weight: 600;
+    }
+
+    #slide-12 .subhead {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(11px, 0.85vw, 14px);
+      letter-spacing: 0.04em;
+      color: #FEBD33;
+      font-weight: 500;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    #slide-12 .subhead .op { color: #71717a; margin: 0 6px; font-weight: 400; }
+    #slide-12 .subhead .eq { color: #f4f4f5; margin: 0 8px; }
+    #slide-12 .subhead .total { color: #f4f4f5; font-weight: 700; }
+
+    /* ----- diagram column ----- */
+    #slide-12 .diagram {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: clamp(8px, 1.4vh, 16px);
+      min-height: 0;
+    }
+
+    /* SVG connection layer pinned behind chips */
+    #slide-12 .wires {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #slide-12 .wires path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: s12-draw 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    #slide-12 .wires .w-t0t1 { stroke: rgba(254,189,51,0.55); stroke-width: 1.1; animation-delay: 300ms; }
+    #slide-12 .wires .w-t1t2 { stroke: rgba(67,192,190,0.40); stroke-width: 1.0; animation-delay: 650ms; }
+    #slide-12 .wires .w-t2t3 { stroke: rgba(100,188,234,0.28); stroke-width: 0.9; animation-delay: 1000ms; }
+
+    /* tier band wrapper */
+    #slide-12 .tier {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    #slide-12 .tier.t0 { animation-delay: 80ms; }
+    #slide-12 .tier.t1 { animation-delay: 280ms; }
+    #slide-12 .tier.t2 { animation-delay: 480ms; }
+    #slide-12 .tier.t3 { animation-delay: 700ms; min-height: 0; flex: 1; }
+
+    #slide-12 .tier-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      font-weight: 600;
+    }
+    #slide-12 .tier-label .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      border: 1px solid var(--tc, rgba(254,189,51,0.4));
+      color: var(--tc, #FEBD33);
+      background: rgba(255,255,255,0.02);
+      letter-spacing: 0.24em;
+      font-size: 9.5px;
+    }
+    #slide-12 .tier-label .role {
+      color: #f4f4f5;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+    }
+    #slide-12 .tier-label .meta {
+      color: #52525b;
+      letter-spacing: 0.22em;
+      font-weight: 500;
+    }
+    #slide-12 .tier-label .meta b {
+      color: #a1a1aa;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    #slide-12 .tier-label .flex { flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent 80%);
+    }
+
+    /* ----- T0 (Yogi) ----- */
+    #slide-12 .t0-row {
+      display: flex;
+      justify-content: center;
+      padding: 4px 0 2px;
+    }
+    #slide-12 .yogi-chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 22px 12px 16px;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.12), rgba(254,189,51,0.04)),
+        rgba(17,22,31,0.85);
+      border: 1px solid rgba(254,189,51,0.55);
+      box-shadow:
+        0 0 0 1px rgba(254,189,51,0.08) inset,
+        0 8px 36px rgba(254,189,51,0.18),
+        0 0 60px rgba(254,189,51,0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    #slide-12 .yogi-orb {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #FFE5A0 0%, #FEBD33 45%, #c98908 100%);
+      box-shadow:
+        0 0 12px rgba(254,189,51,0.65),
+        0 0 28px rgba(254,189,51,0.35),
+        inset 0 0 6px rgba(255,235,180,0.55);
+      position: relative;
+      flex-shrink: 0;
+    }
+    #slide-12 .yogi-orb::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(254,189,51,0.45);
+      animation: s12-rotate 18s linear infinite;
+    }
+    #slide-12 .yogi-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFE9B0;
+      text-shadow: 0 0 12px rgba(254,189,51,0.4);
+    }
+    #slide-12 .yogi-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C7D6EA;
+      margin-top: 2px;
+    }
+    #slide-12 .yogi-role .sep { color: rgba(254,189,51,0.5); margin: 0 7px; }
+
+    /* ----- T1 / T2 chip rows ----- */
+    #slide-12 .chip-row {
+      display: grid;
+      gap: clamp(6px, 0.55vw, 10px);
+      align-items: stretch;
+    }
+    #slide-12 .chip-row.t1 { grid-template-columns: repeat(10, 1fr); }
+    #slide-12 .chip-row.t2 { grid-template-columns: repeat(12, 1fr); }
+
+    #slide-12 .chip {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 9px 10px 9px 11px;
+      border-radius: 7px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid var(--bord, rgba(255,255,255,0.08));
+      border-left: 2px solid var(--accent, #FEBD33);
+      transition: transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1),
+                  box-shadow 220ms ease,
+                  border-color 220ms ease,
+                  background 220ms ease;
+      cursor: default;
+      overflow: hidden;
+    }
+    #slide-12 .chip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent, #FEBD33), transparent);
+      opacity: 0.35;
+    }
+    #slide-12 .chip .name {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: #f4f4f5;
+      line-height: 1.1;
+    }
+    #slide-12 .chip .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      color: #8b95a3;
+      line-height: 1.25;
+      text-transform: lowercase;
+    }
+    #slide-12 .chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(254,189,51,0.5);
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.07), rgba(254,189,51,0.02));
+      box-shadow:
+        0 6px 22px rgba(254,189,51,0.18),
+        0 0 0 1px rgba(254,189,51,0.18) inset;
+    }
+    #slide-12 .chip:hover .name { color: #FFE9B0; }
+
+    /* T2 chips are smaller */
+    #slide-12 .chip.small {
+      padding: 7px 8px 7px 9px;
+      border-radius: 6px;
+      gap: 1px;
+    }
+    #slide-12 .chip.small .name { font-size: 11px; }
+    #slide-12 .chip.small .role { font-size: 8.5px; letter-spacing: 0.04em; }
+
+    /* ----- T3 cluster strip ----- */
+    #slide-12 .t3-area {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      flex: 1;
+      gap: 6px;
+    }
+    #slide-12 .t3-grid {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: clamp(4px, 0.45vw, 8px);
+      flex: 1;
+      min-height: 0;
+    }
+    #slide-12 .cluster {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 9px 9px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--cbord, rgba(255,255,255,0.08));
+      background:
+        linear-gradient(180deg, var(--cbg, rgba(255,255,255,0.025)) 0%, transparent 100%),
+        rgba(17,22,31,0.55);
+      overflow: hidden;
+      min-height: 0;
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+    #slide-12 .cluster:hover {
+      border-color: var(--c, #FEBD33);
+      transform: translateY(-1px);
+    }
+    #slide-12 .cluster::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c, #FEBD33), transparent);
+      opacity: 0.55;
+    }
+    #slide-12 .cluster-head {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+    #slide-12 .cluster-count {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--c, #FEBD33);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.04em;
+      text-shadow: 0 0 14px var(--c, #FEBD33);
+    }
+    #slide-12 .cluster-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #f4f4f5;
+      line-height: 1.18;
+      word-break: break-word;
+    }
+    #slide-12 .cluster-disc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7480;
+      margin-bottom: 5px;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+    #slide-12 .dots {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      align-content: start;
+      gap: 2px;
+    }
+    #slide-12 .dots .d {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 5px;
+      max-height: 5px;
+      border-radius: 50%;
+      background: var(--c, #FEBD33);
+      opacity: 0.85;
+      box-shadow: 0 0 3px var(--c, #FEBD33);
+      animation: s12-pop 380ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+    }
+    /* cluster lead chip (Tier 2 mirror) */
+    #slide-12 .cluster .lead {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c, #FEBD33);
+      opacity: 0.85;
+      margin-top: 6px;
+      padding-top: 5px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      text-align: left;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    #slide-12 .cluster .lead::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--c, #FEBD33);
+      box-shadow: 0 0 5px var(--c, #FEBD33);
+      flex-shrink: 0;
+    }
+
+    /* ----- right rail spec table ----- */
+    #slide-12 .sidebar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+    #slide-12 .spec-card {
+      background:
+        linear-gradient(180deg, rgba(17,22,31,0.85), rgba(10,13,18,0.85));
+      border: 1px solid rgba(254,189,51,0.22);
+      border-radius: 10px;
+      padding: 18px 20px 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation-delay: 950ms;
+    }
+    #slide-12 .spec-card .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    #slide-12 .spec-card .head .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #FEBD33;
+      box-shadow: 0 0 10px #FEBD33;
+    }
+    #slide-12 .spec-card .head .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #FEBD33;
+      font-weight: 700;
+    }
+    #slide-12 .spec-card .head .filename {
+      flex: 1;
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #52525b;
+      letter-spacing: 0.16em;
+    }
+    #slide-12 .spec-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px 14px;
+    }
+    #slide-12 .spec-row {
+      display: contents;
+    }
+    #slide-12 .spec-row .k {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rc, #FEBD33);
+      font-weight: 700;
+      padding-top: 1px;
+      white-space: nowrap;
+    }
+    #slide-12 .spec-row .v {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    #slide-12 .spec-row .v .count {
+      font-size: 13px;
+      font-weight: 800;
+      color: #f4f4f5;
+      letter-spacing: -0.015em;
+      font-variant-numeric: tabular-nums;
+    }
+    #slide-12 .spec-row .v .count .nodes {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #71717a;
+      letter-spacing: 0.16em;
+      margin-left: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    #slide-12 .spec-row .v .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #8b95a3;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+    #slide-12 .spec-row .v .meta .model {
+      color: #43C0BE;
+    }
+    #slide-12 .spec-row + .spec-row .k,
+    #slide-12 .spec-row + .spec-row .v {
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,0.07);
+      margin-top: -1px;
+    }
+
+    /* fits-in-git footer card */
+    #slide-12 .git-card {
+      background:
+        linear-gradient(180deg, rgba(67,192,190,0.06), rgba(67,192,190,0.02));
+      border: 1px solid rgba(67,192,190,0.25);
+      border-radius: 10px;
+      padding: 14px 18px 16px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: s12-rise 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation-delay: 1100ms;
+    }
+    #slide-12 .git-card .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    #slide-12 .git-card .head .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #43C0BE;
+      box-shadow: 0 0 10px #43C0BE;
+    }
+    #slide-12 .git-card .head .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #43C0BE;
+      font-weight: 700;
+    }
+    #slide-12 .git-card .lines {
+      display: grid;
+      gap: 6px;
+    }
+    #slide-12 .git-card .line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: #C7D6EA;
+      letter-spacing: 0.02em;
+    }
+    #slide-12 .git-card .line .k {
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 9px;
+    }
+    #slide-12 .git-card .line .v {
+      color: #f4f4f5;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* legend strip under diagram */
+    #slide-12 .legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-top: 4px;
+    }
+    #slide-12 .legend .item { display: inline-flex; align-items: center; gap: 7px; }
+    #slide-12 .legend .item .swatch {
+      width: 14px; height: 1.5px;
+      border-radius: 1px;
+    }
+    #slide-12 .legend .item .swatch.honey { background: #FEBD33; box-shadow: 0 0 6px rgba(254,189,51,0.5); }
+    #slide-12 .legend .item .swatch.teal  { background: #43C0BE; box-shadow: 0 0 6px rgba(67,192,190,0.5); }
+    #slide-12 .legend .item .swatch.sky   { background: #64BCEA; box-shadow: 0 0 6px rgba(100,188,234,0.5); }
+    #slide-12 .legend .item b { color: #C7D6EA; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ----- animations ----- */
+    @keyframes s12-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.55; transform: scale(0.85); }
+    }
+    @keyframes s12-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes s12-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s12-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes s12-pop {
+      from { opacity: 0; transform: scale(0.3); }
+      to   { opacity: 0.85; transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #slide-12 .yogi-orb::after,
+      #slide-12 .eyebrow .dot { animation: none; }
+      #slide-12 .wires path,
+      #slide-12 .tier,
+      #slide-12 .spec-card,
+      #slide-12 .git-card,
+      #slide-12 .dots .d {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* responsive — squeeze chip rows on narrower screens */
+    @media (max-width: 1400px) {
+      #slide-12 .chip .role { font-size: 8.5px; }
+      #slide-12 .chip.small .role { font-size: 8px; }
+      #slide-12 .frame { grid-template-columns: 1fr 280px; }
+    }
+    @media (max-width: 1180px) {
+      #slide-12 .frame { grid-template-columns: 1fr 240px; padding: 48px 32px 32px; }
+      #slide-12 .chip .role,
+      #slide-12 .chip.small .role { font-size: 7.5px; }
+      #slide-12 .cluster-count { font-size: 16px; }
+    }
+  </style>
+
+  <span class="reg tl"></span>
+  <span class="reg tr"></span>
+  <span class="reg bl"></span>
+  <span class="reg br"></span>
+  <div class="doc-stamp">Y · 012 · ARCH-BLUEPRINT · REV.05.24</div>
+
+  <div class="frame">
+
+    <!-- ============= HEADER ============= -->
+    <div class="header">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span>Architecture · Flat View</span>
+        <span class="rule"></span>
+        <span class="code">FIG 12.A · 1 + 10 + 12 + 649</span>
+      </div>
+      <h1 class="headline">
+        One bear. <span class="quiet">Three tiers below.</span> Routes <span class="em">top-down</span>.
+      </h1>
+      <div class="subhead">
+        <span class="total">1</span><span class="op">+</span><span>10</span><span class="op">+</span><span>12</span><span class="op">+</span><span>649</span><span class="eq">=</span><span class="total">1,000</span><span style="color:#a1a1aa;font-weight:500"> specialists</span>
+      </div>
+    </div>
+
+    <!-- ============= DIAGRAM ============= -->
+    <div class="diagram">
+
+      <!-- SVG wires drawn beneath chips -->
+      <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+        <!-- Tier 0 → Tier 1 (10 fan-outs from center) -->
+        <g>
+          <path class="w-t0t1" d="M 500 30 C 500 60, 50 75, 50 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 150 75, 150 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 250 75, 250 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 350 75, 350 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 450 75, 450 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 550 75, 550 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 650 75, 650 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 750 75, 750 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 850 75, 850 110" />
+          <path class="w-t0t1" d="M 500 30 C 500 60, 950 75, 950 110" />
+        </g>
+        <!-- Tier 1 → Tier 2 (sampled connections, 24 lines) -->
+        <g>
+          <path class="w-t1t2" d="M 50 150 C 50 195, 41 230, 41 260" />
+          <path class="w-t1t2" d="M 50 150 C 50 195, 125 230, 125 260" />
+          <path class="w-t1t2" d="M 150 150 C 150 195, 125 230, 125 260" />
+          <path class="w-t1t2" d="M 150 150 C 150 195, 208 230, 208 260" />
+          <path class="w-t1t2" d="M 250 150 C 250 195, 208 230, 208 260" />
+          <path class="w-t1t2" d="M 250 150 C 250 195, 292 230, 292 260" />
+          <path class="w-t1t2" d="M 350 150 C 350 195, 292 230, 292 260" />
+          <path class="w-t1t2" d="M 350 150 C 350 195, 375 230, 375 260" />
+          <path class="w-t1t2" d="M 450 150 C 450 195, 458 230, 458 260" />
+          <path class="w-t1t2" d="M 450 150 C 450 195, 541 230, 541 260" />
+          <path class="w-t1t2" d="M 550 150 C 550 195, 541 230, 541 260" />
+          <path class="w-t1t2" d="M 550 150 C 550 195, 625 230, 625 260" />
+          <path class="w-t1t2" d="M 650 150 C 650 195, 625 230, 625 260" />
+          <path class="w-t1t2" d="M 650 150 C 650 195, 708 230, 708 260" />
+          <path class="w-t1t2" d="M 750 150 C 750 195, 708 230, 708 260" />
+          <path class="w-t1t2" d="M 750 150 C 750 195, 791 230, 791 260" />
+          <path class="w-t1t2" d="M 850 150 C 850 195, 875 230, 875 260" />
+          <path class="w-t1t2" d="M 850 150 C 850 195, 958 230, 958 260" />
+          <path class="w-t1t2" d="M 950 150 C 950 195, 958 230, 958 260" />
+          <path class="w-t1t2" d="M 950 150 C 950 195, 875 230, 875 260" />
+        </g>
+        <!-- Tier 2 → Tier 3 (12 fans to 11 cluster columns) -->
+        <g>
+          <path class="w-t2t3" d="M 41 300 C 41 340, 45 360, 45 380" />
+          <path class="w-t2t3" d="M 125 300 C 125 340, 136 360, 136 380" />
+          <path class="w-t2t3" d="M 208 300 C 208 340, 227 360, 227 380" />
+          <path class="w-t2t3" d="M 292 300 C 292 340, 318 360, 318 380" />
+          <path class="w-t2t3" d="M 375 300 C 375 340, 409 360, 409 380" />
+          <path class="w-t2t3" d="M 458 300 C 458 340, 500 360, 500 380" />
+          <path class="w-t2t3" d="M 541 300 C 541 340, 591 360, 591 380" />
+          <path class="w-t2t3" d="M 625 300 C 625 340, 682 360, 682 380" />
+          <path class="w-t2t3" d="M 708 300 C 708 340, 773 360, 773 380" />
+          <path class="w-t2t3" d="M 791 300 C 791 340, 864 360, 864 380" />
+          <path class="w-t2t3" d="M 875 300 C 875 340, 955 360, 955 380" />
+          <path class="w-t2t3" d="M 958 300 C 958 340, 955 360, 955 380" />
+        </g>
+      </svg>
+
+      <!-- TIER 0 -->
+      <div class="tier t0">
+        <div class="tier-label" style="--tc: rgba(254,189,51,0.55)">
+          <span class="tag">T0</span>
+          <span class="role">Orchestrator</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>1</b> · 200K ctx · Opus 4.6</span>
+        </div>
+        <div class="t0-row">
+          <div class="yogi-chip">
+            <div class="yogi-orb"></div>
+            <div>
+              <div class="yogi-name">Yogi</div>
+              <div class="yogi-role">Orchestrator <span class="sep">·</span> Memory <span class="sep">·</span> Identity</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER 1 -->
+      <div class="tier t1">
+        <div class="tier-label" style="--tc: rgba(67,192,190,0.55)">
+          <span class="tag" style="border-color:rgba(67,192,190,0.55); color:#43C0BE">T1</span>
+          <span class="role">Specialist Crew</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>10</b> · daily drivers · Sonnet 4.6</span>
+        </div>
+        <div class="chip-row t1">
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Rocco</span><span class="role">aws · cdk · infra</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Otto</span><span class="role">surgical fixes</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Bram</span><span class="role">data archaeology</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Ferra</span><span class="role">pre-flight audit</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Hoot</span><span class="role">code review</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Buzz</span><span class="role">build pipeline</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Pip</span><span class="role">read-only probe</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Briar</span><span class="role">concurrency · retry</span></div>
+          <div class="chip" style="--accent:#FEBD33"><span class="name">Lumi</span><span class="role">ui polish</span></div>
+          <div class="chip" style="--accent:#43C0BE"><span class="name">Tess</span><span class="role">e2e tests</span></div>
+        </div>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="tier t2">
+        <div class="tier-label" style="--tc: rgba(100,188,234,0.55)">
+          <span class="tag" style="border-color:rgba(100,188,234,0.55); color:#64BCEA">T2</span>
+          <span class="role">Domain Leads</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>12</b> · disciplines · Sonnet 4.6</span>
+        </div>
+        <div class="chip-row t2">
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Orion</span><span class="role">sales</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sequoia</span><span class="role">product</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Sable</span><span class="role">domain</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Ember</span><span class="role">ai · ml</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Vella</span><span class="role">comms</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Aspen</span><span class="role">backend langs</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Birch</span><span class="role">frontend</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Alder</span><span class="role">patterns</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Heron</span><span class="role">testing</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Kelpie</span><span class="role">databases</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Falcon</span><span class="role">cloud</span></div>
+          <div class="chip small" style="--accent:#64BCEA"><span class="name">Magpie</span><span class="role">devops</span></div>
+        </div>
+      </div>
+
+      <!-- TIER 3 -->
+      <div class="tier t3">
+        <div class="tier-label" style="--tc: rgba(0,127,126,0.5)">
+          <span class="tag" style="border-color:rgba(0,127,126,0.55); color:#43C0BE">T3</span>
+          <span class="role">Specialists</span>
+          <span class="flex"></span>
+          <span class="meta">nodes <b>649</b> · 11 clusters · Sonnet 4.6 / Haiku 4.5</span>
+        </div>
+        <div class="t3-area">
+          <div class="t3-grid" id="s12-clusters"></div>
+        </div>
+        <div class="legend">
+          <span class="item"><span class="swatch honey"></span>T0→T1 <b>10</b></span>
+          <span class="item"><span class="swatch teal"></span>T1→T2 <b>20</b></span>
+          <span class="item"><span class="swatch sky"></span>T2→T3 <b>12</b></span>
+          <span class="item" style="margin-left:auto">routes top-down · reports bottom-up</span>
+        </div>
+      </div>
+
+    </div><!-- /.diagram -->
+
+    <!-- ============= SIDEBAR ============= -->
+    <aside class="sidebar">
+
+      <div class="spec-card">
+        <div class="head">
+          <span class="dot"></span>
+          <span class="label">Tier Spec</span>
+          <span class="filename">~/yogi/agents.toml</span>
+        </div>
+        <div class="spec-grid">
+          <div class="spec-row" style="--rc:#FEBD33">
+            <div class="k">T0</div>
+            <div class="v">
+              <div class="count">1<span class="nodes">node</span></div>
+              <div class="meta">context · <b style="color:#f4f4f5">200K</b> tokens<br/>model · <span class="model">claude-opus-4-6</span><br/>identity · 79 memory files</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#43C0BE">
+            <div class="k">T1</div>
+            <div class="v">
+              <div class="count">10<span class="nodes">nodes</span></div>
+              <div class="meta">spawn · on demand<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · daily delivery</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#64BCEA">
+            <div class="k">T2</div>
+            <div class="v">
+              <div class="count">12<span class="nodes">nodes</span></div>
+              <div class="meta">memory · per-discipline<br/>model · <span class="model">claude-sonnet-4-6</span><br/>scope · 1 discipline each</div>
+            </div>
+          </div>
+          <div class="spec-row" style="--rc:#007F7E">
+            <div class="k">T3</div>
+            <div class="v">
+              <div class="count">649<span class="nodes">nodes</span></div>
+              <div class="meta">scope · narrow<br/>model · <span class="model">sonnet 4.6 / haiku 4.5</span><br/>cluster · 11 disciplines</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="git-card">
+        <div class="head">
+          <span class="dot"></span>
+          <span class="label">Fits in git</span>
+        </div>
+        <div class="lines">
+          <div class="line"><span class="k">Repo</span><span class="v">Trilogy-Care/yogi</span></div>
+          <div class="line"><span class="k">Agents</span><span class="v">1,000</span></div>
+          <div class="line"><span class="k">Memory</span><span class="v">79 files</span></div>
+          <div class="line"><span class="k">Tools</span><span class="v">328 MCP</span></div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /.frame -->
+
+  <script>
+    (function () {
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideLeave = window.onSlideLeave || {};
+
+      // ---- Tier 3 cluster definitions (deterministic) ----
+      // 11 clusters · 649 specialists total.
+      // Distribution: 88 + 71 + 64 + 60 + 60 + 58 + 56 + 54 + 50 + 48 + 40 = 649
+      const CLUSTERS = [
+        { name: 'Frontend libs',  disc: 'react · vue · svelte',     count: 88, color: '#FEBD33', lead: 'Birch' },
+        { name: 'Backend langs',  disc: 'py · ts · go · rs',        count: 71, color: '#43C0BE', lead: 'Aspen' },
+        { name: 'AI / ML',        disc: 'llm · embed · rag',        count: 64, color: '#64BCEA', lead: 'Ember' },
+        { name: 'Domain experts', disc: 'sah · acqsc · zoho',       count: 60, color: '#007F7E', lead: 'Sable' },
+        { name: 'Patterns',       disc: 'design · refactor',        count: 60, color: '#E04B51', lead: 'Alder' },
+        { name: 'Communications', disc: 'teams · email · sms',      count: 58, color: '#9B7BD4', lead: 'Vella' },
+        { name: 'DevOps',         disc: 'ci · cd · pipelines',      count: 56, color: '#FEBD33', lead: 'Magpie' },
+        { name: 'Cloud',          disc: 'aws · azure · gcp',        count: 54, color: '#43C0BE', lead: 'Falcon' },
+        { name: 'Testing',        disc: 'e2e · unit · fuzz',        count: 50, color: '#64BCEA', lead: 'Heron' },
+        { name: 'Sales / GTM',    disc: 'pipeline · forecast',      count: 48, color: '#F39B5A', lead: 'Orion' },
+        { name: 'Databases',      disc: 'sql · vector · cache',     count: 40, color: '#007F7E', lead: 'Kelpie' }
+      ];
+
+      function buildClusters() {
+        const wrap = document.getElementById('s12-clusters');
+        if (!wrap) return;
+        if (wrap.dataset.built === '1') return; // idempotent
+        wrap.dataset.built = '1';
+
+        // Quick verify the total — keeps the math honest.
+        const total = CLUSTERS.reduce((s, c) => s + c.count, 0);
+        if (total !== 649) {
+          console.warn('[slide-12] cluster total mismatch:', total);
+        }
+
+        const frag = document.createDocumentFragment();
+
+        CLUSTERS.forEach((cl, ci) => {
+          const cell = document.createElement('div');
+          cell.className = 'cluster';
+          cell.style.setProperty('--c', cl.color);
+          cell.style.setProperty('--cbord', hexToRgba(cl.color, 0.22));
+          cell.style.setProperty('--cbg', hexToRgba(cl.color, 0.04));
+
+          const head = document.createElement('div');
+          head.className = 'cluster-head';
+          // Big count first (the number is the story), name underneath as caption.
+          const ct = document.createElement('div');
+          ct.className = 'cluster-count';
+          ct.textContent = cl.count;
+          const nm = document.createElement('div');
+          nm.className = 'cluster-name';
+          nm.textContent = cl.name;
+          head.appendChild(ct);
+          head.appendChild(nm);
+
+          const disc = document.createElement('div');
+          disc.className = 'cluster-disc';
+          disc.textContent = cl.disc;
+
+          const dots = document.createElement('div');
+          dots.className = 'dots';
+
+          // Deterministic dot grid. 6 columns gives each cluster a solid
+          // 10–15 row brick of dots — reads as "intentional density."
+          const cols = 6;
+          dots.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+          for (let i = 0; i < cl.count; i++) {
+            const d = document.createElement('span');
+            d.className = 'd';
+            // Stagger pop-in: 380ms cascade per cluster + per-dot offset.
+            const delay = 900 + ci * 60 + i * 6;
+            d.style.animationDelay = delay + 'ms';
+            dots.appendChild(d);
+          }
+
+          const lead = document.createElement('div');
+          lead.className = 'lead';
+          lead.textContent = cl.lead;
+
+          cell.appendChild(head);
+          cell.appendChild(disc);
+          cell.appendChild(dots);
+          cell.appendChild(lead);
+          frag.appendChild(cell);
+        });
+
+        wrap.appendChild(frag);
+      }
+
+      function hexToRgba(hex, a) {
+        const h = hex.replace('#', '');
+        const r = parseInt(h.substring(0, 2), 16);
+        const g = parseInt(h.substring(2, 4), 16);
+        const b = parseInt(h.substring(4, 6), 16);
+        return `rgba(${r},${g},${b},${a})`;
+      }
+
+      function resetAnimations() {
+        // Force reflow so CSS animations restart on slide re-entry.
+        const slide = document.getElementById('slide-12');
+        if (!slide) return;
+        slide.querySelectorAll('.tier, .spec-card, .git-card, .wires path, .dots .d').forEach(el => {
+          const anim = el.style.animation;
+          el.style.animation = 'none';
+          // eslint-disable-next-line no-unused-expressions
+          el.offsetHeight; // reflow
+          el.style.animation = anim || '';
+        });
+      }
+
+      window.onSlideEnter[12] = function () {
+        buildClusters();
+        resetAnimations();
+      };
+
+      // If already visible at parse, kick off.
+      const el = document.getElementById('slide-12');
+      if (el) {
+        const r = el.getBoundingClientRect();
+        const visible = r.width > 0 && r.height > 0 &&
+                        r.top < window.innerHeight && r.bottom > 0;
+        if (visible) requestAnimationFrame(() => window.onSlideEnter[12]());
+      }
+    })();
+  </script>
+</section>

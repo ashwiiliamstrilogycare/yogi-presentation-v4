@@ -1,0 +1,1588 @@
+<section class="slide" data-audio="20">
+  <style>
+    /* ================================================================
+       SLIDE 19 — WHERE YOGI LIVES
+       TC ASSISTANT · WORKSPACES HOME · Mike Wise built the canvas.
+       A faithful CSS recreation of the real assistant.trilogycare.com.au
+       UI, floated on a dark NASA-grade canvas with honey aura overlay
+       signalling "Yogi is active in this workspace."
+       ================================================================ */
+
+    .slide[data-audio="20"] {
+      /* Brand tokens */
+      --s19-bg:           #0a0d12;
+      --s19-bg-elev:      #11161f;
+      --s19-honey:        #FEBD33;
+      --s19-honey-soft:   rgba(254, 189, 51, 0.12);
+      --s19-honey-glow:   rgba(254, 189, 51, 0.45);
+      --s19-honey-line:   rgba(254, 189, 51, 0.30);
+      --s19-honey-faint:  rgba(254, 189, 51, 0.18);
+      --s19-teal:         #43C0BE;
+      --s19-dark-teal:    #007F7E;
+      --s19-navy:         #2C4C79;
+      --s19-sky:          #64BCEA;
+      --s19-green:        #5ee08a;
+
+      --s19-fg:           #f4f4f5;
+      --s19-fg-muted:     #a1a1aa;
+      --s19-fg-dim:       #71717a;
+      --s19-fg-faint:     #52525b;
+      --s19-border:       rgba(255, 255, 255, 0.08);
+
+      /* TC Assistant light-theme neutrals (mirroring screenshot) */
+      --tca-bg:           #f6f8fb;       /* app background */
+      --tca-sidebar:      #ffffff;       /* sidebar / left rail */
+      --tca-panel:        #ffffff;       /* main panels */
+      --tca-divider:      #e4e8ee;       /* light grey divider */
+      --tca-divider-2:    #eef1f5;
+      --tca-text:         #1a2334;
+      --tca-text-mute:    #5a6478;
+      --tca-text-dim:     #8a93a4;
+      --tca-text-faint:   #adb5c3;
+      --tca-blue:         #2C4C79;       /* Trilogy navy */
+      --tca-blue-soft:    #eaf0fa;
+      --tca-blue-deep:    #1e3a5f;
+      --tca-active-bg:    #eaf2f5;       /* selected workspace */
+      --tca-active-bd:    #c4e0e2;
+      --tca-hover:        #f2f5f9;
+      --tca-warn-bg:      #fff7e3;
+      --tca-warn-bd:      #f5d98a;
+      --tca-warn-text:    #7a5a10;
+      --tca-folder:       #d4a04a;
+      --tca-folder-hi:    #e8b96b;
+      --tca-tab-active:   #ffffff;
+      --tca-tab-bg:       #f0f3f7;
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      background: var(--s19-bg);
+      color: var(--s19-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.01em;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* ---------- Atmosphere ---------- */
+    .slide[data-audio="20"] .s19-atmos {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .slide[data-audio="20"] .s19-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 76px 76px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
+    }
+    .slide[data-audio="20"] .s19-glow {
+      position: absolute; top: 56%; left: 52%;
+      width: 110vmin; height: 70vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.10) 0%,
+        rgba(254, 189, 51, 0.04) 40%,
+        transparent 75%);
+      filter: blur(20px);
+    }
+    .slide[data-audio="20"] .s19-grain {
+      position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    }
+
+    /* ---------- Layout shell ---------- */
+    .slide[data-audio="20"] .s19-wrap {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      max-width: 1820px;
+      margin: 0 auto;
+      padding: clamp(20px, 2.4vh, 32px) clamp(28px, 2.8vw, 52px) clamp(16px, 2vh, 24px);
+      display: flex; flex-direction: column;
+      gap: clamp(12px, 1.4vh, 20px);
+    }
+
+    /* ---------- Header ---------- */
+    .slide[data-audio="20"] .s19-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 48px;
+    }
+    .slide[data-audio="20"] .s19-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      margin-bottom: 12px;
+    }
+    .slide[data-audio="20"] .s19-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s19-honey);
+      box-shadow: 0 0 10px var(--s19-honey-glow);
+    }
+    .slide[data-audio="20"] .s19-eyebrow .slash { color: var(--s19-fg-faint); }
+    .slide[data-audio="20"] .s19-eyebrow .num { color: var(--s19-fg-dim); }
+
+    .slide[data-audio="20"] .s19-title {
+      font-weight: 700;
+      font-size: clamp(38px, 4.6vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.032em;
+      color: var(--s19-fg);
+      margin: 0;
+    }
+    .slide[data-audio="20"] .s19-title .accent {
+      color: var(--s19-honey); font-weight: 800;
+    }
+
+    .slide[data-audio="20"] .s19-subhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--s19-honey);
+      display: flex; align-items: center; gap: 12px;
+      white-space: nowrap;
+      padding-bottom: 8px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="20"] .s19-subhead .pipe {
+      width: 1px; height: 11px; background: var(--s19-honey-line);
+    }
+    .slide[data-audio="20"] .s19-subhead .mute {
+      color: var(--s19-fg-muted);
+    }
+
+    /* ---------- Mockup stage ---------- */
+    .slide[data-audio="20"] .s19-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* honey aura behind the mockup */
+    .slide[data-audio="20"] .s19-aura {
+      position: absolute;
+      inset: -2% -1% -1% -1%;
+      background:
+        radial-gradient(ellipse 60% 50% at 78% 50%,
+          rgba(254, 189, 51, 0.22) 0%,
+          rgba(254, 189, 51, 0.08) 40%,
+          transparent 75%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* the mockup window itself */
+    .slide[data-audio="20"] .s19-window {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      max-height: clamp(540px, 64vh, 760px);
+      background: var(--tca-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 4px 20px rgba(254, 189, 51, 0.12),
+        0 0 80px rgba(254, 189, 51, 0.08);
+      display: flex; flex-direction: column;
+      color: var(--tca-text);
+      font-size: 13px;
+      letter-spacing: -0.005em;
+    }
+
+    /* macOS-style window dots (subtle) */
+    .slide[data-audio="20"] .s19-chrome {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 28px;
+      display: flex; align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+      background: linear-gradient(180deg, #f0f3f7 0%, #e8ecf2 100%);
+      border-bottom: 1px solid var(--tca-divider);
+      z-index: 5;
+    }
+    .slide[data-audio="20"] .s19-chrome-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+    }
+    .slide[data-audio="20"] .s19-chrome-dot.r { background: #ff5f57; }
+    .slide[data-audio="20"] .s19-chrome-dot.y { background: #febc2e; }
+    .slide[data-audio="20"] .s19-chrome-dot.g { background: #28c840; }
+    .slide[data-audio="20"] .s19-chrome-url {
+      flex: 1;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--tca-text-dim);
+      letter-spacing: 0.02em;
+    }
+    .slide[data-audio="20"] .s19-chrome-url .lock {
+      color: var(--tca-text-faint); margin-right: 4px;
+    }
+    .slide[data-audio="20"] .s19-chrome-url .host {
+      color: var(--tca-text);
+    }
+
+    /* App container offset for chrome */
+    .slide[data-audio="20"] .s19-app {
+      margin-top: 28px;
+      flex: 1;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+
+    /* ---------- Top banner row (logo + search + account) ---------- */
+    .slide[data-audio="20"] .s19-topbar {
+      display: flex; align-items: center;
+      padding: 0 12px;
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 8px;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+    .slide[data-audio="20"] .s19-tb-icon {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tca-text-mute);
+      cursor: default;
+    }
+    .slide[data-audio="20"] .s19-tb-icon svg { width: 16px; height: 16px; }
+    .slide[data-audio="20"] .s19-tb-logo {
+      display: flex; align-items: center; gap: 8px;
+      margin-left: 4px;
+    }
+    .slide[data-audio="20"] .s19-tb-logo-mark {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide[data-audio="20"] .s19-tb-logo-text {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--tca-text);
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="20"] .s19-tb-logo-text b {
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-tb-version {
+      background: var(--tca-blue);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      margin-left: 4px;
+    }
+    .slide[data-audio="20"] .s19-tb-nav {
+      display: flex; align-items: center; gap: 2px;
+      margin-left: 14px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="20"] .s19-tb-nav svg { width: 14px; height: 14px; }
+    .slide[data-audio="20"] .s19-tb-search {
+      flex: 1;
+      min-width: 140px;
+      max-width: 460px;
+      height: 28px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 6px;
+      display: flex; align-items: center;
+      padding: 0 10px;
+      gap: 8px;
+      color: var(--tca-text-dim);
+      font-size: 11.5px;
+    }
+    .slide[data-audio="20"] .s19-tb-search svg { width: 12px; height: 12px; }
+    .slide[data-audio="20"] .s19-tb-search .kbd {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      background: #fff;
+      border: 1px solid #e1e5ec;
+      color: var(--tca-text-mute);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .slide[data-audio="20"] .s19-tb-spacer { flex: 1; }
+    .slide[data-audio="20"] .s19-tb-domain {
+      display: flex; align-items: center; gap: 6px;
+      padding: 4px 8px 4px 6px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--tca-text);
+      background: #fff;
+    }
+    .slide[data-audio="20"] .s19-tb-domain .d-chip {
+      width: 18px; height: 18px;
+      background: var(--tca-blue);
+      color: #fff;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .slide[data-audio="20"] .s19-tb-domain .d-ga {
+      background: var(--s19-teal); color: #fff;
+      font-size: 9px; padding: 1px 5px; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .slide[data-audio="20"] .s19-tb-domain svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
+    .slide[data-audio="20"] .s19-tb-help {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="20"] .s19-tb-account {
+      display: flex; align-items: center; gap: 8px;
+      padding: 3px 8px 3px 4px;
+      border-radius: 16px;
+    }
+    .slide[data-audio="20"] .s19-tb-account .av {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4906a 0%, #8a5a3a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="20"] .s19-tb-account .name {
+      font-size: 12px; color: var(--tca-text);
+    }
+
+    /* ---------- Beta banner ---------- */
+    .slide[data-audio="20"] .s19-beta {
+      background: var(--tca-warn-bg);
+      border-bottom: 1px solid var(--tca-warn-bd);
+      padding: 7px 16px;
+      display: flex; align-items: center;
+      font-size: 11.5px;
+      color: var(--tca-warn-text);
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="20"] .s19-beta svg { width: 13px; height: 13px; color: #d49612; }
+    .slide[data-audio="20"] .s19-beta b { color: #5a4310; font-weight: 600; }
+    .slide[data-audio="20"] .s19-beta a {
+      color: #b87f10; text-decoration: underline; text-underline-offset: 2px;
+    }
+    .slide[data-audio="20"] .s19-beta .close {
+      margin-left: auto; color: #b8a06a;
+    }
+
+    /* ---------- Body (4 columns) ---------- */
+    .slide[data-audio="20"] .s19-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 56px 230px 240px 1fr;
+      min-height: 0;
+      background: var(--tca-bg);
+    }
+
+    /* COL 1 — Left rail (primary nav) */
+    .slide[data-audio="20"] .s19-rail {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 4px;
+    }
+    .slide[data-audio="20"] .s19-rail-item {
+      width: 44px;
+      padding: 8px 0 6px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      border-radius: 8px;
+      color: var(--tca-text-mute);
+      font-size: 10px;
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="20"] .s19-rail-item svg { width: 18px; height: 18px; }
+    .slide[data-audio="20"] .s19-rail-item.active {
+      background: var(--tca-blue-soft);
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-rail-spacer { flex: 1; }
+
+    /* COL 2 — Workspaces sidebar */
+    .slide[data-audio="20"] .s19-ws-side {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      padding: 14px 12px 12px;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .slide[data-audio="20"] .s19-ws-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px;
+    }
+    .slide[data-audio="20"] .s19-ws-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="20"] .s19-ws-title svg { width: 16px; height: 16px; color: var(--tca-blue); }
+    .slide[data-audio="20"] .s19-ws-new {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      font-size: 11px;
+      color: var(--tca-text-mute);
+      background: #fff;
+    }
+    .slide[data-audio="20"] .s19-ws-new svg { width: 11px; height: 11px; }
+
+    .slide[data-audio="20"] .s19-ws-filter {
+      height: 26px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="20"] .s19-ws-filter svg { width: 11px; height: 11px; }
+    .slide[data-audio="20"] .s19-ws-filter .slash {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: var(--tca-text-faint);
+      background: #fff;
+      border: 1px solid #e1e5ec;
+      padding: 0 4px;
+      border-radius: 3px;
+    }
+
+    .slide[data-audio="20"] .s19-ws-toggle {
+      display: flex; gap: 4px;
+    }
+    .slide[data-audio="20"] .s19-ws-toggle button {
+      flex: 1;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      border-radius: 5px;
+      border: 0;
+      background: transparent;
+      color: var(--tca-text-mute);
+      font-weight: 500;
+    }
+    .slide[data-audio="20"] .s19-ws-toggle button.on {
+      background: var(--tca-blue);
+      color: #fff;
+    }
+
+    .slide[data-audio="20"] .s19-ws-home {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      background: var(--tca-active-bg);
+      border: 1px solid var(--tca-active-bd);
+      border-radius: 6px;
+    }
+    .slide[data-audio="20"] .s19-ws-home .home-icon {
+      width: 16px; height: 16px;
+      color: var(--s19-dark-teal);
+    }
+    .slide[data-audio="20"] .s19-ws-home .home-icon svg { width: 16px; height: 16px; }
+    .slide[data-audio="20"] .s19-ws-home .home-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="20"] .s19-ws-home .home-label .h {
+      color: var(--tca-text-mute);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .slide[data-audio="20"] .s19-ws-section {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--tca-text);
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-ws-section .chev { color: var(--tca-text-dim); }
+    .slide[data-audio="20"] .s19-ws-section .count {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--tca-text-faint);
+      font-weight: 500;
+    }
+    .slide[data-audio="20"] .s19-ws-section svg { width: 14px; height: 14px; }
+
+    .slide[data-audio="20"] .s19-ws-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.15em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      padding: 2px 10px 0;
+      margin-top: 2px;
+    }
+    .slide[data-audio="20"] .s19-ws-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      color: var(--tca-text);
+      border-radius: 5px;
+    }
+    .slide[data-audio="20"] .s19-ws-item .left {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .slide[data-audio="20"] .s19-ws-item .pin {
+      width: 8px; height: 8px;
+      display: inline-block;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="20"] .s19-ws-item .pin svg { width: 9px; height: 9px; }
+    .slide[data-audio="20"] .s19-ws-item .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--tca-text-faint);
+    }
+    .slide[data-audio="20"] .s19-ws-item.muted .name {
+      color: var(--tca-text-mute);
+      font-size: 11.5px;
+    }
+    .slide[data-audio="20"] .s19-ws-item.muted .desc {
+      font-size: 10.5px;
+      color: var(--tca-text-faint);
+      margin-top: 2px;
+      padding-left: 0;
+    }
+
+    /* COL 3 — Explorer */
+    .slide[data-audio="20"] .s19-explorer {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+    .slide[data-audio="20"] .s19-ex-bar {
+      height: 38px;
+      display: flex; align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      border-bottom: 1px solid var(--tca-divider-2);
+      color: var(--tca-text-mute);
+    }
+    .slide[data-audio="20"] .s19-ex-bar svg { width: 14px; height: 14px; }
+    .slide[data-audio="20"] .s19-ex-bar .title {
+      font-size: 13px;
+      color: var(--tca-text);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .slide[data-audio="20"] .s19-ex-bar .spacer { flex: 1; }
+    .slide[data-audio="20"] .s19-ex-bar .strike {
+      color: var(--tca-text-faint);
+      text-decoration: line-through;
+    }
+    .slide[data-audio="20"] .s19-ex-label {
+      padding: 10px 14px 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-ex-filter {
+      margin: 2px 12px 8px;
+      height: 26px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="20"] .s19-ex-filter svg { width: 11px; height: 11px; }
+
+    .slide[data-audio="20"] .s19-ex-tree {
+      padding: 0 8px;
+      flex: 1;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      gap: 1px;
+    }
+    .slide[data-audio="20"] .s19-ex-row {
+      display: flex; align-items: center;
+      padding: 4px 8px;
+      gap: 7px;
+      font-size: 12.5px;
+      color: var(--tca-text);
+      border-radius: 4px;
+    }
+    .slide[data-audio="20"] .s19-ex-row .chev { color: var(--tca-text-dim); }
+    .slide[data-audio="20"] .s19-ex-row .chev svg { width: 10px; height: 10px; }
+    .slide[data-audio="20"] .s19-ex-row .folder { color: var(--tca-folder); }
+    .slide[data-audio="20"] .s19-ex-row .folder svg { width: 13px; height: 13px; }
+    .slide[data-audio="20"] .s19-ex-row .name { font-weight: 500; }
+    .slide[data-audio="20"] .s19-ex-row.highlight {
+      background: rgba(254, 189, 51, 0.13);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.35);
+    }
+    .slide[data-audio="20"] .s19-ex-row.highlight .folder { color: #c97f10; }
+
+    /* OneDrive group */
+    .slide[data-audio="20"] .s19-ex-onedrive {
+      margin: 8px 0 0;
+      background: var(--tca-blue-soft);
+      border-top: 1px solid var(--tca-divider-2);
+    }
+    .slide[data-audio="20"] .s19-ex-onedrive-head {
+      display: flex; align-items: center;
+      padding: 7px 12px;
+      gap: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--tca-blue);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .slide[data-audio="20"] .s19-ex-onedrive-head svg { width: 14px; height: 14px; color: var(--tca-blue); }
+    .slide[data-audio="20"] .s19-ex-onedrive-head .chev {
+      margin-left: -4px; color: var(--tca-blue);
+    }
+    .slide[data-audio="20"] .s19-ex-onedrive-head .chev svg { width: 10px; height: 10px; }
+    .slide[data-audio="20"] .s19-ex-onedrive.highlight {
+      background: rgba(254, 189, 51, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.30);
+    }
+    .slide[data-audio="20"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head {
+      color: #b46f10;
+    }
+    .slide[data-audio="20"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head svg { color: #b46f10; }
+    .slide[data-audio="20"] .s19-ex-od-rows {
+      padding: 2px 8px 8px;
+      display: flex; flex-direction: column;
+      gap: 1px;
+      background: #fff;
+    }
+    .slide[data-audio="20"] .s19-ex-od-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 3px 6px;
+      font-size: 11.5px;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="20"] .s19-ex-od-row .folder { color: var(--tca-folder-hi); }
+    .slide[data-audio="20"] .s19-ex-od-row .folder svg { width: 12px; height: 12px; }
+    .slide[data-audio="20"] .s19-ex-od-row .file svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
+    .slide[data-audio="20"] .s19-ex-od-row .size {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--tca-text-faint);
+    }
+
+    /* COL 4 — Main pane */
+    .slide[data-audio="20"] .s19-main {
+      position: relative;
+      display: flex; flex-direction: column;
+      min-width: 0;
+      background: var(--tca-bg);
+    }
+
+    /* main top bar with Explorer / Chat / Claude buttons */
+    .slide[data-audio="20"] .s19-main-bar {
+      height: 38px;
+      display: flex; align-items: center;
+      padding: 0 18px 0 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 6px;
+      flex-shrink: 0;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .slide[data-audio="20"] .s19-main-bar .spacer { flex: 1; }
+    .slide[data-audio="20"] .s19-main-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      background: #fff;
+      font-size: 11.5px;
+      color: var(--tca-text);
+      font-weight: 500;
+    }
+    .slide[data-audio="20"] .s19-main-btn svg { width: 12px; height: 12px; color: var(--tca-text-mute); }
+    .slide[data-audio="20"] .s19-main-btn.active {
+      background: var(--tca-blue-soft);
+      border-color: var(--tca-blue);
+      color: var(--tca-blue);
+    }
+    .slide[data-audio="20"] .s19-main-btn.active svg { color: var(--tca-blue); }
+    .slide[data-audio="20"] .s19-main-btns-wrap {
+      display: flex; align-items: center; gap: 6px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="20"] .s19-main-btns-wrap.highlight::before {
+      content: '';
+      position: absolute;
+      inset: -5px -6px;
+      border: 1.5px dashed var(--s19-honey);
+      border-radius: 8px;
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(254, 189, 51, 0.30);
+    }
+
+    /* tab strip (README.md tab) */
+    .slide[data-audio="20"] .s19-tabs {
+      display: flex; align-items: stretch;
+      background: var(--tca-tab-bg);
+      border-bottom: 1px solid var(--tca-divider);
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="20"] .s19-tab {
+      display: inline-flex; align-items: center;
+      gap: 8px;
+      padding: 7px 14px 6px;
+      font-size: 12px;
+      color: var(--tca-text);
+      background: var(--tca-tab-active);
+      border: 1px solid var(--tca-divider);
+      border-bottom: 0;
+      border-radius: 5px 5px 0 0;
+      margin-top: 4px;
+      position: relative;
+    }
+    .slide[data-audio="20"] .s19-tab::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px; height: 1px;
+      background: var(--tca-tab-active);
+    }
+    .slide[data-audio="20"] .s19-tab .md-chip {
+      background: #2c4c79;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 1px 3px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="20"] .s19-tab .close { color: var(--tca-text-faint); font-size: 12px; line-height: 1; }
+
+    /* sub-toolbar (Edit / Preview / Split) */
+    .slide[data-audio="20"] .s19-subtools {
+      display: flex; align-items: center;
+      padding: 8px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="20"] .s19-subtool {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      color: var(--tca-text-mute);
+      background: transparent;
+      border: 1px solid transparent;
+    }
+    .slide[data-audio="20"] .s19-subtool svg { width: 12px; height: 12px; }
+    .slide[data-audio="20"] .s19-subtool.active {
+      background: #eaf0fa;
+      color: var(--tca-blue);
+      border-color: #d6e1f0;
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-subtool.active svg { color: var(--tca-blue); }
+    .slide[data-audio="20"] .s19-subtools .spacer { flex: 1; }
+    .slide[data-audio="20"] .s19-subtools .icon-only {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 5px; color: var(--tca-text-mute);
+    }
+    .slide[data-audio="20"] .s19-subtools .icon-only svg { width: 13px; height: 13px; }
+
+    /* The Yogi-active canvas */
+    .slide[data-audio="20"] .s19-canvas {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          rgba(254, 189, 51, 0.10) 0%,
+          rgba(254, 189, 51, 0.03) 40%,
+          rgba(254, 189, 51, 0) 75%),
+        #ffffff;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* honey scanline edge */
+    .slide[data-audio="20"] .s19-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(254, 189, 51, 0.22);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Yogi-active card centered in canvas */
+    .slide[data-audio="20"] .s19-yogi-card {
+      position: relative;
+      width: clamp(280px, 36%, 380px);
+      background: linear-gradient(180deg, #fffaeb 0%, #fff5dc 100%);
+      border: 1px solid rgba(254, 189, 51, 0.55);
+      border-radius: 12px;
+      padding: 18px 20px 16px;
+      box-shadow:
+        0 0 0 4px rgba(254, 189, 51, 0.10),
+        0 12px 32px rgba(254, 189, 51, 0.18),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex; flex-direction: column;
+      gap: 10px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-head {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-bear {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 0 2px #fffaeb, 0 0 14px rgba(254, 189, 51, 0.50);
+      flex-shrink: 0;
+      position: relative;
+    }
+    /* pulse */
+    .slide[data-audio="20"] .s19-yogi-card .y-bear::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(254, 189, 51, 0.45);
+      animation: s19-pulse 2.4s ease-out infinite;
+    }
+    @keyframes s19-pulse {
+      0%   { transform: scale(1);   opacity: 0.9; }
+      80%  { transform: scale(1.6); opacity: 0;   }
+      100% { transform: scale(1.6); opacity: 0;   }
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-text {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3a2a08;
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8a6418;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-sub .live {
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-sub .live::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--s19-green);
+      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
+      animation: s19-blink 1.6s ease-in-out infinite;
+    }
+    @keyframes s19-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-divider {
+      height: 1px;
+      background: rgba(254, 189, 51, 0.35);
+      margin: 2px 0;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-stat {
+      display: flex; flex-direction: column;
+      gap: 2px;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-stat .n {
+      font-size: 18px;
+      font-weight: 800;
+      color: #6e4a08;
+      letter-spacing: -0.02em;
+      font-family: 'Inter', sans-serif;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-stat .l {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a6418;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-foot {
+      font-size: 11px;
+      color: #6e4a08;
+      letter-spacing: -0.005em;
+      line-height: 1.35;
+    }
+    .slide[data-audio="20"] .s19-yogi-card .y-foot b { color: #3a2a08; font-weight: 700; }
+
+    /* feedback widget (replica) */
+    .slide[data-audio="20"] .s19-feedback {
+      position: absolute;
+      bottom: 14px; right: 16px;
+      background: #2c4c79;
+      color: #fff;
+      font-size: 10.5px;
+      padding: 5px 11px 5px 8px;
+      border-radius: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      z-index: 3;
+    }
+    .slide[data-audio="20"] .s19-feedback .b {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px;
+    }
+
+    /* ---------- Floating callouts (4) ---------- */
+    .slide[data-audio="20"] .s19-callouts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(12px, 1.4vw, 22px);
+      padding-top: clamp(4px, 0.6vh, 8px);
+    }
+    .slide[data-audio="20"] .s19-callout {
+      position: relative;
+      padding: 10px 12px 10px 14px;
+      background: linear-gradient(180deg,
+        rgba(20, 24, 33, 0.78) 0%,
+        rgba(14, 18, 25, 0.78) 100%);
+      border: 1px solid var(--s19-border);
+      border-left: 2px solid var(--s19-honey);
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      gap: 3px;
+      backdrop-filter: blur(6px);
+    }
+    .slide[data-audio="20"] .s19-callout .num {
+      position: absolute;
+      top: -8px; left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--s19-honey);
+      background: var(--s19-bg);
+      padding: 1px 6px;
+      border: 1px solid var(--s19-honey-line);
+      border-radius: 3px;
+    }
+    .slide[data-audio="20"] .s19-callout .key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-callout .label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--s19-fg);
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="20"] .s19-callout .desc {
+      font-size: 11.5px;
+      color: var(--s19-fg-muted);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="20"] .s19-callout .desc b {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+
+    /* ---------- Footer strip ---------- */
+    .slide[data-audio="20"] .s19-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      padding-top: clamp(6px, 0.8vh, 10px);
+      border-top: 1px dashed var(--s19-border);
+    }
+    .slide[data-audio="20"] .s19-footer .credits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .slide[data-audio="20"] .s19-footer .credits .em {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-footer .credits .sep {
+      width: 1px; height: 10px; background: var(--s19-border);
+    }
+    .slide[data-audio="20"] .s19-footer .rollout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .slide[data-audio="20"] .s19-footer .rollout .em {
+      color: var(--s19-honey); font-weight: 600;
+    }
+    .slide[data-audio="20"] .s19-footer .rollout .sep {
+      width: 1px; height: 10px; background: var(--s19-border);
+    }
+
+    /* ---------- Stagger on enter ---------- */
+    @keyframes s19-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s19-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .slide[data-audio="20"] .s19-header { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="20"] .s19-stage  { animation: s19-rise 720ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 120ms; }
+    .slide[data-audio="20"] .s19-aura   { animation: s19-fade 1400ms ease-out both; animation-delay: 600ms; }
+    .slide[data-audio="20"] .s19-callout { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="20"] .s19-callout:nth-child(1) { animation-delay: 800ms; }
+    .slide[data-audio="20"] .s19-callout:nth-child(2) { animation-delay: 880ms; }
+    .slide[data-audio="20"] .s19-callout:nth-child(3) { animation-delay: 960ms; }
+    .slide[data-audio="20"] .s19-callout:nth-child(4) { animation-delay: 1040ms; }
+    .slide[data-audio="20"] .s19-footer { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 1180ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide[data-audio="20"] * { animation: none !important; }
+    }
+
+    @media (max-height: 820px) {
+      .slide[data-audio="20"] .s19-title { font-size: clamp(30px, 3.6vw, 50px); }
+      .slide[data-audio="20"] .s19-window { max-height: clamp(420px, 56vh, 600px); }
+      .slide[data-audio="20"] .s19-callout .label { font-size: 13px; }
+      .slide[data-audio="20"] .s19-callout .desc { font-size: 11px; }
+    }
+    @media (max-width: 1700px) {
+      .slide[data-audio="20"] .s19-hide-md { display: none; }
+      .slide[data-audio="20"] .s19-tb-nav { display: none; }
+    }
+    @media (max-width: 1500px) {
+      .slide[data-audio="20"] .s19-body {
+        grid-template-columns: 52px 210px 220px 1fr;
+      }
+      .slide[data-audio="20"] .s19-tb-version { display: none; }
+    }
+  </style>
+
+  <div class="s19-atmos">
+    <div class="s19-grid-bg"></div>
+    <div class="s19-glow"></div>
+    <div class="s19-grain"></div>
+  </div>
+
+  <div class="s19-wrap">
+
+    <!-- HEADER -->
+    <header class="s19-header">
+      <div>
+        <div class="s19-eyebrow">
+          <span class="dot"></span>
+          <span class="num">19 / 22</span>
+          <span class="slash">//</span>
+          <span>WHERE YOGI LIVES</span>
+          <span class="slash">//</span>
+          <span>TC ASSISTANT</span>
+        </div>
+        <h1 class="s19-title">
+          Where Yogi <span class="accent">lives.</span>
+        </h1>
+      </div>
+      <div class="s19-subhead">
+        <span>TC ASSISTANT</span>
+        <span class="pipe"></span>
+        <span>WORKSPACES HOME</span>
+        <span class="pipe"></span>
+        <span class="mute">MIKE WISE'S CANVAS</span>
+      </div>
+    </header>
+
+    <!-- STAGE / MOCKUP -->
+    <div class="s19-stage">
+      <div class="s19-aura"></div>
+
+      <div class="s19-window">
+        <!-- macOS-style chrome -->
+        <div class="s19-chrome">
+          <div class="s19-chrome-dot r"></div>
+          <div class="s19-chrome-dot y"></div>
+          <div class="s19-chrome-dot g"></div>
+          <div class="s19-chrome-url">
+            <span class="lock">●</span>
+            <span class="host">assistant.trilogycare.com.au</span>
+            <span style="color:var(--tca-text-faint);">/workspaces/~ashw</span>
+          </div>
+        </div>
+
+        <div class="s19-app">
+
+          <!-- TOP BAR -->
+          <div class="s19-topbar">
+            <!-- app launcher (grid) -->
+            <div class="s19-tb-icon" title="App launcher">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+            </div>
+            <!-- sidebar toggle -->
+            <div class="s19-tb-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+            </div>
+
+            <!-- Logo -->
+            <div class="s19-tb-logo">
+              <div class="s19-tb-logo-mark">
+                <!-- stylised Trilogy mark: 3 chevrons -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 14 L8 18 L12 14" stroke="#FEBD33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 10 L13 14 L17 10" stroke="#43C0BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 6 L18 10 L22 6" stroke="#2C4C79" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="s19-tb-logo-text">Trilogy Care <b>Assistant</b></div>
+              <div class="s19-tb-version">v1.1.504</div>
+            </div>
+
+            <!-- nav arrows -->
+            <div class="s19-tb-nav">
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 18 9 12 15 6"/></svg></div>
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 18 9 12 15 6"/></svg></div>
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="9 18 15 12 9 6"/></svg></div>
+            </div>
+
+            <!-- search -->
+            <div class="s19-tb-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>Search or type a command…</span>
+              <span class="kbd">⌘K</span>
+            </div>
+
+            <div class="s19-tb-spacer"></div>
+
+            <!-- domain switcher -->
+            <div class="s19-tb-domain">
+              <div class="d-chip">D</div>
+              <span>Digital</span>
+              <span class="d-ga">Ga</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+
+            <!-- help -->
+            <div class="s19-tb-help">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+            </div>
+
+            <!-- account -->
+            <div class="s19-tb-account">
+              <div class="av">AW</div>
+              <div class="name">Ash Williams</div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--tca-text-dim);width:11px;height:11px;"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+
+          <!-- BETA BANNER -->
+          <div class="s19-beta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <b>Trilogy Care Assistant is in active beta testing.</b>
+            <span>See the <a>release notes</a>, <a>known bugs</a>, or <a>send feedback</a>.</span>
+            <span class="close">✕</span>
+          </div>
+
+          <!-- BODY -->
+          <div class="s19-body">
+
+            <!-- COL 1 — RAIL -->
+            <div class="s19-rail">
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Chat</span>
+              </div>
+              <div class="s19-rail-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <span>Workspaces</span>
+              </div>
+              <div class="s19-rail-spacer"></div>
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+                <span>Help</span>
+              </div>
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Settings</span>
+              </div>
+            </div>
+
+            <!-- COL 2 — WORKSPACES SIDEBAR -->
+            <div class="s19-ws-side">
+              <div class="s19-ws-head">
+                <div class="s19-ws-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  Workspaces
+                </div>
+                <div class="s19-ws-new">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  New
+                </div>
+              </div>
+
+              <div class="s19-ws-filter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Filter…</span>
+                <span class="slash">*/</span>
+              </div>
+
+              <div class="s19-ws-toggle">
+                <button class="on">Active</button>
+                <button>Archived</button>
+              </div>
+
+              <div class="s19-ws-home">
+                <div class="home-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg>
+                </div>
+                <div class="home-label">Home <span class="h">~ashw</span></div>
+              </div>
+
+              <div class="s19-ws-section">
+                <span class="chev">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Workspaces
+                <span class="count">6</span>
+              </div>
+
+              <div class="s19-ws-tag">Pinned</div>
+              <div class="s19-ws-item">
+                <div class="left">
+                  <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6"/><path d="M19 9 12 16 5 9"/><path d="M12 16v6"/></svg></span>
+                  <span class="name">Yogi</span>
+                </div>
+                <span class="time">9d ago</span>
+              </div>
+
+              <div class="s19-ws-tag">Previous 7 Days</div>
+              <div class="s19-ws-item">
+                <div class="left">
+                  <span class="name">Yogi</span>
+                </div>
+                <span class="time">5d ago</span>
+              </div>
+
+              <div class="s19-ws-tag">Older</div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Indigo Pulse · 5 May</span>
+                </div>
+                <span class="time">18d</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Daily Briefing workspace</span>
+                </div>
+                <span class="time">15/04</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">PLA Watch workspace</span>
+                </div>
+                <span class="time">14/04</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Testing 123</span>
+                </div>
+                <span class="time">02/04</span>
+              </div>
+            </div>
+
+            <!-- COL 3 — EXPLORER -->
+            <div class="s19-explorer">
+              <div class="s19-ex-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span class="title">~ashw</span>
+                <span class="strike">Aa</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1"/></svg>
+                <div class="spacer"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+
+              <div class="s19-ex-label">Explorer</div>
+              <div class="s19-ex-filter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Filter files…</span>
+              </div>
+
+              <div class="s19-ex-tree">
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">docs</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">specialist-crew</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">specialist-memory</span>
+                </div>
+                <div class="s19-ex-row highlight">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">memory</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">profiles</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">skills</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">trilogycare</span>
+                </div>
+
+                <div class="s19-ex-onedrive">
+                  <div class="s19-ex-onedrive-head">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                    OneDrive
+                  </div>
+                </div>
+
+                <div class="s19-ex-od-rows">
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Attachments</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>CQCC Reporting</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Meetings</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Microsoft Teams Chat Files</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                    <span>Book.xlsx</span>
+                    <span class="size">6.0 KB</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                    <span>Supplier Billing Re-Ed…</span>
+                    <span class="size">64.6 KB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COL 4 — MAIN PANE -->
+            <div class="s19-main">
+
+              <div class="s19-main-bar">
+                <div class="s19-main-btn s19-hide-md">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  New file
+                </div>
+                <div class="s19-main-btn s19-hide-md">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                  New folder
+                </div>
+                <div class="spacer"></div>
+
+                <div class="s19-main-btns-wrap highlight">
+                  <div class="s19-main-btn active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                    Explorer
+                  </div>
+                  <div class="s19-main-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Chat
+                  </div>
+                  <div class="s19-main-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    Claude
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB STRIP -->
+              <div class="s19-tabs">
+                <div class="s19-tab">
+                  <span class="md-chip">MD</span>
+                  README.md
+                  <span class="close">×</span>
+                </div>
+              </div>
+
+              <!-- SUB-TOOLS -->
+              <div class="s19-subtools">
+                <div class="s19-subtool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+                  Edit
+                </div>
+                <div class="s19-subtool active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Preview
+                </div>
+                <div class="s19-subtool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+                  Split
+                </div>
+                <div class="spacer"></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15A9 9 0 1 1 18 5.7L23 10"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              </div>
+
+              <!-- THE CANVAS (Yogi-active surface) -->
+              <div class="s19-canvas">
+                <div class="s19-yogi-card">
+                  <div class="y-head">
+                    <div class="y-bear">🐻</div>
+                    <div class="y-text">
+                      <div class="y-title">Yogi is active in this workspace</div>
+                      <div class="y-sub"><span class="live">Standing by · Ash's substrate loaded</span></div>
+                    </div>
+                  </div>
+                  <div class="y-divider"></div>
+                  <div class="y-stats">
+                    <div class="y-stat"><div class="n">79</div><div class="l">memory files</div></div>
+                    <div class="y-stat"><div class="n">1,000</div><div class="l">specialists</div></div>
+                    <div class="y-stat"><div class="n">328</div><div class="l">tools</div></div>
+                  </div>
+                  <div class="y-foot">
+                    Same bear, <b>every desk.</b> Each staffer's Workspaces Home becomes their <b>personal Yogi</b> — no context leak between users.
+                  </div>
+                </div>
+              </div>
+
+              <!-- feedback widget replica -->
+              <div class="s19-feedback">
+                <span class="b">🐻</span>
+                Feedback
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 CALLOUTS -->
+    <div class="s19-callouts">
+      <div class="s19-callout">
+        <div class="num">01</div>
+        <div class="key">memory/</div>
+        <div class="label">Persistent memory in markdown</div>
+        <div class="desc">79 files. Auto-extracted preferences. <b>Survives every restart.</b></div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">02</div>
+        <div class="key">specialists/</div>
+        <div class="label">Specialist Crew · 1,000 specialists</div>
+        <div class="desc">Inner Circle of 11 + ~1,000 Trilogy-trained sub-agents. <b>Dispatched on demand.</b></div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">03</div>
+        <div class="key">OneDrive</div>
+        <div class="label">OneDrive + Office data feed</div>
+        <div class="desc">CQCC Reporting, Meetings, Teams files, recordings. <b>Live mount.</b></div>
+      </div>
+      <div class="s19-callout">
+        <div class="num">04</div>
+        <div class="key">Explorer · Chat · Claude</div>
+        <div class="label">Three modes, one canvas</div>
+        <div class="desc">Switch between files, chat, and Claude's CLI <b>without leaving the workspace.</b></div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="s19-footer">
+      <div class="credits">
+        <span>CANVAS</span>
+        <span class="em">MIKE WISE</span>
+        <span class="sep"></span>
+        <span>BRAIN</span>
+        <span class="em">ASH WILLIAMS</span>
+        <span class="sep"></span>
+        <span>SAME BEAR · EVERY DESK</span>
+      </div>
+      <div class="rollout">
+        <span>ROLLOUT</span>
+        <span class="sep"></span>
+        <span class="em">500 STAFFERS · 500 PERSONAL YOGIS</span>
+        <span class="sep"></span>
+        <span>TARGET</span>
+        <span class="em">OCT 2026</span>
+      </div>
+    </footer>
+
+  </div>
+</section>
