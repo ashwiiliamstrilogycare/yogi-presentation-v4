@@ -1,1008 +1,1018 @@
 <section class="slide" data-audio="18">
   <style>
-    /* ============ SLIDE 16 — PRODUCTION RECEIPTS (NASA polish) ============ */
+    /* ─────────────────────────────────────────────────────────────
+       SLIDE 15 — LIVE DEMO (TJ Gardening · TC-5012)
+       Mission-control framing around a self-typing console.
+       Readability pass: every line must be legible from 8 m back.
+       ───────────────────────────────────────────────────────────── */
+
     .slide[data-audio="18"] {
-      --s17-rail-honey: rgba(254,189,51,0.55);
+      --navy:        #2C4C79;
+      --honey:       #FEBD33;
+      --honey-soft:  #FFD876;
+      --honey-deep:  #C98A14;
+      --teal:        #43C0BE;
+      --dark-teal:   #007F7E;
+      --sky:         #64BCEA;
+      --red:         #E04B51;
+      --violet:      #9B7BD4;
+      --coral:       #F39B5A;
+
+      --bg:          #0a0d12;
+      --bg-elev:     #11161f;
+      --bg-glass:    rgba(255,255,255,0.04);
+      --bg-console:  #070a0f;
+      --border:      rgba(255,255,255,0.10);
+      --border-warm: rgba(254,189,51,0.32);
+      --border-cold: rgba(161,161,170,0.18);
+
+      --fg:          #f4f4f5;
+      --fg-muted:    #d4d4d8;   /* bumped for WCAG */
+      --fg-dim:      #a1a1aa;   /* bumped — was #71717a */
+      --fg-ghost:    #71717a;   /* bumped — was #52525b */
+
+      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
 
       position: relative;
       width: 100%;
-      height: 100%;
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse 60% 45% at 12% 14%, rgba(254,189,51,0.07), transparent 60%),
-        radial-gradient(ellipse 50% 50% at 92% 88%, rgba(67,192,190,0.05), transparent 65%),
-        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.022), transparent 60%),
-        var(--bg);
+      background: var(--bg);
       color: var(--fg);
       font-family: var(--font-display);
       overflow: hidden;
-      letter-spacing: -0.01em;
+      isolation: isolate;
     }
 
-    /* watermark engineering grid */
-    .slide[data-audio="18"]::before {
-      content: "";
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 88% 82% at center, black 35%, transparent 92%);
-      pointer-events: none;
-    }
-    /* film grain */
+    /* Ambient atmosphere — honey spill from console plus cool top-left wash */
+    .slide[data-audio="18"]::before,
     .slide[data-audio="18"]::after {
       content: "";
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.45;
-      mix-blend-mode: overlay;
+      position: absolute;
+      inset: 0;
       pointer-events: none;
-    }
-
-    /* particle drift */
-    .s17-particles {
-      position: absolute; inset: 0;
-      pointer-events: none;
-      overflow: hidden;
       z-index: 0;
     }
-    .s17-particles span {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: var(--honey);
-      border-radius: 50%;
-      opacity: 0;
-      box-shadow: 0 0 6px var(--honey);
-      animation: s17-drift 18s linear infinite;
+    .slide[data-audio="18"]::before {
+      background:
+        radial-gradient(ellipse 55% 50% at 50% 55%, rgba(254,189,51,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 12% 18%, rgba(67,192,190,0.06) 0%, transparent 65%);
     }
-    @keyframes s17-drift {
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      8%   { opacity: 0.42; }
-      90%  { opacity: 0.42; }
-      100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+    .slide[data-audio="18"]::after {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
+      opacity: 0.55;
     }
-    .s17-particles span:nth-child(1)  { left: 6%;  bottom: -2%; animation-delay: 0s;    animation-duration: 22s; }
-    .s17-particles span:nth-child(2)  { left: 18%; bottom: -2%; animation-delay: 3s;    animation-duration: 26s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
-    .s17-particles span:nth-child(3)  { left: 28%; bottom: -2%; animation-delay: 7s;    animation-duration: 19s; }
-    .s17-particles span:nth-child(4)  { left: 42%; bottom: -2%; animation-delay: 11s;   animation-duration: 24s; }
-    .s17-particles span:nth-child(5)  { left: 56%; bottom: -2%; animation-delay: 2s;    animation-duration: 28s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
-    .s17-particles span:nth-child(6)  { left: 68%; bottom: -2%; animation-delay: 14s;   animation-duration: 21s; }
-    .s17-particles span:nth-child(7)  { left: 78%; bottom: -2%; animation-delay: 9s;    animation-duration: 25s; }
-    .s17-particles span:nth-child(8)  { left: 88%; bottom: -2%; animation-delay: 5s;    animation-duration: 27s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
 
-    .s17-frame {
+    .slide[data-audio="18"] .content {
       position: relative;
-      width: 100%;
-      height: 100vh;
-      padding: clamp(36px, 3.6vw, 64px) clamp(44px, 4.6vw, 84px);
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-      z-index: 1;
-    }
-
-    /* corner registration marks */
-    .s17-mark {
-      position: absolute;
-      width: 14px; height: 14px;
-      border: 1px solid rgba(254,189,51,0.30);
-    }
-    .s17-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
-    .s17-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
-    .s17-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
-    .s17-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
-
-    .s17-stamp {
-      position: absolute;
-      top: 26px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.42em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
-    }
-
-    /* ----- HEADER ----- */
-    .s17-head {
+      z-index: 2;
+      max-width: 1760px;
+      margin: 0 auto;
+      padding: clamp(24px, 2.6vh, 40px) clamp(32px, 3vw, 64px);
       display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: clamp(28px, 3.6vw, 64px);
-      align-items: flex-end;
-      margin-bottom: clamp(24px, 2.6vw, 44px);
+      grid-template-rows: auto auto 1fr auto;
+      gap: clamp(14px, 1.6vh, 24px);
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
-    .s17-eyebrow {
-      font-family: var(--font-mono);
-      font-size: clamp(10px, 0.72vw, 12px);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--honey);
+    /* ─── Corner crosshairs ──────────────────────────────────────── */
+    .s16-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--honey);
+      opacity: 0.55;
+      z-index: 3;
+    }
+    .s16-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+    .s16-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
+    .s16-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
+    .s16-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
+
+    /* ─── Top band : eyebrow + headline + LIVE pill ───────────────── */
+    .s16-topband {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .slide[data-audio="18"].is-active .s16-topband { opacity: 1; transform: translateY(0); }
+
+    .s16-eyebrow {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 20px;
-    }
-    .s17-eyebrow .rule {
-      width: 40px; height: 1px;
-      background: linear-gradient(90deg, var(--honey), transparent);
-    }
-    .s17-eyebrow .dot {
-      width: 6px; height: 6px;
-      background: var(--honey);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--honey);
-      animation: s17-pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes s17-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.5; transform: scale(0.85); }
-    }
-
-    .s17-headline {
-      font-size: clamp(42px, 5.2vw, 92px);
-      font-weight: 800;
-      line-height: 0.92;
-      letter-spacing: -0.04em;
-      margin: 0;
-    }
-    .s17-headline .accent {
-      color: var(--honey);
-      letter-spacing: -0.02em;
-    }
-    .s17-headline .period {
-      color: var(--honey);
-    }
-
-    .s17-subhead {
       font-family: var(--font-mono);
-      font-size: clamp(11px, 0.8vw, 13px);
-      line-height: 1.65;
-      color: var(--fg-muted);
-      max-width: 420px;
-      padding-bottom: 8px;
+      font-size: clamp(11.5px, 0.82vw, 14px);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: clamp(10px, 1.2vh, 16px);
     }
-    .s17-subhead .pill {
-      display: inline-block;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      color: var(--honey);
-      padding: 5px 10px;
-      border: 1px solid var(--border-warm);
-      border-radius: 2px;
-      margin-bottom: 14px;
-      background: rgba(254,189,51,0.05);
+    .s16-eyebrow .num { color: var(--fg); font-weight: 600; }
+    .s16-eyebrow .sep {
+      flex: 0 0 24px;
+      height: 1px;
+      background: var(--border);
     }
-    .s17-subhead em {
-      font-style: normal;
+    .s16-eyebrow .label { color: var(--fg-dim); }
+
+    .s16-headline {
+      font-size: clamp(40px, 5.4vw, 92px);
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+      font-weight: 300;
+      margin: 0;
       color: var(--fg);
+      font-style: italic;
+    }
+    .s16-headline .strong {
+      font-style: normal;
+      font-weight: 800;
+      color: var(--honey);
+      letter-spacing: -0.045em;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.42),
+        0 0 80px rgba(254,189,51,0.14);
+    }
+    .s16-subhead {
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: clamp(13px, 1vw, 17px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-weight: 600;
+    }
+    .s16-subhead .dim { color: var(--fg-dim); }
+    .s16-subhead .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--fg-ghost);
+      display: inline-block;
     }
 
-    /* ----- LEDGER GRID ----- */
-    .s17-ledger {
+    /* LIVE pill on the right */
+    .s16-live {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .s16-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      border: 1px solid rgba(224,75,81,0.55);
+      border-radius: 999px;
+      background: rgba(224,75,81,0.12);
+      font-family: var(--font-mono);
+      font-size: clamp(12.5px, 0.92vw, 15px);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .s16-live-pill::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 12px var(--red);
+      animation: s16-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes s16-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.75); }
+    }
+    .s16-runtime-meta {
+      font-family: var(--font-mono);
+      font-size: clamp(11.5px, 0.82vw, 14px);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s16-runtime-meta .v { color: var(--honey); font-weight: 600; }
+
+    /* ─── Main row : console + right rail ─────────────────────────── */
+    .s16-main {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr 1fr;
-      gap: clamp(14px, 1.3vw, 22px);
-      flex: 1;
+      grid-template-columns: minmax(0, 1fr) clamp(260px, 19vw, 320px);
+      gap: clamp(18px, 1.8vw, 28px);
+      align-items: stretch;
       min-height: 0;
     }
 
-    /* ----- RECEIPT CARD ----- */
-    .s17-receipt {
+    /* ─── Console window ──────────────────────────────────────────── */
+    .s16-console {
       position: relative;
-      background:
-        /* paper grain SVG noise — 3-4% opacity */
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.92  0 0 0 0 0.72  0 0 0 0.038 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>"),
-        /* faint horizontal paper-fiber lines */
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
-        linear-gradient(180deg, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 100%);
-      border: 1px solid rgba(254,189,51,0.30);
-      border-radius: 4px;
-      padding: clamp(18px, 1.5vw, 26px) clamp(20px, 1.6vw, 28px) clamp(16px, 1.3vw, 22px) clamp(28px, 2.2vw, 38px);
+      background: var(--bg-console);
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      box-shadow:
+        0 0 0 1px rgba(254,189,51,0.04),
+        0 24px 80px -24px rgba(254,189,51,0.22),
+        0 60px 160px -60px rgba(254,189,51,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.05);
       display: flex;
       flex-direction: column;
-      backdrop-filter: blur(6px);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.04) inset,
-        0 14px 38px rgba(0,0,0,0.55),
-        0 0 0 1px rgba(0,0,0,0.4);
+      overflow: hidden;
       opacity: 0;
       transform: translateY(20px);
-      transition:
-        border-color 320ms ease,
-        box-shadow 320ms ease;
-      overflow: hidden;
+      transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
+      min-width: 0;
     }
-    .slide[data-audio="18"].is-active .s17-receipt {
-      animation: s17-card-in 760ms cubic-bezier(.22,.61,.36,1) forwards;
+    .slide[data-audio="18"].is-active .s16-console {
+      opacity: 1;
+      transform: translateY(0);
     }
-    @keyframes s17-card-in {
-      0%   { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* choreographed entry — Z-pattern reading order
-       top-left → top-mid → top-right → bottom-left → bottom-mid → bottom-right
-       Eye lands top-left ($415K), sweeps right, drops, sweeps right again.
-    */
-    .s17-receipt.r1 { animation-delay: 120ms; }
-    .s17-receipt.r2 { animation-delay: 260ms; }
-    .s17-receipt.r3 { animation-delay: 400ms; }
-    .s17-receipt.r4 { animation-delay: 560ms; }
-    .s17-receipt.r5 { animation-delay: 700ms; }
-    .s17-receipt.r6 { animation-delay: 860ms; }
-
-    /* honey rail on left edge */
-    .s17-receipt::before {
+    .s16-console::after {
+      /* faint honey wash from bottom */
       content: "";
       position: absolute;
-      left: 0; top: 14px; bottom: 14px;
-      width: 3px;
-      background: linear-gradient(180deg, var(--honey) 0%, rgba(254,189,51,0.15) 100%);
-      box-shadow: 0 0 14px rgba(254,189,51,0.5);
-      border-radius: 0 2px 2px 0;
-    }
-
-    /* perforation strip on right edge */
-    .s17-receipt::after {
-      content: "";
-      position: absolute;
-      right: -4px; top: 14px; bottom: 14px;
-      width: 8px;
-      background-image: radial-gradient(circle at center, var(--bg) 2.5px, transparent 3px);
-      background-size: 8px 10px;
-      background-repeat: repeat-y;
+      left: 0; right: 0; bottom: 0;
+      height: 200px;
+      background: radial-gradient(ellipse 80% 100% at 50% 100%, rgba(254,189,51,0.06) 0%, transparent 70%);
       pointer-events: none;
-      opacity: 0.7;
     }
 
-    /* head row: evidence serial + status chip */
-    .s17-r-head {
+    /* Chrome top bar */
+    .s16-chrome {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: clamp(8px, 0.8vw, 14px);
-    }
-    .s17-r-no {
+      gap: 16px;
+      padding: 14px 22px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
+      font-size: clamp(12px, 0.85vw, 14.5px);
+      color: var(--fg-muted);
+      letter-spacing: 0.04em;
+    }
+    .s16-chrome .traffic {
+      display: flex;
+      gap: 7px;
+    }
+    .s16-chrome .traffic span {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--fg-ghost);
+      opacity: 0.7;
+    }
+    .s16-chrome .traffic span:nth-child(1) { background: #ff5f57; }
+    .s16-chrome .traffic span:nth-child(2) { background: #febc2e; }
+    .s16-chrome .traffic span:nth-child(3) { background: #28c840; }
+    .s16-chrome .title {
+      flex: 1;
+      text-align: center;
+      color: var(--fg);
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+    .s16-chrome .title .scheme { color: var(--honey); }
+    .s16-chrome .title .path { color: var(--fg); }
+    .s16-chrome .meta {
       color: var(--fg-dim);
+      letter-spacing: 0.18em;
+      font-size: clamp(11px, 0.78vw, 13px);
+    }
+
+    /* Console body — readability bump: clamp(15px, 1.05vw, 20px) */
+    .s16-body {
+      flex: 1;
+      padding: clamp(22px, 2.6vh, 32px) clamp(24px, 2.6vw, 36px);
+      font-family: var(--font-mono);
+      font-size: clamp(15px, 1.05vw, 20px);
+      line-height: 1.62;
+      color: var(--fg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Each console line */
+    .s16-line {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      opacity: 0;
+      transform: translateX(-6px);
+      animation: s16-line-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-play-state: paused;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .s17-r-no strong {
-      color: var(--honey);
-      font-weight: 500;
+    .slide[data-audio="18"].is-active .s16-line {
+      animation-play-state: running;
     }
-    .s17-r-no .sep {
-      color: rgba(255,255,255,0.18);
-      margin: 0 6px;
-    }
-    .s17-r-chip {
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border: 1px solid rgba(67,192,190,0.32);
-      color: var(--teal);
-      background: rgba(67,192,190,0.06);
-      border-radius: 2px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .s17-r-chip .pulse {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 8px var(--teal);
+    @keyframes s16-line-in {
+      0%   { opacity: 0; transform: translateX(-6px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
 
-    /* the big number — HERO */
-    .s17-r-figure {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(46px, 5.4vw, 92px);
-      line-height: 0.94;
-      letter-spacing: -0.045em;
-      color: var(--honey);
-      margin: 0;
-      text-shadow:
-        0 0 32px rgba(254,189,51,0.22),
-        0 2px 0 rgba(0,0,0,0.4);
-      font-variant-numeric: tabular-nums;
-      position: relative;
-      display: inline-block;
-    }
-    .s17-r-figure .unit {
-      font-size: 0.42em;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      vertical-align: 0.62em;
-      color: rgba(254,189,51,0.78);
-      margin-left: 2px;
-    }
-    .s17-r-figure .sym {
-      font-weight: 500;
-      font-size: 0.62em;
-      vertical-align: 0.16em;
-      color: rgba(254,189,51,0.82);
-      margin-right: 0.04em;
-    }
+    .s16-line + .s16-line { margin-top: 7px; }
 
-    /* delicate underline glow — gradient mask, swells on enter, then settles to slow bloom */
-    .s17-r-figure::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 12%;
-      bottom: -4px;
-      height: 2px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(254,189,51,0.85) 22%,
-        rgba(254,189,51,1) 50%,
-        rgba(254,189,51,0.85) 78%,
-        transparent 100%);
-      box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35);
-      transform: scaleX(0);
-      transform-origin: left center;
-      opacity: 0;
-      border-radius: 2px;
-    }
-    .slide[data-audio="18"].is-active .s17-r-figure::after {
-      animation:
-        s17-underline-swell 1100ms cubic-bezier(.22,.61,.36,1) forwards,
-        var(--bloom-anim, s17-bloom-a) var(--bloom-dur, 4.8s) ease-in-out infinite var(--bloom-after, 1500ms);
-    }
-    @keyframes s17-underline-swell {
-      0%   { transform: scaleX(0); opacity: 0; }
-      40%  { opacity: 1; }
-      100% { transform: scaleX(1); opacity: 1; }
-    }
-
-    /* Per-card honey rhythms — same color, different bloom phase + tempo.
-       Eye dances across the six numbers. */
-    @keyframes s17-bloom-a {
-      0%, 100% { box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35); }
-      50%      { box-shadow: 0 0 26px rgba(254,189,51,0.95), 0 0 62px rgba(254,189,51,0.55); }
-    }
-    @keyframes s17-bloom-b {
-      0%, 100% { box-shadow: 0 0 16px rgba(254,189,51,0.55), 0 0 32px rgba(254,189,51,0.25); }
-      55%      { box-shadow: 0 0 28px rgba(254,189,51,0.92), 0 0 70px rgba(254,189,51,0.5); }
-    }
-    @keyframes s17-bloom-c {
-      0%, 100% { box-shadow: 0 0 14px rgba(254,189,51,0.62), 0 0 28px rgba(254,189,51,0.32); }
-      40%      { box-shadow: 0 0 24px rgba(254,189,51,0.85), 0 0 58px rgba(254,189,51,0.48); }
-    }
-    .s17-receipt.r1 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 4.8s; --bloom-after: 1300ms; }
-    .s17-receipt.r2 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.6s; --bloom-after: 1700ms; }
-    .s17-receipt.r3 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 4.2s; --bloom-after: 1500ms; }
-    .s17-receipt.r4 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.0s; --bloom-after: 1900ms; }
-    .s17-receipt.r5 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 6.0s; --bloom-after: 2100ms; }
-    .s17-receipt.r6 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 5.4s; --bloom-after: 2300ms; }
-
-    /* comparison anchor — sits below the hero number */
-    .s17-r-compare {
-      font-family: var(--font-mono);
-      font-size: clamp(10px, 0.74vw, 12px);
-      letter-spacing: 0.04em;
-      color: var(--fg-dim);
-      line-height: 1.45;
-      margin-top: clamp(8px, 0.8vw, 12px);
-      padding-left: 1px;
-      max-width: 90%;
-    }
-    .s17-r-compare .vs {
-      color: rgba(254,189,51,0.55);
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-right: 6px;
-      font-size: 0.86em;
-    }
-    .s17-r-compare em {
-      font-style: normal;
-      color: var(--fg-muted);
-    }
-
-    /* event label + date row */
-    .s17-r-meta {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: clamp(10px, 1vw, 16px);
-      padding-bottom: clamp(8px, 0.8vw, 12px);
-    }
-    .s17-r-event {
-      font-size: clamp(15px, 1.15vw, 19px);
+    /* Prompt line */
+    .s16-line.prompt {
+      color: var(--fg);
       font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--fg);
-      line-height: 1.18;
-      position: relative;
-      padding-bottom: 6px;
+      margin-bottom: 10px;
+      font-size: 1.05em;
     }
-    .s17-r-event::after {
-      content: "";
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 22px; height: 1px;
-      background: linear-gradient(90deg, var(--honey) 0%, var(--teal) 100%);
-      opacity: 0.75;
-    }
-    .s17-r-date {
-      font-family: var(--font-mono);
-      font-size: clamp(10px, 0.72vw, 12px);
-      letter-spacing: 0.2em;
-      color: var(--fg-muted);
-      white-space: nowrap;
-    }
-
-    /* description */
-    .s17-r-desc {
-      font-size: clamp(11px, 0.78vw, 12.5px);
-      line-height: 1.5;
-      color: var(--fg-muted);
-      letter-spacing: -0.002em;
-      flex: 1;
-      margin: 0 0 clamp(10px, 1vw, 14px) 0;
-      padding-right: clamp(56px, 5vw, 92px); /* reserve room for stamp */
-    }
-
-    /* system tags footer */
-    .s17-r-tags {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: clamp(8px, 0.9vw, 12px);
-      border-top: 1px dashed rgba(255,255,255,0.10);
-      flex-wrap: wrap;
-      padding-right: clamp(56px, 5vw, 92px); /* keep clear of stamp */
-    }
-    .s17-r-tags .label {
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-      margin-right: 4px;
-    }
-    .s17-r-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--teal);
-      padding: 3px 7px;
-      border: 1px solid rgba(67,192,190,0.22);
-      border-radius: 2px;
-      background: rgba(67,192,190,0.04);
-    }
-
-    /* ===== APPROVAL STAMP — bottom-right of each card ===== */
-    .s17-stamp-block {
-      position: absolute;
-      right: clamp(10px, 1vw, 16px);
-      bottom: clamp(10px, 1vw, 16px);
-      width: clamp(64px, 6.4vw, 96px);
-      height: clamp(64px, 6.4vw, 96px);
-      pointer-events: none;
-      opacity: 0;
-      transform: rotate(-8deg) scale(0.86);
-      transition: opacity 600ms ease, transform 600ms cubic-bezier(.22,.61,.36,1);
-      transition-delay: 1100ms;
-    }
-    .slide[data-audio="18"].is-active .s17-stamp-block {
-      opacity: 0.78;
-      transform: rotate(-8deg) scale(1);
-    }
-    .s17-stamp-block svg {
-      width: 100%; height: 100%;
-      display: block;
-      overflow: visible;
-    }
-    /* each stamp gets a slightly different rotation for hand-applied feel */
-    .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg) scale(0.86); }
-    .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg) scale(0.86); }
-    .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(0.86); }
-    .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg) scale(0.86); }
-    .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(0.86); }
-    .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg) scale(0.86); }
-    .slide[data-audio="18"].is-active .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg)  scale(1); }
-    .slide[data-audio="18"].is-active .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg)  scale(1); }
-    .slide[data-audio="18"].is-active .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(1); }
-    .slide[data-audio="18"].is-active .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg)  scale(1); }
-    .slide[data-audio="18"].is-active .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(1); }
-    .slide[data-audio="18"].is-active .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
-
-    /* hover refinement */
-    .s17-receipt:hover {
-      border-color: rgba(254,189,51,0.55);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.06) inset,
-        0 22px 50px rgba(0,0,0,0.65),
-        0 0 0 1px rgba(254,189,51,0.30),
-        0 0 70px rgba(254,189,51,0.16);
-    }
-
-    /* ----- BOTTOM STRIP ----- */
-    .s17-footer {
-      margin-top: clamp(18px, 1.8vw, 32px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      position: relative;
-    }
-    .s17-footer::before {
-      content: "";
-      position: absolute;
-      top: -1px; left: 0;
-      width: 120px; height: 1px;
-      background: linear-gradient(90deg, var(--honey), transparent);
-      box-shadow: 0 0 10px rgba(254,189,51,0.5);
-    }
-
-    .s17-total {
-      font-size: clamp(15px, 1.18vw, 22px);
-      font-weight: 300;
-      line-height: 1.35;
-      color: var(--fg);
-      letter-spacing: -0.022em;
-      max-width: 920px;
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 4px 12px;
-    }
-    .s17-total .label {
-      font-family: var(--font-mono);
-      font-size: 0.55em;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-      display: block;
-      margin-bottom: 6px;
-      width: 100%;
-    }
-    .s17-total .figure {
+    .s16-line.prompt .ps1 {
       color: var(--honey);
       font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.03em;
-      position: relative;
-      display: inline-block;
+      font-size: 1.1em;
     }
-    /* ticker tail — the trailing ", 0" looks like it could keep climbing */
-    .s17-total .figure .tick {
-      color: var(--honey);
-      display: inline-block;
-      animation: s17-ticker 3.6s ease-in-out infinite;
-      transform-origin: left baseline;
-    }
-    @keyframes s17-ticker {
-      0%, 84%, 100% { opacity: 1; transform: translateY(0); }
-      88%           { opacity: 0.25; transform: translateY(-0.5em); }
-      92%           { opacity: 0.25; transform: translateY(0.5em); }
-      96%           { opacity: 1;    transform: translateY(0); }
-    }
-    .s17-total em {
-      font-style: italic;
-      color: var(--fg-muted);
-      font-weight: 300;
-    }
-    .s17-total .sep {
-      display: inline-block;
-      margin: 0 10px;
-      color: var(--fg-dim);
-    }
-
-    /* forward-looking forecast chip */
-    .s17-forecast {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      font-size: clamp(9.5px, 0.7vw, 11px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--honey);
-      padding: 5px 10px 5px 8px;
-      border: 1px solid rgba(254,189,51,0.35);
-      background: linear-gradient(90deg, rgba(254,189,51,0.08), rgba(254,189,51,0.02));
-      border-radius: 2px;
-      margin-left: 6px;
-      position: relative;
-      overflow: hidden;
-    }
-    .s17-forecast::before {
-      content: "";
-      position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(254,189,51,0.18), transparent);
-      transform: translateX(-100%);
-      animation: s17-shimmer 4.2s ease-in-out infinite;
-    }
-    @keyframes s17-shimmer {
-      0%, 60% { transform: translateX(-100%); }
-      80%     { transform: translateX(100%); }
-      100%    { transform: translateX(100%); }
-    }
-    .s17-forecast .arrow {
-      width: 10px; height: 10px;
-      flex-shrink: 0;
-      color: var(--honey);
-    }
-    .s17-forecast .trend {
+    .s16-line.prompt .cmd {
       color: var(--fg);
-      letter-spacing: 0.18em;
+      font-weight: 700;
     }
-    .s17-forecast .eta {
-      color: var(--fg-dim);
-      letter-spacing: 0.24em;
+    .s16-line.prompt .arg {
+      color: var(--teal);
+      font-weight: 700;
     }
 
-    .s17-arrow {
+    /* Tag chips — scale proportionally with console body */
+    .s16-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.78em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      flex: 0 0 auto;
+      line-height: 1.4;
+    }
+    .s16-tag.ok      { background: rgba(254,189,51,0.14); color: var(--honey); border: 1px solid rgba(254,189,51,0.42); }
+    .s16-tag.pattern { background: rgba(67,192,190,0.16); color: var(--teal); border: 1px solid rgba(67,192,190,0.48); box-shadow: 0 0 14px rgba(67,192,190,0.26); }
+    .s16-tag.draft   { background: rgba(155,123,212,0.16); color: var(--violet); border: 1px solid rgba(155,123,212,0.48); }
+    .s16-tag.status  { background: rgba(224,75,81,0.14); color: var(--red); border: 1px solid rgba(224,75,81,0.48); }
+
+    /* Sub-line arrow */
+    .s16-arrow {
+      color: var(--teal);
+      flex: 0 0 auto;
+      margin-left: 14px;
+      font-weight: 700;
+      font-size: 1.05em;
+    }
+    .s16-line.sub .text {
+      color: var(--fg-muted);
+    }
+    .s16-line .check {
+      color: var(--honey);
+      margin-left: auto;
+      padding-left: 22px;
+      flex: 0 0 auto;
+      font-weight: 800;
+    }
+    .s16-line .check .v {
+      color: var(--fg);
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .s16-line .meta {
+      color: var(--fg-dim);
+    }
+    .s16-line .key {
+      color: var(--fg-muted);
+    }
+    .s16-line .val {
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .s16-line .amt {
+      color: var(--honey);
+      font-weight: 800;
+    }
+    .s16-line .accent {
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .s16-line .dim {
+      color: var(--fg-dim);
+    }
+    .s16-line .sep {
+      color: var(--fg-ghost);
+      margin: 0 6px;
+    }
+
+    /* Line stagger — manual delays (no JS). 8 lines now. */
+    .s16-line:nth-child(1)  { animation-delay: 0.30s; }
+    .s16-line:nth-child(2)  { animation-delay: 0.70s; }
+    .s16-line:nth-child(3)  { animation-delay: 1.05s; }
+    .s16-line:nth-child(4)  { animation-delay: 1.40s; }
+    .s16-line:nth-child(5)  { animation-delay: 1.75s; }
+    .s16-line:nth-child(6)  { animation-delay: 2.15s; }
+    .s16-line:nth-child(7)  { animation-delay: 2.55s; }
+    .s16-line:nth-child(8)  { animation-delay: 2.95s; }
+
+    /* Blinking cursor at the bottom — appears after last line */
+    .s16-cursor {
+      display: inline-block;
+      width: 11px;
+      height: 18px;
+      vertical-align: -3px;
+      background: var(--honey);
+      margin-left: 6px;
+      opacity: 0;
+      box-shadow: 0 0 10px rgba(254,189,51,0.7);
+    }
+    .slide[data-audio="18"].is-active .s16-cursor {
+      animation:
+        s16-cursor-in 0.001s linear 3.30s forwards,
+        s16-cursor-blink 1.05s steps(2, end) 3.30s infinite;
+    }
+    @keyframes s16-cursor-in   { to { opacity: 1; } }
+    @keyframes s16-cursor-blink { 50% { opacity: 0; } }
+
+    /* Scan line — subtle CRT effect */
+    .s16-body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,0.015) 3px,
+        rgba(255,255,255,0.015) 4px
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* ─── Right rail — system status indicators ───────────────────── */
+    .s16-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s;
+      min-width: 0;
+    }
+    .slide[data-audio="18"].is-active .s16-rail { opacity: 1; transform: translateY(0); }
+
+    .s16-rail-title {
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
+      font-size: clamp(11.5px, 0.8vw, 13.5px);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--fg-muted);
+      padding: 0 4px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+    .s16-rail-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .s16-sys {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.025);
+      font-family: var(--font-mono);
+      font-size: clamp(12px, 0.82vw, 14px);
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      overflow: hidden;
+      transition: border-color 0.4s ease, background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .s16-sys .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--fg-ghost);
+      flex: 0 0 auto;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .s16-sys .name {
+      flex: 1;
+      color: var(--fg);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: clamp(12px, 0.82vw, 14px);
+      font-weight: 700;
+    }
+    .s16-sys .stat {
+      font-size: clamp(11px, 0.72vw, 12.5px);
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      transition: color 0.4s ease;
+      font-weight: 600;
+    }
+
+    /* Lit state — synced to console line delays */
+    .s16-sys.lit {
+      border-color: var(--border-warm);
+      background: rgba(254,189,51,0.05);
+      color: var(--fg);
+      box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
+    }
+    .s16-sys.lit .dot {
+      background: var(--honey);
+      box-shadow: 0 0 12px var(--honey);
+    }
+    .s16-sys.lit .name { color: var(--fg); }
+    .s16-sys.lit .stat { color: var(--honey); }
+
+    /* Per-system delays — sequenced to match new console line delays */
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="zoho"]    { animation: s16-sys-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="myob"]    { animation: s16-sys-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="aircall"] { animation: s16-sys-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="conf"]    { animation: s16-sys-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="cv"]      { animation: s16-sys-lit 0.001s linear 2.75s forwards; }
+    @keyframes s16-sys-lit {
+      to {
+        border-color: var(--border-warm);
+        background: rgba(254,189,51,0.05);
+        color: var(--fg);
+        box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
+      }
+    }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="zoho"]    .dot { animation: s16-dot-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="myob"]    .dot { animation: s16-dot-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="aircall"] .dot { animation: s16-dot-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="conf"]    .dot { animation: s16-dot-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="cv"]      .dot { animation: s16-dot-lit 0.001s linear 2.75s forwards; }
+    @keyframes s16-dot-lit {
+      to { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
+    }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="zoho"]    .stat { animation: s16-stat-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="myob"]    .stat { animation: s16-stat-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="aircall"] .stat { animation: s16-stat-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="conf"]    .stat { animation: s16-stat-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="18"].is-active .s16-sys[data-sys="cv"]      .stat { animation: s16-stat-lit 0.001s linear 2.75s forwards; }
+    @keyframes s16-stat-lit {
+      to { color: var(--honey); }
+    }
+
+    /* Elapsed clock at the bottom of the rail */
+    .s16-clock {
+      margin-top: auto;
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-warm);
+      border-radius: 10px;
+      background: rgba(254,189,51,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .s16-clock .k {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.76vw, 12.5px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      font-weight: 600;
+    }
+    .s16-clock .v {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 2.8vw, 44px);
+      font-weight: 800;
+      color: var(--honey);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(254,189,51,0.36);
+    }
+    .s16-clock .sub {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.74vw, 12.5px);
+      letter-spacing: 0.20em;
+      color: var(--fg-dim);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* ─── Evidence cards ──────────────────────────────────────────── */
+    .s16-evidence {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 1.4vw, 22px);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.9s ease 0.85s, transform 0.9s ease 0.85s;
+    }
+    .slide[data-audio="18"].is-active .s16-evidence { opacity: 1; transform: translateY(0); }
+
+    .s16-card {
+      position: relative;
+      padding: clamp(16px, 1.8vh, 22px) clamp(18px, 1.6vw, 26px);
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .s16-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--honey);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .slide[data-audio="18"].is-active .s16-card::before { opacity: 0.65; }
+    .s16-card[data-tone="teal"]::before   { background: var(--teal); }
+    .s16-card[data-tone="violet"]::before { background: var(--violet); }
+
+    .s16-card-head {
       display: flex;
       align-items: center;
       gap: 12px;
-      white-space: nowrap;
-      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: clamp(11.5px, 0.8vw, 13.5px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      font-weight: 600;
     }
-    .s17-arrow .bar {
-      width: 32px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--honey));
+    .s16-card[data-tone="honey"]  .s16-card-head .ix { color: var(--honey); }
+    .s16-card[data-tone="teal"]   .s16-card-head .ix { color: var(--teal); }
+    .s16-card[data-tone="violet"] .s16-card-head .ix { color: var(--violet); }
+    .s16-card-head .ix {
+      font-weight: 800;
+      letter-spacing: 0.06em;
     }
-    .s17-arrow .next {
+    .s16-card-head .label {
+      color: var(--fg-muted);
+    }
+
+    .s16-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 1.55vw, 26px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.2;
+    }
+    .s16-card-body {
+      font-family: var(--font-mono);
+      font-size: clamp(13px, 0.95vw, 16px);
+      line-height: 1.55;
+      color: var(--fg-muted);
+      letter-spacing: 0.01em;
+    }
+    .s16-card-body .v { color: var(--fg); font-weight: 700; }
+    .s16-card-body .amt { color: var(--honey); font-weight: 800; }
+    .s16-card-body .sep { color: var(--fg-ghost); margin: 0 5px; }
+
+    .s16-card-foot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.78vw, 13px);
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .s16-card-foot .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-warm);
+      background: rgba(254,189,51,0.06);
       color: var(--honey);
+      font-weight: 700;
     }
+    .s16-card[data-tone="teal"]   .s16-card-foot .badge { border-color: rgba(67,192,190,0.40); background: rgba(67,192,190,0.08); color: var(--teal); }
+    .s16-card[data-tone="violet"] .s16-card-foot .badge { border-color: rgba(155,123,212,0.40); background: rgba(155,123,212,0.08); color: var(--violet); }
 
-    @media (max-width: 1200px) {
-      .s17-ledger {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-      }
+    /* ─── Bottom strip ────────────────────────────────────────────── */
+    .s16-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding-top: clamp(14px, 1.6vh, 20px);
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.9s ease 1.2s, transform 0.9s ease 1.2s;
     }
+    .slide[data-audio="18"].is-active .s16-strip { opacity: 1; transform: translateY(0); }
 
+    .s16-strip-q {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.55vw, 28px);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      font-style: italic;
+      font-weight: 300;
+      margin: 0;
+    }
+    .s16-strip-q .strike {
+      color: var(--fg-dim);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,255,255,0.22);
+      text-decoration-thickness: 1.5px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    .s16-strip-q .em {
+      color: var(--honey);
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .s16-strip-sig {
+      font-family: var(--font-mono);
+      font-size: clamp(12px, 0.85vw, 14.5px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      text-align: right;
+      font-weight: 600;
+    }
+    .s16-strip-sig .v { color: var(--honey); font-weight: 700; }
+    .s16-strip-sig .dim { color: var(--fg-ghost); }
+
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="18"] *,
       .slide[data-audio="18"] *::before,
       .slide[data-audio="18"] *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0s !important;
       }
-      .slide[data-audio="18"] .s17-receipt { opacity: 1; transform: none; }
-      .slide[data-audio="18"] .s17-stamp-block { opacity: 0.78; }
-      .slide[data-audio="18"] .s17-r-figure::after { opacity: 1; transform: scaleX(1); }
+      .slide[data-audio="18"] .s16-line { opacity: 1; transform: none; }
+      .slide[data-audio="18"] .s16-sys {
+        border-color: var(--border-warm);
+        background: rgba(254,189,51,0.05);
+      }
+      .slide[data-audio="18"] .s16-sys .dot { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
+      .slide[data-audio="18"] .s16-sys .stat { color: var(--honey); }
+      .slide[data-audio="18"] .s16-cursor { opacity: 1; }
+    }
+
+    /* Laptop sizing — keep readable */
+    @media (max-width: 1280px) {
+      .slide[data-audio="18"] .content { padding: 28px 36px; }
+      .s16-main { grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; }
+      .s16-body { font-size: 15px; }
+    }
+    @media (max-width: 980px) {
+      .s16-main { grid-template-columns: 1fr; }
+      .s16-evidence { grid-template-columns: 1fr; }
     }
   </style>
 
-  <!-- ============ REUSABLE STAMP SVG (defined once, referenced via <use>) ============ -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <!-- Circular honey stamp -->
-      <symbol id="s17-stamp-ring" viewBox="0 0 100 100">
-        <!-- outer ring -->
-        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(254,189,51,0.78)" stroke-width="2"/>
-        <!-- inner ring -->
-        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(254,189,51,0.6)" stroke-width="0.7"/>
-        <!-- tick marks around the ring -->
-        <g stroke="rgba(254,189,51,0.5)" stroke-width="0.8">
-          <line x1="50" y1="2"  x2="50" y2="6"/>
-          <line x1="50" y1="94" x2="50" y2="98"/>
-          <line x1="2"  y1="50" x2="6"  y2="50"/>
-          <line x1="94" y1="50" x2="98" y2="50"/>
-          <line x1="15.6" y1="15.6" x2="18.4" y2="18.4"/>
-          <line x1="81.6" y1="15.6" x2="84.4" y2="18.4"/>
-          <line x1="15.6" y1="84.4" x2="18.4" y2="81.6"/>
-          <line x1="81.6" y1="84.4" x2="84.4" y2="81.6"/>
-        </g>
-        <!-- faint cross-stamp behind text -->
-        <g stroke="rgba(254,189,51,0.18)" stroke-width="6" stroke-linecap="round">
-          <line x1="22" y1="22" x2="78" y2="78"/>
-          <line x1="78" y1="22" x2="22" y2="78"/>
-        </g>
-        <!-- VERIFIED across the middle, big and faded -->
-        <text x="50" y="44" text-anchor="middle"
-              font-family="JetBrains Mono, monospace"
-              font-size="11" font-weight="700"
-              letter-spacing="1.4"
-              fill="rgba(254,189,51,0.85)">VERIFIED</text>
-        <!-- ledger marker -->
-        <text x="50" y="56" text-anchor="middle"
-              font-family="JetBrains Mono, monospace"
-              font-size="5.2"
-              letter-spacing="1.4"
-              fill="rgba(254,189,51,0.62)">YOGI · LEDGER</text>
-      </symbol>
-    </defs>
-  </svg>
-
   <div class="content">
-    <div class="s17-frame">
 
-      <!-- corner registration marks -->
-      <div class="s17-mark tl"></div>
-      <div class="s17-mark tr"></div>
-      <div class="s17-mark bl"></div>
-      <div class="s17-mark br"></div>
-      <div class="s17-stamp">SLIDE · 16 / PRODUCTION RECEIPTS · LEDGER</div>
+    <!-- Corner crosshairs -->
+    <span class="s16-corner tl"></span>
+    <span class="s16-corner tr"></span>
+    <span class="s16-corner bl"></span>
+    <span class="s16-corner br"></span>
 
-      <!-- particle field -->
-      <div class="s17-particles" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
+    <!-- ── Top band ────────────────────────────────────────────── -->
+    <div class="s16-topband">
+      <div>
+        <div class="s16-eyebrow">
+          <span class="num">15 / 22</span>
+          <span class="sep"></span>
+          <span class="label">investigation runtime</span>
+          <span class="sep"></span>
+          <span class="label">tj gardening · acqsc</span>
+        </div>
+        <h1 class="s16-headline">Live <span class="strong">demo.</span></h1>
+        <div class="s16-subhead">
+          <span>TC-5012</span>
+          <span class="dot"></span>
+          <span>ACQSC investigation</span>
+          <span class="dot"></span>
+          <span>47 seconds</span>
+          <span class="dot"></span>
+          <span>5 systems</span>
+        </div>
+      </div>
+      <div class="s16-live">
+        <div class="s16-live-pill">Live</div>
+        <div class="s16-runtime-meta">session <span class="v">yogi-prd-7d2c</span></div>
+      </div>
+    </div>
+
+    <!-- ── Main row : console + right rail ─────────────────────── -->
+    <div class="s16-main">
+
+      <!-- Console -->
+      <div class="s16-console">
+        <div class="s16-chrome">
+          <div class="traffic"><span></span><span></span><span></span></div>
+          <div class="title"><span class="scheme">yogi://</span><span class="path">session/TC-5012 · fran@trilogycare</span></div>
+          <div class="meta">~/quality/investigations</div>
+        </div>
+        <div class="s16-body">
+
+          <div class="s16-line prompt">
+            <span class="ps1">›</span>
+            <span class="cmd">yogi investigate</span>
+            <span class="arg">TC-5012</span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag ok">OK</span>
+            <span class="text">Complaint <span class="val">TC-5012</span><span class="sep">·</span><span class="key">client</span> <span class="val">Margaret&nbsp;P.</span><span class="sep">·</span><span class="accent">HCP L3 · Brisbane</span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Zoho care package + MYOB bills</span>
+            <span class="check">✓<span class="v">3 invoices · <span style="color:var(--honey);font-weight:800">$486</span></span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Aircall transcripts (30 d)</span>
+            <span class="check">✓<span class="v">8 calls · 2 flag <span class="dim">“did not show”</span></span></span>
+          </div>
+
+          <div class="s16-line sub">
+            <span class="s16-arrow">↳</span>
+            <span class="text">Confluence policy + CareVicinity cross-org</span>
+            <span class="check">✓<span class="v">supplier flagged at sister org</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag pattern">PATTERN</span>
+            <span class="text"><span class="val">4 clients</span><span class="sep">×</span><span class="accent">TJ Gardening Co.</span><span class="sep">·</span><span class="key">81 invoices</span><span class="sep">·</span><span class="amt">~$69,140</span><span class="sep">·</span><span class="key">90 d window</span></span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag draft">DRAFT</span>
+            <span class="text">ACQSC response generated<span class="sep">·</span><span class="val">TC-5012-evidence.docx</span> attached</span>
+          </div>
+
+          <div class="s16-line">
+            <span class="s16-tag status">STATUS</span>
+            <span class="text">Ready for reviewer<span class="sep">·</span><span class="key">elapsed</span> <span class="amt">0:47s</span><span class="s16-cursor"></span></span>
+          </div>
+
+        </div>
       </div>
 
-      <!-- HEADER -->
-      <header class="s17-head">
-        <div>
-          <div class="s17-eyebrow">
-            <span class="dot"></span>
-            <span>This is not theoretical</span>
-            <span class="rule"></span>
-            <span>06 receipts · Q2 FY26</span>
-          </div>
-          <h1 class="s17-headline">
-            Receipts<span class="period">.</span>
-          </h1>
+      <!-- Right rail -->
+      <aside class="s16-rail">
+        <div class="s16-rail-title">Systems queried</div>
+
+        <div class="s16-sys" data-sys="zoho">
+          <span class="dot"></span>
+          <span class="name">Zoho CRM</span>
+          <span class="stat">care plan</span>
+        </div>
+        <div class="s16-sys" data-sys="myob">
+          <span class="dot"></span>
+          <span class="name">MYOB</span>
+          <span class="stat">bills</span>
+        </div>
+        <div class="s16-sys" data-sys="aircall">
+          <span class="dot"></span>
+          <span class="name">Aircall</span>
+          <span class="stat">transcripts</span>
+        </div>
+        <div class="s16-sys" data-sys="conf">
+          <span class="dot"></span>
+          <span class="name">Confluence</span>
+          <span class="stat">policy KB</span>
+        </div>
+        <div class="s16-sys" data-sys="cv">
+          <span class="dot"></span>
+          <span class="name">CareVicinity</span>
+          <span class="stat">cross-org</span>
         </div>
 
-        <div class="s17-subhead">
-          <div class="pill">REAL DOLLARS · REAL DATES · REAL INCIDENTS</div>
-          Six events from the production log. Each one timestamped, system-tagged, and committed to git. <em>No human engineer touched the 8 May incident.</em>
+        <div class="s16-clock">
+          <span class="k">Elapsed</span>
+          <span class="v">0:47<span style="font-size:0.55em;color:var(--fg-muted);font-weight:600"> s</span></span>
+          <span class="sub">draft attached · ready for review</span>
         </div>
-      </header>
+      </aside>
+    </div>
 
-      <!-- LEDGER : 3×2 grid -->
-      <div class="s17-ledger">
+    <!-- ── Evidence cards ──────────────────────────────────────── -->
+    <div class="s16-evidence">
 
-        <!-- RECEIPT 01 — $415K averted -->
-        <article class="s17-receipt r1">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 01 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Averted</span>
-          </div>
-          <h2 class="s17-r-figure"><span class="sym">$</span>415,000</h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>$415,000 of already-claimed exposure</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">Phantom Batch incident</div>
-            <div class="s17-r-date">08 · MAY · 2026</div>
-          </div>
-          <p class="s17-r-desc">Bills allocator pass-through engine bug — Yogi caught it before the claim. Three parallel sub-agents, fourteen commits same day, pipeline restored 16:00.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">Bills</span>
-            <span class="s17-r-tag">CDK</span>
-            <span class="s17-r-tag">ECS</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">08 MAY 2026</text>
-            </svg>
-          </div>
-        </article>
-
-        <!-- RECEIPT 02 — $69,140 TJ Gardening -->
-        <article class="s17-receipt r2">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 02 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Recovered</span>
-          </div>
-          <h2 class="s17-r-figure"><span class="sym">$</span>69,140</h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>$0 recovered before Yogi</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">TJ Gardening pattern</div>
-            <div class="s17-r-date">02 · MAY · 2026</div>
-          </div>
-          <p class="s17-r-desc">Cross-client supplier pattern — 4 clients, 81 invoices, no services delivered. Yogi flagged the conflict-of-interest before anyone reviewed it.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">Zoho</span>
-            <span class="s17-r-tag">MYOB</span>
-            <span class="s17-r-tag">Aircall</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">02 MAY 2026</text>
-            </svg>
-          </div>
-        </article>
-
-        <!-- RECEIPT 03 — 21× Bills QA -->
-        <article class="s17-receipt r3">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 03 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Optimised</span>
-          </div>
-          <h2 class="s17-r-figure">21<span class="unit">×</span></h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>39s &rarr; 1.8s page load</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">Bills QA page faster</div>
-            <div class="s17-r-date">22 · APR · 2026</div>
-          </div>
-          <p class="s17-r-desc">14 reviewers were abandoning the page. Yogi rebuilt it with the hourly cache-bake pattern. Page survives every release.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">Databricks</span>
-            <span class="s17-r-tag">Next.js</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">22 APR 2026</text>
-            </svg>
-          </div>
-        </article>
-
-        <!-- RECEIPT 04 — 150× ACQSC investigation -->
-        <article class="s17-receipt r4">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 04 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Compressed</span>
-          </div>
-          <h2 class="s17-r-figure">150<span class="unit">×</span></h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>1 week &rarr; 47 seconds</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">ACQSC investigation</div>
-            <div class="s17-r-date">31 · MAR · 2026</div>
-          </div>
-          <p class="s17-r-desc">Full cross-system investigation with evidence pack auto-generated. Ready for Commission submission on tap.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">All 9 systems</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">31 MAR 2026</text>
-            </svg>
-          </div>
-        </article>
-
-        <!-- RECEIPT 05 — 47 auto-rules -->
-        <article class="s17-receipt r5">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 05 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Learned</span>
-          </div>
-          <h2 class="s17-r-figure">47</h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>auto-rules learned from corrections</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">Auto-rules learned</div>
-            <div class="s17-r-date">MID · MAY · 2026</div>
-          </div>
-          <p class="s17-r-desc">Self-patched behaviours from user corrections. Yogi grows without being told twice — the memory writes itself between conversations.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">Hooks</span>
-            <span class="s17-r-tag">Memory</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">15 MAY 2026</text>
-            </svg>
-          </div>
-        </article>
-
-        <!-- RECEIPT 06 — 100% audit -->
-        <article class="s17-receipt r6">
-          <div class="s17-r-head">
-            <span class="s17-r-no">Evidence&nbsp;<strong>No. 06 / 06</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
-            <span class="s17-r-chip"><span class="pulse"></span>Traceable</span>
-          </div>
-          <h2 class="s17-r-figure">100<span class="unit">%</span></h2>
-          <div class="s17-r-compare"><span class="vs">vs.</span><em>audit trace integrity</em></div>
-          <div class="s17-r-meta">
-            <div class="s17-r-event">Audit trace recovery</div>
-            <div class="s17-r-date">18 · MAY · 2026</div>
-          </div>
-          <p class="s17-r-desc">Every Yogi action since January, traceable via git + memory. Zero gaps. The bear shows its working — and a regulator can read it.</p>
-          <div class="s17-r-tags">
-            <span class="label">Stack</span>
-            <span class="s17-r-tag">Git</span>
-            <span class="s17-r-tag">launchd</span>
-          </div>
-          <div class="s17-stamp-block" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <use href="#s17-stamp-ring"/>
-              <text x="50" y="72" text-anchor="middle"
-                    font-family="JetBrains Mono, monospace"
-                    font-size="6" letter-spacing="1.2"
-                    fill="rgba(254,189,51,0.78)">18 MAY 2026</text>
-            </svg>
-          </div>
-        </article>
-
+      <div class="s16-card" data-tone="honey">
+        <div class="s16-card-head">
+          <span class="ix">01</span>
+          <span class="label">Client snapshot</span>
+        </div>
+        <div class="s16-card-title">Margaret P.</div>
+        <div class="s16-card-body">
+          <span class="v">HCP Level 3</span><span class="sep">·</span>Brisbane<span class="sep">·</span><span class="v">4 services active</span><span class="sep">·</span>fortnightly gardening
+        </div>
+        <div class="s16-card-foot">
+          <span class="badge">TCID 4821</span>
+          <span>verified in Zoho</span>
+        </div>
       </div>
 
-      <!-- FOOTER STRIP -->
-      <footer class="s17-footer">
-        <div class="s17-total">
-          <span class="label">Total averted + recovered + saved this quarter</span>
-          <span class="figure">$484,140<span class="tick">,0</span></span>
-          <span class="sep">·</span>
-          <em>and counting.</em>
-          <span class="s17-forecast" aria-label="forecast">
-            <svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 9 L6 4 L10 8"/>
-              <path d="M10 4 L10 8 L6 8"/>
-            </svg>
-            <span>ETA Q3</span>
-            <span class="sep" style="color:rgba(255,255,255,0.2);margin:0 2px">·</span>
-            <span class="trend">$1.2M</span>
-            <span class="eta">trending</span>
-          </span>
+      <div class="s16-card" data-tone="teal">
+        <div class="s16-card-head">
+          <span class="ix">02</span>
+          <span class="label">Pattern flag</span>
         </div>
-        <div class="s17-arrow">
-          <span>17</span>
-          <span class="bar"></span>
-          <span class="next">Safety evals</span>
+        <div class="s16-card-title">TJ Gardening Co.</div>
+        <div class="s16-card-body">
+          <span class="v">4 clients</span><span class="sep">·</span><span class="v">81 invoices</span><span class="sep">·</span><span class="amt">$69,140</span> recovered<span class="sep">·</span>cross-org confirmed
         </div>
-      </footer>
+        <div class="s16-card-foot">
+          <span class="badge">already shipped</span>
+          <span>Mar 2026 · Ash + Fran</span>
+        </div>
+      </div>
+
+      <div class="s16-card" data-tone="violet">
+        <div class="s16-card-head">
+          <span class="ix">03</span>
+          <span class="label">Action queued</span>
+        </div>
+        <div class="s16-card-title">Draft ACQSC response</div>
+        <div class="s16-card-body">
+          <span class="v">.docx evidence pack</span><span class="sep">·</span>supplier suspension flag<span class="sep">·</span><span class="v">reviewer queue</span>
+        </div>
+        <div class="s16-card-foot">
+          <span class="badge">awaiting approval</span>
+          <span>Fran · Quality</span>
+        </div>
+      </div>
 
     </div>
+
+    <!-- ── Bottom strip ────────────────────────────────────────── -->
+    <div class="s16-strip">
+      <p class="s16-strip-q">
+        <span class="strike">Previously a full week of Fran's time.</span>
+        &nbsp;&nbsp;Now <span class="em">47 seconds.</span>
+      </p>
+      <div class="s16-strip-sig">
+        receipts attached<span class="dim"> · </span><span class="v">5 systems queried</span>
+      </div>
+    </div>
+
   </div>
 
   <script>
     (function () {
-      var slide = document.currentScript.closest('.slide');
-      function activate()   { slide.classList.add('is-active'); }
-      function deactivate() { slide.classList.remove('is-active'); }
+      const slide = document.currentScript.closest('.slide');
+      if (!slide) return;
 
-      window.onSlideEnter = window.onSlideEnter || {};
-      window.onSlideEnter[16] = activate;
-      window.onSlideLeave = window.onSlideLeave || {};
-      window.onSlideLeave[16] = deactivate;
+      function enter() { slide.classList.add('is-active'); }
+      function leave() { slide.classList.remove('is-active'); }
 
-      // self-activate if already visible (standalone preview)
-      if (slide.getBoundingClientRect().top < window.innerHeight) {
-        requestAnimationFrame(activate);
-      } else {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { activate(); io.disconnect(); }
-          });
-        }, { threshold: 0.18 });
-        io.observe(slide);
-      }
+      slide.onSlideEnter = enter;
+      slide.onSlideLeave = leave;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
+        });
+      }, { threshold: [0, 0.4, 0.8] });
+      io.observe(slide);
+
+      const prev = window.onSlideEnter;
+      window.onSlideEnter = function (id) {
+        if (typeof prev === 'function') try { prev(id); } catch (_) {}
+        if (id === '15' || id === 15) enter();
+      };
     })();
   </script>
 </section>

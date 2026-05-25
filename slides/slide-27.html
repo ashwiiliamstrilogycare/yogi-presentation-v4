@@ -1,38 +1,36 @@
 <section class="slide" data-audio="27">
   <style>
     /* ============================================================
-       SLIDE 21 — THE ROADMAP + THE ASK (CLOSER)
-       Polish pass: October as destination, deliberate honey fill
-       with leading spark, balanced ASK cards, real owners/dates,
-       character-by-character closing reveal, wordmark signature.
+       SLIDE 24 · THE 500-LIGHTBULB MOMENT
+       500 deterministic dots cascade from center → starfield ambient.
+       One deployment. One instant. Every staffer gets the realization.
        ============================================================ */
 
     .slide[data-audio="27"] {
-      --s10-bg:         #0a0d12;
-      --s10-bg-elev:    #11161f;
-      --s10-bg-deep:    #070a0e;
-      --s10-honey:      #FEBD33;
-      --s10-honey-soft: rgba(254, 189, 51, 0.14);
-      --s10-honey-glow: rgba(254, 189, 51, 0.55);
-      --s10-honey-glow-hot: rgba(254, 189, 51, 0.85);
-      --s10-honey-line: rgba(254, 189, 51, 0.85);
-      --s10-teal:       #43C0BE;
-      --s10-teal-soft:  rgba(67, 192, 190, 0.12);
-      --s10-sky:        #64BCEA;
-      --s10-fg:         #f4f4f5;
-      --s10-fg-muted:   #a1a1aa;
-      --s10-fg-dim:     #71717a;
-      --s10-fg-faint:   #52525b;
-      --s10-border:     rgba(255, 255, 255, 0.07);
-      --s10-border-warm:rgba(254, 189, 51, 0.28);
-      --s10-border-hot: rgba(254, 189, 51, 0.55);
+      --s24-bg:           #0a0d12;
+      --s24-bg-elev:      #11161f;
+      --s24-bg-deep:      #070a0e;
+      --s24-honey:        #FEBD33;
+      --s24-honey-hot:    #FFD27A;
+      --s24-honey-soft:   rgba(254, 189, 51, 0.10);
+      --s24-honey-line:   rgba(254, 189, 51, 0.28);
+      --s24-honey-glow:   rgba(254, 189, 51, 0.55);
+      --s24-teal:         #43C0BE;
+      --s24-teal-soft:    rgba(67, 192, 190, 0.12);
+      --s24-sky:          #64BCEA;
+      --s24-fg:           #f4f4f5;
+      --s24-fg-muted:     #a1a1aa;
+      --s24-fg-dim:       #71717a;
+      --s24-fg-faint:     #52525b;
+      --s24-border:       rgba(255, 255, 255, 0.07);
+      --s24-border-warm:  rgba(254, 189, 51, 0.28);
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s10-bg);
-      color: var(--s10-fg);
+      background: var(--s24-bg);
+      color: var(--s24-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
       isolation: isolate;
@@ -40,1062 +38,567 @@
     }
 
     /* ---------- Atmosphere ---------- */
-    .slide[data-audio="27"] .s10-atmos {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    .slide[data-audio="27"] .s24-atmos {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
     }
-    .slide[data-audio="27"] .s10-glow-r {
-      position: absolute;
-      top: -10%;
-      right: -10%;
-      width: 70vmin;
-      height: 70vmin;
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.10) 0%,
-        rgba(254, 189, 51, 0.04) 30%,
-        transparent 65%);
-      filter: blur(8px);
-      opacity: 0;
-      animation: s10-fade 2200ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="27"] .s10-glow-l {
-      position: absolute;
-      bottom: -20%;
-      left: -15%;
-      width: 65vmin;
-      height: 65vmin;
-      background: radial-gradient(circle at center,
-        rgba(67, 192, 190, 0.06) 0%,
-        rgba(67, 192, 190, 0.02) 40%,
-        transparent 65%);
-      filter: blur(12px);
-      opacity: 0;
-      animation: s10-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
-    }
-    /* Octobery anchor glow — only fades in once the rail lands */
-    .slide[data-audio="27"] .s10-glow-oct {
-      position: absolute;
-      bottom: 18%;
-      right: 4%;
-      width: 42vmin;
-      height: 42vmin;
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.16) 0%,
-        rgba(254, 189, 51, 0.05) 35%,
-        transparent 70%);
-      filter: blur(14px);
-      opacity: 0;
-      animation: s10-fade 1800ms cubic-bezier(0.16, 1, 0.3, 1) 3200ms forwards;
-    }
-    .slide[data-audio="27"] .s10-grid {
-      position: absolute;
-      inset: 0;
+    .slide[data-audio="27"] .s24-grid {
+      position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-      background-size: 96px 96px;
-      mask-image: radial-gradient(ellipse at 50% 45%, black 0%, black 30%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 45%, black 0%, black 30%, transparent 75%);
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
+    }
+    .slide[data-audio="27"] .s24-glow-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 110vmin; height: 70vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.18) 0%,
+        rgba(254, 189, 51, 0.06) 30%,
+        rgba(254, 189, 51, 0.02) 55%,
+        transparent 75%);
+      filter: blur(40px);
       opacity: 0;
-      animation: s10-fade 1800ms ease 600ms forwards;
+      animation: s24-glow-build 6800ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards,
+                 s24-glow-breathe 7s ease-in-out 7400ms infinite;
+    }
+    .slide[data-audio="27"] .s24-glow-rim {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 140vmin; height: 90vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        transparent 35%,
+        rgba(67, 192, 190, 0.04) 55%,
+        transparent 75%);
+      filter: blur(20px);
+      opacity: 0;
+      animation: s24-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 5000ms forwards;
+    }
+    .slide[data-audio="27"] .s24-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 55%,
+        transparent 30%,
+        rgba(0,0,0,0.35) 75%,
+        rgba(0,0,0,0.6) 100%);
+      pointer-events: none;
     }
 
-    /* ---------- Frame ---------- */
-    .slide[data-audio="27"] .s10-frame {
+    @keyframes s24-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes s24-glow-build {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes s24-glow-breathe {
+      0%, 100% { opacity: 0.85; }
+      50%      { opacity: 1; }
+    }
+
+    /* ---------- Content scaffold ---------- */
+    .slide[data-audio="27"] .s24-stage {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       min-height: 100vh;
-      padding: clamp(36px, 4.2vmin, 64px) clamp(48px, 6vmin, 96px);
-      display: flex;
-      flex-direction: column;
-      gap: clamp(28px, 3.4vmin, 52px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: clamp(28px, 3.4vh, 52px) clamp(48px, 6vw, 96px);
+      box-sizing: border-box;
+      gap: clamp(8px, 1vh, 18px);
     }
 
-    /* ---------- Header ---------- */
-    .slide[data-audio="27"] .s10-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
-      opacity: 0;
-      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="27"] .s10-header-l {
+    /* ---------- Top: eyebrow + headline ---------- */
+    .slide[data-audio="27"] .s24-top {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: clamp(14px, 1.6vh, 22px);
+      opacity: 0;
+      transform: translateY(14px);
+      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
     }
-    .slide[data-audio="27"] .s10-eyebrow {
-      display: inline-flex;
+    @keyframes s24-rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide[data-audio="27"] .s24-eyebrow {
+      display: flex;
       align-items: center;
       gap: 14px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 13px);
+      font-size: clamp(10px, 0.85vw, 12px);
       letter-spacing: 0.22em;
+      color: var(--s24-fg-dim);
       text-transform: uppercase;
-      color: var(--s10-fg-dim);
     }
-    .slide[data-audio="27"] .s10-eyebrow .dot {
-      width: 6px;
-      height: 6px;
+    .slide[data-audio="27"] .s24-eyebrow .dot {
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--s10-honey);
-      box-shadow: 0 0 12px var(--s10-honey-glow);
-      animation: s10-pulse 2200ms ease-in-out infinite;
+      background: var(--s24-honey);
+      box-shadow: 0 0 14px var(--s24-honey-glow);
+      animation: s24-pulse-eyebrow 2400ms ease-in-out infinite;
     }
-    .slide[data-audio="27"] .s10-eyebrow .sep {
-      color: var(--s10-fg-faint);
+    @keyframes s24-pulse-eyebrow {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50%      { opacity: 1;    transform: scale(1.25); }
     }
-    .slide[data-audio="27"] .s10-title {
-      font-size: clamp(40px, 5.8vmin, 78px);
-      font-weight: 700;
+    .slide[data-audio="27"] .s24-eyebrow .sep {
+      color: var(--s24-fg-faint);
+    }
+    .slide[data-audio="27"] .s24-eyebrow .label-honey {
+      color: var(--s24-honey);
+    }
+
+    .slide[data-audio="27"] .s24-headline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 4.4vw, 66px);
       line-height: 0.98;
       letter-spacing: -0.035em;
-      color: var(--s10-fg);
+      color: var(--s24-fg);
+      max-width: 22ch;
     }
-    .slide[data-audio="27"] .s10-title em {
-      font-style: normal;
-      color: var(--s10-honey);
+    .slide[data-audio="27"] .s24-headline .num {
+      color: var(--s24-honey);
+      text-shadow: 0 0 28px rgba(254, 189, 51, 0.35);
     }
-    .slide[data-audio="27"] .s10-subhead {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(12px, 1.35vmin, 16px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s10-honey);
+    .slide[data-audio="27"] .s24-headline .period {
+      color: var(--s24-honey);
+      text-shadow: 0 0 32px rgba(254, 189, 51, 0.55);
+    }
+
+    /* ---------- Center: grid stage ---------- */
+    .slide[data-audio="27"] .s24-grid-stage {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-top: 6px;
+      justify-content: center;
+      padding: clamp(16px, 2vh, 32px) 0;
     }
-    .slide[data-audio="27"] .s10-subhead .pip {
-      color: var(--s10-fg-faint);
+
+    .slide[data-audio="27"] .s24-grid-wrap {
+      position: relative;
+      width: min(58vw, 880px);
+      aspect-ratio: 25 / 20;
+      max-height: 48vh;
     }
-    .slide[data-audio="27"] .s10-header-r {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
+
+    /* Corner brackets — whisper-thin */
+    .slide[data-audio="27"] .s24-bracket {
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1px solid var(--s24-border-warm);
+      opacity: 0;
+      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
     }
-    .slide[data-audio="27"] .s10-stamp {
+    .slide[data-audio="27"] .s24-bracket.tl {
+      top: -18px; left: -18px;
+      border-right: none; border-bottom: none;
+    }
+    .slide[data-audio="27"] .s24-bracket.tr {
+      top: -18px; right: -18px;
+      border-left: none; border-bottom: none;
+    }
+    .slide[data-audio="27"] .s24-bracket.bl {
+      bottom: -18px; left: -18px;
+      border-right: none; border-top: none;
+    }
+    .slide[data-audio="27"] .s24-bracket.br {
+      bottom: -18px; right: -18px;
+      border-left: none; border-top: none;
+    }
+
+    /* Side counter chips */
+    .slide[data-audio="27"] .s24-counter {
+      position: absolute;
+      top: -34px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1vmin, 12px);
-      letter-spacing: 0.22em;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--s24-fg-faint);
       text-transform: uppercase;
-      color: var(--s10-fg-dim);
+      opacity: 0;
+      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
     }
-    .slide[data-audio="27"] .s10-stamp .ok {
-      color: var(--s10-teal);
-    }
-    .slide[data-audio="27"] .s10-slidenum {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.1vmin, 14px);
-      color: var(--s10-fg-faint);
+    .slide[data-audio="27"] .s24-counter.left  { left: 0; }
+    .slide[data-audio="27"] .s24-counter.right { right: 0; }
+    .slide[data-audio="27"] .s24-counter b {
+      color: var(--s24-honey);
+      font-weight: 500;
       letter-spacing: 0.12em;
     }
 
-    /* ============================================================
-       ROADMAP STRIP
-       ============================================================ */
-    .slide[data-audio="27"] .s10-roadmap {
-      position: relative;
-      padding: clamp(28px, 3.6vmin, 48px) 0 clamp(20px, 2.4vmin, 32px);
-    }
-    .slide[data-audio="27"] .s10-roadmap-label {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: clamp(10px, 1.2vmin, 16px);
-      opacity: 0;
-      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards;
-    }
-    .slide[data-audio="27"] .s10-roadmap-label .tag {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 13px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s10-honey);
-      padding: 5px 11px;
-      border: 1px solid var(--s10-border-warm);
-      border-radius: 4px;
-      background: var(--s10-honey-soft);
-    }
-    .slide[data-audio="27"] .s10-roadmap-label .text {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.1vmin, 14px);
-      color: var(--s10-fg-muted);
-      letter-spacing: 0.14em;
-    }
-    .slide[data-audio="27"] .s10-roadmap-label .text strong {
-      color: var(--s10-fg);
-      font-weight: 600;
-    }
-
-    /* Urgency caption above the rail */
-    .slide[data-audio="27"] .s10-urgency {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1vmin, 12.5px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s10-fg-dim);
-      margin-bottom: clamp(18px, 2.2vmin, 30px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      opacity: 0;
-      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 650ms forwards;
-    }
-    .slide[data-audio="27"] .s10-urgency .past {
-      color: var(--s10-fg-muted);
-    }
-    .slide[data-audio="27"] .s10-urgency .future {
-      color: var(--s10-honey);
-    }
-    .slide[data-audio="27"] .s10-urgency .glyph {
-      color: var(--s10-fg-faint);
-      letter-spacing: 0;
-    }
-
-    /* Progress rail */
-    .slide[data-audio="27"] .s10-rail-wrap {
-      position: relative;
-    }
-    .slide[data-audio="27"] .s10-rail {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 26px;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s10-border) 0%,
-        var(--s10-border) 100%);
-    }
-    .slide[data-audio="27"] .s10-rail-fill {
-      position: absolute;
-      left: 0;
-      top: 26px;
-      height: 1px;
-      width: 0;
-      background: linear-gradient(90deg,
-        var(--s10-honey-line) 0%,
-        var(--s10-honey-line) 60%,
-        rgba(254, 189, 51, 0.55) 100%);
-      box-shadow: 0 0 10px var(--s10-honey-glow);
-      /* Slower, more deliberate ease-out — 2500ms, lands ~3.5s in.
-         Aligns with the audio cue "October." */
-      animation: s10-fill 2500ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms forwards;
-    }
-    /* Leading-edge spark — bright bead at the front of the fill */
-    .slide[data-audio="27"] .s10-rail-fill::after {
-      content: '';
-      position: absolute;
-      right: -4px;
-      top: -4px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #FFF6E0;
-      box-shadow:
-        0 0 4px #FFE9A8,
-        0 0 12px var(--s10-honey-glow-hot),
-        0 0 28px var(--s10-honey-glow),
-        0 0 48px rgba(254, 189, 51, 0.35);
-      animation: s10-spark 1600ms ease-in-out infinite;
-    }
-    /* Soft cometary trail just behind the spark */
-    .slide[data-audio="27"] .s10-rail-fill::before {
-      content: '';
-      position: absolute;
-      right: 4px;
-      top: -2px;
-      width: 80px;
-      height: 5px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(254, 189, 51, 0.0) 0%,
-        rgba(254, 189, 51, 0.25) 60%,
-        rgba(254, 189, 51, 0.55) 100%);
-      filter: blur(3px);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-
-    /* Milestone grid */
-    .slide[data-audio="27"] .s10-milestones {
-      position: relative;
-      display: grid;
-      /* Give OCT slightly more weight — destination has presence */
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.18fr;
-      gap: clamp(14px, 1.6vmin, 24px);
-      align-items: start;
-    }
-    .slide[data-audio="27"] .s10-ms {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 52px;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s10-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="27"] .s10-ms:nth-child(1) { animation-delay: 700ms; }
-    .slide[data-audio="27"] .s10-ms:nth-child(2) { animation-delay: 850ms; }
-    .slide[data-audio="27"] .s10-ms:nth-child(3) { animation-delay: 1000ms; }
-    .slide[data-audio="27"] .s10-ms:nth-child(4) { animation-delay: 1150ms; }
-    .slide[data-audio="27"] .s10-ms:nth-child(5) { animation-delay: 1300ms; }
-    /* Destination lands a beat later — coincides with rail arrival */
-    .slide[data-audio="27"] .s10-ms:nth-child(6) { animation-delay: 1550ms; }
-
-    .slide[data-audio="27"] .s10-node {
-      position: absolute;
-      top: 19px;
-      left: 0;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--s10-bg);
-      border: 1.5px solid var(--s10-border);
-      z-index: 2;
-    }
-    .slide[data-audio="27"] .s10-node::before {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      border-radius: 50%;
-      background: var(--s10-fg-faint);
-    }
-    /* Anchor nodes (May start, Oct end) — honey filled */
-    .slide[data-audio="27"] .s10-ms--anchor .s10-node {
-      border-color: var(--s10-honey);
-      box-shadow: 0 0 14px var(--s10-honey-glow);
-    }
-    .slide[data-audio="27"] .s10-ms--anchor .s10-node::before {
-      background: var(--s10-honey);
-    }
-    /* Destination node — bigger, brighter, with a halo ring */
-    .slide[data-audio="27"] .s10-ms--dest .s10-node {
-      top: 16px;
-      width: 21px;
-      height: 21px;
-      border-width: 2px;
-      box-shadow:
-        0 0 0 4px rgba(254, 189, 51, 0.08),
-        0 0 20px var(--s10-honey-glow-hot),
-        0 0 40px var(--s10-honey-glow);
-      animation: s10-node-breathe 3200ms ease-in-out infinite;
-    }
-    .slide[data-audio="27"] .s10-ms--dest .s10-node::before {
-      inset: 4px;
-      background: #FFE9A8;
-    }
-
-    .slide[data-audio="27"] .s10-ms-month {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.1vmin, 13px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s10-fg-dim);
-      margin-bottom: 12px;
-    }
-    .slide[data-audio="27"] .s10-ms--anchor .s10-ms-month {
-      color: var(--s10-honey);
-    }
-    .slide[data-audio="27"] .s10-ms-month .now {
-      color: var(--s10-honey);
-      margin-left: 6px;
-    }
-    .slide[data-audio="27"] .s10-ms--dest .s10-ms-month {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-    .slide[data-audio="27"] .s10-ms-dest-eyebrow {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11.5px);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--s10-honey);
-      padding: 3px 8px;
-      border: 1px solid var(--s10-border-hot);
-      border-radius: 3px;
-      background: var(--s10-honey-soft);
-      box-shadow: 0 0 14px rgba(254, 189, 51, 0.18);
-    }
-
-    .slide[data-audio="27"] .s10-card {
+    /* The SVG itself */
+    .slide[data-audio="27"] .s24-svg {
       width: 100%;
-      background: var(--s10-bg-elev);
-      border: 1px solid var(--s10-border);
-      border-radius: 10px;
-      padding: clamp(14px, 1.6vmin, 20px) clamp(14px, 1.6vmin, 20px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: clamp(118px, 13vmin, 160px);
-      transition: border-color 200ms ease, transform 200ms ease;
-    }
-    .slide[data-audio="27"] .s10-ms--anchor .s10-card {
-      border-color: var(--s10-border-warm);
-      background: linear-gradient(180deg,
-        rgba(254, 189, 51, 0.04) 0%,
-        var(--s10-bg-elev) 100%);
-      box-shadow: 0 0 0 1px rgba(254, 189, 51, 0.08),
-                  0 12px 32px -16px rgba(254, 189, 51, 0.25);
-    }
-    /* Destination card — heavier, brighter, taller */
-    .slide[data-audio="27"] .s10-ms--dest .s10-card {
-      border-color: var(--s10-border-hot);
-      background:
-        linear-gradient(180deg,
-          rgba(254, 189, 51, 0.10) 0%,
-          rgba(254, 189, 51, 0.02) 50%,
-          var(--s10-bg-elev) 100%);
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.22),
-        0 0 32px -8px rgba(254, 189, 51, 0.35),
-        0 22px 60px -22px rgba(254, 189, 51, 0.45);
-      padding: clamp(18px, 2vmin, 26px) clamp(18px, 2vmin, 26px) clamp(20px, 2.2vmin, 28px);
-      min-height: clamp(142px, 16vmin, 192px);
-      position: relative;
-      overflow: hidden;
-    }
-    /* Destination card inner luminance — top-right corner spotlight */
-    .slide[data-audio="27"] .s10-ms--dest .s10-card::after {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -30%;
-      width: 120%;
-      height: 120%;
-      background: radial-gradient(circle at 70% 30%,
-        rgba(254, 189, 51, 0.18) 0%,
-        rgba(254, 189, 51, 0.04) 30%,
-        transparent 60%);
-      pointer-events: none;
+      height: 100%;
+      display: block;
+      overflow: visible;
     }
 
-    .slide[data-audio="27"] .s10-ms-headline {
-      font-size: clamp(15px, 1.7vmin, 20px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      color: var(--s10-fg);
-    }
-    .slide[data-audio="27"] .s10-ms--anchor .s10-ms-headline {
-      color: var(--s10-honey);
-    }
-    .slide[data-audio="27"] .s10-ms--dest .s10-ms-headline {
-      font-size: clamp(18px, 2.1vmin, 26px);
-      letter-spacing: -0.028em;
-      line-height: 1.05;
-      position: relative;
-      z-index: 1;
-    }
-    .slide[data-audio="27"] .s10-ms-detail {
-      font-size: clamp(11px, 1.2vmin, 13.5px);
-      line-height: 1.45;
-      color: var(--s10-fg-muted);
-      letter-spacing: -0.005em;
-    }
-    .slide[data-audio="27"] .s10-ms--dest .s10-ms-detail {
-      font-size: clamp(12px, 1.3vmin, 14.5px);
-      color: var(--s10-fg-muted);
-      position: relative;
-      z-index: 1;
-    }
-    .slide[data-audio="27"] .s10-ms--dest .s10-ms-detail strong {
-      color: var(--s10-honey);
-      font-weight: 600;
+    /* Per-dot styling — controlled by CSS vars set inline per <circle> */
+    .slide[data-audio="27"] .s24-dot {
+      fill: #1c2230;
+      transform-origin: var(--cx) var(--cy);
+      transform-box: fill-box;
+      opacity: 0.55;
+      animation:
+        s24-light-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
+        s24-ambient 4200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
     }
 
-    /* ============================================================
-       THE THREE ASKS
-       ============================================================ */
-    .slide[data-audio="27"] .s10-asks-wrap {
-      position: relative;
-      margin-top: auto;
+    /* Hero dots — same animation, but brighter + with halo ring */
+    .slide[data-audio="27"] .s24-dot.hero {
+      animation:
+        s24-light-up-hero 1000ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
+        s24-ambient-hero 5200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
     }
-    .slide[data-audio="27"] .s10-asks-label {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: clamp(16px, 2vmin, 24px);
+    .slide[data-audio="27"] .s24-halo {
+      fill: none;
+      stroke: var(--s24-honey);
+      stroke-width: 0.6;
       opacity: 0;
-      animation: s10-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) 1600ms forwards;
+      transform-origin: var(--cx) var(--cy);
+      transform-box: fill-box;
+      animation:
+        s24-halo-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms) + 200ms) forwards,
+        s24-halo-breathe 5200ms ease-in-out calc(var(--delay, 0ms) + 1900ms) infinite;
     }
-    .slide[data-audio="27"] .s10-asks-label .tag {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 13px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s10-honey);
-      padding: 5px 11px;
-      border: 1px solid var(--s10-border-warm);
-      border-radius: 4px;
-      background: var(--s10-honey-soft);
-    }
-    .slide[data-audio="27"] .s10-asks-label .text {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.1vmin, 14px);
-      color: var(--s10-fg-muted);
-      letter-spacing: 0.14em;
-    }
-    .slide[data-audio="27"] .s10-asks-label .text strong {
-      color: var(--s10-fg);
-      font-weight: 600;
+    /* Patient-zero dot — center dot, lights first, slightly larger */
+    .slide[data-audio="27"] .s24-dot.zero {
+      animation:
+        s24-light-up-zero 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards,
+        s24-ambient-zero 4400ms ease-in-out 2500ms infinite;
     }
 
-    .slide[data-audio="27"] .s10-asks {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(16px, 1.8vmin, 28px);
+    @keyframes s24-light-up {
+      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      40%  { fill: #FFD27A;            opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 4px rgba(254,189,51,0.85)); }
+      100% { fill: var(--lit, #FEBD33); opacity: var(--lit-opacity, 1); transform: scale(1); filter: drop-shadow(0 0 2.5px rgba(254,189,51,0.55)); }
     }
-    .slide[data-audio="27"] .s10-ask {
-      position: relative;
-      background: var(--s10-bg-elev);
-      border: 1px solid var(--s10-border);
-      border-radius: 14px;
-      padding: clamp(24px, 2.8vmin, 38px) clamp(22px, 2.6vmin, 36px) clamp(24px, 2.8vmin, 38px);
+    @keyframes s24-light-up-hero {
+      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      45%  { fill: #FFE2A0;            opacity: 1;    transform: scale(1.32); filter: drop-shadow(0 0 7px rgba(254,189,51,1)); }
+      100% { fill: var(--lit, #FFD27A); opacity: 1;   transform: scale(1.05); filter: drop-shadow(0 0 4.5px rgba(254,189,51,0.85)); }
+    }
+    @keyframes s24-light-up-zero {
+      0%   { fill: #1c2230;  opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      40%  { fill: #FFFFFF;  opacity: 1;    transform: scale(1.6); filter: drop-shadow(0 0 14px rgba(255,255,255,0.95)); }
+      75%  { fill: #FFE2A0;  opacity: 1;    transform: scale(1.25); filter: drop-shadow(0 0 9px rgba(254,189,51,0.95)); }
+      100% { fill: #FFD27A;  opacity: 1;    transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(254,189,51,0.9)); }
+    }
+
+    @keyframes s24-ambient {
+      0%, 100% { opacity: var(--amb-low, 0.78); transform: scale(1); filter: drop-shadow(0 0 2px rgba(254,189,51,0.35)); }
+      50%      { opacity: var(--amb-high, 1);   transform: scale(1.06); filter: drop-shadow(0 0 4px rgba(254,189,51,0.65)); }
+    }
+    @keyframes s24-ambient-hero {
+      0%, 100% { opacity: 0.9; transform: scale(1.02); filter: drop-shadow(0 0 4px rgba(254,189,51,0.7)); }
+      50%      { opacity: 1;   transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(254,189,51,1)); }
+    }
+    @keyframes s24-ambient-zero {
+      0%, 100% { opacity: 0.92; transform: scale(1.08); filter: drop-shadow(0 0 5px rgba(254,189,51,0.85)); }
+      50%      { opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 10px rgba(255,220,140,1)); }
+    }
+
+    @keyframes s24-halo-in {
+      0%   { opacity: 0; stroke-width: 0.4; r: 0; }
+      50%  { opacity: 0.85; }
+      100% { opacity: 0.55; stroke-width: 0.55; }
+    }
+    @keyframes s24-halo-breathe {
+      0%, 100% { opacity: 0.4; stroke-width: 0.5; }
+      50%      { opacity: 0.7; stroke-width: 0.65; }
+    }
+
+    /* ---------- Bottom: supporting copy ---------- */
+    .slide[data-audio="27"] .s24-bottom {
       display: flex;
       flex-direction: column;
-      gap: clamp(14px, 1.6vmin, 22px);
-      overflow: hidden;
-      isolation: isolate;
+      gap: clamp(12px, 1.4vh, 18px);
+      align-items: center;
+      text-align: center;
       opacity: 0;
       transform: translateY(14px);
-      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 5800ms forwards;
     }
-    .slide[data-audio="27"] .s10-ask:nth-child(1) { animation-delay: 1800ms; }
-    .slide[data-audio="27"] .s10-ask:nth-child(2) { animation-delay: 1950ms; }
-    .slide[data-audio="27"] .s10-ask:nth-child(3) { animation-delay: 2100ms; }
-
-    /* Honey accent bar — top edge (thicker for equal weight presence) */
-    .slide[data-audio="27"] .s10-ask::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg,
-        var(--s10-honey) 0%,
-        var(--s10-honey) 42%,
-        rgba(254, 189, 51, 0.28) 100%);
-      box-shadow: 0 0 18px rgba(254, 189, 51, 0.50);
-    }
-    /* Faint diagonal grain wash */
-    .slide[data-audio="27"] .s10-ask::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 100% 0%,
-        rgba(254, 189, 51, 0.08) 0%,
-        rgba(254, 189, 51, 0.02) 30%,
-        transparent 60%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .slide[data-audio="27"] .s10-ask-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.2vmin, 14px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s10-fg-dim);
-    }
-    .slide[data-audio="27"] .s10-ask-num {
-      color: var(--s10-honey);
-      font-weight: 700;
-      font-size: clamp(14px, 1.55vmin, 18px);
-      letter-spacing: 0.18em;
-    }
-    .slide[data-audio="27"] .s10-ask-divider {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s10-border-warm) 0%,
-        transparent 100%);
-    }
-    .slide[data-audio="27"] .s10-ask-headline {
-      font-size: clamp(20px, 2.6vmin, 32px);
-      font-weight: 700;
-      letter-spacing: -0.028em;
-      line-height: 1.05;
-      color: var(--s10-fg);
-    }
-    .slide[data-audio="27"] .s10-ask-headline .accent {
-      color: var(--s10-honey);
-    }
-    .slide[data-audio="27"] .s10-ask-body {
-      font-size: clamp(13px, 1.35vmin, 16px);
-      line-height: 1.55;
-      color: var(--s10-fg-muted);
-      letter-spacing: -0.005em;
-    }
-    .slide[data-audio="27"] .s10-ask-body strong {
-      color: var(--s10-fg);
-      font-weight: 600;
-    }
-
-    .slide[data-audio="27"] .s10-ask-meta {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: clamp(12px, 1.4vmin, 18px);
-      border-top: 1px dashed var(--s10-border);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 12px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s10-fg-faint);
-    }
-    .slide[data-audio="27"] .s10-ask-meta .who {
-      color: var(--s10-fg-muted);
-    }
-    .slide[data-audio="27"] .s10-ask-meta .when {
-      color: var(--s10-teal);
-    }
-
-    /* ---------- Footer line ---------- */
-    .slide[data-audio="27"] .s10-footer {
-      position: relative;
-      margin-top: clamp(22px, 2.6vmin, 36px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      padding-top: clamp(14px, 1.6vmin, 22px);
-      border-top: 1px solid var(--s10-border);
-      opacity: 0;
-      animation: s10-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 2300ms forwards;
-    }
-    .slide[data-audio="27"] .s10-footer-l,
-    .slide[data-audio="27"] .s10-footer-r {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.15vmin, 14px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s10-fg-dim);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* Center closing line — ceremony reveal */
-    .slide[data-audio="27"] .s10-footer-c {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(13px, 1.5vmin, 17px);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--s10-honey);
+    .slide[data-audio="27"] .s24-bottom-line {
+      font-family: 'Inter', sans-serif;
       font-weight: 500;
-      text-align: center;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      white-space: nowrap;
+      font-size: clamp(16px, 1.5vw, 24px);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--s24-honey);
+      max-width: 56ch;
+      margin: 0;
     }
-    .slide[data-audio="27"] .s10-footer-c .diamond {
-      color: var(--s10-fg-faint);
-      font-size: 0.7em;
-      transform: translateY(0.1em);
-      opacity: 0;
-      animation: s10-fade 600ms ease forwards;
+    .slide[data-audio="27"] .s24-bottom-line .punctuation {
+      color: var(--s24-honey-hot);
     }
-    .slide[data-audio="27"] .s10-footer-c .diamond.lead {
-      animation-delay: 3600ms;
-    }
-    .slide[data-audio="27"] .s10-footer-c .diamond.tail {
-      /* tail diamond appears after final char */
-      animation-delay: calc(3600ms + var(--s10-final-tail-delay, 1800ms));
-    }
-    .slide[data-audio="27"] .s10-footer-c .ch {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(2px);
-      animation: s10-char-in 360ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    /* Slight honey flash on each character as it lands */
-    .slide[data-audio="27"] .s10-footer-c .ch::before {
-      /* placeholder for future micro-glow if desired */
-    }
-
-    .slide[data-audio="27"] .s10-footer-l .live {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--s10-teal);
-      box-shadow: 0 0 10px rgba(67, 192, 190, 0.8);
-      animation: s10-pulse 1800ms ease-in-out infinite;
-    }
-
-    /* Corner crosshair marks */
-    .slide[data-audio="27"] .s10-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-color: var(--s10-fg-faint);
-      opacity: 0;
-      animation: s10-fade 900ms ease 300ms forwards;
-      z-index: 3;
-    }
-    .slide[data-audio="27"] .s10-corner.tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="27"] .s10-corner.tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
-    .slide[data-audio="27"] .s10-corner.bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="27"] .s10-corner.br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
-
-    /* Wordmark signature — barely-visible bottom-right */
-    .slide[data-audio="27"] .s10-wordmark {
-      position: absolute;
-      bottom: clamp(8px, 1vmin, 14px);
-      right: clamp(48px, 6vmin, 96px);
+    .slide[data-audio="27"] .s24-bottom-mono {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.85vmin, 10.5px);
-      letter-spacing: 0.42em;
+      font-size: clamp(10px, 0.85vw, 12px);
+      letter-spacing: 0.22em;
+      color: var(--s24-fg-dim);
       text-transform: uppercase;
-      color: var(--s10-fg-faint);
-      opacity: 0;
-      animation: s10-fade 1400ms ease 3800ms forwards;
-      z-index: 4;
-      pointer-events: none;
-      mix-blend-mode: screen;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
-    .slide[data-audio="27"] .s10-wordmark .sep {
-      color: rgba(254, 189, 51, 0.35);
-      margin: 0 0.6em;
+    .slide[data-audio="27"] .s24-bottom-mono .sep {
+      color: var(--s24-fg-faint);
     }
-
-    /* ---------- Animations ---------- */
-    @keyframes s10-fade {
-      to { opacity: 1; }
+    .slide[data-audio="27"] .s24-bottom-mono .hot {
+      color: var(--s24-honey);
     }
-    @keyframes s10-rise {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes s10-fill {
-      to { width: 100%; }
-    }
-    @keyframes s10-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.55; transform: scale(0.85); }
-    }
-    @keyframes s10-spark {
-      0%, 100% {
-        transform: scale(1);
-        filter: brightness(1);
-      }
-      50% {
-        transform: scale(1.25);
-        filter: brightness(1.35);
-      }
-    }
-    @keyframes s10-node-breathe {
-      0%, 100% {
-        box-shadow:
-          0 0 0 4px rgba(254, 189, 51, 0.08),
-          0 0 20px var(--s10-honey-glow-hot),
-          0 0 40px var(--s10-honey-glow);
-      }
-      50% {
-        box-shadow:
-          0 0 0 6px rgba(254, 189, 51, 0.12),
-          0 0 28px var(--s10-honey-glow-hot),
-          0 0 56px var(--s10-honey-glow);
-      }
-    }
-    @keyframes s10-char-in {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .slide[data-audio="27"] .s24-bottom-rule {
+      width: clamp(120px, 14vw, 220px);
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent,
+        var(--s24-honey-line) 30%,
+        var(--s24-honey-line) 70%,
+        transparent);
+      opacity: 0.8;
     }
 
+    /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="27"] *,
-      .slide[data-audio="27"] *::before,
-      .slide[data-audio="27"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-delay: 0ms !important;
-        transition: none !important;
+      .slide[data-audio="27"] .s24-dot,
+      .slide[data-audio="27"] .s24-dot.hero,
+      .slide[data-audio="27"] .s24-dot.zero,
+      .slide[data-audio="27"] .s24-halo,
+      .slide[data-audio="27"] .s24-glow-center,
+      .slide[data-audio="27"] .s24-glow-rim,
+      .slide[data-audio="27"] .s24-top,
+      .slide[data-audio="27"] .s24-bottom,
+      .slide[data-audio="27"] .s24-bracket,
+      .slide[data-audio="27"] .s24-counter,
+      .slide[data-audio="27"] .s24-eyebrow .dot {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
       }
-      .slide[data-audio="27"] .s10-rail-fill { width: 100%; }
-      .slide[data-audio="27"] .s10-footer-c .ch { opacity: 1; transform: none; }
-      .slide[data-audio="27"] .s10-footer-c .diamond { opacity: 1; }
-      .slide[data-audio="27"] .s10-wordmark { opacity: 1; }
-    }
-
-    /* Tighter layout on narrow viewports */
-    @media (max-width: 1280px) {
-      .slide[data-audio="27"] .s10-ms-headline { font-size: 15px; }
-      .slide[data-audio="27"] .s10-ms--dest .s10-ms-headline { font-size: 17px; }
-      .slide[data-audio="27"] .s10-ask-headline { font-size: 20px; }
+      .slide[data-audio="27"] .s24-dot { fill: var(--s24-honey); opacity: 0.85; }
+      .slide[data-audio="27"] .s24-dot.hero { fill: var(--s24-honey-hot); }
+      .slide[data-audio="27"] .s24-dot.zero { fill: #FFE2A0; }
+      .slide[data-audio="27"] .s24-halo { opacity: 0.55; }
     }
   </style>
 
-  <div class="content">
-    <!-- atmosphere -->
-    <div class="s10-atmos">
-      <div class="s10-glow-r"></div>
-      <div class="s10-glow-l"></div>
-      <div class="s10-glow-oct"></div>
-      <div class="s10-grid"></div>
+  <div class="s24-atmos">
+    <div class="s24-grid"></div>
+    <div class="s24-glow-center"></div>
+    <div class="s24-glow-rim"></div>
+    <div class="s24-vignette"></div>
+  </div>
+
+  <div class="s24-stage">
+    <header class="s24-top">
+      <div class="s24-eyebrow">
+        <span class="dot"></span>
+        <span>SLIDE 24 / 27</span>
+        <span class="sep">·</span>
+        <span class="label-honey">THE 500-LIGHTBULB MOMENT</span>
+        <span class="sep">·</span>
+        <span>TC WORKSPACES · GA OCT 2026</span>
+      </div>
+      <h1 class="s24-headline">
+        <span class="num">500</span> staff. <span class="num">500</span> lightbulbs.<br>
+        <span class="num">1</span> deployment<span class="period">.</span>
+      </h1>
+    </header>
+
+    <div class="s24-grid-stage">
+      <div class="s24-grid-wrap">
+        <span class="s24-counter left">N <b>= 500</b> · staffers</span>
+        <span class="s24-counter right">T <b>= 1</b> · instant</span>
+        <span class="s24-bracket tl"></span>
+        <span class="s24-bracket tr"></span>
+        <span class="s24-bracket bl"></span>
+        <span class="s24-bracket br"></span>
+        <svg class="s24-svg" viewBox="0 0 250 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- circles are injected by script below -->
+        </svg>
+      </div>
     </div>
 
-    <!-- corner crosshairs -->
-    <div class="s10-corner tl"></div>
-    <div class="s10-corner tr"></div>
-    <div class="s10-corner bl"></div>
-    <div class="s10-corner br"></div>
-
-    <div class="s10-frame">
-
-      <!-- =========================== HEADER =========================== -->
-      <header class="s10-header">
-        <div class="s10-header-l">
-          <div class="s10-eyebrow">
-            <span class="dot"></span>
-            <span>BRIEFING · CLOSING</span>
-            <span class="sep">/</span>
-            <span>SLIDE 21 OF 22</span>
-            <span class="sep">/</span>
-            <span>YOGI · TC LEADERSHIP</span>
-          </div>
-          <h1 class="s10-title">What we need <em>to win.</em></h1>
-          <div class="s10-subhead">
-            <span>October 2026</span>
-            <span class="pip">·</span>
-            <span>500 staff</span>
-            <span class="pip">·</span>
-            <span>one bear</span>
-          </div>
-        </div>
-        <div class="s10-header-r">
-          <div class="s10-stamp"><span class="ok">●</span>&nbsp; Mission Status · ON-TRACK</div>
-          <div class="s10-slidenum">21 / 22</div>
-        </div>
-      </header>
-
-      <!-- =========================== ROADMAP =========================== -->
-      <section class="s10-roadmap">
-        <div class="s10-roadmap-label">
-          <span class="tag">ROADMAP</span>
-          <span class="text"><strong>May → October 2026</strong> &nbsp;·&nbsp; six milestones to a 1:500 ratio</span>
-        </div>
-        <div class="s10-urgency">
-          <span class="past">5 months built this.</span>
-          <span class="glyph">→</span>
-          <span class="future">5 months ship it.</span>
-        </div>
-
-        <div class="s10-rail-wrap">
-          <div class="s10-rail"></div>
-          <div class="s10-rail-fill"></div>
-
-          <div class="s10-milestones">
-            <!-- MAY (anchor) -->
-            <div class="s10-ms s10-ms--anchor">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">May<span class="now">· NOW</span></div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">Yogi v2 live</div>
-                <div class="s10-ms-detail">Inside TC Assistant · Bill voice · 1,000 specialists · cloud routines firing.</div>
-              </div>
-            </div>
-
-            <!-- JUN -->
-            <div class="s10-ms">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">Jun</div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">Workspaces Home pilot</div>
-                <div class="s10-ms-detail">50 staff onboard · Care Delivery + Quality first cohort.</div>
-              </div>
-            </div>
-
-            <!-- JUL -->
-            <div class="s10-ms">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">Jul</div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">Teams integration</div>
-                <div class="s10-ms-detail">Marleze + Mike workstreams merge into one Yogi surface.</div>
-              </div>
-            </div>
-
-            <!-- AUG -->
-            <div class="s10-ms">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">Aug</div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">Cubs Mac alpha</div>
-                <div class="s10-ms-detail">Local cubs on Sales + Marketing MacBooks · first field rollout.</div>
-              </div>
-            </div>
-
-            <!-- SEP -->
-            <div class="s10-ms">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">Sep</div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">Eval matrix v2</div>
-                <div class="s10-ms-detail">Cross-tier orchestration · Innovation crew expands · safety re-audit.</div>
-              </div>
-            </div>
-
-            <!-- OCT (destination) -->
-            <div class="s10-ms s10-ms--anchor s10-ms--dest">
-              <div class="s10-node"></div>
-              <div class="s10-ms-month">
-                <span class="s10-ms-dest-eyebrow">Destination</span>
-                <span>Oct 2026 · GA</span>
-              </div>
-              <div class="s10-card">
-                <div class="s10-ms-headline">500 staff · <strong>General Availability</strong></div>
-                <div class="s10-ms-detail">Every Trilogy staffer running their own Yogi. <strong>TC Assistant + Workspaces Home, GA.</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================== THE ASKS =========================== -->
-      <section class="s10-asks-wrap">
-        <div class="s10-asks-label">
-          <span class="tag">THE ASK</span>
-          <span class="text"><strong>Three things, and that is it.</strong> &nbsp;·&nbsp; everything else we own</span>
-        </div>
-
-        <div class="s10-asks">
-          <!-- ASK 01 -->
-          <article class="s10-ask">
-            <div class="s10-ask-head">
-              <span><span class="s10-ask-num">01</span> &nbsp;·&nbsp; DEPT HEADS</span>
-              <span class="s10-ask-divider"></span>
-            </div>
-            <h3 class="s10-ask-headline">Readiness lists. <span class="accent">By Friday.</span></h3>
-            <p class="s10-ask-body">
-              Every department head: a list of <strong>process areas ready for Yogi co-pilot integration.</strong>
-              Sheree compiles. We start scoping Monday.
-            </p>
-            <div class="s10-ask-meta">
-              <span class="who">Owner · Sheree</span>
-              <span class="when">Due · Fri 29 May 2026</span>
-            </div>
-          </article>
-
-          <!-- ASK 02 -->
-          <article class="s10-ask">
-            <div class="s10-ask-head">
-              <span><span class="s10-ask-num">02</span> &nbsp;·&nbsp; COMMS</span>
-              <span class="s10-ask-divider"></span>
-            </div>
-            <h3 class="s10-ask-headline">Yogi page as <span class="accent">the on-ramp.</span></h3>
-            <p class="s10-ask-body">
-              Make <strong>/yogi</strong> the front door for non-tech staff. Luke flagged this last meeting.
-              We make it real — one URL, one bear, every team.
-            </p>
-            <div class="s10-ask-meta">
-              <span class="who">Owner · Luke + Ash</span>
-              <span class="when">Due · Jun pilot 2026</span>
-            </div>
-          </article>
-
-          <!-- ASK 03 -->
-          <article class="s10-ask">
-            <div class="s10-ask-head">
-              <span><span class="s10-ask-num">03</span> &nbsp;·&nbsp; HEADCOUNT</span>
-              <span class="s10-ask-divider"></span>
-            </div>
-            <h3 class="s10-ask-headline">Two more hands on <span class="accent">Innovation &amp; Transformation.</span></h3>
-            <p class="s10-ask-body">
-              To hit the October 1:500 ratio I need <strong>two more bodies</strong> on the I&amp;T crew.
-              Ash is the bottleneck right now — let's unblock the bear.
-            </p>
-            <div class="s10-ask-meta">
-              <span class="who">Owner · Ash → Celeste</span>
-              <span class="when">Due · mid-Oct 2026</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- =========================== FOOTER =========================== -->
-      <footer class="s10-footer">
-        <div class="s10-footer-l">
-          <span class="live"></span>
-          <span>EOM · 5 MONTHS · 1 → 1,000 SPECIALISTS</span>
-        </div>
-        <div class="s10-footer-c" data-reveal="Questions. Stand by for orders.">
-          <!-- characters injected by inline script below -->
-          <span class="diamond lead">◇</span><span class="s10-rev-text"></span><span class="diamond tail">◇</span>
-        </div>
-        <div class="s10-footer-r">
-          <span>YOGI · TRILOGY CARE</span>
-        </div>
-      </footer>
-
-    </div>
-
-    <!-- Bottom-right wordmark signature -->
-    <div class="s10-wordmark">
-      Trilogy Care<span class="sep">·</span>Innovation &amp; Transformation<span class="sep">·</span>2026
-    </div>
+    <footer class="s24-bottom">
+      <div class="s24-bottom-rule"></div>
+      <p class="s24-bottom-line">
+        One deployment<span class="punctuation">.</span> One instant<span class="punctuation">.</span> Every staffer gets the same realization<span class="punctuation">.</span>
+      </p>
+      <div class="s24-bottom-mono">
+        <span class="hot">OCT 2026</span>
+        <span class="sep">·</span>
+        <span>WORKSPACES HOME GA</span>
+        <span class="sep">·</span>
+        <span class="hot">YOGI INSIDE</span>
+        <span class="sep">·</span>
+        <span>COMPANION INTERACTION</span>
+        <span class="sep">·</span>
+        <span>SUPERCHARGED FROM DAY ONE</span>
+      </div>
+    </footer>
   </div>
 
   <script>
     (function () {
-      // Character-by-character reveal of the closing line.
-      // Starts 3600ms into slide enter — after asks have staggered in (~2100ms + 900ms).
-      // Lands as the audio finishes.
-      var slide = document.currentScript.closest('section.slide[data-audio="27"]');
+      const slide = document.currentScript.closest('.slide[data-audio="27"]');
       if (!slide) return;
+      const svg = slide.querySelector('.s24-svg');
+      if (!svg) return;
+      if (svg.dataset.s24Built === '1') return;
+      svg.dataset.s24Built = '1';
 
-      var holder = slide.querySelector('.s10-footer-c');
-      var target = slide.querySelector('.s10-rev-text');
-      if (!holder || !target) return;
+      const SVG_NS = 'http://www.w3.org/2000/svg';
 
-      var phrase = holder.getAttribute('data-reveal') || '';
-      var startMs = 3600;          // begin reveal
-      var perCharMs = 55;          // tempo — slow enough to read, fast enough to land cleanly
+      // Grid geometry
+      const COLS = 25;
+      const ROWS = 20;
+      const W = 250;
+      const H = 200;
+      const PAD_X = 6;
+      const PAD_Y = 6;
+      const stepX = (W - PAD_X * 2) / (COLS - 1);
+      const stepY = (H - PAD_Y * 2) / (ROWS - 1);
 
-      // Build chars
-      var frag = document.createDocumentFragment();
-      for (var i = 0; i < phrase.length; i++) {
-        var c = phrase.charAt(i);
-        var span = document.createElement('span');
-        span.className = 'ch';
-        // Preserve spaces visually
-        span.textContent = c === ' ' ? ' ' : c;
-        span.style.animationDelay = (startMs + i * perCharMs) + 'ms';
-        frag.appendChild(span);
+      // Center of cascade (between dots — for a wave that radiates evenly)
+      const cxCenter = (COLS - 1) / 2; // 12
+      const cyCenter = (ROWS - 1) / 2; // 9.5
+
+      // Deterministic seeded random (mulberry32)
+      function mulberry32(seed) {
+        return function () {
+          let t = (seed += 0x6D2B79F5);
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
       }
-      target.appendChild(frag);
+      const rand = mulberry32(20262024);
 
-      // Update tail diamond delay based on phrase length
-      var tailDelay = (phrase.length * perCharMs) + 200; // ms AFTER startMs
-      holder.style.setProperty('--s10-final-tail-delay', tailDelay + 'ms');
+      // Cascade timing
+      const CASCADE_START = 1500;   // ms — patient-zero settles at ~1.2s
+      const CASCADE_END   = 5400;   // ms — last corner lights up
 
-      // Respect reduced motion: show everything instantly
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        var chars = target.querySelectorAll('.ch');
-        for (var j = 0; j < chars.length; j++) {
-          chars[j].style.animation = 'none';
-          chars[j].style.opacity = '1';
-          chars[j].style.transform = 'none';
+      // Max distance from center (corner)
+      const maxDist = Math.hypot(cxCenter, cyCenter);
+
+      // Hero dot picks — deterministic, ~14 of them.
+      // Patient-zero is the literal center dot (col 12, row 9) (closest to 12,9.5).
+      const heroPicks = new Set([
+        // four corners
+        rc(0, 0), rc(COLS - 1, 0), rc(0, ROWS - 1), rc(COLS - 1, ROWS - 1),
+        // four mid edges
+        rc(Math.floor(COLS / 2), 0), rc(Math.floor(COLS / 2), ROWS - 1),
+        rc(0, Math.floor(ROWS / 2)), rc(COLS - 1, Math.floor(ROWS / 2)),
+        // a few inner "champions"
+        rc(6, 4), rc(18, 4), rc(6, 15), rc(18, 15),
+        rc(9, 9), rc(15, 10),
+      ]);
+
+      // Patient zero — pick the dot closest to the geometric center
+      const zeroCol = Math.round(cxCenter);
+      const zeroRow = Math.round(cyCenter);
+      const zeroKey = rc(zeroCol, zeroRow);
+
+      // Don't mark patient-zero as hero — it has its own treatment
+      heroPicks.delete(zeroKey);
+
+      // Build all 500 circles
+      const fragMain = document.createDocumentFragment();
+      const fragHalo = document.createDocumentFragment();
+
+      let count = 0;
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = PAD_X + c * stepX;
+          const y = PAD_Y + r * stepY;
+          const key = rc(c, r);
+
+          const dx = c - cxCenter;
+          const dy = r - cyCenter;
+          const dist = Math.hypot(dx, dy);
+
+          // Each dot's delay = patient-zero settle + cascade window scaled by distance
+          // + tiny jitter so ring isn't too clean
+          const jitter = (rand() - 0.5) * 90; // ±45ms
+          const t = dist / maxDist; // 0..1
+          // Ease the wave outward slightly
+          const tEased = Math.pow(t, 0.92);
+          const delay = Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter);
+
+          // Brightness variance (10-20%) — deterministic
+          const brightness = 0.85 + rand() * 0.15; // 0.85..1.0
+          const litColor = blendHoney(brightness);
+          const ambLow  = (0.62 + rand() * 0.18).toFixed(3); // 0.62..0.80
+          const ambHigh = (0.92 + rand() * 0.08).toFixed(3); // 0.92..1.0
+
+          // Radius variance — most are equal, a few subtly larger
+          let r0 = 1.55 + (rand() - 0.5) * 0.18; // ~1.46..1.64
+          if (heroPicks.has(key)) r0 = 2.1;
+          if (key === zeroKey)    r0 = 2.55;
+
+          const circle = document.createElementNS(SVG_NS, 'circle');
+          circle.setAttribute('cx', x.toFixed(3));
+          circle.setAttribute('cy', y.toFixed(3));
+          circle.setAttribute('r', r0.toFixed(3));
+          circle.style.setProperty('--cx', x.toFixed(3) + 'px');
+          circle.style.setProperty('--cy', y.toFixed(3) + 'px');
+          circle.style.setProperty('--delay', delay + 'ms');
+          circle.style.setProperty('--lit', litColor);
+          circle.style.setProperty('--lit-opacity', brightness.toFixed(3));
+          circle.style.setProperty('--amb-low', ambLow);
+          circle.style.setProperty('--amb-high', ambHigh);
+
+          let cls = 's24-dot';
+          if (key === zeroKey)        cls += ' zero';
+          else if (heroPicks.has(key)) cls += ' hero';
+          circle.setAttribute('class', cls);
+
+          // Halo ring for hero dots + patient zero
+          if (heroPicks.has(key) || key === zeroKey) {
+            const halo = document.createElementNS(SVG_NS, 'circle');
+            const hR = (key === zeroKey ? 4.4 : 3.6);
+            halo.setAttribute('cx', x.toFixed(3));
+            halo.setAttribute('cy', y.toFixed(3));
+            halo.setAttribute('r', hR.toFixed(3));
+            halo.style.setProperty('--cx', x.toFixed(3) + 'px');
+            halo.style.setProperty('--cy', y.toFixed(3) + 'px');
+            // halo waits until the dot has lit
+            const haloDelay = (key === zeroKey) ? 1200 : delay + 100;
+            halo.style.setProperty('--delay', haloDelay + 'ms');
+            halo.setAttribute('class', 's24-halo');
+            fragHalo.appendChild(halo);
+          }
+
+          fragMain.appendChild(circle);
+          count++;
         }
+      }
+
+      // Halos render BEHIND main dots so the dot sits crisp inside the ring
+      svg.appendChild(fragHalo);
+      svg.appendChild(fragMain);
+
+      function rc(c, r) { return r * COLS + c; }
+
+      // Blend honey color toward hot-honey based on brightness 0.85..1.0
+      function blendHoney(b) {
+        // base #FEBD33  → 254, 189, 51
+        // hot  #FFD27A  → 255, 210, 122
+        const tt = (b - 0.85) / 0.15; // 0..1
+        const R = Math.round(254 + (255 - 254) * tt);
+        const G = Math.round(189 + (210 - 189) * tt);
+        const B = Math.round(51 + (122 - 51) * tt);
+        return 'rgb(' + R + ',' + G + ',' + B + ')';
       }
     })();
   </script>

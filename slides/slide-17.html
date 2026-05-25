@@ -1,1018 +1,829 @@
 <section class="slide" data-audio="17">
   <style>
-    /* ─────────────────────────────────────────────────────────────
-       SLIDE 15 — LIVE DEMO (TJ Gardening · TC-5012)
-       Mission-control framing around a self-typing console.
-       Readability pass: every line must be legible from 8 m back.
-       ───────────────────────────────────────────────────────────── */
+    /* ============================================================
+       SLIDE 15 — A DAY WITH YOGI
+       Vertical timeline. Luxury chronograph × mission-control telemetry.
+       Cool morning sky at top → warm honey dusk at bottom.
+       Honey rail with traveling daylight pulse. 8 timestamped moments.
+       ============================================================ */
 
     .slide[data-audio="17"] {
-      --navy:        #2C4C79;
-      --honey:       #FEBD33;
-      --honey-soft:  #FFD876;
-      --honey-deep:  #C98A14;
-      --teal:        #43C0BE;
-      --dark-teal:   #007F7E;
-      --sky:         #64BCEA;
-      --red:         #E04B51;
-      --violet:      #9B7BD4;
-      --coral:       #F39B5A;
-
-      --bg:          #0a0d12;
-      --bg-elev:     #11161f;
-      --bg-glass:    rgba(255,255,255,0.04);
-      --bg-console:  #070a0f;
-      --border:      rgba(255,255,255,0.10);
-      --border-warm: rgba(254,189,51,0.32);
-      --border-cold: rgba(161,161,170,0.18);
-
-      --fg:          #f4f4f5;
-      --fg-muted:    #d4d4d8;   /* bumped for WCAG */
-      --fg-dim:      #a1a1aa;   /* bumped — was #71717a */
-      --fg-ghost:    #71717a;   /* bumped — was #52525b */
-
-      --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
-      --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      --s15-bg:          #0a0d12;
+      --s15-bg-elev:     #11161f;
+      --s15-honey:       #FEBD33;
+      --s15-honey-soft:  rgba(254, 189, 51, 0.10);
+      --s15-honey-line:  rgba(254, 189, 51, 0.22);
+      --s15-honey-glow:  rgba(254, 189, 51, 0.45);
+      --s15-teal:        #43C0BE;
+      --s15-sky:         #64BCEA;
+      --s15-coral:       #F39B5A;
+      --s15-fg:          #f4f4f5;
+      --s15-fg-muted:    #a1a1aa;
+      --s15-fg-dim:      #71717a;
+      --s15-fg-faint:    #52525b;
+      --s15-border:      rgba(255, 255, 255, 0.08);
+      --s15-border-hi:   rgba(255, 255, 255, 0.16);
 
       position: relative;
       width: 100%;
+      height: 100%;
       min-height: 100vh;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font-display);
+      background: var(--s15-bg);
+      color: var(--s15-fg);
+      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      letter-spacing: -0.01em;
       overflow: hidden;
       isolation: isolate;
     }
 
-    /* Ambient atmosphere — honey spill from console plus cool top-left wash */
-    .slide[data-audio="17"]::before,
-    .slide[data-audio="17"]::after {
-      content: "";
+    /* ---------- Atmosphere: diurnal gradient + faint grid ---------- */
+    .slide[data-audio="17"] .s15-atmos {
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 0;
     }
-    .slide[data-audio="17"]::before {
+
+    .slide[data-audio="17"] .s15-diurnal {
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(ellipse 55% 50% at 50% 55%, rgba(254,189,51,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 50% at 12% 18%, rgba(67,192,190,0.06) 0%, transparent 65%);
-    }
-    .slide[data-audio="17"]::after {
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
-      background-size: 32px 32px;
-      mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
-      opacity: 0.55;
+        radial-gradient(ellipse 80% 40% at 18% 5%, rgba(100, 188, 234, 0.10), transparent 60%),
+        radial-gradient(ellipse 70% 35% at 82% 98%, rgba(254, 189, 51, 0.10), transparent 60%),
+        linear-gradient(180deg,
+          rgba(100, 188, 234, 0.045) 0%,
+          rgba(100, 188, 234, 0.015) 25%,
+          rgba(10, 13, 18, 0.0)     50%,
+          rgba(254, 189, 51, 0.020) 75%,
+          rgba(254, 189, 51, 0.055) 100%);
     }
 
-    .slide[data-audio="17"] .content {
+    .slide[data-audio="17"] .s15-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 36% 50%, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at 36% 50%, black 40%, transparent 85%);
+    }
+
+    .slide[data-audio="17"] .s15-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* ---------- Frame ---------- */
+    .slide[data-audio="17"] .s15-frame {
       position: relative;
-      z-index: 2;
-      max-width: 1760px;
-      margin: 0 auto;
-      padding: clamp(24px, 2.6vh, 40px) clamp(32px, 3vw, 64px);
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: clamp(14px, 1.6vh, 24px);
+      z-index: 1;
+      width: 100%;
       min-height: 100vh;
+      padding: clamp(36px, 4.2vh, 64px) clamp(48px, 5vw, 96px);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(24px, 3vh, 40px) clamp(40px, 4vw, 72px);
       box-sizing: border-box;
     }
 
-    /* ─── Corner crosshairs ──────────────────────────────────────── */
-    .s16-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border: 1px solid var(--honey);
-      opacity: 0.55;
-      z-index: 3;
-    }
-    .s16-corner.tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
-    .s16-corner.tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
-    .s16-corner.bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
-    .s16-corner.br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
-
-    /* ─── Top band : eyebrow + headline + LIVE pill ───────────────── */
-    .s16-topband {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
+    /* ---------- Header ---------- */
+    .slide[data-audio="17"] .s15-header {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       gap: 32px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      padding-bottom: clamp(18px, 2.4vh, 28px);
+      border-bottom: 1px solid var(--s15-border);
     }
-    .slide[data-audio="17"].is-active .s16-topband { opacity: 1; transform: translateY(0); }
 
-    .s16-eyebrow {
+    .slide[data-audio="17"] .s15-slug {
       display: flex;
       align-items: center;
       gap: 14px;
-      font-family: var(--font-mono);
-      font-size: clamp(11.5px, 0.82vw, 14px);
-      letter-spacing: 0.30em;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fg-dim);
-      margin-bottom: clamp(10px, 1.2vh, 16px);
+      color: var(--s15-fg-muted);
     }
-    .s16-eyebrow .num { color: var(--fg); font-weight: 600; }
-    .s16-eyebrow .sep {
-      flex: 0 0 24px;
+
+    .slide[data-audio="17"] .s15-slug .s15-mark {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s15-honey);
+      box-shadow: 0 0 14px var(--s15-honey-glow);
+      animation: s15-pulseDot 2.4s ease-in-out infinite;
+    }
+
+    .slide[data-audio="17"] .s15-slug .s15-sep {
+      width: 32px;
       height: 1px;
-      background: var(--border);
+      background: var(--s15-border-hi);
     }
-    .s16-eyebrow .label { color: var(--fg-dim); }
 
-    .s16-headline {
-      font-size: clamp(40px, 5.4vw, 92px);
-      line-height: 0.94;
+    .slide[data-audio="17"] .s15-title {
+      font-size: clamp(40px, 4.4vw, 64px);
+      font-weight: 800;
       letter-spacing: -0.035em;
-      font-weight: 300;
-      margin: 0;
-      color: var(--fg);
-      font-style: italic;
-    }
-    .s16-headline .strong {
-      font-style: normal;
-      font-weight: 800;
-      color: var(--honey);
-      letter-spacing: -0.045em;
-      text-shadow:
-        0 0 32px rgba(254,189,51,0.42),
-        0 0 80px rgba(254,189,51,0.14);
-    }
-    .s16-subhead {
-      margin-top: 16px;
-      font-family: var(--font-mono);
-      font-size: clamp(13px, 1vw, 17px);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--honey);
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-      font-weight: 600;
-    }
-    .s16-subhead .dim { color: var(--fg-dim); }
-    .s16-subhead .dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--fg-ghost);
-      display: inline-block;
+      line-height: 0.98;
+      margin: 14px 0 0 0;
     }
 
-    /* LIVE pill on the right */
-    .s16-live {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: flex-end;
-    }
-    .s16-live-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
-      border: 1px solid rgba(224,75,81,0.55);
-      border-radius: 999px;
-      background: rgba(224,75,81,0.12);
-      font-family: var(--font-mono);
-      font-size: clamp(12.5px, 0.92vw, 15px);
-      letter-spacing: 0.30em;
-      text-transform: uppercase;
-      color: var(--red);
-      font-weight: 700;
-    }
-    .s16-live-pill::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 12px var(--red);
-      animation: s16-pulse 1.4s ease-in-out infinite;
-    }
-    @keyframes s16-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.4; transform: scale(0.75); }
-    }
-    .s16-runtime-meta {
-      font-family: var(--font-mono);
-      font-size: clamp(11.5px, 0.82vw, 14px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-    }
-    .s16-runtime-meta .v { color: var(--honey); font-weight: 600; }
-
-    /* ─── Main row : console + right rail ─────────────────────────── */
-    .s16-main {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) clamp(260px, 19vw, 320px);
-      gap: clamp(18px, 1.8vw, 28px);
-      align-items: stretch;
-      min-height: 0;
+    .slide[data-audio="17"] .s15-title .s15-period {
+      color: var(--s15-honey);
     }
 
-    /* ─── Console window ──────────────────────────────────────────── */
-    .s16-console {
-      position: relative;
-      background: var(--bg-console);
-      border: 1px solid var(--border-warm);
-      border-radius: 12px;
-      box-shadow:
-        0 0 0 1px rgba(254,189,51,0.04),
-        0 24px 80px -24px rgba(254,189,51,0.22),
-        0 60px 160px -60px rgba(254,189,51,0.14),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
-      min-width: 0;
-    }
-    .slide[data-audio="17"].is-active .s16-console {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .s16-console::after {
-      /* faint honey wash from bottom */
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 200px;
-      background: radial-gradient(ellipse 80% 100% at 50% 100%, rgba(254,189,51,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* Chrome top bar */
-    .s16-chrome {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 14px 22px;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: clamp(12px, 0.85vw, 14.5px);
-      color: var(--fg-muted);
-      letter-spacing: 0.04em;
-    }
-    .s16-chrome .traffic {
-      display: flex;
-      gap: 7px;
-    }
-    .s16-chrome .traffic span {
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      background: var(--fg-ghost);
-      opacity: 0.7;
-    }
-    .s16-chrome .traffic span:nth-child(1) { background: #ff5f57; }
-    .s16-chrome .traffic span:nth-child(2) { background: #febc2e; }
-    .s16-chrome .traffic span:nth-child(3) { background: #28c840; }
-    .s16-chrome .title {
-      flex: 1;
-      text-align: center;
-      color: var(--fg);
-      letter-spacing: 0.06em;
-      font-weight: 500;
-    }
-    .s16-chrome .title .scheme { color: var(--honey); }
-    .s16-chrome .title .path { color: var(--fg); }
-    .s16-chrome .meta {
-      color: var(--fg-dim);
+    .slide[data-audio="17"] .s15-subhead {
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 12px;
       letter-spacing: 0.18em;
-      font-size: clamp(11px, 0.78vw, 13px);
+      text-transform: uppercase;
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="17"] .s15-subhead .s15-dim {
+      color: var(--s15-fg-dim);
     }
 
-    /* Console body — readability bump: clamp(15px, 1.05vw, 20px) */
-    .s16-body {
-      flex: 1;
-      padding: clamp(22px, 2.6vh, 32px) clamp(24px, 2.6vw, 36px);
-      font-family: var(--font-mono);
-      font-size: clamp(15px, 1.05vw, 20px);
-      line-height: 1.62;
-      color: var(--fg);
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Each console line */
-    .s16-line {
+    .slide[data-audio="17"] .s15-headerRight {
+      text-align: right;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
-      opacity: 0;
-      transform: translateX(-6px);
-      animation: s16-line-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-play-state: paused;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .slide[data-audio="17"].is-active .s16-line {
-      animation-play-state: running;
-    }
-    @keyframes s16-line-in {
-      0%   { opacity: 0; transform: translateX(-6px); }
-      100% { opacity: 1; transform: translateX(0); }
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .s16-line + .s16-line { margin-top: 7px; }
-
-    /* Prompt line */
-    .s16-line.prompt {
-      color: var(--fg);
-      font-weight: 600;
-      margin-bottom: 10px;
-      font-size: 1.05em;
-    }
-    .s16-line.prompt .ps1 {
-      color: var(--honey);
-      font-weight: 700;
-      font-size: 1.1em;
-    }
-    .s16-line.prompt .cmd {
-      color: var(--fg);
-      font-weight: 700;
-    }
-    .s16-line.prompt .arg {
-      color: var(--teal);
-      font-weight: 700;
+    .slide[data-audio="17"] .s15-headerRight .s15-kicker {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
     }
 
-    /* Tag chips — scale proportionally with console body */
-    .s16-tag {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-size: 0.78em;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      flex: 0 0 auto;
-      line-height: 1.4;
-    }
-    .s16-tag.ok      { background: rgba(254,189,51,0.14); color: var(--honey); border: 1px solid rgba(254,189,51,0.42); }
-    .s16-tag.pattern { background: rgba(67,192,190,0.16); color: var(--teal); border: 1px solid rgba(67,192,190,0.48); box-shadow: 0 0 14px rgba(67,192,190,0.26); }
-    .s16-tag.draft   { background: rgba(155,123,212,0.16); color: var(--violet); border: 1px solid rgba(155,123,212,0.48); }
-    .s16-tag.status  { background: rgba(224,75,81,0.14); color: var(--red); border: 1px solid rgba(224,75,81,0.48); }
-
-    /* Sub-line arrow */
-    .s16-arrow {
-      color: var(--teal);
-      flex: 0 0 auto;
-      margin-left: 14px;
-      font-weight: 700;
-      font-size: 1.05em;
-    }
-    .s16-line.sub .text {
-      color: var(--fg-muted);
-    }
-    .s16-line .check {
-      color: var(--honey);
-      margin-left: auto;
-      padding-left: 22px;
-      flex: 0 0 auto;
-      font-weight: 800;
-    }
-    .s16-line .check .v {
-      color: var(--fg);
-      font-weight: 600;
-      margin-left: 8px;
+    .slide[data-audio="17"] .s15-headerRight .s15-headerNum {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(26px, 2.2vw, 32px);
+      color: var(--s15-fg);
+      font-weight: 500;
+      letter-spacing: -0.01em;
     }
 
-    .s16-line .meta {
-      color: var(--fg-dim);
-    }
-    .s16-line .key {
-      color: var(--fg-muted);
-    }
-    .s16-line .val {
-      color: var(--fg);
-      font-weight: 700;
-    }
-    .s16-line .amt {
-      color: var(--honey);
-      font-weight: 800;
-    }
-    .s16-line .accent {
-      color: var(--teal);
-      font-weight: 700;
-    }
-    .s16-line .dim {
-      color: var(--fg-dim);
-    }
-    .s16-line .sep {
-      color: var(--fg-ghost);
-      margin: 0 6px;
+    .slide[data-audio="17"] .s15-headerRight .s15-headerLabel {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s15-fg-muted);
     }
 
-    /* Line stagger — manual delays (no JS). 8 lines now. */
-    .s16-line:nth-child(1)  { animation-delay: 0.30s; }
-    .s16-line:nth-child(2)  { animation-delay: 0.70s; }
-    .s16-line:nth-child(3)  { animation-delay: 1.05s; }
-    .s16-line:nth-child(4)  { animation-delay: 1.40s; }
-    .s16-line:nth-child(5)  { animation-delay: 1.75s; }
-    .s16-line:nth-child(6)  { animation-delay: 2.15s; }
-    .s16-line:nth-child(7)  { animation-delay: 2.55s; }
-    .s16-line:nth-child(8)  { animation-delay: 2.95s; }
-
-    /* Blinking cursor at the bottom — appears after last line */
-    .s16-cursor {
-      display: inline-block;
-      width: 11px;
-      height: 18px;
-      vertical-align: -3px;
-      background: var(--honey);
-      margin-left: 6px;
-      opacity: 0;
-      box-shadow: 0 0 10px rgba(254,189,51,0.7);
+    /* ---------- Timeline column ---------- */
+    .slide[data-audio="17"] .s15-timeline {
+      position: relative;
+      padding-left: clamp(120px, 11vw, 180px);
     }
-    .slide[data-audio="17"].is-active .s16-cursor {
-      animation:
-        s16-cursor-in 0.001s linear 3.30s forwards,
-        s16-cursor-blink 1.05s steps(2, end) 3.30s infinite;
-    }
-    @keyframes s16-cursor-in   { to { opacity: 1; } }
-    @keyframes s16-cursor-blink { 50% { opacity: 0; } }
 
-    /* Scan line — subtle CRT effect */
-    .s16-body::before {
+    /* The rail */
+    .slide[data-audio="17"] .s15-rail {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: clamp(108px, 9.8vw, 162px);
+      width: 1px;
+      background: linear-gradient(180deg,
+        rgba(100, 188, 234, 0.55) 0%,
+        rgba(254, 189, 51, 0.45) 50%,
+        rgba(243, 155, 90, 0.55) 100%);
+      opacity: 0.5;
+    }
+    .slide[data-audio="17"] .s15-rail::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(255,255,255,0.015) 3px,
-        rgba(255,255,255,0.015) 4px
-      );
-      pointer-events: none;
-      mix-blend-mode: screen;
+      background: inherit;
+      filter: blur(3px);
+      opacity: 0.5;
     }
 
-    /* ─── Right rail — system status indicators ───────────────────── */
-    .s16-rail {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s;
-      min-width: 0;
-    }
-    .slide[data-audio="17"].is-active .s16-rail { opacity: 1; transform: translateY(0); }
-
-    .s16-rail-title {
-      font-family: var(--font-mono);
-      font-size: clamp(11.5px, 0.8vw, 13.5px);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      padding: 0 4px;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-    }
-    .s16-rail-title::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .s16-sys {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 13px 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.025);
-      font-family: var(--font-mono);
-      font-size: clamp(12px, 0.82vw, 14px);
-      letter-spacing: 0.06em;
-      color: var(--fg-muted);
-      overflow: hidden;
-      transition: border-color 0.4s ease, background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
-    }
-    .s16-sys .dot {
-      width: 9px;
-      height: 9px;
+    /* Traveling daylight pulse */
+    .slide[data-audio="17"] .s15-pulse {
+      position: absolute;
+      left: calc(clamp(108px, 9.8vw, 162px) - 3.5px);
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--fg-ghost);
-      flex: 0 0 auto;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-    }
-    .s16-sys .name {
-      flex: 1;
-      color: var(--fg);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: clamp(12px, 0.82vw, 14px);
-      font-weight: 700;
-    }
-    .s16-sys .stat {
-      font-size: clamp(11px, 0.72vw, 12.5px);
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      color: var(--fg-dim);
-      transition: color 0.4s ease;
-      font-weight: 600;
+      background: var(--s15-honey);
+      box-shadow: 0 0 18px var(--s15-honey-glow), 0 0 4px #fff;
+      top: 0%;
+      animation: s15-traverse 18s ease-in-out infinite;
     }
 
-    /* Lit state — synced to console line delays */
-    .s16-sys.lit {
-      border-color: var(--border-warm);
-      background: rgba(254,189,51,0.05);
-      color: var(--fg);
-      box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
-    }
-    .s16-sys.lit .dot {
-      background: var(--honey);
-      box-shadow: 0 0 12px var(--honey);
-    }
-    .s16-sys.lit .name { color: var(--fg); }
-    .s16-sys.lit .stat { color: var(--honey); }
-
-    /* Per-system delays — sequenced to match new console line delays */
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="zoho"]    { animation: s16-sys-lit 0.001s linear 1.40s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="myob"]    { animation: s16-sys-lit 0.001s linear 1.75s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="aircall"] { animation: s16-sys-lit 0.001s linear 2.15s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="conf"]    { animation: s16-sys-lit 0.001s linear 2.45s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="cv"]      { animation: s16-sys-lit 0.001s linear 2.75s forwards; }
-    @keyframes s16-sys-lit {
-      to {
-        border-color: var(--border-warm);
-        background: rgba(254,189,51,0.05);
-        color: var(--fg);
-        box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
-      }
-    }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="zoho"]    .dot { animation: s16-dot-lit 0.001s linear 1.40s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="myob"]    .dot { animation: s16-dot-lit 0.001s linear 1.75s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="aircall"] .dot { animation: s16-dot-lit 0.001s linear 2.15s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="conf"]    .dot { animation: s16-dot-lit 0.001s linear 2.45s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="cv"]      .dot { animation: s16-dot-lit 0.001s linear 2.75s forwards; }
-    @keyframes s16-dot-lit {
-      to { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
-    }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="zoho"]    .stat { animation: s16-stat-lit 0.001s linear 1.40s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="myob"]    .stat { animation: s16-stat-lit 0.001s linear 1.75s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="aircall"] .stat { animation: s16-stat-lit 0.001s linear 2.15s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="conf"]    .stat { animation: s16-stat-lit 0.001s linear 2.45s forwards; }
-    .slide[data-audio="17"].is-active .s16-sys[data-sys="cv"]      .stat { animation: s16-stat-lit 0.001s linear 2.75s forwards; }
-    @keyframes s16-stat-lit {
-      to { color: var(--honey); }
+    /* ---------- Moment rows ---------- */
+    .slide[data-audio="17"] .s15-moment {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: clamp(10px, 1.4vh, 16px) 0 clamp(14px, 2vh, 22px) 0;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s15-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Elapsed clock at the bottom of the rail */
-    .s16-clock {
-      margin-top: auto;
-      padding: 16px 16px 14px;
-      border: 1px solid var(--border-warm);
-      border-radius: 10px;
-      background: rgba(254,189,51,0.05);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .s16-clock .k {
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 0.76vw, 12.5px);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      font-weight: 600;
-    }
-    .s16-clock .v {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 2.8vw, 44px);
-      font-weight: 800;
-      color: var(--honey);
-      letter-spacing: -0.03em;
+    .slide[data-audio="17"] .s15-moment:nth-child(1) { animation-delay: 0.10s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(2) { animation-delay: 0.18s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(3) { animation-delay: 0.26s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(4) { animation-delay: 0.34s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(5) { animation-delay: 0.42s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(6) { animation-delay: 0.50s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(7) { animation-delay: 0.58s; }
+    .slide[data-audio="17"] .s15-moment:nth-child(8) { animation-delay: 0.66s; }
+
+    /* Big timestamp on the left */
+    .slide[data-audio="17"] .s15-time {
+      position: absolute;
+      left: 0;
+      top: clamp(10px, 1.4vh, 16px);
+      width: clamp(108px, 9.8vw, 162px);
+      padding-right: 24px;
+      box-sizing: border-box;
+      text-align: right;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(22px, 2vw, 30px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--s15-honey);
       line-height: 1;
-      text-shadow: 0 0 24px rgba(254,189,51,0.36);
     }
-    .s16-clock .sub {
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 0.74vw, 12.5px);
-      letter-spacing: 0.20em;
-      color: var(--fg-dim);
-      margin-top: 4px;
+    .slide[data-audio="17"] .s15-time .s15-ampm {
+      display: block;
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      color: var(--s15-fg-dim);
       font-weight: 500;
     }
 
-    /* ─── Evidence cards ──────────────────────────────────────────── */
-    .s16-evidence {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(14px, 1.4vw, 22px);
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.9s ease 0.85s, transform 0.9s ease 0.85s;
-    }
-    .slide[data-audio="17"].is-active .s16-evidence { opacity: 1; transform: translateY(0); }
-
-    .s16-card {
-      position: relative;
-      padding: clamp(16px, 1.8vh, 22px) clamp(18px, 1.6vw, 26px);
-      background: var(--bg-elev);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+    /* Rail node */
+    .slide[data-audio="17"] .s15-node {
+      position: absolute;
+      left: clamp(108px, 9.8vw, 162px);
+      top: clamp(14px, 1.8vh, 22px);
+      width: 14px;
+      height: 14px;
+      transform: translate(-50%, -50%);
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow: hidden;
-      min-width: 0;
+      align-items: center;
+      justify-content: center;
     }
-    .s16-card::before {
+    .slide[data-audio="17"] .s15-node::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--s15-bg);
+      border: 1px solid var(--s15-honey);
+      box-shadow: 0 0 0 3px rgba(254, 189, 51, 0.08);
+    }
+    .slide[data-audio="17"] .s15-node::after {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--honey);
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px dashed rgba(254, 189, 51, 0.30);
+      animation: s15-ring 4s ease-in-out infinite;
     }
-    .slide[data-audio="17"].is-active .s16-card::before { opacity: 0.65; }
-    .s16-card[data-tone="teal"]::before   { background: var(--teal); }
-    .s16-card[data-tone="violet"]::before { background: var(--violet); }
 
-    .s16-card-head {
+    /* Connector from node to body */
+    .slide[data-audio="17"] .s15-moment .s15-connector {
+      position: absolute;
+      left: calc(clamp(108px, 9.8vw, 162px) + 12px);
+      top: clamp(18px, 2.1vh, 24px);
+      width: clamp(18px, 2.4vw, 32px);
+      height: 1px;
+      background-image: linear-gradient(to right, var(--s15-honey-line) 50%, transparent 50%);
+      background-size: 6px 1px;
+    }
+
+    /* Moment body */
+    .slide[data-audio="17"] .s15-body {
+      margin-left: clamp(38px, 4.5vw, 60px);
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      column-gap: 18px;
+      align-items: start;
+    }
+
+    /* Tiny icon glyph */
+    .slide[data-audio="17"] .s15-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--s15-border-hi);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: clamp(11.5px, 0.8vw, 13.5px);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--fg-muted);
+      justify-content: center;
+      color: var(--s15-honey);
+      flex-shrink: 0;
+      box-shadow: inset 0 0 12px rgba(254, 189, 51, 0.04);
+    }
+    .slide[data-audio="17"] .s15-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .slide[data-audio="17"] .s15-content {
+      min-width: 0;
+    }
+
+    .slide[data-audio="17"] .s15-event {
+      font-size: clamp(18px, 1.55vw, 22px);
       font-weight: 600;
-    }
-    .s16-card[data-tone="honey"]  .s16-card-head .ix { color: var(--honey); }
-    .s16-card[data-tone="teal"]   .s16-card-head .ix { color: var(--teal); }
-    .s16-card[data-tone="violet"] .s16-card-head .ix { color: var(--violet); }
-    .s16-card-head .ix {
-      font-weight: 800;
-      letter-spacing: 0.06em;
-    }
-    .s16-card-head .label {
-      color: var(--fg-muted);
-    }
-
-    .s16-card-title {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 1.55vw, 26px);
-      font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--fg);
-      line-height: 1.2;
+      color: var(--s15-fg);
+      line-height: 1.15;
     }
-    .s16-card-body {
-      font-family: var(--font-mono);
-      font-size: clamp(13px, 0.95vw, 16px);
-      line-height: 1.55;
-      color: var(--fg-muted);
-      letter-spacing: 0.01em;
-    }
-    .s16-card-body .v { color: var(--fg); font-weight: 700; }
-    .s16-card-body .amt { color: var(--honey); font-weight: 800; }
-    .s16-card-body .sep { color: var(--fg-ghost); margin: 0 5px; }
 
-    .s16-card-foot {
+    .slide[data-audio="17"] .s15-detail {
+      margin-top: 4px;
+      font-size: clamp(13px, 1.05vw, 14.5px);
+      line-height: 1.45;
+      color: var(--s15-fg-muted);
+      max-width: 62ch;
+    }
+
+    .slide[data-audio="17"] .s15-detail .s15-em {
+      color: var(--s15-fg);
+      font-weight: 500;
+    }
+
+    .slide[data-audio="17"] .s15-bgline {
+      margin-top: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 0.78vw, 13px);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--s15-fg-faint);
+    }
+    .slide[data-audio="17"] .s15-bgline .s15-dash {
+      flex-shrink: 0;
+      width: 22px;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.18) 50%, transparent 50%);
+      background-size: 4px 1px;
+    }
+    .slide[data-audio="17"] .s15-bgline .s15-token {
+      color: var(--s15-teal);
+    }
+
+    /* ---------- Sidebar ---------- */
+    .slide[data-audio="17"] .s15-aside {
+      position: relative;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2.2vh, 26px);
+    }
+
+    .slide[data-audio="17"] .s15-asideCard {
+      position: relative;
+      border: 1px solid var(--s15-border);
+      border-radius: 14px;
+      padding: 20px 20px 22px 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.0)),
+        var(--s15-bg-elev);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 18px 48px -20px rgba(0,0,0,0.6);
+    }
+
+    .slide[data-audio="17"] .s15-asideCard.s15-monitoring {
+      border-color: var(--s15-honey-line);
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.05), rgba(254,189,51,0.0) 45%),
+        var(--s15-bg-elev);
+    }
+
+    .slide[data-audio="17"] .s15-asideHead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .slide[data-audio="17"] .s15-asideTitle {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="17"] .s15-livePill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border: 1px solid rgba(94, 224, 138, 0.40);
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
       letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: var(--fg-dim);
-      margin-top: 4px;
-      font-weight: 600;
+      color: #b9f0c8;
+      background: rgba(94, 224, 138, 0.06);
     }
-    .s16-card-foot .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-warm);
-      background: rgba(254,189,51,0.06);
-      color: var(--honey);
-      font-weight: 700;
+    .slide[data-audio="17"] .s15-livePill .s15-liveDot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #5ee08a;
+      box-shadow: 0 0 8px rgba(94, 224, 138, 0.7);
+      animation: s15-pulseDot 1.6s ease-in-out infinite;
     }
-    .s16-card[data-tone="teal"]   .s16-card-foot .badge { border-color: rgba(67,192,190,0.40); background: rgba(67,192,190,0.08); color: var(--teal); }
-    .s16-card[data-tone="violet"] .s16-card-foot .badge { border-color: rgba(155,123,212,0.40); background: rgba(155,123,212,0.08); color: var(--violet); }
 
-    /* ─── Bottom strip ────────────────────────────────────────────── */
-    .s16-strip {
+    .slide[data-audio="17"] .s15-monitorList {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .slide[data-audio="17"] .s15-monitorList li {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      align-items: center;
+      column-gap: 10px;
+      padding: 6px 0;
+      border-top: 1px solid var(--s15-border);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--s15-fg);
+    }
+    .slide[data-audio="17"] .s15-monitorList li:first-child {
+      border-top: none;
+    }
+    .slide[data-audio="17"] .s15-monitorList li .s15-statDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #5ee08a;
+      box-shadow: 0 0 8px rgba(94, 224, 138, 0.55);
+    }
+    .slide[data-audio="17"] .s15-monitorList li .s15-rate {
+      color: var(--s15-fg-dim);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .slide[data-audio="17"] .s15-uptime {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--s15-border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .slide[data-audio="17"] .s15-uptime .s15-uptimeKey {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+    }
+    .slide[data-audio="17"] .s15-uptime .s15-uptimeVal {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--s15-honey);
+    }
+
+    /* The "tomorrow" card */
+    .slide[data-audio="17"] .s15-tomorrow .s15-tomLabel {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s15-fg-dim);
+      margin-bottom: 10px;
+    }
+    .slide[data-audio="17"] .s15-tomorrow .s15-tomTitle {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--s15-fg);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .slide[data-audio="17"] .s15-tomorrow .s15-tomMeta {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--s15-fg-muted);
+      line-height: 1.5;
+    }
+    .slide[data-audio="17"] .s15-tomorrow .s15-tomMeta .s15-tomVal {
+      color: var(--s15-teal);
+    }
+
+    /* ---------- Footer strip ---------- */
+    .slide[data-audio="17"] .s15-footer {
+      grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 32px;
-      padding-top: clamp(14px, 1.6vh, 20px);
-      border-top: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.9s ease 1.2s, transform 0.9s ease 1.2s;
-    }
-    .slide[data-audio="17"].is-active .s16-strip { opacity: 1; transform: translateY(0); }
-
-    .s16-strip-q {
-      font-family: var(--font-display);
-      font-size: clamp(18px, 1.55vw, 28px);
-      line-height: 1.3;
-      letter-spacing: -0.015em;
-      color: var(--fg);
-      font-style: italic;
-      font-weight: 300;
-      margin: 0;
-    }
-    .s16-strip-q .strike {
-      color: var(--fg-dim);
-      text-decoration: line-through;
-      text-decoration-color: rgba(255,255,255,0.22);
-      text-decoration-thickness: 1.5px;
-      font-style: normal;
-      font-weight: 400;
-    }
-    .s16-strip-q .em {
-      color: var(--honey);
-      font-style: normal;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-    .s16-strip-sig {
-      font-family: var(--font-mono);
-      font-size: clamp(12px, 0.85vw, 14.5px);
-      letter-spacing: 0.26em;
+      gap: 24px;
+      padding-top: clamp(16px, 2vh, 22px);
+      border-top: 1px solid var(--s15-border);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: var(--fg-muted);
-      text-align: right;
-      font-weight: 600;
+      color: var(--s15-fg-dim);
     }
-    .s16-strip-sig .v { color: var(--honey); font-weight: 700; }
-    .s16-strip-sig .dim { color: var(--fg-ghost); }
+    .slide[data-audio="17"] .s15-footer .s15-footRight {
+      color: var(--s15-honey);
+    }
+    .slide[data-audio="17"] .s15-footer .s15-foot-sep {
+      color: var(--s15-fg-faint);
+      margin: 0 10px;
+    }
 
-    /* Reduced motion */
+    /* ---------- Keyframes ---------- */
+    @keyframes s15-pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.55; transform: scale(1.18); }
+    }
+    @keyframes s15-ring {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%      { opacity: 0.05; transform: scale(1.4); }
+    }
+    @keyframes s15-reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s15-traverse {
+      0%   { top: 0%;   opacity: 0; }
+      6%   { opacity: 1; }
+      94%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="17"] *,
-      .slide[data-audio="17"] *::before,
-      .slide[data-audio="17"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        transition-delay: 0s !important;
-      }
-      .slide[data-audio="17"] .s16-line { opacity: 1; transform: none; }
-      .slide[data-audio="17"] .s16-sys {
-        border-color: var(--border-warm);
-        background: rgba(254,189,51,0.05);
-      }
-      .slide[data-audio="17"] .s16-sys .dot { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
-      .slide[data-audio="17"] .s16-sys .stat { color: var(--honey); }
-      .slide[data-audio="17"] .s16-cursor { opacity: 1; }
-    }
-
-    /* Laptop sizing — keep readable */
-    @media (max-width: 1280px) {
-      .slide[data-audio="17"] .content { padding: 28px 36px; }
-      .s16-main { grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; }
-      .s16-body { font-size: 15px; }
-    }
-    @media (max-width: 980px) {
-      .s16-main { grid-template-columns: 1fr; }
-      .s16-evidence { grid-template-columns: 1fr; }
+      .slide[data-audio="17"] * { animation: none !important; }
+      .slide[data-audio="17"] .s15-moment { opacity: 1; transform: none; }
     }
   </style>
 
-  <div class="content">
-
-    <!-- Corner crosshairs -->
-    <span class="s16-corner tl"></span>
-    <span class="s16-corner tr"></span>
-    <span class="s16-corner bl"></span>
-    <span class="s16-corner br"></span>
-
-    <!-- ── Top band ────────────────────────────────────────────── -->
-    <div class="s16-topband">
-      <div>
-        <div class="s16-eyebrow">
-          <span class="num">15 / 22</span>
-          <span class="sep"></span>
-          <span class="label">investigation runtime</span>
-          <span class="sep"></span>
-          <span class="label">tj gardening · acqsc</span>
-        </div>
-        <h1 class="s16-headline">Live <span class="strong">demo.</span></h1>
-        <div class="s16-subhead">
-          <span>TC-5012</span>
-          <span class="dot"></span>
-          <span>ACQSC investigation</span>
-          <span class="dot"></span>
-          <span>47 seconds</span>
-          <span class="dot"></span>
-          <span>5 systems</span>
-        </div>
-      </div>
-      <div class="s16-live">
-        <div class="s16-live-pill">Live</div>
-        <div class="s16-runtime-meta">session <span class="v">yogi-prd-7d2c</span></div>
-      </div>
-    </div>
-
-    <!-- ── Main row : console + right rail ─────────────────────── -->
-    <div class="s16-main">
-
-      <!-- Console -->
-      <div class="s16-console">
-        <div class="s16-chrome">
-          <div class="traffic"><span></span><span></span><span></span></div>
-          <div class="title"><span class="scheme">yogi://</span><span class="path">session/TC-5012 · fran@trilogycare</span></div>
-          <div class="meta">~/quality/investigations</div>
-        </div>
-        <div class="s16-body">
-
-          <div class="s16-line prompt">
-            <span class="ps1">›</span>
-            <span class="cmd">yogi investigate</span>
-            <span class="arg">TC-5012</span>
-          </div>
-
-          <div class="s16-line">
-            <span class="s16-tag ok">OK</span>
-            <span class="text">Complaint <span class="val">TC-5012</span><span class="sep">·</span><span class="key">client</span> <span class="val">Margaret&nbsp;P.</span><span class="sep">·</span><span class="accent">HCP L3 · Brisbane</span></span>
-          </div>
-
-          <div class="s16-line sub">
-            <span class="s16-arrow">↳</span>
-            <span class="text">Zoho care package + MYOB bills</span>
-            <span class="check">✓<span class="v">3 invoices · <span style="color:var(--honey);font-weight:800">$486</span></span></span>
-          </div>
-
-          <div class="s16-line sub">
-            <span class="s16-arrow">↳</span>
-            <span class="text">Aircall transcripts (30 d)</span>
-            <span class="check">✓<span class="v">8 calls · 2 flag <span class="dim">“did not show”</span></span></span>
-          </div>
-
-          <div class="s16-line sub">
-            <span class="s16-arrow">↳</span>
-            <span class="text">Confluence policy + CareVicinity cross-org</span>
-            <span class="check">✓<span class="v">supplier flagged at sister org</span></span>
-          </div>
-
-          <div class="s16-line">
-            <span class="s16-tag pattern">PATTERN</span>
-            <span class="text"><span class="val">4 clients</span><span class="sep">×</span><span class="accent">TJ Gardening Co.</span><span class="sep">·</span><span class="key">81 invoices</span><span class="sep">·</span><span class="amt">~$69,140</span><span class="sep">·</span><span class="key">90 d window</span></span>
-          </div>
-
-          <div class="s16-line">
-            <span class="s16-tag draft">DRAFT</span>
-            <span class="text">ACQSC response generated<span class="sep">·</span><span class="val">TC-5012-evidence.docx</span> attached</span>
-          </div>
-
-          <div class="s16-line">
-            <span class="s16-tag status">STATUS</span>
-            <span class="text">Ready for reviewer<span class="sep">·</span><span class="key">elapsed</span> <span class="amt">0:47s</span><span class="s16-cursor"></span></span>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Right rail -->
-      <aside class="s16-rail">
-        <div class="s16-rail-title">Systems queried</div>
-
-        <div class="s16-sys" data-sys="zoho">
-          <span class="dot"></span>
-          <span class="name">Zoho CRM</span>
-          <span class="stat">care plan</span>
-        </div>
-        <div class="s16-sys" data-sys="myob">
-          <span class="dot"></span>
-          <span class="name">MYOB</span>
-          <span class="stat">bills</span>
-        </div>
-        <div class="s16-sys" data-sys="aircall">
-          <span class="dot"></span>
-          <span class="name">Aircall</span>
-          <span class="stat">transcripts</span>
-        </div>
-        <div class="s16-sys" data-sys="conf">
-          <span class="dot"></span>
-          <span class="name">Confluence</span>
-          <span class="stat">policy KB</span>
-        </div>
-        <div class="s16-sys" data-sys="cv">
-          <span class="dot"></span>
-          <span class="name">CareVicinity</span>
-          <span class="stat">cross-org</span>
-        </div>
-
-        <div class="s16-clock">
-          <span class="k">Elapsed</span>
-          <span class="v">0:47<span style="font-size:0.55em;color:var(--fg-muted);font-weight:600"> s</span></span>
-          <span class="sub">draft attached · ready for review</span>
-        </div>
-      </aside>
-    </div>
-
-    <!-- ── Evidence cards ──────────────────────────────────────── -->
-    <div class="s16-evidence">
-
-      <div class="s16-card" data-tone="honey">
-        <div class="s16-card-head">
-          <span class="ix">01</span>
-          <span class="label">Client snapshot</span>
-        </div>
-        <div class="s16-card-title">Margaret P.</div>
-        <div class="s16-card-body">
-          <span class="v">HCP Level 3</span><span class="sep">·</span>Brisbane<span class="sep">·</span><span class="v">4 services active</span><span class="sep">·</span>fortnightly gardening
-        </div>
-        <div class="s16-card-foot">
-          <span class="badge">TCID 4821</span>
-          <span>verified in Zoho</span>
-        </div>
-      </div>
-
-      <div class="s16-card" data-tone="teal">
-        <div class="s16-card-head">
-          <span class="ix">02</span>
-          <span class="label">Pattern flag</span>
-        </div>
-        <div class="s16-card-title">TJ Gardening Co.</div>
-        <div class="s16-card-body">
-          <span class="v">4 clients</span><span class="sep">·</span><span class="v">81 invoices</span><span class="sep">·</span><span class="amt">$69,140</span> recovered<span class="sep">·</span>cross-org confirmed
-        </div>
-        <div class="s16-card-foot">
-          <span class="badge">already shipped</span>
-          <span>Mar 2026 · Ash + Fran</span>
-        </div>
-      </div>
-
-      <div class="s16-card" data-tone="violet">
-        <div class="s16-card-head">
-          <span class="ix">03</span>
-          <span class="label">Action queued</span>
-        </div>
-        <div class="s16-card-title">Draft ACQSC response</div>
-        <div class="s16-card-body">
-          <span class="v">.docx evidence pack</span><span class="sep">·</span>supplier suspension flag<span class="sep">·</span><span class="v">reviewer queue</span>
-        </div>
-        <div class="s16-card-foot">
-          <span class="badge">awaiting approval</span>
-          <span>Fran · Quality</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── Bottom strip ────────────────────────────────────────── -->
-    <div class="s16-strip">
-      <p class="s16-strip-q">
-        <span class="strike">Previously a full week of Fran's time.</span>
-        &nbsp;&nbsp;Now <span class="em">47 seconds.</span>
-      </p>
-      <div class="s16-strip-sig">
-        receipts attached<span class="dim"> · </span><span class="v">5 systems queried</span>
-      </div>
-    </div>
-
+  <div class="s15-atmos">
+    <div class="s15-diurnal"></div>
+    <div class="s15-grid"></div>
+    <div class="s15-noise"></div>
   </div>
 
-  <script>
-    (function () {
-      const slide = document.currentScript.closest('.slide');
-      if (!slide) return;
+  <div class="s15-frame">
+    <!-- HEADER -->
+    <header class="s15-header">
+      <div>
+        <div class="s15-slug">
+          <span class="s15-mark"></span>
+          <span>Slide 15 / Day-In-Life</span>
+          <span class="s15-sep"></span>
+          <span>Care Partner Desk</span>
+        </div>
+        <h1 class="s15-title">A day <span class="s15-period">with Yogi.</span></h1>
+        <div class="s15-subhead">
+          MONDAY <span class="s15-dim">·</span> 24 MAY 2026 <span class="s15-dim">·</span> CARE PARTNER DESK
+        </div>
+      </div>
+      <div class="s15-headerRight">
+        <div class="s15-kicker">Shift window</div>
+        <div class="s15-headerNum">06:30 — 17:00</div>
+        <div class="s15-headerLabel">+ overnight cloud routines</div>
+      </div>
+    </header>
 
-      function enter() { slide.classList.add('is-active'); }
-      function leave() { slide.classList.remove('is-active'); }
+    <!-- TIMELINE -->
+    <main class="s15-timeline">
+      <div class="s15-rail"></div>
+      <div class="s15-pulse"></div>
 
-      slide.onSlideEnter = enter;
-      slide.onSlideLeave = leave;
+      <!-- 06:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">06:30<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Morning voice brief</div>
+            <p class="s15-detail">Three things on the radar today. Sent to <span class="s15-em">iMessage</span> + <span class="s15-em">Telegram</span> before you've poured coffee.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;pulled from overnight CI runs, Aircall, calendar</span>
+            </div>
+          </div>
+        </div>
+      </article>
 
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.4) enter();
-        });
-      }, { threshold: [0, 0.4, 0.8] });
-      io.observe(slide);
+      <!-- 08:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">08:00<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7l8 6 8-6"/><rect x="4" y="5" width="16" height="14" rx="2"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">First replies drafted</div>
+            <p class="s15-detail"><span class="s15-em">2 client emails</span> drafted in your voice, waiting for one-tap approval.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;memory recalled context from last week's conversation</span>
+            </div>
+          </div>
+        </div>
+      </article>
 
-      const prev = window.onSlideEnter;
-      window.onSlideEnter = function (id) {
-        if (typeof prev === 'function') try { prev(id); } catch (_) {}
-        if (id === '15' || id === 15) enter();
-      };
-    })();
-  </script>
+      <!-- 10:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">10:00<span class="s15-ampm">A.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4"/><path d="M3 14l9 4 9-4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">ACQSC investigation, end to end</div>
+            <p class="s15-detail">Complaint <span class="s15-em">TC-5012</span> — 3 invoices, 2 prior complaints, draft response with evidence pack attached.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;cross-checked Zoho × MYOB × Aircall × Confluence in 47s</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">12:30<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12"/><circle cx="20" cy="17" r="1.4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Feedback inbox sweep</div>
+            <p class="s15-detail">Lunch break. <span class="s15-em">2 new feedback items</span>, both suggested replies queued, severity-ranked, awaiting your nod.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;auto-scan every hour, severity-ranked, deduped</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">14:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Bills incident triage</div>
+            <p class="s15-detail">Phantom batch flagged in the allocator. <span class="s15-em">3 sub-agents</span> dispatched, fix queued, fix verified.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;Frontend / Reality Checker / Backend running in parallel</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15:30 -->
+      <article class="s15-moment">
+        <div class="s15-time">15:30<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Investigation pack ready</div>
+            <p class="s15-detail">TJ Gardening cross-client report — <span class="s15-em">4 clients, $69K</span> recovered. Patterns surfaced and packaged for Fran.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;patterns surfaced via Qdrant semantic search across 81 invoices</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 16:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">16:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M9 12h6M9 16h4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">Week in review written</div>
+            <p class="s15-detail">Sunday-format markdown with <span class="s15-em">wins / blockers / decisions</span>. Tomorrow's prep already queued underneath.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;compiled from 5 days of commits + Aircall + Zoho activity</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 17:00 -->
+      <article class="s15-moment">
+        <div class="s15-time">17:00<span class="s15-ampm">P.M.</span></div>
+        <div class="s15-node"></div>
+        <div class="s15-connector"></div>
+        <div class="s15-body">
+          <div class="s15-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+          </div>
+          <div class="s15-content">
+            <div class="s15-event">You log off. Yogi keeps going.</div>
+            <p class="s15-detail">Cubs keep running. Cloud routines fire at <span class="s15-em">6 pm</span>. Morning brief is already queued for tomorrow.</p>
+            <div class="s15-bgline">
+              <span class="s15-dash"></span>
+              <span><span class="s15-token">// background</span> &nbsp;cloud routines run laptop-off, on Anthropic infra</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="s15-aside">
+      <div class="s15-asideCard s15-monitoring">
+        <div class="s15-asideHead">
+          <div class="s15-asideTitle">Monitoring</div>
+          <span class="s15-livePill"><span class="s15-liveDot"></span>Live</span>
+        </div>
+        <ul class="s15-monitorList">
+          <li><span class="s15-statDot"></span><span>bills</span><span class="s15-rate">5m</span></li>
+          <li><span class="s15-statDot"></span><span>complaints</span><span class="s15-rate">15m</span></li>
+          <li><span class="s15-statDot"></span><span>inbox</span><span class="s15-rate">1h</span></li>
+          <li><span class="s15-statDot"></span><span>CI runs</span><span class="s15-rate">on event</span></li>
+          <li><span class="s15-statDot"></span><span>calendar</span><span class="s15-rate">30m</span></li>
+          <li><span class="s15-statDot"></span><span>Aircall</span><span class="s15-rate">on event</span></li>
+        </ul>
+        <div class="s15-uptime">
+          <div class="s15-uptimeKey">Always-on</div>
+          <div class="s15-uptimeVal">24 / 7</div>
+        </div>
+      </div>
+
+      <div class="s15-asideCard s15-tomorrow">
+        <div class="s15-tomLabel">Queued for tomorrow</div>
+        <div class="s15-tomTitle">Morning brief · 06:30</div>
+        <div class="s15-tomMeta">
+          channels &nbsp;<span class="s15-tomVal">iMessage · Telegram</span><br>
+          inputs &nbsp;&nbsp;&nbsp;<span class="s15-tomVal">CI · calendar · Aircall</span><br>
+          status &nbsp;&nbsp;&nbsp;<span class="s15-tomVal">composed at 16:45</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer class="s15-footer">
+      <div>
+        Trilogy Care <span class="s15-foot-sep">/</span> Yogi <span class="s15-foot-sep">/</span> Day-in-Life telemetry
+      </div>
+      <div class="s15-footRight">
+        Chatbots respond. Yogi acts.
+      </div>
+    </footer>
+  </div>
 </section>

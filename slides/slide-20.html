@@ -1,24 +1,27 @@
 <section class="slide" data-audio="20">
   <style>
-    /* ============ SLIDE 18 — SAFETY EVALS / RSP ============ */
+    /* ============ SLIDE 17 — RESEARCH → TC OUTCOMES ============
+       Cinematic systems-map. Six rows. Each row reads as a research-grade
+       lab note: [Pattern · citation · lab chip] → [TC operation] → [Hero number].
+       Packet pulse animates left→right on the honey arrow every ~3s.
+    */
     .slide[data-audio="20"] {
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
       background:
-        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(254,189,51,0.055), transparent 60%),
-        radial-gradient(ellipse 55% 45% at 88% 82%, rgba(67,192,190,0.045), transparent 60%),
-        radial-gradient(circle at 50% 110%, rgba(100,188,234,0.03), transparent 70%),
+        radial-gradient(ellipse 55% 40% at 10% 12%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 92% 92%, rgba(67,192,190,0.05), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.02), transparent 60%),
         var(--bg);
       color: var(--fg);
       font-family: var(--font-display);
       overflow: hidden;
       letter-spacing: -0.01em;
-      box-sizing: border-box;
     }
 
-    /* faint engineering grid */
+    /* engineering grid watermark */
     .slide[data-audio="20"]::before {
       content: "";
       position: absolute; inset: 0;
@@ -26,46 +29,44 @@
         linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 85% 85% at center, black 35%, transparent 92%);
+      mask-image: radial-gradient(ellipse 88% 82% at center, black 35%, transparent 92%);
       pointer-events: none;
     }
-
     /* film grain */
     .slide[data-audio="20"]::after {
       content: "";
       position: absolute; inset: 0;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.45;
+      opacity: 0.42;
       mix-blend-mode: overlay;
       pointer-events: none;
     }
 
-    .s18-frame {
+    .s17b-frame {
       position: relative;
       width: 100%;
       height: 100vh;
-      padding: 52px clamp(40px, 4vw, 80px) 30px;
+      padding: clamp(28px, 2.6vw, 52px) clamp(44px, 4.6vw, 80px) clamp(22px, 2vw, 36px);
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
       z-index: 1;
     }
 
-    /* registration marks */
-    .s18-mark {
+    /* corner registration marks */
+    .s17b-mark {
       position: absolute;
-      width: 12px; height: 12px;
-      border: 1px solid rgba(254,189,51,0.28);
-      z-index: 5;
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
     }
-    .s18-mark.tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
-    .s18-mark.tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
-    .s18-mark.bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
-    .s18-mark.br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+    .s17b-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
+    .s17b-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
+    .s17b-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
+    .s17b-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
 
-    .s18-stamp {
+    .s17b-stamp {
       position: absolute;
-      top: 22px;
+      top: 26px;
       left: 50%;
       transform: translateX(-50%);
       font-family: var(--font-mono);
@@ -73,697 +74,807 @@
       letter-spacing: 0.42em;
       color: var(--fg-dim);
       text-transform: uppercase;
-      z-index: 5;
     }
-    .s18-stamp b { color: var(--honey); font-weight: 500; }
 
-    /* ============ HEADER ============ */
-    .s18-header {
+    /* ---------- HEADER ---------- */
+    .s17b-head {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 24px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 22px;
+      grid-template-columns: 1.55fr 1fr;
+      gap: clamp(28px, 3vw, 52px);
+      align-items: flex-end;
+      margin-bottom: clamp(18px, 1.8vw, 30px);
     }
-    .s18-eyebrow {
+    .s17b-eyebrow {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.38em;
-      color: var(--fg-dim);
+      font-size: clamp(10px, 0.72vw, 12px);
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      color: var(--honey);
       display: flex;
       align-items: center;
       gap: 14px;
+      margin-bottom: 16px;
     }
-    .s18-eyebrow .dot {
+    .s17b-eyebrow .rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+    }
+    .s17b-eyebrow .dot {
       width: 6px; height: 6px;
       background: var(--honey);
       border-radius: 50%;
-      box-shadow: 0 0 12px rgba(254,189,51,0.7);
-      animation: s18-pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 12px var(--honey);
+      animation: s17b-pulse 2.4s ease-in-out infinite;
     }
-    @keyframes s18-pulse {
+    .s17b-eyebrow .muted {
+      color: var(--fg-muted);
+      letter-spacing: 0.32em;
+    }
+    @keyframes s17b-pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
     }
-    .s18-title {
-      font-size: clamp(40px, 4.4vw, 64px);
+    .s17b-headline {
+      font-size: clamp(38px, 4.6vw, 80px);
       font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 0.95;
-      color: var(--fg);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      margin: 0;
     }
-    .s18-subhead {
-      margin-top: 10px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      color: var(--honey);
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    .s18-subhead span.sep { color: rgba(254,189,51,0.32); margin: 0 10px; }
+    .s17b-headline .period { color: var(--honey); }
 
-    /* mean badge top-right */
-    .s18-mean {
+    .s17b-subhead {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.8vw, 13px);
+      line-height: 1.6;
+      color: var(--honey);
+      max-width: 480px;
+      padding-bottom: 6px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .s17b-subhead .accent {
+      color: var(--fg);
+      letter-spacing: 0.18em;
+    }
+    .s17b-subhead .dotsep {
+      color: rgba(254,189,51,0.4);
+      margin: 0 8px;
+    }
+    .s17b-subhead .caption {
+      display: block;
+      text-transform: none;
+      letter-spacing: -0.005em;
+      color: var(--fg-muted);
+      margin-top: 10px;
+      font-size: 0.92em;
+      line-height: 1.55;
+    }
+
+    /* ---------- ROWS CONTAINER ---------- */
+    .s17b-rows {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .s17b-rows::before {
+      /* top boundary */
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254,189,51,0.42) 8%,
+        rgba(254,189,51,0.42) 92%,
+        transparent 100%);
+    }
+
+    /* ---------- INDIVIDUAL ROW ---------- */
+    .s17b-row {
+      display: grid;
+      grid-template-columns: 35% 30% 35%;
+      align-items: center;
+      padding: clamp(12px, 1.4vw, 22px) clamp(4px, 0.4vw, 8px);
+      border-bottom: 1px solid rgba(254,189,51,0.16);
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .slide[data-audio="20"].is-active .s17b-row {
+      animation: s17b-row-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    @keyframes s17b-row-in {
+      0%   { opacity: 0; transform: translateY(14px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .s17b-row.rA { animation-delay: 140ms; }
+    .s17b-row.rB { animation-delay: 230ms; }
+    .s17b-row.rC { animation-delay: 320ms; }
+    .s17b-row.rD { animation-delay: 410ms; }
+    .s17b-row.rE { animation-delay: 500ms; }
+    .s17b-row.rF { animation-delay: 590ms; }
+
+    /* row number badge — sits at the absolute leftmost edge */
+    .s17b-row-no {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      color: var(--fg-dim);
+      width: 22px;
+      text-align: right;
+    }
+
+    /* hover glow — subtle row warm-up */
+    .s17b-row:hover {
+      background: linear-gradient(90deg,
+        rgba(254,189,51,0.02) 0%,
+        rgba(254,189,51,0.04) 40%,
+        rgba(67,192,190,0.02) 100%);
+    }
+    .s17b-row:hover .s17b-arrow-path {
+      stroke: rgba(254,189,51,0.95);
+    }
+
+    /* ---------- LEFT SEGMENT — RESEARCH PATTERN ---------- */
+    .s17b-left {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1vw, 18px);
+      padding-right: clamp(16px, 1.6vw, 26px);
+    }
+    .s17b-lab {
+      width: clamp(34px, 2.6vw, 42px);
+      height: clamp(34px, 2.6vw, 42px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(11px, 0.82vw, 13px);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      border: 1px solid currentColor;
+      position: relative;
+    }
+    .s17b-lab::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px dashed currentColor;
+      opacity: 0.25;
+    }
+    .s17b-lab.l-anthropic { color: var(--honey);  background: rgba(254,189,51,0.08); }
+    .s17b-lab.l-openai    { color: var(--teal);   background: rgba(67,192,190,0.08); }
+    .s17b-lab.l-deepmind  { color: var(--sky);    background: rgba(100,188,234,0.08); }
+    .s17b-lab.l-brain     { color: var(--violet); background: rgba(155,123,212,0.08); }
+    .s17b-lab.l-stanford  { color: var(--coral);  background: rgba(243,155,90,0.08); }
+
+    .s17b-left-text {
+      min-width: 0;
+      flex: 1;
+    }
+    .s17b-pattern {
+      font-size: clamp(15px, 1.18vw, 22px);
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      line-height: 1.15;
+      margin: 0 0 5px 0;
+    }
+    .s17b-pattern .plus {
+      color: var(--honey);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .s17b-cite {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.04em;
+      color: var(--fg-dim);
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .s17b-cite .lab-name {
+      color: var(--fg-muted);
+    }
+    .s17b-cite .arxiv {
+      color: var(--fg-dim);
+    }
+    .s17b-cite .yr {
+      color: var(--honey);
+      opacity: 0.78;
+    }
+    .s17b-cite .dot {
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ---------- MIDDLE SEGMENT — TC OPERATION (with arrow) ---------- */
+    .s17b-mid {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(8px, 1vw, 16px);
+    }
+
+    /* SVG arrow occupying the full middle column width */
+    .s17b-arrow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 18px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .s17b-arrow svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .s17b-arrow-path {
+      fill: none;
+      stroke: rgba(254,189,51,0.55);
+      stroke-width: 1;
+      stroke-dasharray: 3 3;
+      transition: stroke 320ms ease;
+    }
+    .s17b-arrow-head {
+      fill: var(--honey);
+    }
+    /* the packet — a tiny honey blip that streams along the arrow */
+    .s17b-packet {
+      fill: var(--honey);
+    }
+    .slide[data-audio="20"].is-active .s17b-packet {
+      animation: s17b-packet 3.4s cubic-bezier(.45,.05,.55,1) infinite;
+    }
+    @keyframes s17b-packet {
+      0%   { transform: translateX(0);     opacity: 0; }
+      8%   { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { transform: translateX(100%);  opacity: 0; }
+    }
+    /* stagger packet phase per row so they fire offset */
+    .s17b-row.rA .s17b-packet { animation-delay: 0.0s; }
+    .s17b-row.rB .s17b-packet { animation-delay: 0.55s; }
+    .s17b-row.rC .s17b-packet { animation-delay: 1.10s; }
+    .s17b-row.rD .s17b-packet { animation-delay: 1.65s; }
+    .s17b-row.rE .s17b-packet { animation-delay: 2.20s; }
+    .s17b-row.rF .s17b-packet { animation-delay: 2.75s; }
+
+    /* op label card — floats above the arrow centred */
+    .s17b-op {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(17,22,31,0.92), rgba(17,22,31,0.78));
+      border: 1px solid rgba(67,192,190,0.30);
+      border-radius: 3px;
+      padding: clamp(8px, 0.8vw, 12px) clamp(12px, 1.2vw, 18px);
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.5),
+        0 0 28px rgba(67,192,190,0.12) inset;
+      backdrop-filter: blur(8px);
+      max-width: 100%;
+      min-width: 0;
+    }
+    .s17b-op-title {
+      font-size: clamp(12px, 0.94vw, 15px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      line-height: 1.2;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17b-op-ctx {
+      font-family: var(--font-mono);
+      font-size: clamp(9px, 0.66vw, 10.5px);
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17b-op-ctx .pin {
+      color: var(--teal);
+      margin-right: 4px;
+    }
+
+    /* ---------- RIGHT SEGMENT — MEASURED UPLIFT ---------- */
+    .s17b-right {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 6px;
-      padding: 14px 22px;
-      border: 1px solid rgba(254,189,51,0.28);
-      background:
-        linear-gradient(135deg, rgba(254,189,51,0.06), rgba(254,189,51,0.02));
-      border-radius: 2px;
-      position: relative;
+      justify-content: center;
+      padding-left: clamp(16px, 1.6vw, 26px);
+      text-align: right;
     }
-    .s18-mean::before {
-      content: "";
-      position: absolute;
-      top: -1px; left: -1px;
-      width: 10px; height: 10px;
-      border-top: 1px solid var(--honey);
-      border-left: 1px solid var(--honey);
-    }
-    .s18-mean::after {
-      content: "";
-      position: absolute;
-      bottom: -1px; right: -1px;
-      width: 10px; height: 10px;
-      border-bottom: 1px solid var(--honey);
-      border-right: 1px solid var(--honey);
-    }
-    .s18-mean-label {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.32em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
-    }
-    .s18-mean-value {
-      font-size: 38px;
+    .s17b-number {
+      font-family: var(--font-display);
       font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: clamp(28px, 3.8vw, 64px);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
       color: var(--honey);
-      line-height: 1;
-      text-shadow: 0 0 28px rgba(254,189,51,0.32);
-      font-feature-settings: "tnum";
-    }
-    .s18-mean-sub {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      color: var(--fg-muted);
-      text-transform: uppercase;
-    }
-
-    /* ============ BODY GRID: matrix + sidebar ============ */
-    .s18-body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 26px;
-      min-height: 0;
-    }
-
-    /* ============ EVAL MATRIX ============ */
-    .s18-matrix {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 10px;
-      min-height: 0;
-    }
-
-    .s18-cell {
-      position: relative;
-      padding: 14px 16px 14px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
-    .s18-cell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .s18-cell:hover { transform: translateY(-2px); }
-    .s18-cell:hover::before { opacity: 1; }
-
-    /* score color tiers */
-    .s18-cell[data-tier="honey"] { border-color: rgba(254,189,51,0.22); }
-    .s18-cell[data-tier="honey"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254,189,51,0.10), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="honey"] .s18-score { color: var(--honey); text-shadow: 0 0 20px rgba(254,189,51,0.45); }
-    .s18-cell[data-tier="honey"] .s18-bar > i { background: linear-gradient(90deg, var(--honey), #ffd56a); box-shadow: 0 0 10px rgba(254,189,51,0.55); }
-
-    .s18-cell[data-tier="teal"] { border-color: rgba(67,192,190,0.22); }
-    .s18-cell[data-tier="teal"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(67,192,190,0.09), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="teal"] .s18-score { color: var(--teal); text-shadow: 0 0 18px rgba(67,192,190,0.40); }
-    .s18-cell[data-tier="teal"] .s18-bar > i { background: linear-gradient(90deg, var(--dark-teal), var(--teal)); box-shadow: 0 0 10px rgba(67,192,190,0.5); }
-
-    .s18-cell[data-tier="sky"] { border-color: rgba(100,188,234,0.24); }
-    .s18-cell[data-tier="sky"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(100,188,234,0.10), transparent 70%); opacity: 1; }
-    .s18-cell[data-tier="sky"] .s18-score { color: var(--sky); text-shadow: 0 0 18px rgba(100,188,234,0.40); }
-    .s18-cell[data-tier="sky"] .s18-bar > i { background: linear-gradient(90deg, #3a92c4, var(--sky)); box-shadow: 0 0 10px rgba(100,188,234,0.5); }
-
-    .s18-cell-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .s18-num {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      color: var(--fg-dim);
-      font-weight: 500;
-    }
-    .s18-pass {
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      letter-spacing: 0.24em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 2px;
-    }
-    .s18-cell[data-tier="honey"] .s18-pass { color: var(--honey); border-color: rgba(254,189,51,0.3); }
-    .s18-cell[data-tier="teal"]  .s18-pass { color: var(--teal);  border-color: rgba(67,192,190,0.3); }
-    .s18-cell[data-tier="sky"]   .s18-pass { color: var(--sky);   border-color: rgba(100,188,234,0.32); }
-
-    .s18-cat {
-      font-size: 14.5px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      line-height: 1.18;
-      color: var(--fg);
-      margin-bottom: 8px;
-      min-height: 34px;
-    }
-    .s18-score {
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      font-feature-settings: "tnum";
-    }
-    .s18-score .pct {
-      font-size: 18px;
-      font-weight: 700;
-      margin-left: 2px;
-      opacity: 0.7;
-    }
-    .s18-micro {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.05em;
-      color: var(--fg-muted);
-      line-height: 1.45;
-      margin-top: 6px;
-      min-height: 24px;
-    }
-
-    .s18-bar {
-      margin-top: 10px;
-      position: relative;
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .s18-bar > i {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: var(--w, 0%);
-      border-radius: 2px;
-      transform-origin: left center;
-      animation: s18-fill 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
-    }
-    @keyframes s18-fill {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
-    }
-    .s18-bar > i::after {
-      content: "";
-      position: absolute;
-      right: -2px; top: -1px; bottom: -1px;
-      width: 5px;
-      background: currentColor;
-      filter: blur(3px);
-      opacity: 0.7;
-    }
-
-    /* ============ SIDEBAR ============ */
-    .s18-side {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 0;
-    }
-
-    .s18-rsp {
-      position: relative;
-      padding: 18px 18px 16px;
-      background:
-        linear-gradient(180deg, rgba(254,189,51,0.045), rgba(254,189,51,0.01));
-      border: 1px solid rgba(254,189,51,0.22);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .s18-rsp::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--honey), transparent);
-      opacity: 0.6;
-    }
-    .s18-rsp-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      color: var(--honey);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .s18-rsp-eyebrow::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(254,189,51,0.4), transparent);
-    }
-    .s18-rsp-title {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      color: var(--fg);
-      margin-bottom: 4px;
-    }
-    .s18-rsp-tier {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      color: var(--honey);
-      margin-bottom: 14px;
-    }
-    .s18-rsp-list {
-      list-style: none;
-      padding: 0;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .s18-rsp-list li {
-      font-size: 11.5px;
-      line-height: 1.4;
-      color: var(--fg-muted);
-      padding-left: 14px;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 26px rgba(254,189,51,0.22);
       position: relative;
-      letter-spacing: -0.005em;
+      display: inline-block;
+      max-width: 100%;
     }
-    .s18-rsp-list li::before {
-      content: "";
-      position: absolute;
-      left: 0; top: 6px;
-      width: 6px; height: 1px;
-      background: var(--honey);
+    .s17b-number .unit {
+      font-size: 0.42em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      vertical-align: 0.55em;
+      color: rgba(254,189,51,0.78);
+      margin-left: 2px;
     }
-    .s18-rsp-list li b {
-      color: var(--fg);
+    .s17b-number .sub {
+      font-size: 0.46em;
       font-weight: 600;
-    }
-
-    /* legend */
-    .s18-legend {
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 3px;
-      background: rgba(255,255,255,0.015);
-    }
-    .s18-legend-title {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      color: var(--fg-dim);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .s18-legend-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .s18-legend-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.06em;
       color: var(--fg-muted);
+      letter-spacing: -0.02em;
+      margin-left: 6px;
+      vertical-align: 0.2em;
     }
-    .s18-legend-row .sw {
-      width: 18px;
-      height: 3px;
-      border-radius: 2px;
+    .s17b-number .sep {
+      color: rgba(254,189,51,0.4);
+      font-weight: 400;
+      margin: 0 0.08em;
     }
-    .sw.honey { background: var(--honey); box-shadow: 0 0 8px rgba(254,189,51,0.5); }
-    .sw.teal  { background: var(--teal);  box-shadow: 0 0 8px rgba(67,192,190,0.5); }
-    .sw.sky   { background: var(--sky);   box-shadow: 0 0 8px rgba(100,188,234,0.5); }
-    .s18-legend-row .num { color: var(--fg); font-weight: 600; margin-left: auto; }
-
-    /* held-out / methodology box */
-    .s18-method {
-      padding: 14px 16px;
-      border: 1px dashed rgba(67,192,190,0.28);
-      border-radius: 3px;
-      background: rgba(67,192,190,0.025);
-    }
-    .s18-method-title {
+    .s17b-caption {
       font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.32em;
-      color: var(--teal);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .s18-method-body {
-      font-size: 11.5px;
-      line-height: 1.45;
       color: var(--fg-muted);
-      letter-spacing: -0.005em;
+      margin-top: 6px;
+      line-height: 1.4;
+      max-width: 100%;
     }
-    .s18-method-body b { color: var(--fg); font-weight: 600; }
+    .s17b-caption em {
+      font-style: normal;
+      color: var(--honey);
+      letter-spacing: 0.14em;
+    }
 
-    /* ============ BOTTOM STRIP ============ */
-    .s18-strip {
-      margin-top: 18px;
-      padding: 16px 22px;
+    /* per-row hero number — let the visual rhythm vary */
+    .s17b-row.rA .s17b-number { color: var(--honey); }
+    .s17b-row.rB .s17b-number { color: var(--honey); }
+    .s17b-row.rC .s17b-number { color: var(--honey); }
+    .s17b-row.rD .s17b-number { color: var(--honey); }
+    .s17b-row.rE .s17b-number { color: var(--honey); }
+    .s17b-row.rF .s17b-number { color: var(--honey); }
+
+    /* ---------- BOTTOM STRIP ---------- */
+    .s17b-footer {
+      margin-top: clamp(14px, 1.4vw, 22px);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 22px;
-      background:
-        linear-gradient(90deg, rgba(254,189,51,0.045), rgba(67,192,190,0.025) 60%, transparent);
-      border-top: 1px solid rgba(254,189,51,0.22);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 28px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
       position: relative;
     }
-    .s18-strip::before {
+    .s17b-footer::before {
       content: "";
       position: absolute;
       top: -1px; left: 0;
-      width: 80px;
-      height: 1px;
-      background: var(--honey);
-      box-shadow: 0 0 14px var(--honey);
+      width: 140px; height: 1px;
+      background: linear-gradient(90deg, var(--honey), transparent);
+      box-shadow: 0 0 10px rgba(254,189,51,0.5);
     }
-    .s18-strip-label {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.36em;
-      color: var(--honey);
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .s18-strip-text {
-      font-size: clamp(15px, 1.4vw, 19px);
-      font-weight: 500;
-      letter-spacing: -0.015em;
-      color: var(--fg);
-      line-height: 1.3;
-      flex: 1;
-    }
-    .s18-strip-text b {
-      font-weight: 800;
-      color: var(--honey);
-    }
-    .s18-strip-text em {
-      font-style: normal;
+    .s17b-fnote {
+      font-size: clamp(12px, 0.94vw, 15.5px);
+      font-weight: 400;
       color: var(--fg-muted);
+      letter-spacing: -0.015em;
+      line-height: 1.45;
+      max-width: 900px;
     }
-    .s18-strip-sig {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.28em;
+    .s17b-fnote em {
+      font-style: normal;
+      color: var(--fg);
+      font-weight: 500;
+    }
+    .s17b-fnote .yogi {
+      color: var(--honey);
+      font-weight: 600;
+    }
+    .s17b-fnote .sep {
       color: var(--fg-dim);
-      text-transform: uppercase;
-      white-space: nowrap;
+      margin: 0 8px;
+    }
+    .s17b-fnote .path {
+      font-family: var(--font-mono);
+      font-size: 0.86em;
+      color: var(--teal);
+      letter-spacing: 0.04em;
     }
 
-    /* stagger animation for cells */
-    .s18-cell {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s18-rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    .s17b-arrow-foot {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .s18-cell:nth-child(1)  { animation-delay: 0.05s; }
-    .s18-cell:nth-child(2)  { animation-delay: 0.10s; }
-    .s18-cell:nth-child(3)  { animation-delay: 0.15s; }
-    .s18-cell:nth-child(4)  { animation-delay: 0.20s; }
-    .s18-cell:nth-child(5)  { animation-delay: 0.25s; }
-    .s18-cell:nth-child(6)  { animation-delay: 0.30s; }
-    .s18-cell:nth-child(7)  { animation-delay: 0.35s; }
-    .s18-cell:nth-child(8)  { animation-delay: 0.40s; }
-    .s18-cell:nth-child(9)  { animation-delay: 0.45s; }
-    .s18-cell:nth-child(10) { animation-delay: 0.50s; }
-    .s18-cell:nth-child(11) { animation-delay: 0.55s; }
-    .s18-cell:nth-child(12) { animation-delay: 0.60s; }
-    @keyframes s18-rise {
-      to { opacity: 1; transform: translateY(0); }
+    .s17b-arrow-foot .bar {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey));
+    }
+    .s17b-arrow-foot .next { color: var(--honey); }
+
+    /* tighter laptop scaling */
+    @media (max-width: 1380px) {
+      .s17b-row { padding: clamp(10px, 1.1vw, 16px) 0; }
+      .s17b-pattern { font-size: clamp(14px, 1.04vw, 18px); }
+      .s17b-number { font-size: clamp(26px, 3.2vw, 52px); }
+      .s17b-op-title { font-size: clamp(11px, 0.84vw, 13px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .s18-cell, .s18-bar > i { animation: none; opacity: 1; transform: none; }
-      .s18-bar > i { transform: scaleX(1); }
-      .s18-eyebrow .dot { animation: none; }
+      .slide[data-audio="20"] *,
+      .slide[data-audio="20"] *::before,
+      .slide[data-audio="20"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .slide[data-audio="20"] .s17b-row { opacity: 1; transform: none; }
+      .slide[data-audio="20"] .s17b-packet { opacity: 0.7; }
     }
   </style>
 
-  <div class="s18-frame">
-    <div class="s18-mark tl"></div>
-    <div class="s18-mark tr"></div>
-    <div class="s18-mark bl"></div>
-    <div class="s18-mark br"></div>
-    <div class="s18-stamp">SLIDE · <b>18</b> · YOGI / SAFETY EVALUATION REPORT</div>
+  <div class="content">
+    <div class="s17b-frame">
 
-    <!-- HEADER -->
-    <div class="s18-header">
-      <div>
-        <div class="s18-eyebrow"><span class="dot"></span> SAFETY · EVALUATION SUITE · v3.2 · 2026-Q2</div>
-        <div class="s18-title">Audited like a frontier model.</div>
-        <div class="s18-subhead">
-          12 CATEGORIES <span class="sep">/</span> 95.4% MEAN <span class="sep">/</span> HUMAN APPROVES EVERY ACTION
+      <!-- corner registration marks -->
+      <div class="s17b-mark tl"></div>
+      <div class="s17b-mark tr"></div>
+      <div class="s17b-mark bl"></div>
+      <div class="s17b-mark br"></div>
+      <div class="s17b-stamp">SLIDE · 17 / RESEARCH &rarr; TC OUTCOMES · NOT THEORY</div>
+
+      <!-- HEADER -->
+      <header class="s17b-head">
+        <div>
+          <div class="s17b-eyebrow">
+            <span class="dot"></span>
+            <span>17 / 26</span>
+            <span class="rule"></span>
+            <span class="muted">Research &rarr; TC outcomes</span>
+            <span class="rule"></span>
+            <span>Not theory · Production</span>
+          </div>
+          <h1 class="s17b-headline">
+            Tested on Trilogy<span class="period">.</span>
+          </h1>
         </div>
+
+        <div class="s17b-subhead">
+          <span class="accent">6 research threads</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 operations</span>
+          <span class="dotsep">·</span>
+          <span class="accent">6 measured uplifts</span>
+          <span class="caption">
+            Each pattern Yogi runs in production has a Trilogy measurement behind it.
+            Held-out probes, real incidents, real bills, real complaints — receipts on the right.
+          </span>
+        </div>
+      </header>
+
+      <!-- ROWS -->
+      <div class="s17b-rows">
+
+        <!-- ============ ROW A — CONSTITUTIONAL AI + MCP ============ -->
+        <article class="s17b-row rA">
+          <span class="s17b-row-no">01</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Constitutional AI <span class="plus">+</span> MCP</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Bai et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2212.08073</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Anthropic</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Yogi tool-call safety</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>328 MCP tools · write-action gating</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">0<span class="sep">·</span>95.4<span class="unit">%</span></h2>
+            <div class="s17b-caption">unauthorized writes <em>· safety mean</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW B — REACT + REFLEXION ============ -->
+        <article class="s17b-row rB">
+          <span class="s17b-row-no">02</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-deepmind" aria-label="DeepMind">DM</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">ReAct <span class="plus">+</span> Reflexion</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Yao et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2210.03629</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Google Brain</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">ACQSC complaint investigation</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cross-system evidence pack · 9 sources</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">150<span class="unit">×</span></h2>
+            <div class="s17b-caption">1 week &rarr; <em>47 seconds</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW C — PROMPT CACHING ============ -->
+        <article class="s17b-row rC">
+          <span class="s17b-row-no">03</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Prompt Caching</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Anthropic</span>
+                <span class="dot">·</span>
+                <span class="yr">2024</span>
+                <span class="dot">·</span>
+                <span class="arxiv">eng. blog · cache 5m / 1h</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Daily Databricks bill queries</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>90-day window · benched live</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">&minus;58<span class="unit">%</span></h2>
+            <div class="s17b-caption">token cost <em>· same accuracy</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW D — HYBRID RAG ============ -->
+        <article class="s17b-row rD">
+          <span class="s17b-row-no">04</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-openai" aria-label="OpenAI">O</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Hybrid RAG <span class="plus">·</span> markdown + Qdrant</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Lewis et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2020</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2005.11401</span>
+                <span class="dot">·</span>
+                <span class="lab-name">FAIR / OpenAI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">79 memory files + semantic search</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>cited-fact recall · zero fabrication test</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">100<span class="unit">%</span></h2>
+            <div class="s17b-caption">recall <em>· 0 hallucinated cites</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW E — MULTI-AGENT ORCHESTRATION ============ -->
+        <article class="s17b-row rE">
+          <span class="s17b-row-no">05</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-brain" aria-label="Google Brain">GB</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">Multi-Agent Orchestration</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Park et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2023</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2304.03442</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford / Google</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">Phantom Batch incident · 8 May</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>3 sub-agents · 14 commits · same day</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">$415<span class="unit">K</span></h2>
+            <div class="s17b-caption">averted <em>· no human engineer</em></div>
+          </div>
+        </article>
+
+        <!-- ============ ROW F — HELM-STYLE EVALS ============ -->
+        <article class="s17b-row rF">
+          <span class="s17b-row-no">06</span>
+
+          <div class="s17b-left">
+            <div class="s17b-lab l-stanford" aria-label="Stanford">S</div>
+            <div class="s17b-left-text">
+              <h3 class="s17b-pattern">HELM-style Evals</h3>
+              <div class="s17b-cite">
+                <span class="lab-name">Liang et al.</span>
+                <span class="dot">·</span>
+                <span class="yr">2022</span>
+                <span class="dot">·</span>
+                <span class="arxiv">arXiv:2211.09110</span>
+                <span class="dot">·</span>
+                <span class="lab-name">Stanford CRFM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17b-mid">
+            <div class="s17b-arrow" aria-hidden="true">
+              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
+                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
+                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
+              </svg>
+            </div>
+            <div class="s17b-op">
+              <div class="s17b-op-title">12-category safety matrix · quarterly</div>
+              <div class="s17b-op-ctx"><span class="pin">▸</span>2,184 held-out probes · RSP-3 tier</div>
+            </div>
+          </div>
+
+          <div class="s17b-right">
+            <h2 class="s17b-number">95.4<span class="unit">%</span> <span class="sub">mean</span></h2>
+            <div class="s17b-caption">across 12 categories <em>· scaling tier RSP-3</em></div>
+          </div>
+        </article>
+
       </div>
-      <div class="s18-mean">
-        <div class="s18-mean-label">MEAN PASS RATE</div>
-        <div class="s18-mean-value">95.4<span style="font-size:24px;font-weight:800;opacity:0.7">%</span></div>
-        <div class="s18-mean-sub">n=2,184 · held-out · quarterly</div>
-      </div>
-    </div>
 
-    <!-- BODY -->
-    <div class="s18-body">
-      <!-- 4x3 MATRIX -->
-      <div class="s18-matrix">
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#01</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Tool-call authority bounds</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">No action outside the 328-tool authority boundary.</div>
+      <!-- FOOTER -->
+      <footer class="s17b-footer">
+        <div class="s17b-fnote">
+          Every <span class="yogi">Yogi</span> capability has a TC measurement behind it.
+          <em>Citations and probe sets live at</em>
+          <span class="path">/yogi</span>
+          <span class="sep">·</span>
+          <em>evidence pack on request.</em>
         </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#02</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Database write guardrails</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Zero unauthorised writes against Zoho, MYOB, Databricks.</div>
+        <div class="s17b-arrow-foot">
+          <span>18</span>
+          <span class="bar"></span>
+          <span class="next">Safety evals</span>
         </div>
+      </footer>
 
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#03</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Self-modification audit</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Memory edits logged, reversible, human-reviewable.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#04</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">PII redaction</div>
-          <div class="s18-score">99.7<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:99.7%"></i></div>
-          <div class="s18-micro">TCID, DOB, contact data masked in outbound logs.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#05</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">RBAC enforcement</div>
-          <div class="s18-score">98<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:98%"></i></div>
-          <div class="s18-micro">Role/permission checks honoured on every privileged call.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#06</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Memory leak across users</div>
-          <div class="s18-score">97<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:97%"></i></div>
-          <div class="s18-micro">No cross-tenant context bleed in adversarial probes.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#07</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Conversation context isolation</div>
-          <div class="s18-score">96<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:96%"></i></div>
-          <div class="s18-micro">Session boundaries hold under concurrent multi-user load.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="sky">
-          <div class="s18-cell-top">
-            <span class="s18-num">#08</span>
-            <span class="s18-pass">MONITOR</span>
-          </div>
-          <div class="s18-cat">Refusal of out-of-scope ops</div>
-          <div class="s18-score">92<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:92%"></i></div>
-          <div class="s18-micro">Declines off-charter requests; quarterly refusal tuning.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="sky">
-          <div class="s18-cell-top">
-            <span class="s18-num">#09</span>
-            <span class="s18-pass">MONITOR</span>
-          </div>
-          <div class="s18-cat">Prompt-injection resistance</div>
-          <div class="s18-score">88<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:88%"></i></div>
-          <div class="s18-micro">Adversarial test set; documented capability gap.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#10</span>
-            <span class="s18-pass">ZERO</span>
-          </div>
-          <div class="s18-cat">Hallucinated tool calls</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Strict schema validation — zero phantom invocations.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="teal">
-          <div class="s18-cell-top">
-            <span class="s18-num">#11</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Drift detection</div>
-          <div class="s18-score">94<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:94%"></i></div>
-          <div class="s18-micro">Behaviour drift caught against frozen reference outputs.</div>
-        </div>
-
-        <div class="s18-cell" data-tier="honey">
-          <div class="s18-cell-top">
-            <span class="s18-num">#12</span>
-            <span class="s18-pass">PASS</span>
-          </div>
-          <div class="s18-cat">Documented capability gaps</div>
-          <div class="s18-score">100<span class="pct">%</span></div>
-          <div class="s18-bar"><i style="--w:100%"></i></div>
-          <div class="s18-micro">Every known limitation logged, owned, scheduled.</div>
-        </div>
-
-      </div>
-
-      <!-- SIDEBAR -->
-      <aside class="s18-side">
-        <div class="s18-rsp">
-          <div class="s18-rsp-eyebrow">Scaling tier</div>
-          <div class="s18-rsp-title">Anthropic RSP-3</div>
-          <div class="s18-rsp-tier">RESPONSIBLE SCALING POLICY</div>
-          <ul class="s18-rsp-list">
-            <li><b>Held-out</b> evaluation set, re-run quarterly</li>
-            <li><b>Documented</b> capability gaps with owners</li>
-            <li><b>Reversible</b> by design — every write logged</li>
-            <li><b>Human approval</b> required for every action</li>
-            <li><b>Red-team</b> probes from Crew + external</li>
-          </ul>
-        </div>
-
-        <div class="s18-legend">
-          <div class="s18-legend-title">Threshold legend</div>
-          <div class="s18-legend-rows">
-            <div class="s18-legend-row"><span class="sw honey"></span> 100% &nbsp; locked <span class="num">5</span></div>
-            <div class="s18-legend-row"><span class="sw teal"></span> ≥95% &nbsp; pass <span class="num">5</span></div>
-            <div class="s18-legend-row"><span class="sw sky"></span> 88–95 &nbsp; monitor <span class="num">2</span></div>
-          </div>
-        </div>
-
-        <div class="s18-method">
-          <div class="s18-method-title">Methodology</div>
-          <div class="s18-method-body">
-            <b>2,184</b> probes across <b>12</b> categories. Held-out set, not training data. Quarterly cadence. Public scoreboard inside TC Assist Home.
-          </div>
-        </div>
-      </aside>
-    </div>
-
-    <!-- BOTTOM STRIP -->
-    <div class="s18-strip">
-      <div class="s18-strip-label">NON-NEGOTIABLE</div>
-      <div class="s18-strip-text">
-        <b>Yogi drafts. Humans decide.</b> <em>The reviewer who clicks approve owns the outcome.</em>
-      </div>
-      <div class="s18-strip-sig">RSP · v3.2 · Q2 2026</div>
     </div>
   </div>
+
+  <script>
+    (function () {
+      var slide = document.currentScript.closest('.slide');
+      function activate()   { slide.classList.add('is-active'); }
+      function deactivate() { slide.classList.remove('is-active'); }
+
+      window.onSlideEnter = window.onSlideEnter || {};
+      window.onSlideEnter[17] = activate;
+      window.onSlideLeave = window.onSlideLeave || {};
+      window.onSlideLeave[17] = deactivate;
+
+      // self-activate if already visible (standalone preview)
+      if (slide.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(activate);
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { activate(); io.disconnect(); }
+          });
+        }, { threshold: 0.18 });
+        io.observe(slide);
+      }
+    })();
+  </script>
 </section>

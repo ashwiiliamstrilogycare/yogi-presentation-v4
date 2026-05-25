@@ -1,19 +1,17 @@
 <section class="slide" data-audio="19">
   <style>
-    /* ============ SLIDE 17 — RESEARCH → TC OUTCOMES ============
-       Cinematic systems-map. Six rows. Each row reads as a research-grade
-       lab note: [Pattern · citation · lab chip] → [TC operation] → [Hero number].
-       Packet pulse animates left→right on the honey arrow every ~3s.
-    */
+    /* ============ SLIDE 16 — PRODUCTION RECEIPTS (NASA polish + $5M frame) ============ */
     .slide[data-audio="19"] {
+      --s17-rail-honey: rgba(254,189,51,0.55);
+
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
       background:
-        radial-gradient(ellipse 55% 40% at 10% 12%, rgba(254,189,51,0.07), transparent 60%),
-        radial-gradient(ellipse 50% 50% at 92% 92%, rgba(67,192,190,0.05), transparent 65%),
-        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.02), transparent 60%),
+        radial-gradient(ellipse 60% 45% at 12% 14%, rgba(254,189,51,0.07), transparent 60%),
+        radial-gradient(ellipse 50% 50% at 92% 88%, rgba(67,192,190,0.05), transparent 65%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.022), transparent 60%),
         var(--bg);
       color: var(--fg);
       font-family: var(--font-display);
@@ -21,7 +19,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* engineering grid watermark */
+    /* watermark engineering grid */
     .slide[data-audio="19"]::before {
       content: "";
       position: absolute; inset: 0;
@@ -36,17 +34,48 @@
     .slide[data-audio="19"]::after {
       content: "";
       position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.42;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.45;
       mix-blend-mode: overlay;
       pointer-events: none;
     }
 
-    .s17b-frame {
+    /* particle drift */
+    .s17-particles {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .s17-particles span {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--honey);
+      border-radius: 50%;
+      opacity: 0;
+      box-shadow: 0 0 6px var(--honey);
+      animation: s17-drift 18s linear infinite;
+    }
+    @keyframes s17-drift {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      8%   { opacity: 0.42; }
+      90%  { opacity: 0.42; }
+      100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+    }
+    .s17-particles span:nth-child(1)  { left: 6%;  bottom: -2%; animation-delay: 0s;    animation-duration: 22s; }
+    .s17-particles span:nth-child(2)  { left: 18%; bottom: -2%; animation-delay: 3s;    animation-duration: 26s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+    .s17-particles span:nth-child(3)  { left: 28%; bottom: -2%; animation-delay: 7s;    animation-duration: 19s; }
+    .s17-particles span:nth-child(4)  { left: 42%; bottom: -2%; animation-delay: 11s;   animation-duration: 24s; }
+    .s17-particles span:nth-child(5)  { left: 56%; bottom: -2%; animation-delay: 2s;    animation-duration: 28s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+    .s17-particles span:nth-child(6)  { left: 68%; bottom: -2%; animation-delay: 14s;   animation-duration: 21s; }
+    .s17-particles span:nth-child(7)  { left: 78%; bottom: -2%; animation-delay: 9s;    animation-duration: 25s; }
+    .s17-particles span:nth-child(8)  { left: 88%; bottom: -2%; animation-delay: 5s;    animation-duration: 27s; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+    .s17-frame {
       position: relative;
       width: 100%;
       height: 100vh;
-      padding: clamp(28px, 2.6vw, 52px) clamp(44px, 4.6vw, 80px) clamp(22px, 2vw, 36px);
+      padding: clamp(28px, 2.8vw, 52px) clamp(40px, 4.2vw, 76px) clamp(28px, 2.8vw, 48px);
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
@@ -54,17 +83,17 @@
     }
 
     /* corner registration marks */
-    .s17b-mark {
+    .s17-mark {
       position: absolute;
       width: 14px; height: 14px;
       border: 1px solid rgba(254,189,51,0.30);
     }
-    .s17b-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
-    .s17b-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
-    .s17b-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
-    .s17b-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
+    .s17-mark.tl { top: 26px;    left: 26px;    border-right: none;  border-bottom: none; }
+    .s17-mark.tr { top: 26px;    right: 26px;   border-left: none;   border-bottom: none; }
+    .s17-mark.bl { bottom: 26px; left: 26px;    border-right: none;  border-top: none; }
+    .s17-mark.br { bottom: 26px; right: 26px;   border-left: none;   border-top: none; }
 
-    .s17b-stamp {
+    .s17-stamp {
       position: absolute;
       top: 26px;
       left: 50%;
@@ -76,15 +105,16 @@
       text-transform: uppercase;
     }
 
-    /* ---------- HEADER ---------- */
-    .s17b-head {
+    /* ----- HEADER ----- */
+    .s17-head {
       display: grid;
-      grid-template-columns: 1.55fr 1fr;
-      gap: clamp(28px, 3vw, 52px);
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(24px, 3vw, 56px);
       align-items: flex-end;
-      margin-bottom: clamp(18px, 1.8vw, 30px);
+      margin-bottom: clamp(14px, 1.5vw, 22px);
     }
-    .s17b-eyebrow {
+
+    .s17-eyebrow {
       font-family: var(--font-mono);
       font-size: clamp(10px, 0.72vw, 12px);
       letter-spacing: 0.32em;
@@ -93,426 +123,856 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .s17b-eyebrow .rule {
+    .s17-eyebrow .rule {
       width: 40px; height: 1px;
       background: linear-gradient(90deg, var(--honey), transparent);
     }
-    .s17b-eyebrow .dot {
+    .s17-eyebrow .dot {
       width: 6px; height: 6px;
       background: var(--honey);
       border-radius: 50%;
       box-shadow: 0 0 12px var(--honey);
-      animation: s17b-pulse 2.4s ease-in-out infinite;
+      animation: s17-pulse 2.4s ease-in-out infinite;
     }
-    .s17b-eyebrow .muted {
-      color: var(--fg-muted);
-      letter-spacing: 0.32em;
-    }
-    @keyframes s17b-pulse {
+    @keyframes s17-pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50%      { opacity: 0.5; transform: scale(0.85); }
     }
-    .s17b-headline {
-      font-size: clamp(38px, 4.6vw, 80px);
+
+    .s17-headline {
+      font-size: clamp(36px, 4.4vw, 76px);
       font-weight: 800;
-      line-height: 0.94;
+      line-height: 0.92;
       letter-spacing: -0.04em;
       margin: 0;
     }
-    .s17b-headline .period { color: var(--honey); }
-
-    .s17b-subhead {
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 0.8vw, 13px);
-      line-height: 1.6;
+    .s17-headline .accent {
       color: var(--honey);
-      max-width: 480px;
-      padding-bottom: 6px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      letter-spacing: -0.02em;
     }
-    .s17b-subhead .accent {
-      color: var(--fg);
-      letter-spacing: 0.18em;
+    .s17-headline .period {
+      color: var(--honey);
     }
-    .s17b-subhead .dotsep {
-      color: rgba(254,189,51,0.4);
-      margin: 0 8px;
-    }
-    .s17b-subhead .caption {
-      display: block;
-      text-transform: none;
-      letter-spacing: -0.005em;
+
+    .s17-subhead {
+      font-family: var(--font-mono);
+      font-size: clamp(11px, 0.78vw, 12.5px);
+      line-height: 1.6;
       color: var(--fg-muted);
-      margin-top: 10px;
-      font-size: 0.92em;
-      line-height: 1.55;
+      max-width: 460px;
+      padding-bottom: 6px;
+    }
+    .s17-subhead .pill {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: var(--honey);
+      padding: 5px 10px;
+      border: 1px solid var(--border-warm);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      background: rgba(254,189,51,0.05);
+    }
+    .s17-subhead em {
+      font-style: normal;
+      color: var(--fg);
     }
 
-    /* ---------- ROWS CONTAINER ---------- */
-    .s17b-rows {
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* =========================================================
+       $5M / DAY TARGET BANNER — frames the entire grid
+       ========================================================= */
+    .s17-banner {
       position: relative;
-    }
-    .s17b-rows::before {
-      /* top boundary */
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(254,189,51,0.42) 8%,
-        rgba(254,189,51,0.42) 92%,
-        transparent 100%);
-    }
-
-    /* ---------- INDIVIDUAL ROW ---------- */
-    .s17b-row {
+      margin-bottom: clamp(14px, 1.4vw, 22px);
+      padding: clamp(14px, 1.4vw, 22px) clamp(20px, 2vw, 32px);
       display: grid;
-      grid-template-columns: 35% 30% 35%;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      padding: clamp(12px, 1.4vw, 22px) clamp(4px, 0.4vw, 8px);
-      border-bottom: 1px solid rgba(254,189,51,0.16);
-      position: relative;
-      flex: 1;
-      min-height: 0;
+      gap: clamp(20px, 2.4vw, 40px);
+      background:
+        linear-gradient(90deg,
+          rgba(254,189,51,0.10) 0%,
+          rgba(254,189,51,0.05) 28%,
+          rgba(67,192,190,0.04) 72%,
+          rgba(67,192,190,0.08) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012));
+      border: 1px solid rgba(254,189,51,0.42);
+      border-radius: 4px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.05) inset,
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 18px 44px rgba(0,0,0,0.5),
+        0 0 80px rgba(254,189,51,0.10);
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(-12px);
     }
-    .slide[data-audio="19"].is-active .s17b-row {
-      animation: s17b-row-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
+    .slide[data-audio="19"].is-active .s17-banner {
+      animation: s17-banner-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
     }
-    @keyframes s17b-row-in {
-      0%   { opacity: 0; transform: translateY(14px); }
+    @keyframes s17-banner-in {
+      0%   { opacity: 0; transform: translateY(-12px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    .s17b-row.rA { animation-delay: 140ms; }
-    .s17b-row.rB { animation-delay: 230ms; }
-    .s17b-row.rC { animation-delay: 320ms; }
-    .s17b-row.rD { animation-delay: 410ms; }
-    .s17b-row.rE { animation-delay: 500ms; }
-    .s17b-row.rF { animation-delay: 590ms; }
-
-    /* row number badge — sits at the absolute leftmost edge */
-    .s17b-row-no {
-      position: absolute;
-      left: -28px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
-      color: var(--fg-dim);
-      width: 22px;
-      text-align: right;
-    }
-
-    /* hover glow — subtle row warm-up */
-    .s17b-row:hover {
-      background: linear-gradient(90deg,
-        rgba(254,189,51,0.02) 0%,
-        rgba(254,189,51,0.04) 40%,
-        rgba(67,192,190,0.02) 100%);
-    }
-    .s17b-row:hover .s17b-arrow-path {
-      stroke: rgba(254,189,51,0.95);
-    }
-
-    /* ---------- LEFT SEGMENT — RESEARCH PATTERN ---------- */
-    .s17b-left {
-      display: flex;
-      align-items: center;
-      gap: clamp(12px, 1vw, 18px);
-      padding-right: clamp(16px, 1.6vw, 26px);
-    }
-    .s17b-lab {
-      width: clamp(34px, 2.6vw, 42px);
-      height: clamp(34px, 2.6vw, 42px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: clamp(11px, 0.82vw, 13px);
-      letter-spacing: 0.02em;
-      flex-shrink: 0;
-      border: 1px solid currentColor;
-      position: relative;
-    }
-    .s17b-lab::after {
+    /* honey rail at top */
+    .s17-banner::before {
       content: "";
       position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px dashed currentColor;
-      opacity: 0.25;
+      top: -1px; left: clamp(14px, 1.2vw, 18px); right: 28%;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--honey) 20%,
+        var(--honey) 80%,
+        transparent 100%);
+      box-shadow: 0 0 12px rgba(254,189,51,0.55);
     }
-    .s17b-lab.l-anthropic { color: var(--honey);  background: rgba(254,189,51,0.08); }
-    .s17b-lab.l-openai    { color: var(--teal);   background: rgba(67,192,190,0.08); }
-    .s17b-lab.l-deepmind  { color: var(--sky);    background: rgba(100,188,234,0.08); }
-    .s17b-lab.l-brain     { color: var(--violet); background: rgba(155,123,212,0.08); }
-    .s17b-lab.l-stanford  { color: var(--coral);  background: rgba(243,155,90,0.08); }
-
-    .s17b-left-text {
-      min-width: 0;
-      flex: 1;
-    }
-    .s17b-pattern {
-      font-size: clamp(15px, 1.18vw, 22px);
-      font-weight: 700;
-      letter-spacing: -0.022em;
-      color: var(--fg);
-      line-height: 1.15;
-      margin: 0 0 5px 0;
-    }
-    .s17b-pattern .plus {
-      color: var(--honey);
-      font-weight: 500;
-      margin: 0 4px;
-    }
-    .s17b-cite {
-      font-family: var(--font-mono);
-      font-size: clamp(9.5px, 0.7vw, 11.5px);
-      letter-spacing: 0.04em;
-      color: var(--fg-dim);
-      line-height: 1.4;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .s17b-cite .lab-name {
-      color: var(--fg-muted);
-    }
-    .s17b-cite .arxiv {
-      color: var(--fg-dim);
-    }
-    .s17b-cite .yr {
-      color: var(--honey);
-      opacity: 0.78;
-    }
-    .s17b-cite .dot {
-      color: rgba(255,255,255,0.18);
-    }
-
-    /* ---------- MIDDLE SEGMENT — TC OPERATION (with arrow) ---------- */
-    .s17b-mid {
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 0 clamp(8px, 1vw, 16px);
-    }
-
-    /* SVG arrow occupying the full middle column width */
-    .s17b-arrow {
+    /* shimmer crawl */
+    .s17-banner::after {
+      content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      height: 18px;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(254,189,51,0.10), transparent);
+      transform: translateX(-100%);
       pointer-events: none;
-      z-index: 0;
+      mix-blend-mode: screen;
     }
-    .s17b-arrow svg { width: 100%; height: 100%; display: block; overflow: visible; }
-    .s17b-arrow-path {
-      fill: none;
-      stroke: rgba(254,189,51,0.55);
-      stroke-width: 1;
-      stroke-dasharray: 3 3;
-      transition: stroke 320ms ease;
+    .slide[data-audio="19"].is-active .s17-banner::after {
+      animation: s17-banner-shimmer 6.4s ease-in-out infinite 1500ms;
     }
-    .s17b-arrow-head {
-      fill: var(--honey);
+    @keyframes s17-banner-shimmer {
+      0%, 35%  { transform: translateX(-100%); }
+      55%      { transform: translateX(100%); }
+      100%     { transform: translateX(100%); }
     }
-    /* the packet — a tiny honey blip that streams along the arrow */
-    .s17b-packet {
-      fill: var(--honey);
-    }
-    .slide[data-audio="19"].is-active .s17b-packet {
-      animation: s17b-packet 3.4s cubic-bezier(.45,.05,.55,1) infinite;
-    }
-    @keyframes s17b-packet {
-      0%   { transform: translateX(0);     opacity: 0; }
-      8%   { opacity: 1; }
-      88%  { opacity: 1; }
-      100% { transform: translateX(100%);  opacity: 0; }
-    }
-    /* stagger packet phase per row so they fire offset */
-    .s17b-row.rA .s17b-packet { animation-delay: 0.0s; }
-    .s17b-row.rB .s17b-packet { animation-delay: 0.55s; }
-    .s17b-row.rC .s17b-packet { animation-delay: 1.10s; }
-    .s17b-row.rD .s17b-packet { animation-delay: 1.65s; }
-    .s17b-row.rE .s17b-packet { animation-delay: 2.20s; }
-    .s17b-row.rF .s17b-packet { animation-delay: 2.75s; }
 
-    /* op label card — floats above the arrow centred */
-    .s17b-op {
-      position: relative;
-      z-index: 1;
-      margin: 0 auto;
-      background: linear-gradient(180deg, rgba(17,22,31,0.92), rgba(17,22,31,0.78));
-      border: 1px solid rgba(67,192,190,0.30);
-      border-radius: 3px;
-      padding: clamp(8px, 0.8vw, 12px) clamp(12px, 1.2vw, 18px);
-      box-shadow:
-        0 8px 24px rgba(0,0,0,0.5),
-        0 0 28px rgba(67,192,190,0.12) inset;
-      backdrop-filter: blur(8px);
-      max-width: 100%;
-      min-width: 0;
-    }
-    .s17b-op-title {
-      font-size: clamp(12px, 0.94vw, 15px);
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--fg);
-      line-height: 1.2;
-      margin: 0 0 4px 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .s17b-op-ctx {
+    .s17-bnr-eyebrow {
       font-family: var(--font-mono);
       font-size: clamp(9px, 0.66vw, 10.5px);
-      letter-spacing: 0.06em;
-      color: var(--fg-muted);
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
     }
-    .s17b-op-ctx .pin {
-      color: var(--teal);
-      margin-right: 4px;
+    .s17-bnr-eyebrow .glyph {
+      width: 8px; height: 8px;
+      border: 1px solid var(--honey);
+      transform: rotate(45deg);
+      flex-shrink: 0;
     }
-
-    /* ---------- RIGHT SEGMENT — MEASURED UPLIFT ---------- */
-    .s17b-right {
+    .s17-bnr-head {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      padding-left: clamp(16px, 1.6vw, 26px);
-      text-align: right;
+      gap: 4px;
+      align-items: flex-start;
+      white-space: nowrap;
     }
-    .s17b-number {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(28px, 3.8vw, 64px);
-      line-height: 0.96;
-      letter-spacing: -0.045em;
-      color: var(--honey);
+    .s17-bnr-title {
+      font-size: clamp(26px, 2.6vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: var(--fg);
       margin: 0;
-      font-variant-numeric: tabular-nums;
-      text-shadow: 0 0 26px rgba(254,189,51,0.22);
-      position: relative;
-      display: inline-block;
-      max-width: 100%;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
     }
-    .s17b-number .unit {
-      font-size: 0.42em;
+    .s17-bnr-title .figure {
+      color: var(--honey);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 26px rgba(254,189,51,0.35);
+    }
+    .s17-bnr-title .slash {
+      color: rgba(254,189,51,0.45);
+      font-weight: 400;
+    }
+    .s17-bnr-title .unit {
+      font-size: 0.52em;
       font-weight: 500;
       letter-spacing: 0.04em;
-      vertical-align: 0.55em;
       color: rgba(254,189,51,0.78);
-      margin-left: 2px;
+      vertical-align: 0.18em;
     }
-    .s17b-number .sub {
-      font-size: 0.46em;
-      font-weight: 600;
-      color: var(--fg-muted);
-      letter-spacing: -0.02em;
-      margin-left: 6px;
-      vertical-align: 0.2em;
+
+    /* progress bar — current vs target */
+    .s17-bnr-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
     }
-    .s17b-number .sep {
-      color: rgba(254,189,51,0.4);
-      font-weight: 400;
-      margin: 0 0.08em;
-    }
-    .s17b-caption {
+    .s17-bnr-rail-labels {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
       font-family: var(--font-mono);
       font-size: clamp(9.5px, 0.7vw, 11.5px);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+    .s17-bnr-rail-labels .now { color: var(--fg-muted); }
+    .s17-bnr-rail-labels .now strong { color: var(--fg); font-weight: 600; letter-spacing: 0.04em; }
+    .s17-bnr-rail-labels .gap { color: var(--honey); letter-spacing: 0.22em; font-weight: 500; }
+    .s17-bnr-rail-labels .tgt strong { color: var(--honey); font-weight: 700; letter-spacing: 0.02em; }
+    .s17-bnr-bar {
+      position: relative;
+      height: 5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .s17-bnr-bar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 24px);
+    }
+    .s17-bnr-bar .fill {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 56.6%; /* 2.83 / 5.00 */
+      background: linear-gradient(90deg,
+        rgba(254,189,51,0.55) 0%,
+        var(--honey) 60%,
+        rgba(254,189,51,1) 100%);
+      box-shadow:
+        0 0 14px rgba(254,189,51,0.55),
+        0 0 32px rgba(254,189,51,0.28);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+    .slide[data-audio="19"].is-active .s17-bnr-bar .fill {
+      animation: s17-bar-fill 1400ms cubic-bezier(.22,.61,.36,1) forwards 600ms;
+    }
+    @keyframes s17-bar-fill {
+      0%   { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+    /* current marker */
+    .s17-bnr-bar .marker {
+      position: absolute;
+      top: 50%;
+      left: 56.6%;
+      transform: translate(-50%, -50%);
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--honey);
+      box-shadow:
+        0 0 0 2px rgba(10,13,18,1),
+        0 0 14px rgba(254,189,51,0.75);
+      opacity: 0;
+    }
+    .slide[data-audio="19"].is-active .s17-bnr-bar .marker {
+      animation: s17-marker-in 400ms ease forwards 1900ms;
+    }
+    @keyframes s17-marker-in {
+      0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    /* target end-cap */
+    .s17-bnr-bar .target-cap {
+      position: absolute;
+      top: -3px; right: 0; bottom: -3px;
+      width: 2px;
+      background: var(--honey);
+      box-shadow: 0 0 8px rgba(254,189,51,0.7);
+    }
+
+    .s17-bnr-note {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.66vw, 11px);
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
-      margin-top: 6px;
-      line-height: 1.4;
-      max-width: 100%;
+      line-height: 1.45;
+      max-width: 260px;
+      padding-left: clamp(18px, 1.6vw, 28px);
+      border-left: 1px solid rgba(255,255,255,0.10);
     }
-    .s17b-caption em {
-      font-style: normal;
-      color: var(--honey);
-      letter-spacing: 0.14em;
+    .s17-bnr-note .accent { color: var(--honey); font-weight: 500; }
+    .s17-bnr-note em { font-style: normal; color: var(--fg); }
+
+    /* =========================================================
+       LEDGER GRID — 4 columns top row + 3 columns bottom
+       7 cards total: THIS WEEK (lead) + 6 original receipts
+       ========================================================= */
+    .s17-ledger {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(12px, 1.1vw, 18px);
+      flex: 1;
+      min-height: 0;
+    }
+    /* Row 1: THIS WEEK (3) + r1 (3) + r2 (3) + r3 (3) = 12 */
+    .s17-receipt.rw { grid-column: span 3; }
+    .s17-receipt.r1 { grid-column: span 3; }
+    .s17-receipt.r2 { grid-column: span 3; }
+    .s17-receipt.r3 { grid-column: span 3; }
+    /* Row 2: r4 (4) + r5 (4) + r6 (4) = 12 */
+    .s17-receipt.r4 { grid-column: span 4; }
+    .s17-receipt.r5 { grid-column: span 4; }
+    .s17-receipt.r6 { grid-column: span 4; }
+
+    /* ----- RECEIPT CARD ----- */
+    .s17-receipt {
+      position: relative;
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.92  0 0 0 0 0.72  0 0 0 0.038 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>"),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+        linear-gradient(180deg, rgba(255,255,255,0.038) 0%, rgba(255,255,255,0.008) 100%);
+      border: 1px solid rgba(254,189,51,0.30);
+      border-radius: 4px;
+      padding: clamp(14px, 1.3vw, 22px) clamp(16px, 1.4vw, 24px) clamp(12px, 1.1vw, 18px) clamp(24px, 2vw, 34px);
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(6px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.04) inset,
+        0 14px 38px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        border-color 320ms ease,
+        box-shadow 320ms ease;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .slide[data-audio="19"].is-active .s17-receipt {
+      animation: s17-card-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    @keyframes s17-card-in {
+      0%   { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* per-row hero number — let the visual rhythm vary */
-    .s17b-row.rA .s17b-number { color: var(--honey); }
-    .s17b-row.rB .s17b-number { color: var(--honey); }
-    .s17b-row.rC .s17b-number { color: var(--honey); }
-    .s17b-row.rD .s17b-number { color: var(--honey); }
-    .s17b-row.rE .s17b-number { color: var(--honey); }
-    .s17b-row.rF .s17b-number { color: var(--honey); }
+    /* choreographed entry — THIS WEEK first, then sweep right, then bottom L→R */
+    .s17-receipt.rw { animation-delay: 900ms; }   /* lands after banner bar settles */
+    .s17-receipt.r1 { animation-delay: 1020ms; }
+    .s17-receipt.r2 { animation-delay: 1140ms; }
+    .s17-receipt.r3 { animation-delay: 1260ms; }
+    .s17-receipt.r4 { animation-delay: 1400ms; }
+    .s17-receipt.r5 { animation-delay: 1520ms; }
+    .s17-receipt.r6 { animation-delay: 1640ms; }
 
-    /* ---------- BOTTOM STRIP ---------- */
-    .s17b-footer {
-      margin-top: clamp(14px, 1.4vw, 22px);
+    /* honey rail on left edge */
+    .s17-receipt::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 14px; bottom: 14px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--honey) 0%, rgba(254,189,51,0.15) 100%);
+      box-shadow: 0 0 14px rgba(254,189,51,0.5);
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* perforation strip on right edge */
+    .s17-receipt::after {
+      content: "";
+      position: absolute;
+      right: -4px; top: 14px; bottom: 14px;
+      width: 8px;
+      background-image: radial-gradient(circle at center, var(--bg) 2.5px, transparent 3px);
+      background-size: 8px 10px;
+      background-repeat: repeat-y;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* head row: evidence serial + status chip */
+    .s17-r-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 28px;
+      gap: 10px;
+      margin-bottom: clamp(6px, 0.6vw, 10px);
+    }
+    .s17-r-no {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s17-r-no strong {
+      color: var(--honey);
+      font-weight: 500;
+    }
+    .s17-r-no .sep {
+      color: rgba(255,255,255,0.18);
+      margin: 0 5px;
+    }
+    .s17-r-chip {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid rgba(67,192,190,0.32);
+      color: var(--teal);
+      background: rgba(67,192,190,0.06);
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .s17-r-chip .pulse {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+    /* LIVE chip variant for THIS WEEK */
+    .s17-r-chip.live {
+      border-color: rgba(254,189,51,0.55);
+      color: var(--honey);
+      background: rgba(254,189,51,0.08);
+    }
+    .s17-r-chip.live .pulse {
+      background: var(--honey);
+      box-shadow: 0 0 8px var(--honey);
+      animation: s17-live-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes s17-live-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.35; transform: scale(0.65); }
+    }
+
+    /* the big number — HERO */
+    .s17-r-figure {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 4.0vw, 64px);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      color: var(--honey);
+      margin: 0;
+      text-shadow:
+        0 0 32px rgba(254,189,51,0.22),
+        0 2px 0 rgba(0,0,0,0.4);
+      font-variant-numeric: tabular-nums;
+      position: relative;
+      display: inline-block;
+    }
+    /* top-row cards (smaller width) — slightly smaller hero */
+    .s17-receipt.rw .s17-r-figure,
+    .s17-receipt.r1 .s17-r-figure,
+    .s17-receipt.r2 .s17-r-figure,
+    .s17-receipt.r3 .s17-r-figure {
+      font-size: clamp(30px, 3.2vw, 52px);
+    }
+    /* bottom-row (wider) get bigger figures */
+    .s17-receipt.r4 .s17-r-figure,
+    .s17-receipt.r5 .s17-r-figure,
+    .s17-receipt.r6 .s17-r-figure {
+      font-size: clamp(40px, 4.4vw, 72px);
+    }
+    .s17-r-figure .unit {
+      font-size: 0.42em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      vertical-align: 0.62em;
+      color: rgba(254,189,51,0.78);
+      margin-left: 2px;
+    }
+    .s17-r-figure .sym {
+      font-weight: 500;
+      font-size: 0.62em;
+      vertical-align: 0.16em;
+      color: rgba(254,189,51,0.82);
+      margin-right: 0.04em;
+    }
+    .s17-r-figure .sub {
+      font-size: 0.32em;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      vertical-align: 0.6em;
+      margin-left: 6px;
+    }
+
+    /* delicate underline glow */
+    .s17-r-figure::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 12%;
+      bottom: -4px;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(254,189,51,0.85) 22%,
+        rgba(254,189,51,1) 50%,
+        rgba(254,189,51,0.85) 78%,
+        transparent 100%);
+      box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35);
+      transform: scaleX(0);
+      transform-origin: left center;
+      opacity: 0;
+      border-radius: 2px;
+    }
+    .slide[data-audio="19"].is-active .s17-r-figure::after {
+      animation:
+        s17-underline-swell 1100ms cubic-bezier(.22,.61,.36,1) forwards,
+        var(--bloom-anim, s17-bloom-a) var(--bloom-dur, 4.8s) ease-in-out infinite var(--bloom-after, 1500ms);
+    }
+    @keyframes s17-underline-swell {
+      0%   { transform: scaleX(0); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* per-card bloom rhythms */
+    @keyframes s17-bloom-a {
+      0%, 100% { box-shadow: 0 0 18px rgba(254,189,51,0.7), 0 0 38px rgba(254,189,51,0.35); }
+      50%      { box-shadow: 0 0 26px rgba(254,189,51,0.95), 0 0 62px rgba(254,189,51,0.55); }
+    }
+    @keyframes s17-bloom-b {
+      0%, 100% { box-shadow: 0 0 16px rgba(254,189,51,0.55), 0 0 32px rgba(254,189,51,0.25); }
+      55%      { box-shadow: 0 0 28px rgba(254,189,51,0.92), 0 0 70px rgba(254,189,51,0.5); }
+    }
+    @keyframes s17-bloom-c {
+      0%, 100% { box-shadow: 0 0 14px rgba(254,189,51,0.62), 0 0 28px rgba(254,189,51,0.32); }
+      40%      { box-shadow: 0 0 24px rgba(254,189,51,0.85), 0 0 58px rgba(254,189,51,0.48); }
+    }
+    .s17-receipt.rw .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 3.6s; --bloom-after: 1100ms; }
+    .s17-receipt.r1 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 4.8s; --bloom-after: 1300ms; }
+    .s17-receipt.r2 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.6s; --bloom-after: 1700ms; }
+    .s17-receipt.r3 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 4.2s; --bloom-after: 1500ms; }
+    .s17-receipt.r4 .s17-r-figure { --bloom-anim: s17-bloom-b; --bloom-dur: 5.0s; --bloom-after: 1900ms; }
+    .s17-receipt.r5 .s17-r-figure { --bloom-anim: s17-bloom-c; --bloom-dur: 6.0s; --bloom-after: 2100ms; }
+    .s17-receipt.r6 .s17-r-figure { --bloom-anim: s17-bloom-a; --bloom-dur: 5.4s; --bloom-after: 2300ms; }
+
+    /* comparison anchor */
+    .s17-r-compare {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11.5px);
+      letter-spacing: 0.04em;
+      color: var(--fg-dim);
+      line-height: 1.45;
+      margin-top: clamp(6px, 0.7vw, 10px);
+      padding-left: 1px;
+      max-width: 96%;
+    }
+    .s17-r-compare .vs {
+      color: rgba(254,189,51,0.55);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-right: 6px;
+      font-size: 0.86em;
+    }
+    .s17-r-compare em {
+      font-style: normal;
+      color: var(--fg-muted);
+    }
+
+    /* event label + date row */
+    .s17-r-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: clamp(8px, 0.8vw, 14px);
+      padding-bottom: clamp(6px, 0.7vw, 10px);
+    }
+    .s17-r-event {
+      font-size: clamp(13px, 1.02vw, 17px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.18;
+      position: relative;
+      padding-bottom: 5px;
+    }
+    .s17-r-event::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 22px; height: 1px;
+      background: linear-gradient(90deg, var(--honey) 0%, var(--teal) 100%);
+      opacity: 0.75;
+    }
+    .s17-r-date {
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.68vw, 11.5px);
+      letter-spacing: 0.2em;
+      color: var(--fg-muted);
+      white-space: nowrap;
+    }
+
+    /* description */
+    .s17-r-desc {
+      font-size: clamp(10.5px, 0.72vw, 12px);
+      line-height: 1.5;
+      color: var(--fg-muted);
+      letter-spacing: -0.002em;
+      flex: 1;
+      margin: 0 0 clamp(8px, 0.9vw, 12px) 0;
+      padding-right: clamp(50px, 4.4vw, 84px);
+    }
+
+    /* system tags footer */
+    .s17-r-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: clamp(6px, 0.7vw, 10px);
+      border-top: 1px dashed rgba(255,255,255,0.10);
+      flex-wrap: wrap;
+      padding-right: clamp(50px, 4.4vw, 84px);
+    }
+    .s17-r-tags .label {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-right: 4px;
+    }
+    .s17-r-tag {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 3px 6px;
+      border: 1px solid rgba(67,192,190,0.22);
+      border-radius: 2px;
+      background: rgba(67,192,190,0.04);
+    }
+
+    /* ===== APPROVAL STAMP — bottom-right of each card ===== */
+    .s17-stamp-block {
+      position: absolute;
+      right: clamp(8px, 0.9vw, 14px);
+      bottom: clamp(8px, 0.9vw, 14px);
+      width: clamp(54px, 5.6vw, 84px);
+      height: clamp(54px, 5.6vw, 84px);
+      pointer-events: none;
+      opacity: 0;
+      transform: rotate(-8deg) scale(0.86);
+      transition: opacity 600ms ease, transform 600ms cubic-bezier(.22,.61,.36,1);
+      transition-delay: 1900ms;
+    }
+    .slide[data-audio="19"].is-active .s17-stamp-block {
+      opacity: 0.78;
+      transform: rotate(-8deg) scale(1);
+    }
+    .s17-stamp-block svg {
+      width: 100%; height: 100%;
+      display: block;
+      overflow: visible;
+    }
+    /* each stamp gets a slightly different rotation */
+    .s17-receipt.rw .s17-stamp-block { transform: rotate(-7deg) scale(0.86); }
+    .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg) scale(0.86); }
+    .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg) scale(0.86); }
+    .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(0.86); }
+    .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg) scale(0.86); }
+    .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(0.86); }
+    .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg) scale(0.86); }
+    .slide[data-audio="19"].is-active .s17-receipt.rw .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg)  scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg)  scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg)  scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(1); }
+    .slide[data-audio="19"].is-active .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
+
+    /* THIS WEEK card — heat treatment */
+    .s17-receipt.rw {
+      border-color: rgba(254,189,51,0.55);
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.92  0 0 0 0 0.72  0 0 0 0.048 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>"),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+        linear-gradient(180deg, rgba(254,189,51,0.08) 0%, rgba(254,189,51,0.018) 60%, rgba(255,255,255,0.006) 100%);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 18px 44px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 0 60px rgba(254,189,51,0.15);
+    }
+    .s17-receipt.rw::before {
+      width: 4px;
+      box-shadow: 0 0 18px rgba(254,189,51,0.8);
+    }
+    /* snapshot date strip — only on rw */
+    .s17-r-snapshot {
+      font-family: var(--font-mono);
+      font-size: clamp(8.5px, 0.62vw, 10px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--honey);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .s17-r-snapshot .dot-live {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--honey);
+      box-shadow: 0 0 8px var(--honey);
+      animation: s17-live-pulse 1.4s ease-in-out infinite;
+    }
+    .s17-r-snapshot .sep {
+      color: rgba(254,189,51,0.4);
+    }
+    .s17-r-snapshot em {
+      font-style: normal;
+      color: var(--fg-muted);
+      letter-spacing: 0.18em;
+    }
+
+    /* hover refinement */
+    .s17-receipt:hover {
+      border-color: rgba(254,189,51,0.55);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 22px 50px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(254,189,51,0.30),
+        0 0 70px rgba(254,189,51,0.16);
+    }
+    .s17-receipt.rw:hover {
+      border-color: rgba(254,189,51,0.75);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 22px 50px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(254,189,51,0.55),
+        0 0 90px rgba(254,189,51,0.28);
+    }
+
+    /* ----- BOTTOM STRIP ----- */
+    .s17-footer {
+      margin-top: clamp(12px, 1.2vw, 22px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
       padding-top: 14px;
       border-top: 1px solid rgba(255,255,255,0.06);
       position: relative;
     }
-    .s17b-footer::before {
+    .s17-footer::before {
       content: "";
       position: absolute;
       top: -1px; left: 0;
-      width: 140px; height: 1px;
+      width: 120px; height: 1px;
       background: linear-gradient(90deg, var(--honey), transparent);
       box-shadow: 0 0 10px rgba(254,189,51,0.5);
     }
-    .s17b-fnote {
-      font-size: clamp(12px, 0.94vw, 15.5px);
-      font-weight: 400;
-      color: var(--fg-muted);
-      letter-spacing: -0.015em;
-      line-height: 1.45;
-      max-width: 900px;
-    }
-    .s17b-fnote em {
-      font-style: normal;
+
+    .s17-total {
+      font-size: clamp(13px, 1vw, 18px);
+      font-weight: 300;
+      line-height: 1.35;
       color: var(--fg);
-      font-weight: 500;
+      letter-spacing: -0.022em;
+      max-width: 920px;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 12px;
     }
-    .s17b-fnote .yogi {
-      color: var(--honey);
-      font-weight: 600;
-    }
-    .s17b-fnote .sep {
-      color: var(--fg-dim);
-      margin: 0 8px;
-    }
-    .s17b-fnote .path {
+    .s17-total .label {
       font-family: var(--font-mono);
-      font-size: 0.86em;
-      color: var(--teal);
-      letter-spacing: 0.04em;
+      font-size: 0.6em;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      display: block;
+      margin-bottom: 4px;
+      width: 100%;
+    }
+    .s17-total .figure {
+      color: var(--honey);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+      position: relative;
+      display: inline-block;
+    }
+    .s17-total .figure .tick {
+      color: var(--honey);
+      display: inline-block;
+      animation: s17-ticker 3.6s ease-in-out infinite;
+      transform-origin: left baseline;
+    }
+    @keyframes s17-ticker {
+      0%, 84%, 100% { opacity: 1; transform: translateY(0); }
+      88%           { opacity: 0.25; transform: translateY(-0.5em); }
+      92%           { opacity: 0.25; transform: translateY(0.5em); }
+      96%           { opacity: 1;    transform: translateY(0); }
+    }
+    .s17-total em {
+      font-style: italic;
+      color: var(--fg-muted);
+      font-weight: 300;
+    }
+    .s17-total .sep {
+      display: inline-block;
+      margin: 0 10px;
+      color: var(--fg-dim);
     }
 
-    .s17b-arrow-foot {
+    .s17-forecast {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: clamp(9.5px, 0.7vw, 11px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--honey);
+      padding: 5px 10px 5px 8px;
+      border: 1px solid rgba(254,189,51,0.35);
+      background: linear-gradient(90deg, rgba(254,189,51,0.08), rgba(254,189,51,0.02));
+      border-radius: 2px;
+      margin-left: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .s17-forecast::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(254,189,51,0.18), transparent);
+      transform: translateX(-100%);
+      animation: s17-shimmer 4.2s ease-in-out infinite;
+    }
+    @keyframes s17-shimmer {
+      0%, 60% { transform: translateX(-100%); }
+      80%     { transform: translateX(100%); }
+      100%    { transform: translateX(100%); }
+    }
+    .s17-forecast .arrow {
+      width: 10px; height: 10px;
+      flex-shrink: 0;
+      color: var(--honey);
+    }
+    .s17-forecast .trend {
+      color: var(--fg);
+      letter-spacing: 0.18em;
+    }
+    .s17-forecast .eta {
+      color: var(--fg-dim);
+      letter-spacing: 0.24em;
+    }
+
+    .s17-arrow {
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.32em;
@@ -524,19 +984,35 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .s17b-arrow-foot .bar {
+    .s17-arrow .bar {
       width: 32px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--honey));
     }
-    .s17b-arrow-foot .next { color: var(--honey); }
+    .s17-arrow .next {
+      color: var(--honey);
+    }
 
-    /* tighter laptop scaling */
-    @media (max-width: 1380px) {
-      .s17b-row { padding: clamp(10px, 1.1vw, 16px) 0; }
-      .s17b-pattern { font-size: clamp(14px, 1.04vw, 18px); }
-      .s17b-number { font-size: clamp(26px, 3.2vw, 52px); }
-      .s17b-op-title { font-size: clamp(11px, 0.84vw, 13px); }
+    /* responsive — collapse grid + banner on narrow viewports */
+    @media (max-width: 1280px) {
+      .s17-banner {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .s17-bnr-note {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 12px;
+        max-width: none;
+      }
+      .s17-receipt.rw,
+      .s17-receipt.r1,
+      .s17-receipt.r2,
+      .s17-receipt.r3 { grid-column: span 6; }
+      .s17-receipt.r4,
+      .s17-receipt.r5,
+      .s17-receipt.r6 { grid-column: span 4; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -547,304 +1023,381 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .slide[data-audio="19"] .s17b-row { opacity: 1; transform: none; }
-      .slide[data-audio="19"] .s17b-packet { opacity: 0.7; }
+      .slide[data-audio="19"] .s17-receipt { opacity: 1; transform: none; }
+      .slide[data-audio="19"] .s17-banner  { opacity: 1; transform: none; }
+      .slide[data-audio="19"] .s17-bnr-bar .fill { transform: scaleX(1); }
+      .slide[data-audio="19"] .s17-bnr-bar .marker { opacity: 1; }
+      .slide[data-audio="19"] .s17-stamp-block { opacity: 0.78; }
+      .slide[data-audio="19"] .s17-r-figure::after { opacity: 1; transform: scaleX(1); }
     }
   </style>
 
+  <!-- ============ REUSABLE STAMP SVG ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="s17-stamp-ring" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(254,189,51,0.78)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(254,189,51,0.6)" stroke-width="0.7"/>
+        <g stroke="rgba(254,189,51,0.5)" stroke-width="0.8">
+          <line x1="50" y1="2"  x2="50" y2="6"/>
+          <line x1="50" y1="94" x2="50" y2="98"/>
+          <line x1="2"  y1="50" x2="6"  y2="50"/>
+          <line x1="94" y1="50" x2="98" y2="50"/>
+          <line x1="15.6" y1="15.6" x2="18.4" y2="18.4"/>
+          <line x1="81.6" y1="15.6" x2="84.4" y2="18.4"/>
+          <line x1="15.6" y1="84.4" x2="18.4" y2="81.6"/>
+          <line x1="81.6" y1="84.4" x2="84.4" y2="81.6"/>
+        </g>
+        <g stroke="rgba(254,189,51,0.18)" stroke-width="6" stroke-linecap="round">
+          <line x1="22" y1="22" x2="78" y2="78"/>
+          <line x1="78" y1="22" x2="22" y2="78"/>
+        </g>
+        <text x="50" y="44" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="11" font-weight="700"
+              letter-spacing="1.4"
+              fill="rgba(254,189,51,0.85)">VERIFIED</text>
+        <text x="50" y="56" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="5.2"
+              letter-spacing="1.4"
+              fill="rgba(254,189,51,0.62)">YOGI · LEDGER</text>
+      </symbol>
+      <!-- LIVE stamp variant for THIS WEEK card -->
+      <symbol id="s17-stamp-live" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(254,189,51,0.95)" stroke-width="2.4"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(254,189,51,0.7)" stroke-width="0.7"/>
+        <g stroke="rgba(254,189,51,0.55)" stroke-width="0.8">
+          <line x1="50" y1="2"  x2="50" y2="6"/>
+          <line x1="50" y1="94" x2="50" y2="98"/>
+          <line x1="2"  y1="50" x2="6"  y2="50"/>
+          <line x1="94" y1="50" x2="98" y2="50"/>
+        </g>
+        <g stroke="rgba(254,189,51,0.22)" stroke-width="6" stroke-linecap="round">
+          <line x1="22" y1="22" x2="78" y2="78"/>
+          <line x1="78" y1="22" x2="22" y2="78"/>
+        </g>
+        <text x="50" y="46" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="14" font-weight="800"
+              letter-spacing="1.6"
+              fill="rgba(254,189,51,0.95)">LIVE</text>
+        <text x="50" y="60" text-anchor="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="5.2"
+              letter-spacing="1.4"
+              fill="rgba(254,189,51,0.72)">WK · 25 MAY</text>
+      </symbol>
+    </defs>
+  </svg>
+
   <div class="content">
-    <div class="s17b-frame">
+    <div class="s17-frame">
 
       <!-- corner registration marks -->
-      <div class="s17b-mark tl"></div>
-      <div class="s17b-mark tr"></div>
-      <div class="s17b-mark bl"></div>
-      <div class="s17b-mark br"></div>
-      <div class="s17b-stamp">SLIDE · 17 / RESEARCH &rarr; TC OUTCOMES · NOT THEORY</div>
+      <div class="s17-mark tl"></div>
+      <div class="s17-mark tr"></div>
+      <div class="s17-mark bl"></div>
+      <div class="s17-mark br"></div>
+      <div class="s17-stamp">SLIDE · 16 / PRODUCTION RECEIPTS · LEDGER</div>
+
+      <!-- particle field -->
+      <div class="s17-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
 
       <!-- HEADER -->
-      <header class="s17b-head">
+      <header class="s17-head">
         <div>
-          <div class="s17b-eyebrow">
+          <div class="s17-eyebrow">
             <span class="dot"></span>
-            <span>17 / 26</span>
+            <span>This is not theoretical</span>
             <span class="rule"></span>
-            <span class="muted">Research &rarr; TC outcomes</span>
-            <span class="rule"></span>
-            <span>Not theory · Production</span>
+            <span>07 receipts · live snapshot · Q2 FY26</span>
           </div>
-          <h1 class="s17b-headline">
-            Tested on Trilogy<span class="period">.</span>
+          <h1 class="s17-headline">
+            Receipts<span class="period">.</span>
           </h1>
         </div>
 
-        <div class="s17b-subhead">
-          <span class="accent">6 research threads</span>
-          <span class="dotsep">·</span>
-          <span class="accent">6 operations</span>
-          <span class="dotsep">·</span>
-          <span class="accent">6 measured uplifts</span>
-          <span class="caption">
-            Each pattern Yogi runs in production has a Trilogy measurement behind it.
-            Held-out probes, real incidents, real bills, real complaints — receipts on the right.
-          </span>
+        <div class="s17-subhead">
+          <div class="pill">REAL DOLLARS · REAL DATES · REAL INCIDENTS</div>
+          Seven events from the production log — six historical, one live. Each one timestamped, system-tagged, committed to git. <em>The $5M/day target is what the bigger picture closes.</em>
         </div>
       </header>
 
-      <!-- ROWS -->
-      <div class="s17b-rows">
-
-        <!-- ============ ROW A — CONSTITUTIONAL AI + MCP ============ -->
-        <article class="s17b-row rA">
-          <span class="s17b-row-no">01</span>
-
-          <div class="s17b-left">
-            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">Constitutional AI <span class="plus">+</span> MCP</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Bai et al.</span>
-                <span class="dot">·</span>
-                <span class="yr">2022</span>
-                <span class="dot">·</span>
-                <span class="arxiv">arXiv:2212.08073</span>
-                <span class="dot">·</span>
-                <span class="lab-name">Anthropic</span>
-              </div>
-            </div>
+      <!-- =================================================
+           $5M / DAY TARGET BANNER
+           ================================================= -->
+      <section class="s17-banner" aria-label="Five million dollars per day in claims target">
+        <div class="s17-bnr-head">
+          <div class="s17-bnr-eyebrow">
+            <span class="glyph"></span>
+            <span>FY26 commercial frame</span>
+            <span class="glyph"></span>
           </div>
+          <h2 class="s17-bnr-title">
+            <span>Aiming for</span>
+            <span class="figure">$5M<span class="unit">/day</span></span>
+            <span class="slash">in claims.</span>
+          </h2>
+        </div>
 
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">Yogi tool-call safety</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>328 MCP tools · write-action gating</div>
-            </div>
+        <div class="s17-bnr-rail">
+          <div class="s17-bnr-rail-labels">
+            <span class="now">Current · <strong>$2.83M / day</strong></span>
+            <span class="gap">Gap · $2.17M / day</span>
+            <span class="tgt"><strong>Target · $5.00M / day</strong></span>
           </div>
-
-          <div class="s17b-right">
-            <h2 class="s17b-number">0<span class="sep">·</span>95.4<span class="unit">%</span></h2>
-            <div class="s17b-caption">unauthorized writes <em>· safety mean</em></div>
+          <div class="s17-bnr-bar" aria-hidden="true">
+            <div class="fill"></div>
+            <div class="marker"></div>
+            <div class="target-cap"></div>
           </div>
-        </article>
+        </div>
 
-        <!-- ============ ROW B — REACT + REFLEXION ============ -->
-        <article class="s17b-row rB">
-          <span class="s17b-row-no">02</span>
+        <div class="s17-bnr-note">
+          <span class="accent">Yogi-assisted Bills QA</span> closes the gap.<br>
+          <em>21× faster review</em> · phantom-batch averted · funnel leak repaired.<br>
+          Every receipt below is a stride toward five.
+        </div>
+      </section>
 
-          <div class="s17b-left">
-            <div class="s17b-lab l-deepmind" aria-label="DeepMind">DM</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">ReAct <span class="plus">+</span> Reflexion</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Yao et al.</span>
-                <span class="dot">·</span>
-                <span class="yr">2023</span>
-                <span class="dot">·</span>
-                <span class="arxiv">arXiv:2210.03629</span>
-                <span class="dot">·</span>
-                <span class="lab-name">Google Brain</span>
-              </div>
-            </div>
+      <!-- =================================================
+           LEDGER : 7 receipts (THIS WEEK + 6 originals)
+           ================================================= -->
+      <div class="s17-ledger">
+
+        <!-- RECEIPT 00 — THIS WEEK (lead, top-left) -->
+        <article class="s17-receipt rw">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 00 / 07</strong><span class="sep">·</span>WK · 25 MAY<span class="sep">·</span>SNAPSHOT</span>
+            <span class="s17-r-chip live"><span class="pulse"></span>Live</span>
           </div>
-
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">ACQSC complaint investigation</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>cross-system evidence pack · 9 sources</div>
-            </div>
+          <div class="s17-r-snapshot">
+            <span class="dot-live"></span>
+            <span>This week alone</span>
+            <span class="sep">·</span>
+            <em>updates weekly</em>
           </div>
-
-          <div class="s17b-right">
-            <h2 class="s17b-number">150<span class="unit">×</span></h2>
-            <div class="s17b-caption">1 week &rarr; <em>47 seconds</em></div>
+          <h2 class="s17-r-figure">23<span class="sub">investigations</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>4 hours total wall-time · was 23 weeks of FTE</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Yogi-led this week</div>
+            <div class="s17-r-date">W/E 25 · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Live operations snapshot. 23 cross-system investigations, $127K claims signed off, 9 bills batches reviewed, 4 complaint responses drafted — all in under one operator shift.</p>
+          <div class="s17-r-tags">
+            <span class="label">Live</span>
+            <span class="s17-r-tag">Bills</span>
+            <span class="s17-r-tag">Zoho</span>
+            <span class="s17-r-tag">ACQSC</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-live"/>
+            </svg>
           </div>
         </article>
 
-        <!-- ============ ROW C — PROMPT CACHING ============ -->
-        <article class="s17b-row rC">
-          <span class="s17b-row-no">03</span>
-
-          <div class="s17b-left">
-            <div class="s17b-lab l-anthropic" aria-label="Anthropic">A</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">Prompt Caching</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Anthropic</span>
-                <span class="dot">·</span>
-                <span class="yr">2024</span>
-                <span class="dot">·</span>
-                <span class="arxiv">eng. blog · cache 5m / 1h</span>
-              </div>
-            </div>
+        <!-- RECEIPT 01 — $415K averted -->
+        <article class="s17-receipt r1">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 01 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Averted</span>
           </div>
-
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">Daily Databricks bill queries</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>90-day window · benched live</div>
-            </div>
+          <h2 class="s17-r-figure"><span class="sym">$</span>415,000</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>$415,000 of already-claimed exposure</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Phantom Batch incident</div>
+            <div class="s17-r-date">08 · MAY · 2026</div>
           </div>
-
-          <div class="s17b-right">
-            <h2 class="s17b-number">&minus;58<span class="unit">%</span></h2>
-            <div class="s17b-caption">token cost <em>· same accuracy</em></div>
+          <p class="s17-r-desc">Bills allocator pass-through engine bug — Yogi caught it before the claim. Three parallel sub-agents, fourteen commits same day, pipeline restored 16:00.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Bills</span>
+            <span class="s17-r-tag">CDK</span>
+            <span class="s17-r-tag">ECS</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">08 MAY 2026</text>
+            </svg>
           </div>
         </article>
 
-        <!-- ============ ROW D — HYBRID RAG ============ -->
-        <article class="s17b-row rD">
-          <span class="s17b-row-no">04</span>
-
-          <div class="s17b-left">
-            <div class="s17b-lab l-openai" aria-label="OpenAI">O</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">Hybrid RAG <span class="plus">·</span> markdown + Qdrant</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Lewis et al.</span>
-                <span class="dot">·</span>
-                <span class="yr">2020</span>
-                <span class="dot">·</span>
-                <span class="arxiv">arXiv:2005.11401</span>
-                <span class="dot">·</span>
-                <span class="lab-name">FAIR / OpenAI</span>
-              </div>
-            </div>
+        <!-- RECEIPT 02 — $69,140 TJ Gardening -->
+        <article class="s17-receipt r2">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 02 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Recovered</span>
           </div>
-
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">79 memory files + semantic search</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>cited-fact recall · zero fabrication test</div>
-            </div>
+          <h2 class="s17-r-figure"><span class="sym">$</span>69,140</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>$0 recovered before Yogi</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">TJ Gardening pattern</div>
+            <div class="s17-r-date">02 · MAY · 2026</div>
           </div>
-
-          <div class="s17b-right">
-            <h2 class="s17b-number">100<span class="unit">%</span></h2>
-            <div class="s17b-caption">recall <em>· 0 hallucinated cites</em></div>
+          <p class="s17-r-desc">Cross-client supplier pattern — 4 clients, 81 invoices, no services delivered. Yogi flagged the conflict-of-interest before anyone reviewed it.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Zoho</span>
+            <span class="s17-r-tag">MYOB</span>
+            <span class="s17-r-tag">Aircall</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">02 MAY 2026</text>
+            </svg>
           </div>
         </article>
 
-        <!-- ============ ROW E — MULTI-AGENT ORCHESTRATION ============ -->
-        <article class="s17b-row rE">
-          <span class="s17b-row-no">05</span>
-
-          <div class="s17b-left">
-            <div class="s17b-lab l-brain" aria-label="Google Brain">GB</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">Multi-Agent Orchestration</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Park et al.</span>
-                <span class="dot">·</span>
-                <span class="yr">2023</span>
-                <span class="dot">·</span>
-                <span class="arxiv">arXiv:2304.03442</span>
-                <span class="dot">·</span>
-                <span class="lab-name">Stanford / Google</span>
-              </div>
-            </div>
+        <!-- RECEIPT 03 — 21× Bills QA -->
+        <article class="s17-receipt r3">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 03 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Optimised</span>
           </div>
-
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">Phantom Batch incident · 8 May</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>3 sub-agents · 14 commits · same day</div>
-            </div>
+          <h2 class="s17-r-figure">21<span class="unit">×</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>39s &rarr; 1.8s page load</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Bills QA page faster</div>
+            <div class="s17-r-date">22 · APR · 2026</div>
           </div>
-
-          <div class="s17b-right">
-            <h2 class="s17b-number">$415<span class="unit">K</span></h2>
-            <div class="s17b-caption">averted <em>· no human engineer</em></div>
+          <p class="s17-r-desc">14 reviewers were abandoning the page. Yogi rebuilt it with the hourly cache-bake pattern. Page survives every release.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Databricks</span>
+            <span class="s17-r-tag">Next.js</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">22 APR 2026</text>
+            </svg>
           </div>
         </article>
 
-        <!-- ============ ROW F — HELM-STYLE EVALS ============ -->
-        <article class="s17b-row rF">
-          <span class="s17b-row-no">06</span>
-
-          <div class="s17b-left">
-            <div class="s17b-lab l-stanford" aria-label="Stanford">S</div>
-            <div class="s17b-left-text">
-              <h3 class="s17b-pattern">HELM-style Evals</h3>
-              <div class="s17b-cite">
-                <span class="lab-name">Liang et al.</span>
-                <span class="dot">·</span>
-                <span class="yr">2022</span>
-                <span class="dot">·</span>
-                <span class="arxiv">arXiv:2211.09110</span>
-                <span class="dot">·</span>
-                <span class="lab-name">Stanford CRFM</span>
-              </div>
-            </div>
+        <!-- RECEIPT 04 — 150× ACQSC investigation -->
+        <article class="s17-receipt r4">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 04 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Compressed</span>
           </div>
-
-          <div class="s17b-mid">
-            <div class="s17b-arrow" aria-hidden="true">
-              <svg viewBox="0 0 100 18" preserveAspectRatio="none">
-                <line class="s17b-arrow-path" x1="0" y1="9" x2="96" y2="9"/>
-                <polygon class="s17b-arrow-head" points="96,5 100,9 96,13"/>
-                <circle class="s17b-packet" cx="0" cy="9" r="1.6"/>
-              </svg>
-            </div>
-            <div class="s17b-op">
-              <div class="s17b-op-title">12-category safety matrix · quarterly</div>
-              <div class="s17b-op-ctx"><span class="pin">▸</span>2,184 held-out probes · RSP-3 tier</div>
-            </div>
+          <h2 class="s17-r-figure">150<span class="unit">×</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>1 week &rarr; 47 seconds</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">ACQSC investigation</div>
+            <div class="s17-r-date">31 · MAR · 2026</div>
           </div>
+          <p class="s17-r-desc">Full cross-system investigation with evidence pack auto-generated. Ready for Commission submission on tap.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">All 9 systems</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">31 MAR 2026</text>
+            </svg>
+          </div>
+        </article>
 
-          <div class="s17b-right">
-            <h2 class="s17b-number">95.4<span class="unit">%</span> <span class="sub">mean</span></h2>
-            <div class="s17b-caption">across 12 categories <em>· scaling tier RSP-3</em></div>
+        <!-- RECEIPT 05 — 47 auto-rules -->
+        <article class="s17-receipt r5">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 05 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Learned</span>
+          </div>
+          <h2 class="s17-r-figure">47</h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>auto-rules learned from corrections</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Auto-rules learned</div>
+            <div class="s17-r-date">MID · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Self-patched behaviours from user corrections. Yogi grows without being told twice — the memory writes itself between conversations.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Hooks</span>
+            <span class="s17-r-tag">Memory</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">15 MAY 2026</text>
+            </svg>
+          </div>
+        </article>
+
+        <!-- RECEIPT 06 — 100% audit -->
+        <article class="s17-receipt r6">
+          <div class="s17-r-head">
+            <span class="s17-r-no">Evidence&nbsp;<strong>No. 06 / 07</strong><span class="sep">·</span>Q2 FY26<span class="sep">·</span>YOGI v2</span>
+            <span class="s17-r-chip"><span class="pulse"></span>Traceable</span>
+          </div>
+          <h2 class="s17-r-figure">100<span class="unit">%</span></h2>
+          <div class="s17-r-compare"><span class="vs">vs.</span><em>audit trace integrity</em></div>
+          <div class="s17-r-meta">
+            <div class="s17-r-event">Audit trace recovery</div>
+            <div class="s17-r-date">18 · MAY · 2026</div>
+          </div>
+          <p class="s17-r-desc">Every Yogi action since January, traceable via git + memory. Zero gaps. The bear shows its working — and a regulator can read it.</p>
+          <div class="s17-r-tags">
+            <span class="label">Stack</span>
+            <span class="s17-r-tag">Git</span>
+            <span class="s17-r-tag">launchd</span>
+          </div>
+          <div class="s17-stamp-block" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <use href="#s17-stamp-ring"/>
+              <text x="50" y="72" text-anchor="middle"
+                    font-family="JetBrains Mono, monospace"
+                    font-size="6" letter-spacing="1.2"
+                    fill="rgba(254,189,51,0.78)">18 MAY 2026</text>
+            </svg>
           </div>
         </article>
 
       </div>
 
-      <!-- FOOTER -->
-      <footer class="s17b-footer">
-        <div class="s17b-fnote">
-          Every <span class="yogi">Yogi</span> capability has a TC measurement behind it.
-          <em>Citations and probe sets live at</em>
-          <span class="path">/yogi</span>
+      <!-- FOOTER STRIP -->
+      <footer class="s17-footer">
+        <div class="s17-total">
+          <span class="label">Averted + recovered this quarter · plus $127K signed off this week</span>
+          <span class="figure">$611,140<span class="tick">,0</span></span>
           <span class="sep">·</span>
-          <em>evidence pack on request.</em>
+          <em>and counting — toward $5M / day.</em>
+          <span class="s17-forecast" aria-label="forecast">
+            <svg class="arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 9 L6 4 L10 8"/>
+              <path d="M10 4 L10 8 L6 8"/>
+            </svg>
+            <span>Gap</span>
+            <span class="sep" style="color:rgba(255,255,255,0.2);margin:0 2px">·</span>
+            <span class="trend">$2.17M / day</span>
+            <span class="eta">closing</span>
+          </span>
         </div>
-        <div class="s17b-arrow-foot">
-          <span>18</span>
+        <div class="s17-arrow">
+          <span>17</span>
           <span class="bar"></span>
           <span class="next">Safety evals</span>
         </div>
@@ -860,9 +1413,9 @@
       function deactivate() { slide.classList.remove('is-active'); }
 
       window.onSlideEnter = window.onSlideEnter || {};
-      window.onSlideEnter[17] = activate;
+      window.onSlideEnter[16] = activate;
       window.onSlideLeave = window.onSlideLeave || {};
-      window.onSlideLeave[17] = deactivate;
+      window.onSlideLeave[16] = deactivate;
 
       // self-activate if already visible (standalone preview)
       if (slide.getBoundingClientRect().top < window.innerHeight) {

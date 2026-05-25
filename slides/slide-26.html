@@ -1,36 +1,47 @@
-<section class="slide" data-audio="26">
+<section class="slide" data-audio="26" id="slide-21">
   <style>
     /* ============================================================
-       SLIDE 24 · THE 500-LIGHTBULB MOMENT
-       500 deterministic dots cascade from center → starfield ambient.
-       One deployment. One instant. Every staffer gets the realization.
+       SLIDE 21 · INTERNAL MARKETING CAMPAIGN
+       TC Workspaces rollout · 3 stages · 6 channels · 500 staffers
+       Left: 3-phase rollout timeline (honey progress wire)
+       Right: corkboard of 6 channel artefacts (rotated polaroids)
        ============================================================ */
 
-    .slide[data-audio="26"] {
-      --s24-bg:           #0a0d12;
-      --s24-bg-elev:      #11161f;
-      --s24-bg-deep:      #070a0e;
-      --s24-honey:        #FEBD33;
-      --s24-honey-hot:    #FFD27A;
-      --s24-honey-soft:   rgba(254, 189, 51, 0.10);
-      --s24-honey-line:   rgba(254, 189, 51, 0.28);
-      --s24-honey-glow:   rgba(254, 189, 51, 0.55);
-      --s24-teal:         #43C0BE;
-      --s24-teal-soft:    rgba(67, 192, 190, 0.12);
-      --s24-sky:          #64BCEA;
-      --s24-fg:           #f4f4f5;
-      --s24-fg-muted:     #a1a1aa;
-      --s24-fg-dim:       #71717a;
-      --s24-fg-faint:     #52525b;
-      --s24-border:       rgba(255, 255, 255, 0.07);
-      --s24-border-warm:  rgba(254, 189, 51, 0.28);
+    #slide-21 {
+      --s21-bg:           #0a0d12;
+      --s21-bg-elev:      #11161f;
+      --s21-bg-card:      #0d1119;
+      --s21-bg-deep:      #070a0e;
+
+      --s21-navy:         #2C4C79;
+      --s21-navy-deep:    #1d3454;
+      --s21-honey:        #FEBD33;
+      --s21-honey-soft:   rgba(254, 189, 51, 0.10);
+      --s21-honey-line:   rgba(254, 189, 51, 0.25);
+      --s21-honey-glow:   rgba(254, 189, 51, 0.45);
+      --s21-teal:         #43C0BE;
+      --s21-teal-soft:    rgba(67, 192, 190, 0.12);
+      --s21-dark-teal:    #007F7E;
+      --s21-sky:          #64BCEA;
+      --s21-sky-soft:     rgba(100, 188, 234, 0.12);
+      --s21-violet:       #9B7BD4;
+      --s21-coral:        #F39B5A;
+
+      --s21-fg:           #f4f4f5;
+      --s21-fg-muted:     #a1a1aa;
+      --s21-fg-dim:       #71717a;
+      --s21-fg-faint:     #52525b;
+      --s21-border:       rgba(255, 255, 255, 0.07);
+      --s21-border-warm:  rgba(254, 189, 51, 0.22);
+      --s21-paper:        #f3ece0;
+      --s21-paper-edge:   #d9cdb7;
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s24-bg);
-      color: var(--s24-fg);
+      background: var(--s21-bg);
+      color: var(--s21-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
       isolation: isolate;
@@ -38,568 +49,1221 @@
     }
 
     /* ---------- Atmosphere ---------- */
-    .slide[data-audio="26"] .s24-atmos {
-      position: absolute; inset: 0; pointer-events: none; z-index: 0;
-    }
-    .slide[data-audio="26"] .s24-grid {
+    #slide-21 .s21-atmos { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+    #slide-21 .s21-grid {
       position: absolute; inset: 0;
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 55%, black 18%, transparent 80%);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at 50% 60%, black 25%, transparent 88%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 60%, black 25%, transparent 88%);
     }
-    .slide[data-audio="26"] .s24-glow-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 110vmin; height: 70vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at center,
-        rgba(254, 189, 51, 0.18) 0%,
-        rgba(254, 189, 51, 0.06) 30%,
-        rgba(254, 189, 51, 0.02) 55%,
-        transparent 75%);
-      filter: blur(40px);
-      opacity: 0;
-      animation: s24-glow-build 6800ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards,
-                 s24-glow-breathe 7s ease-in-out 7400ms infinite;
-    }
-    .slide[data-audio="26"] .s24-glow-rim {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 140vmin; height: 90vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at center,
-        transparent 35%,
-        rgba(67, 192, 190, 0.04) 55%,
-        transparent 75%);
-      filter: blur(20px);
-      opacity: 0;
-      animation: s24-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 5000ms forwards;
-    }
-    .slide[data-audio="26"] .s24-vignette {
+    #slide-21 .s21-grid-fine {
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 55%,
-        transparent 30%,
-        rgba(0,0,0,0.35) 75%,
-        rgba(0,0,0,0.6) 100%);
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 16px 16px;
+      mask-image: radial-gradient(ellipse at 50% 60%, black 10%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 60%, black 10%, transparent 70%);
+    }
+    #slide-21 .s21-glow-honey {
+      position: absolute; top: 20%; left: 30%;
+      width: 80vmin; height: 60vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(254, 189, 51, 0.10) 0%,
+        rgba(254, 189, 51, 0.04) 35%,
+        transparent 70%);
+      filter: blur(28px);
+      animation: s21-breathe 11s ease-in-out infinite;
+    }
+    #slide-21 .s21-glow-teal {
+      position: absolute; top: 80%; left: 78%;
+      width: 60vmin; height: 50vmin;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center,
+        rgba(67, 192, 190, 0.07) 0%,
+        transparent 70%);
+      filter: blur(24px);
+    }
+    @keyframes s21-breathe {
+      0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+      50%      { opacity: 1.00; transform: translate(-50%, -50%) scale(1.05); }
+    }
+    #slide-21 .s21-grain {
+      position: absolute; inset: 0; opacity: 0.04; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+    }
+
+    /* ---------- Corner crosshair brackets ---------- */
+    #slide-21 .s21-bracket {
+      position: absolute; width: 22px; height: 22px;
+      border: 1px solid var(--s21-honey-line);
+      opacity: 0.55;
+    }
+    #slide-21 .s21-bracket.tl { top: 26px; left: 26px; border-right: 0; border-bottom: 0; }
+    #slide-21 .s21-bracket.tr { top: 26px; right: 26px; border-left: 0; border-bottom: 0; }
+    #slide-21 .s21-bracket.bl { bottom: 26px; left: 26px; border-right: 0; border-top: 0; }
+    #slide-21 .s21-bracket.br { bottom: 26px; right: 26px; border-left: 0; border-top: 0; }
+
+    /* ---------- Layout shell ---------- */
+    #slide-21 .s21-wrap {
+      position: relative; z-index: 2;
+      width: 100%; height: 100%;
+      max-width: 1760px;
+      margin: 0 auto;
+      padding: clamp(22px, 2.6vh, 34px) clamp(44px, 4vw, 72px) clamp(18px, 2.0vh, 28px);
+      display: flex; flex-direction: column;
+      gap: clamp(14px, 1.6vh, 22px);
+    }
+
+    /* ---------- Header ---------- */
+    #slide-21 .s21-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      padding-bottom: 4px;
+    }
+    #slide-21 .s21-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10.5px; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--s21-fg-muted);
+    }
+    #slide-21 .s21-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s21-honey);
+      box-shadow: 0 0 12px var(--s21-honey-glow);
+      animation: s21-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes s21-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.85); }
+    }
+    #slide-21 .s21-eyebrow .slash { color: var(--s21-fg-faint); }
+    #slide-21 .s21-eyebrow .num   { color: var(--s21-fg-dim); }
+    #slide-21 .s21-eyebrow .sep   { width: 28px; height: 1px; background: var(--s21-border); }
+
+    #slide-21 .s21-stamp {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+    }
+    #slide-21 .s21-stamp b { color: var(--s21-honey); font-weight: 600; }
+
+    #slide-21 .s21-headline {
+      margin: 4px 0 0;
+      font-weight: 800;
+      font-size: clamp(48px, 5.4vw, 84px);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: var(--s21-fg);
+      max-width: 1100px;
+      opacity: 0;
+      animation: s21-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.10s forwards;
+    }
+    #slide-21 .s21-headline em {
+      font-style: normal;
+      color: var(--s21-honey);
+      position: relative;
+    }
+    #slide-21 .s21-headline em::after {
+      content: '';
+      position: absolute; left: 0; bottom: -0.06em;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--s21-honey) 0%, transparent 100%);
+      transform-origin: left;
+      animation: s21-underline 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.9s both;
+    }
+    @keyframes s21-rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s21-underline {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    #slide-21 .s21-subhead {
+      margin-top: 14px;
+      display: flex; align-items: center; gap: 14px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s21-honey);
+      opacity: 0;
+      animation: s21-rise 0.7s ease-out 0.55s forwards;
+    }
+    #slide-21 .s21-subhead .pip {
+      width: 4px; height: 4px; background: var(--s21-honey);
+      border-radius: 50%;
+    }
+    #slide-21 .s21-subhead .pipe { color: var(--s21-fg-faint); }
+
+    /* ---------- Main grid ---------- */
+    #slide-21 .s21-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.20fr);
+      gap: clamp(28px, 3vw, 44px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ============================================================
+       LEFT — Rollout timeline (3 phases)
+       ============================================================ */
+    #slide-21 .s21-left {
+      display: flex; flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+    #slide-21 .s21-section-label {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.30em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+    }
+    #slide-21 .s21-section-label::before {
+      content: ''; width: 8px; height: 8px;
+      border: 1px solid var(--s21-honey); border-radius: 50%;
+    }
+    #slide-21 .s21-section-label .tag {
+      color: var(--s21-fg-faint);
+      margin-left: auto;
+    }
+
+    #slide-21 .s21-timeline {
+      position: relative;
+      flex: 1;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    /* Honey progress wire */
+    #slide-21 .s21-wire {
+      position: absolute;
+      left: 38px; top: 28px; bottom: 28px;
+      width: 2px;
+      background: linear-gradient(to bottom,
+        var(--s21-honey-line) 0%,
+        var(--s21-honey-line) 100%);
+      z-index: 0;
+    }
+    #slide-21 .s21-wire::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        var(--s21-honey) 0%,
+        var(--s21-honey) 50%,
+        transparent 50%,
+        transparent 100%);
+      background-size: 100% 200%;
+      background-position: 0 100%;
+      animation: s21-wire-fill 2.0s cubic-bezier(0.4, 0.0, 0.2, 1) 0.6s forwards;
+      box-shadow: 0 0 14px var(--s21-honey-glow);
+    }
+    @keyframes s21-wire-fill {
+      from { background-position: 0 100%; }
+      to   { background-position: 0 0%; }
+    }
+
+    #slide-21 .s21-phase {
+      position: relative;
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      align-items: stretch;
+      gap: 18px;
+      opacity: 0;
+      animation: s21-rise 0.7s ease-out forwards;
+    }
+    #slide-21 .s21-phase:nth-child(1) { animation-delay: 0.70s; }
+    #slide-21 .s21-phase:nth-child(2) { animation-delay: 1.05s; }
+    #slide-21 .s21-phase:nth-child(3) { animation-delay: 1.40s; }
+
+    #slide-21 .s21-phase-node {
+      position: relative; z-index: 1;
+      width: 78px; padding-top: 14px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px;
+    }
+    #slide-21 .s21-phase-node .ring {
+      position: relative;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--s21-bg);
+      border: 1.5px solid var(--s21-honey);
+      display: grid; place-items: center;
+      box-shadow: 0 0 0 4px var(--s21-bg), 0 0 16px var(--s21-honey-glow);
+    }
+    #slide-21 .s21-phase-node .ring::after {
+      content: ''; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--s21-honey);
+    }
+    #slide-21 .s21-phase[data-accent="teal"] .ring { border-color: var(--s21-teal); box-shadow: 0 0 0 4px var(--s21-bg), 0 0 16px rgba(67,192,190,0.45); }
+    #slide-21 .s21-phase[data-accent="teal"] .ring::after { background: var(--s21-teal); }
+    #slide-21 .s21-phase[data-accent="sky"] .ring { border-color: var(--s21-sky); box-shadow: 0 0 0 4px var(--s21-bg), 0 0 16px rgba(100,188,234,0.45); }
+    #slide-21 .s21-phase[data-accent="sky"] .ring::after { background: var(--s21-sky); }
+
+    #slide-21 .s21-phase-node .month {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+      margin-top: 4px;
+    }
+    #slide-21 .s21-phase-node .idx {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px; letter-spacing: 0.2em;
+      color: var(--s21-fg-faint);
+    }
+
+    #slide-21 .s21-phase-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.008));
+      border: 1px solid var(--s21-border);
+      border-radius: 12px;
+      padding: 16px 20px 16px 22px;
+      display: flex; flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+      transition: border-color 0.4s ease, transform 0.4s ease;
+    }
+    #slide-21 .s21-phase-card::before {
+      content: '';
+      position: absolute; left: 0; top: 14px; bottom: 14px;
+      width: 2px;
+      background: var(--s21-honey);
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+    #slide-21 .s21-phase[data-accent="teal"] .s21-phase-card::before { background: var(--s21-teal); }
+    #slide-21 .s21-phase[data-accent="sky"]  .s21-phase-card::before { background: var(--s21-sky); }
+
+    #slide-21 .s21-phase-card .row1 {
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    #slide-21 .s21-phase-card .stage {
+      font-weight: 800;
+      font-size: clamp(22px, 2.0vw, 28px);
+      letter-spacing: -0.01em;
+      color: var(--s21-fg);
+    }
+    #slide-21 .s21-phase[data-accent="honey"] .stage { color: var(--s21-honey); }
+    #slide-21 .s21-phase[data-accent="teal"]  .stage { color: var(--s21-teal); }
+    #slide-21 .s21-phase[data-accent="sky"]   .stage { color: var(--s21-sky); }
+
+    #slide-21 .s21-phase-card .span {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+      padding: 3px 8px;
+      border: 1px solid var(--s21-border);
+      border-radius: 3px;
+    }
+    #slide-21 .s21-phase-card .quote {
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(13.5px, 1.05vw, 15.5px);
+      color: var(--s21-fg);
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+      max-width: 480px;
+    }
+    #slide-21 .s21-phase-card .quote::before { content: '"'; color: var(--s21-honey); margin-right: 2px; }
+    #slide-21 .s21-phase-card .quote::after  { content: '"'; color: var(--s21-honey); margin-left: 2px; }
+
+    #slide-21 .s21-phase-card .channels {
+      display: flex; flex-wrap: wrap; gap: 6px 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--s21-fg-muted);
+      margin-top: 2px;
+    }
+    #slide-21 .s21-phase-card .channels span {
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    #slide-21 .s21-phase-card .channels span::before {
+      content: ''; width: 3px; height: 3px; background: var(--s21-honey); border-radius: 50%;
+    }
+    #slide-21 .s21-phase[data-accent="teal"] .channels span::before { background: var(--s21-teal); }
+    #slide-21 .s21-phase[data-accent="sky"]  .channels span::before { background: var(--s21-sky); }
+
+    /* ============================================================
+       RIGHT — corkboard of 6 channel artefacts
+       ============================================================ */
+    #slide-21 .s21-right {
+      display: flex; flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+    #slide-21 .s21-board {
+      position: relative;
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: clamp(16px, 1.6vw, 24px);
+      padding: 6px 4px;
+    }
+    #slide-21 .s21-board::before {
+      content: '';
+      position: absolute; inset: -10px;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(254,189,51,0.05), transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(67,192,190,0.04), transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #slide-21 .s21-asset {
+      position: relative;
+      display: flex; flex-direction: column;
+      gap: 6px;
+      opacity: 0;
+      animation: s21-pin 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    #slide-21 .s21-asset:nth-child(1) { animation-delay: 0.95s;  transform: rotate(-1.6deg); }
+    #slide-21 .s21-asset:nth-child(2) { animation-delay: 1.05s;  transform: rotate( 1.4deg); }
+    #slide-21 .s21-asset:nth-child(3) { animation-delay: 1.15s;  transform: rotate(-1.2deg); }
+    #slide-21 .s21-asset:nth-child(4) { animation-delay: 1.25s;  transform: rotate( 1.8deg); }
+    #slide-21 .s21-asset:nth-child(5) { animation-delay: 1.35s;  transform: rotate(-1.8deg); }
+    #slide-21 .s21-asset:nth-child(6) { animation-delay: 1.45s;  transform: rotate( 1.5deg); }
+    @keyframes s21-pin {
+      from { opacity: 0; transform: rotate(var(--rot, 0deg)) translateY(8px) scale(0.96); }
+      to   { opacity: 1; }
+    }
+    #slide-21 .s21-asset:nth-child(1) { --rot: -1.6deg; }
+    #slide-21 .s21-asset:nth-child(2) { --rot:  1.4deg; }
+    #slide-21 .s21-asset:nth-child(3) { --rot: -1.2deg; }
+    #slide-21 .s21-asset:nth-child(4) { --rot:  1.8deg; }
+    #slide-21 .s21-asset:nth-child(5) { --rot: -1.8deg; }
+    #slide-21 .s21-asset:nth-child(6) { --rot:  1.5deg; }
+
+    #slide-21 .s21-asset .frame {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--s21-border-warm);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 14px 32px rgba(0,0,0,0.55),
+        0 2px 6px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(254,189,51,0.05) inset;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    #slide-21 .s21-asset .frame::before {
+      content: '';
+      position: absolute; top: 6px; left: 50%;
+      width: 6px; height: 6px;
+      transform: translateX(-50%);
+      background: var(--s21-honey);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--s21-honey-glow), 0 1px 1px rgba(0,0,0,0.4);
+      z-index: 5;
+    }
+    #slide-21 .s21-asset .meta {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+      padding: 0 4px;
+    }
+    #slide-21 .s21-asset .meta b { color: var(--s21-honey); font-weight: 600; letter-spacing: 0.22em; }
+    #slide-21 .s21-asset .meta .ch { color: var(--s21-fg-faint); }
+
+    /* ------ Asset 1 — Banner ad ------ */
+    #slide-21 .s21-banner {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--s21-navy) 0%, var(--s21-navy-deep) 100%);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 0 16px;
+      color: #fff;
+      position: relative;
+    }
+    #slide-21 .s21-banner::after {
+      content: '';
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 38%;
+      background: radial-gradient(ellipse at 80% 50%, rgba(254,189,51,0.18), transparent 70%);
+    }
+    #slide-21 .s21-banner .bear {
+      width: 38px; height: 38px;
+      flex-shrink: 0;
+      display: grid; place-items: center;
+      position: relative; z-index: 1;
+    }
+    #slide-21 .s21-banner .txt {
+      display: flex; flex-direction: column;
+      gap: 2px;
+      position: relative; z-index: 1;
+      min-width: 0;
+    }
+    #slide-21 .s21-banner .t1 {
+      font-size: clamp(11px, 0.95vw, 13.5px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    #slide-21 .s21-banner .t1 em { font-style: normal; color: var(--s21-honey); }
+    #slide-21 .s21-banner .t2 {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    #slide-21 .s21-banner .cta {
+      background: var(--s21-honey);
+      color: var(--s21-navy);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 7px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      position: relative; z-index: 1;
+      box-shadow: 0 0 14px rgba(254,189,51,0.45);
+    }
+
+    /* ------ Asset 2 — Email subject ------ */
+    #slide-21 .s21-email {
+      width: 100%; height: 100%;
+      background: #1a1f2a;
+      display: flex; flex-direction: column;
+      padding: 12px 14px;
+      gap: 6px;
+      font-family: -apple-system, system-ui, sans-serif;
+    }
+    #slide-21 .s21-email .bar {
+      display: flex; align-items: center; gap: 6px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    #slide-21 .s21-email .bar .d {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+    #slide-21 .s21-email .bar .d:nth-child(1) { background: #ff5f57; }
+    #slide-21 .s21-email .bar .d:nth-child(2) { background: #febc2e; }
+    #slide-21 .s21-email .bar .d:nth-child(3) { background: #28c840; }
+    #slide-21 .s21-email .bar .label {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--s21-fg-faint);
+    }
+    #slide-21 .s21-email .row {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 4px;
+      border-bottom: 1px dashed rgba(255,255,255,0.06);
+    }
+    #slide-21 .s21-email .row.unread { background: rgba(254,189,51,0.05); border-radius: 4px; }
+    #slide-21 .s21-email .av {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--s21-honey), var(--s21-coral));
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 11px; color: var(--s21-navy);
+    }
+    #slide-21 .s21-email .row.unread .av { background: linear-gradient(135deg, var(--s21-honey), #b07b18); }
+    #slide-21 .s21-email .row .body {
+      min-width: 0;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    #slide-21 .s21-email .sender {
+      font-size: 10.5px; font-weight: 600;
+      color: var(--s21-fg);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    #slide-21 .s21-email .row.unread .sender { color: var(--s21-honey); }
+    #slide-21 .s21-email .subject {
+      font-size: 10px;
+      color: var(--s21-fg-muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    #slide-21 .s21-email .row.unread .subject {
+      color: var(--s21-fg);
+      font-weight: 600;
+    }
+    #slide-21 .s21-email .time {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px; color: var(--s21-fg-faint);
+      letter-spacing: 0.10em;
+    }
+    #slide-21 .s21-email .row.unread .time { color: var(--s21-honey); }
+
+    /* ------ Asset 3 — Office poster ------ */
+    #slide-21 .s21-poster {
+      width: 100%; height: 100%;
+      background: linear-gradient(180deg, var(--s21-navy) 0%, #1a2c47 60%, #0f1a2d 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 14px 12px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+    #slide-21 .s21-poster::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(254,189,51,0.20), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 24px);
       pointer-events: none;
     }
-
-    @keyframes s24-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    #slide-21 .s21-poster .top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      position: relative; z-index: 1;
     }
-    @keyframes s24-glow-build {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s24-glow-breathe {
-      0%, 100% { opacity: 0.85; }
-      50%      { opacity: 1; }
-    }
-
-    /* ---------- Content scaffold ---------- */
-    .slide[data-audio="26"] .s24-stage {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100vh;
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: clamp(28px, 3.4vh, 52px) clamp(48px, 6vw, 96px);
-      box-sizing: border-box;
-      gap: clamp(8px, 1vh, 18px);
-    }
-
-    /* ---------- Top: eyebrow + headline ---------- */
-    .slide[data-audio="26"] .s24-top {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(14px, 1.6vh, 22px);
-      opacity: 0;
-      transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
-    }
-    @keyframes s24-rise {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .slide[data-audio="26"] .s24-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    #slide-21 .s21-poster .tc {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.85vw, 12px);
-      letter-spacing: 0.22em;
-      color: var(--s24-fg-dim);
-      text-transform: uppercase;
+      font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
     }
-    .slide[data-audio="26"] .s24-eyebrow .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--s24-honey);
-      box-shadow: 0 0 14px var(--s24-honey-glow);
-      animation: s24-pulse-eyebrow 2400ms ease-in-out infinite;
+    #slide-21 .s21-poster .bear-big {
+      position: relative; z-index: 1;
+      align-self: center;
+      width: 64%; max-width: 110px;
+      margin: 2px auto;
     }
-    @keyframes s24-pulse-eyebrow {
-      0%, 100% { opacity: 0.55; transform: scale(1); }
-      50%      { opacity: 1;    transform: scale(1.25); }
+    #slide-21 .s21-poster .tagline {
+      position: relative; z-index: 1;
+      color: #fff;
+      text-align: left;
     }
-    .slide[data-audio="26"] .s24-eyebrow .sep {
-      color: var(--s24-fg-faint);
-    }
-    .slide[data-audio="26"] .s24-eyebrow .label-honey {
-      color: var(--s24-honey);
-    }
-
-    .slide[data-audio="26"] .s24-headline {
-      font-family: 'Inter', sans-serif;
+    #slide-21 .s21-poster .tagline .big {
+      font-size: clamp(14px, 1.3vw, 18px);
       font-weight: 800;
-      font-size: clamp(36px, 4.4vw, 66px);
-      line-height: 0.98;
-      letter-spacing: -0.035em;
-      color: var(--s24-fg);
-      max-width: 22ch;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
     }
-    .slide[data-audio="26"] .s24-headline .num {
-      color: var(--s24-honey);
-      text-shadow: 0 0 28px rgba(254, 189, 51, 0.35);
-    }
-    .slide[data-audio="26"] .s24-headline .period {
-      color: var(--s24-honey);
-      text-shadow: 0 0 32px rgba(254, 189, 51, 0.55);
-    }
-
-    /* ---------- Center: grid stage ---------- */
-    .slide[data-audio="26"] .s24-grid-stage {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(16px, 2vh, 32px) 0;
-    }
-
-    .slide[data-audio="26"] .s24-grid-wrap {
-      position: relative;
-      width: min(58vw, 880px);
-      aspect-ratio: 25 / 20;
-      max-height: 48vh;
-    }
-
-    /* Corner brackets — whisper-thin */
-    .slide[data-audio="26"] .s24-bracket {
-      position: absolute;
-      width: 22px; height: 22px;
-      border: 1px solid var(--s24-border-warm);
-      opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
-    }
-    .slide[data-audio="26"] .s24-bracket.tl {
-      top: -18px; left: -18px;
-      border-right: none; border-bottom: none;
-    }
-    .slide[data-audio="26"] .s24-bracket.tr {
-      top: -18px; right: -18px;
-      border-left: none; border-bottom: none;
-    }
-    .slide[data-audio="26"] .s24-bracket.bl {
-      bottom: -18px; left: -18px;
-      border-right: none; border-top: none;
-    }
-    .slide[data-audio="26"] .s24-bracket.br {
-      bottom: -18px; right: -18px;
-      border-left: none; border-top: none;
-    }
-
-    /* Side counter chips */
-    .slide[data-audio="26"] .s24-counter {
-      position: absolute;
-      top: -34px;
+    #slide-21 .s21-poster .tagline .small {
+      margin-top: 4px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--s24-fg-faint);
-      text-transform: uppercase;
-      opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
-    }
-    .slide[data-audio="26"] .s24-counter.left  { left: 0; }
-    .slide[data-audio="26"] .s24-counter.right { right: 0; }
-    .slide[data-audio="26"] .s24-counter b {
-      color: var(--s24-honey);
-      font-weight: 500;
-      letter-spacing: 0.12em;
+      font-size: 7.5px;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--s21-honey);
     }
 
-    /* The SVG itself */
-    .slide[data-audio="26"] .s24-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      overflow: visible;
+    /* ------ Asset 4 — Screensaver ------ */
+    #slide-21 .s21-screensaver {
+      width: 100%; height: 100%;
+      background: var(--s21-navy);
+      position: relative;
+      overflow: hidden;
+      display: grid; place-items: center;
+      padding: 12px;
     }
-
-    /* Per-dot styling — controlled by CSS vars set inline per <circle> */
-    .slide[data-audio="26"] .s24-dot {
-      fill: #1c2230;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
-      opacity: 0.55;
-      animation:
-        s24-light-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient 4200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+    #slide-21 .s21-screensaver::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(254,189,51,0.16), transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(67,192,190,0.10), transparent 60%);
     }
-
-    /* Hero dots — same animation, but brighter + with halo ring */
-    .slide[data-audio="26"] .s24-dot.hero {
-      animation:
-        s24-light-up-hero 1000ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient-hero 5200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+    #slide-21 .s21-screensaver::after {
+      content: '';
+      position: absolute; inset: 8px;
+      border: 1px solid rgba(254,189,51,0.18);
+      pointer-events: none;
     }
-    .slide[data-audio="26"] .s24-halo {
-      fill: none;
-      stroke: var(--s24-honey);
-      stroke-width: 0.6;
-      opacity: 0;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
-      animation:
-        s24-halo-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms) + 200ms) forwards,
-        s24-halo-breathe 5200ms ease-in-out calc(var(--delay, 0ms) + 1900ms) infinite;
-    }
-    /* Patient-zero dot — center dot, lights first, slightly larger */
-    .slide[data-audio="26"] .s24-dot.zero {
-      animation:
-        s24-light-up-zero 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards,
-        s24-ambient-zero 4400ms ease-in-out 2500ms infinite;
-    }
-
-    @keyframes s24-light-up {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFD27A;            opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 4px rgba(254,189,51,0.85)); }
-      100% { fill: var(--lit, #FEBD33); opacity: var(--lit-opacity, 1); transform: scale(1); filter: drop-shadow(0 0 2.5px rgba(254,189,51,0.55)); }
-    }
-    @keyframes s24-light-up-hero {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      45%  { fill: #FFE2A0;            opacity: 1;    transform: scale(1.32); filter: drop-shadow(0 0 7px rgba(254,189,51,1)); }
-      100% { fill: var(--lit, #FFD27A); opacity: 1;   transform: scale(1.05); filter: drop-shadow(0 0 4.5px rgba(254,189,51,0.85)); }
-    }
-    @keyframes s24-light-up-zero {
-      0%   { fill: #1c2230;  opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFFFFF;  opacity: 1;    transform: scale(1.6); filter: drop-shadow(0 0 14px rgba(255,255,255,0.95)); }
-      75%  { fill: #FFE2A0;  opacity: 1;    transform: scale(1.25); filter: drop-shadow(0 0 9px rgba(254,189,51,0.95)); }
-      100% { fill: #FFD27A;  opacity: 1;    transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(254,189,51,0.9)); }
-    }
-
-    @keyframes s24-ambient {
-      0%, 100% { opacity: var(--amb-low, 0.78); transform: scale(1); filter: drop-shadow(0 0 2px rgba(254,189,51,0.35)); }
-      50%      { opacity: var(--amb-high, 1);   transform: scale(1.06); filter: drop-shadow(0 0 4px rgba(254,189,51,0.65)); }
-    }
-    @keyframes s24-ambient-hero {
-      0%, 100% { opacity: 0.9; transform: scale(1.02); filter: drop-shadow(0 0 4px rgba(254,189,51,0.7)); }
-      50%      { opacity: 1;   transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(254,189,51,1)); }
-    }
-    @keyframes s24-ambient-zero {
-      0%, 100% { opacity: 0.92; transform: scale(1.08); filter: drop-shadow(0 0 5px rgba(254,189,51,0.85)); }
-      50%      { opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 10px rgba(255,220,140,1)); }
-    }
-
-    @keyframes s24-halo-in {
-      0%   { opacity: 0; stroke-width: 0.4; r: 0; }
-      50%  { opacity: 0.85; }
-      100% { opacity: 0.55; stroke-width: 0.55; }
-    }
-    @keyframes s24-halo-breathe {
-      0%, 100% { opacity: 0.4; stroke-width: 0.5; }
-      50%      { opacity: 0.7; stroke-width: 0.65; }
-    }
-
-    /* ---------- Bottom: supporting copy ---------- */
-    .slide[data-audio="26"] .s24-bottom {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(12px, 1.4vh, 18px);
-      align-items: center;
+    #slide-21 .s21-screensaver .center {
+      position: relative; z-index: 1;
       text-align: center;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 5800ms forwards;
+      color: #fff;
+      display: flex; flex-direction: column; gap: 6px;
+      align-items: center;
     }
-    .slide[data-audio="26"] .s24-bottom-line {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: clamp(16px, 1.5vw, 24px);
-      line-height: 1.35;
-      letter-spacing: -0.01em;
-      color: var(--s24-honey);
-      max-width: 56ch;
-      margin: 0;
+    #slide-21 .s21-screensaver .big {
+      font-size: clamp(14px, 1.3vw, 18px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.0;
     }
-    .slide[data-audio="26"] .s24-bottom-line .punctuation {
-      color: var(--s24-honey-hot);
-    }
-    .slide[data-audio="26"] .s24-bottom-mono {
+    #slide-21 .s21-screensaver .url {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.85vw, 12px);
-      letter-spacing: 0.22em;
-      color: var(--s24-fg-dim);
-      text-transform: uppercase;
-      display: flex;
+      font-size: 8px; letter-spacing: 0.16em; text-transform: lowercase;
+      color: var(--s21-honey);
+      padding: 4px 8px;
+      border: 1px solid var(--s21-border-warm);
+      border-radius: 3px;
+    }
+    #slide-21 .s21-screensaver .corner {
+      position: absolute;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 7px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    #slide-21 .s21-screensaver .corner.tl { top: 14px; left: 14px; }
+    #slide-21 .s21-screensaver .corner.br { bottom: 14px; right: 14px; }
+
+    /* ------ Asset 5 — Teams pinned message ------ */
+    #slide-21 .s21-teams {
+      width: 100%; height: 100%;
+      background: #1f1f23;
+      padding: 10px 12px;
+      display: flex; flex-direction: column;
+      gap: 8px;
+      font-family: -apple-system, system-ui, sans-serif;
+    }
+    #slide-21 .s21-teams .head {
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    #slide-21 .s21-teams .pin {
+      color: var(--s21-honey);
+      font-size: 11px;
+    }
+    #slide-21 .s21-teams .head .ch {
+      font-size: 10.5px; font-weight: 600; color: var(--s21-fg);
+    }
+    #slide-21 .s21-teams .head .tag {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--s21-honey);
+    }
+    #slide-21 .s21-teams .msg {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      flex: 1;
+    }
+    #slide-21 .s21-teams .av {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--s21-honey), var(--s21-coral));
+      display: grid; place-items: center;
+      border: 1px solid var(--s21-honey-line);
+    }
+    #slide-21 .s21-teams .bubble {
+      display: flex; flex-direction: column; gap: 4px;
+      min-width: 0;
+    }
+    #slide-21 .s21-teams .bubble .who {
+      font-size: 10px; font-weight: 600;
+      color: var(--s21-fg);
+      display: flex; align-items: center; gap: 6px;
+    }
+    #slide-21 .s21-teams .bubble .who span {
+      font-weight: 400; color: var(--s21-fg-faint);
+      font-size: 8.5px;
+    }
+    #slide-21 .s21-teams .bubble .text {
+      font-size: 10.5px;
+      color: var(--s21-fg);
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+    }
+    #slide-21 .s21-teams .bubble .text em { font-style: normal; color: var(--s21-honey); font-weight: 600; }
+    #slide-21 .s21-teams .reactions {
+      display: flex; gap: 6px;
+      margin-top: 4px;
+    }
+    #slide-21 .s21-teams .reactions span {
+      font-size: 9px;
+      padding: 2px 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      color: var(--s21-fg-muted);
+    }
+    #slide-21 .s21-teams .reactions span b {
+      color: var(--s21-honey);
+      font-weight: 700;
+    }
+
+    /* ------ Asset 6 — Champion badge ------ */
+    #slide-21 .s21-badge-frame {
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse at 50% 40%, #1a2238 0%, #0b1019 70%);
+      display: grid; place-items: center;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    #slide-21 .s21-badge-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(254,189,51,0.16), transparent 65%);
+    }
+    #slide-21 .s21-badge {
+      position: relative;
+      width: 78%; aspect-ratio: 1.05;
+      max-width: 130px; max-height: 100%;
+      display: grid; place-items: center;
+    }
+    #slide-21 .s21-badge svg { width: 100%; height: 100%; }
+
+    /* ---------- Bottom strip ---------- */
+    #slide-21 .s21-foot {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      padding: 14px 22px;
+      border: 1px solid var(--s21-border);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+      opacity: 0;
+      animation: s21-rise 0.7s ease-out 1.55s forwards;
+    }
+    #slide-21 .s21-foot::before {
+      content: '';
+      position: absolute;
+    }
+    #slide-21 .s21-foot .l {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--s21-honey);
+      display: flex; align-items: center; gap: 10px;
+    }
+    #slide-21 .s21-foot .l::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--s21-honey);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--s21-honey-glow);
+    }
+    #slide-21 .s21-foot .metrics {
+      display: flex; align-items: center; gap: 22px;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
     }
-    .slide[data-audio="26"] .s24-bottom-mono .sep {
-      color: var(--s24-fg-faint);
+    #slide-21 .s21-foot .metric {
+      display: flex; align-items: baseline; gap: 8px;
+      font-size: 12.5px;
+      color: var(--s21-fg-muted);
+      letter-spacing: -0.005em;
     }
-    .slide[data-audio="26"] .s24-bottom-mono .hot {
-      color: var(--s24-honey);
+    #slide-21 .s21-foot .metric b {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--s21-fg);
+      letter-spacing: 0;
     }
-    .slide[data-audio="26"] .s24-bottom-rule {
-      width: clamp(120px, 14vw, 220px);
-      height: 1px;
-      background: linear-gradient(to right,
-        transparent,
-        var(--s24-honey-line) 30%,
-        var(--s24-honey-line) 70%,
-        transparent);
-      opacity: 0.8;
+    #slide-21 .s21-foot .metric .hi {
+      color: var(--s21-honey);
     }
+    #slide-21 .s21-foot .metric .lo {
+      color: var(--s21-fg-faint);
+    }
+    #slide-21 .s21-foot .divider {
+      width: 1px; height: 22px; background: var(--s21-border);
+    }
+    #slide-21 .s21-foot .r {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--s21-fg-dim);
+      text-align: right;
+    }
+    #slide-21 .s21-foot .r b { color: var(--s21-honey); font-weight: 600; }
 
     /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="26"] .s24-dot,
-      .slide[data-audio="26"] .s24-dot.hero,
-      .slide[data-audio="26"] .s24-dot.zero,
-      .slide[data-audio="26"] .s24-halo,
-      .slide[data-audio="26"] .s24-glow-center,
-      .slide[data-audio="26"] .s24-glow-rim,
-      .slide[data-audio="26"] .s24-top,
-      .slide[data-audio="26"] .s24-bottom,
-      .slide[data-audio="26"] .s24-bracket,
-      .slide[data-audio="26"] .s24-counter,
-      .slide[data-audio="26"] .s24-eyebrow .dot {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
+      #slide-21 * {
+        animation-duration: 0.001s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.001s !important;
       }
-      .slide[data-audio="26"] .s24-dot { fill: var(--s24-honey); opacity: 0.85; }
-      .slide[data-audio="26"] .s24-dot.hero { fill: var(--s24-honey-hot); }
-      .slide[data-audio="26"] .s24-dot.zero { fill: #FFE2A0; }
-      .slide[data-audio="26"] .s24-halo { opacity: 0.55; }
+    }
+
+    /* ---------- Responsive (small) ---------- */
+    @media (max-width: 1100px) {
+      #slide-21 .s21-main { grid-template-columns: 1fr; }
+      #slide-21 .s21-board { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
     }
   </style>
 
-  <div class="s24-atmos">
-    <div class="s24-grid"></div>
-    <div class="s24-glow-center"></div>
-    <div class="s24-glow-rim"></div>
-    <div class="s24-vignette"></div>
+  <!-- ATMOSPHERE -->
+  <div class="s21-atmos">
+    <div class="s21-grid"></div>
+    <div class="s21-grid-fine"></div>
+    <div class="s21-glow-honey"></div>
+    <div class="s21-glow-teal"></div>
+    <div class="s21-grain"></div>
   </div>
 
-  <div class="s24-stage">
-    <header class="s24-top">
-      <div class="s24-eyebrow">
-        <span class="dot"></span>
-        <span>SLIDE 24 / 27</span>
-        <span class="sep">·</span>
-        <span class="label-honey">THE 500-LIGHTBULB MOMENT</span>
-        <span class="sep">·</span>
-        <span>TC WORKSPACES · GA OCT 2026</span>
-      </div>
-      <h1 class="s24-headline">
-        <span class="num">500</span> staff. <span class="num">500</span> lightbulbs.<br>
-        <span class="num">1</span> deployment<span class="period">.</span>
-      </h1>
-    </header>
+  <!-- Corner brackets -->
+  <div class="s21-bracket tl"></div>
+  <div class="s21-bracket tr"></div>
+  <div class="s21-bracket bl"></div>
+  <div class="s21-bracket br"></div>
 
-    <div class="s24-grid-stage">
-      <div class="s24-grid-wrap">
-        <span class="s24-counter left">N <b>= 500</b> · staffers</span>
-        <span class="s24-counter right">T <b>= 1</b> · instant</span>
-        <span class="s24-bracket tl"></span>
-        <span class="s24-bracket tr"></span>
-        <span class="s24-bracket bl"></span>
-        <span class="s24-bracket br"></span>
-        <svg class="s24-svg" viewBox="0 0 250 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <!-- circles are injected by script below -->
-        </svg>
+  <div class="s21-wrap">
+
+    <!-- ============ HEADER ============ -->
+    <div class="s21-head">
+      <div>
+        <div class="s21-eyebrow">
+          <span class="dot"></span>
+          <span class="num">21</span><span class="slash">/</span><span class="num">23</span>
+          <span class="sep"></span>
+          <span>INTERNAL MARKETING</span>
+          <span class="slash">·</span>
+          <span>TC WORKSPACES ROLLOUT</span>
+        </div>
+        <h1 class="s21-headline">Make adoption <em>inevitable.</em></h1>
+        <div class="s21-subhead">
+          <span>3-STAGE CAMPAIGN</span>
+          <span class="pipe">·</span>
+          <span>6 CHANNELS</span>
+          <span class="pipe">·</span>
+          <span>500 STAFFERS</span>
+          <span class="pipe">·</span>
+          <span>100% COVERAGE</span>
+        </div>
+      </div>
+      <div class="s21-stamp">
+        <span>CAMPAIGN BOARD</span>
+        <span style="color:var(--s21-fg-faint)">·</span>
+        <span><b>JUN — OCT 2026</b></span>
       </div>
     </div>
 
-    <footer class="s24-bottom">
-      <div class="s24-bottom-rule"></div>
-      <p class="s24-bottom-line">
-        One deployment<span class="punctuation">.</span> One instant<span class="punctuation">.</span> Every staffer gets the same realization<span class="punctuation">.</span>
-      </p>
-      <div class="s24-bottom-mono">
-        <span class="hot">OCT 2026</span>
-        <span class="sep">·</span>
-        <span>WORKSPACES HOME GA</span>
-        <span class="sep">·</span>
-        <span class="hot">YOGI INSIDE</span>
-        <span class="sep">·</span>
-        <span>COMPANION INTERACTION</span>
-        <span class="sep">·</span>
-        <span>SUPERCHARGED FROM DAY ONE</span>
+    <!-- ============ MAIN ============ -->
+    <div class="s21-main">
+
+      <!-- LEFT — Rollout timeline -->
+      <div class="s21-left">
+        <div class="s21-section-label">
+          <span>ROLLOUT TIMELINE</span>
+          <span class="tag">3 PHASES · 5 MONTHS</span>
+        </div>
+        <div class="s21-timeline">
+          <div class="s21-wire"></div>
+
+          <!-- Phase 1 -->
+          <div class="s21-phase" data-accent="honey">
+            <div class="s21-phase-node">
+              <div class="ring"></div>
+              <div class="month">JUN</div>
+              <div class="idx">01 / 03</div>
+            </div>
+            <div class="s21-phase-card">
+              <div class="row1">
+                <div class="stage">TEASE</div>
+                <div class="span">WEEK 1 — 3</div>
+              </div>
+              <div class="quote">Something new is coming to your desk.</div>
+              <div class="channels">
+                <span>INTERNAL EMAIL</span>
+                <span>TEAMS BANNER</span>
+                <span>SCREENSAVER HINT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="s21-phase" data-accent="teal">
+            <div class="s21-phase-node">
+              <div class="ring"></div>
+              <div class="month">JUL</div>
+              <div class="idx">02 / 03</div>
+            </div>
+            <div class="s21-phase-card">
+              <div class="row1">
+                <div class="stage">LAUNCH</div>
+                <div class="span">WEEK 4 — 6</div>
+              </div>
+              <div class="quote">Meet Yogi. Your Workspace Home is live.</div>
+              <div class="channels">
+                <span>ALL-HANDS VIDEO</span>
+                <span>LOGIN BANNER</span>
+                <span>OFFICE POSTERS</span>
+                <span>CHAMPION KICKOFF</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="s21-phase" data-accent="sky">
+            <div class="s21-phase-node">
+              <div class="ring"></div>
+              <div class="month">AUG — OCT</div>
+              <div class="idx">03 / 03</div>
+            </div>
+            <div class="s21-phase-card">
+              <div class="row1">
+                <div class="stage">EMBED</div>
+                <div class="span">WEEK 7 — 20</div>
+              </div>
+              <div class="quote">Use Yogi today. Show your team next.</div>
+              <div class="channels">
+                <span>WEEKLY TIPS EMAIL</span>
+                <span>DIVISION LEADERBOARDS</span>
+                <span>REWARD PROGRAM</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+
+      <!-- RIGHT — Channel mosaic -->
+      <div class="s21-right">
+        <div class="s21-section-label">
+          <span>CHANNEL MOSAIC</span>
+          <span class="tag">6 ARTEFACTS · MULTI-SURFACE</span>
+        </div>
+        <div class="s21-board">
+
+          <!-- 1: Banner ad -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-banner">
+                <div class="bear">
+                  <!-- Bear silhouette -->
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <circle cx="11" cy="10" r="4" fill="#3a3a3a" stroke="#FEBD33" stroke-width="0.8"/>
+                    <circle cx="29" cy="10" r="4" fill="#3a3a3a" stroke="#FEBD33" stroke-width="0.8"/>
+                    <ellipse cx="20" cy="22" rx="11" ry="10" fill="#3a3a3a" stroke="#FEBD33" stroke-width="0.8"/>
+                    <ellipse cx="20" cy="25" rx="6.5" ry="5" fill="#5a4a3a"/>
+                    <circle cx="17" cy="20" r="1.3" fill="#fff"/>
+                    <circle cx="23" cy="20" r="1.3" fill="#fff"/>
+                    <circle cx="17" cy="20" r="0.6" fill="#0a0d12"/>
+                    <circle cx="23" cy="20" r="0.6" fill="#0a0d12"/>
+                    <ellipse cx="20" cy="25" rx="1.2" ry="0.9" fill="#0a0d12"/>
+                  </svg>
+                </div>
+                <div class="txt">
+                  <div class="t1">Meet <em>Yogi</em> — your AI coworker is here.</div>
+                  <div class="t2">trilogycare · workspaces home</div>
+                </div>
+                <div class="cta">LOG IN →</div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 01</b><span class="ch">PORTAL BANNER</span></div>
+          </div>
+
+          <!-- 2: Email subject -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-email">
+                <div class="bar">
+                  <div class="d"></div><div class="d"></div><div class="d"></div>
+                  <div class="label">OUTLOOK · INBOX</div>
+                </div>
+                <div class="row unread">
+                  <div class="av">Y</div>
+                  <div class="body">
+                    <div class="sender">Yogi · Trilogy Care</div>
+                    <div class="subject">Yogi is live in your Workspace today</div>
+                  </div>
+                  <div class="time">09:14</div>
+                </div>
+                <div class="row">
+                  <div class="av" style="background:linear-gradient(135deg,#43C0BE,#007F7E);color:#fff">E</div>
+                  <div class="body">
+                    <div class="sender">Erin Headley</div>
+                    <div class="subject">Re: workspace kickoff agenda</div>
+                  </div>
+                  <div class="time">08:51</div>
+                </div>
+                <div class="row">
+                  <div class="av" style="background:linear-gradient(135deg,#9B7BD4,#5E4A8A);color:#fff">L</div>
+                  <div class="body">
+                    <div class="sender">Luke / Cherie / Sheree</div>
+                    <div class="subject">Leadership: rollout green-light memo</div>
+                  </div>
+                  <div class="time">07:30</div>
+                </div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 02</b><span class="ch">EMAIL SEQUENCE</span></div>
+          </div>
+
+          <!-- 3: Office poster -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-poster">
+                <div class="top">
+                  <div class="tc">TC · A3</div>
+                  <div class="tc">N°21</div>
+                </div>
+                <div class="bear-big">
+                  <svg viewBox="0 0 100 100" width="100%" fill="none">
+                    <ellipse cx="28" cy="30" rx="10" ry="10" fill="#3a3a3a" stroke="#FEBD33" stroke-width="1.2"/>
+                    <ellipse cx="72" cy="30" rx="10" ry="10" fill="#3a3a3a" stroke="#FEBD33" stroke-width="1.2"/>
+                    <ellipse cx="50" cy="58" rx="30" ry="28" fill="#3a3a3a" stroke="#FEBD33" stroke-width="1.4"/>
+                    <ellipse cx="50" cy="68" rx="16" ry="12" fill="#5a4a3a"/>
+                    <rect x="32" y="46" width="14" height="6" rx="1" fill="none" stroke="#FEBD33" stroke-width="1"/>
+                    <rect x="54" y="46" width="14" height="6" rx="1" fill="none" stroke="#FEBD33" stroke-width="1"/>
+                    <line x1="46" y1="49" x2="54" y2="49" stroke="#FEBD33" stroke-width="1"/>
+                    <circle cx="39" cy="49" r="2" fill="#FEBD33"/>
+                    <circle cx="61" cy="49" r="2" fill="#FEBD33"/>
+                    <ellipse cx="50" cy="68" rx="2.5" ry="1.8" fill="#0a0d12"/>
+                  </svg>
+                </div>
+                <div class="tagline">
+                  <div class="big">1,000 specialists.<br/>1 bear. 0 new logins.</div>
+                  <div class="small">→ ASSISTANT.TRILOGYCARE.COM.AU</div>
+                </div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 03</b><span class="ch">OFFICE POSTER · A3</span></div>
+          </div>
+
+          <!-- 4: Screensaver -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-screensaver">
+                <div class="corner tl">DISPLAY · IDLE 5MIN</div>
+                <div class="corner br">TC / SCRNSVR 21</div>
+                <div class="center">
+                  <svg viewBox="0 0 60 60" width="48" height="48" fill="none">
+                    <circle cx="18" cy="18" r="6" fill="#1a2238" stroke="#FEBD33" stroke-width="1"/>
+                    <circle cx="42" cy="18" r="6" fill="#1a2238" stroke="#FEBD33" stroke-width="1"/>
+                    <ellipse cx="30" cy="35" rx="16" ry="15" fill="#1a2238" stroke="#FEBD33" stroke-width="1.2"/>
+                    <ellipse cx="30" cy="40" rx="8" ry="6" fill="#3a4868"/>
+                    <circle cx="25" cy="32" r="1.5" fill="#FEBD33"/>
+                    <circle cx="35" cy="32" r="1.5" fill="#FEBD33"/>
+                    <ellipse cx="30" cy="40" rx="1.5" ry="1" fill="#0a0d12"/>
+                  </svg>
+                  <div class="big">Same bear.<br/>Every desk.</div>
+                  <div class="url">assistant.trilogycare.com.au</div>
+                </div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 04</b><span class="ch">SCREENSAVER · DESKTOPS</span></div>
+          </div>
+
+          <!-- 5: Teams pinned message -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-teams">
+                <div class="head">
+                  <span class="pin">📌</span>
+                  <span class="ch">All-Staff · Announcements</span>
+                  <span class="tag">PINNED</span>
+                </div>
+                <div class="msg">
+                  <div class="av">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                      <circle cx="7" cy="6" r="2.4" fill="#0a0d12"/>
+                      <circle cx="17" cy="6" r="2.4" fill="#0a0d12"/>
+                      <ellipse cx="12" cy="13" rx="7" ry="6.5" fill="#0a0d12"/>
+                      <ellipse cx="12" cy="15" rx="4" ry="3" fill="#3a3a3a"/>
+                      <circle cx="10" cy="11.5" r="0.9" fill="#FEBD33"/>
+                      <circle cx="14" cy="11.5" r="0.9" fill="#FEBD33"/>
+                    </svg>
+                  </div>
+                  <div class="bubble">
+                    <div class="who">Yogi <span>· 9:00 AM · Pinned by Celeste</span></div>
+                    <div class="text">G'day team. <em>Your Workspace Home is live.</em> Same login, more bear. Tap Help → "Show me around" and I'll walk you through it. 🐻🍯</div>
+                    <div class="reactions">
+                      <span>🐻 <b>147</b></span>
+                      <span>🍯 <b>89</b></span>
+                      <span>👏 <b>61</b></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 05</b><span class="ch">TEAMS PIN · ALL-STAFF</span></div>
+          </div>
+
+          <!-- 6: Champion badge -->
+          <div class="s21-asset">
+            <div class="frame">
+              <div class="s21-badge-frame">
+                <div class="s21-badge">
+                  <svg viewBox="0 0 120 120">
+                    <defs>
+                      <radialGradient id="s21-badgeGrad" cx="50%" cy="40%" r="60%">
+                        <stop offset="0%" stop-color="#FEBD33"/>
+                        <stop offset="55%" stop-color="#D89A1E"/>
+                        <stop offset="100%" stop-color="#7A5510"/>
+                      </radialGradient>
+                      <radialGradient id="s21-badgeShine" cx="40%" cy="30%" r="50%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+                        <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                      </radialGradient>
+                      <linearGradient id="s21-badgeRim" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#FEBD33"/>
+                        <stop offset="100%" stop-color="#8a6018"/>
+                      </linearGradient>
+                    </defs>
+                    <!-- shadow -->
+                    <ellipse cx="60" cy="110" rx="34" ry="4" fill="rgba(0,0,0,0.4)"/>
+                    <!-- outer rim -->
+                    <circle cx="60" cy="60" r="50" fill="url(#s21-badgeRim)"/>
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#FEBD33" stroke-width="0.6" opacity="0.6"/>
+                    <!-- inner field -->
+                    <circle cx="60" cy="60" r="44" fill="url(#s21-badgeGrad)"/>
+                    <!-- shine -->
+                    <circle cx="60" cy="60" r="44" fill="url(#s21-badgeShine)"/>
+                    <!-- bear silhouette -->
+                    <g transform="translate(60,52)">
+                      <circle cx="-9" cy="-5" r="4.5" fill="#2C4C79"/>
+                      <circle cx="9" cy="-5" r="4.5" fill="#2C4C79"/>
+                      <ellipse cx="0" cy="4" rx="13" ry="11" fill="#2C4C79"/>
+                      <ellipse cx="0" cy="7" rx="6.5" ry="5" fill="#43C0BE"/>
+                      <circle cx="-4" cy="2" r="1.2" fill="#FEBD33"/>
+                      <circle cx="4" cy="2" r="1.2" fill="#FEBD33"/>
+                      <ellipse cx="0" cy="7" rx="1.4" ry="1" fill="#2C4C79"/>
+                    </g>
+                    <!-- curved top text -->
+                    <defs>
+                      <path id="s21-badgeArcTop" d="M 18 60 A 42 42 0 0 1 102 60" fill="none"/>
+                      <path id="s21-badgeArcBot" d="M 22 70 A 38 38 0 0 0 98 70" fill="none"/>
+                    </defs>
+                    <text font-family="JetBrains Mono, monospace" font-size="7" font-weight="700" letter-spacing="2.5" fill="#2C4C79">
+                      <textPath href="#s21-badgeArcTop" startOffset="50%" text-anchor="middle">YOGI CHAMPION</textPath>
+                    </text>
+                    <text font-family="JetBrains Mono, monospace" font-size="5" font-weight="600" letter-spacing="1.5" fill="#2C4C79" opacity="0.85">
+                      <textPath href="#s21-badgeArcBot" startOffset="50%" text-anchor="middle">DIVISION LEAD · 2026</textPath>
+                    </text>
+                    <!-- center star -->
+                    <circle cx="60" cy="82" r="2" fill="#2C4C79"/>
+                    <circle cx="52" cy="82" r="1.2" fill="#2C4C79" opacity="0.5"/>
+                    <circle cx="68" cy="82" r="1.2" fill="#2C4C79" opacity="0.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="meta"><b>CHANNEL · 06</b><span class="ch">CHAMPION BADGE · 11 DIVISIONS</span></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============ BOTTOM STRIP ============ -->
+    <div class="s21-foot">
+      <div class="l">GOAL · AUG 2026</div>
+      <div class="metrics">
+        <div class="metric">
+          <b class="hi">80%</b>
+          <span>workspace-login rate</span>
+          <span class="lo">by end of August</span>
+        </div>
+        <div class="divider"></div>
+        <div class="metric">
+          <span>Currently</span>
+          <b>0%</b>
+          <span class="lo">baseline measure at launch</span>
+        </div>
+        <div class="divider"></div>
+        <div class="metric">
+          <span>Champion network</span>
+          <b>11 / 11</b>
+          <span class="lo">divisions, ambassadors</span>
+        </div>
+      </div>
+      <div class="r">
+        OWNER · <b>MARKETING + YOGI</b><br/>
+        STATUS · <b>READY TO ROLL</b>
+      </div>
+    </div>
+
   </div>
-
-  <script>
-    (function () {
-      const slide = document.currentScript.closest('.slide[data-audio="26"]');
-      if (!slide) return;
-      const svg = slide.querySelector('.s24-svg');
-      if (!svg) return;
-      if (svg.dataset.s24Built === '1') return;
-      svg.dataset.s24Built = '1';
-
-      const SVG_NS = 'http://www.w3.org/2000/svg';
-
-      // Grid geometry
-      const COLS = 25;
-      const ROWS = 20;
-      const W = 250;
-      const H = 200;
-      const PAD_X = 6;
-      const PAD_Y = 6;
-      const stepX = (W - PAD_X * 2) / (COLS - 1);
-      const stepY = (H - PAD_Y * 2) / (ROWS - 1);
-
-      // Center of cascade (between dots — for a wave that radiates evenly)
-      const cxCenter = (COLS - 1) / 2; // 12
-      const cyCenter = (ROWS - 1) / 2; // 9.5
-
-      // Deterministic seeded random (mulberry32)
-      function mulberry32(seed) {
-        return function () {
-          let t = (seed += 0x6D2B79F5);
-          t = Math.imul(t ^ (t >>> 15), t | 1);
-          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-        };
-      }
-      const rand = mulberry32(20262024);
-
-      // Cascade timing
-      const CASCADE_START = 1500;   // ms — patient-zero settles at ~1.2s
-      const CASCADE_END   = 5400;   // ms — last corner lights up
-
-      // Max distance from center (corner)
-      const maxDist = Math.hypot(cxCenter, cyCenter);
-
-      // Hero dot picks — deterministic, ~14 of them.
-      // Patient-zero is the literal center dot (col 12, row 9) (closest to 12,9.5).
-      const heroPicks = new Set([
-        // four corners
-        rc(0, 0), rc(COLS - 1, 0), rc(0, ROWS - 1), rc(COLS - 1, ROWS - 1),
-        // four mid edges
-        rc(Math.floor(COLS / 2), 0), rc(Math.floor(COLS / 2), ROWS - 1),
-        rc(0, Math.floor(ROWS / 2)), rc(COLS - 1, Math.floor(ROWS / 2)),
-        // a few inner "champions"
-        rc(6, 4), rc(18, 4), rc(6, 15), rc(18, 15),
-        rc(9, 9), rc(15, 10),
-      ]);
-
-      // Patient zero — pick the dot closest to the geometric center
-      const zeroCol = Math.round(cxCenter);
-      const zeroRow = Math.round(cyCenter);
-      const zeroKey = rc(zeroCol, zeroRow);
-
-      // Don't mark patient-zero as hero — it has its own treatment
-      heroPicks.delete(zeroKey);
-
-      // Build all 500 circles
-      const fragMain = document.createDocumentFragment();
-      const fragHalo = document.createDocumentFragment();
-
-      let count = 0;
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          const x = PAD_X + c * stepX;
-          const y = PAD_Y + r * stepY;
-          const key = rc(c, r);
-
-          const dx = c - cxCenter;
-          const dy = r - cyCenter;
-          const dist = Math.hypot(dx, dy);
-
-          // Each dot's delay = patient-zero settle + cascade window scaled by distance
-          // + tiny jitter so ring isn't too clean
-          const jitter = (rand() - 0.5) * 90; // ±45ms
-          const t = dist / maxDist; // 0..1
-          // Ease the wave outward slightly
-          const tEased = Math.pow(t, 0.92);
-          const delay = Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter);
-
-          // Brightness variance (10-20%) — deterministic
-          const brightness = 0.85 + rand() * 0.15; // 0.85..1.0
-          const litColor = blendHoney(brightness);
-          const ambLow  = (0.62 + rand() * 0.18).toFixed(3); // 0.62..0.80
-          const ambHigh = (0.92 + rand() * 0.08).toFixed(3); // 0.92..1.0
-
-          // Radius variance — most are equal, a few subtly larger
-          let r0 = 1.55 + (rand() - 0.5) * 0.18; // ~1.46..1.64
-          if (heroPicks.has(key)) r0 = 2.1;
-          if (key === zeroKey)    r0 = 2.55;
-
-          const circle = document.createElementNS(SVG_NS, 'circle');
-          circle.setAttribute('cx', x.toFixed(3));
-          circle.setAttribute('cy', y.toFixed(3));
-          circle.setAttribute('r', r0.toFixed(3));
-          circle.style.setProperty('--cx', x.toFixed(3) + 'px');
-          circle.style.setProperty('--cy', y.toFixed(3) + 'px');
-          circle.style.setProperty('--delay', delay + 'ms');
-          circle.style.setProperty('--lit', litColor);
-          circle.style.setProperty('--lit-opacity', brightness.toFixed(3));
-          circle.style.setProperty('--amb-low', ambLow);
-          circle.style.setProperty('--amb-high', ambHigh);
-
-          let cls = 's24-dot';
-          if (key === zeroKey)        cls += ' zero';
-          else if (heroPicks.has(key)) cls += ' hero';
-          circle.setAttribute('class', cls);
-
-          // Halo ring for hero dots + patient zero
-          if (heroPicks.has(key) || key === zeroKey) {
-            const halo = document.createElementNS(SVG_NS, 'circle');
-            const hR = (key === zeroKey ? 4.4 : 3.6);
-            halo.setAttribute('cx', x.toFixed(3));
-            halo.setAttribute('cy', y.toFixed(3));
-            halo.setAttribute('r', hR.toFixed(3));
-            halo.style.setProperty('--cx', x.toFixed(3) + 'px');
-            halo.style.setProperty('--cy', y.toFixed(3) + 'px');
-            // halo waits until the dot has lit
-            const haloDelay = (key === zeroKey) ? 1200 : delay + 100;
-            halo.style.setProperty('--delay', haloDelay + 'ms');
-            halo.setAttribute('class', 's24-halo');
-            fragHalo.appendChild(halo);
-          }
-
-          fragMain.appendChild(circle);
-          count++;
-        }
-      }
-
-      // Halos render BEHIND main dots so the dot sits crisp inside the ring
-      svg.appendChild(fragHalo);
-      svg.appendChild(fragMain);
-
-      function rc(c, r) { return r * COLS + c; }
-
-      // Blend honey color toward hot-honey based on brightness 0.85..1.0
-      function blendHoney(b) {
-        // base #FEBD33  → 254, 189, 51
-        // hot  #FFD27A  → 255, 210, 122
-        const tt = (b - 0.85) / 0.15; // 0..1
-        const R = Math.round(254 + (255 - 254) * tt);
-        const G = Math.round(189 + (210 - 189) * tt);
-        const B = Math.round(51 + (122 - 51) * tt);
-        return 'rgb(' + R + ',' + G + ',' + B + ')';
-      }
-    })();
-  </script>
 </section>

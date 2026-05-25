@@ -1,47 +1,64 @@
-<section class="slide" data-audio="23" id="slide-mms">
+<section class="slide" data-audio="23">
   <style>
     /* ================================================================
-       SLIDE 21 — MULTI-MODEL STRATEGY (v4 · 15 MODELS · 9 VENDORS)
-       "Not locked to one model."
-       Router diagram (top) · 15-row Model scorecard (middle) · Receipts (bottom)
-       Cinematic NASA-grade systems diagram.
+       SLIDE 19 — WHERE YOGI LIVES
+       TC ASSISTANT · WORKSPACES HOME · Mike Wise built the canvas.
+       A faithful CSS recreation of the real assistant.trilogycare.com.au
+       UI, floated on a dark NASA-grade canvas with honey aura overlay
+       signalling "Yogi is active in this workspace."
        ================================================================ */
 
-    #slide-mms {
-      --s20m-bg:         #0a0d12;
-      --s20m-bg-elev:    #11161f;
-      --s20m-bg-card:    #0d1119;
-      --s20m-bg-deep:    #070a0f;
+    .slide[data-audio="23"] {
+      /* Brand tokens */
+      --s19-bg:           #0a0d12;
+      --s19-bg-elev:      #11161f;
+      --s19-honey:        #FEBD33;
+      --s19-honey-soft:   rgba(254, 189, 51, 0.12);
+      --s19-honey-glow:   rgba(254, 189, 51, 0.45);
+      --s19-honey-line:   rgba(254, 189, 51, 0.30);
+      --s19-honey-faint:  rgba(254, 189, 51, 0.18);
+      --s19-teal:         #43C0BE;
+      --s19-dark-teal:    #007F7E;
+      --s19-navy:         #2C4C79;
+      --s19-sky:          #64BCEA;
+      --s19-green:        #5ee08a;
 
-      --s20m-honey:      #FEBD33;
-      --s20m-honey-2:    #FFD46A;
-      --s20m-honey-soft: rgba(254, 189, 51, 0.10);
-      --s20m-honey-glow: rgba(254, 189, 51, 0.42);
-      --s20m-honey-line: rgba(254, 189, 51, 0.28);
-      --s20m-honey-faint:rgba(254, 189, 51, 0.14);
+      --s19-fg:           #f4f4f5;
+      --s19-fg-muted:     #a1a1aa;
+      --s19-fg-dim:       #71717a;
+      --s19-fg-faint:     #52525b;
+      --s19-border:       rgba(255, 255, 255, 0.08);
 
-      --s20m-teal:       #43C0BE;
-      --s20m-dark-teal:  #007F7E;
-      --s20m-sky:        #64BCEA;
-      --s20m-violet:     #9B7BD4;
-      --s20m-coral:      #F39B5A;
-      --s20m-red:        #E04B51;
-      --s20m-navy:       #2C4C79;
-
-      --s20m-fg:         #f4f4f5;
-      --s20m-fg-muted:   #a1a1aa;
-      --s20m-fg-dim:     #71717a;
-      --s20m-fg-faint:   #52525b;
-      --s20m-fg-ghost:   #3a3a40;
-      --s20m-border:     rgba(255, 255, 255, 0.07);
-      --s20m-border-strong: rgba(255, 255, 255, 0.12);
+      /* TC Assistant light-theme neutrals (mirroring screenshot) */
+      --tca-bg:           #f6f8fb;       /* app background */
+      --tca-sidebar:      #ffffff;       /* sidebar / left rail */
+      --tca-panel:        #ffffff;       /* main panels */
+      --tca-divider:      #e4e8ee;       /* light grey divider */
+      --tca-divider-2:    #eef1f5;
+      --tca-text:         #1a2334;
+      --tca-text-mute:    #5a6478;
+      --tca-text-dim:     #8a93a4;
+      --tca-text-faint:   #adb5c3;
+      --tca-blue:         #2C4C79;       /* Trilogy navy */
+      --tca-blue-soft:    #eaf0fa;
+      --tca-blue-deep:    #1e3a5f;
+      --tca-active-bg:    #eaf2f5;       /* selected workspace */
+      --tca-active-bd:    #c4e0e2;
+      --tca-hover:        #f2f5f9;
+      --tca-warn-bg:      #fff7e3;
+      --tca-warn-bd:      #f5d98a;
+      --tca-warn-text:    #7a5a10;
+      --tca-folder:       #d4a04a;
+      --tca-folder-hi:    #e8b96b;
+      --tca-tab-active:   #ffffff;
+      --tca-tab-bg:       #f0f3f7;
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s20m-bg);
-      color: var(--s20m-fg);
+      background: var(--s19-bg);
+      color: var(--s19-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       letter-spacing: -0.01em;
       overflow: hidden;
@@ -49,1304 +66,1523 @@
     }
 
     /* ---------- Atmosphere ---------- */
-    #slide-mms .atmos { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-    #slide-mms .grid-bg {
+    .slide[data-audio="23"] .s19-atmos {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .slide[data-audio="23"] .s19-grid-bg {
       position: absolute; inset: 0;
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(ellipse at 50% 38%, black 28%, transparent 82%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 38%, black 28%, transparent 82%);
+      background-size: 76px 76px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
     }
-    #slide-mms .glow-honey {
-      position: absolute; top: 26%; left: 50%;
-      width: 78vmin; height: 50vmin;
+    .slide[data-audio="23"] .s19-glow {
+      position: absolute; top: 56%; left: 52%;
+      width: 110vmin; height: 70vmin;
       transform: translate(-50%, -50%);
       background: radial-gradient(ellipse at center,
         rgba(254, 189, 51, 0.10) 0%,
-        rgba(67, 192, 190, 0.04) 40%,
-        transparent 70%);
-      filter: blur(28px);
-      animation: glowBreathe 11s ease-in-out infinite;
+        rgba(254, 189, 51, 0.04) 40%,
+        transparent 75%);
+      filter: blur(20px);
     }
-    #slide-mms .glow-teal {
-      position: absolute; top: 72%; left: 22%;
-      width: 36vmin; height: 36vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at center,
-        rgba(67, 192, 190, 0.07) 0%,
-        transparent 70%);
-      filter: blur(24px);
-    }
-    @keyframes glowBreathe {
-      0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
-      50%      { opacity: 1.0;  transform: translate(-50%, -50%) scale(1.05); }
-    }
-    #slide-mms .grain {
-      position: absolute; inset: 0; opacity: 0.03; mix-blend-mode: overlay;
+    .slide[data-audio="23"] .s19-grain {
+      position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
     }
 
     /* ---------- Layout shell ---------- */
-    #slide-mms .wrap {
+    .slide[data-audio="23"] .s19-wrap {
       position: relative; z-index: 1;
       width: 100%; height: 100%;
-      max-width: 1860px;
+      max-width: 1820px;
       margin: 0 auto;
-      padding: clamp(16px, 2vh, 26px) clamp(32px, 3.2vw, 56px) clamp(14px, 1.8vh, 22px);
+      padding: clamp(20px, 2.4vh, 32px) clamp(28px, 2.8vw, 52px) clamp(16px, 2vh, 24px);
       display: flex; flex-direction: column;
-      gap: clamp(10px, 1.2vh, 16px);
+      gap: clamp(12px, 1.4vh, 20px);
     }
 
-    /* ---------- Top header row ---------- */
-    #slide-mms .top {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      gap: 32px;
+    /* ---------- Header ---------- */
+    .slide[data-audio="23"] .s19-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 48px;
     }
-    #slide-mms .eyebrow {
+    .slide[data-audio="23"] .s19-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10.5px; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--s20m-fg-muted);
-    }
-    #slide-mms .eyebrow .dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 12px var(--s20m-honey-glow);
-      animation: pulseDot 2.4s ease-in-out infinite;
-    }
-    #slide-mms .eyebrow .bar { width: 22px; height: 1px; background: var(--s20m-border-strong); }
-    @keyframes pulseDot {
-      0%, 100% { opacity: 0.85; transform: scale(1); }
-      50%      { opacity: 1;    transform: scale(1.15); }
-    }
-
-    #slide-mms .head-l {
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    #slide-mms h1 {
-      margin: 0;
-      font-size: clamp(34px, 4.2vw, 58px);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 0.96;
-      color: var(--s20m-fg);
-    }
-    #slide-mms h1 .accent {
-      color: var(--s20m-honey);
-      font-style: italic;
-      font-weight: 700;
-    }
-    #slide-mms .subhead {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s20m-honey);
-      font-weight: 500;
-    }
-    #slide-mms .subhead .sep { color: var(--s20m-fg-faint); margin: 0 8px; }
-
-    #slide-mms .head-r {
-      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-dim);
-    }
-    #slide-mms .head-r .num {
-      font-size: 26px; font-weight: 700; letter-spacing: -0.02em;
-      color: var(--s20m-fg); text-transform: none;
-      font-family: 'Inter', sans-serif;
-    }
-    #slide-mms .head-r .num .slash { color: var(--s20m-honey); margin: 0 4px; }
-
-    /* ================================================================
-       ROUTER DIAGRAM
-       ================================================================ */
-    #slide-mms .router {
-      position: relative;
-      background: linear-gradient(180deg,
-        rgba(15, 20, 28, 0.85) 0%,
-        rgba(11, 15, 22, 0.7) 100%);
-      border: 1px solid var(--s20m-border);
-      border-radius: 14px;
-      padding: clamp(12px, 1.6vh, 18px) clamp(18px, 2.2vw, 28px);
-      overflow: hidden;
-    }
-    #slide-mms .router::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 50%,
-        rgba(254, 189, 51, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    #slide-mms .router-label {
-      display: flex; justify-content: space-between; align-items: center;
+      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--s19-fg-muted);
       margin-bottom: 12px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-dim);
     }
-    #slide-mms .router-label .stat {
-      color: var(--s20m-honey);
-      font-weight: 500;
+    .slide[data-audio="23"] .s19-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s19-honey);
+      box-shadow: 0 0 10px var(--s19-honey-glow);
     }
+    .slide[data-audio="23"] .s19-eyebrow .slash { color: var(--s19-fg-faint); }
+    .slide[data-audio="23"] .s19-eyebrow .num { color: var(--s19-fg-dim); }
 
-    #slide-mms .router-stage {
-      position: relative;
-      display: grid;
-      grid-template-columns: 220px 280px 1fr;
-      align-items: center;
-      gap: 0;
-      min-height: 168px;
-    }
-
-    /* Incoming task chip (left) */
-    #slide-mms .task-in {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; gap: 7px;
-      padding: 12px 14px;
-      background: var(--s20m-bg-deep);
-      border: 1px solid var(--s20m-border-strong);
-      border-radius: 10px;
-    }
-    #slide-mms .task-in .tlbl {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--s20m-fg-dim);
-    }
-    #slide-mms .task-in .tarrow {
-      color: var(--s20m-honey); margin-right: 6px;
-    }
-    #slide-mms .task-in .tcmd {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 12px; color: var(--s20m-fg); font-weight: 500;
-      line-height: 1.35;
-    }
-    #slide-mms .task-in .ttag {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      color: var(--s20m-teal);
-      letter-spacing: 0.06em;
-    }
-
-    /* Router diamond (center) */
-    #slide-mms .router-core {
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      min-height: 168px;
-    }
-    #slide-mms .diamond-wrap {
-      position: relative;
-      width: 168px; height: 168px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #slide-mms .diamond {
-      position: absolute; inset: 0;
-      transform: rotate(45deg);
-      background: linear-gradient(135deg,
-        rgba(254, 189, 51, 0.20) 0%,
-        rgba(254, 189, 51, 0.06) 60%,
-        transparent 100%);
-      border: 1.5px solid var(--s20m-honey);
-      border-radius: 14px;
-      box-shadow:
-        0 0 0 6px rgba(254, 189, 51, 0.04),
-        0 0 40px rgba(254, 189, 51, 0.25),
-        inset 0 0 30px rgba(254, 189, 51, 0.08);
-      animation: diamondPulse 4s ease-in-out infinite;
-    }
-    @keyframes diamondPulse {
-      0%, 100% {
-        box-shadow:
-          0 0 0 4px rgba(254, 189, 51, 0.04),
-          0 0 32px rgba(254, 189, 51, 0.20),
-          inset 0 0 28px rgba(254, 189, 51, 0.06);
-      }
-      50% {
-        box-shadow:
-          0 0 0 8px rgba(254, 189, 51, 0.06),
-          0 0 56px rgba(254, 189, 51, 0.35),
-          inset 0 0 36px rgba(254, 189, 51, 0.12);
-      }
-    }
-    #slide-mms .diamond-inner {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 4px;
-      width: 138px; text-align: center;
-    }
-    #slide-mms .diamond-inner .ico {
-      width: 20px; height: 20px;
-      border: 1.5px solid var(--s20m-honey);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      transform: rotate(45deg);
-      background: rgba(254, 189, 51, 0.10);
-      margin-bottom: 2px;
-    }
-    #slide-mms .diamond-inner .ico::before {
-      content: ''; width: 8px; height: 8px;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 12px var(--s20m-honey);
-    }
-    #slide-mms .diamond-inner .ttl {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 12px;
+    .slide[data-audio="23"] .s19-title {
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--s20m-honey);
+      font-size: clamp(38px, 4.6vw, 64px);
+      line-height: 1.0;
+      letter-spacing: -0.032em;
+      color: var(--s19-fg);
+      margin: 0;
     }
-    #slide-mms .diamond-inner .sub {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-muted);
+    .slide[data-audio="23"] .s19-title .accent {
+      color: var(--s19-honey); font-weight: 800;
     }
 
-    /* Decision badges floating around diamond */
-    #slide-mms .badges {
-      position: absolute; inset: 0; pointer-events: none;
-    }
-    #slide-mms .badge {
-      position: absolute;
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 9px;
-      background: var(--s20m-bg-deep);
-      border: 1px solid var(--s20m-honey-line);
-      border-radius: 100px;
+    .slide[data-audio="23"] .s19-subhead {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-muted);
+      font-size: 10.5px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--s19-honey);
+      display: flex; align-items: center; gap: 12px;
       white-space: nowrap;
+      padding-bottom: 8px;
+      flex-shrink: 0;
     }
-    #slide-mms .badge .bd {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 8px var(--s20m-honey-glow);
+    .slide[data-audio="23"] .s19-subhead .pipe {
+      width: 1px; height: 11px; background: var(--s19-honey-line);
     }
-    #slide-mms .badge.b1 { top: -2px; left: 50%; transform: translateX(-50%); }
-    #slide-mms .badge.b2 { bottom: 8px; left: -28px; }
-    #slide-mms .badge.b3 { bottom: 8px; right: -28px; }
+    .slide[data-audio="23"] .s19-subhead .mute {
+      color: var(--s19-fg-muted);
+    }
 
-    /* SVG router lines */
-    #slide-mms .router-svg {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
+    /* ---------- Mockup stage ---------- */
+    .slide[data-audio="23"] .s19-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* honey aura behind the mockup */
+    .slide[data-audio="23"] .s19-aura {
+      position: absolute;
+      inset: -2% -1% -1% -1%;
+      background:
+        radial-gradient(ellipse 60% 50% at 78% 50%,
+          rgba(254, 189, 51, 0.22) 0%,
+          rgba(254, 189, 51, 0.08) 40%,
+          transparent 75%);
+      filter: blur(28px);
       pointer-events: none;
-      overflow: visible;
+      z-index: 0;
     }
 
-    /* Model chips (right) — packed 2 rows × 7-8 */
-    #slide-mms .models-fan {
+    /* the mockup window itself */
+    .slide[data-audio="23"] .s19-window {
       position: relative;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: 1fr 1fr;
-      gap: 6px;
-      padding-left: 14px;
-    }
-    #slide-mms .model-chip {
-      display: flex; align-items: center; gap: 6px;
-      padding: 6px 8px;
-      background: var(--s20m-bg-deep);
-      border: 1px solid var(--s20m-border);
-      border-radius: 7px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      transition: all 200ms ease;
-      min-width: 0;
-    }
-    #slide-mms .model-chip .ch-logo {
-      width: 13px; height: 13px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    #slide-mms .model-chip .ch-name {
-      font-size: 9.5px;
-      font-weight: 600;
-      color: var(--s20m-fg);
-      letter-spacing: 0;
-      white-space: nowrap;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      max-height: clamp(540px, 64vh, 760px);
+      background: var(--tca-bg);
+      border-radius: 12px;
       overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    #slide-mms .model-chip.chosen {
-      background: linear-gradient(90deg,
-        rgba(254, 189, 51, 0.18) 0%,
-        rgba(254, 189, 51, 0.04) 100%);
-      border-color: var(--s20m-honey);
       box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.18),
-        0 0 18px rgba(254, 189, 51, 0.22);
-    }
-    #slide-mms .model-chip.chosen .ch-name { color: var(--s20m-honey); }
-
-    /* Chosen tag */
-    #slide-mms .chosen-tag {
-      position: absolute;
-      right: 0; top: -28px;
-      padding: 4px 9px;
-      background: var(--s20m-bg-deep);
-      border: 1px solid var(--s20m-honey);
-      border-radius: 100px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--s20m-honey);
-      display: flex; align-items: center; gap: 6px;
-    }
-    #slide-mms .chosen-tag .ct-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 8px var(--s20m-honey);
-    }
-
-    /* ================================================================
-       SCORECARD — 15 ROWS, GROUPED BY VENDOR
-       ================================================================ */
-    #slide-mms .card-section {
-      position: relative;
-      background: var(--s20m-bg-card);
-      border: 1px solid var(--s20m-border);
-      border-radius: 14px;
-      overflow: hidden;
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 4px 20px rgba(254, 189, 51, 0.12),
+        0 0 80px rgba(254, 189, 51, 0.08);
       display: flex; flex-direction: column;
-    }
-    #slide-mms .card-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 9px 22px;
-      border-bottom: 1px solid var(--s20m-border);
-      background: rgba(255, 255, 255, 0.015);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-muted);
-    }
-    #slide-mms .card-head .legend {
-      display: flex; gap: 16px; align-items: center;
-    }
-    #slide-mms .card-head .leg-item {
-      display: flex; align-items: center; gap: 6px;
-      color: var(--s20m-fg-dim);
-      font-size: 9.5px;
-    }
-    #slide-mms .card-head .leg-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-    }
-
-    #slide-mms .scoretable {
-      display: grid;
-      grid-template-columns:
-        minmax(170px, 1.35fr)   /* Model */
-        minmax(108px, 0.9fr)    /* Vendor */
-        minmax(86px, 0.9fr)     /* Reasoning */
-        minmax(86px, 0.9fr)     /* Speed */
-        minmax(108px, 1fr)      /* Cost */
-        minmax(64px, 0.7fr)     /* Long ctx */
-        minmax(82px, 0.8fr)     /* Modal */
-        minmax(230px, 2.4fr);   /* Use case */
-    }
-    #slide-mms .scoretable .th {
-      padding: 7px 14px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-dim);
-      border-bottom: 1px solid var(--s20m-border);
-      background: rgba(255, 255, 255, 0.012);
-    }
-    #slide-mms .scoretable .row {
-      display: contents;
-    }
-    #slide-mms .scoretable .row > div {
-      padding: 6px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
-      display: flex; align-items: center;
-      transition: background 180ms ease;
-      min-height: 36px;
-      position: relative;
-    }
-    #slide-mms .scoretable .row.last > div {
-      border-bottom: none;
-    }
-
-    /* Vendor group tints (very faint background bands) */
-    #slide-mms .row.vg-anth > div { background: linear-gradient(90deg, rgba(254, 189, 51, 0.028) 0%, rgba(254, 189, 51, 0.012) 100%); }
-    #slide-mms .row.vg-goog > div { background: linear-gradient(90deg, rgba(100, 188, 234, 0.028) 0%, rgba(100, 188, 234, 0.012) 100%); }
-    #slide-mms .row.vg-oai  > div { background: linear-gradient(90deg, rgba(67, 192, 190, 0.028) 0%, rgba(67, 192, 190, 0.012) 100%); }
-    #slide-mms .row.vg-meta > div { background: linear-gradient(90deg, rgba(224, 75, 81, 0.030) 0%, rgba(224, 75, 81, 0.012) 100%); }
-    #slide-mms .row.vg-mist > div { background: linear-gradient(90deg, rgba(243, 155, 90, 0.030) 0%, rgba(243, 155, 90, 0.012) 100%); }
-    #slide-mms .row.vg-ds   > div { background: linear-gradient(90deg, rgba(155, 123, 212, 0.030) 0%, rgba(155, 123, 212, 0.012) 100%); }
-    #slide-mms .row.vg-qwen > div { background: linear-gradient(90deg, rgba(0, 127, 126, 0.040) 0%, rgba(0, 127, 126, 0.014) 100%); }
-    #slide-mms .row.vg-coh  > div { background: linear-gradient(90deg, rgba(254, 189, 51, 0.022) 0%, rgba(254, 189, 51, 0.008) 100%); }
-    #slide-mms .row.vg-aws  > div { background: linear-gradient(90deg, rgba(100, 188, 234, 0.024) 0%, rgba(100, 188, 234, 0.010) 100%); }
-
-    /* Vendor group divider — stronger line on first row of new group */
-    #slide-mms .row.vg-start > div {
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    #slide-mms .scoretable .row.featured > div {
-      background: linear-gradient(90deg,
-        rgba(254, 189, 51, 0.12) 0%,
-        rgba(254, 189, 51, 0.03) 70%,
-        transparent 100%);
-    }
-    #slide-mms .scoretable .row.featured > div:first-child::before {
-      content: ''; position: absolute; left: 0; top: 14%;
-      width: 2px; height: 72%;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 12px var(--s20m-honey-glow);
-    }
-
-    #slide-mms .cell-model {
-      position: relative;
-      display: flex !important; flex-direction: column; gap: 0px;
-      align-items: flex-start !important;
-      justify-content: center;
-    }
-    #slide-mms .cell-model .midx {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
-      color: var(--s20m-fg-faint);
-      letter-spacing: 0.1em;
-      margin-right: 6px;
-    }
-    #slide-mms .cell-model .mn {
-      font-size: 12px; font-weight: 700; color: var(--s20m-fg);
+      color: var(--tca-text);
+      font-size: 13px;
       letter-spacing: -0.005em;
-      display: inline-flex; align-items: baseline; gap: 0;
-    }
-    #slide-mms .cell-model .ml {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
-      color: var(--s20m-fg-faint);
-      letter-spacing: 0.04em;
-      margin-top: 1px;
-    }
-    #slide-mms .row.featured .cell-model .mn { color: var(--s20m-honey); }
-    #slide-mms .row.featured .cell-model .ml::after {
-      content: ' · default';
-      color: var(--s20m-honey);
-      font-weight: 600;
     }
 
-    #slide-mms .cell-vendor {
-      display: flex !important; align-items: center; gap: 7px;
+    /* macOS-style window dots (subtle) */
+    .slide[data-audio="23"] .s19-chrome {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 28px;
+      display: flex; align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+      background: linear-gradient(180deg, #f0f3f7 0%, #e8ecf2 100%);
+      border-bottom: 1px solid var(--tca-divider);
+      z-index: 5;
     }
-    #slide-mms .cell-vendor .vlogo {
-      width: 16px; height: 16px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+    .slide[data-audio="23"] .s19-chrome-dot {
+      width: 11px; height: 11px; border-radius: 50%;
     }
-    #slide-mms .cell-vendor .vname {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      color: var(--s20m-fg-muted);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    /* Dot meters */
-    #slide-mms .meter {
-      display: inline-flex; gap: 3px;
-      align-items: center;
-    }
-    #slide-mms .meter .d {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.10);
-      transition: all 200ms ease;
-    }
-    #slide-mms .meter .d.on {
-      background: var(--meter-c, var(--s20m-honey));
-      box-shadow: 0 0 5px var(--meter-glow, rgba(254, 189, 51, 0.5));
-    }
-    .col-reasoning { --meter-c: var(--s20m-honey); --meter-glow: rgba(254, 189, 51, 0.5); }
-    .col-speed     { --meter-c: var(--s20m-teal);  --meter-glow: rgba(67, 192, 190, 0.5); }
-    .col-cost      { --meter-c: var(--s20m-coral); --meter-glow: rgba(243, 155, 90, 0.5); }
-    .col-ctx       { --meter-c: var(--s20m-sky);   --meter-glow: rgba(100, 188, 234, 0.5); }
-    .col-modal     { --meter-c: var(--s20m-violet);--meter-glow: rgba(155, 123, 212, 0.5); }
-
-    #slide-mms .cell-cost {
-      display: flex !important; flex-direction: column; gap: 0px;
-      align-items: flex-start !important;
-      justify-content: center;
-    }
-    #slide-mms .cell-cost .cval {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10.5px; color: var(--s20m-fg); font-weight: 500;
-      line-height: 1.2;
-    }
-    #slide-mms .cell-cost .clbl {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8px;
-      color: var(--s20m-fg-faint);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 1px;
-    }
-
-    #slide-mms .cell-ctx,
-    #slide-mms .cell-modal {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      color: var(--s20m-fg-muted);
+    .slide[data-audio="23"] .s19-chrome-dot.r { background: #ff5f57; }
+    .slide[data-audio="23"] .s19-chrome-dot.y { background: #febc2e; }
+    .slide[data-audio="23"] .s19-chrome-dot.g { background: #28c840; }
+    .slide[data-audio="23"] .s19-chrome-url {
+      flex: 1;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--tca-text-dim);
       letter-spacing: 0.02em;
     }
+    .slide[data-audio="23"] .s19-chrome-url .lock {
+      color: var(--tca-text-faint); margin-right: 4px;
+    }
+    .slide[data-audio="23"] .s19-chrome-url .host {
+      color: var(--tca-text);
+    }
 
-    #slide-mms .cell-use {
+    /* App container offset for chrome */
+    .slide[data-audio="23"] .s19-app {
+      margin-top: 28px;
+      flex: 1;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+
+    /* ---------- Top banner row (logo + search + account) ---------- */
+    .slide[data-audio="23"] .s19-topbar {
+      display: flex; align-items: center;
+      padding: 0 12px;
+      height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 8px;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+    .slide[data-audio="23"] .s19-tb-icon {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tca-text-mute);
+      cursor: default;
+    }
+    .slide[data-audio="23"] .s19-tb-icon svg { width: 16px; height: 16px; }
+    .slide[data-audio="23"] .s19-tb-logo {
+      display: flex; align-items: center; gap: 8px;
+      margin-left: 4px;
+    }
+    .slide[data-audio="23"] .s19-tb-logo-mark {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide[data-audio="23"] .s19-tb-logo-text {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--tca-text);
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="23"] .s19-tb-logo-text b {
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-tb-version {
+      background: var(--tca-blue);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      margin-left: 4px;
+    }
+    .slide[data-audio="23"] .s19-tb-nav {
+      display: flex; align-items: center; gap: 2px;
+      margin-left: 14px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="23"] .s19-tb-nav svg { width: 14px; height: 14px; }
+    .slide[data-audio="23"] .s19-tb-search {
+      flex: 1;
+      min-width: 140px;
+      max-width: 460px;
+      height: 28px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 6px;
+      display: flex; align-items: center;
+      padding: 0 10px;
+      gap: 8px;
+      color: var(--tca-text-dim);
+      font-size: 11.5px;
+    }
+    .slide[data-audio="23"] .s19-tb-search svg { width: 12px; height: 12px; }
+    .slide[data-audio="23"] .s19-tb-search .kbd {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      background: #fff;
+      border: 1px solid #e1e5ec;
+      color: var(--tca-text-mute);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .slide[data-audio="23"] .s19-tb-spacer { flex: 1; }
+    .slide[data-audio="23"] .s19-tb-domain {
+      display: flex; align-items: center; gap: 6px;
+      padding: 4px 8px 4px 6px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 6px;
       font-size: 11px;
-      color: var(--s20m-fg-muted);
-      line-height: 1.35;
+      color: var(--tca-text);
+      background: #fff;
+    }
+    .slide[data-audio="23"] .s19-tb-domain .d-chip {
+      width: 18px; height: 18px;
+      background: var(--tca-blue);
+      color: #fff;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .slide[data-audio="23"] .s19-tb-domain .d-ga {
+      background: var(--s19-teal); color: #fff;
+      font-size: 9px; padding: 1px 5px; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace; font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .slide[data-audio="23"] .s19-tb-domain svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
+    .slide[data-audio="23"] .s19-tb-help {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="23"] .s19-tb-account {
+      display: flex; align-items: center; gap: 8px;
+      padding: 3px 8px 3px 4px;
+      border-radius: 16px;
+    }
+    .slide[data-audio="23"] .s19-tb-account .av {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4906a 0%, #8a5a3a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="23"] .s19-tb-account .name {
+      font-size: 12px; color: var(--tca-text);
+    }
+
+    /* ---------- Beta banner ---------- */
+    .slide[data-audio="23"] .s19-beta {
+      background: var(--tca-warn-bg);
+      border-bottom: 1px solid var(--tca-warn-bd);
+      padding: 7px 16px;
+      display: flex; align-items: center;
+      font-size: 11.5px;
+      color: var(--tca-warn-text);
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="23"] .s19-beta svg { width: 13px; height: 13px; color: #d49612; }
+    .slide[data-audio="23"] .s19-beta b { color: #5a4310; font-weight: 600; }
+    .slide[data-audio="23"] .s19-beta a {
+      color: #b87f10; text-decoration: underline; text-underline-offset: 2px;
+    }
+    .slide[data-audio="23"] .s19-beta .close {
+      margin-left: auto; color: #b8a06a;
+    }
+
+    /* ---------- Body (4 columns) ---------- */
+    .slide[data-audio="23"] .s19-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 56px 230px 240px 1fr;
+      min-height: 0;
+      background: var(--tca-bg);
+    }
+
+    /* COL 1 — Left rail (primary nav) */
+    .slide[data-audio="23"] .s19-rail {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 4px;
+    }
+    .slide[data-audio="23"] .s19-rail-item {
+      width: 44px;
+      padding: 8px 0 6px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      border-radius: 8px;
+      color: var(--tca-text-mute);
+      font-size: 10px;
       letter-spacing: -0.005em;
     }
-    #slide-mms .row.featured .cell-use {
-      color: var(--s20m-fg);
+    .slide[data-audio="23"] .s19-rail-item svg { width: 18px; height: 18px; }
+    .slide[data-audio="23"] .s19-rail-item.active {
+      background: var(--tca-blue-soft);
+      color: var(--tca-blue);
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-rail-spacer { flex: 1; }
+
+    /* COL 2 — Workspaces sidebar */
+    .slide[data-audio="23"] .s19-ws-side {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      padding: 14px 12px 12px;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .slide[data-audio="23"] .s19-ws-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px;
+    }
+    .slide[data-audio="23"] .s19-ws-title {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="23"] .s19-ws-title svg { width: 16px; height: 16px; color: var(--tca-blue); }
+    .slide[data-audio="23"] .s19-ws-new {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      font-size: 11px;
+      color: var(--tca-text-mute);
+      background: #fff;
+    }
+    .slide[data-audio="23"] .s19-ws-new svg { width: 11px; height: 11px; }
+
+    .slide[data-audio="23"] .s19-ws-filter {
+      height: 26px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="23"] .s19-ws-filter svg { width: 11px; height: 11px; }
+    .slide[data-audio="23"] .s19-ws-filter .slash {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: var(--tca-text-faint);
+      background: #fff;
+      border: 1px solid #e1e5ec;
+      padding: 0 4px;
+      border-radius: 3px;
     }
 
-    /* ================================================================
-       BOTTOM RECEIPTS BAND — 5 chips
-       ================================================================ */
-    #slide-mms .receipts {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+    .slide[data-audio="23"] .s19-ws-toggle {
+      display: flex; gap: 4px;
+    }
+    .slide[data-audio="23"] .s19-ws-toggle button {
+      flex: 1;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      border-radius: 5px;
+      border: 0;
+      background: transparent;
+      color: var(--tca-text-mute);
+      font-weight: 500;
+    }
+    .slide[data-audio="23"] .s19-ws-toggle button.on {
+      background: var(--tca-blue);
+      color: #fff;
+    }
+
+    .slide[data-audio="23"] .s19-ws-home {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      background: var(--tca-active-bg);
+      border: 1px solid var(--tca-active-bd);
+      border-radius: 6px;
+    }
+    .slide[data-audio="23"] .s19-ws-home .home-icon {
+      width: 16px; height: 16px;
+      color: var(--s19-dark-teal);
+    }
+    .slide[data-audio="23"] .s19-ws-home .home-icon svg { width: 16px; height: 16px; }
+    .slide[data-audio="23"] .s19-ws-home .home-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="23"] .s19-ws-home .home-label .h {
+      color: var(--tca-text-mute);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .slide[data-audio="23"] .s19-ws-section {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--tca-text);
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-ws-section .chev { color: var(--tca-text-dim); }
+    .slide[data-audio="23"] .s19-ws-section .count {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--tca-text-faint);
+      font-weight: 500;
+    }
+    .slide[data-audio="23"] .s19-ws-section svg { width: 14px; height: 14px; }
+
+    .slide[data-audio="23"] .s19-ws-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.15em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      padding: 2px 10px 0;
+      margin-top: 2px;
+    }
+    .slide[data-audio="23"] .s19-ws-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      color: var(--tca-text);
+      border-radius: 5px;
+    }
+    .slide[data-audio="23"] .s19-ws-item .left {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .slide[data-audio="23"] .s19-ws-item .pin {
+      width: 8px; height: 8px;
+      display: inline-block;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="23"] .s19-ws-item .pin svg { width: 9px; height: 9px; }
+    .slide[data-audio="23"] .s19-ws-item .time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--tca-text-faint);
+    }
+    .slide[data-audio="23"] .s19-ws-item.muted .name {
+      color: var(--tca-text-mute);
+      font-size: 11.5px;
+    }
+    .slide[data-audio="23"] .s19-ws-item.muted .desc {
+      font-size: 10.5px;
+      color: var(--tca-text-faint);
+      margin-top: 2px;
+      padding-left: 0;
+    }
+
+    /* COL 3 — Explorer */
+    .slide[data-audio="23"] .s19-explorer {
+      background: #ffffff;
+      border-right: 1px solid var(--tca-divider);
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+    .slide[data-audio="23"] .s19-ex-bar {
+      height: 38px;
+      display: flex; align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      border-bottom: 1px solid var(--tca-divider-2);
+      color: var(--tca-text-mute);
+    }
+    .slide[data-audio="23"] .s19-ex-bar svg { width: 14px; height: 14px; }
+    .slide[data-audio="23"] .s19-ex-bar .title {
+      font-size: 13px;
+      color: var(--tca-text);
+      font-weight: 500;
+      margin: 0 4px;
+    }
+    .slide[data-audio="23"] .s19-ex-bar .spacer { flex: 1; }
+    .slide[data-audio="23"] .s19-ex-bar .strike {
+      color: var(--tca-text-faint);
+      text-decoration: line-through;
+    }
+    .slide[data-audio="23"] .s19-ex-label {
+      padding: 10px 14px 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--tca-text-faint);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-ex-filter {
+      margin: 2px 12px 8px;
+      height: 26px;
+      background: #f4f6f9;
+      border: 1px solid #e1e5ec;
+      border-radius: 5px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--tca-text-dim);
+    }
+    .slide[data-audio="23"] .s19-ex-filter svg { width: 11px; height: 11px; }
+
+    .slide[data-audio="23"] .s19-ex-tree {
+      padding: 0 8px;
+      flex: 1;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      gap: 1px;
+    }
+    .slide[data-audio="23"] .s19-ex-row {
+      display: flex; align-items: center;
+      padding: 4px 8px;
+      gap: 7px;
+      font-size: 12.5px;
+      color: var(--tca-text);
+      border-radius: 4px;
+    }
+    .slide[data-audio="23"] .s19-ex-row .chev { color: var(--tca-text-dim); }
+    .slide[data-audio="23"] .s19-ex-row .chev svg { width: 10px; height: 10px; }
+    .slide[data-audio="23"] .s19-ex-row .folder { color: var(--tca-folder); }
+    .slide[data-audio="23"] .s19-ex-row .folder svg { width: 13px; height: 13px; }
+    .slide[data-audio="23"] .s19-ex-row .name { font-weight: 500; }
+    .slide[data-audio="23"] .s19-ex-row.highlight {
+      background: rgba(254, 189, 51, 0.13);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.35);
+    }
+    .slide[data-audio="23"] .s19-ex-row.highlight .folder { color: #c97f10; }
+
+    /* OneDrive group */
+    .slide[data-audio="23"] .s19-ex-onedrive {
+      margin: 8px 0 0;
+      background: var(--tca-blue-soft);
+      border-top: 1px solid var(--tca-divider-2);
+    }
+    .slide[data-audio="23"] .s19-ex-onedrive-head {
+      display: flex; align-items: center;
+      padding: 7px 12px;
+      gap: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--tca-blue);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .slide[data-audio="23"] .s19-ex-onedrive-head svg { width: 14px; height: 14px; color: var(--tca-blue); }
+    .slide[data-audio="23"] .s19-ex-onedrive-head .chev {
+      margin-left: -4px; color: var(--tca-blue);
+    }
+    .slide[data-audio="23"] .s19-ex-onedrive-head .chev svg { width: 10px; height: 10px; }
+    .slide[data-audio="23"] .s19-ex-onedrive.highlight {
+      background: rgba(254, 189, 51, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.30);
+    }
+    .slide[data-audio="23"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head {
+      color: #b46f10;
+    }
+    .slide[data-audio="23"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head svg { color: #b46f10; }
+    .slide[data-audio="23"] .s19-ex-od-rows {
+      padding: 2px 8px 8px;
+      display: flex; flex-direction: column;
+      gap: 1px;
+      background: #fff;
+    }
+    .slide[data-audio="23"] .s19-ex-od-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 3px 6px;
+      font-size: 11.5px;
+      color: var(--tca-text);
+    }
+    .slide[data-audio="23"] .s19-ex-od-row .folder { color: var(--tca-folder-hi); }
+    .slide[data-audio="23"] .s19-ex-od-row .folder svg { width: 12px; height: 12px; }
+    .slide[data-audio="23"] .s19-ex-od-row .file svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
+    .slide[data-audio="23"] .s19-ex-od-row .size {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--tca-text-faint);
+    }
+
+    /* COL 4 — Main pane */
+    .slide[data-audio="23"] .s19-main {
+      position: relative;
+      display: flex; flex-direction: column;
+      min-width: 0;
+      background: var(--tca-bg);
+    }
+
+    /* main top bar with Explorer / Chat / Claude buttons */
+    .slide[data-audio="23"] .s19-main-bar {
+      height: 38px;
+      display: flex; align-items: center;
+      padding: 0 18px 0 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 6px;
+      flex-shrink: 0;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .slide[data-audio="23"] .s19-main-bar .spacer { flex: 1; }
+    .slide[data-audio="23"] .s19-main-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px;
+      border: 1px solid var(--tca-divider);
+      border-radius: 5px;
+      background: #fff;
+      font-size: 11.5px;
+      color: var(--tca-text);
+      font-weight: 500;
+    }
+    .slide[data-audio="23"] .s19-main-btn svg { width: 12px; height: 12px; color: var(--tca-text-mute); }
+    .slide[data-audio="23"] .s19-main-btn.active {
+      background: var(--tca-blue-soft);
+      border-color: var(--tca-blue);
+      color: var(--tca-blue);
+    }
+    .slide[data-audio="23"] .s19-main-btn.active svg { color: var(--tca-blue); }
+    .slide[data-audio="23"] .s19-main-btns-wrap {
+      display: flex; align-items: center; gap: 6px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="23"] .s19-main-btns-wrap.highlight::before {
+      content: '';
+      position: absolute;
+      inset: -5px -6px;
+      border: 1.5px dashed var(--s19-honey);
+      border-radius: 8px;
+      pointer-events: none;
+      box-shadow: 0 0 14px rgba(254, 189, 51, 0.30);
+    }
+
+    /* tab strip (README.md tab) */
+    .slide[data-audio="23"] .s19-tabs {
+      display: flex; align-items: stretch;
+      background: var(--tca-tab-bg);
+      border-bottom: 1px solid var(--tca-divider);
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="23"] .s19-tab {
+      display: inline-flex; align-items: center;
+      gap: 8px;
+      padding: 7px 14px 6px;
+      font-size: 12px;
+      color: var(--tca-text);
+      background: var(--tca-tab-active);
+      border: 1px solid var(--tca-divider);
+      border-bottom: 0;
+      border-radius: 5px 5px 0 0;
+      margin-top: 4px;
+      position: relative;
+    }
+    .slide[data-audio="23"] .s19-tab::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -1px; height: 1px;
+      background: var(--tca-tab-active);
+    }
+    .slide[data-audio="23"] .s19-tab .md-chip {
+      background: #2c4c79;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 1px 3px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .slide[data-audio="23"] .s19-tab .close { color: var(--tca-text-faint); font-size: 12px; line-height: 1; }
+
+    /* sub-toolbar (Edit / Preview / Split) */
+    .slide[data-audio="23"] .s19-subtools {
+      display: flex; align-items: center;
+      padding: 8px 14px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--tca-divider);
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .slide[data-audio="23"] .s19-subtool {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 11.5px;
+      color: var(--tca-text-mute);
+      background: transparent;
+      border: 1px solid transparent;
+    }
+    .slide[data-audio="23"] .s19-subtool svg { width: 12px; height: 12px; }
+    .slide[data-audio="23"] .s19-subtool.active {
+      background: #eaf0fa;
+      color: var(--tca-blue);
+      border-color: #d6e1f0;
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-subtool.active svg { color: var(--tca-blue); }
+    .slide[data-audio="23"] .s19-subtools .spacer { flex: 1; }
+    .slide[data-audio="23"] .s19-subtools .icon-only {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 5px; color: var(--tca-text-mute);
+    }
+    .slide[data-audio="23"] .s19-subtools .icon-only svg { width: 13px; height: 13px; }
+
+    /* The Yogi-active canvas */
+    .slide[data-audio="23"] .s19-canvas {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          rgba(254, 189, 51, 0.10) 0%,
+          rgba(254, 189, 51, 0.03) 40%,
+          rgba(254, 189, 51, 0) 75%),
+        #ffffff;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* honey scanline edge */
+    .slide[data-audio="23"] .s19-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(254, 189, 51, 0.22);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Yogi-active card centered in canvas */
+    .slide[data-audio="23"] .s19-yogi-card {
+      position: relative;
+      width: clamp(280px, 36%, 380px);
+      background: linear-gradient(180deg, #fffaeb 0%, #fff5dc 100%);
+      border: 1px solid rgba(254, 189, 51, 0.55);
+      border-radius: 12px;
+      padding: 18px 20px 16px;
+      box-shadow:
+        0 0 0 4px rgba(254, 189, 51, 0.10),
+        0 12px 32px rgba(254, 189, 51, 0.18),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex; flex-direction: column;
       gap: 10px;
     }
-    #slide-mms .receipt {
+    .slide[data-audio="23"] .s19-yogi-card .y-head {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-bear {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 0 2px #fffaeb, 0 0 14px rgba(254, 189, 51, 0.50);
+      flex-shrink: 0;
       position: relative;
-      background: linear-gradient(180deg,
-        rgba(15, 20, 28, 0.7) 0%,
-        rgba(11, 15, 22, 0.5) 100%);
-      border: 1px solid var(--s20m-border);
-      border-left: 2px solid var(--receipt-c, var(--s20m-honey));
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex; flex-direction: column; gap: 4px;
     }
-    #slide-mms .receipt .rval {
-      font-size: 19px;
+    /* pulse */
+    .slide[data-audio="23"] .s19-yogi-card .y-bear::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(254, 189, 51, 0.45);
+      animation: s19-pulse 2.4s ease-out infinite;
+    }
+    @keyframes s19-pulse {
+      0%   { transform: scale(1);   opacity: 0.9; }
+      80%  { transform: scale(1.6); opacity: 0;   }
+      100% { transform: scale(1.6); opacity: 0;   }
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-text {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-title {
+      font-size: 14px;
       font-weight: 700;
+      color: #3a2a08;
+      letter-spacing: -0.01em;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8a6418;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-sub .live {
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-sub .live::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--s19-green);
+      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
+      animation: s19-blink 1.6s ease-in-out infinite;
+    }
+    @keyframes s19-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-divider {
+      height: 1px;
+      background: rgba(254, 189, 51, 0.35);
+      margin: 2px 0;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-stat {
+      display: flex; flex-direction: column;
+      gap: 2px;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-stat .n {
+      font-size: 18px;
+      font-weight: 800;
+      color: #6e4a08;
       letter-spacing: -0.02em;
-      color: var(--receipt-c, var(--s20m-honey));
-      line-height: 1;
+      font-family: 'Inter', sans-serif;
     }
-    #slide-mms .receipt .rval .unit {
-      font-size: 11.5px;
-      color: var(--s20m-fg-muted);
-      font-weight: 500;
-      margin-left: 2px;
-    }
-    #slide-mms .receipt .rlbl {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+    .slide[data-audio="23"] .s19-yogi-card .y-stat .l {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 8.5px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--s20m-fg-dim);
+      color: #8a6418;
     }
-    #slide-mms .receipt .rdesc {
+    .slide[data-audio="23"] .s19-yogi-card .y-foot {
+      font-size: 11px;
+      color: #6e4a08;
+      letter-spacing: -0.005em;
+      line-height: 1.35;
+    }
+    .slide[data-audio="23"] .s19-yogi-card .y-foot b { color: #3a2a08; font-weight: 700; }
+
+    /* feedback widget (replica) */
+    .slide[data-audio="23"] .s19-feedback {
+      position: absolute;
+      bottom: 14px; right: 16px;
+      background: #2c4c79;
+      color: #fff;
       font-size: 10.5px;
-      color: var(--s20m-fg-muted);
-      line-height: 1.3;
+      padding: 5px 11px 5px 8px;
+      border-radius: 14px;
+      display: inline-flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      z-index: 3;
     }
-    #slide-mms .receipt.r1 { --receipt-c: var(--s20m-honey); }
-    #slide-mms .receipt.r2 { --receipt-c: var(--s20m-coral); }
-    #slide-mms .receipt.r3 { --receipt-c: var(--s20m-violet); }
-    #slide-mms .receipt.r4 { --receipt-c: var(--s20m-teal);  }
-    #slide-mms .receipt.r5 { --receipt-c: var(--s20m-sky);   }
-
-    /* ---------- Reveal animation ---------- */
-    #slide-mms .reveal {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: revealUp 720ms cubic-bezier(.2,.7,.2,1) forwards;
-    }
-    #slide-mms .reveal.d1  { animation-delay: 80ms; }
-    #slide-mms .reveal.d2  { animation-delay: 200ms; }
-    #slide-mms .reveal.d3  { animation-delay: 340ms; }
-    #slide-mms .reveal.d4  { animation-delay: 480ms; }
-    #slide-mms .reveal.d5  { animation-delay: 620ms; }
-    #slide-mms .reveal.d6  { animation-delay: 760ms; }
-    @keyframes revealUp {
-      to { opacity: 1; transform: translateY(0); }
+    .slide[data-audio="23"] .s19-feedback .b {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px;
     }
 
-    /* Routing line dash animation */
-    #slide-mms .rline {
-      stroke: var(--s20m-honey-line);
-      stroke-width: 1;
-      stroke-dasharray: 3 4;
-      fill: none;
-      opacity: 0.45;
+    /* ---------- Floating callouts (4) ---------- */
+    .slide[data-audio="23"] .s19-callouts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(12px, 1.4vw, 22px);
+      padding-top: clamp(4px, 0.6vh, 8px);
     }
-    #slide-mms .rline.solid {
-      stroke: var(--s20m-honey);
-      stroke-width: 1.5;
-      stroke-dasharray: none;
-      opacity: 1;
-      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.55));
+    .slide[data-audio="23"] .s19-callout {
+      position: relative;
+      padding: 10px 12px 10px 14px;
+      background: linear-gradient(180deg,
+        rgba(20, 24, 33, 0.78) 0%,
+        rgba(14, 18, 25, 0.78) 100%);
+      border: 1px solid var(--s19-border);
+      border-left: 2px solid var(--s19-honey);
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      gap: 3px;
+      backdrop-filter: blur(6px);
     }
-    #slide-mms .rdot {
-      fill: var(--s20m-honey);
-      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.7));
+    .slide[data-audio="23"] .s19-callout .num {
+      position: absolute;
+      top: -8px; left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--s19-honey);
+      background: var(--s19-bg);
+      padding: 1px 6px;
+      border: 1px solid var(--s19-honey-line);
+      border-radius: 3px;
     }
-    #slide-mms .flow-dot {
-      animation: flowAlong 3.6s ease-in-out infinite;
+    .slide[data-audio="23"] .s19-callout .key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      font-weight: 600;
     }
-    @keyframes flowAlong {
-      0%   { opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { opacity: 0; }
+    .slide[data-audio="23"] .s19-callout .label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--s19-fg);
+      letter-spacing: -0.01em;
     }
+    .slide[data-audio="23"] .s19-callout .desc {
+      font-size: 11.5px;
+      color: var(--s19-fg-muted);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+    }
+    .slide[data-audio="23"] .s19-callout .desc b {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+
+    /* ---------- Footer strip ---------- */
+    .slide[data-audio="23"] .s19-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+      padding-top: clamp(6px, 0.8vh, 10px);
+      border-top: 1px dashed var(--s19-border);
+    }
+    .slide[data-audio="23"] .s19-footer .credits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .slide[data-audio="23"] .s19-footer .credits .em {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-footer .credits .sep {
+      width: 1px; height: 10px; background: var(--s19-border);
+    }
+    .slide[data-audio="23"] .s19-footer .rollout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--s19-fg-muted);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .slide[data-audio="23"] .s19-footer .rollout .em {
+      color: var(--s19-honey); font-weight: 600;
+    }
+    .slide[data-audio="23"] .s19-footer .rollout .sep {
+      width: 1px; height: 10px; background: var(--s19-border);
+    }
+
+    /* ---------- Stagger on enter ---------- */
+    @keyframes s19-rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes s19-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .slide[data-audio="23"] .s19-header { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="23"] .s19-stage  { animation: s19-rise 720ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 120ms; }
+    .slide[data-audio="23"] .s19-aura   { animation: s19-fade 1400ms ease-out both; animation-delay: 600ms; }
+    .slide[data-audio="23"] .s19-callout { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
+    .slide[data-audio="23"] .s19-callout:nth-child(1) { animation-delay: 800ms; }
+    .slide[data-audio="23"] .s19-callout:nth-child(2) { animation-delay: 880ms; }
+    .slide[data-audio="23"] .s19-callout:nth-child(3) { animation-delay: 960ms; }
+    .slide[data-audio="23"] .s19-callout:nth-child(4) { animation-delay: 1040ms; }
+    .slide[data-audio="23"] .s19-footer { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 1180ms; }
 
     @media (prefers-reduced-motion: reduce) {
-      #slide-mms * { animation: none !important; }
-      #slide-mms .reveal { opacity: 1; transform: none; }
+      .slide[data-audio="23"] * { animation: none !important; }
     }
 
-    /* Footer micro-line */
-    #slide-mms .micro-foot {
-      display: flex; justify-content: space-between; align-items: center;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--s20m-fg-faint);
-      margin-top: -2px;
+    @media (max-height: 820px) {
+      .slide[data-audio="23"] .s19-title { font-size: clamp(30px, 3.6vw, 50px); }
+      .slide[data-audio="23"] .s19-window { max-height: clamp(420px, 56vh, 600px); }
+      .slide[data-audio="23"] .s19-callout .label { font-size: 13px; }
+      .slide[data-audio="23"] .s19-callout .desc { font-size: 11px; }
     }
-    #slide-mms .micro-foot .m-r {
-      display: inline-flex; align-items: center; gap: 8px;
+    @media (max-width: 1700px) {
+      .slide[data-audio="23"] .s19-hide-md { display: none; }
+      .slide[data-audio="23"] .s19-tb-nav { display: none; }
     }
-    #slide-mms .micro-foot .pin {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--s20m-honey);
-      box-shadow: 0 0 6px var(--s20m-honey);
+    @media (max-width: 1500px) {
+      .slide[data-audio="23"] .s19-body {
+        grid-template-columns: 52px 210px 220px 1fr;
+      }
+      .slide[data-audio="23"] .s19-tb-version { display: none; }
     }
   </style>
 
-  <div class="atmos">
-    <div class="grid-bg"></div>
-    <div class="glow-honey"></div>
-    <div class="glow-teal"></div>
-    <div class="grain"></div>
+  <div class="s19-atmos">
+    <div class="s19-grid-bg"></div>
+    <div class="s19-glow"></div>
+    <div class="s19-grain"></div>
   </div>
 
-  <div class="wrap">
+  <div class="s19-wrap">
 
-    <!-- ========== HEADER ========== -->
-    <div class="top reveal d1">
-      <div class="head-l">
-        <span class="eyebrow">
+    <!-- HEADER -->
+    <header class="s19-header">
+      <div>
+        <div class="s19-eyebrow">
           <span class="dot"></span>
-          21 / 26
-          <span class="bar"></span>
-          MULTI-MODEL STRATEGY
-          <span class="bar"></span>
-          FRONTIER + COST-EFFECTIVE
-        </span>
-        <h1>Not locked to <span class="accent">one model.</span></h1>
-        <div class="subhead">
-          15 FRONTIER MODELS <span class="sep">·</span> 9 VENDORS <span class="sep">·</span> ROUTING PER TASK <span class="sep">·</span> BEST TOOL LOWEST COST EVERY TIME
+          <span class="num">19 / 22</span>
+          <span class="slash">//</span>
+          <span>WHERE YOGI LIVES</span>
+          <span class="slash">//</span>
+          <span>TC ASSISTANT</span>
         </div>
+        <h1 class="s19-title">
+          Where Yogi <span class="accent">lives.</span>
+        </h1>
       </div>
-      <div class="head-r">
-        <div class="num">9<span class="slash">/</span>vendors</div>
-        <div>15 MODELS · ROUTER LIVE</div>
+      <div class="s19-subhead">
+        <span>TC ASSISTANT</span>
+        <span class="pipe"></span>
+        <span>WORKSPACES HOME</span>
+        <span class="pipe"></span>
+        <span class="mute">MIKE WISE'S CANVAS</span>
       </div>
-    </div>
+    </header>
 
-    <!-- ========== ROUTER DIAGRAM ========== -->
-    <div class="router reveal d2">
-      <div class="router-label">
-        <span>ROUTING TRACE <span style="color:var(--s20m-fg-faint); margin: 0 8px;">·</span> task → model selection</span>
-        <span class="stat">policy: best capability ∩ cost-ceiling ∩ data-residency</span>
-      </div>
+    <!-- STAGE / MOCKUP -->
+    <div class="s19-stage">
+      <div class="s19-aura"></div>
 
-      <div class="router-stage">
-
-        <!-- TASK IN -->
-        <div class="task-in">
-          <div class="tlbl">INCOMING TASK</div>
-          <div class="tcmd">
-            <span class="tarrow">›</span>investigate complaint TC-5012
+      <div class="s19-window">
+        <!-- macOS-style chrome -->
+        <div class="s19-chrome">
+          <div class="s19-chrome-dot r"></div>
+          <div class="s19-chrome-dot y"></div>
+          <div class="s19-chrome-dot g"></div>
+          <div class="s19-chrome-url">
+            <span class="lock">●</span>
+            <span class="host">assistant.trilogycare.com.au</span>
+            <span style="color:var(--tca-text-faint);">/workspaces/~ashw</span>
           </div>
-          <div class="ttag">// ACQSC · evidence-grade · deep reasoning</div>
         </div>
 
-        <!-- ROUTER CORE -->
-        <div class="router-core">
-          <div class="diamond-wrap">
-            <div class="diamond"></div>
-            <div class="diamond-inner">
-              <div class="ico"></div>
-              <div class="ttl">Yogi Router</div>
-              <div class="sub">decision policy</div>
+        <div class="s19-app">
+
+          <!-- TOP BAR -->
+          <div class="s19-topbar">
+            <!-- app launcher (grid) -->
+            <div class="s19-tb-icon" title="App launcher">
+              <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
             </div>
-            <div class="badges">
-              <div class="badge b1"><span class="bd"></span>complexity</div>
-              <div class="badge b2"><span class="bd"></span>cost</div>
-              <div class="badge b3"><span class="bd"></span>residency</div>
+            <!-- sidebar toggle -->
+            <div class="s19-tb-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+            </div>
+
+            <!-- Logo -->
+            <div class="s19-tb-logo">
+              <div class="s19-tb-logo-mark">
+                <!-- stylised Trilogy mark: 3 chevrons -->
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 14 L8 18 L12 14" stroke="#FEBD33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 10 L13 14 L17 10" stroke="#43C0BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 6 L18 10 L22 6" stroke="#2C4C79" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="s19-tb-logo-text">Trilogy Care <b>Assistant</b></div>
+              <div class="s19-tb-version">v1.1.504</div>
+            </div>
+
+            <!-- nav arrows -->
+            <div class="s19-tb-nav">
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 18 9 12 15 6"/></svg></div>
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 18 9 12 15 6"/></svg></div>
+              <div class="s19-tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="9 18 15 12 9 6"/></svg></div>
+            </div>
+
+            <!-- search -->
+            <div class="s19-tb-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>Search or type a command…</span>
+              <span class="kbd">⌘K</span>
+            </div>
+
+            <div class="s19-tb-spacer"></div>
+
+            <!-- domain switcher -->
+            <div class="s19-tb-domain">
+              <div class="d-chip">D</div>
+              <span>Digital</span>
+              <span class="d-ga">Ga</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+
+            <!-- help -->
+            <div class="s19-tb-help">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+            </div>
+
+            <!-- account -->
+            <div class="s19-tb-account">
+              <div class="av">AW</div>
+              <div class="name">Ash Williams</div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--tca-text-dim);width:11px;height:11px;"><polyline points="6 9 12 15 18 9"/></svg>
             </div>
           </div>
-        </div>
 
-        <!-- MODELS FAN — 15 chips, 2 rows × 7-8 -->
-        <div class="models-fan">
-
-          <!-- Row 1: Anthropic (3) + Google (3) + OpenAI (2) -->
-          <div class="model-chip chosen">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="ch-name">Sonnet 4.6</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="ch-name">Opus 4.6</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="ch-name">Haiku 4.5</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Gem 2.5 Pro</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Gem Flash</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Gem Nano</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">GPT-5</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">GPT-5 Mini</span>
+          <!-- BETA BANNER -->
+          <div class="s19-beta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <b>Trilogy Care Assistant is in active beta testing.</b>
+            <span>See the <a>release notes</a>, <a>known bugs</a>, or <a>send feedback</a>.</span>
+            <span class="close">✕</span>
           </div>
 
-          <!-- Row 2: OpenAI (1) + Meta (1) + Mistral (1) + DeepSeek (1) + Qwen (1) + Cohere (1) + AWS (1) + spacer -->
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">o4-mini</span>
+          <!-- BODY -->
+          <div class="s19-body">
+
+            <!-- COL 1 — RAIL -->
+            <div class="s19-rail">
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Chat</span>
+              </div>
+              <div class="s19-rail-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <span>Workspaces</span>
+              </div>
+              <div class="s19-rail-spacer"></div>
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+                <span>Help</span>
+              </div>
+              <div class="s19-rail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Settings</span>
+              </div>
+            </div>
+
+            <!-- COL 2 — WORKSPACES SIDEBAR -->
+            <div class="s19-ws-side">
+              <div class="s19-ws-head">
+                <div class="s19-ws-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  Workspaces
+                </div>
+                <div class="s19-ws-new">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  New
+                </div>
+              </div>
+
+              <div class="s19-ws-filter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Filter…</span>
+                <span class="slash">*/</span>
+              </div>
+
+              <div class="s19-ws-toggle">
+                <button class="on">Active</button>
+                <button>Archived</button>
+              </div>
+
+              <div class="s19-ws-home">
+                <div class="home-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg>
+                </div>
+                <div class="home-label">Home <span class="h">~ashw</span></div>
+              </div>
+
+              <div class="s19-ws-section">
+                <span class="chev">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Workspaces
+                <span class="count">6</span>
+              </div>
+
+              <div class="s19-ws-tag">Pinned</div>
+              <div class="s19-ws-item">
+                <div class="left">
+                  <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6"/><path d="M19 9 12 16 5 9"/><path d="M12 16v6"/></svg></span>
+                  <span class="name">Yogi</span>
+                </div>
+                <span class="time">9d ago</span>
+              </div>
+
+              <div class="s19-ws-tag">Previous 7 Days</div>
+              <div class="s19-ws-item">
+                <div class="left">
+                  <span class="name">Yogi</span>
+                </div>
+                <span class="time">5d ago</span>
+              </div>
+
+              <div class="s19-ws-tag">Older</div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Indigo Pulse · 5 May</span>
+                </div>
+                <span class="time">18d</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Daily Briefing workspace</span>
+                </div>
+                <span class="time">15/04</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">PLA Watch workspace</span>
+                </div>
+                <span class="time">14/04</span>
+              </div>
+              <div class="s19-ws-item muted">
+                <div class="left">
+                  <span class="name">Testing 123</span>
+                </div>
+                <span class="time">02/04</span>
+              </div>
+            </div>
+
+            <!-- COL 3 — EXPLORER -->
+            <div class="s19-explorer">
+              <div class="s19-ex-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span class="title">~ashw</span>
+                <span class="strike">Aa</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1"/></svg>
+                <div class="spacer"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+
+              <div class="s19-ex-label">Explorer</div>
+              <div class="s19-ex-filter">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Filter files…</span>
+              </div>
+
+              <div class="s19-ex-tree">
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">docs</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">specialist-crew</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">specialist-memory</span>
+                </div>
+                <div class="s19-ex-row highlight">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">memory</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">profiles</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">skills</span>
+                </div>
+                <div class="s19-ex-row">
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+                  <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                  <span class="name">trilogycare</span>
+                </div>
+
+                <div class="s19-ex-onedrive">
+                  <div class="s19-ex-onedrive-head">
+                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                    OneDrive
+                  </div>
+                </div>
+
+                <div class="s19-ex-od-rows">
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Attachments</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>CQCC Reporting</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Meetings</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+                    <span>Microsoft Teams Chat Files</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                    <span>Book.xlsx</span>
+                    <span class="size">6.0 KB</span>
+                  </div>
+                  <div class="s19-ex-od-row">
+                    <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                    <span>Supplier Billing Re-Ed…</span>
+                    <span class="size">64.6 KB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COL 4 — MAIN PANE -->
+            <div class="s19-main">
+
+              <div class="s19-main-bar">
+                <div class="s19-main-btn s19-hide-md">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  New file
+                </div>
+                <div class="s19-main-btn s19-hide-md">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                  New folder
+                </div>
+                <div class="spacer"></div>
+
+                <div class="s19-main-btns-wrap highlight">
+                  <div class="s19-main-btn active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
+                    Explorer
+                  </div>
+                  <div class="s19-main-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Chat
+                  </div>
+                  <div class="s19-main-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    Claude
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB STRIP -->
+              <div class="s19-tabs">
+                <div class="s19-tab">
+                  <span class="md-chip">MD</span>
+                  README.md
+                  <span class="close">×</span>
+                </div>
+              </div>
+
+              <!-- SUB-TOOLS -->
+              <div class="s19-subtools">
+                <div class="s19-subtool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+                  Edit
+                </div>
+                <div class="s19-subtool active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  Preview
+                </div>
+                <div class="s19-subtool">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+                  Split
+                </div>
+                <div class="spacer"></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15A9 9 0 1 1 18 5.7L23 10"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+                <div class="icon-only"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              </div>
+
+              <!-- THE CANVAS (Yogi-active surface) -->
+              <div class="s19-canvas">
+                <div class="s19-yogi-card">
+                  <div class="y-head">
+                    <div class="y-bear">🐻</div>
+                    <div class="y-text">
+                      <div class="y-title">Yogi is active in this workspace</div>
+                      <div class="y-sub"><span class="live">Standing by · Ash's substrate loaded</span></div>
+                    </div>
+                  </div>
+                  <div class="y-divider"></div>
+                  <div class="y-stats">
+                    <div class="y-stat"><div class="n">79</div><div class="l">memory files</div></div>
+                    <div class="y-stat"><div class="n">1,000</div><div class="l">specialists</div></div>
+                    <div class="y-stat"><div class="n">328</div><div class="l">tools</div></div>
+                  </div>
+                  <div class="y-foot">
+                    Same bear, <b>every desk.</b> Each staffer's Workspaces Home becomes their <b>personal Yogi</b> — no context leak between users.
+                  </div>
+                </div>
+              </div>
+
+              <!-- feedback widget replica -->
+              <div class="s19-feedback">
+                <span class="b">🐻</span>
+                Feedback
+              </div>
+            </div>
+
           </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="13" height="11" viewBox="0 0 18 14" fill="none">
-                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#E04B51" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Llama 4 405B</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M2 12 L2 5 L5 12 L8 5 L8 12 M10 5 H14 M10 8.5 H14 M10 12 H14" stroke="#F39B5A" stroke-width="1.1" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <span class="ch-name">Mistral L2</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 L13 6 L13 11 L8 14 L3 11 L3 6 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
-                <circle cx="8" cy="8" r="1.5" fill="#9B7BD4"/>
-              </svg>
-            </span>
-            <span class="ch-name">DeepSeek V3</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#007F7E" stroke-width="1.2" fill="none"/>
-                <path d="M5 8 L8 11 L11 5" stroke="#007F7E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Qwen 3 Max</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M4 4 L4 12 M4 4 Q8 4 8 8 Q8 12 4 12 M10 6 L12 12 L14 6" stroke="#FEBD33" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Command R+</span>
-          </div>
-          <div class="model-chip">
-            <span class="ch-logo">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                <path d="M3 5 L8 12 L13 5 M5 5 L8 9 L11 5" stroke="#64BCEA" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="ch-name">Nova Pro</span>
-          </div>
-          <div style="opacity:0.4; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:9px; color: var(--s20m-fg-faint); letter-spacing:0.16em;">+ more</div>
-        </div>
-
-        <!-- SVG ROUTING LINES -->
-        <svg class="router-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
-          <!-- task chip → diamond -->
-          <path class="rline solid" d="M 12.5 50 H 28" />
-          <!-- diamond → fan: 15 model chips (2 rows × 7-8) -->
-          <!-- Row 1 (top): 8 lines fanning up-right -->
-          <path class="rline solid" d="M 41 50 C 50 50, 50 22, 56 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 62 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 68 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 74 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 80 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 86 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 92 22" />
-          <path class="rline" d="M 41 50 C 50 50, 50 22, 98 22" />
-          <!-- Row 2 (bottom): 7 lines fanning down-right -->
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 56 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 62 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 68 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 74 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 80 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 86 78" />
-          <path class="rline" d="M 41 50 C 50 50, 50 78, 92 78" />
-
-          <!-- flow dot to chosen (Sonnet 4.6, top-left of fan) -->
-          <circle class="rdot flow-dot" r="0.7">
-            <animateMotion dur="3.6s" repeatCount="indefinite"
-              path="M 12.5 50 H 28 L 41 50 C 50 50, 50 22, 56 22" />
-          </circle>
-        </svg>
-
-        <!-- Chosen tag -->
-        <div class="chosen-tag">
-          <span class="ct-dot"></span>
-          → Sonnet 4.6
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ========== SCORECARD ========== -->
-    <div class="card-section reveal d3">
-      <div class="card-head">
-        <span>MODEL SCORECARD <span style="color:var(--s20m-fg-faint); margin: 0 6px;">·</span> 15 models · 9 vendors · 6 dimensions</span>
-        <div class="legend">
-          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-honey)"></span>reasoning</span>
-          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-teal)"></span>speed</span>
-          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-coral)"></span>cost</span>
-          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-sky)"></span>context</span>
-          <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-violet)"></span>modality</span>
-        </div>
-      </div>
-
-      <div class="scoretable">
-        <!-- Header row -->
-        <div class="th">Model</div>
-        <div class="th">Vendor</div>
-        <div class="th">Reasoning</div>
-        <div class="th">Speed</div>
-        <div class="th">Cost · $/M in/out</div>
-        <div class="th">Long ctx</div>
-        <div class="th">Modal</div>
-        <div class="th">TC Use Case</div>
-
-        <!-- ============ ANTHROPIC GROUP (01-03) ============ -->
-
-        <!-- Row 01: Opus 4.6 -->
-        <div class="row vg-anth vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">01</span>Opus 4.6</span><span class="ml">claude-opus-4-6</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="vname">Anthropic</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$15 / $75</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">1M</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">Complex investigations <span style="color:var(--s20m-fg-faint)">·</span> Yogi orchestrator</div>
-        </div>
-
-        <!-- Row 02: Sonnet 4.6 — FEATURED (default) -->
-        <div class="row vg-anth featured">
-          <div class="cell-model"><span class="mn"><span class="midx">02</span>Sonnet 4.6</span><span class="ml">claude-sonnet-4-6</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="vname">Anthropic</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$3 / $15</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">1M</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">Default workhorse <span style="color:var(--s20m-fg-faint)">·</span> most sub-agent calls</div>
-        </div>
-
-        <!-- Row 03: Haiku 4.5 -->
-        <div class="row vg-anth">
-          <div class="cell-model"><span class="mn"><span class="midx">03</span>Haiku 4.5</span><span class="ml">claude-haiku-4-5</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="vname">Anthropic</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0.80 / $4</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">200K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">Bills QA classify <span style="color:var(--s20m-fg-faint)">·</span> 1000s/day <span style="color:var(--s20m-fg-faint)">·</span> cheap</div>
-        </div>
-
-        <!-- ============ GOOGLE GROUP (04-06) ============ -->
-
-        <!-- Row 04: Gemini 2.5 Pro -->
-        <div class="row vg-goog vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">04</span>Gemini 2.5 Pro</span><span class="ml">gemini-2-5-pro</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Google</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$1.25 / $10</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">2M</div>
-          <div class="cell-modal">Text+img+aud</div>
-          <div class="cell-use">Aircall transcript ingest <span style="color:var(--s20m-fg-faint)">·</span> long docs</div>
-        </div>
-
-        <!-- Row 05: Gemini 2.5 Flash -->
-        <div class="row vg-goog">
-          <div class="cell-model"><span class="mn"><span class="midx">05</span>Gemini 2.5 Flash</span><span class="ml">gemini-2-5-flash</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Google</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0.15 / $0.60</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">1M</div>
-          <div class="cell-modal">Text+img+aud</div>
-          <div class="cell-use">Batch image OCR <span style="color:var(--s20m-fg-faint)">·</span> receipt scans</div>
-        </div>
-
-        <!-- Row 06: Gemini 2.5 Nano -->
-        <div class="row vg-goog">
-          <div class="cell-model"><span class="mn"><span class="midx">06</span>Gemini 2.5 Nano</span><span class="ml">gemini-2-5-nano</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Google</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div class="cell-cost"><span class="cval">on-device</span><span class="clbl">free at runtime</span></div>
-          <div class="cell-ctx">64K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">Mobile cub on-device fallback <span style="color:var(--s20m-fg-faint)">·</span> offline</div>
-        </div>
-
-        <!-- ============ OPENAI GROUP (07-09) ============ -->
-
-        <!-- Row 07: GPT-5 -->
-        <div class="row vg-oai vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">07</span>GPT-5</span><span class="ml">gpt-5</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">OpenAI</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$10 / $30</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">400K</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">Ecosystem fallback <span style="color:var(--s20m-fg-faint)">·</span> structured JSON</div>
-        </div>
-
-        <!-- Row 08: GPT-5 Mini -->
-        <div class="row vg-oai">
-          <div class="cell-model"><span class="mn"><span class="midx">08</span>GPT-5 Mini</span><span class="ml">gpt-5-mini</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">OpenAI</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$2 / $8</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">400K</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">Mid-tier OpenAI workhorse</div>
-        </div>
-
-        <!-- Row 09: o4-mini -->
-        <div class="row vg-oai">
-          <div class="cell-model"><span class="mn"><span class="midx">09</span>o4-mini <span style="font-weight:500; color:var(--s20m-fg-dim); font-size:10px; font-family:'JetBrains Mono', monospace; margin-left:6px;">reasoning</span></span><span class="ml">o4-mini-2026</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">OpenAI</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$4 / $16</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">200K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">Formal verification <span style="color:var(--s20m-fg-faint)">·</span> math <span style="color:var(--s20m-fg-faint)">·</span> proofs</div>
-        </div>
-
-        <!-- ============ META (10) ============ -->
-
-        <!-- Row 10: Llama 4 405B -->
-        <div class="row vg-meta vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">10</span>Llama 4 405B</span><span class="ml">llama-4-405b-instruct</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="14" height="13" viewBox="0 0 18 14" fill="none">
-                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#E04B51" stroke-width="1.2" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Meta · self-host</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0 · compute</span><span class="clbl">self-hosted</span></div>
-          <div class="cell-ctx">128K</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">PII-sensitive on-prem <span style="color:var(--s20m-fg-faint)">·</span> sovereignty</div>
-        </div>
-
-        <!-- ============ MISTRAL (11) ============ -->
-
-        <!-- Row 11: Mistral Large 2 -->
-        <div class="row vg-mist vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">11</span>Mistral Large 2</span><span class="ml">mistral-large-2</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M2 12 L2 5 L5 12 L8 5 L8 12 M10 5 H14 M10 8.5 H14 M10 12 H14" stroke="#F39B5A" stroke-width="1.2" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <span class="vname">Mistral AI</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$2 / $6</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">128K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">EU data residency <span style="color:var(--s20m-fg-faint)">·</span> code <span style="color:var(--s20m-fg-faint)">·</span> multilingual</div>
-        </div>
-
-        <!-- ============ DEEPSEEK (12) ============ -->
-
-        <!-- Row 12: DeepSeek V3 -->
-        <div class="row vg-ds vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">12</span>DeepSeek V3</span><span class="ml">deepseek-v3</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 L13 6 L13 11 L8 14 L3 11 L3 6 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
-                <circle cx="8" cy="8" r="1.5" fill="#9B7BD4"/>
-              </svg>
-            </span>
-            <span class="vname">DeepSeek · open</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0.27 / $1.10</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">128K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">Ultra-cheap reasoning <span style="color:var(--s20m-fg-faint)">·</span> self-host option</div>
-        </div>
-
-        <!-- ============ QWEN (13) ============ -->
-
-        <!-- Row 13: Qwen 3 Max -->
-        <div class="row vg-qwen vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">13</span>Qwen 3 Max</span><span class="ml">qwen-3-max</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#007F7E" stroke-width="1.2" fill="none"/>
-                <path d="M5 8 L8 11 L11 5" stroke="#007F7E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Alibaba · open</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0.80 / $3.20</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">256K</div>
-          <div class="cell-modal">Text+img</div>
-          <div class="cell-use">Multilingual <span style="color:var(--s20m-fg-faint)">·</span> Mandarin client materials</div>
-        </div>
-
-        <!-- ============ COHERE (14) ============ -->
-
-        <!-- Row 14: Cohere Command R+ -->
-        <div class="row vg-coh vg-start">
-          <div class="cell-model"><span class="mn"><span class="midx">14</span>Command R+</span><span class="ml">command-r-plus</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M4 4 L4 12 M4 4 Q8 4 8 8 Q8 12 4 12 M10 6 L12 12 L14 6" stroke="#FEBD33" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">Cohere</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$2.50 / $10</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">128K</div>
-          <div class="cell-modal">Text</div>
-          <div class="cell-use">RAG-optimised <span style="color:var(--s20m-fg-faint)">·</span> enterprise search</div>
-        </div>
-
-        <!-- ============ AWS (15) ============ -->
-
-        <!-- Row 15: Amazon Nova Pro -->
-        <div class="row vg-aws vg-start last">
-          <div class="cell-model"><span class="mn"><span class="midx">15</span>Amazon Nova Pro</span><span class="ml">amazon-nova-pro</span></div>
-          <div class="cell-vendor">
-            <span class="vlogo">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M3 5 L8 12 L13 5 M5 5 L8 9 L11 5" stroke="#64BCEA" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="vname">AWS</span>
-          </div>
-          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
-          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0.80 / $3.20</span><span class="clbl">per million</span></div>
-          <div class="cell-ctx">300K</div>
-          <div class="cell-modal">Text+img+vid</div>
-          <div class="cell-use">AWS-native <span style="color:var(--s20m-fg-faint)">·</span> video frames <span style="color:var(--s20m-fg-faint)">·</span> cheap fast</div>
         </div>
       </div>
     </div>
 
-    <!-- ========== RECEIPTS BAND — 5 chips ========== -->
-    <div class="receipts reveal d4">
-      <div class="receipt r1">
-        <div class="rval">58<span class="unit">% off</span></div>
-        <div class="rlbl">PROMPT CACHE · ANTHROPIC</div>
-        <div class="rdesc">Databricks bill cut by prompt caching across every Anthropic call.</div>
+    <!-- 4 CALLOUTS -->
+    <div class="s19-callouts">
+      <div class="s19-callout">
+        <div class="num">01</div>
+        <div class="key">memory/</div>
+        <div class="label">Persistent memory in markdown</div>
+        <div class="desc">79 files. Auto-extracted preferences. <b>Survives every restart.</b></div>
       </div>
-      <div class="receipt r2">
-        <div class="rval">$0.15<span class="unit">/M</span></div>
-        <div class="rlbl">BATCH INGEST · GEMINI FLASH</div>
-        <div class="rdesc">Daily Aircall summarisation runs at fractional cost vs. flagship.</div>
+      <div class="s19-callout">
+        <div class="num">02</div>
+        <div class="key">specialists/</div>
+        <div class="label">Crew · 1,000 specialists</div>
+        <div class="desc">Inner Circle of 11 + ~1,000 Trilogy-trained sub-agents. <b>Dispatched on demand.</b></div>
       </div>
-      <div class="receipt r3">
-        <div class="rval">$0<span class="unit">/token</span></div>
-        <div class="rlbl">PII REDACTION · LLAMA 4</div>
-        <div class="rdesc">Self-hosted on-prem for sensitive client data. Sovereignty maintained.</div>
+      <div class="s19-callout">
+        <div class="num">03</div>
+        <div class="key">OneDrive</div>
+        <div class="label">OneDrive + Office data feed</div>
+        <div class="desc">CQCC Reporting, Meetings, Teams files, recordings. <b>Live mount.</b></div>
       </div>
-      <div class="receipt r4">
-        <div class="rval">~$4,200<span class="unit">/mo saved</span></div>
-        <div class="rlbl">SMART ROUTING DELTA</div>
-        <div class="rdesc">Versus naive "everything through Opus." Router earns its keep.</div>
-      </div>
-      <div class="receipt r5">
-        <div class="rval">~$8,400<span class="unit">/mo</span></div>
-        <div class="rlbl">VENDOR DIVERSITY · NO LOCK-IN</div>
-        <div class="rdesc">Cross-vendor arbitrage saves on top of routing. Zero vendor dependency.</div>
+      <div class="s19-callout">
+        <div class="num">04</div>
+        <div class="key">Explorer · Chat · Claude</div>
+        <div class="label">Three modes, one canvas</div>
+        <div class="desc">Switch between files, chat, and Claude's CLI <b>without leaving the workspace.</b></div>
       </div>
     </div>
 
-    <!-- Micro footer -->
-    <div class="micro-foot reveal d5">
-      <span>YOGI ROUTER · POLICY-AS-CODE · 15 MODELS · 9 VENDORS · UPDATED 2026-05-25</span>
-      <span class="m-r">
-        <span class="pin"></span>
-        BEST TOOL <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> LOWEST COST <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> EVERY TIME
-      </span>
-    </div>
+    <!-- FOOTER -->
+    <footer class="s19-footer">
+      <div class="credits">
+        <span>CANVAS</span>
+        <span class="em">MIKE WISE</span>
+        <span class="sep"></span>
+        <span>BRAIN</span>
+        <span class="em">ASH WILLIAMS</span>
+        <span class="sep"></span>
+        <span>SAME BEAR · EVERY DESK</span>
+      </div>
+      <div class="rollout">
+        <span>ROLLOUT</span>
+        <span class="sep"></span>
+        <span class="em">500 STAFFERS · 500 PERSONAL YOGIS</span>
+        <span class="sep"></span>
+        <span>TARGET</span>
+        <span class="em">OCT 2026</span>
+      </div>
+    </footer>
 
   </div>
 </section>

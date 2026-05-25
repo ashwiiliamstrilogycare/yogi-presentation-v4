@@ -1,1841 +1,769 @@
 <section class="slide" data-audio="21">
   <style>
-    /* ============================================================
-       SLIDE 19 — CUBS · MAC-RESIDENT COMPANION AGENTS
-       v4: HERO VIDEO STAGE flanked by topology (L) + anatomy (R).
-       The audience SEES a cub in action — cursor moves, clicks,
-       fills forms. Companion framing: operator-in-the-loop.
-       ============================================================ */
-
+    /* ============ SLIDE 18 — SAFETY EVALS / RSP ============ */
     .slide[data-audio="21"] {
-      --s19-bg:          #0a0d12;
-      --s19-bg-elev:     #11161f;
-      --s19-bg-deep:     #070a0e;
-      --s19-bg-glass:    rgba(255, 255, 255, 0.025);
-
-      --s19-honey:       #FEBD33;
-      --s19-honey-soft:  rgba(254, 189, 51, 0.14);
-      --s19-honey-glow:  rgba(254, 189, 51, 0.55);
-      --s19-honey-line:  rgba(254, 189, 51, 0.85);
-      --s19-honey-dim:   rgba(254, 189, 51, 0.35);
-
-      --s19-teal:        #43C0BE;
-      --s19-teal-soft:   rgba(67, 192, 190, 0.14);
-      --s19-teal-glow:   rgba(67, 192, 190, 0.55);
-
-      --s19-sky:         #64BCEA;
-      --s19-sky-soft:    rgba(100, 188, 234, 0.14);
-      --s19-sky-glow:    rgba(100, 188, 234, 0.5);
-
-      --s19-red:         #E04B51;
-      --s19-red-glow:    rgba(224, 75, 81, 0.65);
-
-      --s19-fg:          #f4f4f5;
-      --s19-fg-muted:    #a1a1aa;
-      --s19-fg-dim:      #71717a;
-      --s19-fg-faint:    #52525b;
-
-      --s19-border:      rgba(255, 255, 255, 0.07);
-      --s19-border-strong: rgba(255, 255, 255, 0.14);
-      --s19-border-warm: rgba(254, 189, 51, 0.28);
-      --s19-border-cool: rgba(67, 192, 190, 0.28);
-
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s19-bg);
-      color: var(--s19-fg);
-      font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
+      background:
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(254,189,51,0.055), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 88% 82%, rgba(67,192,190,0.045), transparent 60%),
+        radial-gradient(circle at 50% 110%, rgba(100,188,234,0.03), transparent 70%),
+        var(--bg);
+      color: var(--fg);
+      font-family: var(--font-display);
       overflow: hidden;
-      isolation: isolate;
       letter-spacing: -0.01em;
+      box-sizing: border-box;
     }
 
-    /* ---------- Atmosphere ---------- */
-    .slide[data-audio="21"] .s19-atmos {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .slide[data-audio="21"] .s19-glow-top {
-      position: absolute;
-      top: -25%;
-      left: 38%;
-      width: 70vmin;
-      height: 70vmin;
-      background: radial-gradient(circle at center,
-        rgba(254, 189, 51, 0.14) 0%,
-        rgba(254, 189, 51, 0.04) 35%,
-        transparent 65%);
-      filter: blur(10px);
-      opacity: 0;
-      animation: s19-fade 2400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="21"] .s19-glow-right {
-      position: absolute;
-      bottom: -20%;
-      right: -8%;
-      width: 55vmin;
-      height: 55vmin;
-      background: radial-gradient(circle at center,
-        rgba(67, 192, 190, 0.10) 0%,
-        rgba(67, 192, 190, 0.03) 40%,
-        transparent 65%);
-      filter: blur(14px);
-      opacity: 0;
-      animation: s19-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
-    }
-    .slide[data-audio="21"] .s19-grid {
-      position: absolute;
-      inset: 0;
+    /* faint engineering grid */
+    .slide[data-audio="21"]::before {
+      content: "";
+      position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 88px 88px;
-      mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
-      opacity: 0;
-      animation: s19-fade 1800ms ease 500ms forwards;
-    }
-
-    /* Corner crosshairs */
-    .slide[data-audio="21"] .s19-corner {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-color: var(--s19-fg-faint);
-      opacity: 0;
-      animation: s19-fade 900ms ease 300ms forwards;
-      z-index: 3;
-    }
-    .slide[data-audio="21"] .s19-corner.tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="21"] .s19-corner.tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
-    .slide[data-audio="21"] .s19-corner.bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
-    .slide[data-audio="21"] .s19-corner.br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
-
-    /* ---------- Frame ---------- */
-    .slide[data-audio="21"] .s19-frame {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(28px, 3.4vmin, 52px) clamp(40px, 5vmin, 80px);
-      display: flex;
-      flex-direction: column;
-      gap: clamp(18px, 2.4vmin, 32px);
-    }
-
-    /* ---------- Header ---------- */
-    .slide[data-audio="21"] .s19-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 40px;
-      opacity: 0;
-      animation: s19-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
-    }
-    .slide[data-audio="21"] .s19-header-l {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .slide[data-audio="21"] .s19-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.05vmin, 13px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="21"] .s19-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-honey);
-      box-shadow: 0 0 12px var(--s19-honey-glow);
-      animation: s19-pulse 2200ms ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-eyebrow .sep { color: var(--s19-fg-faint); }
-
-    .slide[data-audio="21"] .s19-title {
-      font-size: clamp(42px, 6vmin, 80px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="21"] .s19-title em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-    .slide[data-audio="21"] .s19-subhead {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.25vmin, 15px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 4px;
-    }
-    .slide[data-audio="21"] .s19-subhead .pip { color: var(--s19-fg-faint); }
-
-    .slide[data-audio="21"] .s19-header-r {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
-    }
-    .slide[data-audio="21"] .s19-stamp {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1vmin, 12px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="21"] .s19-stamp .pre {
-      color: var(--s19-sky);
-    }
-    .slide[data-audio="21"] .s19-slidenum {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 1.1vmin, 14px);
-      color: var(--s19-fg-faint);
-      letter-spacing: 0.12em;
-    }
-    .slide[data-audio="21"] .s19-companion-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 5px 11px;
-      border: 1px solid var(--s19-border-cool);
-      background: var(--s19-teal-soft);
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-teal);
-    }
-    .slide[data-audio="21"] .s19-companion-chip .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 8px var(--s19-teal-glow);
-    }
-
-    /* ============================================================
-       MAIN — 3 COLUMN: TOPOLOGY | HERO VIDEO | ANATOMY
-       ============================================================ */
-    .slide[data-audio="21"] .s19-split {
-      display: grid;
-      grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.1fr) minmax(0, 0.42fr);
-      gap: clamp(18px, 2.4vmin, 36px);
-      flex: 1;
-      min-height: 0;
-    }
-
-    /* ============================================================
-       LEFT — Topology (compact)
-       ============================================================ */
-    .slide[data-audio="21"] .s19-left {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(12px, 1.6vmin, 22px);
-      padding: clamp(16px, 1.9vmin, 26px) clamp(14px, 1.7vmin, 22px);
-      border: 1px solid var(--s19-border);
-      border-radius: 14px;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 18%,
-          rgba(254, 189, 51, 0.06) 0%,
-          transparent 70%),
-        linear-gradient(180deg,
-          var(--s19-bg-elev) 0%,
-          var(--s19-bg-deep) 100%);
-      overflow: hidden;
-      isolation: isolate;
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards;
-    }
-    .slide[data-audio="21"] .s19-left::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-        var(--s19-honey) 0%,
-        var(--s19-honey) 38%,
-        rgba(254, 189, 51, 0.2) 100%);
-      box-shadow: 0 0 14px rgba(254, 189, 51, 0.5);
-      z-index: 4;
-    }
-
-    .slide[data-audio="21"] .s19-panel-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11.5px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="21"] .s19-panel-head .tag {
-      color: var(--s19-honey);
-      padding: 3px 8px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-    }
-    .slide[data-audio="21"] .s19-panel-head .divider {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
-    }
-
-    /* ---------- The Yogi orb (compact) ---------- */
-    .slide[data-audio="21"] .s19-cloud {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: clamp(6px, 1vmin, 14px) 0 clamp(2px, 0.4vmin, 8px);
-    }
-    .slide[data-audio="21"] .s19-orb-wrap {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .slide[data-audio="21"] .s19-orb-rings {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, calc(-50% - 16px));
-      width: clamp(120px, 16vmin, 180px);
-      height: clamp(120px, 16vmin, 180px);
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 85% 85% at center, black 35%, transparent 92%);
       pointer-events: none;
     }
-    .slide[data-audio="21"] .s19-orb-rings::before,
-    .slide[data-audio="21"] .s19-orb-rings::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1px dashed var(--s19-honey-dim);
-      opacity: 0.5;
-    }
-    .slide[data-audio="21"] .s19-orb-rings::after {
-      inset: 18%;
-      border-style: solid;
-      border-color: rgba(254, 189, 51, 0.18);
-      opacity: 0.6;
-      animation: s19-spin 22s linear infinite;
-    }
-    .slide[data-audio="21"] .s19-orb-rings::before {
-      animation: s19-spin-rev 32s linear infinite;
-    }
 
-    .slide[data-audio="21"] .s19-orb {
-      position: relative;
-      width: clamp(60px, 8vmin, 92px);
-      height: clamp(60px, 8vmin, 92px);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 32% 30%,
-          rgba(255, 220, 130, 0.95) 0%,
-          var(--s19-honey) 25%,
-          #d99720 70%,
-          #7a5210 100%);
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.45),
-        0 0 24px rgba(254, 189, 51, 0.55),
-        0 0 60px rgba(254, 189, 51, 0.32),
-        inset 0 0 16px rgba(255, 240, 200, 0.3);
-      animation: s19-orb-breathe 4.5s ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-orb::after {
-      content: '';
-      position: absolute;
-      top: 18%;
-      left: 24%;
-      width: 26%;
-      height: 22%;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center,
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0) 70%);
-      filter: blur(2px);
-    }
-
-    .slide[data-audio="21"] .s19-orb-label {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 1vmin, 11px);
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      text-align: center;
-    }
-    .slide[data-audio="21"] .s19-orb-label .name {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(15px, 1.85vmin, 22px);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-transform: none;
-      color: var(--s19-fg);
-      display: block;
-      margin-bottom: 2px;
-    }
-    .slide[data-audio="21"] .s19-orb-label .name em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-
-    /* ---------- Connector lines (cloud → fleet) ---------- */
-    .slide[data-audio="21"] .s19-connectors {
-      position: relative;
-      height: clamp(34px, 4.5vmin, 60px);
-      width: 100%;
-      pointer-events: none;
-    }
-    .slide[data-audio="21"] .s19-connectors svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-    .slide[data-audio="21"] .s19-connectors path {
-      fill: none;
-      stroke: var(--s19-honey-dim);
-      stroke-width: 1;
-      stroke-dasharray: 3 4;
-      stroke-dashoffset: 0;
-      opacity: 0;
-      animation-name: s19-dash, s19-fade-stroke;
-      animation-duration: 18s, 1200ms;
-      animation-delay: 0s, 1100ms;
-      animation-fill-mode: none, forwards;
-      animation-timing-function: linear, ease;
-      animation-iteration-count: infinite, 1;
-    }
-    .slide[data-audio="21"] .s19-connectors .pkt {
-      fill: var(--s19-honey);
-      filter: drop-shadow(0 0 4px var(--s19-honey-glow));
-      opacity: 0;
-      animation: s19-pkt 3.5s ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-connectors .pkt:nth-child(7) { animation-delay: 0.2s; }
-    .slide[data-audio="21"] .s19-connectors .pkt:nth-child(8) { animation-delay: 0.7s; }
-    .slide[data-audio="21"] .s19-connectors .pkt:nth-child(9) { animation-delay: 1.2s; }
-    .slide[data-audio="21"] .s19-connectors .pkt:nth-child(10) { animation-delay: 1.7s; }
-    .slide[data-audio="21"] .s19-connectors .pkt:nth-child(11) { animation-delay: 2.2s; }
-
-    /* ---------- Mac fleet row (compact, 5 wide) ---------- */
-    .slide[data-audio="21"] .s19-fleet {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: clamp(5px, 0.8vmin, 10px);
-      padding: 0 2px;
-    }
-    .slide[data-audio="21"] .s19-mac {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      opacity: 0;
-      animation: s19-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="21"] .s19-mac:nth-child(1) { animation-delay: 1200ms; }
-    .slide[data-audio="21"] .s19-mac:nth-child(2) { animation-delay: 1300ms; }
-    .slide[data-audio="21"] .s19-mac:nth-child(3) { animation-delay: 1400ms; }
-    .slide[data-audio="21"] .s19-mac:nth-child(4) { animation-delay: 1500ms; }
-    .slide[data-audio="21"] .s19-mac:nth-child(5) { animation-delay: 1600ms; }
-
-    .slide[data-audio="21"] .s19-mac-shape {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1.4 / 1;
-      max-width: 78px;
-    }
-    .slide[data-audio="21"] .s19-mac-screen {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 78%;
-      border: 1.2px solid var(--s19-border-strong);
-      border-radius: 5px 5px 2px 2px;
-      background:
-        radial-gradient(ellipse at 50% 40%,
-          rgba(67, 192, 190, 0.10) 0%,
-          rgba(0, 0, 0, 0.65) 75%),
-        linear-gradient(180deg, #0d1218 0%, #060809 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .slide[data-audio="21"] .s19-mac-screen::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.02) 0px,
-          rgba(255, 255, 255, 0.02) 1px,
-          transparent 1px,
-          transparent 4px);
+    /* film grain */
+    .slide[data-audio="21"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.45;
       mix-blend-mode: overlay;
-    }
-    .slide[data-audio="21"] .s19-mac-base {
-      position: absolute;
-      bottom: 0;
-      left: -8%;
-      right: -8%;
-      height: 7%;
-      background: linear-gradient(180deg,
-        #2a2f3a 0%,
-        #14181f 100%);
-      border-radius: 1px 1px 4px 4px;
-    }
-    .slide[data-audio="21"] .s19-mac-base::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 36%;
-      right: 36%;
-      height: 40%;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 0 0 4px 4px;
-    }
-    .slide[data-audio="21"] .s19-mac-hinge {
-      position: absolute;
-      top: 78%;
-      left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(180deg, #1a1f28, #0a0d12);
-    }
-
-    .slide[data-audio="21"] .s19-cub {
-      position: relative;
-      width: 50%;
-      height: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      filter: drop-shadow(0 0 5px var(--s19-teal-glow));
-      animation: s19-cub-breathe 3.2s ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-cub:nth-of-type(odd) { animation-delay: 0.6s; }
-    .slide[data-audio="21"] .s19-cub svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide[data-audio="21"] .s19-mac-label {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(7px, 0.78vmin, 9px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s19-fg-faint);
-    }
-    .slide[data-audio="21"] .s19-mac-label .num {
-      color: var(--s19-teal);
-    }
-
-    .slide[data-audio="21"] .s19-fleet-caption {
-      margin-top: clamp(6px, 1vmin, 12px);
-      text-align: center;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s19-fg-muted);
-    }
-    .slide[data-audio="21"] .s19-fleet-caption strong {
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-    .slide[data-audio="21"] .s19-fleet-caption .pip {
-      color: var(--s19-fg-faint);
-      margin: 0 8px;
-    }
-
-    .slide[data-audio="21"] .s19-callout {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: clamp(10px, 1.4vmin, 16px) clamp(12px, 1.6vmin, 18px);
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg,
-          rgba(254, 189, 51, 0.10) 0%,
-          rgba(254, 189, 51, 0.02) 60%,
-          transparent 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .slide[data-audio="21"] .s19-callout::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 0;
-      width: 2px;
-      background: var(--s19-honey);
-      box-shadow: 0 0 10px var(--s19-honey-glow);
-    }
-    .slide[data-audio="21"] .s19-callout .badge {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      padding: 3px 7px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      white-space: nowrap;
-    }
-    .slide[data-audio="21"] .s19-callout .copy {
-      font-size: clamp(11px, 1.2vmin, 13.5px);
-      color: var(--s19-fg);
-      letter-spacing: -0.005em;
-      line-height: 1.4;
-    }
-    .slide[data-audio="21"] .s19-callout .copy strong {
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-
-    /* ============================================================
-       CENTER — HERO VIDEO STAGE
-       ============================================================ */
-    .slide[data-audio="21"] .s19-stage {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(10px, 1.4vmin, 18px);
-      min-height: 0;
-      opacity: 0;
-      animation: s19-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 350ms forwards;
-    }
-
-    .slide[data-audio="21"] .s19-stage-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11.5px);
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="21"] .s19-stage-head .tag {
-      color: var(--s19-fg);
-      padding: 4px 10px;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 3px;
-      background: var(--s19-honey-soft);
-      letter-spacing: 0.22em;
-    }
-    .slide[data-audio="21"] .s19-stage-head .tag.live {
-      color: var(--s19-red);
-      border-color: rgba(224, 75, 81, 0.4);
-      background: rgba(224, 75, 81, 0.08);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .slide[data-audio="21"] .s19-stage-head .tag.live::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-red);
-      box-shadow: 0 0 10px var(--s19-red-glow);
-      animation: s19-pulse 1400ms ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-stage-head .divider {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
-    }
-    .slide[data-audio="21"] .s19-stage-head .meta {
-      color: var(--s19-fg-muted);
-    }
-
-    /* Annotation chips (positioned around the video) */
-    .slide[data-audio="21"] .s19-anno-grid {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* The screen recording window */
-    .slide[data-audio="21"] .s19-window {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      border: 1px solid var(--s19-border-warm);
-      border-radius: 12px;
-      background: var(--s19-bg-deep);
-      box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.12),
-        0 24px 80px -20px rgba(0, 0, 0, 0.75),
-        0 0 60px -10px rgba(254, 189, 51, 0.28),
-        0 0 120px -30px rgba(67, 192, 190, 0.18);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    /* Honey bloom on top edge */
-    .slide[data-audio="21"] .s19-window::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        var(--s19-honey) 30%,
-        var(--s19-honey) 70%,
-        transparent 100%);
-      box-shadow: 0 0 16px rgba(254, 189, 51, 0.6);
-      z-index: 5;
-    }
-
-    /* Window chrome — Mac-style titlebar */
-    .slide[data-audio="21"] .s19-chrome {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: linear-gradient(180deg, #1a1f29 0%, #14181f 100%);
-      border-bottom: 1px solid var(--s19-border);
-      position: relative;
-      z-index: 4;
-    }
-    .slide[data-audio="21"] .s19-dots {
-      display: flex;
-      gap: 7px;
-      align-items: center;
-    }
-    .slide[data-audio="21"] .s19-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.4);
-    }
-    .slide[data-audio="21"] .s19-dot.red    { background: #ff5f57; }
-    .slide[data-audio="21"] .s19-dot.yellow { background: #febc2e; }
-    .slide[data-audio="21"] .s19-dot.green  { background: #28c840; }
-
-    .slide[data-audio="21"] .s19-urlbar {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 12px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--s19-border);
-      border-radius: 6px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 1.1vmin, 12.5px);
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.02em;
-      max-width: 70%;
-      margin: 0 auto;
-    }
-    .slide[data-audio="21"] .s19-urlbar .scheme {
-      color: var(--s19-teal);
-      font-weight: 600;
-    }
-    .slide[data-audio="21"] .s19-urlbar .path {
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="21"] .s19-urlbar .lock {
-      color: var(--s19-teal);
-      font-size: 0.9em;
-    }
-    .slide[data-audio="21"] .s19-urlbar .cursor-blink {
-      width: 6px;
-      height: 12px;
-      background: var(--s19-honey);
-      box-shadow: 0 0 6px var(--s19-honey-glow);
-      animation: s19-blink 1.1s ease-in-out infinite;
-      margin-left: 2px;
-    }
-
-    .slide[data-audio="21"] .s19-chrome-meta {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9px, 0.95vmin, 11px);
-      color: var(--s19-fg-faint);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .slide[data-audio="21"] .s19-chrome-meta strong {
-      color: var(--s19-teal);
-      font-weight: 600;
-    }
-
-    /* The actual GIF surface */
-    .slide[data-audio="21"] .s19-screen {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      background: #000;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slide[data-audio="21"] .s19-screen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    /* Subtle scanline / CRT overlay on the video */
-    .slide[data-audio="21"] .s19-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.015) 0px,
-          rgba(255, 255, 255, 0.015) 1px,
-          transparent 1px,
-          transparent 3px),
-        radial-gradient(ellipse at center,
-          transparent 55%,
-          rgba(0, 0, 0, 0.35) 100%);
       pointer-events: none;
-      mix-blend-mode: overlay;
-      z-index: 2;
     }
 
-    /* Annotation chips floating around the video */
-    .slide[data-audio="21"] .s19-anno {
-      position: absolute;
-      z-index: 6;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 11px;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.95vmin, 11px);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      opacity: 0;
-      animation: s19-fade 800ms cubic-bezier(0.16, 1, 0.3, 1) 1600ms forwards;
-      white-space: nowrap;
-    }
-    .slide[data-audio="21"] .s19-anno.tl {
-      top: 12px;
-      left: 12px;
-      color: var(--s19-honey);
-      background: rgba(10, 13, 18, 0.78);
-      border: 1px solid var(--s19-border-warm);
-    }
-    .slide[data-audio="21"] .s19-anno.tl .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-honey);
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-      animation: s19-pulse 2200ms ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-anno.tr {
-      top: 12px;
-      right: 12px;
-      color: var(--s19-red);
-      background: rgba(10, 13, 18, 0.78);
-      border: 1px solid rgba(224, 75, 81, 0.4);
-      animation-delay: 1800ms;
-    }
-    .slide[data-audio="21"] .s19-anno.tr .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-red);
-      box-shadow: 0 0 8px var(--s19-red-glow);
-      animation: s19-pulse 1100ms ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-anno.bl {
-      bottom: 12px;
-      left: 12px;
-      color: var(--s19-teal);
-      background: rgba(10, 13, 18, 0.82);
-      border: 1px solid var(--s19-border-cool);
-      text-transform: none;
-      letter-spacing: 0.04em;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      animation-delay: 2000ms;
-    }
-    .slide[data-audio="21"] .s19-anno.bl .accent {
-      color: var(--s19-fg);
-    }
-    .slide[data-audio="21"] .s19-anno.br {
-      bottom: 12px;
-      right: 12px;
-      color: var(--s19-honey);
-      background: rgba(10, 13, 18, 0.82);
-      border: 1px solid var(--s19-border-warm);
-      text-transform: none;
-      letter-spacing: 0.04em;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      animation-delay: 2200ms;
-    }
-    .slide[data-audio="21"] .s19-anno.br .accent {
-      color: var(--s19-fg);
-      font-weight: 600;
-    }
-    .slide[data-audio="21"] .s19-anno.br .arr {
-      color: var(--s19-honey);
-      margin: 0 4px;
-    }
-
-    /* Leader lines pointing from chips toward action */
-    .slide[data-audio="21"] .s19-leaders {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .slide[data-audio="21"] .s19-leaders svg {
+    .s18-frame {
+      position: relative;
       width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-    .slide[data-audio="21"] .s19-leaders line {
-      stroke: var(--s19-honey-dim);
-      stroke-width: 1;
-      stroke-dasharray: 2 4;
-      opacity: 0;
-      animation: s19-fade 1000ms ease 2400ms forwards;
-    }
-    .slide[data-audio="21"] .s19-leaders circle.target {
-      fill: none;
-      stroke: var(--s19-honey);
-      stroke-width: 1;
-      opacity: 0;
-      animation: s19-fade 1000ms ease 2400ms forwards;
-    }
-
-    /* Companion chip — beside the window */
-    .slide[data-audio="21"] .s19-companion {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 14px;
-      border: 1px solid var(--s19-border-cool);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg,
-          rgba(67, 192, 190, 0.08) 0%,
-          rgba(67, 192, 190, 0.02) 60%,
-          transparent 100%);
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1.05vmin, 12px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-teal);
-    }
-    .slide[data-audio="21"] .s19-companion .left {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .slide[data-audio="21"] .s19-companion .left .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 8px var(--s19-teal-glow);
-      animation: s19-pulse 2000ms ease-in-out infinite;
-    }
-    .slide[data-audio="21"] .s19-companion .left strong {
-      color: var(--s19-fg);
-      font-weight: 600;
-      letter-spacing: 0.22em;
-    }
-    .slide[data-audio="21"] .s19-companion .right {
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.18em;
-    }
-    .slide[data-audio="21"] .s19-companion .right em {
-      font-style: normal;
-      color: var(--s19-honey);
-    }
-
-    /* ============================================================
-       RIGHT — Anatomy of a cub task (compact, 5 beats)
-       ============================================================ */
-    .slide[data-audio="21"] .s19-right {
-      position: relative;
+      height: 100vh;
+      padding: 52px clamp(40px, 4vw, 80px) 30px;
       display: flex;
       flex-direction: column;
-      gap: clamp(10px, 1.4vmin, 18px);
-      min-height: 0;
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 700ms forwards;
-    }
-
-    .slide[data-audio="21"] .s19-steps {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(7px, 0.9vmin, 11px);
-      position: relative;
-      flex: 1;
-      min-height: 0;
-    }
-    /* Vertical thread */
-    .slide[data-audio="21"] .s19-steps::before {
-      content: '';
-      position: absolute;
-      top: 18px;
-      bottom: 18px;
-      left: 11px;
-      width: 1px;
-      background: linear-gradient(180deg,
-        var(--s19-honey-line) 0%,
-        var(--s19-honey-dim) 50%,
-        var(--s19-teal) 100%);
-      opacity: 0.55;
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-    }
-
-    .slide[data-audio="21"] .s19-step {
-      position: relative;
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: clamp(9px, 1.2vmin, 14px);
-      align-items: stretch;
-      opacity: 0;
-      transform: translateX(-10px);
-      animation: s19-rise-x 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .slide[data-audio="21"] .s19-step:nth-child(1) { animation-delay: 1000ms; }
-    .slide[data-audio="21"] .s19-step:nth-child(2) { animation-delay: 1200ms; }
-    .slide[data-audio="21"] .s19-step:nth-child(3) { animation-delay: 1400ms; }
-    .slide[data-audio="21"] .s19-step:nth-child(4) { animation-delay: 1600ms; }
-    .slide[data-audio="21"] .s19-step:nth-child(5) { animation-delay: 1800ms; }
-
-    .slide[data-audio="21"] .s19-step-node {
-      position: relative;
-      width: 24px;
-      display: flex;
-      justify-content: center;
-      padding-top: 12px;
-    }
-    .slide[data-audio="21"] .s19-step-node .ring {
-      position: relative;
+      box-sizing: border-box;
       z-index: 1;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--s19-bg);
-      border: 1.4px solid var(--s19-border-strong);
+    }
+
+    /* registration marks */
+    .s18-mark {
+      position: absolute;
+      width: 12px; height: 12px;
+      border: 1px solid rgba(254,189,51,0.28);
+      z-index: 5;
+    }
+    .s18-mark.tl { top: 22px; left: 22px; border-right: none; border-bottom: none; }
+    .s18-mark.tr { top: 22px; right: 22px; border-left: none; border-bottom: none; }
+    .s18-mark.bl { bottom: 22px; left: 22px; border-right: none; border-top: none; }
+    .s18-mark.br { bottom: 22px; right: 22px; border-left: none; border-top: none; }
+
+    .s18-stamp {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.42em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      z-index: 5;
+    }
+    .s18-stamp b { color: var(--honey); font-weight: 500; }
+
+    /* ============ HEADER ============ */
+    .s18-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 22px;
+    }
+    .s18-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.38em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 14px;
     }
-    .slide[data-audio="21"] .s19-step-node .ring::before {
-      content: '';
-      width: 5px;
-      height: 5px;
+    .s18-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--honey);
       border-radius: 50%;
-      background: var(--s19-fg-faint);
+      box-shadow: 0 0 12px rgba(254,189,51,0.7);
+      animation: s18-pulse 2.4s ease-in-out infinite;
     }
-    .slide[data-audio="21"] .s19-step--yogi .ring {
-      border-color: var(--s19-honey);
-      box-shadow: 0 0 10px var(--s19-honey-glow);
+    @keyframes s18-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
     }
-    .slide[data-audio="21"] .s19-step--yogi .ring::before {
-      background: var(--s19-honey);
+    .s18-title {
+      font-size: clamp(40px, 4.4vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      color: var(--fg);
     }
-    .slide[data-audio="21"] .s19-step--cub .ring {
-      border-color: var(--s19-teal);
-      box-shadow: 0 0 10px var(--s19-teal-glow);
+    .s18-subhead {
+      margin-top: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      color: var(--honey);
+      text-transform: uppercase;
+      font-weight: 500;
     }
-    .slide[data-audio="21"] .s19-step--cub .ring::before {
-      background: var(--s19-teal);
-    }
-    .slide[data-audio="21"] .s19-step--op .ring {
-      border-color: var(--s19-sky);
-      box-shadow: 0 0 10px var(--s19-sky-glow);
-    }
-    .slide[data-audio="21"] .s19-step--op .ring::before {
-      background: var(--s19-sky);
-    }
+    .s18-subhead span.sep { color: rgba(254,189,51,0.32); margin: 0 10px; }
 
-    .slide[data-audio="21"] .s19-step-card {
-      position: relative;
-      padding: clamp(8px, 1.1vmin, 13px) clamp(10px, 1.3vmin, 16px);
-      border: 1px solid var(--s19-border);
-      border-radius: 8px;
-      background:
-        linear-gradient(180deg,
-          var(--s19-bg-elev) 0%,
-          rgba(17, 22, 31, 0.6) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+    /* mean badge top-right */
+    .s18-mean {
       display: flex;
       flex-direction: column;
-      gap: 4px;
-    }
-    .slide[data-audio="21"] .s19-step--yogi .s19-step-card {
-      border-color: var(--s19-border-warm);
+      align-items: flex-end;
+      gap: 6px;
+      padding: 14px 22px;
+      border: 1px solid rgba(254,189,51,0.28);
       background:
-        linear-gradient(180deg,
-          rgba(254, 189, 51, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(254, 189, 51, 0.3);
+        linear-gradient(135deg, rgba(254,189,51,0.06), rgba(254,189,51,0.02));
+      border-radius: 2px;
+      position: relative;
     }
-    .slide[data-audio="21"] .s19-step--cub .s19-step-card {
-      border-color: var(--s19-border-cool);
-      background:
-        linear-gradient(180deg,
-          rgba(67, 192, 190, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(67, 192, 190, 0.3);
+    .s18-mean::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 10px; height: 10px;
+      border-top: 1px solid var(--honey);
+      border-left: 1px solid var(--honey);
     }
-    .slide[data-audio="21"] .s19-step--op .s19-step-card {
-      border-color: rgba(100, 188, 234, 0.28);
-      background:
-        linear-gradient(180deg,
-          rgba(100, 188, 234, 0.05) 0%,
-          var(--s19-bg-elev) 100%);
-      box-shadow: 0 6px 20px -16px rgba(100, 188, 234, 0.3);
+    .s18-mean::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 10px; height: 10px;
+      border-bottom: 1px solid var(--honey);
+      border-right: 1px solid var(--honey);
+    }
+    .s18-mean-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+    }
+    .s18-mean-value {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--honey);
+      line-height: 1;
+      text-shadow: 0 0 28px rgba(254,189,51,0.32);
+      font-feature-settings: "tnum";
+    }
+    .s18-mean-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--fg-muted);
+      text-transform: uppercase;
     }
 
-    .slide[data-audio="21"] .s19-step-head {
+    /* ============ BODY GRID: matrix + sidebar ============ */
+    .s18-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 26px;
+      min-height: 0;
+    }
+
+    /* ============ EVAL MATRIX ============ */
+    .s18-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .s18-cell {
+      position: relative;
+      padding: 14px 16px 14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .s18-cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .s18-cell:hover { transform: translateY(-2px); }
+    .s18-cell:hover::before { opacity: 1; }
+
+    /* score color tiers */
+    .s18-cell[data-tier="honey"] { border-color: rgba(254,189,51,0.22); }
+    .s18-cell[data-tier="honey"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254,189,51,0.10), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="honey"] .s18-score { color: var(--honey); text-shadow: 0 0 20px rgba(254,189,51,0.45); }
+    .s18-cell[data-tier="honey"] .s18-bar > i { background: linear-gradient(90deg, var(--honey), #ffd56a); box-shadow: 0 0 10px rgba(254,189,51,0.55); }
+
+    .s18-cell[data-tier="teal"] { border-color: rgba(67,192,190,0.22); }
+    .s18-cell[data-tier="teal"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(67,192,190,0.09), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="teal"] .s18-score { color: var(--teal); text-shadow: 0 0 18px rgba(67,192,190,0.40); }
+    .s18-cell[data-tier="teal"] .s18-bar > i { background: linear-gradient(90deg, var(--dark-teal), var(--teal)); box-shadow: 0 0 10px rgba(67,192,190,0.5); }
+
+    .s18-cell[data-tier="sky"] { border-color: rgba(100,188,234,0.24); }
+    .s18-cell[data-tier="sky"]::before { background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(100,188,234,0.10), transparent 70%); opacity: 1; }
+    .s18-cell[data-tier="sky"] .s18-score { color: var(--sky); text-shadow: 0 0 18px rgba(100,188,234,0.40); }
+    .s18-cell[data-tier="sky"] .s18-bar > i { background: linear-gradient(90deg, #3a92c4, var(--sky)); box-shadow: 0 0 10px rgba(100,188,234,0.5); }
+
+    .s18-cell-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .s18-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--fg-dim);
+      font-weight: 500;
+    }
+    .s18-pass {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      letter-spacing: 0.24em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 2px;
+    }
+    .s18-cell[data-tier="honey"] .s18-pass { color: var(--honey); border-color: rgba(254,189,51,0.3); }
+    .s18-cell[data-tier="teal"]  .s18-pass { color: var(--teal);  border-color: rgba(67,192,190,0.3); }
+    .s18-cell[data-tier="sky"]   .s18-pass { color: var(--sky);   border-color: rgba(100,188,234,0.32); }
+
+    .s18-cat {
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.18;
+      color: var(--fg);
+      margin-bottom: 8px;
+      min-height: 34px;
+    }
+    .s18-score {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      font-feature-settings: "tnum";
+    }
+    .s18-score .pct {
+      font-size: 18px;
+      font-weight: 700;
+      margin-left: 2px;
+      opacity: 0.7;
+    }
+    .s18-micro {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      line-height: 1.45;
+      margin-top: 6px;
+      min-height: 24px;
+    }
+
+    .s18-bar {
+      margin-top: 10px;
+      position: relative;
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .s18-bar > i {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: var(--w, 0%);
+      border-radius: 2px;
+      transform-origin: left center;
+      animation: s18-fill 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
+    }
+    @keyframes s18-fill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .s18-bar > i::after {
+      content: "";
+      position: absolute;
+      right: -2px; top: -1px; bottom: -1px;
+      width: 5px;
+      background: currentColor;
+      filter: blur(3px);
+      opacity: 0.7;
+    }
+
+    /* ============ SIDEBAR ============ */
+    .s18-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 0;
+    }
+
+    .s18-rsp {
+      position: relative;
+      padding: 18px 18px 16px;
+      background:
+        linear-gradient(180deg, rgba(254,189,51,0.045), rgba(254,189,51,0.01));
+      border: 1px solid rgba(254,189,51,0.22);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .s18-rsp::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--honey), transparent);
+      opacity: 0.6;
+    }
+    .s18-rsp-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--honey);
+      text-transform: uppercase;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .slide[data-audio="21"] .s19-chip {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 3px;
-      border: 1px solid currentColor;
-    }
-    .slide[data-audio="21"] .s19-chip--yogi { color: var(--s19-honey); background: var(--s19-honey-soft); }
-    .slide[data-audio="21"] .s19-chip--cub  { color: var(--s19-teal);  background: var(--s19-teal-soft); }
-    .slide[data-audio="21"] .s19-chip--op   { color: var(--s19-sky);   background: var(--s19-sky-soft); }
-
-    .slide[data-audio="21"] .s19-step-num {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8px, 0.85vmin, 10px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-fg-faint);
-    }
-    .slide[data-audio="21"] .s19-step-num strong {
-      color: var(--s19-fg-muted);
-      font-weight: 500;
-    }
-    .slide[data-audio="21"] .s19-step-head-rule {
+    .s18-rsp-eyebrow::after {
+      content: "";
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg,
-        var(--s19-border) 0%,
-        transparent 100%);
+      background: linear-gradient(90deg, rgba(254,189,51,0.4), transparent);
     }
-
-    .slide[data-audio="21"] .s19-step-action {
-      font-size: clamp(11px, 1.25vmin, 14px);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.32;
-      color: var(--s19-fg);
+    .s18-rsp-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--fg);
+      margin-bottom: 4px;
     }
-    .slide[data-audio="21"] .s19-step-action .accent-h { color: var(--s19-honey); }
-    .slide[data-audio="21"] .s19-step-action .accent-t { color: var(--s19-teal); }
-    .slide[data-audio="21"] .s19-step-action .accent-s { color: var(--s19-sky); }
-
-    .slide[data-audio="21"] .s19-step-trace {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-      color: var(--s19-fg-dim);
-      letter-spacing: 0.02em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .s18-rsp-tier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--honey);
+      margin-bottom: 14px;
     }
-    .slide[data-audio="21"] .s19-step-trace .arr { color: var(--s19-fg-faint); }
-    .slide[data-audio="21"] .s19-step-trace .ok  { color: var(--s19-teal); }
-    .slide[data-audio="21"] .s19-step-trace .wait { color: var(--s19-honey); }
-    .slide[data-audio="21"] .s19-step-trace .ms {
-      color: var(--s19-fg-faint);
-      margin-left: auto;
-    }
-
-    /* ============================================================
-       BOTTOM STRIP — QUOTE + RECEIPT
-       ============================================================ */
-    .slide[data-audio="21"] .s19-quote {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: clamp(14px, 1.8vmin, 26px);
-      padding: clamp(12px, 1.6vmin, 20px) clamp(18px, 2.2vmin, 30px);
-      border-top: 1px solid var(--s19-border);
-      border-bottom: 1px solid var(--s19-border);
-      background:
-        linear-gradient(90deg,
-          rgba(254, 189, 51, 0.04) 0%,
-          rgba(67, 192, 190, 0.03) 40%,
-          rgba(255, 255, 255, 0.01) 80%,
-          transparent 100%);
-      opacity: 0;
-      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms forwards;
-    }
-    .slide[data-audio="21"] .s19-quote .mark {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(28px, 4.4vmin, 48px);
-      line-height: 0.6;
-      color: var(--s19-honey);
-      align-self: flex-start;
-      margin-top: 4px;
-      opacity: 0.85;
-    }
-    .slide[data-audio="21"] .s19-quote .body {
-      flex: 1;
-      font-size: clamp(13px, 1.6vmin, 19px);
-      letter-spacing: -0.015em;
-      line-height: 1.35;
-      color: var(--s19-fg);
-      font-weight: 500;
-    }
-    .slide[data-audio="21"] .s19-quote .body em {
-      font-style: italic;
-      color: var(--s19-honey);
-      font-weight: 500;
-    }
-    .slide[data-audio="21"] .s19-quote .body .tail {
-      display: block;
-      font-style: normal;
-      font-weight: 400;
-      color: var(--s19-fg-muted);
-      font-size: clamp(10.5px, 1.2vmin, 13.5px);
-      letter-spacing: 0.01em;
-      margin-top: 4px;
-      line-height: 1.45;
-    }
-    /* Receipt — productivity stats grid */
-    .slide[data-audio="21"] .s19-receipt {
-      flex-shrink: 0;
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: clamp(10px, 1.4vmin, 18px);
-      padding-left: clamp(12px, 1.6vmin, 22px);
-      border-left: 1px dashed var(--s19-border-strong);
-    }
-    .slide[data-audio="21"] .s19-receipt .cell {
+    .s18-rsp-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      align-items: flex-start;
-      min-width: max-content;
+      gap: 8px;
     }
-    .slide[data-audio="21"] .s19-receipt .k {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(16px, 2vmin, 24px);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--s19-honey);
-      line-height: 1;
-      white-space: nowrap;
+    .s18-rsp-list li {
+      font-size: 11.5px;
+      line-height: 1.4;
+      color: var(--fg-muted);
+      padding-left: 14px;
+      position: relative;
+      letter-spacing: -0.005em;
     }
-    .slide[data-audio="21"] .s19-receipt .v {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(8.5px, 0.9vmin, 10.5px);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-      white-space: nowrap;
+    .s18-rsp-list li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 6px;
+      width: 6px; height: 1px;
+      background: var(--honey);
+    }
+    .s18-rsp-list li b {
+      color: var(--fg);
+      font-weight: 600;
     }
 
-    /* ============================================================
-       FOOTER
-       ============================================================ */
-    .slide[data-audio="21"] .s19-footer {
+    /* legend */
+    .s18-legend {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      background: rgba(255,255,255,0.015);
+    }
+    .s18-legend-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .s18-legend-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .s18-legend-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--fg-muted);
+    }
+    .s18-legend-row .sw {
+      width: 18px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .sw.honey { background: var(--honey); box-shadow: 0 0 8px rgba(254,189,51,0.5); }
+    .sw.teal  { background: var(--teal);  box-shadow: 0 0 8px rgba(67,192,190,0.5); }
+    .sw.sky   { background: var(--sky);   box-shadow: 0 0 8px rgba(100,188,234,0.5); }
+    .s18-legend-row .num { color: var(--fg); font-weight: 600; margin-left: auto; }
+
+    /* held-out / methodology box */
+    .s18-method {
+      padding: 14px 16px;
+      border: 1px dashed rgba(67,192,190,0.28);
+      border-radius: 3px;
+      background: rgba(67,192,190,0.025);
+    }
+    .s18-method-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .s18-method-body {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--fg-muted);
+      letter-spacing: -0.005em;
+    }
+    .s18-method-body b { color: var(--fg); font-weight: 600; }
+
+    /* ============ BOTTOM STRIP ============ */
+    .s18-strip {
+      margin-top: 18px;
+      padding: 16px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(9.5px, 1vmin, 12px);
-      letter-spacing: 0.18em;
+      gap: 22px;
+      background:
+        linear-gradient(90deg, rgba(254,189,51,0.045), rgba(67,192,190,0.025) 60%, transparent);
+      border-top: 1px solid rgba(254,189,51,0.22);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+    }
+    .s18-strip::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 0;
+      width: 80px;
+      height: 1px;
+      background: var(--honey);
+      box-shadow: 0 0 14px var(--honey);
+    }
+    .s18-strip-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.36em;
+      color: var(--honey);
       text-transform: uppercase;
-      color: var(--s19-fg-dim);
-      opacity: 0;
-      animation: s19-fade 900ms ease 2700ms forwards;
+      white-space: nowrap;
     }
-    .slide[data-audio="21"] .s19-footer .live {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .s18-strip-text {
+      font-size: clamp(15px, 1.4vw, 19px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      line-height: 1.3;
+      flex: 1;
     }
-    .slide[data-audio="21"] .s19-footer .live::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s19-teal);
-      box-shadow: 0 0 10px rgba(67, 192, 190, 0.8);
-      animation: s19-pulse 1800ms ease-in-out infinite;
+    .s18-strip-text b {
+      font-weight: 800;
+      color: var(--honey);
     }
-    .slide[data-audio="21"] .s19-footer .c {
-      color: var(--s19-fg-muted);
-      letter-spacing: 0.24em;
-    }
-    .slide[data-audio="21"] .s19-footer .c em {
+    .s18-strip-text em {
       font-style: normal;
-      color: var(--s19-honey);
+      color: var(--fg-muted);
+    }
+    .s18-strip-sig {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      color: var(--fg-dim);
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s19-fade { to { opacity: 1; } }
-    @keyframes s19-fade-stroke { to { opacity: 1; } }
-    @keyframes s19-rise { to { opacity: 1; transform: translateY(0); } }
-    @keyframes s19-rise-x { to { opacity: 1; transform: translateX(0); } }
-    @keyframes s19-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.55; transform: scale(0.85); }
+    /* stagger animation for cells */
+    .s18-cell {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: s18-rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
     }
-    @keyframes s19-blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-    @keyframes s19-spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes s19-spin-rev {
-      from { transform: rotate(360deg); }
-      to   { transform: rotate(0deg); }
-    }
-    @keyframes s19-orb-breathe {
-      0%, 100% { transform: scale(1); box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.45),
-        0 0 24px rgba(254, 189, 51, 0.55),
-        0 0 60px rgba(254, 189, 51, 0.32),
-        inset 0 0 16px rgba(255, 240, 200, 0.3); }
-      50% { transform: scale(1.04); box-shadow:
-        0 0 0 1px rgba(254, 189, 51, 0.55),
-        0 0 32px rgba(254, 189, 51, 0.7),
-        0 0 80px rgba(254, 189, 51, 0.42),
-        inset 0 0 20px rgba(255, 240, 200, 0.45); }
-    }
-    @keyframes s19-cub-breathe {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--s19-teal-glow)); }
-      50%      { transform: scale(1.06); filter: drop-shadow(0 0 9px var(--s19-teal-glow)); }
-    }
-    @keyframes s19-dash {
-      to { stroke-dashoffset: -140; }
-    }
-    @keyframes s19-pkt {
-      0%   { opacity: 0; offset-distance: 0%; }
-      8%   { opacity: 1; }
-      85%  { opacity: 1; }
-      100% { opacity: 0; offset-distance: 100%; }
+    .s18-cell:nth-child(1)  { animation-delay: 0.05s; }
+    .s18-cell:nth-child(2)  { animation-delay: 0.10s; }
+    .s18-cell:nth-child(3)  { animation-delay: 0.15s; }
+    .s18-cell:nth-child(4)  { animation-delay: 0.20s; }
+    .s18-cell:nth-child(5)  { animation-delay: 0.25s; }
+    .s18-cell:nth-child(6)  { animation-delay: 0.30s; }
+    .s18-cell:nth-child(7)  { animation-delay: 0.35s; }
+    .s18-cell:nth-child(8)  { animation-delay: 0.40s; }
+    .s18-cell:nth-child(9)  { animation-delay: 0.45s; }
+    .s18-cell:nth-child(10) { animation-delay: 0.50s; }
+    .s18-cell:nth-child(11) { animation-delay: 0.55s; }
+    .s18-cell:nth-child(12) { animation-delay: 0.60s; }
+    @keyframes s18-rise {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .slide[data-audio="21"] *,
-      .slide[data-audio="21"] *::before,
-      .slide[data-audio="21"] *::after {
-        animation-duration: 0.001ms !important;
-        animation-delay: 0ms !important;
-        transition: none !important;
-      }
-    }
-
-    @media (max-width: 1280px) {
-      .slide[data-audio="21"] .s19-split {
-        grid-template-columns: minmax(0, 0.4fr) minmax(0, 1.05fr) minmax(0, 0.4fr);
-        gap: 16px;
-      }
-      .slide[data-audio="21"] .s19-fleet { grid-template-columns: repeat(5, 1fr); gap: 4px; }
-      .slide[data-audio="21"] .s19-step-action { font-size: 11px; }
+      .s18-cell, .s18-bar > i { animation: none; opacity: 1; transform: none; }
+      .s18-bar > i { transform: scaleX(1); }
+      .s18-eyebrow .dot { animation: none; }
     }
   </style>
 
-  <div class="content">
-    <!-- atmosphere -->
-    <div class="s19-atmos">
-      <div class="s19-glow-top"></div>
-      <div class="s19-glow-right"></div>
-      <div class="s19-grid"></div>
+  <div class="s18-frame">
+    <div class="s18-mark tl"></div>
+    <div class="s18-mark tr"></div>
+    <div class="s18-mark bl"></div>
+    <div class="s18-mark br"></div>
+    <div class="s18-stamp">SLIDE · <b>18</b> · YOGI / SAFETY EVALUATION REPORT</div>
+
+    <!-- HEADER -->
+    <div class="s18-header">
+      <div>
+        <div class="s18-eyebrow"><span class="dot"></span> SAFETY · EVALUATION SUITE · v3.2 · 2026-Q2</div>
+        <div class="s18-title">Audited like a frontier model.</div>
+        <div class="s18-subhead">
+          12 CATEGORIES <span class="sep">/</span> 95.4% MEAN <span class="sep">/</span> HUMAN APPROVES EVERY ACTION
+        </div>
+      </div>
+      <div class="s18-mean">
+        <div class="s18-mean-label">MEAN PASS RATE</div>
+        <div class="s18-mean-value">95.4<span style="font-size:24px;font-weight:800;opacity:0.7">%</span></div>
+        <div class="s18-mean-sub">n=2,184 · held-out · quarterly</div>
+      </div>
     </div>
 
-    <!-- corner crosshairs -->
-    <div class="s19-corner tl"></div>
-    <div class="s19-corner tr"></div>
-    <div class="s19-corner bl"></div>
-    <div class="s19-corner br"></div>
+    <!-- BODY -->
+    <div class="s18-body">
+      <!-- 4x3 MATRIX -->
+      <div class="s18-matrix">
 
-    <div class="s19-frame">
-
-      <!-- =========================== HEADER =========================== -->
-      <header class="s19-header">
-        <div class="s19-header-l">
-          <div class="s19-eyebrow">
-            <span class="dot"></span>
-            <span>BIGGEST UNSHIPPED FEATURE</span>
-            <span class="sep">/</span>
-            <span>SLIDE 19 OF 26</span>
-            <span class="sep">/</span>
-            <span>YOGI v4 · TC LEADERSHIP</span>
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#01</span>
+            <span class="s18-pass">PASS</span>
           </div>
-          <h1 class="s19-title">Cubs<em>.</em></h1>
-          <div class="s19-subhead">
-            <span>Yogi's hands</span>
-            <span class="pip">·</span>
-            <span>On every Mac</span>
-            <span class="pip">·</span>
-            <span>Companion interaction supercharged</span>
-          </div>
+          <div class="s18-cat">Tool-call authority bounds</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">No action outside the 328-tool authority boundary.</div>
         </div>
-        <div class="s19-header-r">
-          <div class="s19-stamp"><span class="pre">▲</span>&nbsp; Roadmap · PRE-FLIGHT</div>
-          <div class="s19-slidenum">19 / 26</div>
-          <div class="s19-companion-chip">
-            <span class="dot"></span>
-            <span>Operator-in-the-loop · Approve every action</span>
+
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#02</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">Database write guardrails</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Zero unauthorised writes against Zoho, MYOB, Databricks.</div>
         </div>
-      </header>
 
-      <!-- =========================== 3-COL SPLIT =========================== -->
-      <div class="s19-split">
-
-        <!-- ===================== LEFT — Topology (compact) ===================== -->
-        <section class="s19-left">
-
-          <div class="s19-panel-head">
-            <span class="tag">A · TOPOLOGY</span>
-            <span>1 : 500</span>
-            <span class="divider"></span>
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#03</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">Self-modification audit</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Memory edits logged, reversible, human-reviewable.</div>
+        </div>
 
-          <!-- Yogi orb -->
-          <div class="s19-cloud">
-            <div class="s19-orb-wrap">
-              <div class="s19-orb-rings"></div>
-              <div class="s19-orb"></div>
-              <div class="s19-orb-label">
-                <span class="name">Yogi <em>(cloud)</em></span>
-                <span>plans · routes · remembers</span>
-              </div>
-            </div>
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#04</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">PII redaction</div>
+          <div class="s18-score">99.7<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:99.7%"></i></div>
+          <div class="s18-micro">TCID, DOB, contact data masked in outbound logs.</div>
+        </div>
 
-          <!-- Dashed connectors cloud → fleet -->
-          <div class="s19-connectors">
-            <svg viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M 250 0 C 250 30,  50 50,  50 100" />
-              <path d="M 250 0 C 250 30, 150 50, 150 100" />
-              <path d="M 250 0 C 250 30, 250 50, 250 100" />
-              <path d="M 250 0 C 250 30, 350 50, 350 100" />
-              <path d="M 250 0 C 250 30, 450 50, 450 100" />
-
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30,  50 50,  50 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 150 50, 150 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 250 50, 250 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 350 50, 350 100');"></circle>
-              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 450 50, 450 100');"></circle>
-            </svg>
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#05</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">RBAC enforcement</div>
+          <div class="s18-score">98<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:98%"></i></div>
+          <div class="s18-micro">Role/permission checks honoured on every privileged call.</div>
+        </div>
 
-          <!-- Mac fleet (5 wide) -->
-          <div class="s19-fleet">
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·001</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·002</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·003</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·004</span></div>
-            </div>
-
-            <div class="s19-mac">
-              <div class="s19-mac-shape">
-                <div class="s19-mac-screen">
-                  <div class="s19-cub">
-                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
-                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
-                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
-                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
-                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
-                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
-                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
-                    </svg>
-                  </div>
-                </div>
-                <div class="s19-mac-hinge"></div>
-                <div class="s19-mac-base"></div>
-              </div>
-              <div class="s19-mac-label">Cub <span class="num">·500</span></div>
-            </div>
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#06</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">Memory leak across users</div>
+          <div class="s18-score">97<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:97%"></i></div>
+          <div class="s18-micro">No cross-tenant context bleed in adversarial probes.</div>
+        </div>
 
-          <div class="s19-fleet-caption">
-            <strong>1</strong> bear<span class="pip">·</span><strong>500</strong> cubs
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#07</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">Conversation context isolation</div>
+          <div class="s18-score">96<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:96%"></i></div>
+          <div class="s18-micro">Session boundaries hold under concurrent multi-user load.</div>
+        </div>
 
-          <!-- Release callout -->
-          <div class="s19-callout">
-            <span class="badge">AUG&nbsp;2026</span>
-            <span class="copy">
-              <strong>Mac alpha</strong> — Sales + Marketing, then Care Delivery.
-            </span>
+        <div class="s18-cell" data-tier="sky">
+          <div class="s18-cell-top">
+            <span class="s18-num">#08</span>
+            <span class="s18-pass">MONITOR</span>
           </div>
+          <div class="s18-cat">Refusal of out-of-scope ops</div>
+          <div class="s18-score">92<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:92%"></i></div>
+          <div class="s18-micro">Declines off-charter requests; quarterly refusal tuning.</div>
+        </div>
 
-        </section>
-
-        <!-- ===================== CENTER — HERO VIDEO STAGE ===================== -->
-        <section class="s19-stage">
-
-          <div class="s19-stage-head">
-            <span class="tag">B · LIVE EVIDENCE</span>
-            <span class="meta">Cub session · operator's Mac · TC-5012 reply task</span>
-            <span class="divider"></span>
-            <span class="tag live">REC</span>
+        <div class="s18-cell" data-tier="sky">
+          <div class="s18-cell-top">
+            <span class="s18-num">#09</span>
+            <span class="s18-pass">MONITOR</span>
           </div>
+          <div class="s18-cat">Prompt-injection resistance</div>
+          <div class="s18-score">88<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:88%"></i></div>
+          <div class="s18-micro">Adversarial test set; documented capability gap.</div>
+        </div>
 
-          <!-- The Mac-style window -->
-          <div class="s19-window">
-
-            <!-- Window chrome -->
-            <div class="s19-chrome">
-              <div class="s19-dots">
-                <span class="s19-dot red"></span>
-                <span class="s19-dot yellow"></span>
-                <span class="s19-dot green"></span>
-              </div>
-              <div class="s19-urlbar">
-                <span class="lock">⌬</span>
-                <span class="scheme">cub://</span><span class="path">session/operator-task-tc-5012</span>
-                <span class="cursor-blink"></span>
-              </div>
-              <div class="s19-chrome-meta">CUB <strong>·001</strong> · MACBOOK PRO 14</div>
-            </div>
-
-            <!-- The screen surface -->
-            <div class="s19-screen">
-              <img src="assets/clicky-demo.gif" alt="Cub agent autonomously moving cursor, clicking, and filling forms on the operator's Mac" />
-
-              <!-- Leader lines pointing into the action -->
-              <div class="s19-leaders">
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <line x1="14" y1="8" x2="38" y2="34" />
-                  <line x1="86" y1="8" x2="62" y2="22" />
-                  <circle class="target" cx="38" cy="34" r="2.4" />
-                  <circle class="target" cx="62" cy="22" r="2.4" />
-                </svg>
-              </div>
-
-              <!-- Annotation chips -->
-              <div class="s19-anno tl">
-                <span class="pulse"></span>
-                <span>Cub Active · Operator's Mac</span>
-              </div>
-              <div class="s19-anno tr">
-                <span class="pulse"></span>
-                <span>Live Playback</span>
-              </div>
-              <div class="s19-anno bl">
-                <span class="accent">Cursor controlled by Yogi</span>&nbsp;·&nbsp;operator watches
-              </div>
-              <div class="s19-anno br">
-                <span class="accent">47s task</span><span class="arr">→</span><span class="accent">4s of checking</span>
-              </div>
-            </div>
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#10</span>
+            <span class="s18-pass">ZERO</span>
           </div>
+          <div class="s18-cat">Hallucinated tool calls</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Strict schema validation — zero phantom invocations.</div>
+        </div>
 
-          <!-- Companion strip beneath the video -->
-          <div class="s19-companion">
-            <span class="left">
-              <span class="dot"></span>
-              <strong>Companion</strong> · not autonomous
-            </span>
-            <span class="right">
-              Operator <em>always</em> in the loop · <em>approves</em> every action
-            </span>
+        <div class="s18-cell" data-tier="teal">
+          <div class="s18-cell-top">
+            <span class="s18-num">#11</span>
+            <span class="s18-pass">PASS</span>
           </div>
+          <div class="s18-cat">Drift detection</div>
+          <div class="s18-score">94<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:94%"></i></div>
+          <div class="s18-micro">Behaviour drift caught against frozen reference outputs.</div>
+        </div>
 
-        </section>
-
-        <!-- ===================== RIGHT — Anatomy (compact 5 beats) ===================== -->
-        <section class="s19-right">
-
-          <div class="s19-panel-head">
-            <span class="tag">C · ANATOMY</span>
-            <span>5 BEATS</span>
-            <span class="divider"></span>
+        <div class="s18-cell" data-tier="honey">
+          <div class="s18-cell-top">
+            <span class="s18-num">#12</span>
+            <span class="s18-pass">PASS</span>
           </div>
-
-          <div class="s19-steps">
-
-            <!-- Step 1 — Yogi plans -->
-            <div class="s19-step s19-step--yogi">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--yogi">Yogi</span>
-                  <span class="s19-step-num"><strong>01</strong> · PLAN</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Plans <span class="accent-h">the action</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>yogi.plan( TC-5012 )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+0.6s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 2 — Cub opens -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>02</strong> · OPEN</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Opens the <span class="accent-t">tab</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.browser.open( portal )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+1.4s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 3 — Cub fills -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>03</strong> · COMPOSE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Fills the form. Attaches the <span class="accent-t">file</span>.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.form.fill(...)</span>
-                  <span class="ok">✓ 2</span>
-                  <span class="ms">+3.2s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 4 — Cub pauses -->
-            <div class="s19-step s19-step--cub">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--cub">Cub</span>
-                  <span class="s19-step-num"><strong>04</strong> · PAUSE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Highlights the diff. Hands off.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>cub.review.handoff()</span>
-                  <span class="wait">⏸</span>
-                  <span class="ms">+3.8s</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Step 5 — Operator approves -->
-            <div class="s19-step s19-step--op">
-              <div class="s19-step-node"><div class="ring"></div></div>
-              <div class="s19-step-card">
-                <div class="s19-step-head">
-                  <span class="s19-chip s19-chip--op">Operator</span>
-                  <span class="s19-step-num"><strong>05</strong> · APPROVE</span>
-                  <span class="s19-step-head-rule"></span>
-                </div>
-                <div class="s19-step-action">
-                  Clicks <span class="accent-s">approve</span>. Shipped.
-                </div>
-                <div class="s19-step-trace">
-                  <span class="arr">→</span>
-                  <span>operator.click( approve )</span>
-                  <span class="ok">✓</span>
-                  <span class="ms">+4.1s</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
+          <div class="s18-cat">Documented capability gaps</div>
+          <div class="s18-score">100<span class="pct">%</span></div>
+          <div class="s18-bar"><i style="--w:100%"></i></div>
+          <div class="s18-micro">Every known limitation logged, owned, scheduled.</div>
+        </div>
 
       </div>
 
-      <!-- =========================== QUOTE + RECEIPT STRIP =========================== -->
-      <div class="s19-quote">
-        <span class="mark">"</span>
-        <div class="body">
-          From <em>minutes-of-doing</em> to <em>seconds-of-checking.</em>
-          <span class="tail">A companion — not a replacement. The operator watches, checks, approves. Multiplied across five hundred staffers, the lift is structural.</span>
+      <!-- SIDEBAR -->
+      <aside class="s18-side">
+        <div class="s18-rsp">
+          <div class="s18-rsp-eyebrow">Scaling tier</div>
+          <div class="s18-rsp-title">Anthropic RSP-3</div>
+          <div class="s18-rsp-tier">RESPONSIBLE SCALING POLICY</div>
+          <ul class="s18-rsp-list">
+            <li><b>Held-out</b> evaluation set, re-run quarterly</li>
+            <li><b>Documented</b> capability gaps with owners</li>
+            <li><b>Reversible</b> by design — every write logged</li>
+            <li><b>Human approval</b> required for every action</li>
+            <li><b>Red-team</b> probes from Crew + external</li>
+          </ul>
         </div>
-        <div class="s19-receipt">
-          <div class="cell">
-            <span class="k">5×</span>
-            <span class="v">Cubs / Operator</span>
-          </div>
-          <div class="cell">
-            <span class="k">47s → 4s</span>
-            <span class="v">Task → Approval</span>
-          </div>
-          <div class="cell">
-            <span class="k">40,000</span>
-            <span class="v">Cub-tasks / day</span>
+
+        <div class="s18-legend">
+          <div class="s18-legend-title">Threshold legend</div>
+          <div class="s18-legend-rows">
+            <div class="s18-legend-row"><span class="sw honey"></span> 100% &nbsp; locked <span class="num">5</span></div>
+            <div class="s18-legend-row"><span class="sw teal"></span> ≥95% &nbsp; pass <span class="num">5</span></div>
+            <div class="s18-legend-row"><span class="sw sky"></span> 88–95 &nbsp; monitor <span class="num">2</span></div>
           </div>
         </div>
+
+        <div class="s18-method">
+          <div class="s18-method-title">Methodology</div>
+          <div class="s18-method-body">
+            <b>2,184</b> probes across <b>12</b> categories. Held-out set, not training data. Quarterly cadence. Public scoreboard inside TC Assist Home.
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BOTTOM STRIP -->
+    <div class="s18-strip">
+      <div class="s18-strip-label">NON-NEGOTIABLE</div>
+      <div class="s18-strip-text">
+        <b>Yogi drafts. Humans decide.</b> <em>The reviewer who clicks approve owns the outcome.</em>
       </div>
-
-      <!-- =========================== FOOTER =========================== -->
-      <footer class="s19-footer">
-        <span class="live">YOGI v4 · CUBS PROGRAM · MAC ALPHA</span>
-        <span class="c">Chat is what I say. <em>Cubs are what I do.</em></span>
-        <span>19 / 26 · TC LEADERSHIP</span>
-      </footer>
-
+      <div class="s18-strip-sig">RSP · v3.2 · Q2 2026</div>
     </div>
   </div>
 </section>
