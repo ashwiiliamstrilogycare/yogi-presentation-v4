@@ -1,9 +1,9 @@
 <section class="slide" data-audio="21" id="slide-mms">
   <style>
     /* ================================================================
-       SLIDE 20 — MULTI-MODEL STRATEGY
+       SLIDE 21 — MULTI-MODEL STRATEGY (v4 · 15 MODELS · 9 VENDORS)
        "Not locked to one model."
-       Router diagram (top) · Model scorecard (middle) · Receipts (bottom)
+       Router diagram (top) · 15-row Model scorecard (middle) · Receipts (bottom)
        Cinematic NASA-grade systems diagram.
        ================================================================ */
 
@@ -60,7 +60,7 @@
       -webkit-mask-image: radial-gradient(ellipse at 50% 38%, black 28%, transparent 82%);
     }
     #slide-mms .glow-honey {
-      position: absolute; top: 28%; left: 50%;
+      position: absolute; top: 26%; left: 50%;
       width: 78vmin; height: 50vmin;
       transform: translate(-50%, -50%);
       background: radial-gradient(ellipse at center,
@@ -92,11 +92,11 @@
     #slide-mms .wrap {
       position: relative; z-index: 1;
       width: 100%; height: 100%;
-      max-width: 1820px;
+      max-width: 1860px;
       margin: 0 auto;
-      padding: clamp(20px, 2.4vh, 32px) clamp(36px, 3.6vw, 64px) clamp(18px, 2vh, 28px);
+      padding: clamp(16px, 2vh, 26px) clamp(32px, 3.2vw, 56px) clamp(14px, 1.8vh, 22px);
       display: flex; flex-direction: column;
-      gap: clamp(12px, 1.4vh, 20px);
+      gap: clamp(10px, 1.2vh, 16px);
     }
 
     /* ---------- Top header row ---------- */
@@ -128,7 +128,7 @@
     }
     #slide-mms h1 {
       margin: 0;
-      font-size: clamp(38px, 4.6vw, 64px);
+      font-size: clamp(34px, 4.2vw, 58px);
       font-weight: 800;
       letter-spacing: -0.035em;
       line-height: 0.96;
@@ -158,7 +158,7 @@
       color: var(--s20m-fg-dim);
     }
     #slide-mms .head-r .num {
-      font-size: 28px; font-weight: 700; letter-spacing: -0.02em;
+      font-size: 26px; font-weight: 700; letter-spacing: -0.02em;
       color: var(--s20m-fg); text-transform: none;
       font-family: 'Inter', sans-serif;
     }
@@ -174,7 +174,7 @@
         rgba(11, 15, 22, 0.7) 100%);
       border: 1px solid var(--s20m-border);
       border-radius: 14px;
-      padding: clamp(16px, 2vh, 22px) clamp(20px, 2.4vw, 32px);
+      padding: clamp(12px, 1.6vh, 18px) clamp(18px, 2.2vw, 28px);
       overflow: hidden;
     }
     #slide-mms .router::before {
@@ -185,7 +185,7 @@
     }
     #slide-mms .router-label {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       font-size: 10px;
       letter-spacing: 0.18em;
@@ -200,24 +200,24 @@
     #slide-mms .router-stage {
       position: relative;
       display: grid;
-      grid-template-columns: 220px 1fr 360px;
+      grid-template-columns: 220px 280px 1fr;
       align-items: center;
       gap: 0;
-      min-height: 220px;
+      min-height: 168px;
     }
 
     /* Incoming task chip (left) */
     #slide-mms .task-in {
       position: relative; z-index: 2;
-      display: flex; flex-direction: column; gap: 8px;
-      padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 7px;
+      padding: 12px 14px;
       background: var(--s20m-bg-deep);
       border: 1px solid var(--s20m-border-strong);
       border-radius: 10px;
     }
     #slide-mms .task-in .tlbl {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--s20m-fg-dim);
     }
     #slide-mms .task-in .tarrow {
@@ -225,12 +225,12 @@
     }
     #slide-mms .task-in .tcmd {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 12.5px; color: var(--s20m-fg); font-weight: 500;
+      font-size: 12px; color: var(--s20m-fg); font-weight: 500;
       line-height: 1.35;
     }
     #slide-mms .task-in .ttag {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--s20m-teal);
       letter-spacing: 0.06em;
     }
@@ -239,11 +239,11 @@
     #slide-mms .router-core {
       position: relative;
       display: flex; align-items: center; justify-content: center;
-      min-height: 220px;
+      min-height: 168px;
     }
     #slide-mms .diamond-wrap {
       position: relative;
-      width: 200px; height: 200px;
+      width: 168px; height: 168px;
       display: flex; align-items: center; justify-content: center;
     }
     #slide-mms .diamond {
@@ -280,10 +280,10 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       gap: 4px;
-      width: 158px; text-align: center;
+      width: 138px; text-align: center;
     }
     #slide-mms .diamond-inner .ico {
-      width: 22px; height: 22px;
+      width: 20px; height: 20px;
       border: 1.5px solid var(--s20m-honey);
       border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
@@ -298,7 +298,7 @@
     }
     #slide-mms .diamond-inner .ttl {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -306,7 +306,7 @@
     }
     #slide-mms .diamond-inner .sub {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9px;
+      font-size: 8.5px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--s20m-fg-muted);
@@ -319,12 +319,12 @@
     #slide-mms .badge {
       position: absolute;
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 10px;
+      padding: 4px 9px;
       background: var(--s20m-bg-deep);
       border: 1px solid var(--s20m-honey-line);
       border-radius: 100px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
+      font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--s20m-fg-muted);
@@ -335,9 +335,9 @@
       background: var(--s20m-honey);
       box-shadow: 0 0 8px var(--s20m-honey-glow);
     }
-    #slide-mms .badge.b1 { top: 4px; left: 50%; transform: translateX(-50%); }
-    #slide-mms .badge.b2 { bottom: 24px; left: 0; }
-    #slide-mms .badge.b3 { bottom: 24px; right: 0; }
+    #slide-mms .badge.b1 { top: -2px; left: 50%; transform: translateX(-50%); }
+    #slide-mms .badge.b2 { bottom: 8px; left: -28px; }
+    #slide-mms .badge.b3 { bottom: 8px; right: -28px; }
 
     /* SVG router lines */
     #slide-mms .router-svg {
@@ -347,60 +347,73 @@
       overflow: visible;
     }
 
-    /* Model chips (right) */
+    /* Model chips (right) — packed 2 rows × 7-8 */
     #slide-mms .models-fan {
       position: relative;
-      display: flex; flex-direction: column;
-      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      padding-left: 14px;
     }
     #slide-mms .model-chip {
-      display: flex; align-items: center; gap: 10px;
-      padding: 7px 12px;
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 8px;
       background: var(--s20m-bg-deep);
       border: 1px solid var(--s20m-border);
-      border-radius: 8px;
+      border-radius: 7px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       transition: all 200ms ease;
+      min-width: 0;
     }
     #slide-mms .model-chip .ch-logo {
-      width: 16px; height: 16px;
+      width: 13px; height: 13px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
     #slide-mms .model-chip .ch-name {
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 600;
       color: var(--s20m-fg);
       letter-spacing: 0;
-    }
-    #slide-mms .model-chip .ch-vendor {
-      font-size: 9.5px;
-      color: var(--s20m-fg-dim);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-left: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     #slide-mms .model-chip.chosen {
       background: linear-gradient(90deg,
-        rgba(254, 189, 51, 0.14) 0%,
+        rgba(254, 189, 51, 0.18) 0%,
         rgba(254, 189, 51, 0.04) 100%);
       border-color: var(--s20m-honey);
       box-shadow:
         0 0 0 1px rgba(254, 189, 51, 0.18),
-        0 0 24px rgba(254, 189, 51, 0.18);
+        0 0 18px rgba(254, 189, 51, 0.22);
     }
     #slide-mms .model-chip.chosen .ch-name { color: var(--s20m-honey); }
-    #slide-mms .model-chip.chosen::after {
-      content: '→ chosen';
-      font-size: 9px;
-      letter-spacing: 0.16em;
+
+    /* Chosen tag */
+    #slide-mms .chosen-tag {
+      position: absolute;
+      right: 0; top: -28px;
+      padding: 4px 9px;
+      background: var(--s20m-bg-deep);
+      border: 1px solid var(--s20m-honey);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--s20m-honey);
-      margin-left: 8px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    #slide-mms .chosen-tag .ct-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--s20m-honey);
+      box-shadow: 0 0 8px var(--s20m-honey);
     }
 
     /* ================================================================
-       SCORECARD
+       SCORECARD — 15 ROWS, GROUPED BY VENDOR
        ================================================================ */
     #slide-mms .card-section {
       position: relative;
@@ -412,7 +425,7 @@
     }
     #slide-mms .card-head {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 22px;
+      padding: 9px 22px;
       border-bottom: 1px solid var(--s20m-border);
       background: rgba(255, 255, 255, 0.015);
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
@@ -436,19 +449,19 @@
     #slide-mms .scoretable {
       display: grid;
       grid-template-columns:
-        minmax(180px, 1.4fr)    /* Model */
-        minmax(64px, 0.7fr)     /* Vendor */
-        minmax(96px, 1fr)       /* Reasoning */
-        minmax(96px, 1fr)       /* Speed */
-        minmax(110px, 1.05fr)   /* Cost */
-        minmax(72px, 0.75fr)    /* Long ctx */
-        minmax(86px, 0.85fr)    /* Modal */
-        minmax(220px, 2.4fr);   /* Use case */
+        minmax(170px, 1.35fr)   /* Model */
+        minmax(108px, 0.9fr)    /* Vendor */
+        minmax(86px, 0.9fr)     /* Reasoning */
+        minmax(86px, 0.9fr)     /* Speed */
+        minmax(108px, 1fr)      /* Cost */
+        minmax(64px, 0.7fr)     /* Long ctx */
+        minmax(82px, 0.8fr)     /* Modal */
+        minmax(230px, 2.4fr);   /* Use case */
     }
     #slide-mms .scoretable .th {
-      padding: 9px 14px 9px;
+      padding: 7px 14px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
+      font-size: 9px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--s20m-fg-dim);
@@ -459,41 +472,70 @@
       display: contents;
     }
     #slide-mms .scoretable .row > div {
-      padding: 11px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 6px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.035);
       display: flex; align-items: center;
       transition: background 180ms ease;
+      min-height: 36px;
+      position: relative;
     }
     #slide-mms .scoretable .row.last > div {
       border-bottom: none;
     }
+
+    /* Vendor group tints (very faint background bands) */
+    #slide-mms .row.vg-anth > div { background: linear-gradient(90deg, rgba(254, 189, 51, 0.028) 0%, rgba(254, 189, 51, 0.012) 100%); }
+    #slide-mms .row.vg-goog > div { background: linear-gradient(90deg, rgba(100, 188, 234, 0.028) 0%, rgba(100, 188, 234, 0.012) 100%); }
+    #slide-mms .row.vg-oai  > div { background: linear-gradient(90deg, rgba(67, 192, 190, 0.028) 0%, rgba(67, 192, 190, 0.012) 100%); }
+    #slide-mms .row.vg-meta > div { background: linear-gradient(90deg, rgba(224, 75, 81, 0.030) 0%, rgba(224, 75, 81, 0.012) 100%); }
+    #slide-mms .row.vg-mist > div { background: linear-gradient(90deg, rgba(243, 155, 90, 0.030) 0%, rgba(243, 155, 90, 0.012) 100%); }
+    #slide-mms .row.vg-ds   > div { background: linear-gradient(90deg, rgba(155, 123, 212, 0.030) 0%, rgba(155, 123, 212, 0.012) 100%); }
+    #slide-mms .row.vg-qwen > div { background: linear-gradient(90deg, rgba(0, 127, 126, 0.040) 0%, rgba(0, 127, 126, 0.014) 100%); }
+    #slide-mms .row.vg-coh  > div { background: linear-gradient(90deg, rgba(254, 189, 51, 0.022) 0%, rgba(254, 189, 51, 0.008) 100%); }
+    #slide-mms .row.vg-aws  > div { background: linear-gradient(90deg, rgba(100, 188, 234, 0.024) 0%, rgba(100, 188, 234, 0.010) 100%); }
+
+    /* Vendor group divider — stronger line on first row of new group */
+    #slide-mms .row.vg-start > div {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
     #slide-mms .scoretable .row.featured > div {
       background: linear-gradient(90deg,
-        rgba(254, 189, 51, 0.06) 0%,
-        rgba(254, 189, 51, 0.02) 70%,
+        rgba(254, 189, 51, 0.12) 0%,
+        rgba(254, 189, 51, 0.03) 70%,
         transparent 100%);
     }
     #slide-mms .scoretable .row.featured > div:first-child::before {
-      content: ''; position: absolute; left: 0;
-      width: 2px; height: 70%;
+      content: ''; position: absolute; left: 0; top: 14%;
+      width: 2px; height: 72%;
       background: var(--s20m-honey);
       box-shadow: 0 0 12px var(--s20m-honey-glow);
     }
 
     #slide-mms .cell-model {
       position: relative;
-      display: flex !important; flex-direction: column; gap: 2px;
+      display: flex !important; flex-direction: column; gap: 0px;
       align-items: flex-start !important;
+      justify-content: center;
+    }
+    #slide-mms .cell-model .midx {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      color: var(--s20m-fg-faint);
+      letter-spacing: 0.1em;
+      margin-right: 6px;
     }
     #slide-mms .cell-model .mn {
-      font-size: 13.5px; font-weight: 700; color: var(--s20m-fg);
+      font-size: 12px; font-weight: 700; color: var(--s20m-fg);
       letter-spacing: -0.005em;
+      display: inline-flex; align-items: baseline; gap: 0;
     }
     #slide-mms .cell-model .ml {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
-      color: var(--s20m-fg-dim);
+      font-size: 8.5px;
+      color: var(--s20m-fg-faint);
       letter-spacing: 0.04em;
+      margin-top: 1px;
     }
     #slide-mms .row.featured .cell-model .mn { color: var(--s20m-honey); }
     #slide-mms .row.featured .cell-model .ml::after {
@@ -503,33 +545,34 @@
     }
 
     #slide-mms .cell-vendor {
-      display: flex !important; align-items: center; gap: 8px;
+      display: flex !important; align-items: center; gap: 7px;
     }
     #slide-mms .cell-vendor .vlogo {
-      width: 18px; height: 18px;
+      width: 16px; height: 16px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
     #slide-mms .cell-vendor .vname {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--s20m-fg-muted);
       letter-spacing: 0.04em;
+      white-space: nowrap;
     }
 
     /* Dot meters */
     #slide-mms .meter {
-      display: inline-flex; gap: 4px;
+      display: inline-flex; gap: 3px;
       align-items: center;
     }
     #slide-mms .meter .d {
-      width: 7px; height: 7px; border-radius: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
       background: rgba(255, 255, 255, 0.10);
       transition: all 200ms ease;
     }
     #slide-mms .meter .d.on {
       background: var(--meter-c, var(--s20m-honey));
-      box-shadow: 0 0 6px var(--meter-glow, rgba(254, 189, 51, 0.5));
+      box-shadow: 0 0 5px var(--meter-glow, rgba(254, 189, 51, 0.5));
     }
     .col-reasoning { --meter-c: var(--s20m-honey); --meter-glow: rgba(254, 189, 51, 0.5); }
     .col-speed     { --meter-c: var(--s20m-teal);  --meter-glow: rgba(67, 192, 190, 0.5); }
@@ -538,33 +581,36 @@
     .col-modal     { --meter-c: var(--s20m-violet);--meter-glow: rgba(155, 123, 212, 0.5); }
 
     #slide-mms .cell-cost {
-      display: flex !important; flex-direction: column; gap: 2px;
+      display: flex !important; flex-direction: column; gap: 0px;
       align-items: flex-start !important;
+      justify-content: center;
     }
     #slide-mms .cell-cost .cval {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px; color: var(--s20m-fg); font-weight: 500;
+      font-size: 10.5px; color: var(--s20m-fg); font-weight: 500;
+      line-height: 1.2;
     }
     #slide-mms .cell-cost .clbl {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
+      font-size: 8px;
       color: var(--s20m-fg-faint);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-top: 1px;
     }
 
     #slide-mms .cell-ctx,
     #slide-mms .cell-modal {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px;
+      font-size: 10px;
       color: var(--s20m-fg-muted);
       letter-spacing: 0.02em;
     }
 
     #slide-mms .cell-use {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--s20m-fg-muted);
-      line-height: 1.4;
+      line-height: 1.35;
       letter-spacing: -0.005em;
     }
     #slide-mms .row.featured .cell-use {
@@ -572,12 +618,12 @@
     }
 
     /* ================================================================
-       BOTTOM RECEIPTS BAND
+       BOTTOM RECEIPTS BAND — 5 chips
        ================================================================ */
     #slide-mms .receipts {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
     }
     #slide-mms .receipt {
       position: relative;
@@ -587,38 +633,39 @@
       border: 1px solid var(--s20m-border);
       border-left: 2px solid var(--receipt-c, var(--s20m-honey));
       border-radius: 8px;
-      padding: 12px 16px;
-      display: flex; flex-direction: column; gap: 6px;
+      padding: 10px 14px;
+      display: flex; flex-direction: column; gap: 4px;
     }
     #slide-mms .receipt .rval {
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--receipt-c, var(--s20m-honey));
       line-height: 1;
     }
     #slide-mms .receipt .rval .unit {
-      font-size: 13px;
+      font-size: 11.5px;
       color: var(--s20m-fg-muted);
       font-weight: 500;
       margin-left: 2px;
     }
     #slide-mms .receipt .rlbl {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px;
+      font-size: 8.5px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--s20m-fg-dim);
     }
     #slide-mms .receipt .rdesc {
-      font-size: 11.5px;
+      font-size: 10.5px;
       color: var(--s20m-fg-muted);
-      line-height: 1.35;
+      line-height: 1.3;
     }
     #slide-mms .receipt.r1 { --receipt-c: var(--s20m-honey); }
     #slide-mms .receipt.r2 { --receipt-c: var(--s20m-coral); }
     #slide-mms .receipt.r3 { --receipt-c: var(--s20m-violet); }
     #slide-mms .receipt.r4 { --receipt-c: var(--s20m-teal);  }
+    #slide-mms .receipt.r5 { --receipt-c: var(--s20m-sky);   }
 
     /* ---------- Reveal animation ---------- */
     #slide-mms .reveal {
@@ -642,7 +689,7 @@
       stroke-width: 1;
       stroke-dasharray: 3 4;
       fill: none;
-      opacity: 0.55;
+      opacity: 0.45;
     }
     #slide-mms .rline.solid {
       stroke: var(--s20m-honey);
@@ -678,7 +725,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--s20m-fg-faint);
-      margin-top: -4px;
+      margin-top: -2px;
     }
     #slide-mms .micro-foot .m-r {
       display: inline-flex; align-items: center; gap: 8px;
@@ -704,7 +751,7 @@
       <div class="head-l">
         <span class="eyebrow">
           <span class="dot"></span>
-          20 / 25
+          21 / 26
           <span class="bar"></span>
           MULTI-MODEL STRATEGY
           <span class="bar"></span>
@@ -712,12 +759,12 @@
         </span>
         <h1>Not locked to <span class="accent">one model.</span></h1>
         <div class="subhead">
-          8 FRONTIER MODELS <span class="sep">·</span> ROUTING PER TASK <span class="sep">·</span> BEST TOOL LOWEST COST EVERY TIME
+          15 FRONTIER MODELS <span class="sep">·</span> 9 VENDORS <span class="sep">·</span> ROUTING PER TASK <span class="sep">·</span> BEST TOOL LOWEST COST EVERY TIME
         </div>
       </div>
       <div class="head-r">
-        <div class="num">8<span class="slash">/</span>vendors</div>
-        <div>ROUTER · LIVE</div>
+        <div class="num">9<span class="slash">/</span>vendors</div>
+        <div>15 MODELS · ROUTER LIVE</div>
       </div>
     </div>
 
@@ -725,7 +772,7 @@
     <div class="router reveal d2">
       <div class="router-label">
         <span>ROUTING TRACE <span style="color:var(--s20m-fg-faint); margin: 0 8px;">·</span> task → model selection</span>
-        <span class="stat">policy: best capability ∩ cost-ceiling</span>
+        <span class="stat">policy: best capability ∩ cost-ceiling ∩ data-residency</span>
       </div>
 
       <div class="router-stage">
@@ -750,115 +797,180 @@
             </div>
             <div class="badges">
               <div class="badge b1"><span class="bd"></span>complexity</div>
-              <div class="badge b2"><span class="bd"></span>cost ceiling</div>
-              <div class="badge b3"><span class="bd"></span>modality</div>
+              <div class="badge b2"><span class="bd"></span>cost</div>
+              <div class="badge b3"><span class="bd"></span>residency</div>
             </div>
           </div>
         </div>
 
-        <!-- MODELS FAN -->
+        <!-- MODELS FAN — 15 chips, 2 rows × 7-8 -->
         <div class="models-fan">
-          <div class="model-chip chosen" data-mk="opus">
+
+          <!-- Row 1: Anthropic (3) + Google (3) + OpenAI (2) -->
+          <div class="model-chip chosen">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="ch-name">Sonnet 4.6</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             <span class="ch-name">Opus 4.6</span>
-            <span class="ch-vendor">Anthropic</span>
           </div>
-          <div class="model-chip" data-mk="sonnet">
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#a1a1aa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="ch-name">Sonnet 4.6</span>
-            <span class="ch-vendor">Anthropic</span>
-          </div>
-          <div class="model-chip" data-mk="haiku">
-            <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#a1a1aa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             <span class="ch-name">Haiku 4.5</span>
-            <span class="ch-vendor">Anthropic</span>
           </div>
-          <div class="model-chip" data-mk="gpro">
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#a1a1aa" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
-            <span class="ch-name">Gemini 2.5 Pro</span>
-            <span class="ch-vendor">Google</span>
+            <span class="ch-name">Gem 2.5 Pro</span>
           </div>
-          <div class="model-chip" data-mk="gflash">
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#a1a1aa" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
-            <span class="ch-name">Gemini 2.5 Flash</span>
-            <span class="ch-vendor">Google</span>
+            <span class="ch-name">Gem Flash</span>
           </div>
-          <div class="model-chip" data-mk="gpt5">
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Gem Nano</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
               </svg>
             </span>
             <span class="ch-name">GPT-5</span>
-            <span class="ch-vendor">OpenAI</span>
           </div>
-          <div class="model-chip" data-mk="oseries">
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="5.5" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
-                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
               </svg>
             </span>
-            <span class="ch-name">o-series</span>
-            <span class="ch-vendor">OpenAI</span>
+            <span class="ch-name">GPT-5 Mini</span>
           </div>
-          <div class="model-chip" data-mk="llama">
+
+          <!-- Row 2: OpenAI (1) + Meta (1) + Mistral (1) + DeepSeek (1) + Qwen (1) + Cohere (1) + AWS (1) + spacer -->
+          <div class="model-chip">
             <span class="ch-logo">
-              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
-                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#a1a1aa" stroke-width="1.2" fill="none"/>
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
               </svg>
             </span>
-            <span class="ch-name">Llama 4 70B</span>
-            <span class="ch-vendor">Meta · OnPrem</span>
+            <span class="ch-name">o4-mini</span>
           </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="13" height="11" viewBox="0 0 18 14" fill="none">
+                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#E04B51" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Llama 4 405B</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M2 12 L2 5 L5 12 L8 5 L8 12 M10 5 H14 M10 8.5 H14 M10 12 H14" stroke="#F39B5A" stroke-width="1.1" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="ch-name">Mistral L2</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 L13 6 L13 11 L8 14 L3 11 L3 6 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+                <circle cx="8" cy="8" r="1.5" fill="#9B7BD4"/>
+              </svg>
+            </span>
+            <span class="ch-name">DeepSeek V3</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#007F7E" stroke-width="1.2" fill="none"/>
+                <path d="M5 8 L8 11 L11 5" stroke="#007F7E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Qwen 3 Max</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M4 4 L4 12 M4 4 Q8 4 8 8 Q8 12 4 12 M10 6 L12 12 L14 6" stroke="#FEBD33" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Command R+</span>
+          </div>
+          <div class="model-chip">
+            <span class="ch-logo">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M3 5 L8 12 L13 5 M5 5 L8 9 L11 5" stroke="#64BCEA" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="ch-name">Nova Pro</span>
+          </div>
+          <div style="opacity:0.4; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:9px; color: var(--s20m-fg-faint); letter-spacing:0.16em;">+ more</div>
         </div>
 
         <!-- SVG ROUTING LINES -->
         <svg class="router-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
           <!-- task chip → diamond -->
-          <path class="rline solid" d="M 12.5 50 H 30" />
-          <!-- diamond → 8 model chips on right -->
-          <path class="rline solid" d="M 50 50 C 60 50, 60 7,  72 7" />
-          <path class="rline" d="M 50 50 C 60 50, 60 18, 72 18" />
-          <path class="rline" d="M 50 50 C 60 50, 60 30, 72 30" />
-          <path class="rline" d="M 50 50 C 60 50, 60 42, 72 42" />
-          <path class="rline" d="M 50 50 C 60 50, 60 55, 72 55" />
-          <path class="rline" d="M 50 50 C 60 50, 60 68, 72 68" />
-          <path class="rline" d="M 50 50 C 60 50, 60 80, 72 80" />
-          <path class="rline" d="M 50 50 C 60 50, 60 93, 72 93" />
+          <path class="rline solid" d="M 12.5 50 H 28" />
+          <!-- diamond → fan: 15 model chips (2 rows × 7-8) -->
+          <!-- Row 1 (top): 8 lines fanning up-right -->
+          <path class="rline solid" d="M 41 50 C 50 50, 50 22, 56 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 62 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 68 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 74 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 80 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 86 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 92 22" />
+          <path class="rline" d="M 41 50 C 50 50, 50 22, 98 22" />
+          <!-- Row 2 (bottom): 7 lines fanning down-right -->
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 56 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 62 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 68 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 74 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 80 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 86 78" />
+          <path class="rline" d="M 41 50 C 50 50, 50 78, 92 78" />
 
-          <!-- flow dots -->
-          <circle class="rdot flow-dot" r="0.7" style="animation-delay: 0s;">
+          <!-- flow dot to chosen (Sonnet 4.6, top-left of fan) -->
+          <circle class="rdot flow-dot" r="0.7">
             <animateMotion dur="3.6s" repeatCount="indefinite"
-              path="M 12.5 50 H 30 L 50 50 C 60 50, 60 7, 72 7" />
+              path="M 12.5 50 H 28 L 41 50 C 50 50, 50 22, 56 22" />
           </circle>
         </svg>
 
         <!-- Chosen tag -->
-        <div style="position:absolute; right: 0; top: 8px; padding: 4px 9px; background: var(--s20m-bg-deep); border: 1px solid var(--s20m-honey); border-radius: 100px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--s20m-honey); display: flex; align-items: center; gap: 6px;">
-          <span style="width:5px; height:5px; border-radius:50%; background:var(--s20m-honey); box-shadow:0 0 8px var(--s20m-honey);"></span>
-          → Opus 4.6
+        <div class="chosen-tag">
+          <span class="ct-dot"></span>
+          → Sonnet 4.6
         </div>
 
       </div>
@@ -867,7 +979,7 @@
     <!-- ========== SCORECARD ========== -->
     <div class="card-section reveal d3">
       <div class="card-head">
-        <span>MODEL SCORECARD <span style="color:var(--s20m-fg-faint); margin: 0 6px;">·</span> 8 frontier models · 6 dimensions</span>
+        <span>MODEL SCORECARD <span style="color:var(--s20m-fg-faint); margin: 0 6px;">·</span> 15 models · 9 vendors · 6 dimensions</span>
         <div class="legend">
           <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-honey)"></span>reasoning</span>
           <span class="leg-item"><span class="leg-dot" style="background:var(--s20m-teal)"></span>speed</span>
@@ -888,12 +1000,14 @@
         <div class="th">Modal</div>
         <div class="th">TC Use Case</div>
 
-        <!-- Row 1: Opus 4.6 -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">Opus 4.6</span><span class="ml">claude-opus-4-6</span></div>
+        <!-- ============ ANTHROPIC GROUP (01-03) ============ -->
+
+        <!-- Row 01: Opus 4.6 -->
+        <div class="row vg-anth vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">01</span>Opus 4.6</span><span class="ml">claude-opus-4-6</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -903,16 +1017,16 @@
           <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
           <div class="cell-cost"><span class="cval">$15 / $75</span><span class="clbl">per million</span></div>
           <div class="cell-ctx">1M</div>
-          <div class="cell-modal">Text + img</div>
+          <div class="cell-modal">Text+img</div>
           <div class="cell-use">Complex investigations <span style="color:var(--s20m-fg-faint)">·</span> Yogi orchestrator</div>
         </div>
 
-        <!-- Row 2: Sonnet 4.6 — FEATURED -->
-        <div class="row featured">
-          <div class="cell-model"><span class="mn">Sonnet 4.6</span><span class="ml">claude-sonnet-4-6</span></div>
+        <!-- Row 02: Sonnet 4.6 — FEATURED (default) -->
+        <div class="row vg-anth featured">
+          <div class="cell-model"><span class="mn"><span class="midx">02</span>Sonnet 4.6</span><span class="ml">claude-sonnet-4-6</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -922,16 +1036,16 @@
           <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
           <div class="cell-cost"><span class="cval">$3 / $15</span><span class="clbl">per million</span></div>
           <div class="cell-ctx">1M</div>
-          <div class="cell-modal">Text + img</div>
-          <div class="cell-use">Daily drafting <span style="color:var(--s20m-fg-faint)">·</span> sub-agents <span style="color:var(--s20m-fg-faint)">·</span> ~80% of calls</div>
+          <div class="cell-modal">Text+img</div>
+          <div class="cell-use">Default workhorse <span style="color:var(--s20m-fg-faint)">·</span> most sub-agent calls</div>
         </div>
 
-        <!-- Row 3: Haiku 4.5 -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">Haiku 4.5</span><span class="ml">claude-haiku-4-5</span></div>
+        <!-- Row 03: Haiku 4.5 -->
+        <div class="row vg-anth">
+          <div class="cell-model"><span class="mn"><span class="midx">03</span>Haiku 4.5</span><span class="ml">claude-haiku-4-5</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13 L8 3 L13 13 M5 10 H11" stroke="#FEBD33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
@@ -945,12 +1059,14 @@
           <div class="cell-use">Bills QA classify <span style="color:var(--s20m-fg-faint)">·</span> 1000s/day <span style="color:var(--s20m-fg-faint)">·</span> cheap</div>
         </div>
 
-        <!-- Row 4: Gemini Pro -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">Gemini 2.5 Pro</span><span class="ml">gemini-2-5-pro</span></div>
+        <!-- ============ GOOGLE GROUP (04-06) ============ -->
+
+        <!-- Row 04: Gemini 2.5 Pro -->
+        <div class="row vg-goog vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">04</span>Gemini 2.5 Pro</span><span class="ml">gemini-2-5-pro</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
@@ -964,12 +1080,12 @@
           <div class="cell-use">Aircall transcript ingest <span style="color:var(--s20m-fg-faint)">·</span> long docs</div>
         </div>
 
-        <!-- Row 5: Gemini Flash -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">Gemini 2.5 Flash</span><span class="ml">gemini-2-5-flash</span></div>
+        <!-- Row 05: Gemini 2.5 Flash -->
+        <div class="row vg-goog">
+          <div class="cell-model"><span class="mn"><span class="midx">05</span>Gemini 2.5 Flash</span><span class="ml">gemini-2-5-flash</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
@@ -983,12 +1099,33 @@
           <div class="cell-use">Batch image OCR <span style="color:var(--s20m-fg-faint)">·</span> receipt scans</div>
         </div>
 
-        <!-- Row 6: GPT-5 -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">GPT-5</span><span class="ml">gpt-5</span></div>
+        <!-- Row 06: Gemini 2.5 Nano -->
+        <div class="row vg-goog">
+          <div class="cell-model"><span class="mn"><span class="midx">06</span>Gemini 2.5 Nano</span><span class="ml">gemini-2-5-nano</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 C5 5 5 11 8 14 C5 11 11 11 14 8 C11 11 11 5 8 2 C11 5 5 5 2 8 C5 5 5 11 8 14 Z" stroke="#64BCEA" stroke-width="1.1" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Google</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></span></div>
+          <div class="cell-cost"><span class="cval">on-device</span><span class="clbl">free at runtime</span></div>
+          <div class="cell-ctx">64K</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">Mobile cub on-device fallback <span style="color:var(--s20m-fg-faint)">·</span> offline</div>
+        </div>
+
+        <!-- ============ OPENAI GROUP (07-09) ============ -->
+
+        <!-- Row 07: GPT-5 -->
+        <div class="row vg-oai vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">07</span>GPT-5</span><span class="ml">gpt-5</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
                 <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
               </svg>
@@ -999,16 +1136,36 @@
           <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
           <div class="cell-cost"><span class="cval">$10 / $30</span><span class="clbl">per million</span></div>
           <div class="cell-ctx">400K</div>
-          <div class="cell-modal">Text + img</div>
+          <div class="cell-modal">Text+img</div>
           <div class="cell-use">Ecosystem fallback <span style="color:var(--s20m-fg-faint)">·</span> structured JSON</div>
         </div>
 
-        <!-- Row 7: o-series -->
-        <div class="row">
-          <div class="cell-model"><span class="mn">o-series · o4-mini</span><span class="ml">o4-mini-2026</span></div>
+        <!-- Row 08: GPT-5 Mini -->
+        <div class="row vg-oai">
+          <div class="cell-model"><span class="mn"><span class="midx">08</span>GPT-5 Mini</span><span class="ml">gpt-5-mini</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+                <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">OpenAI</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$2 / $8</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">400K</div>
+          <div class="cell-modal">Text+img</div>
+          <div class="cell-use">Mid-tier OpenAI workhorse</div>
+        </div>
+
+        <!-- Row 09: o4-mini -->
+        <div class="row vg-oai">
+          <div class="cell-model"><span class="mn"><span class="midx">09</span>o4-mini <span style="font-weight:500; color:var(--s20m-fg-dim); font-size:10px; font-family:'JetBrains Mono', monospace; margin-left:6px;">reasoning</span></span><span class="ml">o4-mini-2026</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <circle cx="8" cy="8" r="5.5" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
                 <path d="M8 4 A4 4 0 0 1 12 8" stroke="#43C0BE" stroke-width="1.2" fill="none"/>
               </svg>
@@ -1023,28 +1180,137 @@
           <div class="cell-use">Formal verification <span style="color:var(--s20m-fg-faint)">·</span> math <span style="color:var(--s20m-fg-faint)">·</span> proofs</div>
         </div>
 
-        <!-- Row 8: Llama 4 70B -->
-        <div class="row last">
-          <div class="cell-model"><span class="mn">Llama 4 70B</span><span class="ml">llama-4-70b-instruct</span></div>
+        <!-- ============ META (10) ============ -->
+
+        <!-- Row 10: Llama 4 405B -->
+        <div class="row vg-meta vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">10</span>Llama 4 405B</span><span class="ml">llama-4-405b-instruct</span></div>
           <div class="cell-vendor">
             <span class="vlogo">
-              <svg width="16" height="14" viewBox="0 0 18 14" fill="none">
-                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none"/>
+              <svg width="14" height="13" viewBox="0 0 18 14" fill="none">
+                <path d="M3 7 C3 4, 6 4, 9 7 C12 10, 15 10, 15 7 C15 4, 12 4, 9 7 C6 10, 3 10, 3 7 Z" stroke="#E04B51" stroke-width="1.2" fill="none"/>
               </svg>
             </span>
-            <span class="vname">Meta · OnPrem</span>
+            <span class="vname">Meta · self-host</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0 · compute</span><span class="clbl">self-hosted</span></div>
+          <div class="cell-ctx">128K</div>
+          <div class="cell-modal">Text+img</div>
+          <div class="cell-use">PII-sensitive on-prem <span style="color:var(--s20m-fg-faint)">·</span> sovereignty</div>
+        </div>
+
+        <!-- ============ MISTRAL (11) ============ -->
+
+        <!-- Row 11: Mistral Large 2 -->
+        <div class="row vg-mist vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">11</span>Mistral Large 2</span><span class="ml">mistral-large-2</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M2 12 L2 5 L5 12 L8 5 L8 12 M10 5 H14 M10 8.5 H14 M10 12 H14" stroke="#F39B5A" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="vname">Mistral AI</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$2 / $6</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">128K</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">EU data residency <span style="color:var(--s20m-fg-faint)">·</span> code <span style="color:var(--s20m-fg-faint)">·</span> multilingual</div>
+        </div>
+
+        <!-- ============ DEEPSEEK (12) ============ -->
+
+        <!-- Row 12: DeepSeek V3 -->
+        <div class="row vg-ds vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">12</span>DeepSeek V3</span><span class="ml">deepseek-v3</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2 L13 6 L13 11 L8 14 L3 11 L3 6 Z" stroke="#9B7BD4" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+                <circle cx="8" cy="8" r="1.5" fill="#9B7BD4"/>
+              </svg>
+            </span>
+            <span class="vname">DeepSeek · open</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0.27 / $1.10</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">128K</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">Ultra-cheap reasoning <span style="color:var(--s20m-fg-faint)">·</span> self-host option</div>
+        </div>
+
+        <!-- ============ QWEN (13) ============ -->
+
+        <!-- Row 13: Qwen 3 Max -->
+        <div class="row vg-qwen vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">13</span>Qwen 3 Max</span><span class="ml">qwen-3-max</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="5.5" stroke="#007F7E" stroke-width="1.2" fill="none"/>
+                <path d="M5 8 L8 11 L11 5" stroke="#007F7E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Alibaba · open</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0.80 / $3.20</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">256K</div>
+          <div class="cell-modal">Text+img</div>
+          <div class="cell-use">Multilingual <span style="color:var(--s20m-fg-faint)">·</span> Mandarin client materials</div>
+        </div>
+
+        <!-- ============ COHERE (14) ============ -->
+
+        <!-- Row 14: Cohere Command R+ -->
+        <div class="row vg-coh vg-start">
+          <div class="cell-model"><span class="mn"><span class="midx">14</span>Command R+</span><span class="ml">command-r-plus</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M4 4 L4 12 M4 4 Q8 4 8 8 Q8 12 4 12 M10 6 L12 12 L14 6" stroke="#FEBD33" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">Cohere</span>
           </div>
           <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
           <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
-          <div class="cell-cost"><span class="cval">$0 · compute</span><span class="clbl">self-hosted</span></div>
+          <div class="cell-cost"><span class="cval">$2.50 / $10</span><span class="clbl">per million</span></div>
           <div class="cell-ctx">128K</div>
-          <div class="cell-modal">Text + img</div>
-          <div class="cell-use">PII-sensitive on-prem batch <span style="color:var(--s20m-fg-faint)">·</span> sovereignty</div>
+          <div class="cell-modal">Text</div>
+          <div class="cell-use">RAG-optimised <span style="color:var(--s20m-fg-faint)">·</span> enterprise search</div>
+        </div>
+
+        <!-- ============ AWS (15) ============ -->
+
+        <!-- Row 15: Amazon Nova Pro -->
+        <div class="row vg-aws vg-start last">
+          <div class="cell-model"><span class="mn"><span class="midx">15</span>Amazon Nova Pro</span><span class="ml">amazon-nova-pro</span></div>
+          <div class="cell-vendor">
+            <span class="vlogo">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M3 5 L8 12 L13 5 M5 5 L8 9 L11 5" stroke="#64BCEA" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="vname">AWS</span>
+          </div>
+          <div><span class="meter col-reasoning"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></span></div>
+          <div><span class="meter col-speed"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></span></div>
+          <div class="cell-cost"><span class="cval">$0.80 / $3.20</span><span class="clbl">per million</span></div>
+          <div class="cell-ctx">300K</div>
+          <div class="cell-modal">Text+img+vid</div>
+          <div class="cell-use">AWS-native <span style="color:var(--s20m-fg-faint)">·</span> video frames <span style="color:var(--s20m-fg-faint)">·</span> cheap fast</div>
         </div>
       </div>
     </div>
 
-    <!-- ========== RECEIPTS BAND ========== -->
+    <!-- ========== RECEIPTS BAND — 5 chips ========== -->
     <div class="receipts reveal d4">
       <div class="receipt r1">
         <div class="rval">58<span class="unit">% off</span></div>
@@ -1066,11 +1332,16 @@
         <div class="rlbl">SMART ROUTING DELTA</div>
         <div class="rdesc">Versus naive "everything through Opus." Router earns its keep.</div>
       </div>
+      <div class="receipt r5">
+        <div class="rval">~$8,400<span class="unit">/mo</span></div>
+        <div class="rlbl">VENDOR DIVERSITY · NO LOCK-IN</div>
+        <div class="rdesc">Cross-vendor arbitrage saves on top of routing. Zero vendor dependency.</div>
+      </div>
     </div>
 
     <!-- Micro footer -->
     <div class="micro-foot reveal d5">
-      <span>YOGI ROUTER · POLICY-AS-CODE · UPDATED 2026-05-25</span>
+      <span>YOGI ROUTER · POLICY-AS-CODE · 15 MODELS · 9 VENDORS · UPDATED 2026-05-25</span>
       <span class="m-r">
         <span class="pin"></span>
         BEST TOOL <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> LOWEST COST <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> EVERY TIME

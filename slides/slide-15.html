@@ -1,8 +1,9 @@
 <section class="slide" data-audio="15">
   <style>
     /* ─────────────────────────────────────────────────────────────
-       SLIDE 16 — LIVE DEMO (TJ Gardening · TC-5012)
+       SLIDE 15 — LIVE DEMO (TJ Gardening · TC-5012)
        Mission-control framing around a self-typing console.
+       Readability pass: every line must be legible from 8 m back.
        ───────────────────────────────────────────────────────────── */
 
     .slide[data-audio="15"] {
@@ -21,14 +22,14 @@
       --bg-elev:     #11161f;
       --bg-glass:    rgba(255,255,255,0.04);
       --bg-console:  #070a0f;
-      --border:      rgba(255,255,255,0.08);
-      --border-warm: rgba(254,189,51,0.28);
-      --border-cold: rgba(161,161,170,0.14);
+      --border:      rgba(255,255,255,0.10);
+      --border-warm: rgba(254,189,51,0.32);
+      --border-cold: rgba(161,161,170,0.18);
 
       --fg:          #f4f4f5;
-      --fg-muted:    #a1a1aa;
-      --fg-dim:      #71717a;
-      --fg-ghost:    #52525b;
+      --fg-muted:    #d4d4d8;   /* bumped for WCAG */
+      --fg-dim:      #a1a1aa;   /* bumped — was #71717a */
+      --fg-ghost:    #71717a;   /* bumped — was #52525b */
 
       --font-display: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       --font-mono:   'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
@@ -68,12 +69,12 @@
     .slide[data-audio="15"] .content {
       position: relative;
       z-index: 2;
-      max-width: 1680px;
+      max-width: 1760px;
       margin: 0 auto;
-      padding: clamp(24px, 2.6vh, 40px) clamp(40px, 4vw, 80px);
+      padding: clamp(24px, 2.6vh, 40px) clamp(32px, 3vw, 64px);
       display: grid;
       grid-template-rows: auto auto 1fr auto;
-      gap: clamp(12px, 1.4vh, 22px);
+      gap: clamp(14px, 1.6vh, 24px);
       min-height: 100vh;
       box-sizing: border-box;
     }
@@ -109,13 +110,13 @@
       align-items: center;
       gap: 14px;
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
+      font-size: clamp(11.5px, 0.82vw, 14px);
+      letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--fg-dim);
-      margin-bottom: clamp(8px, 1vh, 14px);
+      margin-bottom: clamp(10px, 1.2vh, 16px);
     }
-    .s16-eyebrow .num { color: var(--fg-muted); }
+    .s16-eyebrow .num { color: var(--fg); font-weight: 600; }
     .s16-eyebrow .sep {
       flex: 0 0 24px;
       height: 1px;
@@ -142,20 +143,21 @@
         0 0 80px rgba(254,189,51,0.14);
     }
     .s16-subhead {
-      margin-top: 14px;
+      margin-top: 16px;
       font-family: var(--font-mono);
-      font-size: clamp(11px, 0.85vw, 13.5px);
-      letter-spacing: 0.32em;
+      font-size: clamp(13px, 1vw, 17px);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--honey);
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: center;
       flex-wrap: wrap;
+      font-weight: 600;
     }
     .s16-subhead .dim { color: var(--fg-dim); }
     .s16-subhead .dot {
-      width: 4px; height: 4px; border-radius: 50%;
+      width: 5px; height: 5px; border-radius: 50%;
       background: var(--fg-ghost);
       display: inline-block;
     }
@@ -164,30 +166,31 @@
     .s16-live {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-end;
     }
     .s16-live-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 16px;
-      border: 1px solid rgba(224,75,81,0.45);
+      gap: 12px;
+      padding: 10px 20px;
+      border: 1px solid rgba(224,75,81,0.55);
       border-radius: 999px;
-      background: rgba(224,75,81,0.10);
+      background: rgba(224,75,81,0.12);
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.32em;
+      font-size: clamp(12.5px, 0.92vw, 15px);
+      letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--red);
+      font-weight: 700;
     }
     .s16-live-pill::before {
       content: "";
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--red);
-      box-shadow: 0 0 10px var(--red);
+      box-shadow: 0 0 12px var(--red);
       animation: s16-pulse 1.4s ease-in-out infinite;
     }
     @keyframes s16-pulse {
@@ -196,18 +199,18 @@
     }
     .s16-runtime-meta {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.28em;
+      font-size: clamp(11.5px, 0.82vw, 14px);
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--fg-dim);
     }
-    .s16-runtime-meta .v { color: var(--honey); }
+    .s16-runtime-meta .v { color: var(--honey); font-weight: 600; }
 
     /* ─── Main row : console + right rail ─────────────────────────── */
     .s16-main {
       display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: clamp(20px, 2vw, 32px);
+      grid-template-columns: minmax(0, 1fr) clamp(260px, 19vw, 320px);
+      gap: clamp(18px, 1.8vw, 28px);
       align-items: stretch;
       min-height: 0;
     }
@@ -229,6 +232,7 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
+      min-width: 0;
     }
     .slide[data-audio="15"].is-active .s16-console {
       opacity: 1;
@@ -248,24 +252,24 @@
     .s16-chrome {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 12px 18px;
-      background: rgba(255,255,255,0.025);
+      gap: 16px;
+      padding: 14px 22px;
+      background: rgba(255,255,255,0.03);
       border-bottom: 1px solid var(--border);
       font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--fg-dim);
+      font-size: clamp(12px, 0.85vw, 14.5px);
+      color: var(--fg-muted);
       letter-spacing: 0.04em;
     }
     .s16-chrome .traffic {
       display: flex;
-      gap: 6px;
+      gap: 7px;
     }
     .s16-chrome .traffic span {
-      width: 10px; height: 10px;
+      width: 11px; height: 11px;
       border-radius: 50%;
       background: var(--fg-ghost);
-      opacity: 0.6;
+      opacity: 0.7;
     }
     .s16-chrome .traffic span:nth-child(1) { background: #ff5f57; }
     .s16-chrome .traffic span:nth-child(2) { background: #febc2e; }
@@ -273,24 +277,25 @@
     .s16-chrome .title {
       flex: 1;
       text-align: center;
-      color: var(--fg-muted);
+      color: var(--fg);
       letter-spacing: 0.06em;
+      font-weight: 500;
     }
     .s16-chrome .title .scheme { color: var(--honey); }
     .s16-chrome .title .path { color: var(--fg); }
     .s16-chrome .meta {
-      color: var(--fg-ghost);
+      color: var(--fg-dim);
       letter-spacing: 0.18em;
-      font-size: 10px;
+      font-size: clamp(11px, 0.78vw, 13px);
     }
 
-    /* Console body */
+    /* Console body — readability bump: clamp(15px, 1.05vw, 20px) */
     .s16-body {
       flex: 1;
-      padding: clamp(18px, 2.2vh, 28px) clamp(22px, 2.4vw, 32px);
+      padding: clamp(22px, 2.6vh, 32px) clamp(24px, 2.6vw, 36px);
       font-family: var(--font-mono);
-      font-size: clamp(12px, 0.92vw, 14.5px);
-      line-height: 1.55;
+      font-size: clamp(15px, 1.05vw, 20px);
+      line-height: 1.62;
       color: var(--fg);
       overflow: hidden;
       position: relative;
@@ -300,13 +305,14 @@
     .s16-line {
       display: flex;
       align-items: baseline;
-      gap: 10px;
+      gap: 12px;
       opacity: 0;
       transform: translateX(-6px);
       animation: s16-line-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       animation-play-state: paused;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
     .slide[data-audio="15"].is-active .s16-line {
       animation-play-state: running;
@@ -316,45 +322,52 @@
       100% { opacity: 1; transform: translateX(0); }
     }
 
-    .s16-line + .s16-line { margin-top: 5px; }
+    .s16-line + .s16-line { margin-top: 7px; }
 
     /* Prompt line */
     .s16-line.prompt {
       color: var(--fg);
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      font-size: 1.05em;
     }
     .s16-line.prompt .ps1 {
       color: var(--honey);
       font-weight: 700;
+      font-size: 1.1em;
     }
     .s16-line.prompt .cmd {
       color: var(--fg);
+      font-weight: 700;
     }
     .s16-line.prompt .arg {
       color: var(--teal);
+      font-weight: 700;
     }
 
-    /* Tag chips */
+    /* Tag chips — scale proportionally with console body */
     .s16-tag {
       display: inline-block;
-      padding: 1px 7px;
-      border-radius: 3px;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.78em;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       flex: 0 0 auto;
+      line-height: 1.4;
     }
-    .s16-tag.ok      { background: rgba(254,189,51,0.12); color: var(--honey); border: 1px solid rgba(254,189,51,0.32); }
-    .s16-tag.pattern { background: rgba(67,192,190,0.14); color: var(--teal); border: 1px solid rgba(67,192,190,0.40); box-shadow: 0 0 12px rgba(67,192,190,0.22); }
-    .s16-tag.draft   { background: rgba(155,123,212,0.14); color: var(--violet); border: 1px solid rgba(155,123,212,0.40); }
-    .s16-tag.status  { background: rgba(224,75,81,0.12); color: var(--red); border: 1px solid rgba(224,75,81,0.40); }
+    .s16-tag.ok      { background: rgba(254,189,51,0.14); color: var(--honey); border: 1px solid rgba(254,189,51,0.42); }
+    .s16-tag.pattern { background: rgba(67,192,190,0.16); color: var(--teal); border: 1px solid rgba(67,192,190,0.48); box-shadow: 0 0 14px rgba(67,192,190,0.26); }
+    .s16-tag.draft   { background: rgba(155,123,212,0.16); color: var(--violet); border: 1px solid rgba(155,123,212,0.48); }
+    .s16-tag.status  { background: rgba(224,75,81,0.14); color: var(--red); border: 1px solid rgba(224,75,81,0.48); }
 
-    /* Indent for sub-actions */
+    /* Sub-line arrow */
     .s16-arrow {
       color: var(--teal);
       flex: 0 0 auto;
-      margin-left: 12px;
+      margin-left: 14px;
+      font-weight: 700;
+      font-size: 1.05em;
     }
     .s16-line.sub .text {
       color: var(--fg-muted);
@@ -362,14 +375,14 @@
     .s16-line .check {
       color: var(--honey);
       margin-left: auto;
-      padding-left: 18px;
+      padding-left: 22px;
       flex: 0 0 auto;
-      font-weight: 700;
+      font-weight: 800;
     }
     .s16-line .check .v {
       color: var(--fg);
-      font-weight: 500;
-      margin-left: 6px;
+      font-weight: 600;
+      margin-left: 8px;
     }
 
     .s16-line .meta {
@@ -380,52 +393,49 @@
     }
     .s16-line .val {
       color: var(--fg);
-      font-weight: 600;
+      font-weight: 700;
     }
     .s16-line .amt {
       color: var(--honey);
-      font-weight: 700;
+      font-weight: 800;
     }
     .s16-line .accent {
       color: var(--teal);
-      font-weight: 600;
+      font-weight: 700;
     }
     .s16-line .dim {
-      color: var(--fg-ghost);
+      color: var(--fg-dim);
     }
     .s16-line .sep {
       color: var(--fg-ghost);
-      margin: 0 4px;
+      margin: 0 6px;
     }
 
-    /* Line stagger — manual delays (no JS) */
+    /* Line stagger — manual delays (no JS). 8 lines now. */
     .s16-line:nth-child(1)  { animation-delay: 0.30s; }
-    .s16-line:nth-child(2)  { animation-delay: 0.65s; }
-    .s16-line:nth-child(3)  { animation-delay: 0.95s; }
-    .s16-line:nth-child(4)  { animation-delay: 1.25s; }
-    .s16-line:nth-child(5)  { animation-delay: 1.55s; }
-    .s16-line:nth-child(6)  { animation-delay: 1.85s; }
-    .s16-line:nth-child(7)  { animation-delay: 2.15s; }
-    .s16-line:nth-child(8)  { animation-delay: 2.45s; }
-    .s16-line:nth-child(9)  { animation-delay: 2.85s; }
-    .s16-line:nth-child(10) { animation-delay: 3.20s; }
-    .s16-line:nth-child(11) { animation-delay: 3.55s; }
+    .s16-line:nth-child(2)  { animation-delay: 0.70s; }
+    .s16-line:nth-child(3)  { animation-delay: 1.05s; }
+    .s16-line:nth-child(4)  { animation-delay: 1.40s; }
+    .s16-line:nth-child(5)  { animation-delay: 1.75s; }
+    .s16-line:nth-child(6)  { animation-delay: 2.15s; }
+    .s16-line:nth-child(7)  { animation-delay: 2.55s; }
+    .s16-line:nth-child(8)  { animation-delay: 2.95s; }
 
     /* Blinking cursor at the bottom — appears after last line */
     .s16-cursor {
       display: inline-block;
-      width: 9px;
-      height: 15px;
-      vertical-align: -2px;
+      width: 11px;
+      height: 18px;
+      vertical-align: -3px;
       background: var(--honey);
-      margin-left: 4px;
+      margin-left: 6px;
       opacity: 0;
-      box-shadow: 0 0 8px rgba(254,189,51,0.6);
+      box-shadow: 0 0 10px rgba(254,189,51,0.7);
     }
     .slide[data-audio="15"].is-active .s16-cursor {
       animation:
-        s16-cursor-in 0.001s linear 3.95s forwards,
-        s16-cursor-blink 1.05s steps(2, end) 3.95s infinite;
+        s16-cursor-in 0.001s linear 3.30s forwards,
+        s16-cursor-blink 1.05s steps(2, end) 3.30s infinite;
     }
     @keyframes s16-cursor-in   { to { opacity: 1; } }
     @keyframes s16-cursor-blink { 50% { opacity: 0; } }
@@ -450,24 +460,26 @@
     .s16-rail {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.9s ease 0.4s, transform 0.9s ease 0.4s;
+      min-width: 0;
     }
     .slide[data-audio="15"].is-active .s16-rail { opacity: 1; transform: translateY(0); }
 
     .s16-rail-title {
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
+      font-size: clamp(11.5px, 0.8vw, 13.5px);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-muted);
       padding: 0 4px;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 10px;
+      font-weight: 600;
     }
     .s16-rail-title::after {
       content: "";
@@ -480,21 +492,21 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 11px 14px;
+      gap: 14px;
+      padding: 13px 16px;
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.025);
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: clamp(12px, 0.82vw, 14px);
       letter-spacing: 0.06em;
       color: var(--fg-muted);
       overflow: hidden;
       transition: border-color 0.4s ease, background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
     }
     .s16-sys .dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--fg-ghost);
       flex: 0 0 auto;
@@ -502,62 +514,62 @@
     }
     .s16-sys .name {
       flex: 1;
-      color: var(--fg-muted);
+      color: var(--fg);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 10.5px;
-      font-weight: 600;
+      font-size: clamp(12px, 0.82vw, 14px);
+      font-weight: 700;
     }
     .s16-sys .stat {
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
+      font-size: clamp(11px, 0.72vw, 12.5px);
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: var(--fg-ghost);
+      color: var(--fg-dim);
       transition: color 0.4s ease;
+      font-weight: 600;
     }
 
     /* Lit state — synced to console line delays */
     .s16-sys.lit {
       border-color: var(--border-warm);
-      background: rgba(254,189,51,0.04);
+      background: rgba(254,189,51,0.05);
       color: var(--fg);
       box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
     }
     .s16-sys.lit .dot {
       background: var(--honey);
-      box-shadow: 0 0 10px var(--honey);
+      box-shadow: 0 0 12px var(--honey);
     }
     .s16-sys.lit .name { color: var(--fg); }
     .s16-sys.lit .stat { color: var(--honey); }
 
-    /* Per-system delays — sequenced to match console lines */
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    { animation: s16-sys-lit 0.001s linear 1.30s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    { animation: s16-sys-lit 0.001s linear 1.60s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] { animation: s16-sys-lit 0.001s linear 1.90s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    { animation: s16-sys-lit 0.001s linear 2.20s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      { animation: s16-sys-lit 0.001s linear 2.50s forwards; }
+    /* Per-system delays — sequenced to match new console line delays */
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    { animation: s16-sys-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    { animation: s16-sys-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] { animation: s16-sys-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    { animation: s16-sys-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      { animation: s16-sys-lit 0.001s linear 2.75s forwards; }
     @keyframes s16-sys-lit {
       to {
         border-color: var(--border-warm);
-        background: rgba(254,189,51,0.04);
+        background: rgba(254,189,51,0.05);
         color: var(--fg);
         box-shadow: 0 0 0 1px rgba(254,189,51,0.06), 0 12px 40px -16px rgba(254,189,51,0.22);
       }
     }
-    /* Apply class-driven look so the children also light */
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .dot { animation: s16-dot-lit 0.001s linear 1.30s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .dot { animation: s16-dot-lit 0.001s linear 1.60s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .dot { animation: s16-dot-lit 0.001s linear 1.90s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .dot { animation: s16-dot-lit 0.001s linear 2.20s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .dot { animation: s16-dot-lit 0.001s linear 2.50s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .dot { animation: s16-dot-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .dot { animation: s16-dot-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .dot { animation: s16-dot-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .dot { animation: s16-dot-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .dot { animation: s16-dot-lit 0.001s linear 2.75s forwards; }
     @keyframes s16-dot-lit {
-      to { background: var(--honey); box-shadow: 0 0 10px var(--honey); }
+      to { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
     }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .stat { animation: s16-stat-lit 0.001s linear 1.30s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .stat { animation: s16-stat-lit 0.001s linear 1.60s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .stat { animation: s16-stat-lit 0.001s linear 1.90s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .stat { animation: s16-stat-lit 0.001s linear 2.20s forwards; }
-    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .stat { animation: s16-stat-lit 0.001s linear 2.50s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="zoho"]    .stat { animation: s16-stat-lit 0.001s linear 1.40s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="myob"]    .stat { animation: s16-stat-lit 0.001s linear 1.75s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="aircall"] .stat { animation: s16-stat-lit 0.001s linear 2.15s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="conf"]    .stat { animation: s16-stat-lit 0.001s linear 2.45s forwards; }
+    .slide[data-audio="15"].is-active .s16-sys[data-sys="cv"]      .stat { animation: s16-stat-lit 0.001s linear 2.75s forwards; }
     @keyframes s16-stat-lit {
       to { color: var(--honey); }
     }
@@ -565,43 +577,45 @@
     /* Elapsed clock at the bottom of the rail */
     .s16-clock {
       margin-top: auto;
-      padding: 14px 14px 12px;
+      padding: 16px 16px 14px;
       border: 1px solid var(--border-warm);
       border-radius: 10px;
-      background: rgba(254,189,51,0.04);
+      background: rgba(254,189,51,0.05);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
     .s16-clock .k {
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.28em;
+      font-size: clamp(11px, 0.76vw, 12.5px);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-muted);
+      font-weight: 600;
     }
     .s16-clock .v {
       font-family: var(--font-display);
-      font-size: clamp(28px, 2.4vw, 38px);
+      font-size: clamp(32px, 2.8vw, 44px);
       font-weight: 800;
       color: var(--honey);
       letter-spacing: -0.03em;
       line-height: 1;
-      text-shadow: 0 0 24px rgba(254,189,51,0.34);
+      text-shadow: 0 0 24px rgba(254,189,51,0.36);
     }
     .s16-clock .sub {
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
-      color: var(--fg-ghost);
+      font-size: clamp(11px, 0.74vw, 12.5px);
+      letter-spacing: 0.20em;
+      color: var(--fg-dim);
       margin-top: 4px;
+      font-weight: 500;
     }
 
     /* ─── Evidence cards ──────────────────────────────────────────── */
     .s16-evidence {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(12px, 1.2vw, 18px);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 1.4vw, 22px);
       opacity: 0;
       transform: translateY(14px);
       transition: opacity 0.9s ease 0.85s, transform 0.9s ease 0.85s;
@@ -610,14 +624,15 @@
 
     .s16-card {
       position: relative;
-      padding: clamp(14px, 1.6vh, 20px) clamp(16px, 1.4vw, 22px);
+      padding: clamp(16px, 1.8vh, 22px) clamp(18px, 1.6vw, 26px);
       background: var(--bg-elev);
       border: 1px solid var(--border);
       border-radius: 10px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       overflow: hidden;
+      min-width: 0;
     }
     .s16-card::before {
       content: "";
@@ -629,25 +644,26 @@
       opacity: 0;
       transition: opacity 0.5s ease;
     }
-    .slide[data-audio="15"].is-active .s16-card::before { opacity: 0.55; }
+    .slide[data-audio="15"].is-active .s16-card::before { opacity: 0.65; }
     .s16-card[data-tone="teal"]::before   { background: var(--teal); }
     .s16-card[data-tone="violet"]::before { background: var(--violet); }
 
     .s16-card-head {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.28em;
+      font-size: clamp(11.5px, 0.8vw, 13.5px);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-muted);
+      font-weight: 600;
     }
     .s16-card[data-tone="honey"]  .s16-card-head .ix { color: var(--honey); }
     .s16-card[data-tone="teal"]   .s16-card-head .ix { color: var(--teal); }
     .s16-card[data-tone="violet"] .s16-card-head .ix { color: var(--violet); }
     .s16-card-head .ix {
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.06em;
     }
     .s16-card-head .label {
@@ -656,7 +672,7 @@
 
     .s16-card-title {
       font-family: var(--font-display);
-      font-size: clamp(16px, 1.2vw, 20px);
+      font-size: clamp(20px, 1.55vw, 26px);
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--fg);
@@ -664,36 +680,38 @@
     }
     .s16-card-body {
       font-family: var(--font-mono);
-      font-size: clamp(11.5px, 0.78vw, 13px);
-      line-height: 1.5;
+      font-size: clamp(13px, 0.95vw, 16px);
+      line-height: 1.55;
       color: var(--fg-muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
-    .s16-card-body .v { color: var(--fg); font-weight: 600; }
-    .s16-card-body .amt { color: var(--honey); font-weight: 700; }
-    .s16-card-body .sep { color: var(--fg-ghost); margin: 0 4px; }
+    .s16-card-body .v { color: var(--fg); font-weight: 700; }
+    .s16-card-body .amt { color: var(--honey); font-weight: 800; }
+    .s16-card-body .sep { color: var(--fg-ghost); margin: 0 5px; }
 
     .s16-card-foot {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--font-mono);
-      font-size: 9.5px;
-      letter-spacing: 0.22em;
+      font-size: clamp(11px, 0.78vw, 13px);
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: var(--fg-ghost);
-      margin-top: 2px;
+      color: var(--fg-dim);
+      margin-top: 4px;
+      font-weight: 600;
     }
     .s16-card-foot .badge {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
       border: 1px solid var(--border-warm);
-      background: rgba(254,189,51,0.05);
+      background: rgba(254,189,51,0.06);
       color: var(--honey);
+      font-weight: 700;
     }
-    .s16-card[data-tone="teal"]   .s16-card-foot .badge { border-color: rgba(67,192,190,0.32); background: rgba(67,192,190,0.06); color: var(--teal); }
-    .s16-card[data-tone="violet"] .s16-card-foot .badge { border-color: rgba(155,123,212,0.32); background: rgba(155,123,212,0.06); color: var(--violet); }
+    .s16-card[data-tone="teal"]   .s16-card-foot .badge { border-color: rgba(67,192,190,0.40); background: rgba(67,192,190,0.08); color: var(--teal); }
+    .s16-card[data-tone="violet"] .s16-card-foot .badge { border-color: rgba(155,123,212,0.40); background: rgba(155,123,212,0.08); color: var(--violet); }
 
     /* ─── Bottom strip ────────────────────────────────────────────── */
     .s16-strip {
@@ -701,7 +719,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 32px;
-      padding-top: clamp(10px, 1.2vh, 16px);
+      padding-top: clamp(14px, 1.6vh, 20px);
       border-top: 1px solid var(--border);
       opacity: 0;
       transform: translateY(8px);
@@ -711,37 +729,39 @@
 
     .s16-strip-q {
       font-family: var(--font-display);
-      font-size: clamp(15px, 1.25vw, 22px);
+      font-size: clamp(18px, 1.55vw, 28px);
       line-height: 1.3;
       letter-spacing: -0.015em;
-      color: var(--fg-muted);
+      color: var(--fg);
       font-style: italic;
       font-weight: 300;
       margin: 0;
     }
     .s16-strip-q .strike {
-      color: var(--fg-ghost);
+      color: var(--fg-dim);
       text-decoration: line-through;
-      text-decoration-color: rgba(255,255,255,0.18);
-      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(255,255,255,0.22);
+      text-decoration-thickness: 1.5px;
       font-style: normal;
       font-weight: 400;
     }
     .s16-strip-q .em {
       color: var(--honey);
       font-style: normal;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.02em;
     }
     .s16-strip-sig {
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.32em;
+      font-size: clamp(12px, 0.85vw, 14.5px);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-muted);
       text-align: right;
+      font-weight: 600;
     }
-    .s16-strip-sig .v { color: var(--honey); }
+    .s16-strip-sig .v { color: var(--honey); font-weight: 700; }
+    .s16-strip-sig .dim { color: var(--fg-ghost); }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -754,14 +774,24 @@
         transition-delay: 0s !important;
       }
       .slide[data-audio="15"] .s16-line { opacity: 1; transform: none; }
-      .slide[data-audio="15"] .s16-sys { border-color: var(--border-warm); background: rgba(254,189,51,0.04); }
+      .slide[data-audio="15"] .s16-sys {
+        border-color: var(--border-warm);
+        background: rgba(254,189,51,0.05);
+      }
+      .slide[data-audio="15"] .s16-sys .dot { background: var(--honey); box-shadow: 0 0 12px var(--honey); }
+      .slide[data-audio="15"] .s16-sys .stat { color: var(--honey); }
+      .slide[data-audio="15"] .s16-cursor { opacity: 1; }
     }
 
-    /* Laptop sizing */
+    /* Laptop sizing — keep readable */
     @media (max-width: 1280px) {
-      .slide[data-audio="15"] .content { padding: 32px 44px; }
-      .s16-main { grid-template-columns: 1fr 240px; gap: 20px; }
-      .s16-body { font-size: 12.5px; }
+      .slide[data-audio="15"] .content { padding: 28px 36px; }
+      .s16-main { grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; }
+      .s16-body { font-size: 15px; }
+    }
+    @media (max-width: 980px) {
+      .s16-main { grid-template-columns: 1fr; }
+      .s16-evidence { grid-template-columns: 1fr; }
     }
   </style>
 
@@ -777,7 +807,7 @@
     <div class="s16-topband">
       <div>
         <div class="s16-eyebrow">
-          <span class="num">16 / 22</span>
+          <span class="num">15 / 22</span>
           <span class="sep"></span>
           <span class="label">investigation runtime</span>
           <span class="sep"></span>
@@ -820,57 +850,40 @@
 
           <div class="s16-line">
             <span class="s16-tag ok">OK</span>
-            <span class="text">Loaded complaint <span class="val">TC-5012</span><span class="sep">·</span><span class="key">received</span> <span class="val">2026-05-20 09:14</span><span class="sep">·</span><span class="key">category</span> <span class="accent">service-not-delivered</span></span>
-          </div>
-
-          <div class="s16-line">
-            <span class="s16-tag ok">OK</span>
-            <span class="text">Resolved client <span class="val">Margaret&nbsp;P.</span><span class="sep">·</span><span class="key">TCID</span> <span class="val">4821</span><span class="sep">·</span><span class="accent">HCP Level&nbsp;3</span><span class="sep">·</span><span class="val">Brisbane</span></span>
+            <span class="text">Complaint <span class="val">TC-5012</span><span class="sep">·</span><span class="key">client</span> <span class="val">Margaret&nbsp;P.</span><span class="sep">·</span><span class="accent">HCP L3 · Brisbane</span></span>
           </div>
 
           <div class="s16-line sub">
             <span class="s16-arrow">↳</span>
-            <span class="text">Searching Zoho care package…</span>
-            <span class="check">✓<span class="v">1 active package, gardening fortnightly</span></span>
+            <span class="text">Zoho care package + MYOB bills</span>
+            <span class="check">✓<span class="v">3 invoices · <span style="color:var(--honey);font-weight:800">$486</span></span></span>
           </div>
 
           <div class="s16-line sub">
             <span class="s16-arrow">↳</span>
-            <span class="text">Searching MYOB bills…</span>
-            <span class="check">✓<span class="v">3 invoices found, <span style="color:var(--honey);font-weight:700">$486</span> total</span></span>
+            <span class="text">Aircall transcripts (30 d)</span>
+            <span class="check">✓<span class="v">8 calls · 2 flag <span class="dim">“did not show”</span></span></span>
           </div>
 
           <div class="s16-line sub">
             <span class="s16-arrow">↳</span>
-            <span class="text">Searching Aircall transcripts…</span>
-            <span class="check">✓<span class="v">8 calls last 30d, 2 flag <span class="dim">“did not show”</span></span></span>
-          </div>
-
-          <div class="s16-line sub">
-            <span class="s16-arrow">↳</span>
-            <span class="text">Searching Confluence policy KB…</span>
-            <span class="check">✓<span class="v">2 prior ACQSC complaints against same supplier</span></span>
-          </div>
-
-          <div class="s16-line sub">
-            <span class="s16-arrow">↳</span>
-            <span class="text">CareVicinity Zoho · cross-org pattern…</span>
-            <span class="check">✓<span class="v">same supplier flagged at sister org</span></span>
+            <span class="text">Confluence policy + CareVicinity cross-org</span>
+            <span class="check">✓<span class="v">supplier flagged at sister org</span></span>
           </div>
 
           <div class="s16-line">
             <span class="s16-tag pattern">PATTERN</span>
-            <span class="text"><span class="val">4 clients</span><span class="sep">×</span><span class="accent">TJ Gardening Co.</span><span class="sep">·</span><span class="key">81 invoices</span><span class="sep">·</span><span class="amt">~$69,140</span><span class="sep">·</span><span class="key">90d window</span><span class="sep">·</span><span class="val">6 complaints / 2 orgs</span></span>
+            <span class="text"><span class="val">4 clients</span><span class="sep">×</span><span class="accent">TJ Gardening Co.</span><span class="sep">·</span><span class="key">81 invoices</span><span class="sep">·</span><span class="amt">~$69,140</span><span class="sep">·</span><span class="key">90 d window</span></span>
           </div>
 
           <div class="s16-line">
             <span class="s16-tag draft">DRAFT</span>
-            <span class="text">ACQSC response generated<span class="sep">·</span><span class="key">evidence pack attached as</span> <span class="val">TC-5012-evidence.docx</span></span>
+            <span class="text">ACQSC response generated<span class="sep">·</span><span class="val">TC-5012-evidence.docx</span> attached</span>
           </div>
 
           <div class="s16-line">
             <span class="s16-tag status">STATUS</span>
-            <span class="text">Ready for reviewer<span class="sep">·</span><span class="key">awaiting approval</span><span class="sep">·</span><span class="key">elapsed</span> <span class="amt">0:47s</span><span class="s16-cursor"></span></span>
+            <span class="text">Ready for reviewer<span class="sep">·</span><span class="key">elapsed</span> <span class="amt">0:47s</span><span class="s16-cursor"></span></span>
           </div>
 
         </div>
@@ -908,7 +921,7 @@
 
         <div class="s16-clock">
           <span class="k">Elapsed</span>
-          <span class="v">0:47<span style="font-size:0.55em;color:var(--fg-muted);font-weight:500"> s</span></span>
+          <span class="v">0:47<span style="font-size:0.55em;color:var(--fg-muted);font-weight:600"> s</span></span>
           <span class="sub">draft attached · ready for review</span>
         </div>
       </aside>
@@ -971,7 +984,7 @@
         &nbsp;&nbsp;Now <span class="em">47 seconds.</span>
       </p>
       <div class="s16-strip-sig">
-        receipts attached<span class="dim"> · </span><span class="v">4 systems queried</span>
+        receipts attached<span class="dim"> · </span><span class="v">5 systems queried</span>
       </div>
     </div>
 
@@ -998,7 +1011,7 @@
       const prev = window.onSlideEnter;
       window.onSlideEnter = function (id) {
         if (typeof prev === 'function') try { prev(id); } catch (_) {}
-        if (id === '16' || id === 16) enter();
+        if (id === '15' || id === 15) enter();
       };
     })();
   </script>

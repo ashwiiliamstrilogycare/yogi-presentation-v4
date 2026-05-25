@@ -15,8 +15,8 @@
   <style>
     /* ============ SLIDE 09 — THE ANTHROPIC MYTHOS ============ */
     .slide[data-audio="09"] {
-      --row-h: 56px;
-      --row-gap: 4px;
+      --row-h: 38px;
+      --row-gap: 2px;
       --col-pad-x: clamp(40px, 4vw, 80px);
 
       position: relative;
@@ -447,6 +447,22 @@
     .s09-col.right .s09-row:nth-of-type(11) { animation-delay: 960ms; }
     .s09-col.left  .s09-row:nth-of-type(12) { animation-delay: 920ms; }
     .s09-col.right .s09-row:nth-of-type(12) { animation-delay: 1020ms; }
+    .s09-col.left  .s09-row:nth-of-type(13) { animation-delay: 980ms; }
+    .s09-col.right .s09-row:nth-of-type(13) { animation-delay: 1080ms; }
+    .s09-col.left  .s09-row:nth-of-type(14) { animation-delay: 1040ms; }
+    .s09-col.right .s09-row:nth-of-type(14) { animation-delay: 1140ms; }
+    .s09-col.left  .s09-row:nth-of-type(15) { animation-delay: 1100ms; }
+    .s09-col.right .s09-row:nth-of-type(15) { animation-delay: 1200ms; }
+    .s09-col.left  .s09-row:nth-of-type(16) { animation-delay: 1160ms; }
+    .s09-col.right .s09-row:nth-of-type(16) { animation-delay: 1260ms; }
+    .s09-col.left  .s09-row:nth-of-type(17) { animation-delay: 1220ms; }
+    .s09-col.right .s09-row:nth-of-type(17) { animation-delay: 1320ms; }
+    .s09-col.left  .s09-row:nth-of-type(18) { animation-delay: 1280ms; }
+    .s09-col.right .s09-row:nth-of-type(18) { animation-delay: 1380ms; }
+    .s09-col.left  .s09-row:nth-of-type(19) { animation-delay: 1340ms; }
+    .s09-col.right .s09-row:nth-of-type(19) { animation-delay: 1440ms; }
+    .s09-col.left  .s09-row:nth-of-type(20) { animation-delay: 1400ms; }
+    .s09-col.right .s09-row:nth-of-type(20) { animation-delay: 1500ms; }
 
     @keyframes s09-row-in {
       from { opacity: 0; transform: translateX(var(--enter-x)); filter: blur(4px); }
@@ -922,21 +938,20 @@
       <div class="s09-mark tr"></div>
       <div class="s09-mark bl"></div>
       <div class="s09-mark br"></div>
-      <div class="s09-stamp">SLIDE · 09 / THE ANTHROPIC MYTHOS</div>
+      <div class="s09-stamp">SLIDE · 09 / MYTHOS · 20 RESEARCH THREADS · 10 LABS</div>
 
       <!-- HEADER -->
       <header class="s09-head">
         <div>
           <div class="s09-eyebrow">
             <span class="dot"></span>
-            <span>12 Research Threads</span>
+            <span>20 Frontier Research Threads</span>
+            <span class="arrow">·</span>
+            <span>10 Labs</span>
             <span class="arrow">·</span>
             <span>Measured on Real TC Operations</span>
-            <span class="arrow">·</span>
-            <span>Not Theory</span>
           </div>
           <h1 class="s09-headline">
-            The Anthropic<br/>
             <span class="accent">Mythos.</span>
           </h1>
         </div>
@@ -963,7 +978,7 @@
           <div class="s09-colhead">
             <span class="ico"></span>
             <span>Frontier-Lab Research</span>
-            <span class="num">// 12</span>
+            <span class="num">// 20</span>
           </div>
 
           <!-- 01 Constitutional AI -->
@@ -1231,6 +1246,158 @@
               <span class="venue">"AutoGen: Multi-Agent Conversation Framework" + Anthropic agent SDK</span>
             </div>
           </article>
+
+          <!-- 13 DSPy -->
+          <article class="s09-row" data-row="13">
+            <span class="s09-ord">13</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Stanford NLP">S</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">DSPy</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Stanford NLP</span>
+              </div>
+              <span class="s09-claim">Programmatic LLMs — typed pipelines, not prompts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Khattab, Singhvi, Maheshwari et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2310.03714</span><span class="dot">·</span><span>Stanford NLP</span></span>
+              <span class="venue">"DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines" — ICLR 2024</span>
+            </div>
+          </article>
+
+          <!-- 14 Tree of Thoughts -->
+          <article class="s09-row" data-row="14">
+            <span class="s09-ord">14</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Princeton">P</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Tree of Thoughts</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Princeton</span>
+              </div>
+              <span class="s09-claim">Explore reasoning branches, score paths.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Yao, Yu, Zhao et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2305.10601</span><span class="dot">·</span><span>Princeton · Google DeepMind</span></span>
+              <span class="venue">"Tree of Thoughts: Deliberate Problem Solving with LLMs" — NeurIPS 2023</span>
+            </div>
+          </article>
+
+          <!-- 15 Toolformer -->
+          <article class="s09-row" data-row="15">
+            <span class="s09-ord">15</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-fb" title="Meta AI">M</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Toolformer</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Meta AI</span>
+              </div>
+              <span class="s09-claim">LLMs teach themselves to call tools.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Schick, Dwivedi-Yu, Dessì et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2302.04761</span><span class="dot">·</span><span>Meta AI</span></span>
+              <span class="venue">"Toolformer: Language Models Can Teach Themselves to Use Tools" — NeurIPS 2023</span>
+            </div>
+          </article>
+
+          <!-- 16 Self-Consistency -->
+          <article class="s09-row" data-row="16">
+            <span class="s09-ord">16</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="Google Brain">GB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Self-Consistency</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google Brain</span>
+              </div>
+              <span class="s09-claim">Multiple paths vote — best answer wins.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wang, Wei, Schuurmans et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2203.11171</span><span class="dot">·</span><span>Google Brain</span></span>
+              <span class="venue">"Self-Consistency Improves Chain of Thought Reasoning in LLMs" — ICLR 2023</span>
+            </div>
+          </article>
+
+          <!-- 17 vLLM / PagedAttention -->
+          <article class="s09-row" data-row="17">
+            <span class="s09-ord">17</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-google" title="UC Berkeley">UB</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">vLLM / PagedAttention</span>
+                <span class="s09-meta"><span class="yr">2023</span> · UC Berkeley</span>
+              </div>
+              <span class="s09-claim">Efficient batch inference — KV-cache paging.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Kwon, Li, Zhuang et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2309.06180</span><span class="dot">·</span><span>UC Berkeley</span></span>
+              <span class="venue">"Efficient Memory Management for LLM Serving with PagedAttention" — SOSP 2023</span>
+            </div>
+          </article>
+
+          <!-- 18 LoRA / PEFT -->
+          <article class="s09-row" data-row="18">
+            <span class="s09-ord">18</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-stanford" title="Microsoft">MS</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">LoRA / PEFT</span>
+                <span class="s09-meta"><span class="yr">2021</span> · Microsoft</span>
+              </div>
+              <span class="s09-claim">Cheap fine-tuning without full retrain.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Hu, Shen, Wallis et al.</span>
+              <span class="meta"><span>2021</span><span class="dot">·</span><span class="arxiv">arXiv:2106.09685</span><span class="dot">·</span><span>Microsoft Research</span></span>
+              <span class="venue">"LoRA: Low-Rank Adaptation of Large Language Models" — ICLR 2022</span>
+            </div>
+          </article>
+
+          <!-- 19 Sparse MoE -->
+          <article class="s09-row" data-row="19">
+            <span class="s09-ord">19</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-deepmind" title="Mistral / DeepMind">MM</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Sparse Mixture of Experts</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Mistral · DeepMind</span>
+              </div>
+              <span class="s09-claim">Route to cost-efficient sub-experts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Jiang, Sablayrolles, Roux et al.</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">arXiv:2401.04088</span><span class="dot">·</span><span>Mistral · DeepMind</span></span>
+              <span class="venue">"Mixtral of Experts" + "Switch Transformer" — sparse routing</span>
+            </div>
+          </article>
+
+          <!-- 20 Constitutional Self-Critique -->
+          <article class="s09-row" data-row="20">
+            <span class="s09-ord">20</span>
+            <span class="s09-thumb-spacer"></span>
+            <span class="s09-lab lab-anthropic" title="Anthropic">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Constitutional Self-Critique</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Self-check responses before send.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic Alignment Team</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2310.13548</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Specific versus General Principles for Constitutional AI" — self-critique loop</span>
+            </div>
+          </article>
         </div>
 
         <!-- CENTER SPINE + wires -->
@@ -1241,7 +1408,7 @@
           <!-- SVG WIRES — bounded to the gutter strip -->
           <!-- viewBox y=0..600 maps to 12 rows × 50px each; preserveAspectRatio none.
                Wire y values track the row centres relative to the SVG top-edge. -->
-          <svg class="s09-wires" viewBox="0 0 100 600" preserveAspectRatio="none" aria-hidden="true">
+          <svg class="s09-wires" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
             <!-- glow understrokes -->
             <path id="s09-p1"  class="s09-wire-glow" style="--wd:300ms" d="M 0 27  C 35 27,  65 27,  100 27"/>
             <path id="s09-p2"  class="s09-wire-glow" style="--wd:340ms" d="M 0 77  C 35 77,  65 77,  100 77"/>
@@ -1255,6 +1422,14 @@
             <path id="s09-p10" class="s09-wire-glow" style="--wd:660ms" d="M 0 477 C 35 477, 65 477, 100 477"/>
             <path id="s09-p11" class="s09-wire-glow" style="--wd:700ms" d="M 0 527 C 35 527, 65 527, 100 527"/>
             <path id="s09-p12" class="s09-wire-glow" style="--wd:740ms" d="M 0 577 C 35 577, 65 577, 100 577"/>
+            <path id="s09-p13" class="s09-wire-glow" style="--wd:780ms" d="M 0 627 C 35 627, 65 627, 100 627"/>
+            <path id="s09-p14" class="s09-wire-glow" style="--wd:820ms" d="M 0 677 C 35 677, 65 677, 100 677"/>
+            <path id="s09-p15" class="s09-wire-glow" style="--wd:860ms" d="M 0 727 C 35 727, 65 727, 100 727"/>
+            <path id="s09-p16" class="s09-wire-glow" style="--wd:900ms" d="M 0 777 C 35 777, 65 777, 100 777"/>
+            <path id="s09-p17" class="s09-wire-glow" style="--wd:940ms" d="M 0 827 C 35 827, 65 827, 100 827"/>
+            <path id="s09-p18" class="s09-wire-glow" style="--wd:980ms" d="M 0 877 C 35 877, 65 877, 100 877"/>
+            <path id="s09-p19" class="s09-wire-glow" style="--wd:1020ms" d="M 0 927 C 35 927, 65 927, 100 927"/>
+            <path id="s09-p20" class="s09-wire-glow" style="--wd:1060ms" d="M 0 977 C 35 977, 65 977, 100 977"/>
 
             <!-- sharp dashed wires (these reuse the same paths but render again so animation+glow stack) -->
             <path class="s09-wire" style="--wd:300ms" d="M 0 27  C 35 27,  65 27,  100 27"/>
@@ -1269,6 +1444,14 @@
             <path class="s09-wire" style="--wd:660ms" d="M 0 477 C 35 477, 65 477, 100 477"/>
             <path class="s09-wire" style="--wd:700ms" d="M 0 527 C 35 527, 65 527, 100 527"/>
             <path class="s09-wire" style="--wd:740ms" d="M 0 577 C 35 577, 65 577, 100 577"/>
+            <path class="s09-wire" style="--wd:780ms" d="M 0 627 C 35 627, 65 627, 100 627"/>
+            <path class="s09-wire" style="--wd:820ms" d="M 0 677 C 35 677, 65 677, 100 677"/>
+            <path class="s09-wire" style="--wd:860ms" d="M 0 727 C 35 727, 65 727, 100 727"/>
+            <path class="s09-wire" style="--wd:900ms" d="M 0 777 C 35 777, 65 777, 100 777"/>
+            <path class="s09-wire" style="--wd:940ms" d="M 0 827 C 35 827, 65 827, 100 827"/>
+            <path class="s09-wire" style="--wd:980ms" d="M 0 877 C 35 877, 65 877, 100 877"/>
+            <path class="s09-wire" style="--wd:1020ms" d="M 0 927 C 35 927, 65 927, 100 927"/>
+            <path class="s09-wire" style="--wd:1060ms" d="M 0 977 C 35 977, 65 977, 100 977"/>
 
             <!-- honey "packet" pulses — one travels each wire on rotation.
                  12 packets, each starts 3s after the previous (deterministic 1→12),
@@ -1328,7 +1511,7 @@
         <!-- RIGHT: TC impact -->
         <div class="s09-col right">
           <div class="s09-colhead right">
-            <span class="num">// 12</span>
+            <span class="num">// 20</span>
             <span>TC Operations · Measured</span>
             <span class="ico"></span>
           </div>
@@ -1534,6 +1717,142 @@
               <span class="authors">Receipt · ~/.claude/agents/yogi-specialist-memory</span>
               <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">1 + 10 + 12 + 977</span></span>
               <span class="venue">Multi-agent specialist graph · TC-trained</span>
+            </div>
+          </article>
+
+          <!-- 13 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Typed Sub-Agent Pipelines</span>
+                <span class="s09-impact-metric">DSPy</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>all sub-agent calls<span class="sep">·</span>typed</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · agent-dashboard/agents.py</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">19 typed agents</span></span>
+              <span class="venue">DSPy-style declarative agent graph in production</span>
+            </div>
+          </article>
+
+          <!-- 14 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Investigation Branching</span>
+                <span class="s09-impact-metric">4-PATH VOTE</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>ACQSC complex cases<span class="sep">·</span>branched</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · investigate-complaint pipeline</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">tree-search · scored paths</span></span>
+              <span class="venue">Reasoning branches explored on complex ACQSC matters</span>
+            </div>
+          </article>
+
+          <!-- 15 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Tool-Use Bootstrapping</span>
+                <span class="s09-impact-metric">328 TOOLS</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>auto-discovered<span class="sep">·</span>0 manual wiring</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · TC Graph MCP server</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">328 tools · self-listed</span></span>
+              <span class="venue">Toolformer-style self-discovery via MCP schema</span>
+            </div>
+          </article>
+
+          <!-- 16 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Investigation Consensus</span>
+                <span class="s09-impact-metric">4-PATH VOTE</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>investigations<span class="sep">·</span>majority wins</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · 8-step parallel investigation</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">self-consistency · voted</span></span>
+              <span class="venue">Multi-path reasoning · best answer wins</span>
+            </div>
+          </article>
+
+          <!-- 17 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">High-Volume Batch Inference</span>
+                <span class="s09-impact-metric">1000s/DAY</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Haiku batch<span class="sep">·</span>vLLM-class</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Bills QA hourly bake</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">batch routed · KV-paged</span></span>
+              <span class="venue">PagedAttention-class throughput on TC operations</span>
+            </div>
+          </article>
+
+          <!-- 18 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Future Fine-Tune on TC Data</span>
+                <span class="s09-impact-metric">Q4 2026</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Roadmap</span><span class="sep">/</span>TC-specific LoRA<span class="sep">·</span>Q4 target</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · project_ash_kpi_l4_2026</span>
+              <span class="meta"><span>Roadmap</span><span class="dot">·</span><span class="arxiv">LoRA · PEFT</span></span>
+              <span class="venue">Low-rank adaptation on TC operations corpus</span>
+            </div>
+          </article>
+
+          <!-- 19 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Cost-Efficient Routing</span>
+                <span class="s09-impact-metric">$4,200/MO</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>Mistral<span class="sep">·</span>Gemini fallback</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · Yogi router · model tiering</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">MoE-style routing</span></span>
+              <span class="venue">Haiku / Sonnet / Mistral fallback · cost-optimised</span>
+            </div>
+          </article>
+
+          <!-- 20 -->
+          <article class="s09-row">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-label">Safety Self-Check</span>
+                <span class="s09-impact-metric">100%</span>
+              </div>
+              <span class="s09-measured"><span class="lab">Measured</span><span class="sep">/</span>every Yogi response<span class="sep">·</span>pre-send</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Receipt · /yogi/safety self-critique</span>
+              <span class="meta"><span>Live</span><span class="dot">·</span><span class="arxiv">100% pre-send</span></span>
+              <span class="venue">Constitutional self-critique loop · every response</span>
             </div>
           </article>
         </div>

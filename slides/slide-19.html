@@ -1,57 +1,44 @@
 <section class="slide" data-audio="19">
   <style>
-    /* ================================================================
-       SLIDE 19 v4 — WHERE YOGI LIVES
-       TC WORKSPACES (BODY) · CONSUMES YOGI'S BACKEND (BRAIN)
-       Adds a 4-layer Yogi Backend column on the left, with 4 animated
-       honey data-flow arrows piping into specific points inside the
-       TC Workspaces mockup. Productivity receipt strip at the bottom.
-       ================================================================ */
+    /* ============================================================
+       SLIDE 19 — CUBS · MAC-RESIDENT COMPANION AGENTS
+       v4: HERO VIDEO STAGE flanked by topology (L) + anatomy (R).
+       The audience SEES a cub in action — cursor moves, clicks,
+       fills forms. Companion framing: operator-in-the-loop.
+       ============================================================ */
 
     .slide[data-audio="19"] {
-      /* Brand tokens */
-      --s19-bg:           #0a0d12;
-      --s19-bg-elev:      #11161f;
-      --s19-honey:        #FEBD33;
-      --s19-honey-soft:   rgba(254, 189, 51, 0.12);
-      --s19-honey-glow:   rgba(254, 189, 51, 0.45);
-      --s19-honey-line:   rgba(254, 189, 51, 0.30);
-      --s19-honey-faint:  rgba(254, 189, 51, 0.18);
-      --s19-teal:         #43C0BE;
-      --s19-dark-teal:    #007F7E;
-      --s19-navy:         #2C4C79;
-      --s19-sky:          #64BCEA;
-      --s19-green:        #5ee08a;
+      --s19-bg:          #0a0d12;
+      --s19-bg-elev:     #11161f;
+      --s19-bg-deep:     #070a0e;
+      --s19-bg-glass:    rgba(255, 255, 255, 0.025);
 
-      --s19-fg:           #f4f4f5;
-      --s19-fg-muted:     #a1a1aa;
-      --s19-fg-dim:       #71717a;
-      --s19-fg-faint:     #52525b;
-      --s19-border:       rgba(255, 255, 255, 0.08);
+      --s19-honey:       #FEBD33;
+      --s19-honey-soft:  rgba(254, 189, 51, 0.14);
+      --s19-honey-glow:  rgba(254, 189, 51, 0.55);
+      --s19-honey-line:  rgba(254, 189, 51, 0.85);
+      --s19-honey-dim:   rgba(254, 189, 51, 0.35);
 
-      /* TC Assistant light-theme neutrals */
-      --tca-bg:           #f6f8fb;
-      --tca-sidebar:      #ffffff;
-      --tca-panel:        #ffffff;
-      --tca-divider:      #e4e8ee;
-      --tca-divider-2:    #eef1f5;
-      --tca-text:         #1a2334;
-      --tca-text-mute:    #5a6478;
-      --tca-text-dim:     #8a93a4;
-      --tca-text-faint:   #adb5c3;
-      --tca-blue:         #2C4C79;
-      --tca-blue-soft:    #eaf0fa;
-      --tca-blue-deep:    #1e3a5f;
-      --tca-active-bg:    #eaf2f5;
-      --tca-active-bd:    #c4e0e2;
-      --tca-hover:        #f2f5f9;
-      --tca-warn-bg:      #fff7e3;
-      --tca-warn-bd:      #f5d98a;
-      --tca-warn-text:    #7a5a10;
-      --tca-folder:       #d4a04a;
-      --tca-folder-hi:    #e8b96b;
-      --tca-tab-active:   #ffffff;
-      --tca-tab-bg:       #f0f3f7;
+      --s19-teal:        #43C0BE;
+      --s19-teal-soft:   rgba(67, 192, 190, 0.14);
+      --s19-teal-glow:   rgba(67, 192, 190, 0.55);
+
+      --s19-sky:         #64BCEA;
+      --s19-sky-soft:    rgba(100, 188, 234, 0.14);
+      --s19-sky-glow:    rgba(100, 188, 234, 0.5);
+
+      --s19-red:         #E04B51;
+      --s19-red-glow:    rgba(224, 75, 81, 0.65);
+
+      --s19-fg:          #f4f4f5;
+      --s19-fg-muted:    #a1a1aa;
+      --s19-fg-dim:      #71717a;
+      --s19-fg-faint:    #52525b;
+
+      --s19-border:      rgba(255, 255, 255, 0.07);
+      --s19-border-strong: rgba(255, 255, 255, 0.14);
+      --s19-border-warm: rgba(254, 189, 51, 0.28);
+      --s19-border-cool: rgba(67, 192, 190, 0.28);
 
       position: relative;
       width: 100%;
@@ -60,1272 +47,1331 @@
       background: var(--s19-bg);
       color: var(--s19-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
-      letter-spacing: -0.01em;
       overflow: hidden;
       isolation: isolate;
+      letter-spacing: -0.01em;
     }
 
     /* ---------- Atmosphere ---------- */
     .slide[data-audio="19"] .s19-atmos {
-      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
     }
-    .slide[data-audio="19"] .s19-grid-bg {
-      position: absolute; inset: 0;
+    .slide[data-audio="19"] .s19-glow-top {
+      position: absolute;
+      top: -25%;
+      left: 38%;
+      width: 70vmin;
+      height: 70vmin;
+      background: radial-gradient(circle at center,
+        rgba(254, 189, 51, 0.14) 0%,
+        rgba(254, 189, 51, 0.04) 35%,
+        transparent 65%);
+      filter: blur(10px);
+      opacity: 0;
+      animation: s19-fade 2400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+    }
+    .slide[data-audio="19"] .s19-glow-right {
+      position: absolute;
+      bottom: -20%;
+      right: -8%;
+      width: 55vmin;
+      height: 55vmin;
+      background: radial-gradient(circle at center,
+        rgba(67, 192, 190, 0.10) 0%,
+        rgba(67, 192, 190, 0.03) 40%,
+        transparent 65%);
+      filter: blur(14px);
+      opacity: 0;
+      animation: s19-fade 2600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+    }
+    .slide[data-audio="19"] .s19-grid {
+      position: absolute;
+      inset: 0;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: 76px 76px;
-      mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 82%);
-    }
-    .slide[data-audio="19"] .s19-glow {
-      position: absolute; top: 56%; left: 56%;
-      width: 110vmin; height: 70vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at center,
-        rgba(254, 189, 51, 0.10) 0%,
-        rgba(254, 189, 51, 0.04) 40%,
-        transparent 75%);
-      filter: blur(20px);
-    }
-    .slide[data-audio="19"] .s19-grain {
-      position: absolute; inset: 0; opacity: 0.05; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 88px 88px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 0%, black 30%, transparent 75%);
+      opacity: 0;
+      animation: s19-fade 1800ms ease 500ms forwards;
     }
 
-    /* ---------- Layout shell ---------- */
-    .slide[data-audio="19"] .s19-wrap {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%;
-      max-width: 1880px;
-      margin: 0 auto;
-      padding: clamp(18px, 2.2vh, 28px) clamp(24px, 2.4vw, 44px) clamp(14px, 1.8vh, 22px);
-      display: flex; flex-direction: column;
-      gap: clamp(10px, 1.2vh, 16px);
+    /* Corner crosshairs */
+    .slide[data-audio="19"] .s19-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--s19-fg-faint);
+      opacity: 0;
+      animation: s19-fade 900ms ease 300ms forwards;
+      z-index: 3;
+    }
+    .slide[data-audio="19"] .s19-corner.tl { top: 22px; left: 22px; border-top: 1px solid; border-left: 1px solid; }
+    .slide[data-audio="19"] .s19-corner.tr { top: 22px; right: 22px; border-top: 1px solid; border-right: 1px solid; }
+    .slide[data-audio="19"] .s19-corner.bl { bottom: 22px; left: 22px; border-bottom: 1px solid; border-left: 1px solid; }
+    .slide[data-audio="19"] .s19-corner.br { bottom: 22px; right: 22px; border-bottom: 1px solid; border-right: 1px solid; }
+
+    /* ---------- Frame ---------- */
+    .slide[data-audio="19"] .s19-frame {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      padding: clamp(28px, 3.4vmin, 52px) clamp(40px, 5vmin, 80px);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 2.4vmin, 32px);
     }
 
     /* ---------- Header ---------- */
     .slide[data-audio="19"] .s19-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: 48px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      opacity: 0;
+      animation: s19-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+    }
+    .slide[data-audio="19"] .s19-header-l {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
     .slide[data-audio="19"] .s19-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--s19-fg-muted);
-      margin-bottom: 10px;
+      font-size: clamp(10px, 1.05vmin, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s19-fg-dim);
     }
     .slide[data-audio="19"] .s19-eyebrow .dot {
-      width: 6px; height: 6px; border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       background: var(--s19-honey);
-      box-shadow: 0 0 10px var(--s19-honey-glow);
+      box-shadow: 0 0 12px var(--s19-honey-glow);
+      animation: s19-pulse 2200ms ease-in-out infinite;
     }
-    .slide[data-audio="19"] .s19-eyebrow .slash { color: var(--s19-fg-faint); }
-    .slide[data-audio="19"] .s19-eyebrow .num { color: var(--s19-fg-dim); }
+    .slide[data-audio="19"] .s19-eyebrow .sep { color: var(--s19-fg-faint); }
 
     .slide[data-audio="19"] .s19-title {
+      font-size: clamp(42px, 6vmin, 80px);
       font-weight: 700;
-      font-size: clamp(34px, 4.0vw, 56px);
-      line-height: 1.0;
-      letter-spacing: -0.032em;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
       color: var(--s19-fg);
-      margin: 0;
     }
-    .slide[data-audio="19"] .s19-title .accent {
-      color: var(--s19-honey); font-weight: 800;
-    }
-
-    .slide[data-audio="19"] .s19-subhead-block {
-      display: flex; flex-direction: column;
-      gap: 6px;
-      align-items: flex-end;
-      flex-shrink: 0;
-      padding-bottom: 4px;
+    .slide[data-audio="19"] .s19-title em {
+      font-style: normal;
+      color: var(--s19-honey);
     }
     .slide[data-audio="19"] .s19-subhead {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: clamp(11px, 1.25vmin, 15px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--s19-honey);
-      display: flex; align-items: center; gap: 12px;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
     }
-    .slide[data-audio="19"] .s19-subhead .pipe {
-      width: 1px; height: 12px; background: var(--s19-honey-line);
+    .slide[data-audio="19"] .s19-subhead .pip { color: var(--s19-fg-faint); }
+
+    .slide[data-audio="19"] .s19-header-r {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
     }
-    .slide[data-audio="19"] .s19-subhead .body-cap {
-      color: var(--s19-teal);
-      letter-spacing: 0.20em;
-    }
-    .slide[data-audio="19"] .s19-subhead .brain-cap {
-      color: var(--s19-honey);
-      letter-spacing: 0.20em;
-    }
-    .slide[data-audio="19"] .s19-subhead .arrow {
-      color: var(--s19-fg-dim);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .slide[data-audio="19"] .s19-credits-strip {
+    .slide[data-audio="19"] .s19-stamp {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: clamp(10px, 1vmin, 12px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
       color: var(--s19-fg-dim);
-      display: flex; align-items: center; gap: 8px;
-      white-space: nowrap;
     }
-    .slide[data-audio="19"] .s19-credits-strip .em-c { color: var(--s19-teal); font-weight: 600; }
-    .slide[data-audio="19"] .s19-credits-strip .em-b { color: var(--s19-honey); font-weight: 600; }
-    .slide[data-audio="19"] .s19-credits-strip .dot-sep {
+    .slide[data-audio="19"] .s19-stamp .pre {
+      color: var(--s19-sky);
+    }
+    .slide[data-audio="19"] .s19-slidenum {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(11px, 1.1vmin, 14px);
       color: var(--s19-fg-faint);
+      letter-spacing: 0.12em;
+    }
+    .slide[data-audio="19"] .s19-companion-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 5px 11px;
+      border: 1px solid var(--s19-border-cool);
+      background: var(--s19-teal-soft);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 0.95vmin, 11px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s19-teal);
+    }
+    .slide[data-audio="19"] .s19-companion-chip .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--s19-teal);
+      box-shadow: 0 0 8px var(--s19-teal-glow);
     }
 
     /* ============================================================
-       STAGE — Backend panel + Mockup, connected by SVG arrows
+       MAIN — 3 COLUMN: TOPOLOGY | HERO VIDEO | ANATOMY
        ============================================================ */
-    .slide[data-audio="19"] .s19-stage {
-      position: relative;
+    .slide[data-audio="19"] .s19-split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.1fr) minmax(0, 0.42fr);
+      gap: clamp(18px, 2.4vmin, 36px);
       flex: 1;
       min-height: 0;
-      display: grid;
-      grid-template-columns: clamp(200px, 15.5vw, 244px) 1fr;
-      gap: clamp(36px, 4vw, 64px);
-      align-items: stretch;
     }
 
-    /* Honey aura behind the mockup */
-    .slide[data-audio="19"] .s19-aura {
-      position: absolute;
-      top: -2%; bottom: -1%; left: 14%; right: -1%;
-      background:
-        radial-gradient(ellipse 60% 50% at 78% 50%,
-          rgba(254, 189, 51, 0.22) 0%,
-          rgba(254, 189, 51, 0.08) 40%,
-          transparent 75%);
-      filter: blur(28px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ---------- Yogi BACKEND panel (LEFT column) ---------- */
-    .slide[data-audio="19"] .s19-backend {
+    /* ============================================================
+       LEFT — Topology (compact)
+       ============================================================ */
+    .slide[data-audio="19"] .s19-left {
       position: relative;
-      z-index: 2;
-      display: flex; flex-direction: column;
-      gap: clamp(10px, 1.3vh, 16px);
-      padding-top: clamp(8px, 1vh, 14px);
-    }
-    .slide[data-audio="19"] .s19-backend-head {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'JetBrains Mono', 'SF Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      padding-bottom: 6px;
-      border-bottom: 1px dashed var(--s19-honey-line);
-    }
-    .slide[data-audio="19"] .s19-backend-head .pip {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--s19-honey);
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-    }
-    .slide[data-audio="19"] .s19-backend-head .end {
-      margin-left: auto;
-      color: var(--s19-fg-faint);
-      letter-spacing: 0.2em;
-    }
-
-    .slide[data-audio="19"] .s19-layer {
-      position: relative;
-      padding: 12px 14px 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.6vmin, 22px);
+      padding: clamp(16px, 1.9vmin, 26px) clamp(14px, 1.7vmin, 22px);
+      border: 1px solid var(--s19-border);
+      border-radius: 14px;
       background:
-        linear-gradient(135deg,
-          rgba(254, 189, 51, 0.10) 0%,
-          rgba(254, 189, 51, 0.03) 60%,
-          rgba(20, 24, 33, 0.55) 100%);
-      border: 1px solid var(--s19-honey-line);
-      border-radius: 10px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      display: flex; flex-direction: column;
-      gap: 4px;
-      box-shadow:
-        inset 0 0 0 1px rgba(254, 189, 51, 0.04),
-        0 4px 14px rgba(254, 189, 51, 0.06),
-        0 1px 0 rgba(0, 0, 0, 0.4);
-      transition: transform 220ms ease, box-shadow 220ms ease;
+        radial-gradient(ellipse 80% 60% at 50% 18%,
+          rgba(254, 189, 51, 0.06) 0%,
+          transparent 70%),
+        linear-gradient(180deg,
+          var(--s19-bg-elev) 0%,
+          var(--s19-bg-deep) 100%);
+      overflow: hidden;
+      isolation: isolate;
+      opacity: 0;
+      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 500ms forwards;
     }
-    .slide[data-audio="19"] .s19-layer::before {
+    .slide[data-audio="19"] .s19-left::before {
       content: '';
       position: absolute;
-      top: 0; bottom: 0; left: 0;
-      width: 2px;
-      background: linear-gradient(180deg,
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
         var(--s19-honey) 0%,
-        rgba(254, 189, 51, 0.55) 60%,
-        rgba(254, 189, 51, 0) 100%);
-      border-radius: 2px 0 0 2px;
-      box-shadow: 0 0 8px var(--s19-honey-glow);
-    }
-    .slide[data-audio="19"] .s19-layer:hover {
-      transform: translateX(2px);
+        var(--s19-honey) 38%,
+        rgba(254, 189, 51, 0.2) 100%);
+      box-shadow: 0 0 14px rgba(254, 189, 51, 0.5);
+      z-index: 4;
     }
 
-    .slide[data-audio="19"] .s19-layer .l-head {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .slide[data-audio="19"] .s19-layer .l-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      color: var(--s19-fg-faint);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-layer .l-name {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
-      letter-spacing: 0.18em;
+    .slide[data-audio="19"] .s19-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 0.95vmin, 11.5px);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
+      color: var(--s19-fg-dim);
+    }
+    .slide[data-audio="19"] .s19-panel-head .tag {
       color: var(--s19-honey);
-      font-weight: 700;
+      padding: 3px 8px;
+      border: 1px solid var(--s19-border-warm);
+      border-radius: 3px;
+      background: var(--s19-honey-soft);
+      font-size: clamp(8.5px, 0.9vmin, 10.5px);
     }
-    .slide[data-audio="19"] .s19-layer .l-out {
-      margin-left: auto;
-      width: 16px; height: 16px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--s19-honey);
-      opacity: 0.7;
-    }
-    .slide[data-audio="19"] .s19-layer .l-out svg {
-      width: 14px; height: 14px;
-    }
-    .slide[data-audio="19"] .s19-layer .l-detail {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.01em;
-      color: var(--s19-fg-muted);
-      line-height: 1.4;
-    }
-    .slide[data-audio="19"] .s19-layer .l-detail b {
-      color: var(--s19-fg);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-layer .l-detail .sep {
-      color: var(--s19-fg-faint);
-      margin: 0 5px;
+    .slide[data-audio="19"] .s19-panel-head .divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--s19-border) 0%,
+        transparent 100%);
     }
 
-    /* ---------- SVG arrow overlay (positioned on top of stage) ---------- */
-    .slide[data-audio="19"] .s19-arrows {
+    /* ---------- The Yogi orb (compact) ---------- */
+    .slide[data-audio="19"] .s19-cloud {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(6px, 1vmin, 14px) 0 clamp(2px, 0.4vmin, 8px);
+    }
+    .slide[data-audio="19"] .s19-orb-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide[data-audio="19"] .s19-orb-rings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% - 16px));
+      width: clamp(120px, 16vmin, 180px);
+      height: clamp(120px, 16vmin, 180px);
+      pointer-events: none;
+    }
+    .slide[data-audio="19"] .s19-orb-rings::before,
+    .slide[data-audio="19"] .s19-orb-rings::after {
+      content: '';
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      overflow: visible;
+      border-radius: 50%;
+      border: 1px dashed var(--s19-honey-dim);
+      opacity: 0.5;
     }
-    .slide[data-audio="19"] .s19-arrows svg {
+    .slide[data-audio="19"] .s19-orb-rings::after {
+      inset: 18%;
+      border-style: solid;
+      border-color: rgba(254, 189, 51, 0.18);
+      opacity: 0.6;
+      animation: s19-spin 22s linear infinite;
+    }
+    .slide[data-audio="19"] .s19-orb-rings::before {
+      animation: s19-spin-rev 32s linear infinite;
+    }
+
+    .slide[data-audio="19"] .s19-orb {
+      position: relative;
+      width: clamp(60px, 8vmin, 92px);
+      height: clamp(60px, 8vmin, 92px);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 30%,
+          rgba(255, 220, 130, 0.95) 0%,
+          var(--s19-honey) 25%,
+          #d99720 70%,
+          #7a5210 100%);
+      box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.45),
+        0 0 24px rgba(254, 189, 51, 0.55),
+        0 0 60px rgba(254, 189, 51, 0.32),
+        inset 0 0 16px rgba(255, 240, 200, 0.3);
+      animation: s19-orb-breathe 4.5s ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-orb::after {
+      content: '';
+      position: absolute;
+      top: 18%;
+      left: 24%;
+      width: 26%;
+      height: 22%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0) 70%);
+      filter: blur(2px);
+    }
+
+    .slide[data-audio="19"] .s19-orb-label {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 1vmin, 11px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      text-align: center;
+    }
+    .slide[data-audio="19"] .s19-orb-label .name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(15px, 1.85vmin, 22px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      color: var(--s19-fg);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .slide[data-audio="19"] .s19-orb-label .name em {
+      font-style: normal;
+      color: var(--s19-honey);
+    }
+
+    /* ---------- Connector lines (cloud → fleet) ---------- */
+    .slide[data-audio="19"] .s19-connectors {
+      position: relative;
+      height: clamp(34px, 4.5vmin, 60px);
+      width: 100%;
+      pointer-events: none;
+    }
+    .slide[data-audio="19"] .s19-connectors svg {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       overflow: visible;
     }
-    .slide[data-audio="19"] .s19-arrows path.flow {
+    .slide[data-audio="19"] .s19-connectors path {
       fill: none;
-      stroke: var(--s19-honey);
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-dasharray: 5 5;
-      filter: drop-shadow(0 0 4px rgba(254, 189, 51, 0.6));
-      stroke-dashoffset: 220;
-      animation:
-        s19-flow-reveal 1000ms cubic-bezier(.4,.0,.2,1) forwards,
-        s19-flow-march 12s linear infinite;
+      stroke: var(--s19-honey-dim);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+      stroke-dashoffset: 0;
       opacity: 0;
+      animation-name: s19-dash, s19-fade-stroke;
+      animation-duration: 18s, 1200ms;
+      animation-delay: 0s, 1100ms;
+      animation-fill-mode: none, forwards;
+      animation-timing-function: linear, ease;
+      animation-iteration-count: infinite, 1;
     }
-    .slide[data-audio="19"] .s19-arrows path.flow.f1 { animation-delay: 1400ms, 2400ms; }
-    .slide[data-audio="19"] .s19-arrows path.flow.f2 { animation-delay: 1550ms, 2550ms; }
-    .slide[data-audio="19"] .s19-arrows path.flow.f3 { animation-delay: 1700ms, 2700ms; }
-    .slide[data-audio="19"] .s19-arrows path.flow.f4 { animation-delay: 1850ms, 2850ms; }
-    .slide[data-audio="19"] .s19-arrows .head {
+    .slide[data-audio="19"] .s19-connectors .pkt {
       fill: var(--s19-honey);
-      filter: drop-shadow(0 0 4px rgba(254, 189, 51, 0.7));
+      filter: drop-shadow(0 0 4px var(--s19-honey-glow));
       opacity: 0;
-      animation: s19-fade-in 400ms ease forwards;
+      animation: s19-pkt 3.5s ease-in-out infinite;
     }
-    .slide[data-audio="19"] .s19-arrows .head.h1 { animation-delay: 2200ms; }
-    .slide[data-audio="19"] .s19-arrows .head.h2 { animation-delay: 2350ms; }
-    .slide[data-audio="19"] .s19-arrows .head.h3 { animation-delay: 2500ms; }
-    .slide[data-audio="19"] .s19-arrows .head.h4 { animation-delay: 2650ms; }
-    /* faint endpoint glow rings */
-    .slide[data-audio="19"] .s19-arrows .ring {
+    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(7) { animation-delay: 0.2s; }
+    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(8) { animation-delay: 0.7s; }
+    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(9) { animation-delay: 1.2s; }
+    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(10) { animation-delay: 1.7s; }
+    .slide[data-audio="19"] .s19-connectors .pkt:nth-child(11) { animation-delay: 2.2s; }
+
+    /* ---------- Mac fleet row (compact, 5 wide) ---------- */
+    .slide[data-audio="19"] .s19-fleet {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(5px, 0.8vmin, 10px);
+      padding: 0 2px;
+    }
+    .slide[data-audio="19"] .s19-mac {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      opacity: 0;
+      animation: s19-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="19"] .s19-mac:nth-child(1) { animation-delay: 1200ms; }
+    .slide[data-audio="19"] .s19-mac:nth-child(2) { animation-delay: 1300ms; }
+    .slide[data-audio="19"] .s19-mac:nth-child(3) { animation-delay: 1400ms; }
+    .slide[data-audio="19"] .s19-mac:nth-child(4) { animation-delay: 1500ms; }
+    .slide[data-audio="19"] .s19-mac:nth-child(5) { animation-delay: 1600ms; }
+
+    .slide[data-audio="19"] .s19-mac-shape {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.4 / 1;
+      max-width: 78px;
+    }
+    .slide[data-audio="19"] .s19-mac-screen {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 78%;
+      border: 1.2px solid var(--s19-border-strong);
+      border-radius: 5px 5px 2px 2px;
+      background:
+        radial-gradient(ellipse at 50% 40%,
+          rgba(67, 192, 190, 0.10) 0%,
+          rgba(0, 0, 0, 0.65) 75%),
+        linear-gradient(180deg, #0d1218 0%, #060809 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .slide[data-audio="19"] .s19-mac-screen::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.02) 0px,
+          rgba(255, 255, 255, 0.02) 1px,
+          transparent 1px,
+          transparent 4px);
+      mix-blend-mode: overlay;
+    }
+    .slide[data-audio="19"] .s19-mac-base {
+      position: absolute;
+      bottom: 0;
+      left: -8%;
+      right: -8%;
+      height: 7%;
+      background: linear-gradient(180deg,
+        #2a2f3a 0%,
+        #14181f 100%);
+      border-radius: 1px 1px 4px 4px;
+    }
+    .slide[data-audio="19"] .s19-mac-base::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 36%;
+      right: 36%;
+      height: 40%;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0 0 4px 4px;
+    }
+    .slide[data-audio="19"] .s19-mac-hinge {
+      position: absolute;
+      top: 78%;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(180deg, #1a1f28, #0a0d12);
+    }
+
+    .slide[data-audio="19"] .s19-cub {
+      position: relative;
+      width: 50%;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 5px var(--s19-teal-glow));
+      animation: s19-cub-breathe 3.2s ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-cub:nth-of-type(odd) { animation-delay: 0.6s; }
+    .slide[data-audio="19"] .s19-cub svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide[data-audio="19"] .s19-mac-label {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(7px, 0.78vmin, 9px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s19-fg-faint);
+    }
+    .slide[data-audio="19"] .s19-mac-label .num {
+      color: var(--s19-teal);
+    }
+
+    .slide[data-audio="19"] .s19-fleet-caption {
+      margin-top: clamp(6px, 1vmin, 12px);
+      text-align: center;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9.5px, 1.05vmin, 12px);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--s19-fg-muted);
+    }
+    .slide[data-audio="19"] .s19-fleet-caption strong {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-fleet-caption .pip {
+      color: var(--s19-fg-faint);
+      margin: 0 8px;
+    }
+
+    .slide[data-audio="19"] .s19-callout {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: clamp(10px, 1.4vmin, 16px) clamp(12px, 1.6vmin, 18px);
+      border: 1px solid var(--s19-border-warm);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg,
+          rgba(254, 189, 51, 0.10) 0%,
+          rgba(254, 189, 51, 0.02) 60%,
+          transparent 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .slide[data-audio="19"] .s19-callout::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0;
+      width: 2px;
+      background: var(--s19-honey);
+      box-shadow: 0 0 10px var(--s19-honey-glow);
+    }
+    .slide[data-audio="19"] .s19-callout .badge {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8px, 0.85vmin, 10px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s19-honey);
+      padding: 3px 7px;
+      border: 1px solid var(--s19-border-warm);
+      border-radius: 3px;
+      background: var(--s19-honey-soft);
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-callout .copy {
+      font-size: clamp(11px, 1.2vmin, 13.5px);
+      color: var(--s19-fg);
+      letter-spacing: -0.005em;
+      line-height: 1.4;
+    }
+    .slide[data-audio="19"] .s19-callout .copy strong {
+      color: var(--s19-honey);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       CENTER — HERO VIDEO STAGE
+       ============================================================ */
+    .slide[data-audio="19"] .s19-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1.4vmin, 18px);
+      min-height: 0;
+      opacity: 0;
+      animation: s19-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 350ms forwards;
+    }
+
+    .slide[data-audio="19"] .s19-stage-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 0.95vmin, 11.5px);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--s19-fg-dim);
+    }
+    .slide[data-audio="19"] .s19-stage-head .tag {
+      color: var(--s19-fg);
+      padding: 4px 10px;
+      border: 1px solid var(--s19-border-warm);
+      border-radius: 3px;
+      background: var(--s19-honey-soft);
+      letter-spacing: 0.22em;
+    }
+    .slide[data-audio="19"] .s19-stage-head .tag.live {
+      color: var(--s19-red);
+      border-color: rgba(224, 75, 81, 0.4);
+      background: rgba(224, 75, 81, 0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slide[data-audio="19"] .s19-stage-head .tag.live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s19-red);
+      box-shadow: 0 0 10px var(--s19-red-glow);
+      animation: s19-pulse 1400ms ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-stage-head .divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--s19-border) 0%,
+        transparent 100%);
+    }
+    .slide[data-audio="19"] .s19-stage-head .meta {
+      color: var(--s19-fg-muted);
+    }
+
+    /* Annotation chips (positioned around the video) */
+    .slide[data-audio="19"] .s19-anno-grid {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The screen recording window */
+    .slide[data-audio="19"] .s19-window {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--s19-border-warm);
+      border-radius: 12px;
+      background: var(--s19-bg-deep);
+      box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.12),
+        0 24px 80px -20px rgba(0, 0, 0, 0.75),
+        0 0 60px -10px rgba(254, 189, 51, 0.28),
+        0 0 120px -30px rgba(67, 192, 190, 0.18);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Honey bloom on top edge */
+    .slide[data-audio="19"] .s19-window::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--s19-honey) 30%,
+        var(--s19-honey) 70%,
+        transparent 100%);
+      box-shadow: 0 0 16px rgba(254, 189, 51, 0.6);
+      z-index: 5;
+    }
+
+    /* Window chrome — Mac-style titlebar */
+    .slide[data-audio="19"] .s19-chrome {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(180deg, #1a1f29 0%, #14181f 100%);
+      border-bottom: 1px solid var(--s19-border);
+      position: relative;
+      z-index: 4;
+    }
+    .slide[data-audio="19"] .s19-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .slide[data-audio="19"] .s19-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.4);
+    }
+    .slide[data-audio="19"] .s19-dot.red    { background: #ff5f57; }
+    .slide[data-audio="19"] .s19-dot.yellow { background: #febc2e; }
+    .slide[data-audio="19"] .s19-dot.green  { background: #28c840; }
+
+    .slide[data-audio="19"] .s19-urlbar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--s19-border);
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 1.1vmin, 12.5px);
+      color: var(--s19-fg-muted);
+      letter-spacing: 0.02em;
+      max-width: 70%;
+      margin: 0 auto;
+    }
+    .slide[data-audio="19"] .s19-urlbar .scheme {
+      color: var(--s19-teal);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-urlbar .path {
+      color: var(--s19-fg);
+    }
+    .slide[data-audio="19"] .s19-urlbar .lock {
+      color: var(--s19-teal);
+      font-size: 0.9em;
+    }
+    .slide[data-audio="19"] .s19-urlbar .cursor-blink {
+      width: 6px;
+      height: 12px;
+      background: var(--s19-honey);
+      box-shadow: 0 0 6px var(--s19-honey-glow);
+      animation: s19-blink 1.1s ease-in-out infinite;
+      margin-left: 2px;
+    }
+
+    .slide[data-audio="19"] .s19-chrome-meta {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9px, 0.95vmin, 11px);
+      color: var(--s19-fg-faint);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-chrome-meta strong {
+      color: var(--s19-teal);
+      font-weight: 600;
+    }
+
+    /* The actual GIF surface */
+    .slide[data-audio="19"] .s19-screen {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide[data-audio="19"] .s19-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* Subtle scanline / CRT overlay on the video */
+    .slide[data-audio="19"] .s19-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.015) 0px,
+          rgba(255, 255, 255, 0.015) 1px,
+          transparent 1px,
+          transparent 3px),
+        radial-gradient(ellipse at center,
+          transparent 55%,
+          rgba(0, 0, 0, 0.35) 100%);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      z-index: 2;
+    }
+
+    /* Annotation chips floating around the video */
+    .slide[data-audio="19"] .s19-anno {
+      position: absolute;
+      z-index: 6;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 11px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8.5px, 0.95vmin, 11px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      animation: s19-fade 800ms cubic-bezier(0.16, 1, 0.3, 1) 1600ms forwards;
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-anno.tl {
+      top: 12px;
+      left: 12px;
+      color: var(--s19-honey);
+      background: rgba(10, 13, 18, 0.78);
+      border: 1px solid var(--s19-border-warm);
+    }
+    .slide[data-audio="19"] .s19-anno.tl .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s19-honey);
+      box-shadow: 0 0 8px var(--s19-honey-glow);
+      animation: s19-pulse 2200ms ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-anno.tr {
+      top: 12px;
+      right: 12px;
+      color: var(--s19-red);
+      background: rgba(10, 13, 18, 0.78);
+      border: 1px solid rgba(224, 75, 81, 0.4);
+      animation-delay: 1800ms;
+    }
+    .slide[data-audio="19"] .s19-anno.tr .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s19-red);
+      box-shadow: 0 0 8px var(--s19-red-glow);
+      animation: s19-pulse 1100ms ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-anno.bl {
+      bottom: 12px;
+      left: 12px;
+      color: var(--s19-teal);
+      background: rgba(10, 13, 18, 0.82);
+      border: 1px solid var(--s19-border-cool);
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-size: clamp(9.5px, 1.05vmin, 12px);
+      animation-delay: 2000ms;
+    }
+    .slide[data-audio="19"] .s19-anno.bl .accent {
+      color: var(--s19-fg);
+    }
+    .slide[data-audio="19"] .s19-anno.br {
+      bottom: 12px;
+      right: 12px;
+      color: var(--s19-honey);
+      background: rgba(10, 13, 18, 0.82);
+      border: 1px solid var(--s19-border-warm);
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-size: clamp(9.5px, 1.05vmin, 12px);
+      animation-delay: 2200ms;
+    }
+    .slide[data-audio="19"] .s19-anno.br .accent {
+      color: var(--s19-fg);
+      font-weight: 600;
+    }
+    .slide[data-audio="19"] .s19-anno.br .arr {
+      color: var(--s19-honey);
+      margin: 0 4px;
+    }
+
+    /* Leader lines pointing from chips toward action */
+    .slide[data-audio="19"] .s19-leaders {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .slide[data-audio="19"] .s19-leaders svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .slide[data-audio="19"] .s19-leaders line {
+      stroke: var(--s19-honey-dim);
+      stroke-width: 1;
+      stroke-dasharray: 2 4;
+      opacity: 0;
+      animation: s19-fade 1000ms ease 2400ms forwards;
+    }
+    .slide[data-audio="19"] .s19-leaders circle.target {
       fill: none;
       stroke: var(--s19-honey);
       stroke-width: 1;
       opacity: 0;
-      animation: s19-ring-pulse 2.6s ease-out infinite;
-    }
-    .slide[data-audio="19"] .s19-arrows .ring.r1 { animation-delay: 2400ms; }
-    .slide[data-audio="19"] .s19-arrows .ring.r2 { animation-delay: 2550ms; }
-    .slide[data-audio="19"] .s19-arrows .ring.r3 { animation-delay: 2700ms; }
-    .slide[data-audio="19"] .s19-arrows .ring.r4 { animation-delay: 2850ms; }
-    /* small data-packet circles travelling along arrows */
-    .slide[data-audio="19"] .s19-arrows .pkt {
-      fill: var(--s19-honey);
-      filter: drop-shadow(0 0 6px rgba(254, 189, 51, 0.9));
-      opacity: 0;
-      animation: s19-pkt-travel 4.5s linear infinite;
-    }
-    .slide[data-audio="19"] .s19-arrows .pkt.p1 { animation-delay: 3000ms; }
-    .slide[data-audio="19"] .s19-arrows .pkt.p2 { animation-delay: 3400ms; }
-    .slide[data-audio="19"] .s19-arrows .pkt.p3 { animation-delay: 3800ms; }
-    .slide[data-audio="19"] .s19-arrows .pkt.p4 { animation-delay: 4200ms; }
-
-    @keyframes s19-flow-reveal {
-      from { stroke-dashoffset: 220; opacity: 0; }
-      to   { stroke-dashoffset: 0; opacity: 0.85; }
-    }
-    @keyframes s19-flow-march {
-      from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -100; }
-    }
-    @keyframes s19-fade-in {
-      to { opacity: 1; }
-    }
-    @keyframes s19-ring-pulse {
-      0%   { transform: scale(0.6); opacity: 0.8; }
-      80%  { transform: scale(2.4); opacity: 0;   }
-      100% { transform: scale(2.4); opacity: 0;   }
-    }
-    @keyframes s19-pkt-travel {
-      0%   { opacity: 0; offset-distance: 0%; }
-      6%   { opacity: 1; }
-      94%  { opacity: 1; }
-      100% { opacity: 0; offset-distance: 100%; }
+      animation: s19-fade 1000ms ease 2400ms forwards;
     }
 
-    /* ---------- Mockup window ---------- */
-    .slide[data-audio="19"] .s19-mockwrap {
+    /* Companion chip — beside the window */
+    .slide[data-audio="19"] .s19-companion {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--s19-border-cool);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg,
+          rgba(67, 192, 190, 0.08) 0%,
+          rgba(67, 192, 190, 0.02) 60%,
+          transparent 100%);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9.5px, 1.05vmin, 12px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--s19-teal);
+    }
+    .slide[data-audio="19"] .s19-companion .left {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide[data-audio="19"] .s19-companion .left .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--s19-teal);
+      box-shadow: 0 0 8px var(--s19-teal-glow);
+      animation: s19-pulse 2000ms ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-companion .left strong {
+      color: var(--s19-fg);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+    }
+    .slide[data-audio="19"] .s19-companion .right {
+      color: var(--s19-fg-muted);
+      letter-spacing: 0.18em;
+    }
+    .slide[data-audio="19"] .s19-companion .right em {
+      font-style: normal;
+      color: var(--s19-honey);
+    }
+
+    /* ============================================================
+       RIGHT — Anatomy of a cub task (compact, 5 beats)
+       ============================================================ */
+    .slide[data-audio="19"] .s19-right {
       position: relative;
-      display: flex; align-items: center; justify-content: center;
-      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1.4vmin, 18px);
+      min-height: 0;
+      opacity: 0;
+      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 700ms forwards;
+    }
+
+    .slide[data-audio="19"] .s19-steps {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(7px, 0.9vmin, 11px);
+      position: relative;
+      flex: 1;
       min-height: 0;
     }
-    .slide[data-audio="19"] .s19-window {
+    /* Vertical thread */
+    .slide[data-audio="19"] .s19-steps::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 11px;
+      width: 1px;
+      background: linear-gradient(180deg,
+        var(--s19-honey-line) 0%,
+        var(--s19-honey-dim) 50%,
+        var(--s19-teal) 100%);
+      opacity: 0.55;
+      box-shadow: 0 0 8px var(--s19-honey-glow);
+    }
+
+    .slide[data-audio="19"] .s19-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: clamp(9px, 1.2vmin, 14px);
+      align-items: stretch;
+      opacity: 0;
+      transform: translateX(-10px);
+      animation: s19-rise-x 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide[data-audio="19"] .s19-step:nth-child(1) { animation-delay: 1000ms; }
+    .slide[data-audio="19"] .s19-step:nth-child(2) { animation-delay: 1200ms; }
+    .slide[data-audio="19"] .s19-step:nth-child(3) { animation-delay: 1400ms; }
+    .slide[data-audio="19"] .s19-step:nth-child(4) { animation-delay: 1600ms; }
+    .slide[data-audio="19"] .s19-step:nth-child(5) { animation-delay: 1800ms; }
+
+    .slide[data-audio="19"] .s19-step-node {
+      position: relative;
+      width: 24px;
+      display: flex;
+      justify-content: center;
+      padding-top: 12px;
+    }
+    .slide[data-audio="19"] .s19-step-node .ring {
       position: relative;
       z-index: 1;
-      width: 100%;
-      height: 100%;
-      max-height: clamp(500px, 60vh, 720px);
-      background: var(--tca-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.08),
-        0 20px 60px rgba(0, 0, 0, 0.55),
-        0 4px 20px rgba(254, 189, 51, 0.12),
-        0 0 80px rgba(254, 189, 51, 0.08);
-      display: flex; flex-direction: column;
-      color: var(--tca-text);
-      font-size: 13px;
-      letter-spacing: -0.005em;
-    }
-
-    .slide[data-audio="19"] .s19-chrome {
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 26px;
-      display: flex; align-items: center;
-      padding: 0 12px;
-      gap: 6px;
-      background: linear-gradient(180deg, #f0f3f7 0%, #e8ecf2 100%);
-      border-bottom: 1px solid var(--tca-divider);
-      z-index: 5;
-    }
-    .slide[data-audio="19"] .s19-chrome-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-    }
-    .slide[data-audio="19"] .s19-chrome-dot.r { background: #ff5f57; }
-    .slide[data-audio="19"] .s19-chrome-dot.y { background: #febc2e; }
-    .slide[data-audio="19"] .s19-chrome-dot.g { background: #28c840; }
-    .slide[data-audio="19"] .s19-chrome-url {
-      flex: 1;
-      text-align: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--tca-text-dim);
-      letter-spacing: 0.02em;
-    }
-    .slide[data-audio="19"] .s19-chrome-url .lock {
-      color: var(--tca-text-faint); margin-right: 4px;
-    }
-    .slide[data-audio="19"] .s19-chrome-url .host {
-      color: var(--tca-text);
-    }
-
-    .slide[data-audio="19"] .s19-app {
-      margin-top: 26px;
-      flex: 1;
-      display: flex; flex-direction: column;
-      min-height: 0;
-    }
-
-    /* TOP BAR */
-    .slide[data-audio="19"] .s19-topbar {
-      display: flex; align-items: center;
-      padding: 0 12px;
-      height: 44px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--tca-divider);
-      gap: 8px;
-      flex-shrink: 0;
-      min-width: 0;
-    }
-    .slide[data-audio="19"] .s19-tb-icon {
-      width: 24px; height: 24px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--tca-text-mute);
-    }
-    .slide[data-audio="19"] .s19-tb-icon svg { width: 15px; height: 15px; }
-    .slide[data-audio="19"] .s19-tb-logo {
-      display: flex; align-items: center; gap: 7px;
-      margin-left: 4px;
-    }
-    .slide[data-audio="19"] .s19-tb-logo-mark {
-      width: 20px; height: 20px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .slide[data-audio="19"] .s19-tb-logo-text {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--tca-text);
-      letter-spacing: -0.01em;
-    }
-    .slide[data-audio="19"] .s19-tb-logo-text b {
-      color: var(--tca-blue);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-tb-version {
-      background: var(--tca-blue);
-      color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      padding: 2px 5px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
-      margin-left: 4px;
-    }
-    .slide[data-audio="19"] .s19-tb-search {
-      flex: 1;
-      min-width: 120px;
-      max-width: 400px;
-      height: 26px;
-      background: #f4f6f9;
-      border: 1px solid #e1e5ec;
-      border-radius: 6px;
-      display: flex; align-items: center;
-      padding: 0 10px;
-      gap: 8px;
-      color: var(--tca-text-dim);
-      font-size: 11px;
-    }
-    .slide[data-audio="19"] .s19-tb-search svg { width: 12px; height: 12px; }
-    .slide[data-audio="19"] .s19-tb-search .kbd {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      background: #fff;
-      border: 1px solid #e1e5ec;
-      color: var(--tca-text-mute);
-      padding: 1px 5px;
-      border-radius: 3px;
-    }
-    .slide[data-audio="19"] .s19-tb-spacer { flex: 1; }
-    .slide[data-audio="19"] .s19-tb-account {
-      display: flex; align-items: center; gap: 7px;
-      padding: 3px 8px 3px 4px;
-      border-radius: 14px;
-    }
-    .slide[data-audio="19"] .s19-tb-account .av {
-      width: 24px; height: 24px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #c4906a 0%, #8a5a3a 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 9.5px; font-weight: 700; color: #fff;
-      letter-spacing: 0.04em;
-    }
-    .slide[data-audio="19"] .s19-tb-account .name {
-      font-size: 11.5px; color: var(--tca-text);
-    }
-
-    /* BETA */
-    .slide[data-audio="19"] .s19-beta {
-      background: var(--tca-warn-bg);
-      border-bottom: 1px solid var(--tca-warn-bd);
-      padding: 6px 14px;
-      display: flex; align-items: center;
-      font-size: 11px;
-      color: var(--tca-warn-text);
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .slide[data-audio="19"] .s19-beta svg { width: 12px; height: 12px; color: #d49612; }
-    .slide[data-audio="19"] .s19-beta b { color: #5a4310; font-weight: 600; }
-    .slide[data-audio="19"] .s19-beta a {
-      color: #b87f10; text-decoration: underline; text-underline-offset: 2px;
-    }
-    .slide[data-audio="19"] .s19-beta .close {
-      margin-left: auto; color: #b8a06a;
-    }
-
-    /* BODY 4 cols */
-    .slide[data-audio="19"] .s19-body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 52px 200px 220px 1fr;
-      min-height: 0;
-      background: var(--tca-bg);
-    }
-
-    /* RAIL */
-    .slide[data-audio="19"] .s19-rail {
-      background: #ffffff;
-      border-right: 1px solid var(--tca-divider);
-      display: flex; flex-direction: column;
+      background: var(--s19-bg);
+      border: 1.4px solid var(--s19-border-strong);
+      display: flex;
       align-items: center;
-      padding: 12px 0;
+      justify-content: center;
+    }
+    .slide[data-audio="19"] .s19-step-node .ring::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--s19-fg-faint);
+    }
+    .slide[data-audio="19"] .s19-step--yogi .ring {
+      border-color: var(--s19-honey);
+      box-shadow: 0 0 10px var(--s19-honey-glow);
+    }
+    .slide[data-audio="19"] .s19-step--yogi .ring::before {
+      background: var(--s19-honey);
+    }
+    .slide[data-audio="19"] .s19-step--cub .ring {
+      border-color: var(--s19-teal);
+      box-shadow: 0 0 10px var(--s19-teal-glow);
+    }
+    .slide[data-audio="19"] .s19-step--cub .ring::before {
+      background: var(--s19-teal);
+    }
+    .slide[data-audio="19"] .s19-step--op .ring {
+      border-color: var(--s19-sky);
+      box-shadow: 0 0 10px var(--s19-sky-glow);
+    }
+    .slide[data-audio="19"] .s19-step--op .ring::before {
+      background: var(--s19-sky);
+    }
+
+    .slide[data-audio="19"] .s19-step-card {
+      position: relative;
+      padding: clamp(8px, 1.1vmin, 13px) clamp(10px, 1.3vmin, 16px);
+      border: 1px solid var(--s19-border);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg,
+          var(--s19-bg-elev) 0%,
+          rgba(17, 22, 31, 0.6) 100%);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
       gap: 4px;
     }
-    .slide[data-audio="19"] .s19-rail-item {
-      width: 42px;
-      padding: 8px 0 6px;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 4px;
-      border-radius: 8px;
-      color: var(--tca-text-mute);
-      font-size: 9.5px;
-      letter-spacing: -0.005em;
+    .slide[data-audio="19"] .s19-step--yogi .s19-step-card {
+      border-color: var(--s19-border-warm);
+      background:
+        linear-gradient(180deg,
+          rgba(254, 189, 51, 0.05) 0%,
+          var(--s19-bg-elev) 100%);
+      box-shadow: 0 6px 20px -16px rgba(254, 189, 51, 0.3);
     }
-    .slide[data-audio="19"] .s19-rail-item svg { width: 17px; height: 17px; }
-    .slide[data-audio="19"] .s19-rail-item.active {
-      background: var(--tca-blue-soft);
-      color: var(--tca-blue);
-      font-weight: 600;
+    .slide[data-audio="19"] .s19-step--cub .s19-step-card {
+      border-color: var(--s19-border-cool);
+      background:
+        linear-gradient(180deg,
+          rgba(67, 192, 190, 0.05) 0%,
+          var(--s19-bg-elev) 100%);
+      box-shadow: 0 6px 20px -16px rgba(67, 192, 190, 0.3);
     }
-    .slide[data-audio="19"] .s19-rail-spacer { flex: 1; }
+    .slide[data-audio="19"] .s19-step--op .s19-step-card {
+      border-color: rgba(100, 188, 234, 0.28);
+      background:
+        linear-gradient(180deg,
+          rgba(100, 188, 234, 0.05) 0%,
+          var(--s19-bg-elev) 100%);
+      box-shadow: 0 6px 20px -16px rgba(100, 188, 234, 0.3);
+    }
 
-    /* WS SIDE */
-    .slide[data-audio="19"] .s19-ws-side {
-      background: #ffffff;
-      border-right: 1px solid var(--tca-divider);
-      display: flex; flex-direction: column;
-      padding: 12px 10px 10px;
-      gap: 9px;
-      overflow: hidden;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-ws-head {
-      display: flex; align-items: center; justify-content: space-between;
+    .slide[data-audio="19"] .s19-step-head {
+      display: flex;
+      align-items: center;
       gap: 8px;
     }
-    .slide[data-audio="19"] .s19-ws-title {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 14px;
+    .slide[data-audio="19"] .s19-chip {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8px, 0.85vmin, 10px);
       font-weight: 600;
-      color: var(--tca-text);
-    }
-    .slide[data-audio="19"] .s19-ws-title svg { width: 15px; height: 15px; color: var(--tca-blue); }
-    .slide[data-audio="19"] .s19-ws-new {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 3px 7px;
-      border: 1px solid var(--tca-divider);
-      border-radius: 5px;
-      font-size: 10.5px;
-      color: var(--tca-text-mute);
-      background: #fff;
-    }
-    .slide[data-audio="19"] .s19-ws-new svg { width: 10px; height: 10px; }
-    .slide[data-audio="19"] .s19-ws-filter {
-      height: 24px;
-      background: #f4f6f9;
-      border: 1px solid #e1e5ec;
-      border-radius: 5px;
-      display: flex; align-items: center;
-      padding: 0 8px;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--tca-text-dim);
-    }
-    .slide[data-audio="19"] .s19-ws-filter svg { width: 11px; height: 11px; }
-    .slide[data-audio="19"] .s19-ws-toggle {
-      display: flex; gap: 4px;
-    }
-    .slide[data-audio="19"] .s19-ws-toggle button {
-      flex: 1;
-      padding: 3px 8px;
-      font-size: 11px;
-      border-radius: 5px;
-      border: 0;
-      background: transparent;
-      color: var(--tca-text-mute);
-      font-weight: 500;
-    }
-    .slide[data-audio="19"] .s19-ws-toggle button.on {
-      background: var(--tca-blue);
-      color: #fff;
-    }
-    .slide[data-audio="19"] .s19-ws-home {
-      display: flex; align-items: center; gap: 7px;
-      padding: 7px 9px;
-      background: var(--tca-active-bg);
-      border: 1px solid var(--tca-active-bd);
-      border-radius: 6px;
-    }
-    .slide[data-audio="19"] .s19-ws-home .home-icon svg { width: 15px; height: 15px; color: var(--s19-dark-teal); }
-    .slide[data-audio="19"] .s19-ws-home .home-label {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--tca-text);
-    }
-    .slide[data-audio="19"] .s19-ws-home .home-label .h {
-      color: var(--tca-text-mute);
-      font-weight: 400;
-      margin-left: 4px;
-    }
-    .slide[data-audio="19"] .s19-ws-section {
-      display: flex; align-items: center; gap: 7px;
-      padding: 5px 8px;
-      font-size: 12.5px;
-      color: var(--tca-text);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-ws-section .count {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
-      color: var(--tca-text-faint);
-      font-weight: 500;
-    }
-    .slide[data-audio="19"] .s19-ws-section svg { width: 13px; height: 13px; }
-    .slide[data-audio="19"] .s19-ws-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: var(--tca-text-faint);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 2px 10px 0;
-      margin-top: 2px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      border: 1px solid currentColor;
     }
-    .slide[data-audio="19"] .s19-ws-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 5px 9px;
-      font-size: 12px;
-      color: var(--tca-text);
-      border-radius: 5px;
-    }
-    .slide[data-audio="19"] .s19-ws-item .left {
-      display: flex; align-items: center; gap: 6px;
-    }
-    .slide[data-audio="19"] .s19-ws-item .time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--tca-text-faint);
-    }
-    .slide[data-audio="19"] .s19-ws-item.muted .name {
-      color: var(--tca-text-mute);
-      font-size: 11px;
-    }
+    .slide[data-audio="19"] .s19-chip--yogi { color: var(--s19-honey); background: var(--s19-honey-soft); }
+    .slide[data-audio="19"] .s19-chip--cub  { color: var(--s19-teal);  background: var(--s19-teal-soft); }
+    .slide[data-audio="19"] .s19-chip--op   { color: var(--s19-sky);   background: var(--s19-sky-soft); }
 
-    /* EXPLORER */
-    .slide[data-audio="19"] .s19-explorer {
-      background: #ffffff;
-      border-right: 1px solid var(--tca-divider);
-      display: flex; flex-direction: column;
-      min-height: 0;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-ex-bar {
-      height: 34px;
-      display: flex; align-items: center;
-      padding: 0 11px;
-      gap: 7px;
-      border-bottom: 1px solid var(--tca-divider-2);
-      color: var(--tca-text-mute);
-    }
-    .slide[data-audio="19"] .s19-ex-bar svg { width: 13px; height: 13px; }
-    .slide[data-audio="19"] .s19-ex-bar .title {
-      font-size: 12.5px;
-      color: var(--tca-text);
-      font-weight: 500;
-      margin: 0 4px;
-    }
-    .slide[data-audio="19"] .s19-ex-bar .spacer { flex: 1; }
-    .slide[data-audio="19"] .s19-ex-bar .strike {
-      color: var(--tca-text-faint);
-      text-decoration: line-through;
-    }
-    .slide[data-audio="19"] .s19-ex-label {
-      padding: 9px 12px 5px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
-      color: var(--tca-text-faint);
+    .slide[data-audio="19"] .s19-step-num {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8px, 0.85vmin, 10px);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      font-weight: 600;
+      color: var(--s19-fg-faint);
     }
-    .slide[data-audio="19"] .s19-ex-filter {
-      margin: 0 11px 7px;
-      height: 24px;
-      background: #f4f6f9;
-      border: 1px solid #e1e5ec;
-      border-radius: 5px;
-      display: flex; align-items: center;
-      padding: 0 7px;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--tca-text-dim);
-    }
-    .slide[data-audio="19"] .s19-ex-filter svg { width: 11px; height: 11px; }
-    .slide[data-audio="19"] .s19-ex-tree {
-      padding: 0 7px;
-      flex: 1;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      gap: 1px;
-    }
-    .slide[data-audio="19"] .s19-ex-row {
-      display: flex; align-items: center;
-      padding: 4px 7px;
-      gap: 7px;
-      font-size: 12px;
-      color: var(--tca-text);
-      border-radius: 4px;
-    }
-    .slide[data-audio="19"] .s19-ex-row .chev svg { width: 9px; height: 9px; color: var(--tca-text-dim); }
-    .slide[data-audio="19"] .s19-ex-row .folder { color: var(--tca-folder); }
-    .slide[data-audio="19"] .s19-ex-row .folder svg { width: 12px; height: 12px; }
-    .slide[data-audio="19"] .s19-ex-row .name { font-weight: 500; }
-    .slide[data-audio="19"] .s19-ex-row.highlight {
-      background: rgba(254, 189, 51, 0.16);
-      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.45);
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-ex-row.highlight .folder { color: #c97f10; }
-    .slide[data-audio="19"] .s19-ex-row.highlight .name { color: #6e4a08; font-weight: 700; }
-
-    /* OneDrive group */
-    .slide[data-audio="19"] .s19-ex-onedrive {
-      margin: 6px 0 0;
-      background: var(--tca-blue-soft);
-      border-top: 1px solid var(--tca-divider-2);
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-ex-onedrive.highlight {
-      background: rgba(254, 189, 51, 0.13);
-      box-shadow: inset 0 0 0 1px rgba(254, 189, 51, 0.40);
-    }
-    .slide[data-audio="19"] .s19-ex-onedrive-head {
-      display: flex; align-items: center;
-      padding: 7px 11px;
-      gap: 7px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
-      color: var(--tca-blue);
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .slide[data-audio="19"] .s19-ex-onedrive-head svg { width: 13px; height: 13px; color: var(--tca-blue); }
-    .slide[data-audio="19"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head { color: #b46f10; }
-    .slide[data-audio="19"] .s19-ex-onedrive.highlight .s19-ex-onedrive-head svg { color: #b46f10; }
-    .slide[data-audio="19"] .s19-ex-od-rows {
-      padding: 2px 8px 8px;
-      display: flex; flex-direction: column;
-      gap: 1px;
-      background: #fff;
-    }
-    .slide[data-audio="19"] .s19-ex-od-row {
-      display: flex; align-items: center; gap: 7px;
-      padding: 3px 6px;
-      font-size: 11px;
-      color: var(--tca-text);
-    }
-    .slide[data-audio="19"] .s19-ex-od-row .folder { color: var(--tca-folder-hi); }
-    .slide[data-audio="19"] .s19-ex-od-row .folder svg { width: 11px; height: 11px; }
-    .slide[data-audio="19"] .s19-ex-od-row .file svg { width: 11px; height: 11px; color: var(--tca-text-dim); }
-    .slide[data-audio="19"] .s19-ex-od-row .size {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      color: var(--tca-text-faint);
-    }
-
-    /* MAIN */
-    .slide[data-audio="19"] .s19-main {
-      position: relative;
-      display: flex; flex-direction: column;
-      min-width: 0;
-      background: var(--tca-bg);
-    }
-    .slide[data-audio="19"] .s19-main-bar {
-      height: 36px;
-      display: flex; align-items: center;
-      padding: 0 16px 0 12px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--tca-divider);
-      gap: 5px;
-      flex-shrink: 0;
-      min-width: 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-main-bar .spacer { flex: 1; }
-    .slide[data-audio="19"] .s19-main-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 9px;
-      border: 1px solid var(--tca-divider);
-      border-radius: 5px;
-      background: #fff;
-      font-size: 11px;
-      color: var(--tca-text);
+    .slide[data-audio="19"] .s19-step-num strong {
+      color: var(--s19-fg-muted);
       font-weight: 500;
     }
-    .slide[data-audio="19"] .s19-main-btn svg { width: 11px; height: 11px; color: var(--tca-text-mute); }
-    .slide[data-audio="19"] .s19-main-btn.active {
-      background: var(--tca-blue-soft);
-      border-color: var(--tca-blue);
-      color: var(--tca-blue);
-    }
-    .slide[data-audio="19"] .s19-main-btn.active svg { color: var(--tca-blue); }
-    .slide[data-audio="19"] .s19-main-btns-wrap {
-      display: flex; align-items: center; gap: 5px;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .slide[data-audio="19"] .s19-main-btns-wrap.highlight::before {
-      content: '';
-      position: absolute;
-      inset: -5px -6px;
-      border: 1.5px dashed var(--s19-honey);
-      border-radius: 8px;
-      pointer-events: none;
-      box-shadow: 0 0 14px rgba(254, 189, 51, 0.32);
-    }
-
-    .slide[data-audio="19"] .s19-tabs {
-      display: flex; align-items: stretch;
-      background: var(--tca-tab-bg);
-      border-bottom: 1px solid var(--tca-divider);
-      padding: 0 10px;
-      flex-shrink: 0;
-    }
-    .slide[data-audio="19"] .s19-tab {
-      display: inline-flex; align-items: center;
-      gap: 7px;
-      padding: 6px 12px 5px;
-      font-size: 11.5px;
-      color: var(--tca-text);
-      background: var(--tca-tab-active);
-      border: 1px solid var(--tca-divider);
-      border-bottom: 0;
-      border-radius: 5px 5px 0 0;
-      margin-top: 4px;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-tab::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: -1px; height: 1px;
-      background: var(--tca-tab-active);
-    }
-    .slide[data-audio="19"] .s19-tab .md-chip {
-      background: #2c4c79;
-      color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px;
-      font-weight: 700;
-      padding: 1px 3px;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-    }
-    .slide[data-audio="19"] .s19-tab .close { color: var(--tca-text-faint); font-size: 11px; line-height: 1; }
-
-    .slide[data-audio="19"] .s19-subtools {
-      display: flex; align-items: center;
-      padding: 7px 12px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--tca-divider);
-      gap: 4px;
-      flex-shrink: 0;
-    }
-    .slide[data-audio="19"] .s19-subtool {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 8px;
-      border-radius: 5px;
-      font-size: 11px;
-      color: var(--tca-text-mute);
-      background: transparent;
-      border: 1px solid transparent;
-    }
-    .slide[data-audio="19"] .s19-subtool svg { width: 11px; height: 11px; }
-    .slide[data-audio="19"] .s19-subtool.active {
-      background: #eaf0fa;
-      color: var(--tca-blue);
-      border-color: #d6e1f0;
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-subtool.active svg { color: var(--tca-blue); }
-    .slide[data-audio="19"] .s19-subtools .spacer { flex: 1; }
-    .slide[data-audio="19"] .s19-subtools .icon-only {
-      width: 22px; height: 22px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 5px; color: var(--tca-text-mute);
-    }
-    .slide[data-audio="19"] .s19-subtools .icon-only svg { width: 12px; height: 12px; }
-
-    /* CANVAS — Yogi is active */
-    .slide[data-audio="19"] .s19-canvas {
-      position: relative;
+    .slide[data-audio="19"] .s19-step-head-rule {
       flex: 1;
-      min-height: 0;
-      background:
-        radial-gradient(ellipse at 50% 45%,
-          rgba(254, 189, 51, 0.12) 0%,
-          rgba(254, 189, 51, 0.03) 40%,
-          rgba(254, 189, 51, 0) 75%),
-        #ffffff;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--s19-border) 0%,
+        transparent 100%);
     }
-    .slide[data-audio="19"] .s19-canvas::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border: 1px dashed rgba(254, 189, 51, 0.22);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-    .slide[data-audio="19"] .s19-yogi-card {
-      position: relative;
-      width: clamp(260px, 38%, 360px);
-      background: linear-gradient(180deg, #fffaeb 0%, #fff5dc 100%);
-      border: 1.5px solid rgba(254, 189, 51, 0.65);
-      border-radius: 12px;
-      padding: 16px 18px 14px;
-      box-shadow:
-        0 0 0 4px rgba(254, 189, 51, 0.14),
-        0 12px 32px rgba(254, 189, 51, 0.22),
-        0 4px 12px rgba(0, 0, 0, 0.10);
-      display: flex; flex-direction: column;
-      gap: 9px;
-    }
-    .slide[data-audio="19"] .s19-yogi-card .y-head {
-      display: flex; align-items: center; gap: 10px;
-    }
-    .slide[data-audio="19"] .s19-yogi-card .y-bear {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      box-shadow: 0 0 0 2px #fffaeb, 0 0 14px rgba(254, 189, 51, 0.55);
-      flex-shrink: 0;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-yogi-card .y-bear::after {
-      content: '';
-      position: absolute; inset: -4px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(254, 189, 51, 0.45);
-      animation: s19-pulse 2.4s ease-out infinite;
-    }
-    @keyframes s19-pulse {
-      0%   { transform: scale(1);   opacity: 0.9; }
-      80%  { transform: scale(1.6); opacity: 0;   }
-      100% { transform: scale(1.6); opacity: 0;   }
-    }
-    .slide[data-audio="19"] .s19-yogi-card .y-text {
-      display: flex; flex-direction: column; gap: 2px;
-    }
-    .slide[data-audio="19"] .s19-yogi-card .y-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #3a2a08;
+
+    .slide[data-audio="19"] .s19-step-action {
+      font-size: clamp(11px, 1.25vmin, 14px);
+      font-weight: 600;
       letter-spacing: -0.01em;
+      line-height: 1.32;
+      color: var(--s19-fg);
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.15em;
+    .slide[data-audio="19"] .s19-step-action .accent-h { color: var(--s19-honey); }
+    .slide[data-audio="19"] .s19-step-action .accent-t { color: var(--s19-teal); }
+    .slide[data-audio="19"] .s19-step-action .accent-s { color: var(--s19-sky); }
+
+    .slide[data-audio="19"] .s19-step-trace {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8.5px, 0.9vmin, 10.5px);
+      color: var(--s19-fg-dim);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .slide[data-audio="19"] .s19-step-trace .arr { color: var(--s19-fg-faint); }
+    .slide[data-audio="19"] .s19-step-trace .ok  { color: var(--s19-teal); }
+    .slide[data-audio="19"] .s19-step-trace .wait { color: var(--s19-honey); }
+    .slide[data-audio="19"] .s19-step-trace .ms {
+      color: var(--s19-fg-faint);
+      margin-left: auto;
+    }
+
+    /* ============================================================
+       BOTTOM STRIP — QUOTE + RECEIPT
+       ============================================================ */
+    .slide[data-audio="19"] .s19-quote {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 1.8vmin, 26px);
+      padding: clamp(12px, 1.6vmin, 20px) clamp(18px, 2.2vmin, 30px);
+      border-top: 1px solid var(--s19-border);
+      border-bottom: 1px solid var(--s19-border);
+      background:
+        linear-gradient(90deg,
+          rgba(254, 189, 51, 0.04) 0%,
+          rgba(67, 192, 190, 0.03) 40%,
+          rgba(255, 255, 255, 0.01) 80%,
+          transparent 100%);
+      opacity: 0;
+      animation: s19-rise 1000ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms forwards;
+    }
+    .slide[data-audio="19"] .s19-quote .mark {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(28px, 4.4vmin, 48px);
+      line-height: 0.6;
+      color: var(--s19-honey);
+      align-self: flex-start;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+    .slide[data-audio="19"] .s19-quote .body {
+      flex: 1;
+      font-size: clamp(13px, 1.6vmin, 19px);
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      color: var(--s19-fg);
+      font-weight: 500;
+    }
+    .slide[data-audio="19"] .s19-quote .body em {
+      font-style: italic;
+      color: var(--s19-honey);
+      font-weight: 500;
+    }
+    .slide[data-audio="19"] .s19-quote .body .tail {
+      display: block;
+      font-style: normal;
+      font-weight: 400;
+      color: var(--s19-fg-muted);
+      font-size: clamp(10.5px, 1.2vmin, 13.5px);
+      letter-spacing: 0.01em;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+    /* Receipt — productivity stats grid */
+    .slide[data-audio="19"] .s19-receipt {
+      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: clamp(10px, 1.4vmin, 18px);
+      padding-left: clamp(12px, 1.6vmin, 22px);
+      border-left: 1px dashed var(--s19-border-strong);
+    }
+    .slide[data-audio="19"] .s19-receipt .cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      align-items: flex-start;
+      min-width: max-content;
+    }
+    .slide[data-audio="19"] .s19-receipt .k {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(16px, 2vmin, 24px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--s19-honey);
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .slide[data-audio="19"] .s19-receipt .v {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(8.5px, 0.9vmin, 10.5px);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #8a6418;
+      color: var(--s19-fg-dim);
+      white-space: nowrap;
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-sub .live {
-      display: inline-flex; align-items: center; gap: 5px;
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .slide[data-audio="19"] .s19-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(9.5px, 1vmin, 12px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s19-fg-dim);
+      opacity: 0;
+      animation: s19-fade 900ms ease 2700ms forwards;
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-sub .live::before {
+    .slide[data-audio="19"] .s19-footer .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide[data-audio="19"] .s19-footer .live::before {
       content: '';
-      width: 5px; height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--s19-green);
-      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
-      animation: s19-blink 1.6s ease-in-out infinite;
+      background: var(--s19-teal);
+      box-shadow: 0 0 10px rgba(67, 192, 190, 0.8);
+      animation: s19-pulse 1800ms ease-in-out infinite;
+    }
+    .slide[data-audio="19"] .s19-footer .c {
+      color: var(--s19-fg-muted);
+      letter-spacing: 0.24em;
+    }
+    .slide[data-audio="19"] .s19-footer .c em {
+      font-style: normal;
+      color: var(--s19-honey);
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes s19-fade { to { opacity: 1; } }
+    @keyframes s19-fade-stroke { to { opacity: 1; } }
+    @keyframes s19-rise { to { opacity: 1; transform: translateY(0); } }
+    @keyframes s19-rise-x { to { opacity: 1; transform: translateX(0); } }
+    @keyframes s19-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(0.85); }
     }
     @keyframes s19-blink {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-divider {
-      height: 1px;
-      background: rgba(254, 189, 51, 0.35);
-      margin: 2px 0;
+    @keyframes s19-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
+    @keyframes s19-spin-rev {
+      from { transform: rotate(360deg); }
+      to   { transform: rotate(0deg); }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-stat {
-      display: flex; flex-direction: column;
-      gap: 2px;
+    @keyframes s19-orb-breathe {
+      0%, 100% { transform: scale(1); box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.45),
+        0 0 24px rgba(254, 189, 51, 0.55),
+        0 0 60px rgba(254, 189, 51, 0.32),
+        inset 0 0 16px rgba(255, 240, 200, 0.3); }
+      50% { transform: scale(1.04); box-shadow:
+        0 0 0 1px rgba(254, 189, 51, 0.55),
+        0 0 32px rgba(254, 189, 51, 0.7),
+        0 0 80px rgba(254, 189, 51, 0.42),
+        inset 0 0 20px rgba(255, 240, 200, 0.45); }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-stat .n {
-      font-size: 17px;
-      font-weight: 800;
-      color: #6e4a08;
-      letter-spacing: -0.02em;
-      font-family: 'Inter', sans-serif;
+    @keyframes s19-cub-breathe {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--s19-teal-glow)); }
+      50%      { transform: scale(1.06); filter: drop-shadow(0 0 9px var(--s19-teal-glow)); }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-stat .l {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8a6418;
+    @keyframes s19-dash {
+      to { stroke-dashoffset: -140; }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-foot {
-      font-size: 10.5px;
-      color: #6e4a08;
-      letter-spacing: -0.005em;
-      line-height: 1.4;
+    @keyframes s19-pkt {
+      0%   { opacity: 0; offset-distance: 0%; }
+      8%   { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { opacity: 0; offset-distance: 100%; }
     }
-    .slide[data-audio="19"] .s19-yogi-card .y-foot b { color: #3a2a08; font-weight: 700; }
-
-    .slide[data-audio="19"] .s19-feedback {
-      position: absolute;
-      bottom: 12px; right: 14px;
-      background: #2c4c79;
-      color: #fff;
-      font-size: 10px;
-      padding: 4px 10px 4px 7px;
-      border-radius: 14px;
-      display: inline-flex; align-items: center; gap: 6px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      white-space: nowrap;
-      z-index: 3;
-    }
-    .slide[data-audio="19"] .s19-feedback .b {
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #5a3a18 0%, #2a1a0a 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 8px;
-    }
-
-    /* "Yogi is here" badge wrapping (target for arrow 2) */
-    .slide[data-audio="19"] .s19-yogi-card.is-target {
-      animation: s19-target-glow 3s ease-in-out infinite;
-    }
-    @keyframes s19-target-glow {
-      0%, 100% {
-        box-shadow:
-          0 0 0 4px rgba(254, 189, 51, 0.14),
-          0 12px 32px rgba(254, 189, 51, 0.22),
-          0 4px 12px rgba(0, 0, 0, 0.10);
-      }
-      50% {
-        box-shadow:
-          0 0 0 6px rgba(254, 189, 51, 0.22),
-          0 14px 36px rgba(254, 189, 51, 0.35),
-          0 4px 12px rgba(0, 0, 0, 0.10);
-      }
-    }
-
-    /* ---------- 4 CALLOUTS (Powered by Yogi X Layer) ---------- */
-    .slide[data-audio="19"] .s19-callouts {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(10px, 1.2vw, 18px);
-      padding-top: clamp(4px, 0.6vh, 8px);
-    }
-    .slide[data-audio="19"] .s19-callout {
-      position: relative;
-      padding: 9px 12px 9px 13px;
-      background: linear-gradient(180deg,
-        rgba(20, 24, 33, 0.82) 0%,
-        rgba(14, 18, 25, 0.82) 100%);
-      border: 1px solid var(--s19-border);
-      border-left: 2px solid var(--s19-honey);
-      border-radius: 8px;
-      display: flex; flex-direction: column;
-      gap: 3px;
-      backdrop-filter: blur(6px);
-    }
-    .slide[data-audio="19"] .s19-callout .num {
-      position: absolute;
-      top: -8px; left: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      color: var(--s19-honey);
-      background: var(--s19-bg);
-      padding: 1px 6px;
-      border: 1px solid var(--s19-honey-line);
-      border-radius: 3px;
-    }
-    .slide[data-audio="19"] .s19-callout .key {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-callout .label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--s19-fg);
-      letter-spacing: -0.01em;
-      line-height: 1.25;
-    }
-    .slide[data-audio="19"] .s19-callout .desc {
-      font-size: 11px;
-      color: var(--s19-fg-muted);
-      line-height: 1.4;
-      letter-spacing: -0.005em;
-    }
-    .slide[data-audio="19"] .s19-callout .desc b {
-      color: var(--s19-honey);
-      font-weight: 600;
-    }
-    .slide[data-audio="19"] .s19-callout .desc .mono {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--s19-fg-dim);
-    }
-
-    /* ---------- PRODUCTIVITY RECEIPT STRIP ---------- */
-    .slide[data-audio="19"] .s19-receipt {
-      display: flex; align-items: stretch;
-      gap: 0;
-      border: 1px solid var(--s19-border);
-      border-radius: 8px;
-      background: linear-gradient(90deg,
-        rgba(254, 189, 51, 0.06) 0%,
-        rgba(20, 24, 33, 0.70) 12%,
-        rgba(14, 18, 25, 0.70) 100%);
-      overflow: hidden;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-    }
-    .slide[data-audio="19"] .s19-receipt .r-label {
-      display: flex; align-items: center; gap: 8px;
-      padding: 9px 14px;
-      background: var(--s19-honey);
-      color: #2a1a04;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      position: relative;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-label::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0; right: -7px;
-      width: 14px;
-      background: var(--s19-honey);
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-      z-index: 1;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-label .bear {
-      font-size: 13px;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-items {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      padding: 0 12px 0 20px;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 9px 16px 9px 12px;
-      border-right: 1px dashed var(--s19-border);
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item:last-child {
-      border-right: 0;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item .r-key {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--s19-fg-dim);
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item .r-val {
-      flex: 1;
-      display: flex; align-items: baseline; gap: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--s19-fg);
-      letter-spacing: -0.01em;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item .r-val .from {
-      color: var(--s19-fg-muted);
-      text-decoration: line-through;
-      font-weight: 500;
-      font-size: 12px;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item .r-val .arr {
-      color: var(--s19-honey);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-    }
-    .slide[data-audio="19"] .s19-receipt .r-item .r-val .to {
-      color: var(--s19-honey);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    /* ---------- Stagger on enter ---------- */
-    @keyframes s19-rise {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes s19-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s19-rise-x {
-      from { opacity: 0; transform: translateX(-10px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    .slide[data-audio="19"] .s19-header { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
-    .slide[data-audio="19"] .s19-stage  { animation: s19-fade 720ms ease-out both; animation-delay: 120ms; }
-    .slide[data-audio="19"] .s19-aura   { animation: s19-fade 1400ms ease-out both; animation-delay: 600ms; }
-    .slide[data-audio="19"] .s19-window { animation: s19-rise 720ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 280ms; }
-    .slide[data-audio="19"] .s19-backend-head { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 380ms; }
-    .slide[data-audio="19"] .s19-layer { animation: s19-rise-x 600ms cubic-bezier(.2,.7,.2,1) both; }
-    .slide[data-audio="19"] .s19-layer:nth-of-type(1) { animation-delay: 460ms; }
-    .slide[data-audio="19"] .s19-layer:nth-of-type(2) { animation-delay: 580ms; }
-    .slide[data-audio="19"] .s19-layer:nth-of-type(3) { animation-delay: 700ms; }
-    .slide[data-audio="19"] .s19-layer:nth-of-type(4) { animation-delay: 820ms; }
-    .slide[data-audio="19"] .s19-callout { animation: s19-rise 540ms cubic-bezier(.2,.7,.2,1) both; }
-    .slide[data-audio="19"] .s19-callout:nth-child(1) { animation-delay: 1000ms; }
-    .slide[data-audio="19"] .s19-callout:nth-child(2) { animation-delay: 1080ms; }
-    .slide[data-audio="19"] .s19-callout:nth-child(3) { animation-delay: 1160ms; }
-    .slide[data-audio="19"] .s19-callout:nth-child(4) { animation-delay: 1240ms; }
-    .slide[data-audio="19"] .s19-receipt { animation: s19-rise 600ms cubic-bezier(.2,.7,.2,1) both; animation-delay: 1380ms; }
 
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="19"] *,
@@ -1333,527 +1379,463 @@
       .slide[data-audio="19"] *::after {
         animation-duration: 0.001ms !important;
         animation-delay: 0ms !important;
-        animation-iteration-count: 1 !important;
         transition: none !important;
       }
     }
 
-    @media (max-height: 820px) {
-      .slide[data-audio="19"] .s19-title { font-size: clamp(26px, 3.0vw, 42px); }
-      .slide[data-audio="19"] .s19-window { max-height: clamp(380px, 52vh, 560px); }
-      .slide[data-audio="19"] .s19-callout .label { font-size: 12px; }
-      .slide[data-audio="19"] .s19-callout .desc { font-size: 10.5px; }
-      .slide[data-audio="19"] .s19-receipt .r-item .r-val { font-size: 12px; }
-    }
-    @media (max-width: 1700px) {
-      .slide[data-audio="19"] .s19-hide-md { display: none; }
-    }
-    @media (max-width: 1500px) {
-      .slide[data-audio="19"] .s19-stage {
-        grid-template-columns: clamp(180px, 14vw, 220px) 1fr;
-        gap: 32px;
+    @media (max-width: 1280px) {
+      .slide[data-audio="19"] .s19-split {
+        grid-template-columns: minmax(0, 0.4fr) minmax(0, 1.05fr) minmax(0, 0.4fr);
+        gap: 16px;
       }
-      .slide[data-audio="19"] .s19-body {
-        grid-template-columns: 48px 180px 200px 1fr;
-      }
-      .slide[data-audio="19"] .s19-tb-version { display: none; }
+      .slide[data-audio="19"] .s19-fleet { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+      .slide[data-audio="19"] .s19-step-action { font-size: 11px; }
     }
   </style>
 
-  <div class="s19-atmos">
-    <div class="s19-grid-bg"></div>
-    <div class="s19-glow"></div>
-    <div class="s19-grain"></div>
-  </div>
-
-  <div class="s19-wrap">
-
-    <!-- HEADER -->
-    <header class="s19-header">
-      <div>
-        <div class="s19-eyebrow">
-          <span class="dot"></span>
-          <span class="num">19 / 26</span>
-          <span class="slash">//</span>
-          <span>WHERE YOGI LIVES</span>
-          <span class="slash">//</span>
-          <span>BRAIN INSIDE THE BODY</span>
-        </div>
-        <h1 class="s19-title">
-          Where Yogi <span class="accent">lives.</span>
-        </h1>
-      </div>
-      <div class="s19-subhead-block">
-        <div class="s19-subhead">
-          <span class="body-cap">TC WORKSPACES (BODY)</span>
-          <span class="arrow">⤺ CONSUMES</span>
-          <span class="brain-cap">YOGI'S BACKEND (BRAIN)</span>
-        </div>
-        <div class="s19-credits-strip">
-          <span class="em-c">MIKE WISE</span>
-          <span class="dot-sep">·</span>
-          <span>WORKSPACES</span>
-          <span class="dot-sep">·</span>
-          <span>500 STAFF</span>
-          <span class="dot-sep">·</span>
-          <span class="em-b">ASH WILLIAMS</span>
-          <span class="dot-sep">·</span>
-          <span>YOGI</span>
-          <span class="dot-sep">·</span>
-          <span>INSIDE</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- STAGE: backend panel + mockup, joined by arrows -->
-    <div class="s19-stage">
-
-      <!-- LEFT — YOGI BACKEND COLUMN -->
-      <aside class="s19-backend">
-        <div class="s19-backend-head">
-          <span class="pip"></span>
-          <span>YOGI · BACKEND</span>
-          <span class="end">BRAIN</span>
-        </div>
-
-        <!-- Layer 1: MEMORY -->
-        <div class="s19-layer s19-l1">
-          <div class="l-head">
-            <span class="l-num">L1</span>
-            <span class="l-name">Memory Layer</span>
-            <span class="l-out" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-          <div class="l-detail">79 files <span class="sep">·</span> <b>markdown</b> <span class="sep">·</span> git</div>
-        </div>
-
-        <!-- Layer 2: AGENT -->
-        <div class="s19-layer s19-l2">
-          <div class="l-head">
-            <span class="l-num">L2</span>
-            <span class="l-name">Agent Layer</span>
-            <span class="l-out" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-          <div class="l-detail"><b>1,000 specialists</b> <span class="sep">·</span> on-demand</div>
-        </div>
-
-        <!-- Layer 3: TOOL -->
-        <div class="s19-layer s19-l3">
-          <div class="l-head">
-            <span class="l-num">L3</span>
-            <span class="l-name">Tool Layer</span>
-            <span class="l-out" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-          <div class="l-detail"><b>328 MCP tools</b> <span class="sep">·</span> write access</div>
-        </div>
-
-        <!-- Layer 4: EVAL -->
-        <div class="s19-layer s19-l4">
-          <div class="l-head">
-            <span class="l-num">L4</span>
-            <span class="l-name">Eval Layer</span>
-            <span class="l-out" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-          <div class="l-detail">12 categories <span class="sep">·</span> <b>95.4%</b> mean</div>
-        </div>
-      </aside>
-
-      <!-- MOCKUP -->
-      <div class="s19-mockwrap">
-        <div class="s19-aura"></div>
-
-        <div class="s19-window">
-          <div class="s19-chrome">
-            <div class="s19-chrome-dot r"></div>
-            <div class="s19-chrome-dot y"></div>
-            <div class="s19-chrome-dot g"></div>
-            <div class="s19-chrome-url">
-              <span class="lock">●</span>
-              <span class="host">assistant.trilogycare.com.au</span>
-              <span style="color:var(--tca-text-faint);">/workspaces/~ashw</span>
-            </div>
-          </div>
-
-          <div class="s19-app">
-
-            <!-- TOP BAR -->
-            <div class="s19-topbar">
-              <div class="s19-tb-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
-              </div>
-              <div class="s19-tb-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
-              </div>
-              <div class="s19-tb-logo">
-                <div class="s19-tb-logo-mark">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M4 14 L8 18 L12 14" stroke="#FEBD33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9 10 L13 14 L17 10" stroke="#43C0BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14 6 L18 10 L22 6" stroke="#2C4C79" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <div class="s19-tb-logo-text">Trilogy Care <b>Assistant</b></div>
-                <div class="s19-tb-version">v1.1.504</div>
-              </div>
-              <div class="s19-tb-search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <span>Search or type a command…</span>
-                <span class="kbd">⌘K</span>
-              </div>
-              <div class="s19-tb-spacer"></div>
-              <div class="s19-tb-account">
-                <div class="av">AW</div>
-                <div class="name">Ash Williams</div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--tca-text-dim);width:10px;height:10px;"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
-            </div>
-
-            <!-- BETA -->
-            <div class="s19-beta">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-              </svg>
-              <b>Trilogy Care Assistant is in active beta testing.</b>
-              <span>See the <a>release notes</a>, <a>known bugs</a>, or <a>send feedback</a>.</span>
-              <span class="close">✕</span>
-            </div>
-
-            <!-- BODY -->
-            <div class="s19-body">
-
-              <!-- RAIL -->
-              <div class="s19-rail">
-                <div class="s19-rail-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  <span>Chat</span>
-                </div>
-                <div class="s19-rail-item active">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                  <span>Workspaces</span>
-                </div>
-                <div class="s19-rail-spacer"></div>
-                <div class="s19-rail-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
-                  <span>Help</span>
-                </div>
-                <div class="s19-rail-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                  <span>Settings</span>
-                </div>
-              </div>
-
-              <!-- WS SIDE -->
-              <div class="s19-ws-side">
-                <div class="s19-ws-head">
-                  <div class="s19-ws-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                    Workspaces
-                  </div>
-                  <div class="s19-ws-new">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    New
-                  </div>
-                </div>
-                <div class="s19-ws-filter">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span>Filter…</span>
-                </div>
-                <div class="s19-ws-toggle">
-                  <button class="on">Active</button>
-                  <button>Archived</button>
-                </div>
-                <div class="s19-ws-home">
-                  <div class="home-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/></svg>
-                  </div>
-                  <div class="home-label">Home <span class="h">~ashw</span></div>
-                </div>
-                <div class="s19-ws-section">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                  Workspaces
-                  <span class="count">6</span>
-                </div>
-                <div class="s19-ws-tag">Pinned</div>
-                <div class="s19-ws-item">
-                  <div class="left"><span class="name">Yogi</span></div>
-                  <span class="time">9d</span>
-                </div>
-                <div class="s19-ws-tag">Older</div>
-                <div class="s19-ws-item muted">
-                  <div class="left"><span class="name">Indigo Pulse · 5 May</span></div>
-                  <span class="time">18d</span>
-                </div>
-                <div class="s19-ws-item muted">
-                  <div class="left"><span class="name">Daily Briefing</span></div>
-                  <span class="time">15/04</span>
-                </div>
-                <div class="s19-ws-item muted">
-                  <div class="left"><span class="name">PLA Watch</span></div>
-                  <span class="time">14/04</span>
-                </div>
-              </div>
-
-              <!-- EXPLORER -->
-              <div class="s19-explorer" id="s19-explorer">
-                <div class="s19-ex-bar">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
-                  <span class="title">~ashw</span>
-                  <span class="strike">Aa</span>
-                  <div class="spacer"></div>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                </div>
-                <div class="s19-ex-label">Explorer</div>
-                <div class="s19-ex-filter">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span>Filter files…</span>
-                </div>
-                <div class="s19-ex-tree">
-                  <div class="s19-ex-row">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">docs</span>
-                  </div>
-                  <div class="s19-ex-row">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">specialists</span>
-                  </div>
-                  <!-- ARROW 1 TARGET: memory/ -->
-                  <div class="s19-ex-row highlight" id="s19-target-memory">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">memory</span>
-                  </div>
-                  <div class="s19-ex-row">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">profiles</span>
-                  </div>
-                  <div class="s19-ex-row">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">skills</span>
-                  </div>
-                  <div class="s19-ex-row">
-                    <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
-                    <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                    <span class="name">trilogycare</span>
-                  </div>
-
-                  <!-- ARROW 3 TARGET: OneDrive section -->
-                  <div class="s19-ex-onedrive highlight" id="s19-target-onedrive">
-                    <div class="s19-ex-onedrive-head">
-                      <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg></span>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-                      OneDrive
-                    </div>
-                  </div>
-                  <div class="s19-ex-od-rows">
-                    <div class="s19-ex-od-row">
-                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                      <span>Attachments</span>
-                    </div>
-                    <div class="s19-ex-od-row">
-                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                      <span>CQCC Reporting</span>
-                    </div>
-                    <div class="s19-ex-od-row">
-                      <span class="folder"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l3-3h5l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-                      <span>Meetings</span>
-                    </div>
-                    <div class="s19-ex-od-row">
-                      <span class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-                      <span>Book.xlsx</span>
-                      <span class="size">6.0 KB</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- MAIN -->
-              <div class="s19-main">
-
-                <div class="s19-main-bar">
-                  <div class="s19-main-btn s19-hide-md">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    New file
-                  </div>
-                  <div class="spacer"></div>
-
-                  <!-- ARROW 4 TARGET: Explorer / Chat / Claude buttons -->
-                  <div class="s19-main-btns-wrap highlight" id="s19-target-buttons">
-                    <div class="s19-main-btn active">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9" y1="4" x2="9" y2="20"/></svg>
-                      Explorer
-                    </div>
-                    <div class="s19-main-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                      Chat
-                    </div>
-                    <div class="s19-main-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                      Claude
-                    </div>
-                  </div>
-                </div>
-
-                <div class="s19-tabs">
-                  <div class="s19-tab">
-                    <span class="md-chip">MD</span>
-                    README.md
-                    <span class="close">×</span>
-                  </div>
-                </div>
-
-                <div class="s19-subtools">
-                  <div class="s19-subtool">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
-                    Edit
-                  </div>
-                  <div class="s19-subtool active">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Preview
-                  </div>
-                  <div class="s19-subtool">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-                    Split
-                  </div>
-                  <div class="spacer"></div>
-                </div>
-
-                <!-- CANVAS — ARROW 2 TARGET -->
-                <div class="s19-canvas">
-                  <div class="s19-yogi-card is-target" id="s19-target-active">
-                    <div class="y-head">
-                      <div class="y-bear">🐻</div>
-                      <div class="y-text">
-                        <div class="y-title">Yogi is active in this workspace</div>
-                        <div class="y-sub"><span class="live">Standing by · Ash's substrate loaded</span></div>
-                      </div>
-                    </div>
-                    <div class="y-divider"></div>
-                    <div class="y-stats">
-                      <div class="y-stat"><div class="n">79</div><div class="l">memory files</div></div>
-                      <div class="y-stat"><div class="n">1,000</div><div class="l">specialists</div></div>
-                      <div class="y-stat"><div class="n">328</div><div class="l">tools</div></div>
-                    </div>
-                    <div class="y-foot">
-                      Same bear, <b>every desk.</b> Each staffer's Workspace becomes their <b>personal Yogi</b> — no context leak between users.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="s19-feedback">
-                  <span class="b">🐻</span>
-                  Feedback
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SVG OVERLAY: 4 honey data-flow arrows ============================== -->
-      <div class="s19-arrows" aria-hidden="true">
-        <svg viewBox="0 0 1000 700" preserveAspectRatio="none">
-          <defs>
-            <!-- Soft glow filter on dashes via stroke filter; using drop-shadow on CSS -->
-          </defs>
-
-          <!-- ARROW 1: Memory Layer (left ~22% top) → memory/ folder in Explorer -->
-          <!-- start: (218, 130) end: (510, 360) -->
-          <path class="flow f1"
-                d="M 218,130 C 320,130 360,300 510,360" />
-          <circle class="ring r1" cx="510" cy="360" r="6" />
-          <polygon class="head h1" points="500,355 514,360 500,365" />
-          <circle class="pkt p1" r="3" style="offset-path: path('M 218,130 C 320,130 360,300 510,360'); offset-rotate: auto;" />
-
-          <!-- ARROW 2: Agent Layer (left ~22% top-mid) → Yogi-active badge in main pane (center) -->
-          <!-- start: (218, 250) end: (760, 470) -->
-          <path class="flow f2"
-                d="M 218,250 C 380,250 540,450 760,470" />
-          <circle class="ring r2" cx="760" cy="470" r="6" />
-          <polygon class="head h2" points="750,465 764,470 750,475" />
-          <circle class="pkt p2" r="3" style="offset-path: path('M 218,250 C 380,250 540,450 760,470'); offset-rotate: auto;" />
-
-          <!-- ARROW 3: Tool Layer (left ~22% mid-low) → OneDrive section in Explorer -->
-          <!-- start: (218, 380) end: (510, 540) -->
-          <path class="flow f3"
-                d="M 218,380 C 320,400 360,510 510,540" />
-          <circle class="ring r3" cx="510" cy="540" r="6" />
-          <polygon class="head h3" points="500,535 514,540 500,545" />
-          <circle class="pkt p3" r="3" style="offset-path: path('M 218,380 C 320,400 360,510 510,540'); offset-rotate: auto;" />
-
-          <!-- ARROW 4: Eval Layer (left ~22% low) → Explorer/Chat/Claude buttons (top-right of main pane) -->
-          <!-- start: (218, 510) end: (900, 295) -->
-          <path class="flow f4"
-                d="M 218,510 C 420,520 600,360 900,295" />
-          <circle class="ring r4" cx="900" cy="295" r="6" />
-          <polygon class="head h4" points="890,290 904,295 890,300" />
-          <circle class="pkt p4" r="3" style="offset-path: path('M 218,510 C 420,520 600,360 900,295'); offset-rotate: auto;" />
-        </svg>
-      </div>
+  <div class="content">
+    <!-- atmosphere -->
+    <div class="s19-atmos">
+      <div class="s19-glow-top"></div>
+      <div class="s19-glow-right"></div>
+      <div class="s19-grid"></div>
     </div>
 
-    <!-- 4 CALLOUTS — POWERED BY YOGI X LAYER -->
-    <div class="s19-callouts">
-      <div class="s19-callout">
-        <div class="num">01</div>
-        <div class="key">memory/</div>
-        <div class="label">Powered by Yogi Memory Layer</div>
-        <div class="desc"><b>79 files</b> · git-snapshotted markdown that survives every restart.</div>
-      </div>
-      <div class="s19-callout">
-        <div class="num">02</div>
-        <div class="key">specialists/</div>
-        <div class="label">Powered by Yogi Agent Layer</div>
-        <div class="desc"><b>1,000 sub-agents</b> · spawned on demand, return only the answer.</div>
-      </div>
-      <div class="s19-callout">
-        <div class="num">03</div>
-        <div class="key">OneDrive + M365</div>
-        <div class="label">Powered by Yogi Tool Layer</div>
-        <div class="desc"><b>328 MCP tools</b> · real write access into Zoho, MYOB, Teams, OneDrive.</div>
-      </div>
-      <div class="s19-callout">
-        <div class="num">04</div>
-        <div class="key">Explorer · Chat · Claude</div>
-        <div class="label">Powered by Yogi Eval Layer</div>
-        <div class="desc"><b>12 categories</b> · every response gated at 95.4% mean pass.</div>
-      </div>
-    </div>
+    <!-- corner crosshairs -->
+    <div class="s19-corner tl"></div>
+    <div class="s19-corner tr"></div>
+    <div class="s19-corner bl"></div>
+    <div class="s19-corner br"></div>
 
-    <!-- PRODUCTIVITY RECEIPT STRIP -->
-    <div class="s19-receipt">
-      <div class="r-label">
-        <span class="bear">🐻</span>
-        <span>Productivity</span>
-      </div>
-      <div class="r-items">
-        <div class="r-item">
-          <span class="r-key">App switches</span>
-          <span class="r-val"><span class="from">5</span><span class="arr">→</span><span class="to">0</span></span>
-        </div>
-        <div class="r-item">
-          <span class="r-key">Context recall</span>
-          <span class="r-val"><span class="from">12 min</span><span class="arr">→</span><span class="to">0 sec</span></span>
-        </div>
-        <div class="r-item">
-          <span class="r-key">Investigation</span>
-          <span class="r-val"><span class="from">1 day</span><span class="arr">→</span><span class="to">47 sec</span></span>
-        </div>
-      </div>
-    </div>
+    <div class="s19-frame">
 
+      <!-- =========================== HEADER =========================== -->
+      <header class="s19-header">
+        <div class="s19-header-l">
+          <div class="s19-eyebrow">
+            <span class="dot"></span>
+            <span>BIGGEST UNSHIPPED FEATURE</span>
+            <span class="sep">/</span>
+            <span>SLIDE 19 OF 26</span>
+            <span class="sep">/</span>
+            <span>YOGI v4 · TC LEADERSHIP</span>
+          </div>
+          <h1 class="s19-title">Cubs<em>.</em></h1>
+          <div class="s19-subhead">
+            <span>Yogi's hands</span>
+            <span class="pip">·</span>
+            <span>On every Mac</span>
+            <span class="pip">·</span>
+            <span>Companion interaction supercharged</span>
+          </div>
+        </div>
+        <div class="s19-header-r">
+          <div class="s19-stamp"><span class="pre">▲</span>&nbsp; Roadmap · PRE-FLIGHT</div>
+          <div class="s19-slidenum">19 / 26</div>
+          <div class="s19-companion-chip">
+            <span class="dot"></span>
+            <span>Operator-in-the-loop · Approve every action</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- =========================== 3-COL SPLIT =========================== -->
+      <div class="s19-split">
+
+        <!-- ===================== LEFT — Topology (compact) ===================== -->
+        <section class="s19-left">
+
+          <div class="s19-panel-head">
+            <span class="tag">A · TOPOLOGY</span>
+            <span>1 : 500</span>
+            <span class="divider"></span>
+          </div>
+
+          <!-- Yogi orb -->
+          <div class="s19-cloud">
+            <div class="s19-orb-wrap">
+              <div class="s19-orb-rings"></div>
+              <div class="s19-orb"></div>
+              <div class="s19-orb-label">
+                <span class="name">Yogi <em>(cloud)</em></span>
+                <span>plans · routes · remembers</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashed connectors cloud → fleet -->
+          <div class="s19-connectors">
+            <svg viewBox="0 0 500 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 250 0 C 250 30,  50 50,  50 100" />
+              <path d="M 250 0 C 250 30, 150 50, 150 100" />
+              <path d="M 250 0 C 250 30, 250 50, 250 100" />
+              <path d="M 250 0 C 250 30, 350 50, 350 100" />
+              <path d="M 250 0 C 250 30, 450 50, 450 100" />
+
+              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30,  50 50,  50 100');"></circle>
+              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 150 50, 150 100');"></circle>
+              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 250 50, 250 100');"></circle>
+              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 350 50, 350 100');"></circle>
+              <circle class="pkt" r="2.4" style="offset-path: path('M 250 0 C 250 30, 450 50, 450 100');"></circle>
+            </svg>
+          </div>
+
+          <!-- Mac fleet (5 wide) -->
+          <div class="s19-fleet">
+            <div class="s19-mac">
+              <div class="s19-mac-shape">
+                <div class="s19-mac-screen">
+                  <div class="s19-cub">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
+                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
+                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
+                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
+                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="s19-mac-hinge"></div>
+                <div class="s19-mac-base"></div>
+              </div>
+              <div class="s19-mac-label">Cub <span class="num">·001</span></div>
+            </div>
+
+            <div class="s19-mac">
+              <div class="s19-mac-shape">
+                <div class="s19-mac-screen">
+                  <div class="s19-cub">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
+                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
+                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
+                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
+                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="s19-mac-hinge"></div>
+                <div class="s19-mac-base"></div>
+              </div>
+              <div class="s19-mac-label">Cub <span class="num">·002</span></div>
+            </div>
+
+            <div class="s19-mac">
+              <div class="s19-mac-shape">
+                <div class="s19-mac-screen">
+                  <div class="s19-cub">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
+                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
+                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
+                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
+                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="s19-mac-hinge"></div>
+                <div class="s19-mac-base"></div>
+              </div>
+              <div class="s19-mac-label">Cub <span class="num">·003</span></div>
+            </div>
+
+            <div class="s19-mac">
+              <div class="s19-mac-shape">
+                <div class="s19-mac-screen">
+                  <div class="s19-cub">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
+                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
+                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
+                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
+                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="s19-mac-hinge"></div>
+                <div class="s19-mac-base"></div>
+              </div>
+              <div class="s19-mac-label">Cub <span class="num">·004</span></div>
+            </div>
+
+            <div class="s19-mac">
+              <div class="s19-mac-shape">
+                <div class="s19-mac-screen">
+                  <div class="s19-cub">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="9" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="23" cy="9" r="3.8" fill="#43C0BE"/>
+                      <circle cx="9" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="23" cy="9" r="1.6" fill="#0a0d12"/>
+                      <circle cx="16" cy="17" r="9" fill="#43C0BE"/>
+                      <ellipse cx="16" cy="22" rx="5.5" ry="4" fill="#0a0d12" opacity="0.55"/>
+                      <circle cx="16" cy="19.5" r="1.4" fill="#0a0d12"/>
+                      <circle cx="13.5" cy="15" r="1.2" fill="#0a0d12"/>
+                      <circle cx="18.5" cy="15" r="1.2" fill="#0a0d12"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="s19-mac-hinge"></div>
+                <div class="s19-mac-base"></div>
+              </div>
+              <div class="s19-mac-label">Cub <span class="num">·500</span></div>
+            </div>
+          </div>
+
+          <div class="s19-fleet-caption">
+            <strong>1</strong> bear<span class="pip">·</span><strong>500</strong> cubs
+          </div>
+
+          <!-- Release callout -->
+          <div class="s19-callout">
+            <span class="badge">AUG&nbsp;2026</span>
+            <span class="copy">
+              <strong>Mac alpha</strong> — Sales + Marketing, then Care Delivery.
+            </span>
+          </div>
+
+        </section>
+
+        <!-- ===================== CENTER — HERO VIDEO STAGE ===================== -->
+        <section class="s19-stage">
+
+          <div class="s19-stage-head">
+            <span class="tag">B · LIVE EVIDENCE</span>
+            <span class="meta">Cub session · operator's Mac · TC-5012 reply task</span>
+            <span class="divider"></span>
+            <span class="tag live">REC</span>
+          </div>
+
+          <!-- The Mac-style window -->
+          <div class="s19-window">
+
+            <!-- Window chrome -->
+            <div class="s19-chrome">
+              <div class="s19-dots">
+                <span class="s19-dot red"></span>
+                <span class="s19-dot yellow"></span>
+                <span class="s19-dot green"></span>
+              </div>
+              <div class="s19-urlbar">
+                <span class="lock">⌬</span>
+                <span class="scheme">cub://</span><span class="path">session/operator-task-tc-5012</span>
+                <span class="cursor-blink"></span>
+              </div>
+              <div class="s19-chrome-meta">CUB <strong>·001</strong> · MACBOOK PRO 14</div>
+            </div>
+
+            <!-- The screen surface -->
+            <div class="s19-screen">
+              <img src="assets/clicky-demo.gif" alt="Cub agent autonomously moving cursor, clicking, and filling forms on the operator's Mac" />
+
+              <!-- Leader lines pointing into the action -->
+              <div class="s19-leaders">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="14" y1="8" x2="38" y2="34" />
+                  <line x1="86" y1="8" x2="62" y2="22" />
+                  <circle class="target" cx="38" cy="34" r="2.4" />
+                  <circle class="target" cx="62" cy="22" r="2.4" />
+                </svg>
+              </div>
+
+              <!-- Annotation chips -->
+              <div class="s19-anno tl">
+                <span class="pulse"></span>
+                <span>Cub Active · Operator's Mac</span>
+              </div>
+              <div class="s19-anno tr">
+                <span class="pulse"></span>
+                <span>Live Playback</span>
+              </div>
+              <div class="s19-anno bl">
+                <span class="accent">Cursor controlled by Yogi</span>&nbsp;·&nbsp;operator watches
+              </div>
+              <div class="s19-anno br">
+                <span class="accent">47s task</span><span class="arr">→</span><span class="accent">4s of checking</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Companion strip beneath the video -->
+          <div class="s19-companion">
+            <span class="left">
+              <span class="dot"></span>
+              <strong>Companion</strong> · not autonomous
+            </span>
+            <span class="right">
+              Operator <em>always</em> in the loop · <em>approves</em> every action
+            </span>
+          </div>
+
+        </section>
+
+        <!-- ===================== RIGHT — Anatomy (compact 5 beats) ===================== -->
+        <section class="s19-right">
+
+          <div class="s19-panel-head">
+            <span class="tag">C · ANATOMY</span>
+            <span>5 BEATS</span>
+            <span class="divider"></span>
+          </div>
+
+          <div class="s19-steps">
+
+            <!-- Step 1 — Yogi plans -->
+            <div class="s19-step s19-step--yogi">
+              <div class="s19-step-node"><div class="ring"></div></div>
+              <div class="s19-step-card">
+                <div class="s19-step-head">
+                  <span class="s19-chip s19-chip--yogi">Yogi</span>
+                  <span class="s19-step-num"><strong>01</strong> · PLAN</span>
+                  <span class="s19-step-head-rule"></span>
+                </div>
+                <div class="s19-step-action">
+                  Plans <span class="accent-h">the action</span>.
+                </div>
+                <div class="s19-step-trace">
+                  <span class="arr">→</span>
+                  <span>yogi.plan( TC-5012 )</span>
+                  <span class="ok">✓</span>
+                  <span class="ms">+0.6s</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 — Cub opens -->
+            <div class="s19-step s19-step--cub">
+              <div class="s19-step-node"><div class="ring"></div></div>
+              <div class="s19-step-card">
+                <div class="s19-step-head">
+                  <span class="s19-chip s19-chip--cub">Cub</span>
+                  <span class="s19-step-num"><strong>02</strong> · OPEN</span>
+                  <span class="s19-step-head-rule"></span>
+                </div>
+                <div class="s19-step-action">
+                  Opens the <span class="accent-t">tab</span>.
+                </div>
+                <div class="s19-step-trace">
+                  <span class="arr">→</span>
+                  <span>cub.browser.open( portal )</span>
+                  <span class="ok">✓</span>
+                  <span class="ms">+1.4s</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 — Cub fills -->
+            <div class="s19-step s19-step--cub">
+              <div class="s19-step-node"><div class="ring"></div></div>
+              <div class="s19-step-card">
+                <div class="s19-step-head">
+                  <span class="s19-chip s19-chip--cub">Cub</span>
+                  <span class="s19-step-num"><strong>03</strong> · COMPOSE</span>
+                  <span class="s19-step-head-rule"></span>
+                </div>
+                <div class="s19-step-action">
+                  Fills the form. Attaches the <span class="accent-t">file</span>.
+                </div>
+                <div class="s19-step-trace">
+                  <span class="arr">→</span>
+                  <span>cub.form.fill(...)</span>
+                  <span class="ok">✓ 2</span>
+                  <span class="ms">+3.2s</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 — Cub pauses -->
+            <div class="s19-step s19-step--cub">
+              <div class="s19-step-node"><div class="ring"></div></div>
+              <div class="s19-step-card">
+                <div class="s19-step-head">
+                  <span class="s19-chip s19-chip--cub">Cub</span>
+                  <span class="s19-step-num"><strong>04</strong> · PAUSE</span>
+                  <span class="s19-step-head-rule"></span>
+                </div>
+                <div class="s19-step-action">
+                  Highlights the diff. Hands off.
+                </div>
+                <div class="s19-step-trace">
+                  <span class="arr">→</span>
+                  <span>cub.review.handoff()</span>
+                  <span class="wait">⏸</span>
+                  <span class="ms">+3.8s</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 — Operator approves -->
+            <div class="s19-step s19-step--op">
+              <div class="s19-step-node"><div class="ring"></div></div>
+              <div class="s19-step-card">
+                <div class="s19-step-head">
+                  <span class="s19-chip s19-chip--op">Operator</span>
+                  <span class="s19-step-num"><strong>05</strong> · APPROVE</span>
+                  <span class="s19-step-head-rule"></span>
+                </div>
+                <div class="s19-step-action">
+                  Clicks <span class="accent-s">approve</span>. Shipped.
+                </div>
+                <div class="s19-step-trace">
+                  <span class="arr">→</span>
+                  <span>operator.click( approve )</span>
+                  <span class="ok">✓</span>
+                  <span class="ms">+4.1s</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!-- =========================== QUOTE + RECEIPT STRIP =========================== -->
+      <div class="s19-quote">
+        <span class="mark">"</span>
+        <div class="body">
+          From <em>minutes-of-doing</em> to <em>seconds-of-checking.</em>
+          <span class="tail">A companion — not a replacement. The operator watches, checks, approves. Multiplied across five hundred staffers, the lift is structural.</span>
+        </div>
+        <div class="s19-receipt">
+          <div class="cell">
+            <span class="k">5×</span>
+            <span class="v">Cubs / Operator</span>
+          </div>
+          <div class="cell">
+            <span class="k">47s → 4s</span>
+            <span class="v">Task → Approval</span>
+          </div>
+          <div class="cell">
+            <span class="k">40,000</span>
+            <span class="v">Cub-tasks / day</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- =========================== FOOTER =========================== -->
+      <footer class="s19-footer">
+        <span class="live">YOGI v4 · CUBS PROGRAM · MAC ALPHA</span>
+        <span class="c">Chat is what I say. <em>Cubs are what I do.</em></span>
+        <span>19 / 26 · TC LEADERSHIP</span>
+      </footer>
+
+    </div>
   </div>
 </section>
