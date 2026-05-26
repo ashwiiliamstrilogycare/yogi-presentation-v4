@@ -9828,755 +9828,2253 @@
 </section>
 
 <section class="slide" data-audio="09">
+  <!--
+    VOICEOVER · slide 09 · Bill · ~36s (regenerate via ElevenLabs Bill voice)
+    ----------------------------------------------------------------------------
+    "Mythos. Twenty-four research threads. Fourteen laboratory brains. Anthropic,
+     OpenAI, DeepMind, Google Brain, Stanford, Princeton, Meta, Microsoft,
+     Berkeley, Mistral, xAI, Cohere, DeepSeek, Alibaba Qwen. Yogi composes from
+     every brain. Constitutional AI, MCP, ReAct, Reflexion, RAG, multi-agent
+     orchestration, function calling, HELM, DSPy, Tree of Thoughts, sparse
+     mixture of experts, retrieval reranking, computer use, structured output.
+     Every thread tested against real Trilogy operations. Citations real.
+     Measurements real. Not theory — production."
+    ----------------------------------------------------------------------------
+  -->
   <style>
-    /* ============================================================
-       SLIDE 07 — WHAT YOGI DOES TODAY (capability grid)
-       Stripe status dashboard × mission-control telemetry.
-       10 capability tiles. Hairline glass. Honey accents.
-       Phase-synced pulsing dots. Mono receipts.
-       ============================================================ */
+    /* =====================================================================
+       SLIDE 09 — MYTHOS · MANY BRAINS, ONE YOGI
+       Neuroscience-museum specimen catalog × NASA telemetry × Anthropic
+       research-citations page. 14-brain constellation header, 24-thread
+       2-column board, honey-spine wires, teal measured pills.
+       ===================================================================== */
 
     .slide[data-audio="09"] {
-      --s07-bg:         #0a0d12;
-      --s07-bg-elev:    #11161f;
-      --s07-bg-tile:    #0e1219;
-      --s07-honey:      #FEBD33;
-      --s07-honey-soft: rgba(254, 189, 51, 0.10);
-      --s07-honey-glow: rgba(254, 189, 51, 0.45);
-      --s07-honey-line: rgba(254, 189, 51, 0.25);
-      --s07-teal:       #43C0BE;
-      --s07-green:      #5ee08a;
-      --s07-fg:         #f4f4f5;
-      --s07-fg-muted:   #a1a1aa;
-      --s07-fg-dim:     #71717a;
-      --s07-fg-faint:   #52525b;
-      --s07-border:     rgba(255, 255, 255, 0.08);
-      --s07-border-hi:  rgba(255, 255, 255, 0.14);
+      --s09-row-h: 28px;
+      --s09-row-gap: 2px;
+      --s09-brain-size: 24px;
+      --s09-const-h: clamp(58px, 6.4vh, 78px);
+
+      --s09-honey:        #FEBD33;
+      --s09-honey-soft:   rgba(254, 189, 51, 0.10);
+      --s09-honey-glow:   rgba(254, 189, 51, 0.45);
+      --s09-honey-line:   rgba(254, 189, 51, 0.28);
+      --s09-teal:         #43C0BE;
+      --s09-sky:          #64BCEA;
+      --s09-violet:       #9B7BD4;
+      --s09-coral:        #F39B5A;
+      --s09-dark-teal:    #007F7E;
+      --s09-red:          #E04B51;
+      --s09-bg:           #0a0d12;
+      --s09-bg-elev:      #11161f;
+      --s09-fg:           #f4f4f5;
+      --s09-fg-muted:     #a1a1aa;
+      --s09-fg-dim:       #71717a;
+      --s09-fg-faint:     #52525b;
+      --s09-border:       rgba(255, 255, 255, 0.08);
 
       position: relative;
       width: 100%;
       height: 100%;
       min-height: 100vh;
-      background: var(--s07-bg);
-      color: var(--s07-fg);
+      background:
+        radial-gradient(ellipse 60% 50% at 14% 18%, rgba(254,189,51,0.055), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 88% 82%, rgba(67,192,190,0.04), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(254,189,51,0.022), transparent 70%),
+        var(--s09-bg);
+      color: var(--s09-fg);
       font-family: 'Inter', system-ui, -apple-system, 'SF Pro Display', sans-serif;
       overflow: hidden;
-      isolation: isolate;
       letter-spacing: -0.01em;
+      box-sizing: border-box;
+      isolation: isolate;
     }
 
-    /* ---------- Atmosphere: faint engineering grid + offset glow ---------- */
-    .slide[data-audio="09"] .s07-atmos {
-      position: absolute;
-      inset: 0;
+    /* faint engineering grid */
+    .slide[data-audio="09"]::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 92%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 92%);
       pointer-events: none;
       z-index: 0;
     }
 
-    .slide[data-audio="09"] .s07-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse at 50% 38%, black 30%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 38%, black 30%, transparent 80%);
-    }
-
-    .slide[data-audio="09"] .s07-glow {
-      position: absolute;
-      top: 18%;
-      left: 50%;
-      width: 90vmin;
-      height: 60vmin;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(
-        ellipse at center,
-        rgba(254, 189, 51, 0.10) 0%,
-        rgba(254, 189, 51, 0.03) 35%,
-        transparent 70%
-      );
-      filter: blur(14px);
-    }
-
-    .slide[data-audio="09"] .s07-grain {
-      position: absolute;
-      inset: 0;
-      opacity: 0.04;
+    /* film grain */
+    .slide[data-audio="09"]::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.38;
       mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ---------- Content frame ---------- */
-    .slide[data-audio="09"] .s07-frame {
+    .s09-frame {
       position: relative;
-      z-index: 1;
       width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      padding: clamp(40px, 5vh, 64px) clamp(48px, 6vw, 96px);
+      height: 100vh;
+      padding: 44px clamp(40px, 4vw, 80px) 28px;
       display: flex;
       flex-direction: column;
-      gap: clamp(28px, 3vh, 40px);
+      box-sizing: border-box;
+      z-index: 1;
     }
 
-    /* ---------- Header ---------- */
-    .slide[data-audio="09"] .s07-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-      padding-bottom: clamp(18px, 2vh, 28px);
-      border-bottom: 1px solid var(--s07-border);
-      position: relative;
-    }
-
-    .slide[data-audio="09"] .s07-header::after {
-      content: "";
+    /* registration marks */
+    .s09-mark {
       position: absolute;
-      left: 0;
-      bottom: -1px;
-      width: 96px;
-      height: 1px;
-      background: var(--s07-honey);
-      box-shadow: 0 0 12px var(--s07-honey-glow);
+      width: 14px; height: 14px;
+      border: 1px solid rgba(254,189,51,0.30);
+      z-index: 5;
     }
-
-    .slide[data-audio="09"] .s07-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .s09-mark.tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+    .s09-mark.tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+    .s09-mark.bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+    .s09-mark.br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+    .s09-stamp {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(10px, 0.9vw, 12px);
-      font-weight: 500;
-      color: var(--s07-honey);
-      letter-spacing: 0.22em;
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      color: var(--s09-fg-dim);
       text-transform: uppercase;
-      margin-bottom: 14px;
+      z-index: 5;
     }
 
-    .slide[data-audio="09"] .s07-eyebrow::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      background: var(--s07-honey);
+    /* ---------- HEADER ---------- */
+    .s09-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 10px;
+      padding-top: 2px;
+    }
+
+    .s09-eyebrow {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10px, 0.72vw, 11.5px);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--s09-fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .s09-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--s09-honey);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--s07-honey-glow);
-      animation: s07-pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 12px var(--s09-honey);
+      animation: s09-pulse 2.4s ease-in-out infinite;
+    }
+    .s09-eyebrow .sep { color: var(--s09-honey); }
+    @keyframes s09-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.45; transform: scale(0.85); }
     }
 
-    .slide[data-audio="09"] .s07-title {
-      font-size: clamp(40px, 5vw, 68px);
+    .s09-headline {
+      font-size: clamp(32px, 3.4vw, 56px);
       font-weight: 800;
       line-height: 0.96;
       letter-spacing: -0.035em;
       margin: 0;
-      color: var(--s07-fg);
+    }
+    .s09-headline .accent {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--s09-honey);
+      letter-spacing: -0.02em;
     }
 
-    .slide[data-audio="09"] .s07-title em {
-      font-style: normal;
-      color: var(--s07-honey);
-      font-weight: 800;
-    }
-
-    .slide[data-audio="09"] .s07-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
+    .s09-sub {
+      max-width: 360px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(10.5px, 0.72vw, 12px);
+      line-height: 1.55;
+      color: var(--s09-fg-muted);
       text-align: right;
+      padding-bottom: 4px;
+    }
+    .s09-sub strong { color: var(--s09-fg); font-weight: 500; }
+    .s09-sub .rule {
+      width: 56px; height: 1px;
+      background: var(--s09-honey-line);
+      margin: 0 0 10px auto;
     }
 
-    .slide[data-audio="09"] .s07-meta-row {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 11px;
-      color: var(--s07-fg-muted);
-      letter-spacing: 0.04em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .slide[data-audio="09"] .s07-meta-row .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--s07-green);
-      box-shadow: 0 0 8px rgba(94, 224, 138, 0.6);
-      animation: s07-pulse 2.4s ease-in-out infinite;
-    }
-
-    .slide[data-audio="09"] .s07-meta-row .label {
-      color: var(--s07-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 10px;
-    }
-
-    /* ---------- Capability grid ---------- */
-    .slide[data-audio="09"] .s07-grid-wrap {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: clamp(12px, 1.2vw, 18px);
-      min-height: 0;
-    }
-
-    .slide[data-audio="09"] .s07-tile {
+    /* ---------- CONSTELLATION ROW (14 brain glyphs) ---------- */
+    .s09-constellation {
       position: relative;
-      background: var(--s07-bg-tile);
-      border: 1px solid var(--s07-border);
-      border-radius: 14px;
-      padding: clamp(16px, 1.4vw, 22px) clamp(16px, 1.4vw, 22px) clamp(14px, 1.2vw, 18px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow: hidden;
-      transition: border-color 280ms ease, transform 280ms ease, background 280ms ease;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: s07-tile-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      display: grid;
+      grid-template-columns: repeat(14, minmax(0, 1fr));
+      gap: 0;
+      padding: 14px 4px 16px;
+      margin-bottom: 18px;
+      min-height: var(--s09-const-h);
+      flex-shrink: 0;
+      border-top: 1px solid var(--s09-border);
+      border-bottom: 1px solid var(--s09-border);
+      background:
+        linear-gradient(180deg,
+          rgba(254,189,51,0.015) 0%,
+          transparent 50%,
+          rgba(67,192,190,0.012) 100%);
+      z-index: 4;
+      isolation: isolate;
     }
 
-    .slide[data-audio="09"] .s07-tile::before {
+    /* hairline tick rule */
+    .s09-constellation::before {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(254, 189, 51, 0.06) 0%,
-          transparent 45%
-        );
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 280ms ease;
+      left: 50%;
+      top: -1px;
+      width: 64px;
+      height: 1px;
+      transform: translateX(-50%);
+      background: var(--s09-honey);
+      box-shadow: 0 0 12px var(--s09-honey-glow);
     }
 
-    .slide[data-audio="09"] .s07-tile::after {
-      content: "";
+    .s09-constellation-label {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 36px;
-      height: 36px;
-      background:
-        linear-gradient(225deg, var(--s07-honey-line), transparent 60%);
-      mask: linear-gradient(225deg, black 50%, transparent 50%);
-      -webkit-mask: linear-gradient(225deg, black 50%, transparent 50%);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .slide[data-audio="09"] .s07-tile:hover {
-      border-color: var(--s07-honey-line);
-      transform: translateY(-2px);
-      background: linear-gradient(180deg, #131923 0%, #0e1219 100%);
-    }
-
-    .slide[data-audio="09"] .s07-tile:hover::before {
-      opacity: 1;
-    }
-
-    /* Staggered entry */
-    .slide[data-audio="09"] .s07-tile:nth-child(1)  { animation-delay: 120ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(2)  { animation-delay: 180ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(3)  { animation-delay: 240ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(4)  { animation-delay: 300ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(5)  { animation-delay: 360ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(6)  { animation-delay: 420ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(7)  { animation-delay: 480ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(8)  { animation-delay: 540ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(9)  { animation-delay: 600ms; }
-    .slide[data-audio="09"] .s07-tile:nth-child(10) { animation-delay: 660ms; }
-
-    /* Tile internals */
-    .slide[data-audio="09"] .s07-tile-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .slide[data-audio="09"] .s07-tile-num {
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--s07-fg-dim);
-      letter-spacing: 0.16em;
-    }
-
-    .slide[data-audio="09"] .s07-tile-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      top: -8px;
+      left: 0;
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--s07-fg-muted);
+      color: var(--s09-fg-dim);
+      background: var(--s09-bg);
+      padding: 0 10px 0 0;
+      z-index: 6;
+      line-height: 1;
     }
+    .s09-constellation-label .num { color: var(--s09-honey); font-weight: 600; }
 
-    .slide[data-audio="09"] .s07-tile-status .pulse {
-      width: 6px;
-      height: 6px;
+    .s09-constellation-right {
+      position: absolute;
+      top: -8px;
+      right: 0;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--s09-fg-dim);
+      background: var(--s09-bg);
+      padding: 0 0 0 10px;
+      z-index: 6;
+      line-height: 1;
+    }
+    .s09-constellation-right .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
       border-radius: 50%;
-      animation: s07-pulse 2.4s ease-in-out infinite;
+      background: var(--s09-teal);
+      box-shadow: 0 0 8px var(--s09-teal);
+      vertical-align: middle;
+      margin-right: 8px;
+      animation: s09-pulse 2.4s ease-in-out infinite;
     }
 
-    .slide[data-audio="09"] .s07-tile-status.active .pulse {
-      background: var(--s07-green);
-      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
-    }
-    .slide[data-audio="09"] .s07-tile-status.active { color: var(--s07-green); }
-
-    .slide[data-audio="09"] .s07-tile-status.scheduled .pulse {
-      background: var(--s07-honey);
-      box-shadow: 0 0 6px var(--s07-honey-glow);
-    }
-    .slide[data-audio="09"] .s07-tile-status.scheduled { color: var(--s07-honey); }
-
-    .slide[data-audio="09"] .s07-tile-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--s07-bg-elev);
-      border: 1px solid var(--s07-border);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+    .s09-brain-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+      padding: 2px 2px;
       position: relative;
+      min-width: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: transform 220ms ease;
+    }
+    .slide[data-audio="09"].is-active .s09-brain-cell {
+      animation: s09-brain-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+    .s09-brain-cell:nth-child(1)  { animation-delay: 60ms; }
+    .s09-brain-cell:nth-child(2)  { animation-delay: 110ms; }
+    .s09-brain-cell:nth-child(3)  { animation-delay: 160ms; }
+    .s09-brain-cell:nth-child(4)  { animation-delay: 210ms; }
+    .s09-brain-cell:nth-child(5)  { animation-delay: 260ms; }
+    .s09-brain-cell:nth-child(6)  { animation-delay: 310ms; }
+    .s09-brain-cell:nth-child(7)  { animation-delay: 360ms; }
+    .s09-brain-cell:nth-child(8)  { animation-delay: 410ms; }
+    .s09-brain-cell:nth-child(9)  { animation-delay: 460ms; }
+    .s09-brain-cell:nth-child(10) { animation-delay: 510ms; }
+    .s09-brain-cell:nth-child(11) { animation-delay: 560ms; }
+    .s09-brain-cell:nth-child(12) { animation-delay: 610ms; }
+    .s09-brain-cell:nth-child(13) { animation-delay: 660ms; }
+    .s09-brain-cell:nth-child(14) { animation-delay: 710ms; }
+    @keyframes s09-brain-in {
+      from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+      to   { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    .slide[data-audio="09"] .s07-tile-icon svg {
+    .s09-brain-cell:hover { transform: translateY(-2px); }
+
+    /* faint vertical dotted separator between cells */
+    .s09-brain-cell:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 14%;
+      bottom: 14%;
+      width: 1px;
+      background-image: linear-gradient(to bottom,
+        transparent 0,
+        transparent 2px,
+        rgba(255,255,255,0.05) 2px,
+        rgba(255,255,255,0.05) 4px);
+      background-size: 1px 4px;
+    }
+
+    .s09-brain-svg {
+      width: var(--s09-brain-size);
+      height: var(--s09-brain-size);
+      display: block;
+      filter:
+        drop-shadow(0 0 4px color-mix(in srgb, currentColor 50%, transparent))
+        drop-shadow(0 0 10px color-mix(in srgb, currentColor 20%, transparent));
+      transition: filter 220ms ease, transform 220ms ease;
+    }
+    .s09-brain-cell:hover .s09-brain-svg {
+      filter:
+        drop-shadow(0 0 6px color-mix(in srgb, currentColor 80%, transparent))
+        drop-shadow(0 0 14px color-mix(in srgb, currentColor 40%, transparent));
+      transform: scale(1.12);
+    }
+
+    .s09-brain-label {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: clamp(7.5px, 0.52vw, 8.5px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s09-fg-muted);
+      line-height: 1.1;
+      text-align: center;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+    }
+    .s09-brain-cell:hover .s09-brain-label {
+      color: currentColor;
+    }
+
+    /* lab color tints applied via class on cell */
+    .s09-brain-cell.lab-anthropic { color: var(--s09-honey); }
+    .s09-brain-cell.lab-openai    { color: var(--s09-teal); }
+    .s09-brain-cell.lab-deepmind  { color: var(--s09-sky); }
+    .s09-brain-cell.lab-google    { color: var(--s09-violet); }
+    .s09-brain-cell.lab-stanford  { color: var(--s09-coral); }
+    .s09-brain-cell.lab-princeton { color: #e8b86b; }
+    .s09-brain-cell.lab-meta      { color: var(--s09-dark-teal); }
+    .s09-brain-cell.lab-microsoft { color: #5eb27c; }
+    .s09-brain-cell.lab-berkeley  { color: #c9a979; }
+    .s09-brain-cell.lab-mistral   { color: #ff8a5b; }
+    .s09-brain-cell.lab-xai       { color: #d5d5da; }
+    .s09-brain-cell.lab-cohere    { color: #b89cf0; }
+    .s09-brain-cell.lab-deepseek  { color: #8ad4ff; }
+    .s09-brain-cell.lab-alibaba   { color: #ff7d8a; }
+
+    /* ---------- INDEX BOARD ---------- */
+    .s09-board {
+      position: relative;
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 1fr clamp(72px, 8vw, 124px) 1fr;
+      gap: 0;
+      min-height: 0;
+      z-index: 1;
+      isolation: isolate;
+    }
+
+    /* column headers */
+    .s09-colhead {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: var(--s09-fg-dim);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 6px;
+      height: 20px;
+      box-sizing: border-box;
+    }
+    .s09-colhead .num { color: var(--s09-honey); font-weight: 600; }
+    .s09-colhead.right { justify-content: flex-end; }
+    .s09-colhead .ico {
+      width: 6px; height: 6px;
+      background: var(--s09-honey);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--s09-honey);
+    }
+    .s09-colhead.right .ico {
+      background: var(--s09-teal);
+      box-shadow: 0 0 8px var(--s09-teal);
+    }
+
+    .s09-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s09-row-gap);
+      position: relative;
+      z-index: 2;
+      min-height: 0;
+      overflow: visible;
+    }
+    .s09-col.left  { padding-right: clamp(12px, 1.2vw, 20px); }
+    .s09-col.right { padding-left:  clamp(12px, 1.2vw, 20px); }
+
+    /* central spine */
+    .s09-spine {
+      grid-column: 2;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 26px;
+    }
+    .s09-spine-rail {
+      position: absolute;
+      top: 26px; bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(254,189,51,0.10) 8%,
+        rgba(254,189,51,0.18) 50%,
+        rgba(254,189,51,0.10) 92%,
+        transparent 100%);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .s09-spine-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      transform-origin: center;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--s09-honey);
+      white-space: nowrap;
+      padding: 4px 12px;
+      background: var(--s09-bg);
+      border: 1px solid rgba(254,189,51,0.28);
+      border-radius: 2px;
+      box-shadow: 0 0 18px rgba(254,189,51,0.18);
+      z-index: 3;
+    }
+
+    /* connector wires */
+    .s09-wires {
+      position: absolute;
+      top: 26px;
+      left: -10px;
+      right: -10px;
+      bottom: 0;
+      width: calc(100% + 20px);
+      height: calc(100% - 26px);
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+      display: block;
+    }
+    .s09-wire {
+      fill: none;
+      stroke: rgba(254,189,51,0.55);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 4px rgba(254,189,51,0.55));
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      opacity: 0;
+    }
+    .s09-wire-glow {
+      fill: none;
+      stroke: rgba(254,189,51,0.20);
+      stroke-width: 4;
+      vector-effect: non-scaling-stroke;
+      stroke-linecap: round;
+      filter: blur(4px);
+      opacity: 0;
+    }
+    .slide[data-audio="09"].is-active .s09-wire-glow {
+      animation: s09-glow 1200ms ease-out forwards;
+      animation-delay: var(--wd, 0ms);
+    }
+    .slide[data-audio="09"].is-active .s09-wire {
+      animation: s09-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
+      animation-delay: var(--wd, 0ms);
+    }
+    @keyframes s09-draw {
+      0%   { stroke-dashoffset: 100; opacity: 0; }
+      10%  { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes s09-glow {
+      to { opacity: 1; }
+    }
+
+    /* ---------- ROWS ---------- */
+    .s09-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: var(--s09-row-h);
+      height: var(--s09-row-h);
+      flex: 0 0 var(--s09-row-h);
+      padding: 3px 8px;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.018);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 3px;
+      opacity: 0;
+      transform: translateX(var(--enter-x, -10px));
+      transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+    }
+    .s09-row > * { min-width: 0; }
+    .s09-col.left  .s09-row { --enter-x: -10px; }
+    .s09-col.right .s09-row { --enter-x:  10px; }
+
+    .slide[data-audio="09"].is-active .s09-row {
+      animation: s09-row-in 460ms cubic-bezier(.2,.7,.2,1) forwards;
+    }
+
+    /* staggered row reveals — 24 rows per side */
+    .s09-col.left  .s09-row:nth-of-type(n) { animation-delay: calc(800ms + (var(--ri, 0) * 36ms)); }
+    .s09-col.right .s09-row:nth-of-type(n) { animation-delay: calc(900ms + (var(--ri, 0) * 36ms)); }
+
+    @keyframes s09-row-in {
+      from { opacity: 0; transform: translateX(var(--enter-x)); filter: blur(3px); }
+      to   { opacity: 1; transform: translateX(0); filter: blur(0); }
+    }
+
+    .s09-row:hover {
+      background: rgba(254,189,51,0.05);
+      border-color: rgba(254,189,51,0.28);
+      transform: translateX(0) scale(1.006);
+      z-index: 6;
+    }
+
+    /* row number ordinal */
+    .s09-ord {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      color: var(--s09-fg-dim);
+      width: 18px;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    /* tiny inline brain glyph next to lab chip */
+    .s09-row-brain {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: block;
+      filter: drop-shadow(0 0 3px color-mix(in srgb, currentColor 50%, transparent));
+      opacity: 0.92;
+    }
+    .s09-row:hover .s09-row-brain {
+      opacity: 1;
+      filter:
+        drop-shadow(0 0 4px color-mix(in srgb, currentColor 70%, transparent))
+        drop-shadow(0 0 8px color-mix(in srgb, currentColor 30%, transparent));
+    }
+
+    /* lab chip — color set via class on row */
+    .s09-lab {
       width: 20px;
       height: 20px;
-      stroke: var(--s07-fg);
-      stroke-width: 1.4;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .slide[data-audio="09"] .s07-tile-icon svg .accent {
-      stroke: var(--s07-honey);
-    }
-    .slide[data-audio="09"] .s07-tile-icon svg .fillaccent {
-      fill: var(--s07-honey);
-      stroke: none;
-    }
-
-    .slide[data-audio="09"] .s07-tile-title {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: clamp(15px, 1.2vw, 17px);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
       font-weight: 700;
-      color: var(--s07-fg);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin: 4px 0 0;
+      letter-spacing: 0.04em;
+      border: 1px solid currentColor;
+      background: color-mix(in srgb, currentColor 14%, transparent);
+      box-shadow: 0 0 10px color-mix(in srgb, currentColor 26%, transparent);
+      opacity: 0.92;
     }
 
-    .slide[data-audio="09"] .s07-tile-desc {
-      font-size: clamp(11px, 0.85vw, 12.5px);
-      line-height: 1.45;
-      color: var(--s07-fg-muted);
+    /* lab tints — applied via .lab-X class on .s09-row (cascades to .s09-lab and .s09-row-brain) */
+    .s09-row.lab-anthropic { color: var(--s09-honey); }
+    .s09-row.lab-openai    { color: var(--s09-teal); }
+    .s09-row.lab-deepmind  { color: var(--s09-sky); }
+    .s09-row.lab-google    { color: var(--s09-violet); }
+    .s09-row.lab-stanford  { color: var(--s09-coral); }
+    .s09-row.lab-princeton { color: #e8b86b; }
+    .s09-row.lab-meta      { color: var(--s09-dark-teal); }
+    .s09-row.lab-microsoft { color: #5eb27c; }
+    .s09-row.lab-berkeley  { color: #c9a979; }
+    .s09-row.lab-mistral   { color: #ff8a5b; }
+    .s09-row.lab-xai       { color: #d5d5da; }
+    .s09-row.lab-cohere    { color: #b89cf0; }
+    .s09-row.lab-deepseek  { color: #8ad4ff; }
+    .s09-row.lab-alibaba   { color: #ff7d8a; }
+    .s09-row.lab-multi     { color: var(--s09-fg-muted); }
+
+    /* reset color back to muted for body text — lab tint is only used by lab chip + brain */
+    .s09-row .s09-body,
+    .s09-row .s09-ord {
+      color: var(--s09-fg-dim);
+    }
+
+    /* row body */
+    .s09-body {
       flex: 1;
-      margin: 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      line-height: 1.1;
+      overflow: hidden;
+    }
+    .s09-body .top {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      min-width: 0;
+      flex-wrap: nowrap;
+    }
+    .s09-body .top > * { min-width: 0; }
+    .s09-thread {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--s09-fg);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s09-meta {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      color: var(--s09-fg-dim);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .s09-meta .yr { color: var(--s09-fg-muted); }
+    .s09-claim {
+      font-size: 9.5px;
+      color: var(--s09-fg-muted);
+      line-height: 1.22;
       letter-spacing: -0.005em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
-    .slide[data-audio="09"] .s07-tile-stat {
+    /* ---------- CITATION POPOVER (hover) ---------- */
+    .s09-cite {
+      position: absolute;
+      left: 32px;
+      top: calc(100% + 5px);
+      min-width: 240px;
+      max-width: 300px;
+      padding: 8px 11px 9px;
+      background: linear-gradient(180deg, rgba(17,22,31,0.98), rgba(10,13,18,0.98));
+      border: 1px solid rgba(254,189,51,0.32);
+      border-radius: 4px;
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(0,0,0,0.4),
+        0 0 24px rgba(254,189,51,0.12);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      line-height: 1.45;
+      color: var(--s09-fg-muted);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-3px);
+      transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .s09-cite::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 22px;
+      width: 8px; height: 8px;
+      background: rgba(17,22,31,0.98);
+      border-left: 1px solid rgba(254,189,51,0.32);
+      border-top: 1px solid rgba(254,189,51,0.32);
+      transform: rotate(45deg);
+    }
+    .s09-cite .authors {
+      color: var(--s09-fg);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-size: 10px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .s09-cite .meta {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(255,255,255,0.06);
+      gap: 7px;
+      flex-wrap: wrap;
+      color: var(--s09-fg-dim);
+      text-transform: uppercase;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+    }
+    .s09-cite .meta .dot { color: var(--s09-honey); }
+    .s09-cite .arxiv { color: var(--s09-honey); letter-spacing: 0.08em; }
+    .s09-cite .venue {
+      display: block;
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px dashed rgba(255,255,255,0.10);
+      color: var(--s09-fg-muted);
+      text-transform: none;
+      font-size: 9px;
+      letter-spacing: 0.05em;
+    }
+    .s09-col.right .s09-cite { left: auto; right: 32px; }
+    .s09-col.right .s09-cite::before { left: auto; right: 22px; }
+    .s09-row:hover .s09-cite {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    /* keep last rows' popovers anchored upward */
+    .s09-col .s09-row:nth-of-type(n+18) .s09-cite {
+      top: auto;
+      bottom: calc(100% + 5px);
+    }
+    .s09-col .s09-row:nth-of-type(n+18) .s09-cite::before {
+      top: auto;
+      bottom: -5px;
+      border-top: none;
+      border-left: none;
+      border-right: 1px solid rgba(254,189,51,0.32);
+      border-bottom: 1px solid rgba(254,189,51,0.32);
+    }
+
+    /* RIGHT column — TC impact */
+    .s09-col.right .s09-row {
+      flex-direction: row-reverse;
+      padding-right: 12px;
+    }
+    .s09-col.right .s09-row .s09-body {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .s09-col.right .s09-row .s09-body .top {
+      flex-direction: row-reverse;
+    }
+    .s09-impact-ico {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      border: 1px solid rgba(67,192,190,0.32);
+      background: rgba(67,192,190,0.08);
+      color: var(--s09-teal);
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
       font-size: 10px;
-      letter-spacing: 0.04em;
-    }
-
-    .slide[data-audio="09"] .s07-tile-stat .k {
-      color: var(--s07-fg-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 9px;
-    }
-
-    .slide[data-audio="09"] .s07-tile-stat .v {
-      color: var(--s07-fg);
       font-weight: 600;
     }
-
-    .slide[data-audio="09"] .s07-tile-stat .v.honey {
-      color: var(--s07-honey);
+    .s09-impact-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--s09-fg);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s09-impact-metric {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      color: var(--s09-teal);
+      flex-shrink: 0;
+      padding: 2px 7px;
+      border: 1px solid rgba(67,192,190,0.38);
+      background: linear-gradient(180deg, rgba(67,192,190,0.14), rgba(67,192,190,0.06));
+      border-radius: 2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.20),
+        0 0 12px rgba(67,192,190,0.18);
+    }
+    .s09-impact-sub {
+      font-size: 9.5px;
+      color: var(--s09-fg-muted);
+      line-height: 1.22;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
-    /* ---------- Bottom receipt strip ---------- */
-    .slide[data-audio="09"] .s07-receipt {
+    /* ---------- FOOTER ---------- */
+    .s09-foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 14px 22px;
-      background: linear-gradient(90deg, rgba(254, 189, 51, 0.04) 0%, transparent 100%);
-      border: 1px solid var(--s07-border);
-      border-radius: 999px;
-      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: clamp(11px, 0.9vw, 13px);
-      letter-spacing: 0.05em;
-      color: var(--s07-fg-muted);
+      gap: 20px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255,255,255,0.08);
     }
-
-    .slide[data-audio="09"] .s07-receipt-left {
+    .s09-foot-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      color: var(--s09-fg-muted);
+      text-transform: uppercase;
       flex-wrap: wrap;
     }
-
-    .slide[data-audio="09"] .s07-receipt-tag {
-      color: var(--s07-honey);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 10px;
-      padding: 4px 9px;
-      border: 1px solid var(--s07-honey-line);
-      border-radius: 4px;
-      background: var(--s07-honey-soft);
-    }
-
-    .slide[data-audio="09"] .s07-receipt-line {
-      color: var(--s07-fg);
-      font-weight: 500;
-    }
-
-    .slide[data-audio="09"] .s07-receipt-line .sep {
-      color: var(--s07-fg-faint);
-      margin: 0 8px;
-    }
-
-    .slide[data-audio="09"] .s07-receipt-line .n {
-      color: var(--s07-honey);
-      font-weight: 600;
-    }
-
-    .slide[data-audio="09"] .s07-receipt-right {
+    .s09-foot-right {
       display: flex;
       align-items: center;
-      gap: 8px;
-      color: var(--s07-fg-dim);
-      font-size: 10px;
+      gap: 12px;
+    }
+    .s09-foot-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      border: 1px solid rgba(254,189,51,0.32);
+      background: rgba(254,189,51,0.06);
+      border-radius: 3px;
+      color: var(--s09-honey);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
-
-    .slide[data-audio="09"] .s07-receipt-right .dot {
-      width: 6px;
-      height: 6px;
+    .s09-foot-chip .glyph {
+      width: 5px; height: 5px;
+      background: var(--s09-honey);
       border-radius: 50%;
-      background: var(--s07-green);
-      box-shadow: 0 0 6px rgba(94, 224, 138, 0.7);
-      animation: s07-pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--s09-honey);
+      animation: s09-pulse 2.4s ease-in-out infinite;
+    }
+    .s09-spark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 9px;
+      border: 1px solid rgba(67,192,190,0.18);
+      border-radius: 3px;
+      background: rgba(67,192,190,0.03);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s09-fg-dim);
+    }
+    .s09-spark .label { color: var(--s09-fg-muted); }
+    .s09-spark .num-now { color: var(--s09-teal); font-weight: 600; }
+    .s09-spark svg { display: block; overflow: visible; }
+
+    /* lab legend — quick visual key */
+    .s09-legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .s09-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s09-fg-muted);
+    }
+    .s09-legend-item .swatch {
+      width: 7px; height: 7px;
+      border-radius: 2px;
+      border: 1px solid currentColor;
+      background: color-mix(in srgb, currentColor 22%, transparent);
     }
 
-    /* ---------- Animations ---------- */
-    @keyframes s07-pulse {
-      0%, 100% { opacity: 1;   transform: scale(1); }
-      50%      { opacity: 0.35; transform: scale(0.88); }
-    }
-
-    @keyframes s07-tile-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------- Responsive: 1366×768 laptops still need to breathe ---------- */
-    @media (max-height: 820px) {
-      .slide[data-audio="09"] .s07-frame {
-        padding: 32px 56px;
-        gap: 22px;
-      }
-      .slide[data-audio="09"] .s07-tile-desc {
-        -webkit-line-clamp: 2;
+    /* ---------- TIGHT LAYOUTS ---------- */
+    @media (max-height: 1100px) {
+      .s09-frame { padding: 36px 60px 22px; }
+      .slide[data-audio="09"] {
+        --s09-row-h: 26px;
+        --s09-const-h: clamp(54px, 5.8vh, 72px);
       }
     }
-
-    @media (max-width: 1400px) {
-      .slide[data-audio="09"] .s07-grid-wrap {
-        gap: 12px;
+    @media (max-height: 980px) {
+      .s09-frame { padding: 26px 50px 18px; }
+      .slide[data-audio="09"] {
+        --s09-row-h: 23px;
+        --s09-brain-size: 22px;
+        --s09-const-h: clamp(48px, 5.4vh, 64px);
       }
-      .slide[data-audio="09"] .s07-tile {
-        padding: 14px 16px 14px;
+      .slide[data-audio="09"] .s09-thread,
+      .slide[data-audio="09"] .s09-impact-label { font-size: 11px; }
+      .slide[data-audio="09"] .s09-claim,
+      .slide[data-audio="09"] .s09-impact-sub { font-size: 8.5px; }
+      .slide[data-audio="09"] .s09-constellation { margin-bottom: 12px; padding: 10px 4px 12px; }
+      .slide[data-audio="09"] .s09-brain-label { font-size: 7.5px; letter-spacing: 0.10em; }
+      .slide[data-audio="09"] .s09-headline { font-size: clamp(26px, 2.8vw, 42px); }
+    }
+    @media (max-height: 900px) {
+      .s09-frame { padding: 22px 46px 16px; }
+      .slide[data-audio="09"] {
+        --s09-row-h: 21px;
+        --s09-brain-size: 20px;
+        --s09-const-h: clamp(44px, 5vh, 58px);
+        --s09-row-gap: 1px;
       }
+      .slide[data-audio="09"] .s09-row { padding: 2px 6px; }
+      .slide[data-audio="09"] .s09-thread,
+      .slide[data-audio="09"] .s09-impact-label { font-size: 10.5px; }
+      .slide[data-audio="09"] .s09-claim,
+      .slide[data-audio="09"] .s09-impact-sub { font-size: 8px; }
+      .slide[data-audio="09"] .s09-brain-label { font-size: 7px; letter-spacing: 0.08em; }
+      .slide[data-audio="09"] .s09-constellation { margin-bottom: 10px; padding: 8px 3px 10px; }
+      .slide[data-audio="09"] .s09-headline { font-size: clamp(22px, 2.4vw, 36px); }
+      .slide[data-audio="09"] .s09-ord { width: 14px; font-size: 8px; }
+      .slide[data-audio="09"] .s09-lab,
+      .slide[data-audio="09"] .s09-impact-ico { width: 17px; height: 17px; font-size: 8px; }
+      .slide[data-audio="09"] .s09-row-brain { width: 15px; height: 15px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="09"] *,
       .slide[data-audio="09"] *::before,
       .slide[data-audio="09"] *::after {
-        animation: none !important;
-        transition: none !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-      .slide[data-audio="09"] .s07-tile {
-        opacity: 1;
-        transform: none;
-      }
+      .slide[data-audio="09"] .s09-row { opacity: 1; transform: none; }
+      .slide[data-audio="09"] .s09-brain-cell { opacity: 1; transform: none; }
+      .slide[data-audio="09"] .s09-wire { opacity: 1; stroke-dashoffset: 0; }
+      .slide[data-audio="09"] .s09-wire-glow { opacity: 1; }
     }
   </style>
 
-  <div class="s07-atmos">
-    <div class="s07-grid"></div>
-    <div class="s07-glow"></div>
-    <div class="s07-grain"></div>
-  </div>
+  <div class="content">
+    <div class="s09-frame">
 
-  <div class="s07-frame">
+      <!-- registration -->
+      <div class="s09-mark tl"></div>
+      <div class="s09-mark tr"></div>
+      <div class="s09-mark bl"></div>
+      <div class="s09-mark br"></div>
+      <div class="s09-stamp">SLIDE · 09 / MYTHOS · 24 THREADS · 14 BRAINS · MEASURED ON TC</div>
 
-    <!-- ============================== HEADER ============================== -->
-    <header class="s07-header">
-      <div>
-        <div class="s07-eyebrow">IN PRODUCTION &nbsp;·&nbsp; 24 MAY 2026</div>
-        <h1 class="s07-title">What Yogi does <em>today.</em></h1>
+      <!-- HEADER -->
+      <header class="s09-head">
+        <div>
+          <div class="s09-eyebrow">
+            <span class="dot"></span>
+            <span>Mythos</span>
+            <span class="sep">·</span>
+            <span>24 Research Threads</span>
+            <span class="sep">·</span>
+            <span>14 Lab Brains</span>
+            <span class="sep">·</span>
+            <span>Measured on TC</span>
+          </div>
+          <h1 class="s09-headline">
+            <span class="accent">Many brains.</span> One Yogi.
+          </h1>
+        </div>
+
+        <div class="s09-sub">
+          <strong>Yogi composes from every brain.</strong>
+          <div class="rule"></div>
+          Fourteen laboratory brains. Twenty-four research threads. Each one tested against real Trilogy Care operations. Citations real. Measurements real. Not theory — production.
+        </div>
+      </header>
+
+      <!-- CONSTELLATION ROW — 14 brain glyphs -->
+      <div class="s09-constellation" aria-label="Fourteen research brains behind Yogi">
+        <div class="s09-constellation-label"><span class="num">14</span> · LAB BRAINS</div>
+        <div class="s09-constellation-right"><span class="dot"></span>Composed by Yogi</div>
+
+        <!-- BRAIN 1 — Anthropic (signature symmetry, honey) -->
+        <div class="s09-brain-cell lab-anthropic" title="Anthropic">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C9 5 5 10 5 16 C5 22 9 27 16 27 C23 27 27 22 27 16 C27 10 23 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.6"/>
+            <path d="M9 11 C11 12 12.5 13.5 13 15.5"/>
+            <path d="M9 20 C11 19 12.5 17.5 13 15.5"/>
+            <path d="M23 11 C21 12 19.5 13.5 19 15.5"/>
+            <path d="M23 20 C21 19 19.5 17.5 19 15.5"/>
+            <circle cx="13" cy="15.5" r="0.9" fill="currentColor" stroke="none"/>
+            <circle cx="19" cy="15.5" r="0.9" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="s09-brain-label">Anthropic</span>
+        </div>
+
+        <!-- BRAIN 2 — OpenAI (clean lobes, dense ridges, teal) -->
+        <div class="s09-brain-cell lab-openai" title="OpenAI">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 6 9 6 14 C6 16 7 17.5 7 19 C7 23 11 27 16 27 C21 27 25 23 25 19 C25 17.5 26 16 26 14 C26 9 22 5 16 5 Z"/>
+            <path d="M16 6 V27" opacity="0.55"/>
+            <path d="M10 13 Q12 11 14 12"/>
+            <path d="M10 17 Q12 16 14 17"/>
+            <path d="M10 21 Q12 22 14 21"/>
+            <path d="M22 13 Q20 11 18 12"/>
+            <path d="M22 17 Q20 16 18 17"/>
+            <path d="M22 21 Q20 22 18 21"/>
+          </svg>
+          <span class="s09-brain-label">OpenAI</span>
+        </div>
+
+        <!-- BRAIN 3 — DeepMind (deep convoluted, sky) -->
+        <div class="s09-brain-cell lab-deepmind" title="DeepMind">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 4 C9 4 4 9 4 15 C4 17 5 19 6 20 C6 23 9 27 13 27 L19 27 C23 27 26 23 26 20 C27 19 28 17 28 15 C28 9 23 4 16 4 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 12 C10 11 11 12 12 13 C13 14 13 16 12 17 C11 18 10 18 9 17"/>
+            <path d="M8 22 C10 21 11 20 11 19"/>
+            <path d="M24 12 C22 11 21 12 20 13 C19 14 19 16 20 17 C21 18 22 18 23 17"/>
+            <path d="M24 22 C22 21 21 20 21 19"/>
+          </svg>
+          <span class="s09-brain-label">DeepMind</span>
+        </div>
+
+        <!-- BRAIN 4 — Google Brain (bright nodes, violet) -->
+        <div class="s09-brain-cell lab-google" title="Google Brain">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C9.5 5 5 10 5 16 C5 22 9.5 27 16 27 C22.5 27 27 22 27 16 C27 10 22.5 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M9 14 Q11 12 13 14 Q11 16 9 14"/>
+            <path d="M9 19 Q11 17 13 19"/>
+            <path d="M23 14 Q21 12 19 14 Q21 16 23 14"/>
+            <path d="M23 19 Q21 17 19 19"/>
+            <circle cx="11" cy="11" r="0.7" fill="currentColor" stroke="none"/>
+            <circle cx="21" cy="11" r="0.7" fill="currentColor" stroke="none"/>
+            <circle cx="11" cy="22" r="0.7" fill="currentColor" stroke="none"/>
+            <circle cx="21" cy="22" r="0.7" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="s09-brain-label">Google Brain</span>
+        </div>
+
+        <!-- BRAIN 5 — Stanford (academic, layered, coral) -->
+        <div class="s09-brain-cell lab-stanford" title="Stanford">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5.5 9.5 5.5 15.5 C5.5 22 10.5 27 16 27 C21.5 27 26.5 22 26.5 15.5 C26.5 9.5 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 11 H14"/>
+            <path d="M8 16 H13"/>
+            <path d="M8 21 H14"/>
+            <path d="M24 11 H18"/>
+            <path d="M24 16 H19"/>
+            <path d="M24 21 H18"/>
+          </svg>
+          <span class="s09-brain-label">Stanford</span>
+        </div>
+
+        <!-- BRAIN 6 — Princeton (compact, scholarly, soft gold) -->
+        <div class="s09-brain-cell lab-princeton" title="Princeton">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M9 13 C11 13 12 14 12 16 C12 18 11 19 9 19"/>
+            <path d="M23 13 C21 13 20 14 20 16 C20 18 21 19 23 19"/>
+            <path d="M11 22 Q13 20 15 22"/>
+            <path d="M21 22 Q19 20 17 22"/>
+          </svg>
+          <span class="s09-brain-label">Princeton</span>
+        </div>
+
+        <!-- BRAIN 7 — Meta (geometric folds, dark teal) -->
+        <div class="s09-brain-cell lab-meta" title="Meta AI">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C9 5 5 11 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 11 23 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M9 11 L13 14 L9 17"/>
+            <path d="M9 18 L13 21"/>
+            <path d="M23 11 L19 14 L23 17"/>
+            <path d="M23 18 L19 21"/>
+          </svg>
+          <span class="s09-brain-label">Meta AI</span>
+        </div>
+
+        <!-- BRAIN 8 — Microsoft (sturdy ridges, soft green) -->
+        <div class="s09-brain-cell lab-microsoft" title="Microsoft Research">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <rect x="8" y="11" width="4" height="3" rx="0.5"/>
+            <rect x="8" y="17" width="4" height="3" rx="0.5"/>
+            <rect x="20" y="11" width="4" height="3" rx="0.5"/>
+            <rect x="20" y="17" width="4" height="3" rx="0.5"/>
+          </svg>
+          <span class="s09-brain-label">Microsoft</span>
+        </div>
+
+        <!-- BRAIN 9 — Berkeley (open-source, free-form, warm sand) -->
+        <div class="s09-brain-cell lab-berkeley" title="UC Berkeley BAIR">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 13 Q10 11 12 13 Q14 15 12 17 Q10 19 8 17"/>
+            <path d="M24 13 Q22 11 20 13 Q18 15 20 17 Q22 19 24 17"/>
+            <path d="M10 22 H14"/>
+            <path d="M22 22 H18"/>
+          </svg>
+          <span class="s09-brain-label">Berkeley</span>
+        </div>
+
+        <!-- BRAIN 10 — Mistral (open-weight, sharp, orange-red) -->
+        <div class="s09-brain-cell lab-mistral" title="Mistral AI">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C9.5 5 5 10 5 16 C5 22 9.5 27 16 27 C22.5 27 27 22 27 16 C27 10 22.5 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M9 12 L13 12"/>
+            <path d="M8 16 L12 16"/>
+            <path d="M9 20 L13 20"/>
+            <path d="M23 12 L19 12"/>
+            <path d="M24 16 L20 16"/>
+            <path d="M23 20 L19 20"/>
+          </svg>
+          <span class="s09-brain-label">Mistral</span>
+        </div>
+
+        <!-- BRAIN 11 — xAI (angular, sharp, silver) -->
+        <div class="s09-brain-cell lab-xai" title="xAI">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 L9 8 L5 15 L7 22 L13 27 L19 27 L25 22 L27 15 L23 8 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 14 L12 18"/>
+            <path d="M12 14 L8 18"/>
+            <path d="M24 14 L20 18"/>
+            <path d="M20 14 L24 18"/>
+          </svg>
+          <span class="s09-brain-label">xAI</span>
+        </div>
+
+        <!-- BRAIN 12 — Cohere (retrieval, nodal, violet-pink) -->
+        <div class="s09-brain-cell lab-cohere" title="Cohere">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <circle cx="10" cy="12" r="1.2"/>
+            <circle cx="10" cy="20" r="1.2"/>
+            <circle cx="22" cy="12" r="1.2"/>
+            <circle cx="22" cy="20" r="1.2"/>
+            <path d="M10 13 L10 19"/>
+            <path d="M22 13 L22 19"/>
+            <path d="M11 12 L13 14"/>
+            <path d="M21 12 L19 14"/>
+          </svg>
+          <span class="s09-brain-label">Cohere</span>
+        </div>
+
+        <!-- BRAIN 13 — DeepSeek (open, dense reasoning, cool blue) -->
+        <div class="s09-brain-cell lab-deepseek" title="DeepSeek">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 12 Q10 14 12 12 Q10 10 8 12"/>
+            <path d="M8 18 Q10 20 12 18 Q10 16 8 18"/>
+            <path d="M24 12 Q22 14 20 12 Q22 10 24 12"/>
+            <path d="M24 18 Q22 20 20 18 Q22 16 24 18"/>
+            <circle cx="10" cy="22" r="0.8" fill="currentColor" stroke="none"/>
+            <circle cx="22" cy="22" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="s09-brain-label">DeepSeek</span>
+        </div>
+
+        <!-- BRAIN 14 — Alibaba Qwen (mixture-of-experts, layered, warm pink) -->
+        <div class="s09-brain-cell lab-alibaba" title="Alibaba Qwen">
+          <svg class="s09-brain-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+            <path d="M16 5 V27" opacity="0.55"/>
+            <path d="M8 11 C10 12 11 14 12 16 C11 18 10 20 8 21"/>
+            <path d="M10 11 C11 13 12 15 13 16 C12 17 11 19 10 21"/>
+            <path d="M24 11 C22 12 21 14 20 16 C21 18 22 20 24 21"/>
+            <path d="M22 11 C21 13 20 15 19 16 C20 17 21 19 22 21"/>
+          </svg>
+          <span class="s09-brain-label">Qwen</span>
+        </div>
       </div>
-      <div class="s07-meta">
-        <div class="s07-meta-row"><span class="dot"></span><span class="label">System status</span><span>All surfaces nominal</span></div>
-        <div class="s07-meta-row"><span class="label">Telemetry · live</span><span>uptime 99.8% · 30d</span></div>
+
+      <!-- INDEX BOARD -->
+      <div class="s09-board">
+
+        <!-- LEFT: 24 research threads -->
+        <div class="s09-col left">
+          <div class="s09-colhead">
+            <span class="ico"></span>
+            <span>Frontier-Lab Research</span>
+            <span class="num">// 24 threads</span>
+          </div>
+
+          <!-- ============ ANTHROPIC ============ -->
+          <article class="s09-row lab-anthropic" style="--ri:0">
+            <span class="s09-ord">01</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 10 5 16 C5 22 9 27 16 27 C23 27 27 22 27 16 C27 10 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.6"/>
+              <path d="M10 12 Q12 14 12 16 Q12 18 10 20"/>
+              <path d="M22 12 Q20 14 20 16 Q20 18 22 20"/>
+            </svg>
+            <span class="s09-lab">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Constitutional AI</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Shape behaviour via written principles, not patched prompts.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Bai, Kadavath, Kundu et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2212.08073</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Constitutional AI: Harmlessness from AI Feedback"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-anthropic" style="--ri:1">
+            <span class="s09-ord">02</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 10 5 16 C5 22 9 27 16 27 C23 27 27 22 27 16 C27 10 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.6"/>
+              <path d="M10 12 Q12 14 12 16 Q12 18 10 20"/>
+              <path d="M22 12 Q20 14 20 16 Q20 18 22 20"/>
+            </svg>
+            <span class="s09-lab">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Model Context Protocol</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Typed tool surfaces, one open standard across systems.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic Engineering</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">modelcontextprotocol.io</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Model Context Protocol — Spec v1.0"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-anthropic" style="--ri:2">
+            <span class="s09-ord">03</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 10 5 16 C5 22 9 27 16 27 C23 27 27 22 27 16 C27 10 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.6"/>
+              <path d="M10 12 Q12 14 12 16 Q12 18 10 20"/>
+              <path d="M22 12 Q20 14 20 16 Q20 18 22 20"/>
+            </svg>
+            <span class="s09-lab">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Prompt Caching</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Long prefixes amortised — 90% off repeat-token cost.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic API Team</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">anthropic.com/news/prompt-caching</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Prompt caching with Claude" — engineering note</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-anthropic" style="--ri:3">
+            <span class="s09-ord">04</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 10 5 16 C5 22 9 27 16 27 C23 27 27 22 27 16 C27 10 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.6"/>
+              <path d="M10 12 Q12 14 12 16 Q12 18 10 20"/>
+              <path d="M22 12 Q20 14 20 16 Q20 18 22 20"/>
+            </svg>
+            <span class="s09-lab">A</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Computer Use</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Anthropic</span>
+              </div>
+              <span class="s09-claim">Agents drive the desktop the same way humans do.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Anthropic</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">anthropic.com/news/computer-use</span><span class="dot">·</span><span>Anthropic</span></span>
+              <span class="venue">"Claude 3.5 Sonnet with Computer Use"</span>
+            </div>
+          </article>
+
+          <!-- ============ OPENAI ============ -->
+          <article class="s09-row lab-openai" style="--ri:4">
+            <span class="s09-ord">05</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 6 9 6 14 C6 16 7 17.5 7 19 C7 23 11 27 16 27 C21 27 25 23 25 19 C25 17.5 26 16 26 14 C26 9 22 5 16 5 Z"/>
+              <path d="M16 6 V27" opacity="0.55"/>
+              <path d="M10 16 Q12 14 14 16"/>
+              <path d="M22 16 Q20 14 18 16"/>
+            </svg>
+            <span class="s09-lab">O</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Function Calling</span>
+                <span class="s09-meta"><span class="yr">2023</span> · OpenAI</span>
+              </div>
+              <span class="s09-claim">Structured invocation — model emits JSON, runtime executes.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Eleti, Harris, Kilpatrick</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">openai.com/blog/function-calling</span><span class="dot">·</span><span>OpenAI</span></span>
+              <span class="venue">"Function calling and API updates"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-openai" style="--ri:5">
+            <span class="s09-ord">06</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 6 9 6 14 C6 16 7 17.5 7 19 C7 23 11 27 16 27 C21 27 25 23 25 19 C25 17.5 26 16 26 14 C26 9 22 5 16 5 Z"/>
+              <path d="M16 6 V27" opacity="0.55"/>
+              <path d="M10 16 Q12 14 14 16"/>
+              <path d="M22 16 Q20 14 18 16"/>
+            </svg>
+            <span class="s09-lab">O</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Structured Outputs</span>
+                <span class="s09-meta"><span class="yr">2024</span> · OpenAI</span>
+              </div>
+              <span class="s09-claim">JSON Schema constrained decoding — 100% format conformance.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">OpenAI</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">openai.com/index/introducing-structured-outputs</span><span class="dot">·</span><span>OpenAI</span></span>
+              <span class="venue">"Introducing Structured Outputs in the API"</span>
+            </div>
+          </article>
+
+          <!-- ============ DEEPMIND ============ -->
+          <article class="s09-row lab-deepmind" style="--ri:6">
+            <span class="s09-ord">07</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 4 C9 4 4 9 4 15 C4 17 5 19 6 20 C6 23 9 27 13 27 L19 27 C23 27 26 23 26 20 C27 19 28 17 28 15 C28 9 23 4 16 4 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 C11 14 11 17 9 18"/>
+              <path d="M23 13 C21 14 21 17 23 18"/>
+            </svg>
+            <span class="s09-lab">D</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Chain of Thought</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google/DeepMind</span>
+              </div>
+              <span class="s09-claim">Reasoning emerges when models think step-by-step.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wei, Wang, Schuurmans et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2201.11903</span><span class="dot">·</span><span>Google</span></span>
+              <span class="venue">"Chain-of-Thought Prompting Elicits Reasoning"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-deepmind" style="--ri:7">
+            <span class="s09-ord">08</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 4 C9 4 4 9 4 15 C4 17 5 19 6 20 C6 23 9 27 13 27 L19 27 C23 27 26 23 26 20 C27 19 28 17 28 15 C28 9 23 4 16 4 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 C11 14 11 17 9 18"/>
+              <path d="M23 13 C21 14 21 17 23 18"/>
+            </svg>
+            <span class="s09-lab">D</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Tree of Thoughts</span>
+                <span class="s09-meta"><span class="yr">2023</span> · DeepMind/Princeton</span>
+              </div>
+              <span class="s09-claim">Search across branching reasoning paths, not single chains.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Yao, Yu, Zhao, Shafran et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2305.10601</span><span class="dot">·</span><span>Princeton/DeepMind</span></span>
+              <span class="venue">"Tree of Thoughts: Deliberate Problem Solving"</span>
+            </div>
+          </article>
+
+          <!-- ============ GOOGLE BRAIN ============ -->
+          <article class="s09-row lab-google" style="--ri:8">
+            <span class="s09-ord">09</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9.5 5 5 10 5 16 C5 22 9.5 27 16 27 C22.5 27 27 22 27 16 C27 10 22.5 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <circle cx="11" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="11" cy="20" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="20" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="s09-lab">G</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">ReAct</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google Brain</span>
+              </div>
+              <span class="s09-claim">Interleave reasoning and acting — model thinks then calls tools.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Yao, Zhao, Yu, Du et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2210.03629</span><span class="dot">·</span><span>Google</span></span>
+              <span class="venue">"ReAct: Synergizing Reasoning and Acting"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-google" style="--ri:9">
+            <span class="s09-ord">10</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9.5 5 5 10 5 16 C5 22 9.5 27 16 27 C22.5 27 27 22 27 16 C27 10 22.5 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <circle cx="11" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="11" cy="20" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="20" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="s09-lab">G</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Sparse Mixture of Experts</span>
+                <span class="s09-meta"><span class="yr">2017</span> · Google Brain</span>
+              </div>
+              <span class="s09-claim">Route tokens to specialist sub-models — capacity without cost.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Shazeer, Mirhoseini, Maziarz et al.</span>
+              <span class="meta"><span>2017</span><span class="dot">·</span><span class="arxiv">arXiv:1701.06538</span><span class="dot">·</span><span>Google</span></span>
+              <span class="venue">"Outrageously Large Neural Networks: Sparsely-Gated MoE"</span>
+            </div>
+          </article>
+
+          <!-- ============ STANFORD ============ -->
+          <article class="s09-row lab-stanford" style="--ri:10">
+            <span class="s09-ord">11</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5.5 9.5 5.5 15.5 C5.5 22 10.5 27 16 27 C21.5 27 26.5 22 26.5 15.5 C26.5 9.5 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 H13"/>
+              <path d="M9 19 H13"/>
+              <path d="M23 13 H19"/>
+              <path d="M23 19 H19"/>
+            </svg>
+            <span class="s09-lab">S</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">HELM Evaluation</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Stanford CRFM</span>
+              </div>
+              <span class="s09-claim">Holistic eval — 42 scenarios, 7 metrics, broad-coverage measurement.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Liang, Bommasani, Lee et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2211.09110</span><span class="dot">·</span><span>Stanford CRFM</span></span>
+              <span class="venue">"Holistic Evaluation of Language Models"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-stanford" style="--ri:11">
+            <span class="s09-ord">12</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5.5 9.5 5.5 15.5 C5.5 22 10.5 27 16 27 C21.5 27 26.5 22 26.5 15.5 C26.5 9.5 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 H13"/>
+              <path d="M9 19 H13"/>
+              <path d="M23 13 H19"/>
+              <path d="M23 19 H19"/>
+            </svg>
+            <span class="s09-lab">S</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">DSPy Compilation</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Stanford NLP</span>
+              </div>
+              <span class="s09-claim">Programs not prompts — compile prompts from labelled examples.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Khattab, Singhvi, Maheshwari et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2310.03714</span><span class="dot">·</span><span>Stanford</span></span>
+              <span class="venue">"DSPy: Compiling Declarative Language Model Calls"</span>
+            </div>
+          </article>
+
+          <!-- ============ PRINCETON ============ -->
+          <article class="s09-row lab-princeton" style="--ri:12">
+            <span class="s09-ord">13</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M10 13 C11 14 11 18 10 19"/>
+              <path d="M22 13 C21 14 21 18 22 19"/>
+            </svg>
+            <span class="s09-lab">P</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Reflexion</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Princeton/Northeastern</span>
+              </div>
+              <span class="s09-claim">Self-reflect on failure, store in memory, retry — verbal RL.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Shinn, Cassano, Berman et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2303.11366</span><span class="dot">·</span><span>Princeton/NEU</span></span>
+              <span class="venue">"Reflexion: Language Agents with Verbal Reinforcement Learning"</span>
+            </div>
+          </article>
+
+          <!-- ============ META ============ -->
+          <article class="s09-row lab-meta" style="--ri:13">
+            <span class="s09-ord">14</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 11 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 11 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M10 12 L13 15 L10 18"/>
+              <path d="M22 12 L19 15 L22 18"/>
+            </svg>
+            <span class="s09-lab">M</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">RAG (Retrieval-Augmented Generation)</span>
+                <span class="s09-meta"><span class="yr">2020</span> · Meta AI / FAIR</span>
+              </div>
+              <span class="s09-claim">Retrieve documents, condition generation — facts over memorisation.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Lewis, Perez, Piktus et al.</span>
+              <span class="meta"><span>2020</span><span class="dot">·</span><span class="arxiv">arXiv:2005.11401</span><span class="dot">·</span><span>Meta AI</span></span>
+              <span class="venue">"Retrieval-Augmented Generation for Knowledge-Intensive NLP"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-meta" style="--ri:14">
+            <span class="s09-ord">15</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9 5 5 11 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 11 23 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M10 12 L13 15 L10 18"/>
+              <path d="M22 12 L19 15 L22 18"/>
+            </svg>
+            <span class="s09-lab">M</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Toolformer</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Meta AI</span>
+              </div>
+              <span class="s09-claim">Self-supervised tool learning — model teaches itself when to call APIs.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Schick, Dwivedi-Yu, Dessì et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2302.04761</span><span class="dot">·</span><span>Meta AI</span></span>
+              <span class="venue">"Toolformer: Language Models Can Teach Themselves to Use Tools"</span>
+            </div>
+          </article>
+
+          <!-- ============ MICROSOFT ============ -->
+          <article class="s09-row lab-microsoft" style="--ri:15">
+            <span class="s09-ord">16</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <rect x="9" y="12" width="3" height="2.5" rx="0.3" fill="currentColor" stroke="none" opacity="0.65"/>
+              <rect x="9" y="17.5" width="3" height="2.5" rx="0.3" fill="currentColor" stroke="none" opacity="0.65"/>
+              <rect x="20" y="12" width="3" height="2.5" rx="0.3" fill="currentColor" stroke="none" opacity="0.65"/>
+              <rect x="20" y="17.5" width="3" height="2.5" rx="0.3" fill="currentColor" stroke="none" opacity="0.65"/>
+            </svg>
+            <span class="s09-lab">µ</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">AutoGen Multi-Agent</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Microsoft Research</span>
+              </div>
+              <span class="s09-claim">Conversable agents — many models, one orchestrated workflow.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wu, Bansal, Zhang et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2308.08155</span><span class="dot">·</span><span>Microsoft</span></span>
+              <span class="venue">"AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"</span>
+            </div>
+          </article>
+
+          <!-- ============ BERKELEY ============ -->
+          <article class="s09-row lab-berkeley" style="--ri:16">
+            <span class="s09-ord">17</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 14 Q11 12 13 14 Q11 16 9 14"/>
+              <path d="M23 14 Q21 12 19 14 Q21 16 23 14"/>
+            </svg>
+            <span class="s09-lab">B</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">vLLM Paged Attention</span>
+                <span class="s09-meta"><span class="yr">2023</span> · UC Berkeley</span>
+              </div>
+              <span class="s09-claim">Page KV-cache like virtual memory — 24× throughput.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Kwon, Li, Zhuang et al.</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">arXiv:2309.06180</span><span class="dot">·</span><span>UC Berkeley</span></span>
+              <span class="venue">"Efficient Memory Management for LLM Serving with PagedAttention"</span>
+            </div>
+          </article>
+
+          <!-- ============ MISTRAL ============ -->
+          <article class="s09-row lab-mistral" style="--ri:17">
+            <span class="s09-ord">18</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C9.5 5 5 10 5 16 C5 22 9.5 27 16 27 C22.5 27 27 22 27 16 C27 10 22.5 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 H13"/>
+              <path d="M9 19 H13"/>
+              <path d="M23 13 H19"/>
+              <path d="M23 19 H19"/>
+            </svg>
+            <span class="s09-lab">M</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Mixtral 8×7B MoE</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Mistral AI</span>
+              </div>
+              <span class="s09-claim">Open-weight sparse MoE — 47B params, 13B active per token.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Jiang, Sablayrolles, Roux et al.</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">arXiv:2401.04088</span><span class="dot">·</span><span>Mistral AI</span></span>
+              <span class="venue">"Mixtral of Experts"</span>
+            </div>
+          </article>
+
+          <!-- ============ XAI ============ -->
+          <article class="s09-row lab-xai" style="--ri:18">
+            <span class="s09-ord">19</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 L9 8 L5 15 L7 22 L13 27 L19 27 L25 22 L27 15 L23 8 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 14 L12 17"/>
+              <path d="M23 14 L20 17"/>
+            </svg>
+            <span class="s09-lab">X</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Grok Live Retrieval</span>
+                <span class="s09-meta"><span class="yr">2024</span> · xAI</span>
+              </div>
+              <span class="s09-claim">Real-time grounding — model queries live data sources at inference.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">xAI</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">x.ai/blog/grok-2</span><span class="dot">·</span><span>xAI</span></span>
+              <span class="venue">"Grok-2: Real-time grounded retrieval and reasoning"</span>
+            </div>
+          </article>
+
+          <!-- ============ COHERE ============ -->
+          <article class="s09-row lab-cohere" style="--ri:19">
+            <span class="s09-ord">20</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <circle cx="11" cy="14" r="1" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="14" r="1" fill="currentColor" stroke="none"/>
+              <circle cx="11" cy="20" r="1" fill="currentColor" stroke="none"/>
+              <circle cx="21" cy="20" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="s09-lab">C</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Rerank — Cross-Encoder</span>
+                <span class="s09-meta"><span class="yr">2023</span> · Cohere</span>
+              </div>
+              <span class="s09-claim">Two-stage retrieval — recall via embed, precision via reranker.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Cohere Research</span>
+              <span class="meta"><span>2023</span><span class="dot">·</span><span class="arxiv">cohere.com/research/rerank</span><span class="dot">·</span><span>Cohere</span></span>
+              <span class="venue">"Rerank — improving search quality with cross-encoders"</span>
+            </div>
+          </article>
+
+          <!-- ============ DEEPSEEK ============ -->
+          <article class="s09-row lab-deepseek" style="--ri:20">
+            <span class="s09-ord">21</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 Q11 15 13 13"/>
+              <path d="M23 13 Q21 15 19 13"/>
+              <path d="M9 19 Q11 17 13 19"/>
+              <path d="M23 19 Q21 17 19 19"/>
+            </svg>
+            <span class="s09-lab">D</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">R1 — RL-Trained Reasoning</span>
+                <span class="s09-meta"><span class="yr">2025</span> · DeepSeek</span>
+              </div>
+              <span class="s09-claim">Pure RL reasoning training, open-weight, frontier-tier benchmarks.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">DeepSeek-AI</span>
+              <span class="meta"><span>2025</span><span class="dot">·</span><span class="arxiv">arXiv:2501.12948</span><span class="dot">·</span><span>DeepSeek</span></span>
+              <span class="venue">"DeepSeek-R1: Reasoning via Reinforcement Learning"</span>
+            </div>
+          </article>
+
+          <!-- ============ ALIBABA / QWEN ============ -->
+          <article class="s09-row lab-alibaba" style="--ri:21">
+            <span class="s09-ord">22</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 13 C11 14 12 17 9 19"/>
+              <path d="M23 13 C21 14 20 17 23 19"/>
+            </svg>
+            <span class="s09-lab">Q</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Qwen Agent Framework</span>
+                <span class="s09-meta"><span class="yr">2024</span> · Alibaba</span>
+              </div>
+              <span class="s09-claim">Multilingual tool-use — strong non-English agent baseline.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Bai, Bai, Chu et al.</span>
+              <span class="meta"><span>2024</span><span class="dot">·</span><span class="arxiv">arXiv:2407.10671</span><span class="dot">·</span><span>Alibaba</span></span>
+              <span class="venue">"Qwen2 Technical Report"</span>
+            </div>
+          </article>
+
+          <!-- ============ MULTI-LAB ============ -->
+          <article class="s09-row lab-multi" style="--ri:22">
+            <span class="s09-ord">23</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 14 Q12 12 14 15"/>
+              <path d="M23 14 Q20 12 18 15"/>
+            </svg>
+            <span class="s09-lab">⌬</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">LoRA — Low-Rank Adaptation</span>
+                <span class="s09-meta"><span class="yr">2021</span> · Microsoft/Stanford</span>
+              </div>
+              <span class="s09-claim">Fine-tune via tiny rank-r matrices — 10,000× fewer params.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Hu, Shen, Wallis et al.</span>
+              <span class="meta"><span>2021</span><span class="dot">·</span><span class="arxiv">arXiv:2106.09685</span><span class="dot">·</span><span>Microsoft</span></span>
+              <span class="venue">"LoRA: Low-Rank Adaptation of Large Language Models"</span>
+            </div>
+          </article>
+
+          <article class="s09-row lab-multi" style="--ri:23">
+            <span class="s09-ord">24</span>
+            <svg class="s09-row-brain" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 5 C10 5 5 10 5 16 C5 22 10 27 16 27 C22 27 27 22 27 16 C27 10 22 5 16 5 Z"/>
+              <path d="M16 5 V27" opacity="0.55"/>
+              <path d="M9 14 Q12 12 14 15"/>
+              <path d="M23 14 Q20 12 18 15"/>
+            </svg>
+            <span class="s09-lab">⌬</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-thread">Self-Consistency Decoding</span>
+                <span class="s09-meta"><span class="yr">2022</span> · Google/DeepMind</span>
+              </div>
+              <span class="s09-claim">Sample many reasoning paths, majority-vote answer — robust.</span>
+            </div>
+            <div class="s09-cite" role="tooltip">
+              <span class="authors">Wang, Wei, Schuurmans et al.</span>
+              <span class="meta"><span>2022</span><span class="dot">·</span><span class="arxiv">arXiv:2203.11171</span><span class="dot">·</span><span>Google</span></span>
+              <span class="venue">"Self-Consistency Improves Chain of Thought Reasoning"</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- CENTER SPINE -->
+        <div class="s09-spine">
+          <div class="s09-spine-rail"></div>
+          <div class="s09-spine-label">Yogi · TC</div>
+          <svg class="s09-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <!-- 24 honey wires routed across the gutter. Y positions match row stride.
+                 stride ≈ 100/24 = 4.166. start ≈ 2.5 (mid of first row).
+                 Each wire: glow first, then crisp line. Delays staggered. -->
+            <!-- 01 -->
+            <path class="s09-wire-glow" style="--wd: 1000ms" d="M0 2.5 Q50 2.5 100 2.5"/>
+            <path class="s09-wire"      style="--wd: 1000ms" d="M0 2.5 Q50 2.5 100 2.5"/>
+            <!-- 02 -->
+            <path class="s09-wire-glow" style="--wd: 1040ms" d="M0 6.6 Q50 6.6 100 6.6"/>
+            <path class="s09-wire"      style="--wd: 1040ms" d="M0 6.6 Q50 6.6 100 6.6"/>
+            <!-- 03 -->
+            <path class="s09-wire-glow" style="--wd: 1080ms" d="M0 10.8 Q50 10.8 100 10.8"/>
+            <path class="s09-wire"      style="--wd: 1080ms" d="M0 10.8 Q50 10.8 100 10.8"/>
+            <!-- 04 -->
+            <path class="s09-wire-glow" style="--wd: 1120ms" d="M0 15.0 Q50 15.0 100 15.0"/>
+            <path class="s09-wire"      style="--wd: 1120ms" d="M0 15.0 Q50 15.0 100 15.0"/>
+            <!-- 05 -->
+            <path class="s09-wire-glow" style="--wd: 1160ms" d="M0 19.2 Q50 19.2 100 19.2"/>
+            <path class="s09-wire"      style="--wd: 1160ms" d="M0 19.2 Q50 19.2 100 19.2"/>
+            <!-- 06 -->
+            <path class="s09-wire-glow" style="--wd: 1200ms" d="M0 23.3 Q50 23.3 100 23.3"/>
+            <path class="s09-wire"      style="--wd: 1200ms" d="M0 23.3 Q50 23.3 100 23.3"/>
+            <!-- 07 -->
+            <path class="s09-wire-glow" style="--wd: 1240ms" d="M0 27.5 Q50 27.5 100 27.5"/>
+            <path class="s09-wire"      style="--wd: 1240ms" d="M0 27.5 Q50 27.5 100 27.5"/>
+            <!-- 08 -->
+            <path class="s09-wire-glow" style="--wd: 1280ms" d="M0 31.7 Q50 31.7 100 31.7"/>
+            <path class="s09-wire"      style="--wd: 1280ms" d="M0 31.7 Q50 31.7 100 31.7"/>
+            <!-- 09 -->
+            <path class="s09-wire-glow" style="--wd: 1320ms" d="M0 35.8 Q50 35.8 100 35.8"/>
+            <path class="s09-wire"      style="--wd: 1320ms" d="M0 35.8 Q50 35.8 100 35.8"/>
+            <!-- 10 -->
+            <path class="s09-wire-glow" style="--wd: 1360ms" d="M0 40.0 Q50 40.0 100 40.0"/>
+            <path class="s09-wire"      style="--wd: 1360ms" d="M0 40.0 Q50 40.0 100 40.0"/>
+            <!-- 11 -->
+            <path class="s09-wire-glow" style="--wd: 1400ms" d="M0 44.2 Q50 44.2 100 44.2"/>
+            <path class="s09-wire"      style="--wd: 1400ms" d="M0 44.2 Q50 44.2 100 44.2"/>
+            <!-- 12 -->
+            <path class="s09-wire-glow" style="--wd: 1440ms" d="M0 48.3 Q50 48.3 100 48.3"/>
+            <path class="s09-wire"      style="--wd: 1440ms" d="M0 48.3 Q50 48.3 100 48.3"/>
+            <!-- 13 -->
+            <path class="s09-wire-glow" style="--wd: 1480ms" d="M0 52.5 Q50 52.5 100 52.5"/>
+            <path class="s09-wire"      style="--wd: 1480ms" d="M0 52.5 Q50 52.5 100 52.5"/>
+            <!-- 14 -->
+            <path class="s09-wire-glow" style="--wd: 1520ms" d="M0 56.7 Q50 56.7 100 56.7"/>
+            <path class="s09-wire"      style="--wd: 1520ms" d="M0 56.7 Q50 56.7 100 56.7"/>
+            <!-- 15 -->
+            <path class="s09-wire-glow" style="--wd: 1560ms" d="M0 60.8 Q50 60.8 100 60.8"/>
+            <path class="s09-wire"      style="--wd: 1560ms" d="M0 60.8 Q50 60.8 100 60.8"/>
+            <!-- 16 -->
+            <path class="s09-wire-glow" style="--wd: 1600ms" d="M0 65.0 Q50 65.0 100 65.0"/>
+            <path class="s09-wire"      style="--wd: 1600ms" d="M0 65.0 Q50 65.0 100 65.0"/>
+            <!-- 17 -->
+            <path class="s09-wire-glow" style="--wd: 1640ms" d="M0 69.2 Q50 69.2 100 69.2"/>
+            <path class="s09-wire"      style="--wd: 1640ms" d="M0 69.2 Q50 69.2 100 69.2"/>
+            <!-- 18 -->
+            <path class="s09-wire-glow" style="--wd: 1680ms" d="M0 73.3 Q50 73.3 100 73.3"/>
+            <path class="s09-wire"      style="--wd: 1680ms" d="M0 73.3 Q50 73.3 100 73.3"/>
+            <!-- 19 -->
+            <path class="s09-wire-glow" style="--wd: 1720ms" d="M0 77.5 Q50 77.5 100 77.5"/>
+            <path class="s09-wire"      style="--wd: 1720ms" d="M0 77.5 Q50 77.5 100 77.5"/>
+            <!-- 20 -->
+            <path class="s09-wire-glow" style="--wd: 1760ms" d="M0 81.7 Q50 81.7 100 81.7"/>
+            <path class="s09-wire"      style="--wd: 1760ms" d="M0 81.7 Q50 81.7 100 81.7"/>
+            <!-- 21 -->
+            <path class="s09-wire-glow" style="--wd: 1800ms" d="M0 85.8 Q50 85.8 100 85.8"/>
+            <path class="s09-wire"      style="--wd: 1800ms" d="M0 85.8 Q50 85.8 100 85.8"/>
+            <!-- 22 -->
+            <path class="s09-wire-glow" style="--wd: 1840ms" d="M0 90.0 Q50 90.0 100 90.0"/>
+            <path class="s09-wire"      style="--wd: 1840ms" d="M0 90.0 Q50 90.0 100 90.0"/>
+            <!-- 23 -->
+            <path class="s09-wire-glow" style="--wd: 1880ms" d="M0 94.2 Q50 94.2 100 94.2"/>
+            <path class="s09-wire"      style="--wd: 1880ms" d="M0 94.2 Q50 94.2 100 94.2"/>
+            <!-- 24 -->
+            <path class="s09-wire-glow" style="--wd: 1920ms" d="M0 98.3 Q50 98.3 100 98.3"/>
+            <path class="s09-wire"      style="--wd: 1920ms" d="M0 98.3 Q50 98.3 100 98.3"/>
+          </svg>
+        </div>
+
+        <!-- RIGHT: 24 TC operational impacts -->
+        <div class="s09-col right">
+          <div class="s09-colhead right">
+            <span>// 24 outcomes</span>
+            <span>Measured on Trilogy Care</span>
+            <span class="ico"></span>
+          </div>
+
+          <!-- 01 — Constitutional AI -->
+          <article class="s09-row" style="--ri:0">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">95.4% PASS</span>
+                <span class="s09-impact-label">Safety Eval Suite</span>
+              </div>
+              <span class="s09-impact-sub">12 categories · 2,184 probes · Sonnet judge.</span>
+            </div>
+          </article>
+
+          <!-- 02 — MCP -->
+          <article class="s09-row" style="--ri:1">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">328 TOOLS</span>
+                <span class="s09-impact-label">TC Graph API</span>
+              </div>
+              <span class="s09-impact-sub">Zoho · Databricks · MYOB · Aircall · M365 — single contract.</span>
+            </div>
+          </article>
+
+          <!-- 03 — Prompt Caching -->
+          <article class="s09-row" style="--ri:2">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">−90% COST</span>
+                <span class="s09-impact-label">Bills QA Cache</span>
+              </div>
+              <span class="s09-impact-sub">Hourly Databricks → JSON bake. 18 MB context reused.</span>
+            </div>
+          </article>
+
+          <!-- 04 — Computer Use -->
+          <article class="s09-row" style="--ri:3">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">TEAMS GUI</span>
+                <span class="s09-impact-label">Cmd+O File Send</span>
+              </div>
+              <span class="s09-impact-sub">osascript-driven Teams attachment from terminal.</span>
+            </div>
+          </article>
+
+          <!-- 05 — Function Calling -->
+          <article class="s09-row" style="--ri:4">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">JSON SDK</span>
+                <span class="s09-impact-label">Tool Schema Layer</span>
+              </div>
+              <span class="s09-impact-sub">Typed JSON contracts across every 1,000-specialist call.</span>
+            </div>
+          </article>
+
+          <!-- 06 — Structured Outputs -->
+          <article class="s09-row" style="--ri:5">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">100% VALID</span>
+                <span class="s09-impact-label">Complaint Investigations</span>
+              </div>
+              <span class="s09-impact-sub">Zod-validated investigation reports — zero schema breaks.</span>
+            </div>
+          </article>
+
+          <!-- 07 — CoT -->
+          <article class="s09-row" style="--ri:6">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">21× FASTER</span>
+                <span class="s09-impact-label">Bills QA Reasoning</span>
+              </div>
+              <span class="s09-impact-sub">Step-by-step bill triage — 18 min → 52 sec per reviewer.</span>
+            </div>
+          </article>
+
+          <!-- 08 — Tree of Thoughts -->
+          <article class="s09-row" style="--ri:7">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">$415K</span>
+                <span class="s09-impact-label">Phantom Batch Caught</span>
+              </div>
+              <span class="s09-impact-sub">8 May incident — branched hypothesis search found root cause.</span>
+            </div>
+          </article>
+
+          <!-- 09 — ReAct -->
+          <article class="s09-row" style="--ri:8">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">ACT LOOP</span>
+                <span class="s09-impact-label">Investigation Agent</span>
+              </div>
+              <span class="s09-impact-sub">Reason → call MCP tool → observe → continue. 340 tools wired.</span>
+            </div>
+          </article>
+
+          <!-- 10 — Sparse MoE -->
+          <article class="s09-row" style="--ri:9">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">3-TIER ROUTE</span>
+                <span class="s09-impact-label">Opus · Sonnet · Haiku</span>
+              </div>
+              <span class="s09-impact-sub">Cost-aware model routing — 1,000 specialists, right tier each.</span>
+            </div>
+          </article>
+
+          <!-- 11 — HELM -->
+          <article class="s09-row" style="--ri:10">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">12 CATS</span>
+                <span class="s09-impact-label">Yogi Eval Harness</span>
+              </div>
+              <span class="s09-impact-sub">Holistic eval pattern adapted to TC ops — 95.4% mean.</span>
+            </div>
+          </article>
+
+          <!-- 12 — DSPy -->
+          <article class="s09-row" style="--ri:11">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">SKILLS</span>
+                <span class="s09-impact-label">Slash-Command Library</span>
+              </div>
+              <span class="s09-impact-sub">Compiled prompt programs — /investigate, /comms, /sirs-audit.</span>
+            </div>
+          </article>
+
+          <!-- 13 — Reflexion -->
+          <article class="s09-row" style="--ri:12">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">47 RULES</span>
+                <span class="s09-impact-label">Self-Patched Memory</span>
+              </div>
+              <span class="s09-impact-sub">Correction → markdown → git commit. Yogi rewrites Yogi.</span>
+            </div>
+          </article>
+
+          <!-- 14 — RAG -->
+          <article class="s09-row" style="--ri:13">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">79 FILES</span>
+                <span class="s09-impact-label">Persistent Memory Index</span>
+              </div>
+              <span class="s09-impact-sub">Markdown corpus — every conversation grounded in Yogi history.</span>
+            </div>
+          </article>
+
+          <!-- 15 — Toolformer -->
+          <article class="s09-row" style="--ri:14">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">AUTO-CALL</span>
+                <span class="s09-impact-label">MCP Tool Selection</span>
+              </div>
+              <span class="s09-impact-sub">Yogi picks the right tool of 328 with no human routing.</span>
+            </div>
+          </article>
+
+          <!-- 16 — AutoGen -->
+          <article class="s09-row" style="--ri:15">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">1,000 SUB</span>
+                <span class="s09-impact-label">Specialist Crew</span>
+              </div>
+              <span class="s09-impact-sub">4-tier hierarchy — 1 + 10 + 12 + 977 conversable agents.</span>
+            </div>
+          </article>
+
+          <!-- 17 — vLLM -->
+          <article class="s09-row" style="--ri:16">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">CLOUD ECS</span>
+                <span class="s09-impact-label">Boo Boo Inference</span>
+              </div>
+              <span class="s09-impact-sub">Hosted multi-tenant serving for cloud-side Yogi calls.</span>
+            </div>
+          </article>
+
+          <!-- 18 — Mixtral -->
+          <article class="s09-row" style="--ri:17">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">FALLBACK</span>
+                <span class="s09-impact-label">Open-Weight Backup</span>
+              </div>
+              <span class="s09-impact-sub">Sovereignty option — local inference if API tier goes dark.</span>
+            </div>
+          </article>
+
+          <!-- 19 — Grok -->
+          <article class="s09-row" style="--ri:18">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">LIVE FEED</span>
+                <span class="s09-impact-label">Hourly Cloud Routines</span>
+              </div>
+              <span class="s09-impact-sub">Real-time grounding — Bills push 12·2·6pm, feedback hourly.</span>
+            </div>
+          </article>
+
+          <!-- 20 — Cohere Rerank -->
+          <article class="s09-row" style="--ri:19">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">2-STAGE</span>
+                <span class="s09-impact-label">Confluence + Qdrant</span>
+              </div>
+              <span class="s09-impact-sub">Embed-recall → cross-encoder-rerank for KB lookups.</span>
+            </div>
+          </article>
+
+          <!-- 21 — DeepSeek R1 -->
+          <article class="s09-row" style="--ri:20">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">RL TRACE</span>
+                <span class="s09-impact-label">Hard-Case Reasoning</span>
+              </div>
+              <span class="s09-impact-sub">Long-form deliberation on novel ACQSC investigations.</span>
+            </div>
+          </article>
+
+          <!-- 22 — Qwen -->
+          <article class="s09-row" style="--ri:21">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">MULTI-LANG</span>
+                <span class="s09-impact-label">SAH Client Comms</span>
+              </div>
+              <span class="s09-impact-sub">Non-English carer + family communications baseline.</span>
+            </div>
+          </article>
+
+          <!-- 23 — LoRA -->
+          <article class="s09-row" style="--ri:22">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">CUB MODELS</span>
+                <span class="s09-impact-label">Domain Fine-Tunes</span>
+              </div>
+              <span class="s09-impact-sub">Lightweight adapters per division — Bills, Quality, Care.</span>
+            </div>
+          </article>
+
+          <!-- 24 — Self-Consistency -->
+          <article class="s09-row" style="--ri:23">
+            <span class="s09-impact-ico">→</span>
+            <div class="s09-body">
+              <div class="top">
+                <span class="s09-impact-metric">N-SAMPLE</span>
+                <span class="s09-impact-label">QA Vote Pattern</span>
+              </div>
+              <span class="s09-impact-sub">Multiple reasoning samples, majority vote on bill decisions.</span>
+            </div>
+          </article>
+
+        </div>
       </div>
-    </header>
 
-    <!-- ============================== GRID ============================== -->
-    <div class="s07-grid-wrap">
-
-      <!-- 01 — Morning Voice Briefs -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#01</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>6 days / wk</span>
+      <!-- ============================== FOOTER ============================== -->
+      <footer class="s09-foot">
+        <div class="s09-foot-left">
+          <span class="s09-foot-chip">
+            <span class="glyph"></span>
+            <span>Mythos · Many Brains · One Yogi</span>
+          </span>
+          <div class="s09-legend">
+            <span class="s09-legend-item" style="color: var(--s09-honey);"><span class="swatch"></span><span>Anthropic</span></span>
+            <span class="s09-legend-item" style="color: var(--s09-teal);"><span class="swatch"></span><span>OpenAI</span></span>
+            <span class="s09-legend-item" style="color: var(--s09-sky);"><span class="swatch"></span><span>DeepMind</span></span>
+            <span class="s09-legend-item" style="color: var(--s09-violet);"><span class="swatch"></span><span>Google</span></span>
+            <span class="s09-legend-item" style="color: var(--s09-coral);"><span class="swatch"></span><span>Stanford</span></span>
+            <span class="s09-legend-item" style="color: #e8b86b;"><span class="swatch"></span><span>Princeton</span></span>
+            <span class="s09-legend-item" style="color: var(--s09-dark-teal);"><span class="swatch"></span><span>Meta</span></span>
+            <span class="s09-legend-item" style="color: #5eb27c;"><span class="swatch"></span><span>MSR</span></span>
+            <span class="s09-legend-item" style="color: #c9a979;"><span class="swatch"></span><span>Berkeley</span></span>
+            <span class="s09-legend-item" style="color: #ff8a5b;"><span class="swatch"></span><span>Mistral</span></span>
+            <span class="s09-legend-item" style="color: #d5d5da;"><span class="swatch"></span><span>xAI</span></span>
+            <span class="s09-legend-item" style="color: #b89cf0;"><span class="swatch"></span><span>Cohere</span></span>
+            <span class="s09-legend-item" style="color: #8ad4ff;"><span class="swatch"></span><span>DeepSeek</span></span>
+            <span class="s09-legend-item" style="color: #ff7d8a;"><span class="swatch"></span><span>Qwen</span></span>
+          </div>
         </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="6"  cy="12" r="1.2" class="accent"/>
-            <circle cx="12" cy="12" r="1.2"/>
-            <circle cx="18" cy="12" r="1.2"/>
-            <path d="M3 12c0-4.5 4-8 9-8s9 3.5 9 8"/>
-            <path d="M3 12c0 4.5 4 8 9 8" class="accent"/>
-            <path d="M21 12c0 4.5-4 8-9 8"/>
-          </svg>
+        <div class="s09-foot-right">
+          <span class="s09-spark">
+            <span class="caption">Threads</span>
+            <svg width="60" height="14" viewBox="0 0 60 14" aria-hidden="true">
+              <polyline points="0,11 10,9 18,10 26,7 34,6 42,4 50,3 60,2"
+                fill="none"
+                stroke="rgba(67,192,190,0.5)"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+              <circle cx="60" cy="2" r="1.6" fill="#43C0BE"/>
+            </svg>
+            <span class="label">12 → 20 →</span>
+            <span class="num-now">24</span>
+          </span>
+          <span class="s09-spark">
+            <span class="caption">Lab Brains</span>
+            <svg width="60" height="14" viewBox="0 0 60 14" aria-hidden="true">
+              <polyline points="0,12 12,11 22,10 32,8 42,5 52,3 60,2"
+                fill="none"
+                stroke="rgba(254,189,51,0.5)"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+              <circle cx="60" cy="2" r="1.6" fill="#FEBD33"/>
+            </svg>
+            <span class="label">4 → 10 →</span>
+            <span class="num-now" style="color: var(--s09-honey);">14</span>
+          </span>
         </div>
-        <h3 class="s07-tile-title">Morning Voice Briefs</h3>
-        <p class="s07-tile-desc">Daily 06:30 Sydney. ElevenLabs Bill voice. iMessage + Telegram.</p>
-        <div class="s07-tile-stat"><span class="k">cadence</span><span class="v honey">06:30 AEST</span></div>
-      </article>
-
-      <!-- 02 — Feedback Widget -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#02</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Ash-only</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="13" rx="2"/>
-            <path d="M8 21l4-4 4 4" class="accent"/>
-            <circle cx="9"  cy="10.5" r="1" class="fillaccent"/>
-            <circle cx="12" cy="10.5" r="1" class="fillaccent"/>
-            <circle cx="15" cy="10.5" r="1" class="fillaccent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Feedback Widget</h3>
-        <p class="s07-tile-desc">Floating on every tc-operations page. Voice + text. DB-persisted.</p>
-        <div class="s07-tile-stat"><span class="k">inbox</span><span class="v">/feedback-inbox</span></div>
-      </article>
-
-      <!-- 03 — /updates Release Notes -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#03</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Live</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 6h12"/>
-            <path d="M4 12h16" class="accent"/>
-            <path d="M4 18h10"/>
-            <circle cx="20" cy="6"  r="1.6" class="fillaccent"/>
-            <circle cx="20" cy="18" r="1.6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">/updates Release Notes</h3>
-        <p class="s07-tile-desc">GitHub-backed. Version-grouped. Plain-English impact per commit.</p>
-        <div class="s07-tile-stat"><span class="k">source</span><span class="v">github → /updates</span></div>
-      </article>
-
-      <!-- 04 — 328 MCP Tools -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#04</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Write authority</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3" class="accent"/>
-            <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">328 MCP Tools</h3>
-        <p class="s07-tile-desc">Zoho · Databricks · MYOB · Aircall · M365 · Confluence · Teams · EH.</p>
-        <div class="s07-tile-stat"><span class="k">tools</span><span class="v honey">328 wired</span></div>
-      </article>
-
-      <!-- 05 — 1,000 Sub-Agents -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#05</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>4 tiers</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="4"  r="1.6" class="fillaccent"/>
-            <circle cx="5"  cy="11" r="1.3"/>
-            <circle cx="12" cy="11" r="1.3"/>
-            <circle cx="19" cy="11" r="1.3"/>
-            <circle cx="3"  cy="19" r="1"/>
-            <circle cx="7"  cy="19" r="1"/>
-            <circle cx="11" cy="19" r="1"/>
-            <circle cx="15" cy="19" r="1"/>
-            <circle cx="19" cy="19" r="1"/>
-            <circle cx="21" cy="19" r="1"/>
-            <path d="M12 5.6V9.5M12 5.6L5.5 9.7M12 5.6L18.5 9.7" class="accent"/>
-            <path d="M5 12.3l-2 5.7M5 12.3l2 5.7M12 12.3l-1 5.7M12 12.3l3 5.7M19 12.3l-4 5.7M19 12.3l2 5.7"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">1,000 Sub-Agents</h3>
-        <p class="s07-tile-desc">Crew spawned on demand. Yogi is the brain — they are the muscle.</p>
-        <div class="s07-tile-stat"><span class="k">specialists</span><span class="v honey">1 + 10 + 12 + 977</span></div>
-      </article>
-
-      <!-- 06 — ElevenLabs Voice -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#06</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Locked</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 14V10"/>
-            <path d="M8  16V8" class="accent"/>
-            <path d="M12 19V5"/>
-            <path d="M16 16V8" class="accent"/>
-            <path d="M20 14V10"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">ElevenLabs Voice</h3>
-        <p class="s07-tile-desc">Bill voice ID · turbo_v2_5. Every Yogi audio is real-voice.</p>
-        <div class="s07-tile-stat"><span class="k">voice id</span><span class="v">yU0E···AVB</span></div>
-      </article>
-
-      <!-- 07 — Multichannel Reach -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#07</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>7 surfaces</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="2.2" class="fillaccent"/>
-            <circle cx="4"  cy="6"  r="1.4"/>
-            <circle cx="20" cy="6"  r="1.4"/>
-            <circle cx="4"  cy="18" r="1.4"/>
-            <circle cx="20" cy="18" r="1.4"/>
-            <circle cx="12" cy="3"  r="1.2"/>
-            <circle cx="3"  cy="12" r="1.2"/>
-            <circle cx="21" cy="12" r="1.2"/>
-            <path d="M11 11L5 7M13 11l6-4M11 13l-6 4M13 13l6 4M12 10V4M10 12H4M14 12h6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Multichannel Reach</h3>
-        <p class="s07-tile-desc">Teams · Telegram · Terminal · iMessage · Voice notes · Web · Cub.</p>
-        <div class="s07-tile-stat"><span class="k">surfaces</span><span class="v honey">7 active</span></div>
-      </article>
-
-      <!-- 08 — Weekly Memory Snapshot -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#08</span>
-          <span class="s07-tile-status scheduled"><span class="pulse"></span>Mondays 03:00</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <ellipse cx="12" cy="6"  rx="7" ry="2.4" class="accent"/>
-            <path d="M5 6v6c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4V6"/>
-            <path d="M5 12v6c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4v-6"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Weekly Memory Snapshot</h3>
-        <p class="s07-tile-desc">launchd → rsync → git → Trilogy-Care/yogi private repo.</p>
-        <div class="s07-tile-stat"><span class="k">archive</span><span class="v honey">62 snapshots</span></div>
-      </article>
-
-      <!-- 09 — Evolving Memory -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#09</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Mid-conversation</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 4a6 6 0 016 6c0 2.5-1.5 4-3 5.2V18a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2.8C7.5 14 6 12.5 6 10a6 6 0 016-6z"/>
-            <path d="M10 22h4"/>
-            <path d="M9 12l2 2 4-4" class="accent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Evolving Memory</h3>
-        <p class="s07-tile-desc">Auto-rule extractor — correction → markdown → git. Self-patches live.</p>
-        <div class="s07-tile-stat"><span class="k">auto-rules</span><span class="v honey">47 learned</span></div>
-      </article>
-
-      <!-- 10 — Cloud Routines -->
-      <article class="s07-tile">
-        <div class="s07-tile-head">
-          <span class="s07-tile-num">#10</span>
-          <span class="s07-tile-status active"><span class="pulse"></span>Always-on</span>
-        </div>
-        <div class="s07-tile-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M7 17a4 4 0 010-8 5 5 0 019.6-1.4A4 4 0 0117 17"/>
-            <path d="M12 12v6" class="accent"/>
-            <path d="M9.5 15.5L12 18l2.5-2.5" class="accent"/>
-          </svg>
-        </div>
-        <h3 class="s07-tile-title">Cloud Routines</h3>
-        <p class="s07-tile-desc">Bills push 12·2·6 pm. Feedback scanner hourly. Laptop-independent.</p>
-        <div class="s07-tile-stat"><span class="k">runtime</span><span class="v">Anthropic Cloud</span></div>
-      </article>
+      </footer>
 
     </div>
-
-    <!-- ============================== RECEIPT ============================== -->
-    <footer class="s07-receipt">
-      <div class="s07-receipt-left">
-        <span class="s07-receipt-tag">Footprint</span>
-        <span class="s07-receipt-line">
-          <span class="n">7</span> channels<span class="sep">·</span>
-          <span class="n">328</span> tools<span class="sep">·</span>
-          <span class="n">1,000</span> specialists<span class="sep">·</span>
-          <span class="n">62</span> git snapshots<span class="sep">·</span>
-          <span class="n">47</span> self-patched rules
-        </span>
-      </div>
-      <div class="s07-receipt-right">
-        <span class="dot"></span>
-        <span>Telemetry verified</span>
-      </div>
-    </footer>
-
   </div>
 </section>
 
@@ -21312,18 +22810,9 @@
       background: rgba(67,192,190,0.04);
     }
 
-    /* ===== APPROVAL STAMP — bottom-right of each card ===== */
+    /* ===== APPROVAL STAMP — removed (Ash: "looks fake, remove verified badges") ===== */
     .s17-stamp-block {
-      position: absolute;
-      right: clamp(8px, 0.9vw, 14px);
-      bottom: clamp(8px, 0.9vw, 14px);
-      width: clamp(54px, 5.6vw, 84px);
-      height: clamp(54px, 5.6vw, 84px);
-      pointer-events: none;
-      opacity: 0;
-      transform: rotate(-8deg) scale(0.86);
-      transition: opacity 600ms ease, transform 600ms cubic-bezier(.22,.61,.36,1);
-      transition-delay: 1900ms;
+      display: none !important;
     }
     .slide[data-audio="19"].is-active .s17-stamp-block {
       opacity: 0.78;
@@ -27691,54 +29180,280 @@
     }
 
     /* ================================================================
-       BOTTOM RECEIPTS BAND — 5 chips
+       MOAT COMPARISON BLOCK — Frontier · +Yogi · +Trilogy Knowledge
+       Answers: "Why can't a competitor just rent Claude?"
        ================================================================ */
-    #slide-mms .receipts {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-    }
-    #slide-mms .receipt {
+    #slide-mms .moat {
       position: relative;
-      background: linear-gradient(180deg,
-        rgba(15, 20, 28, 0.7) 0%,
-        rgba(11, 15, 22, 0.5) 100%);
+      background: var(--s20m-bg-card);
       border: 1px solid var(--s20m-border);
-      border-left: 2px solid var(--receipt-c, var(--s20m-honey));
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex; flex-direction: column; gap: 4px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    #slide-mms .receipt .rval {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--receipt-c, var(--s20m-honey));
-      line-height: 1;
+    #slide-mms .moat-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 22px 9px;
+      border-bottom: 1px solid var(--s20m-border);
+      background: rgba(255, 255, 255, 0.012);
+      gap: 24px;
     }
-    #slide-mms .receipt .rval .unit {
-      font-size: 11.5px;
-      color: var(--s20m-fg-muted);
-      font-weight: 500;
-      margin-left: 2px;
+    #slide-mms .moat-head-l {
+      display: flex; flex-direction: column; gap: 3px;
     }
-    #slide-mms .receipt .rlbl {
+    #slide-mms .moat-eye {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.12em;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--s20m-fg-dim);
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    #slide-mms .receipt .rdesc {
-      font-size: 10.5px;
+    #slide-mms .moat-eye .arr {
+      color: var(--s20m-honey);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #slide-mms .moat-eye .seg-dim { color: var(--s20m-fg-faint); }
+    #slide-mms .moat-eye .seg-teal { color: var(--s20m-teal); }
+    #slide-mms .moat-eye .seg-honey { color: var(--s20m-honey); }
+    #slide-mms .moat-hl {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+      color: var(--s20m-fg);
+      line-height: 1.15;
+    }
+    #slide-mms .moat-hl .em {
+      color: var(--s20m-honey);
+      font-style: italic;
+      font-weight: 700;
+    }
+    #slide-mms .moat-sub {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
       color: var(--s20m-fg-muted);
+      letter-spacing: 0.04em;
+      text-align: right;
+      max-width: 360px;
+      line-height: 1.45;
+    }
+    #slide-mms .moat-sub .ti { color: var(--s20m-honey); font-weight: 500; }
+
+    /* The 3-column comparison */
+    #slide-mms .moat-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+    /* incremental → arrows between columns */
+    #slide-mms .moat-cols::before,
+    #slide-mms .moat-cols::after {
+      content: '＋';
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--s20m-honey);
+      background: var(--s20m-bg-card);
+      border: 1px solid var(--s20m-honey-line);
+      border-radius: 50%;
+      z-index: 3;
+      box-shadow: 0 0 12px rgba(254, 189, 51, 0.25);
+    }
+    #slide-mms .moat-cols::before { left: 33.333%; }
+    #slide-mms .moat-cols::after  { left: 66.666%; }
+
+    #slide-mms .mcol {
+      position: relative;
+      padding: 12px 18px 14px;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+    #slide-mms .mcol + .mcol {
+      border-left: 1px solid var(--s20m-border);
+    }
+    #slide-mms .mcol::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 2px;
+      background: var(--mc-accent, var(--s20m-fg-ghost));
+      opacity: var(--mc-accent-op, 0.4);
+    }
+
+    /* Column header — chip + multiplier */
+    #slide-mms .mcol-hd {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    #slide-mms .mcol-hd-l {
+      display: flex; flex-direction: column; gap: 4px; min-width: 0;
+    }
+    #slide-mms .mcol-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4px 9px;
+      border: 1px solid var(--mc-border, var(--s20m-fg-ghost));
+      border-style: var(--mc-border-style, solid);
+      border-radius: 100px;
+      background: var(--mc-chip-bg, transparent);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mc-chip-fg, var(--s20m-fg-faint));
+      width: fit-content;
+    }
+    #slide-mms .mcol-chip .cdot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--mc-accent, var(--s20m-fg-ghost));
+      box-shadow: var(--mc-dot-glow, none);
+    }
+    #slide-mms .mcol-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.012em;
+      color: var(--mc-title, var(--s20m-fg-muted));
+      line-height: 1.2;
+    }
+    #slide-mms .mcol-title .ttag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--mc-title-tag, var(--s20m-fg-faint));
+      margin-left: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Multiplier badge — 1× / 10× / 100× */
+    #slide-mms .mcol-mult {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+      flex-shrink: 0;
+    }
+    #slide-mms .mcol-mult .mlt {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--mc-mult, var(--s20m-fg-ghost));
+      line-height: 0.9;
+      font-feature-settings: 'tnum' 1;
+    }
+    #slide-mms .mcol-mult .mltl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-faint);
+    }
+
+    /* Rows — capability ladder */
+    #slide-mms .mrows {
+      display: flex; flex-direction: column;
+      flex: 1;
+    }
+    #slide-mms .mrow {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 10px;
+      padding: 4px 0;
+      border-top: 1px dashed rgba(255, 255, 255, 0.04);
+      align-items: baseline;
+    }
+    #slide-mms .mrow:first-child { border-top: none; padding-top: 2px; }
+    #slide-mms .mrow .mrl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-faint);
       line-height: 1.3;
     }
-    #slide-mms .receipt.r1 { --receipt-c: var(--s20m-honey); }
-    #slide-mms .receipt.r2 { --receipt-c: var(--s20m-coral); }
-    #slide-mms .receipt.r3 { --receipt-c: var(--s20m-violet); }
-    #slide-mms .receipt.r4 { --receipt-c: var(--s20m-teal);  }
-    #slide-mms .receipt.r5 { --receipt-c: var(--s20m-sky);   }
+    #slide-mms .mrow .mrv {
+      font-size: 10.5px;
+      line-height: 1.3;
+      color: var(--mc-text, var(--s20m-fg-dim));
+      letter-spacing: -0.003em;
+    }
+    #slide-mms .mrow .mrv .em {
+      color: var(--mc-em, var(--s20m-fg));
+      font-weight: 600;
+    }
+    #slide-mms .mrow .mrv .delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--mc-accent, var(--s20m-fg-faint));
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-right: 4px;
+    }
+
+    /* Column variants */
+    #slide-mms .mcol.c-vanilla {
+      --mc-accent: var(--s20m-fg-faint);
+      --mc-accent-op: 0.5;
+      --mc-border: rgba(113, 113, 122, 0.4);
+      --mc-border-style: dashed;
+      --mc-chip-fg: var(--s20m-fg-dim);
+      --mc-title: var(--s20m-fg-muted);
+      --mc-title-tag: var(--s20m-fg-faint);
+      --mc-text: var(--s20m-fg-dim);
+      --mc-em: var(--s20m-fg-muted);
+      --mc-mult: var(--s20m-fg-faint);
+      background: linear-gradient(180deg, rgba(10, 13, 18, 0.45) 0%, rgba(10, 13, 18, 0) 100%);
+    }
+    #slide-mms .mcol.c-yogi {
+      --mc-accent: var(--s20m-teal);
+      --mc-accent-op: 0.95;
+      --mc-border: rgba(67, 192, 190, 0.55);
+      --mc-chip-bg: rgba(67, 192, 190, 0.06);
+      --mc-chip-fg: var(--s20m-teal);
+      --mc-title: var(--s20m-fg);
+      --mc-title-tag: var(--s20m-fg-muted);
+      --mc-text: var(--s20m-fg-muted);
+      --mc-em: var(--s20m-fg);
+      --mc-mult: var(--s20m-teal);
+      --mc-dot-glow: 0 0 8px rgba(67, 192, 190, 0.7);
+      background: linear-gradient(180deg, rgba(67, 192, 190, 0.04) 0%, rgba(67, 192, 190, 0.01) 100%);
+    }
+    #slide-mms .mcol.c-trilogy {
+      --mc-accent: var(--s20m-honey);
+      --mc-accent-op: 1;
+      --mc-border: rgba(254, 189, 51, 0.6);
+      --mc-chip-bg: rgba(254, 189, 51, 0.08);
+      --mc-chip-fg: var(--s20m-honey);
+      --mc-title: var(--s20m-fg);
+      --mc-title-tag: var(--s20m-honey);
+      --mc-text: var(--s20m-fg-muted);
+      --mc-em: var(--s20m-honey);
+      --mc-mult: var(--s20m-honey);
+      --mc-dot-glow: 0 0 10px var(--s20m-honey-glow);
+      background: linear-gradient(180deg, rgba(254, 189, 51, 0.05) 0%, rgba(254, 189, 51, 0.012) 100%);
+    }
+    #slide-mms .mcol.c-trilogy::before {
+      height: 2px;
+      box-shadow: 0 0 18px rgba(254, 189, 51, 0.55);
+    }
+    /* MOAT stamp on column 3 */
+    #slide-mms .mcol.c-trilogy .moat-stamp {
+      position: absolute;
+      right: 14px; bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s20m-honey);
+      opacity: 0.6;
+      border: 1px solid var(--s20m-honey-line);
+      padding: 3px 8px;
+      border-radius: 3px;
+      pointer-events: none;
+    }
 
     /* ---------- Reveal animation ---------- */
     #slide-mms .reveal {
@@ -28383,41 +30098,133 @@
       </div>
     </div>
 
-    <!-- ========== RECEIPTS BAND — 5 chips ========== -->
-    <div class="receipts reveal d4">
-      <div class="receipt r1">
-        <div class="rval">58<span class="unit">% off</span></div>
-        <div class="rlbl">PROMPT CACHE · ANTHROPIC</div>
-        <div class="rdesc">Databricks bill cut by prompt caching across every Anthropic call.</div>
+    <!-- ========== MOAT COMPARISON — Frontier → +Yogi → +Trilogy ========== -->
+    <div class="moat reveal d4">
+      <div class="moat-head">
+        <div class="moat-head-l">
+          <span class="moat-eye">
+            <span class="seg-dim">FRONTIER MODELS ALONE</span>
+            <span class="arr">→</span>
+            <span class="seg-teal">+ YOGI</span>
+            <span class="arr">→</span>
+            <span class="seg-honey">+ TRILOGY KNOWLEDGE</span>
+          </span>
+          <div class="moat-hl">The moat is <span class="em">the data.</span> Frontier models are commodity.</div>
+        </div>
+        <div class="moat-sub">
+          Anyone can rent <span class="ti">Claude</span> or <span class="ti">Gemini</span>.
+          <br/>Trilogy + Yogi is the unique advantage.
+        </div>
       </div>
-      <div class="receipt r2">
-        <div class="rval">$0.15<span class="unit">/M</span></div>
-        <div class="rlbl">BATCH INGEST · GEMINI FLASH</div>
-        <div class="rdesc">Daily Aircall summarisation runs at fractional cost vs. flagship.</div>
-      </div>
-      <div class="receipt r3">
-        <div class="rval">$0<span class="unit">/token</span></div>
-        <div class="rlbl">PII REDACTION · LLAMA 4</div>
-        <div class="rdesc">Self-hosted on-prem for sensitive client data. Sovereignty maintained.</div>
-      </div>
-      <div class="receipt r4">
-        <div class="rval">~$4,200<span class="unit">/mo saved</span></div>
-        <div class="rlbl">SMART ROUTING DELTA</div>
-        <div class="rdesc">Versus naive "everything through Opus." Router earns its keep.</div>
-      </div>
-      <div class="receipt r5">
-        <div class="rval">~$8,400<span class="unit">/mo</span></div>
-        <div class="rlbl">VENDOR DIVERSITY · NO LOCK-IN</div>
-        <div class="rdesc">Cross-vendor arbitrage saves on top of routing. Zero vendor dependency.</div>
+
+      <div class="moat-cols">
+
+        <!-- ===== COL 1 · FRONTIER ALONE (vanilla) ===== -->
+        <div class="mcol c-vanilla">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 01 · Vanilla</span>
+              <div class="mcol-title">Frontier Model<span class="ttag">// raw API</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">1×</div>
+              <div class="mltl">baseline</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="em">Forgets</span> at session end. No state.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv">None — <span class="em">text only.</span> Read-only.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv">Generic. Knows <span class="em">nothing</span> about TC.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv">Hallucinations possible. No audit trail.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COL 2 · + YOGI (orchestration) ===== -->
+        <div class="mcol c-yogi">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 02 · + Yogi</span>
+              <div class="mcol-title">+ Orchestration<span class="ttag">// the brain</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">10×</div>
+              <div class="mltl">amplified</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="delta">+</span>Persistent — <span class="em">79 markdown files,</span> git-versioned.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">328 MCP tools.</span> Real write authority.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">47 self-patched rules.</span> Learns each session.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">95.4% safety eval mean.</span> 12-cat harness.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COL 3 · + TRILOGY KNOWLEDGE (the moat) ===== -->
+        <div class="mcol c-trilogy">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 03 · + TC Data</span>
+              <div class="mcol-title">+ Trilogy Knowledge<span class="ttag">// the moat</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">100×</div>
+              <div class="mltl">unique to TC</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">1000s of Aircall transcripts</span> · Zoho care plans · MYOB bills.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">Typed access</span> to TC systems. Audit trail per call.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">ACQSC posture</span> · supplier history · client journeys.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv"><span class="delta">+</span>Every action <span class="em">gated by reviewer.</span></div>
+            </div>
+          </div>
+          <div class="moat-stamp">◆ TC Moat</div>
+        </div>
+
       </div>
     </div>
 
     <!-- Micro footer -->
     <div class="micro-foot reveal d5">
-      <span>YOGI ROUTER · POLICY-AS-CODE · 15 MODELS · 9 VENDORS · UPDATED 2026-05-25</span>
+      <span>YOGI ROUTER · 15 MODELS · 9 VENDORS · UPDATED 2026-05-26</span>
       <span class="m-r">
         <span class="pin"></span>
-        BEST TOOL <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> LOWEST COST <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> EVERY TIME
+        FRONTIER = COMMODITY <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> YOGI + TC DATA = MOAT
       </span>
     </div>
 
@@ -30762,8 +32569,9 @@
   <style>
     /* ============================================================
        SLIDE 24 · THE 500-LIGHTBULB MOMENT
-       500 deterministic dots cascade from center → starfield ambient.
-       One deployment. One instant. Every staffer gets the realization.
+       500 deterministic dots cascade from center → starfield steady.
+       PERF REWRITE: CSS-grid dots, JS-driven class flip, single global
+       breathe, zero per-dot infinite animations.
        ============================================================ */
 
     .slide[data-audio="27"] {
@@ -30801,7 +32609,7 @@
     .slide[data-audio="27"] .s24-atmos {
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
     }
-    .slide[data-audio="27"] .s24-grid {
+    .slide[data-audio="27"] .s24-grid-bg {
       position: absolute; inset: 0;
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
@@ -30821,9 +32629,12 @@
         rgba(254, 189, 51, 0.02) 55%,
         transparent 75%);
       filter: blur(40px);
-      opacity: 0;
-      animation: s24-glow-build 6800ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards,
-                 s24-glow-breathe 7s ease-in-out 7400ms infinite;
+      opacity: 0.25;
+      transition: opacity 1800ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide[data-audio="27"].is-lit .s24-glow-center {
+      opacity: 1;
+      animation: s24-glow-breathe 7s ease-in-out 1800ms infinite;
     }
     .slide[data-audio="27"] .s24-glow-rim {
       position: absolute;
@@ -30836,8 +32647,10 @@
         transparent 75%);
       filter: blur(20px);
       opacity: 0;
-      animation: s24-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 5000ms forwards;
+      transition: opacity 2200ms cubic-bezier(0.16, 1, 0.3, 1) 1200ms;
     }
+    .slide[data-audio="27"].is-lit .s24-glow-rim { opacity: 1; }
+
     .slide[data-audio="27"] .s24-vignette {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at 50% 55%,
@@ -30847,14 +32660,6 @@
       pointer-events: none;
     }
 
-    @keyframes s24-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s24-glow-build {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
     @keyframes s24-glow-breathe {
       0%, 100% { opacity: 0.85; }
       50%      { opacity: 1; }
@@ -30881,7 +32686,7 @@
       gap: clamp(14px, 1.6vh, 22px);
       opacity: 0;
       transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
+      animation: s24-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards;
     }
     @keyframes s24-rise {
       to { opacity: 1; transform: translateY(0); }
@@ -30907,12 +32712,8 @@
       0%, 100% { opacity: 0.55; transform: scale(1); }
       50%      { opacity: 1;    transform: scale(1.25); }
     }
-    .slide[data-audio="27"] .s24-eyebrow .sep {
-      color: var(--s24-fg-faint);
-    }
-    .slide[data-audio="27"] .s24-eyebrow .label-honey {
-      color: var(--s24-honey);
-    }
+    .slide[data-audio="27"] .s24-eyebrow .sep { color: var(--s24-fg-faint); }
+    .slide[data-audio="27"] .s24-eyebrow .label-honey { color: var(--s24-honey); }
 
     .slide[data-audio="27"] .s24-headline {
       font-family: 'Inter', sans-serif;
@@ -30954,24 +32755,14 @@
       width: 22px; height: 22px;
       border: 1px solid var(--s24-border-warm);
       opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+      animation: s24-fade 1100ms cubic-bezier(0.16, 1, 0.3, 1) 280ms forwards;
     }
-    .slide[data-audio="27"] .s24-bracket.tl {
-      top: -18px; left: -18px;
-      border-right: none; border-bottom: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.tr {
-      top: -18px; right: -18px;
-      border-left: none; border-bottom: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.bl {
-      bottom: -18px; left: -18px;
-      border-right: none; border-top: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.br {
-      bottom: -18px; right: -18px;
-      border-left: none; border-top: none;
-    }
+    @keyframes s24-fade { to { opacity: 1; } }
+
+    .slide[data-audio="27"] .s24-bracket.tl { top: -18px; left: -18px; border-right: none; border-bottom: none; }
+    .slide[data-audio="27"] .s24-bracket.tr { top: -18px; right: -18px; border-left: none; border-bottom: none; }
+    .slide[data-audio="27"] .s24-bracket.bl { bottom: -18px; left: -18px; border-right: none; border-top: none; }
+    .slide[data-audio="27"] .s24-bracket.br { bottom: -18px; right: -18px; border-left: none; border-top: none; }
 
     /* Side counter chips */
     .slide[data-audio="27"] .s24-counter {
@@ -30983,7 +32774,7 @@
       color: var(--s24-fg-faint);
       text-transform: uppercase;
       opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+      animation: s24-fade 1100ms cubic-bezier(0.16, 1, 0.3, 1) 420ms forwards;
     }
     .slide[data-audio="27"] .s24-counter.left  { left: 0; }
     .slide[data-audio="27"] .s24-counter.right { right: 0; }
@@ -30993,87 +32784,68 @@
       letter-spacing: 0.12em;
     }
 
-    /* The SVG itself */
-    .slide[data-audio="27"] .s24-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      overflow: visible;
+    /* ---------- The 500-dot grid (CSS only, no SVG, no per-dot anim) ---------- */
+    .slide[data-audio="27"] .s24-dotgrid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(25, 1fr);
+      grid-template-rows: repeat(20, 1fr);
+      gap: 0;
+      /* container-level compositing hint — promotes once, not 500 times */
+      will-change: opacity;
+      contain: strict;
+      opacity: 0.95;
+    }
+    .slide[data-audio="27"].is-lit .s24-dotgrid {
+      animation: s24-grid-breathe 8s ease-in-out 3200ms infinite;
+    }
+    @keyframes s24-grid-breathe {
+      0%, 100% { opacity: 0.96; }
+      50%      { opacity: 1; }
     }
 
-    /* Per-dot styling — controlled by CSS vars set inline per <circle> */
+    .slide[data-audio="27"] .s24-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .slide[data-audio="27"] .s24-dot {
-      fill: #1c2230;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
+      width: 38%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: #1c2230;
       opacity: 0.55;
-      animation:
-        s24-light-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient 4200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+      /* Single transition triggered by class flip — cheap, GPU compositable */
+      transition:
+        background-color 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
     }
-
-    /* Hero dots — same animation, but brighter + with halo ring */
+    .slide[data-audio="27"].is-lit .s24-dot {
+      background: var(--lit, #FEBD33);
+      opacity: var(--lit-op, 1);
+      transform: scale(1.04);
+    }
+    /* hero dots — only ~14 of these get the expensive box-shadow */
     .slide[data-audio="27"] .s24-dot.hero {
-      animation:
-        s24-light-up-hero 1000ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient-hero 5200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+      width: 52%;
     }
-    .slide[data-audio="27"] .s24-halo {
-      fill: none;
-      stroke: var(--s24-honey);
-      stroke-width: 0.6;
-      opacity: 0;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
-      animation:
-        s24-halo-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms) + 200ms) forwards,
-        s24-halo-breathe 5200ms ease-in-out calc(var(--delay, 0ms) + 1900ms) infinite;
+    .slide[data-audio="27"].is-lit .s24-dot.hero {
+      background: #FFD27A;
+      transform: scale(1.12);
+      box-shadow: 0 0 6px rgba(254, 189, 51, 0.85), 0 0 14px rgba(254, 189, 51, 0.35);
     }
-    /* Patient-zero dot — center dot, lights first, slightly larger */
+    /* patient-zero — single hottest dot, dead center */
     .slide[data-audio="27"] .s24-dot.zero {
-      animation:
-        s24-light-up-zero 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards,
-        s24-ambient-zero 4400ms ease-in-out 2500ms infinite;
+      width: 62%;
     }
-
-    @keyframes s24-light-up {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFD27A;            opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 4px rgba(254,189,51,0.85)); }
-      100% { fill: var(--lit, #FEBD33); opacity: var(--lit-opacity, 1); transform: scale(1); filter: drop-shadow(0 0 2.5px rgba(254,189,51,0.55)); }
-    }
-    @keyframes s24-light-up-hero {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      45%  { fill: #FFE2A0;            opacity: 1;    transform: scale(1.32); filter: drop-shadow(0 0 7px rgba(254,189,51,1)); }
-      100% { fill: var(--lit, #FFD27A); opacity: 1;   transform: scale(1.05); filter: drop-shadow(0 0 4.5px rgba(254,189,51,0.85)); }
-    }
-    @keyframes s24-light-up-zero {
-      0%   { fill: #1c2230;  opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFFFFF;  opacity: 1;    transform: scale(1.6); filter: drop-shadow(0 0 14px rgba(255,255,255,0.95)); }
-      75%  { fill: #FFE2A0;  opacity: 1;    transform: scale(1.25); filter: drop-shadow(0 0 9px rgba(254,189,51,0.95)); }
-      100% { fill: #FFD27A;  opacity: 1;    transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(254,189,51,0.9)); }
-    }
-
-    @keyframes s24-ambient {
-      0%, 100% { opacity: var(--amb-low, 0.78); transform: scale(1); filter: drop-shadow(0 0 2px rgba(254,189,51,0.35)); }
-      50%      { opacity: var(--amb-high, 1);   transform: scale(1.06); filter: drop-shadow(0 0 4px rgba(254,189,51,0.65)); }
-    }
-    @keyframes s24-ambient-hero {
-      0%, 100% { opacity: 0.9; transform: scale(1.02); filter: drop-shadow(0 0 4px rgba(254,189,51,0.7)); }
-      50%      { opacity: 1;   transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(254,189,51,1)); }
-    }
-    @keyframes s24-ambient-zero {
-      0%, 100% { opacity: 0.92; transform: scale(1.08); filter: drop-shadow(0 0 5px rgba(254,189,51,0.85)); }
-      50%      { opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 10px rgba(255,220,140,1)); }
-    }
-
-    @keyframes s24-halo-in {
-      0%   { opacity: 0; stroke-width: 0.4; r: 0; }
-      50%  { opacity: 0.85; }
-      100% { opacity: 0.55; stroke-width: 0.55; }
-    }
-    @keyframes s24-halo-breathe {
-      0%, 100% { opacity: 0.4; stroke-width: 0.5; }
-      50%      { opacity: 0.7; stroke-width: 0.65; }
+    .slide[data-audio="27"].is-lit .s24-dot.zero {
+      background: #FFE2A0;
+      transform: scale(1.18);
+      box-shadow: 0 0 10px rgba(255, 226, 160, 0.95), 0 0 22px rgba(254, 189, 51, 0.5);
     }
 
     /* ---------- Bottom: supporting copy ---------- */
@@ -31085,7 +32857,7 @@
       text-align: center;
       opacity: 0;
       transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 5800ms forwards;
+      animation: s24-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 260ms forwards;
     }
     .slide[data-audio="27"] .s24-bottom-line {
       font-family: 'Inter', sans-serif;
@@ -31111,12 +32883,8 @@
       justify-content: center;
       gap: 14px;
     }
-    .slide[data-audio="27"] .s24-bottom-mono .sep {
-      color: var(--s24-fg-faint);
-    }
-    .slide[data-audio="27"] .s24-bottom-mono .hot {
-      color: var(--s24-honey);
-    }
+    .slide[data-audio="27"] .s24-bottom-mono .sep { color: var(--s24-fg-faint); }
+    .slide[data-audio="27"] .s24-bottom-mono .hot { color: var(--s24-honey); }
     .slide[data-audio="27"] .s24-bottom-rule {
       width: clamp(120px, 14vw, 220px);
       height: 1px;
@@ -31131,9 +32899,7 @@
     /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="27"] .s24-dot,
-      .slide[data-audio="27"] .s24-dot.hero,
-      .slide[data-audio="27"] .s24-dot.zero,
-      .slide[data-audio="27"] .s24-halo,
+      .slide[data-audio="27"] .s24-dotgrid,
       .slide[data-audio="27"] .s24-glow-center,
       .slide[data-audio="27"] .s24-glow-rim,
       .slide[data-audio="27"] .s24-top,
@@ -31142,18 +32908,18 @@
       .slide[data-audio="27"] .s24-counter,
       .slide[data-audio="27"] .s24-eyebrow .dot {
         animation: none !important;
+        transition: none !important;
         opacity: 1 !important;
         transform: none !important;
       }
-      .slide[data-audio="27"] .s24-dot { fill: var(--s24-honey); opacity: 0.85; }
-      .slide[data-audio="27"] .s24-dot.hero { fill: var(--s24-honey-hot); }
-      .slide[data-audio="27"] .s24-dot.zero { fill: #FFE2A0; }
-      .slide[data-audio="27"] .s24-halo { opacity: 0.55; }
+      .slide[data-audio="27"] .s24-dot { background: var(--s24-honey); opacity: 0.9; }
+      .slide[data-audio="27"] .s24-dot.hero { background: var(--s24-honey-hot); }
+      .slide[data-audio="27"] .s24-dot.zero { background: #FFE2A0; }
     }
   </style>
 
   <div class="s24-atmos">
-    <div class="s24-grid"></div>
+    <div class="s24-grid-bg"></div>
     <div class="s24-glow-center"></div>
     <div class="s24-glow-rim"></div>
     <div class="s24-vignette"></div>
@@ -31183,9 +32949,9 @@
         <span class="s24-bracket tr"></span>
         <span class="s24-bracket bl"></span>
         <span class="s24-bracket br"></span>
-        <svg class="s24-svg" viewBox="0 0 250 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <!-- circles are injected by script below -->
-        </svg>
+        <div class="s24-dotgrid" aria-hidden="true">
+          <!-- 500 cells injected by script below -->
+        </div>
       </div>
     </div>
 
@@ -31212,28 +32978,22 @@
     (function () {
       const slide = document.currentScript.closest('.slide[data-audio="27"]');
       if (!slide) return;
-      const svg = slide.querySelector('.s24-svg');
-      if (!svg) return;
-      if (svg.dataset.s24Built === '1') return;
-      svg.dataset.s24Built = '1';
+      const grid = slide.querySelector('.s24-dotgrid');
+      if (!grid) return;
+      if (grid.dataset.s24Built === '1') return;
+      grid.dataset.s24Built = '1';
 
-      const SVG_NS = 'http://www.w3.org/2000/svg';
-
-      // Grid geometry
       const COLS = 25;
       const ROWS = 20;
-      const W = 250;
-      const H = 200;
-      const PAD_X = 6;
-      const PAD_Y = 6;
-      const stepX = (W - PAD_X * 2) / (COLS - 1);
-      const stepY = (H - PAD_Y * 2) / (ROWS - 1);
-
-      // Center of cascade (between dots — for a wave that radiates evenly)
       const cxCenter = (COLS - 1) / 2; // 12
       const cyCenter = (ROWS - 1) / 2; // 9.5
+      const maxDist = Math.hypot(cxCenter, cyCenter);
 
-      // Deterministic seeded random (mulberry32)
+      // Cascade window — tight, 2.4s total
+      const CASCADE_START = 250;   // ms after .is-lit added
+      const CASCADE_END   = 2400;  // ms
+
+      // Deterministic seeded random (mulberry32) — keeps render identical run-to-run
       function mulberry32(seed) {
         return function () {
           let t = (seed += 0x6D2B79F5);
@@ -31244,122 +33004,116 @@
       }
       const rand = mulberry32(20262024);
 
-      // Cascade timing
-      const CASCADE_START = 1500;   // ms — patient-zero settles at ~1.2s
-      const CASCADE_END   = 5400;   // ms — last corner lights up
+      function rc(c, r) { return r * COLS + c; }
 
-      // Max distance from center (corner)
-      const maxDist = Math.hypot(cxCenter, cyCenter);
-
-      // Hero dot picks — deterministic, ~14 of them.
-      // Patient-zero is the literal center dot (col 12, row 9) (closest to 12,9.5).
+      // Hero picks — ~14 dots that get the box-shadow treatment
       const heroPicks = new Set([
-        // four corners
         rc(0, 0), rc(COLS - 1, 0), rc(0, ROWS - 1), rc(COLS - 1, ROWS - 1),
-        // four mid edges
         rc(Math.floor(COLS / 2), 0), rc(Math.floor(COLS / 2), ROWS - 1),
         rc(0, Math.floor(ROWS / 2)), rc(COLS - 1, Math.floor(ROWS / 2)),
-        // a few inner "champions"
         rc(6, 4), rc(18, 4), rc(6, 15), rc(18, 15),
         rc(9, 9), rc(15, 10),
       ]);
 
-      // Patient zero — pick the dot closest to the geometric center
+      // Patient-zero — dead center
       const zeroCol = Math.round(cxCenter);
       const zeroRow = Math.round(cyCenter);
       const zeroKey = rc(zeroCol, zeroRow);
-
-      // Don't mark patient-zero as hero — it has its own treatment
       heroPicks.delete(zeroKey);
 
-      // Build all 500 circles
-      const fragMain = document.createDocumentFragment();
-      const fragHalo = document.createDocumentFragment();
-
-      let count = 0;
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          const x = PAD_X + c * stepX;
-          const y = PAD_Y + r * stepY;
-          const key = rc(c, r);
-
-          const dx = c - cxCenter;
-          const dy = r - cyCenter;
-          const dist = Math.hypot(dx, dy);
-
-          // Each dot's delay = patient-zero settle + cascade window scaled by distance
-          // + tiny jitter so ring isn't too clean
-          const jitter = (rand() - 0.5) * 90; // ±45ms
-          const t = dist / maxDist; // 0..1
-          // Ease the wave outward slightly
-          const tEased = Math.pow(t, 0.92);
-          const delay = Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter);
-
-          // Brightness variance (10-20%) — deterministic
-          const brightness = 0.85 + rand() * 0.15; // 0.85..1.0
-          const litColor = blendHoney(brightness);
-          const ambLow  = (0.62 + rand() * 0.18).toFixed(3); // 0.62..0.80
-          const ambHigh = (0.92 + rand() * 0.08).toFixed(3); // 0.92..1.0
-
-          // Radius variance — most are equal, a few subtly larger
-          let r0 = 1.55 + (rand() - 0.5) * 0.18; // ~1.46..1.64
-          if (heroPicks.has(key)) r0 = 2.1;
-          if (key === zeroKey)    r0 = 2.55;
-
-          const circle = document.createElementNS(SVG_NS, 'circle');
-          circle.setAttribute('cx', x.toFixed(3));
-          circle.setAttribute('cy', y.toFixed(3));
-          circle.setAttribute('r', r0.toFixed(3));
-          circle.style.setProperty('--cx', x.toFixed(3) + 'px');
-          circle.style.setProperty('--cy', y.toFixed(3) + 'px');
-          circle.style.setProperty('--delay', delay + 'ms');
-          circle.style.setProperty('--lit', litColor);
-          circle.style.setProperty('--lit-opacity', brightness.toFixed(3));
-          circle.style.setProperty('--amb-low', ambLow);
-          circle.style.setProperty('--amb-high', ambHigh);
-
-          let cls = 's24-dot';
-          if (key === zeroKey)        cls += ' zero';
-          else if (heroPicks.has(key)) cls += ' hero';
-          circle.setAttribute('class', cls);
-
-          // Halo ring for hero dots + patient zero
-          if (heroPicks.has(key) || key === zeroKey) {
-            const halo = document.createElementNS(SVG_NS, 'circle');
-            const hR = (key === zeroKey ? 4.4 : 3.6);
-            halo.setAttribute('cx', x.toFixed(3));
-            halo.setAttribute('cy', y.toFixed(3));
-            halo.setAttribute('r', hR.toFixed(3));
-            halo.style.setProperty('--cx', x.toFixed(3) + 'px');
-            halo.style.setProperty('--cy', y.toFixed(3) + 'px');
-            // halo waits until the dot has lit
-            const haloDelay = (key === zeroKey) ? 1200 : delay + 100;
-            halo.style.setProperty('--delay', haloDelay + 'ms');
-            halo.setAttribute('class', 's24-halo');
-            fragHalo.appendChild(halo);
-          }
-
-          fragMain.appendChild(circle);
-          count++;
-        }
-      }
-
-      // Halos render BEHIND main dots so the dot sits crisp inside the ring
-      svg.appendChild(fragHalo);
-      svg.appendChild(fragMain);
-
-      function rc(c, r) { return r * COLS + c; }
-
-      // Blend honey color toward hot-honey based on brightness 0.85..1.0
+      // Honey color blend
       function blendHoney(b) {
-        // base #FEBD33  → 254, 189, 51
-        // hot  #FFD27A  → 255, 210, 122
-        const tt = (b - 0.85) / 0.15; // 0..1
+        const tt = (b - 0.85) / 0.15;
         const R = Math.round(254 + (255 - 254) * tt);
         const G = Math.round(189 + (210 - 189) * tt);
         const B = Math.round(51 + (122 - 51) * tt);
         return 'rgb(' + R + ',' + G + ',' + B + ')';
       }
+
+      // Build all 500 cells in a single fragment
+      const frag = document.createDocumentFragment();
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const key = rc(c, r);
+          const dx = c - cxCenter;
+          const dy = r - cyCenter;
+          const dist = Math.hypot(dx, dy);
+          const jitter = (rand() - 0.5) * 70; // ±35ms
+          const t = dist / maxDist;
+          const tEased = Math.pow(t, 0.9);
+          const delay = Math.max(0, Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter));
+
+          const brightness = 0.85 + rand() * 0.15;
+          const litColor = blendHoney(brightness);
+
+          const cell = document.createElement('div');
+          cell.className = 's24-cell';
+
+          const dot = document.createElement('div');
+          let cls = 's24-dot';
+          if (key === zeroKey) {
+            cls += ' zero';
+            dot.style.setProperty('--d', '0ms'); // patient zero fires first
+          } else if (heroPicks.has(key)) {
+            cls += ' hero';
+            dot.style.setProperty('--d', delay + 'ms');
+          } else {
+            dot.style.setProperty('--d', delay + 'ms');
+          }
+          dot.style.setProperty('--lit', litColor);
+          dot.style.setProperty('--lit-op', brightness.toFixed(3));
+          dot.className = cls;
+          cell.appendChild(dot);
+          frag.appendChild(cell);
+        }
+      }
+      grid.appendChild(frag);
+
+      // Trigger cascade ONLY when slide is actually visible.
+      // This fixes the "doesn't load properly" symptom — animations no longer
+      // burn through while the slide is off-screen.
+      function ignite() {
+        if (slide.classList.contains('is-lit')) return;
+        // Two RAFs — guarantees the initial dim state has painted before
+        // the transition class lands. Without this, browsers can collapse
+        // start + end into the same frame and skip the cascade entirely.
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            slide.classList.add('is-lit');
+          });
+        });
+      }
+      function extinguish() {
+        slide.classList.remove('is-lit');
+      }
+
+      // If the slide is already on-screen at build time, ignite immediately.
+      // Otherwise wait for IntersectionObserver.
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.35) {
+              ignite();
+            } else if (e.intersectionRatio < 0.05) {
+              // Slide left the viewport — reset so re-entry replays cleanly
+              extinguish();
+            }
+          });
+        }, { threshold: [0, 0.05, 0.35, 0.6] });
+        io.observe(slide);
+      } else {
+        ignite();
+      }
+
+      // Belt-and-braces: if the slide's display is already non-zero at script
+      // run time (e.g. presentation harness skipped IO), kick it off after a
+      // micro-delay so the audience never sees a frozen grey grid.
+      setTimeout(function () {
+        const rect = slide.getBoundingClientRect();
+        const visible = rect.width > 0 && rect.height > 0 &&
+                        rect.bottom > 0 && rect.top < (window.innerHeight || 0);
+        if (visible) ignite();
+      }, 120);
     })();
   </script>
 </section>

@@ -618,54 +618,280 @@
     }
 
     /* ================================================================
-       BOTTOM RECEIPTS BAND — 5 chips
+       MOAT COMPARISON BLOCK — Frontier · +Yogi · +Trilogy Knowledge
+       Answers: "Why can't a competitor just rent Claude?"
        ================================================================ */
-    #slide-mms .receipts {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-    }
-    #slide-mms .receipt {
+    #slide-mms .moat {
       position: relative;
-      background: linear-gradient(180deg,
-        rgba(15, 20, 28, 0.7) 0%,
-        rgba(11, 15, 22, 0.5) 100%);
+      background: var(--s20m-bg-card);
       border: 1px solid var(--s20m-border);
-      border-left: 2px solid var(--receipt-c, var(--s20m-honey));
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex; flex-direction: column; gap: 4px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    #slide-mms .receipt .rval {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--receipt-c, var(--s20m-honey));
-      line-height: 1;
+    #slide-mms .moat-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 22px 9px;
+      border-bottom: 1px solid var(--s20m-border);
+      background: rgba(255, 255, 255, 0.012);
+      gap: 24px;
     }
-    #slide-mms .receipt .rval .unit {
-      font-size: 11.5px;
-      color: var(--s20m-fg-muted);
-      font-weight: 500;
-      margin-left: 2px;
+    #slide-mms .moat-head-l {
+      display: flex; flex-direction: column; gap: 3px;
     }
-    #slide-mms .receipt .rlbl {
+    #slide-mms .moat-eye {
       font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.12em;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--s20m-fg-dim);
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    #slide-mms .receipt .rdesc {
-      font-size: 10.5px;
+    #slide-mms .moat-eye .arr {
+      color: var(--s20m-honey);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #slide-mms .moat-eye .seg-dim { color: var(--s20m-fg-faint); }
+    #slide-mms .moat-eye .seg-teal { color: var(--s20m-teal); }
+    #slide-mms .moat-eye .seg-honey { color: var(--s20m-honey); }
+    #slide-mms .moat-hl {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+      color: var(--s20m-fg);
+      line-height: 1.15;
+    }
+    #slide-mms .moat-hl .em {
+      color: var(--s20m-honey);
+      font-style: italic;
+      font-weight: 700;
+    }
+    #slide-mms .moat-sub {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9.5px;
       color: var(--s20m-fg-muted);
+      letter-spacing: 0.04em;
+      text-align: right;
+      max-width: 360px;
+      line-height: 1.45;
+    }
+    #slide-mms .moat-sub .ti { color: var(--s20m-honey); font-weight: 500; }
+
+    /* The 3-column comparison */
+    #slide-mms .moat-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+    /* incremental → arrows between columns */
+    #slide-mms .moat-cols::before,
+    #slide-mms .moat-cols::after {
+      content: '＋';
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--s20m-honey);
+      background: var(--s20m-bg-card);
+      border: 1px solid var(--s20m-honey-line);
+      border-radius: 50%;
+      z-index: 3;
+      box-shadow: 0 0 12px rgba(254, 189, 51, 0.25);
+    }
+    #slide-mms .moat-cols::before { left: 33.333%; }
+    #slide-mms .moat-cols::after  { left: 66.666%; }
+
+    #slide-mms .mcol {
+      position: relative;
+      padding: 12px 18px 14px;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+    #slide-mms .mcol + .mcol {
+      border-left: 1px solid var(--s20m-border);
+    }
+    #slide-mms .mcol::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 2px;
+      background: var(--mc-accent, var(--s20m-fg-ghost));
+      opacity: var(--mc-accent-op, 0.4);
+    }
+
+    /* Column header — chip + multiplier */
+    #slide-mms .mcol-hd {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    #slide-mms .mcol-hd-l {
+      display: flex; flex-direction: column; gap: 4px; min-width: 0;
+    }
+    #slide-mms .mcol-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4px 9px;
+      border: 1px solid var(--mc-border, var(--s20m-fg-ghost));
+      border-style: var(--mc-border-style, solid);
+      border-radius: 100px;
+      background: var(--mc-chip-bg, transparent);
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mc-chip-fg, var(--s20m-fg-faint));
+      width: fit-content;
+    }
+    #slide-mms .mcol-chip .cdot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--mc-accent, var(--s20m-fg-ghost));
+      box-shadow: var(--mc-dot-glow, none);
+    }
+    #slide-mms .mcol-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.012em;
+      color: var(--mc-title, var(--s20m-fg-muted));
+      line-height: 1.2;
+    }
+    #slide-mms .mcol-title .ttag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--mc-title-tag, var(--s20m-fg-faint));
+      margin-left: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Multiplier badge — 1× / 10× / 100× */
+    #slide-mms .mcol-mult {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+      flex-shrink: 0;
+    }
+    #slide-mms .mcol-mult .mlt {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--mc-mult, var(--s20m-fg-ghost));
+      line-height: 0.9;
+      font-feature-settings: 'tnum' 1;
+    }
+    #slide-mms .mcol-mult .mltl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-faint);
+    }
+
+    /* Rows — capability ladder */
+    #slide-mms .mrows {
+      display: flex; flex-direction: column;
+      flex: 1;
+    }
+    #slide-mms .mrow {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 10px;
+      padding: 4px 0;
+      border-top: 1px dashed rgba(255, 255, 255, 0.04);
+      align-items: baseline;
+    }
+    #slide-mms .mrow:first-child { border-top: none; padding-top: 2px; }
+    #slide-mms .mrow .mrl {
+      font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--s20m-fg-faint);
       line-height: 1.3;
     }
-    #slide-mms .receipt.r1 { --receipt-c: var(--s20m-honey); }
-    #slide-mms .receipt.r2 { --receipt-c: var(--s20m-coral); }
-    #slide-mms .receipt.r3 { --receipt-c: var(--s20m-violet); }
-    #slide-mms .receipt.r4 { --receipt-c: var(--s20m-teal);  }
-    #slide-mms .receipt.r5 { --receipt-c: var(--s20m-sky);   }
+    #slide-mms .mrow .mrv {
+      font-size: 10.5px;
+      line-height: 1.3;
+      color: var(--mc-text, var(--s20m-fg-dim));
+      letter-spacing: -0.003em;
+    }
+    #slide-mms .mrow .mrv .em {
+      color: var(--mc-em, var(--s20m-fg));
+      font-weight: 600;
+    }
+    #slide-mms .mrow .mrv .delta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--mc-accent, var(--s20m-fg-faint));
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-right: 4px;
+    }
+
+    /* Column variants */
+    #slide-mms .mcol.c-vanilla {
+      --mc-accent: var(--s20m-fg-faint);
+      --mc-accent-op: 0.5;
+      --mc-border: rgba(113, 113, 122, 0.4);
+      --mc-border-style: dashed;
+      --mc-chip-fg: var(--s20m-fg-dim);
+      --mc-title: var(--s20m-fg-muted);
+      --mc-title-tag: var(--s20m-fg-faint);
+      --mc-text: var(--s20m-fg-dim);
+      --mc-em: var(--s20m-fg-muted);
+      --mc-mult: var(--s20m-fg-faint);
+      background: linear-gradient(180deg, rgba(10, 13, 18, 0.45) 0%, rgba(10, 13, 18, 0) 100%);
+    }
+    #slide-mms .mcol.c-yogi {
+      --mc-accent: var(--s20m-teal);
+      --mc-accent-op: 0.95;
+      --mc-border: rgba(67, 192, 190, 0.55);
+      --mc-chip-bg: rgba(67, 192, 190, 0.06);
+      --mc-chip-fg: var(--s20m-teal);
+      --mc-title: var(--s20m-fg);
+      --mc-title-tag: var(--s20m-fg-muted);
+      --mc-text: var(--s20m-fg-muted);
+      --mc-em: var(--s20m-fg);
+      --mc-mult: var(--s20m-teal);
+      --mc-dot-glow: 0 0 8px rgba(67, 192, 190, 0.7);
+      background: linear-gradient(180deg, rgba(67, 192, 190, 0.04) 0%, rgba(67, 192, 190, 0.01) 100%);
+    }
+    #slide-mms .mcol.c-trilogy {
+      --mc-accent: var(--s20m-honey);
+      --mc-accent-op: 1;
+      --mc-border: rgba(254, 189, 51, 0.6);
+      --mc-chip-bg: rgba(254, 189, 51, 0.08);
+      --mc-chip-fg: var(--s20m-honey);
+      --mc-title: var(--s20m-fg);
+      --mc-title-tag: var(--s20m-honey);
+      --mc-text: var(--s20m-fg-muted);
+      --mc-em: var(--s20m-honey);
+      --mc-mult: var(--s20m-honey);
+      --mc-dot-glow: 0 0 10px var(--s20m-honey-glow);
+      background: linear-gradient(180deg, rgba(254, 189, 51, 0.05) 0%, rgba(254, 189, 51, 0.012) 100%);
+    }
+    #slide-mms .mcol.c-trilogy::before {
+      height: 2px;
+      box-shadow: 0 0 18px rgba(254, 189, 51, 0.55);
+    }
+    /* MOAT stamp on column 3 */
+    #slide-mms .mcol.c-trilogy .moat-stamp {
+      position: absolute;
+      right: 14px; bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--s20m-honey);
+      opacity: 0.6;
+      border: 1px solid var(--s20m-honey-line);
+      padding: 3px 8px;
+      border-radius: 3px;
+      pointer-events: none;
+    }
 
     /* ---------- Reveal animation ---------- */
     #slide-mms .reveal {
@@ -1310,41 +1536,133 @@
       </div>
     </div>
 
-    <!-- ========== RECEIPTS BAND — 5 chips ========== -->
-    <div class="receipts reveal d4">
-      <div class="receipt r1">
-        <div class="rval">58<span class="unit">% off</span></div>
-        <div class="rlbl">PROMPT CACHE · ANTHROPIC</div>
-        <div class="rdesc">Databricks bill cut by prompt caching across every Anthropic call.</div>
+    <!-- ========== MOAT COMPARISON — Frontier → +Yogi → +Trilogy ========== -->
+    <div class="moat reveal d4">
+      <div class="moat-head">
+        <div class="moat-head-l">
+          <span class="moat-eye">
+            <span class="seg-dim">FRONTIER MODELS ALONE</span>
+            <span class="arr">→</span>
+            <span class="seg-teal">+ YOGI</span>
+            <span class="arr">→</span>
+            <span class="seg-honey">+ TRILOGY KNOWLEDGE</span>
+          </span>
+          <div class="moat-hl">The moat is <span class="em">the data.</span> Frontier models are commodity.</div>
+        </div>
+        <div class="moat-sub">
+          Anyone can rent <span class="ti">Claude</span> or <span class="ti">Gemini</span>.
+          <br/>Trilogy + Yogi is the unique advantage.
+        </div>
       </div>
-      <div class="receipt r2">
-        <div class="rval">$0.15<span class="unit">/M</span></div>
-        <div class="rlbl">BATCH INGEST · GEMINI FLASH</div>
-        <div class="rdesc">Daily Aircall summarisation runs at fractional cost vs. flagship.</div>
-      </div>
-      <div class="receipt r3">
-        <div class="rval">$0<span class="unit">/token</span></div>
-        <div class="rlbl">PII REDACTION · LLAMA 4</div>
-        <div class="rdesc">Self-hosted on-prem for sensitive client data. Sovereignty maintained.</div>
-      </div>
-      <div class="receipt r4">
-        <div class="rval">~$4,200<span class="unit">/mo saved</span></div>
-        <div class="rlbl">SMART ROUTING DELTA</div>
-        <div class="rdesc">Versus naive "everything through Opus." Router earns its keep.</div>
-      </div>
-      <div class="receipt r5">
-        <div class="rval">~$8,400<span class="unit">/mo</span></div>
-        <div class="rlbl">VENDOR DIVERSITY · NO LOCK-IN</div>
-        <div class="rdesc">Cross-vendor arbitrage saves on top of routing. Zero vendor dependency.</div>
+
+      <div class="moat-cols">
+
+        <!-- ===== COL 1 · FRONTIER ALONE (vanilla) ===== -->
+        <div class="mcol c-vanilla">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 01 · Vanilla</span>
+              <div class="mcol-title">Frontier Model<span class="ttag">// raw API</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">1×</div>
+              <div class="mltl">baseline</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="em">Forgets</span> at session end. No state.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv">None — <span class="em">text only.</span> Read-only.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv">Generic. Knows <span class="em">nothing</span> about TC.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv">Hallucinations possible. No audit trail.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COL 2 · + YOGI (orchestration) ===== -->
+        <div class="mcol c-yogi">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 02 · + Yogi</span>
+              <div class="mcol-title">+ Orchestration<span class="ttag">// the brain</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">10×</div>
+              <div class="mltl">amplified</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="delta">+</span>Persistent — <span class="em">79 markdown files,</span> git-versioned.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">328 MCP tools.</span> Real write authority.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">47 self-patched rules.</span> Learns each session.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">95.4% safety eval mean.</span> 12-cat harness.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COL 3 · + TRILOGY KNOWLEDGE (the moat) ===== -->
+        <div class="mcol c-trilogy">
+          <div class="mcol-hd">
+            <div class="mcol-hd-l">
+              <span class="mcol-chip"><span class="cdot"></span>Step 03 · + TC Data</span>
+              <div class="mcol-title">+ Trilogy Knowledge<span class="ttag">// the moat</span></div>
+            </div>
+            <div class="mcol-mult">
+              <div class="mlt">100×</div>
+              <div class="mltl">unique to TC</div>
+            </div>
+          </div>
+          <div class="mrows">
+            <div class="mrow">
+              <div class="mrl">Memory</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">1000s of Aircall transcripts</span> · Zoho care plans · MYOB bills.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Tools</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">Typed access</span> to TC systems. Audit trail per call.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Domain</div>
+              <div class="mrv"><span class="delta">+</span><span class="em">ACQSC posture</span> · supplier history · client journeys.</div>
+            </div>
+            <div class="mrow">
+              <div class="mrl">Trust</div>
+              <div class="mrv"><span class="delta">+</span>Every action <span class="em">gated by reviewer.</span></div>
+            </div>
+          </div>
+          <div class="moat-stamp">◆ TC Moat</div>
+        </div>
+
       </div>
     </div>
 
     <!-- Micro footer -->
     <div class="micro-foot reveal d5">
-      <span>YOGI ROUTER · POLICY-AS-CODE · 15 MODELS · 9 VENDORS · UPDATED 2026-05-25</span>
+      <span>YOGI ROUTER · 15 MODELS · 9 VENDORS · UPDATED 2026-05-26</span>
       <span class="m-r">
         <span class="pin"></span>
-        BEST TOOL <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> LOWEST COST <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> EVERY TIME
+        FRONTIER = COMMODITY <span style="color:var(--s20m-fg-dim); margin: 0 6px;">·</span> YOGI + TC DATA = MOAT
       </span>
     </div>
 

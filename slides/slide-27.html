@@ -2,8 +2,9 @@
   <style>
     /* ============================================================
        SLIDE 24 · THE 500-LIGHTBULB MOMENT
-       500 deterministic dots cascade from center → starfield ambient.
-       One deployment. One instant. Every staffer gets the realization.
+       500 deterministic dots cascade from center → starfield steady.
+       PERF REWRITE: CSS-grid dots, JS-driven class flip, single global
+       breathe, zero per-dot infinite animations.
        ============================================================ */
 
     .slide[data-audio="27"] {
@@ -41,7 +42,7 @@
     .slide[data-audio="27"] .s24-atmos {
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
     }
-    .slide[data-audio="27"] .s24-grid {
+    .slide[data-audio="27"] .s24-grid-bg {
       position: absolute; inset: 0;
       background-image:
         linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px),
@@ -61,9 +62,12 @@
         rgba(254, 189, 51, 0.02) 55%,
         transparent 75%);
       filter: blur(40px);
-      opacity: 0;
-      animation: s24-glow-build 6800ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards,
-                 s24-glow-breathe 7s ease-in-out 7400ms infinite;
+      opacity: 0.25;
+      transition: opacity 1800ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide[data-audio="27"].is-lit .s24-glow-center {
+      opacity: 1;
+      animation: s24-glow-breathe 7s ease-in-out 1800ms infinite;
     }
     .slide[data-audio="27"] .s24-glow-rim {
       position: absolute;
@@ -76,8 +80,10 @@
         transparent 75%);
       filter: blur(20px);
       opacity: 0;
-      animation: s24-fade 3200ms cubic-bezier(0.16, 1, 0.3, 1) 5000ms forwards;
+      transition: opacity 2200ms cubic-bezier(0.16, 1, 0.3, 1) 1200ms;
     }
+    .slide[data-audio="27"].is-lit .s24-glow-rim { opacity: 1; }
+
     .slide[data-audio="27"] .s24-vignette {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at 50% 55%,
@@ -87,14 +93,6 @@
       pointer-events: none;
     }
 
-    @keyframes s24-fade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes s24-glow-build {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
     @keyframes s24-glow-breathe {
       0%, 100% { opacity: 0.85; }
       50%      { opacity: 1; }
@@ -121,7 +119,7 @@
       gap: clamp(14px, 1.6vh, 22px);
       opacity: 0;
       transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
+      animation: s24-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards;
     }
     @keyframes s24-rise {
       to { opacity: 1; transform: translateY(0); }
@@ -147,12 +145,8 @@
       0%, 100% { opacity: 0.55; transform: scale(1); }
       50%      { opacity: 1;    transform: scale(1.25); }
     }
-    .slide[data-audio="27"] .s24-eyebrow .sep {
-      color: var(--s24-fg-faint);
-    }
-    .slide[data-audio="27"] .s24-eyebrow .label-honey {
-      color: var(--s24-honey);
-    }
+    .slide[data-audio="27"] .s24-eyebrow .sep { color: var(--s24-fg-faint); }
+    .slide[data-audio="27"] .s24-eyebrow .label-honey { color: var(--s24-honey); }
 
     .slide[data-audio="27"] .s24-headline {
       font-family: 'Inter', sans-serif;
@@ -194,24 +188,14 @@
       width: 22px; height: 22px;
       border: 1px solid var(--s24-border-warm);
       opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 400ms forwards;
+      animation: s24-fade 1100ms cubic-bezier(0.16, 1, 0.3, 1) 280ms forwards;
     }
-    .slide[data-audio="27"] .s24-bracket.tl {
-      top: -18px; left: -18px;
-      border-right: none; border-bottom: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.tr {
-      top: -18px; right: -18px;
-      border-left: none; border-bottom: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.bl {
-      bottom: -18px; left: -18px;
-      border-right: none; border-top: none;
-    }
-    .slide[data-audio="27"] .s24-bracket.br {
-      bottom: -18px; right: -18px;
-      border-left: none; border-top: none;
-    }
+    @keyframes s24-fade { to { opacity: 1; } }
+
+    .slide[data-audio="27"] .s24-bracket.tl { top: -18px; left: -18px; border-right: none; border-bottom: none; }
+    .slide[data-audio="27"] .s24-bracket.tr { top: -18px; right: -18px; border-left: none; border-bottom: none; }
+    .slide[data-audio="27"] .s24-bracket.bl { bottom: -18px; left: -18px; border-right: none; border-top: none; }
+    .slide[data-audio="27"] .s24-bracket.br { bottom: -18px; right: -18px; border-left: none; border-top: none; }
 
     /* Side counter chips */
     .slide[data-audio="27"] .s24-counter {
@@ -223,7 +207,7 @@
       color: var(--s24-fg-faint);
       text-transform: uppercase;
       opacity: 0;
-      animation: s24-fade 1400ms cubic-bezier(0.16, 1, 0.3, 1) 600ms forwards;
+      animation: s24-fade 1100ms cubic-bezier(0.16, 1, 0.3, 1) 420ms forwards;
     }
     .slide[data-audio="27"] .s24-counter.left  { left: 0; }
     .slide[data-audio="27"] .s24-counter.right { right: 0; }
@@ -233,87 +217,68 @@
       letter-spacing: 0.12em;
     }
 
-    /* The SVG itself */
-    .slide[data-audio="27"] .s24-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      overflow: visible;
+    /* ---------- The 500-dot grid (CSS only, no SVG, no per-dot anim) ---------- */
+    .slide[data-audio="27"] .s24-dotgrid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(25, 1fr);
+      grid-template-rows: repeat(20, 1fr);
+      gap: 0;
+      /* container-level compositing hint — promotes once, not 500 times */
+      will-change: opacity;
+      contain: strict;
+      opacity: 0.95;
+    }
+    .slide[data-audio="27"].is-lit .s24-dotgrid {
+      animation: s24-grid-breathe 8s ease-in-out 3200ms infinite;
+    }
+    @keyframes s24-grid-breathe {
+      0%, 100% { opacity: 0.96; }
+      50%      { opacity: 1; }
     }
 
-    /* Per-dot styling — controlled by CSS vars set inline per <circle> */
+    .slide[data-audio="27"] .s24-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .slide[data-audio="27"] .s24-dot {
-      fill: #1c2230;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
+      width: 38%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: #1c2230;
       opacity: 0.55;
-      animation:
-        s24-light-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient 4200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+      /* Single transition triggered by class flip — cheap, GPU compositable */
+      transition:
+        background-color 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+        box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
     }
-
-    /* Hero dots — same animation, but brighter + with halo ring */
+    .slide[data-audio="27"].is-lit .s24-dot {
+      background: var(--lit, #FEBD33);
+      opacity: var(--lit-op, 1);
+      transform: scale(1.04);
+    }
+    /* hero dots — only ~14 of these get the expensive box-shadow */
     .slide[data-audio="27"] .s24-dot.hero {
-      animation:
-        s24-light-up-hero 1000ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) forwards,
-        s24-ambient-hero 5200ms ease-in-out calc(var(--delay, 0ms) + 1600ms) infinite;
+      width: 52%;
     }
-    .slide[data-audio="27"] .s24-halo {
-      fill: none;
-      stroke: var(--s24-honey);
-      stroke-width: 0.6;
-      opacity: 0;
-      transform-origin: var(--cx) var(--cy);
-      transform-box: fill-box;
-      animation:
-        s24-halo-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--delay, 0ms) + 200ms) forwards,
-        s24-halo-breathe 5200ms ease-in-out calc(var(--delay, 0ms) + 1900ms) infinite;
+    .slide[data-audio="27"].is-lit .s24-dot.hero {
+      background: #FFD27A;
+      transform: scale(1.12);
+      box-shadow: 0 0 6px rgba(254, 189, 51, 0.85), 0 0 14px rgba(254, 189, 51, 0.35);
     }
-    /* Patient-zero dot — center dot, lights first, slightly larger */
+    /* patient-zero — single hottest dot, dead center */
     .slide[data-audio="27"] .s24-dot.zero {
-      animation:
-        s24-light-up-zero 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards,
-        s24-ambient-zero 4400ms ease-in-out 2500ms infinite;
+      width: 62%;
     }
-
-    @keyframes s24-light-up {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFD27A;            opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 4px rgba(254,189,51,0.85)); }
-      100% { fill: var(--lit, #FEBD33); opacity: var(--lit-opacity, 1); transform: scale(1); filter: drop-shadow(0 0 2.5px rgba(254,189,51,0.55)); }
-    }
-    @keyframes s24-light-up-hero {
-      0%   { fill: #1c2230;            opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      45%  { fill: #FFE2A0;            opacity: 1;    transform: scale(1.32); filter: drop-shadow(0 0 7px rgba(254,189,51,1)); }
-      100% { fill: var(--lit, #FFD27A); opacity: 1;   transform: scale(1.05); filter: drop-shadow(0 0 4.5px rgba(254,189,51,0.85)); }
-    }
-    @keyframes s24-light-up-zero {
-      0%   { fill: #1c2230;  opacity: 0.55; transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
-      40%  { fill: #FFFFFF;  opacity: 1;    transform: scale(1.6); filter: drop-shadow(0 0 14px rgba(255,255,255,0.95)); }
-      75%  { fill: #FFE2A0;  opacity: 1;    transform: scale(1.25); filter: drop-shadow(0 0 9px rgba(254,189,51,0.95)); }
-      100% { fill: #FFD27A;  opacity: 1;    transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(254,189,51,0.9)); }
-    }
-
-    @keyframes s24-ambient {
-      0%, 100% { opacity: var(--amb-low, 0.78); transform: scale(1); filter: drop-shadow(0 0 2px rgba(254,189,51,0.35)); }
-      50%      { opacity: var(--amb-high, 1);   transform: scale(1.06); filter: drop-shadow(0 0 4px rgba(254,189,51,0.65)); }
-    }
-    @keyframes s24-ambient-hero {
-      0%, 100% { opacity: 0.9; transform: scale(1.02); filter: drop-shadow(0 0 4px rgba(254,189,51,0.7)); }
-      50%      { opacity: 1;   transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(254,189,51,1)); }
-    }
-    @keyframes s24-ambient-zero {
-      0%, 100% { opacity: 0.92; transform: scale(1.08); filter: drop-shadow(0 0 5px rgba(254,189,51,0.85)); }
-      50%      { opacity: 1;    transform: scale(1.18); filter: drop-shadow(0 0 10px rgba(255,220,140,1)); }
-    }
-
-    @keyframes s24-halo-in {
-      0%   { opacity: 0; stroke-width: 0.4; r: 0; }
-      50%  { opacity: 0.85; }
-      100% { opacity: 0.55; stroke-width: 0.55; }
-    }
-    @keyframes s24-halo-breathe {
-      0%, 100% { opacity: 0.4; stroke-width: 0.5; }
-      50%      { opacity: 0.7; stroke-width: 0.65; }
+    .slide[data-audio="27"].is-lit .s24-dot.zero {
+      background: #FFE2A0;
+      transform: scale(1.18);
+      box-shadow: 0 0 10px rgba(255, 226, 160, 0.95), 0 0 22px rgba(254, 189, 51, 0.5);
     }
 
     /* ---------- Bottom: supporting copy ---------- */
@@ -325,7 +290,7 @@
       text-align: center;
       opacity: 0;
       transform: translateY(14px);
-      animation: s24-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) 5800ms forwards;
+      animation: s24-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 260ms forwards;
     }
     .slide[data-audio="27"] .s24-bottom-line {
       font-family: 'Inter', sans-serif;
@@ -351,12 +316,8 @@
       justify-content: center;
       gap: 14px;
     }
-    .slide[data-audio="27"] .s24-bottom-mono .sep {
-      color: var(--s24-fg-faint);
-    }
-    .slide[data-audio="27"] .s24-bottom-mono .hot {
-      color: var(--s24-honey);
-    }
+    .slide[data-audio="27"] .s24-bottom-mono .sep { color: var(--s24-fg-faint); }
+    .slide[data-audio="27"] .s24-bottom-mono .hot { color: var(--s24-honey); }
     .slide[data-audio="27"] .s24-bottom-rule {
       width: clamp(120px, 14vw, 220px);
       height: 1px;
@@ -371,9 +332,7 @@
     /* ---------- Reduced motion ---------- */
     @media (prefers-reduced-motion: reduce) {
       .slide[data-audio="27"] .s24-dot,
-      .slide[data-audio="27"] .s24-dot.hero,
-      .slide[data-audio="27"] .s24-dot.zero,
-      .slide[data-audio="27"] .s24-halo,
+      .slide[data-audio="27"] .s24-dotgrid,
       .slide[data-audio="27"] .s24-glow-center,
       .slide[data-audio="27"] .s24-glow-rim,
       .slide[data-audio="27"] .s24-top,
@@ -382,18 +341,18 @@
       .slide[data-audio="27"] .s24-counter,
       .slide[data-audio="27"] .s24-eyebrow .dot {
         animation: none !important;
+        transition: none !important;
         opacity: 1 !important;
         transform: none !important;
       }
-      .slide[data-audio="27"] .s24-dot { fill: var(--s24-honey); opacity: 0.85; }
-      .slide[data-audio="27"] .s24-dot.hero { fill: var(--s24-honey-hot); }
-      .slide[data-audio="27"] .s24-dot.zero { fill: #FFE2A0; }
-      .slide[data-audio="27"] .s24-halo { opacity: 0.55; }
+      .slide[data-audio="27"] .s24-dot { background: var(--s24-honey); opacity: 0.9; }
+      .slide[data-audio="27"] .s24-dot.hero { background: var(--s24-honey-hot); }
+      .slide[data-audio="27"] .s24-dot.zero { background: #FFE2A0; }
     }
   </style>
 
   <div class="s24-atmos">
-    <div class="s24-grid"></div>
+    <div class="s24-grid-bg"></div>
     <div class="s24-glow-center"></div>
     <div class="s24-glow-rim"></div>
     <div class="s24-vignette"></div>
@@ -423,9 +382,9 @@
         <span class="s24-bracket tr"></span>
         <span class="s24-bracket bl"></span>
         <span class="s24-bracket br"></span>
-        <svg class="s24-svg" viewBox="0 0 250 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <!-- circles are injected by script below -->
-        </svg>
+        <div class="s24-dotgrid" aria-hidden="true">
+          <!-- 500 cells injected by script below -->
+        </div>
       </div>
     </div>
 
@@ -452,28 +411,22 @@
     (function () {
       const slide = document.currentScript.closest('.slide[data-audio="27"]');
       if (!slide) return;
-      const svg = slide.querySelector('.s24-svg');
-      if (!svg) return;
-      if (svg.dataset.s24Built === '1') return;
-      svg.dataset.s24Built = '1';
+      const grid = slide.querySelector('.s24-dotgrid');
+      if (!grid) return;
+      if (grid.dataset.s24Built === '1') return;
+      grid.dataset.s24Built = '1';
 
-      const SVG_NS = 'http://www.w3.org/2000/svg';
-
-      // Grid geometry
       const COLS = 25;
       const ROWS = 20;
-      const W = 250;
-      const H = 200;
-      const PAD_X = 6;
-      const PAD_Y = 6;
-      const stepX = (W - PAD_X * 2) / (COLS - 1);
-      const stepY = (H - PAD_Y * 2) / (ROWS - 1);
-
-      // Center of cascade (between dots — for a wave that radiates evenly)
       const cxCenter = (COLS - 1) / 2; // 12
       const cyCenter = (ROWS - 1) / 2; // 9.5
+      const maxDist = Math.hypot(cxCenter, cyCenter);
 
-      // Deterministic seeded random (mulberry32)
+      // Cascade window — tight, 2.4s total
+      const CASCADE_START = 250;   // ms after .is-lit added
+      const CASCADE_END   = 2400;  // ms
+
+      // Deterministic seeded random (mulberry32) — keeps render identical run-to-run
       function mulberry32(seed) {
         return function () {
           let t = (seed += 0x6D2B79F5);
@@ -484,122 +437,116 @@
       }
       const rand = mulberry32(20262024);
 
-      // Cascade timing
-      const CASCADE_START = 1500;   // ms — patient-zero settles at ~1.2s
-      const CASCADE_END   = 5400;   // ms — last corner lights up
+      function rc(c, r) { return r * COLS + c; }
 
-      // Max distance from center (corner)
-      const maxDist = Math.hypot(cxCenter, cyCenter);
-
-      // Hero dot picks — deterministic, ~14 of them.
-      // Patient-zero is the literal center dot (col 12, row 9) (closest to 12,9.5).
+      // Hero picks — ~14 dots that get the box-shadow treatment
       const heroPicks = new Set([
-        // four corners
         rc(0, 0), rc(COLS - 1, 0), rc(0, ROWS - 1), rc(COLS - 1, ROWS - 1),
-        // four mid edges
         rc(Math.floor(COLS / 2), 0), rc(Math.floor(COLS / 2), ROWS - 1),
         rc(0, Math.floor(ROWS / 2)), rc(COLS - 1, Math.floor(ROWS / 2)),
-        // a few inner "champions"
         rc(6, 4), rc(18, 4), rc(6, 15), rc(18, 15),
         rc(9, 9), rc(15, 10),
       ]);
 
-      // Patient zero — pick the dot closest to the geometric center
+      // Patient-zero — dead center
       const zeroCol = Math.round(cxCenter);
       const zeroRow = Math.round(cyCenter);
       const zeroKey = rc(zeroCol, zeroRow);
-
-      // Don't mark patient-zero as hero — it has its own treatment
       heroPicks.delete(zeroKey);
 
-      // Build all 500 circles
-      const fragMain = document.createDocumentFragment();
-      const fragHalo = document.createDocumentFragment();
-
-      let count = 0;
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          const x = PAD_X + c * stepX;
-          const y = PAD_Y + r * stepY;
-          const key = rc(c, r);
-
-          const dx = c - cxCenter;
-          const dy = r - cyCenter;
-          const dist = Math.hypot(dx, dy);
-
-          // Each dot's delay = patient-zero settle + cascade window scaled by distance
-          // + tiny jitter so ring isn't too clean
-          const jitter = (rand() - 0.5) * 90; // ±45ms
-          const t = dist / maxDist; // 0..1
-          // Ease the wave outward slightly
-          const tEased = Math.pow(t, 0.92);
-          const delay = Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter);
-
-          // Brightness variance (10-20%) — deterministic
-          const brightness = 0.85 + rand() * 0.15; // 0.85..1.0
-          const litColor = blendHoney(brightness);
-          const ambLow  = (0.62 + rand() * 0.18).toFixed(3); // 0.62..0.80
-          const ambHigh = (0.92 + rand() * 0.08).toFixed(3); // 0.92..1.0
-
-          // Radius variance — most are equal, a few subtly larger
-          let r0 = 1.55 + (rand() - 0.5) * 0.18; // ~1.46..1.64
-          if (heroPicks.has(key)) r0 = 2.1;
-          if (key === zeroKey)    r0 = 2.55;
-
-          const circle = document.createElementNS(SVG_NS, 'circle');
-          circle.setAttribute('cx', x.toFixed(3));
-          circle.setAttribute('cy', y.toFixed(3));
-          circle.setAttribute('r', r0.toFixed(3));
-          circle.style.setProperty('--cx', x.toFixed(3) + 'px');
-          circle.style.setProperty('--cy', y.toFixed(3) + 'px');
-          circle.style.setProperty('--delay', delay + 'ms');
-          circle.style.setProperty('--lit', litColor);
-          circle.style.setProperty('--lit-opacity', brightness.toFixed(3));
-          circle.style.setProperty('--amb-low', ambLow);
-          circle.style.setProperty('--amb-high', ambHigh);
-
-          let cls = 's24-dot';
-          if (key === zeroKey)        cls += ' zero';
-          else if (heroPicks.has(key)) cls += ' hero';
-          circle.setAttribute('class', cls);
-
-          // Halo ring for hero dots + patient zero
-          if (heroPicks.has(key) || key === zeroKey) {
-            const halo = document.createElementNS(SVG_NS, 'circle');
-            const hR = (key === zeroKey ? 4.4 : 3.6);
-            halo.setAttribute('cx', x.toFixed(3));
-            halo.setAttribute('cy', y.toFixed(3));
-            halo.setAttribute('r', hR.toFixed(3));
-            halo.style.setProperty('--cx', x.toFixed(3) + 'px');
-            halo.style.setProperty('--cy', y.toFixed(3) + 'px');
-            // halo waits until the dot has lit
-            const haloDelay = (key === zeroKey) ? 1200 : delay + 100;
-            halo.style.setProperty('--delay', haloDelay + 'ms');
-            halo.setAttribute('class', 's24-halo');
-            fragHalo.appendChild(halo);
-          }
-
-          fragMain.appendChild(circle);
-          count++;
-        }
-      }
-
-      // Halos render BEHIND main dots so the dot sits crisp inside the ring
-      svg.appendChild(fragHalo);
-      svg.appendChild(fragMain);
-
-      function rc(c, r) { return r * COLS + c; }
-
-      // Blend honey color toward hot-honey based on brightness 0.85..1.0
+      // Honey color blend
       function blendHoney(b) {
-        // base #FEBD33  → 254, 189, 51
-        // hot  #FFD27A  → 255, 210, 122
-        const tt = (b - 0.85) / 0.15; // 0..1
+        const tt = (b - 0.85) / 0.15;
         const R = Math.round(254 + (255 - 254) * tt);
         const G = Math.round(189 + (210 - 189) * tt);
         const B = Math.round(51 + (122 - 51) * tt);
         return 'rgb(' + R + ',' + G + ',' + B + ')';
       }
+
+      // Build all 500 cells in a single fragment
+      const frag = document.createDocumentFragment();
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const key = rc(c, r);
+          const dx = c - cxCenter;
+          const dy = r - cyCenter;
+          const dist = Math.hypot(dx, dy);
+          const jitter = (rand() - 0.5) * 70; // ±35ms
+          const t = dist / maxDist;
+          const tEased = Math.pow(t, 0.9);
+          const delay = Math.max(0, Math.round(CASCADE_START + tEased * (CASCADE_END - CASCADE_START) + jitter));
+
+          const brightness = 0.85 + rand() * 0.15;
+          const litColor = blendHoney(brightness);
+
+          const cell = document.createElement('div');
+          cell.className = 's24-cell';
+
+          const dot = document.createElement('div');
+          let cls = 's24-dot';
+          if (key === zeroKey) {
+            cls += ' zero';
+            dot.style.setProperty('--d', '0ms'); // patient zero fires first
+          } else if (heroPicks.has(key)) {
+            cls += ' hero';
+            dot.style.setProperty('--d', delay + 'ms');
+          } else {
+            dot.style.setProperty('--d', delay + 'ms');
+          }
+          dot.style.setProperty('--lit', litColor);
+          dot.style.setProperty('--lit-op', brightness.toFixed(3));
+          dot.className = cls;
+          cell.appendChild(dot);
+          frag.appendChild(cell);
+        }
+      }
+      grid.appendChild(frag);
+
+      // Trigger cascade ONLY when slide is actually visible.
+      // This fixes the "doesn't load properly" symptom — animations no longer
+      // burn through while the slide is off-screen.
+      function ignite() {
+        if (slide.classList.contains('is-lit')) return;
+        // Two RAFs — guarantees the initial dim state has painted before
+        // the transition class lands. Without this, browsers can collapse
+        // start + end into the same frame and skip the cascade entirely.
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            slide.classList.add('is-lit');
+          });
+        });
+      }
+      function extinguish() {
+        slide.classList.remove('is-lit');
+      }
+
+      // If the slide is already on-screen at build time, ignite immediately.
+      // Otherwise wait for IntersectionObserver.
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.35) {
+              ignite();
+            } else if (e.intersectionRatio < 0.05) {
+              // Slide left the viewport — reset so re-entry replays cleanly
+              extinguish();
+            }
+          });
+        }, { threshold: [0, 0.05, 0.35, 0.6] });
+        io.observe(slide);
+      } else {
+        ignite();
+      }
+
+      // Belt-and-braces: if the slide's display is already non-zero at script
+      // run time (e.g. presentation harness skipped IO), kick it off after a
+      // micro-delay so the audience never sees a frozen grey grid.
+      setTimeout(function () {
+        const rect = slide.getBoundingClientRect();
+        const visible = rect.width > 0 && rect.height > 0 &&
+                        rect.bottom > 0 && rect.top < (window.innerHeight || 0);
+        if (visible) ignite();
+      }, 120);
     })();
   </script>
 </section>
