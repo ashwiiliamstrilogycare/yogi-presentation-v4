@@ -253,8 +253,8 @@
       background: linear-gradient(to right, rgba(67,192,190,0.07), rgba(67,192,190,0.02) 70%, transparent);
       border-left: 1.5px solid rgba(67,192,190,0.32);
     }
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-col.left::before { opacity: 1; }
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-col.left::after  { opacity: 1; }
+    .slide[data-audio="11"].active .s09-col.left::before, .slide[data-audio="11"].is-active .s09-col.left::before{ opacity: 1; }
+    .slide[data-audio="11"].active .s09-col.left::after, .slide[data-audio="11"].is-active .s09-col.left::after{ opacity: 1; }
 
     /* extra cluster bands via dedicated absolute layers */
     .s09-cluster {
@@ -267,7 +267,7 @@
       opacity: 0;
       transition: opacity 800ms ease;
     }
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-cluster { opacity: 1; }
+    .slide[data-audio="11"].active .s09-cluster, .slide[data-audio="11"].is-active .s09-cluster{ opacity: 1; }
     .s09-cluster.dm {
       top: 390px; height: 60px;
       background: linear-gradient(to right, rgba(100,188,234,0.07), rgba(100,188,234,0.02) 70%, transparent);
@@ -328,10 +328,10 @@
       filter: blur(4px);
       opacity: 0;
     }
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-wire-glow {
+    .slide[data-audio="11"].active .s09-wire-glow, .slide[data-audio="11"].is-active .s09-wire-glow{
       animation: s09-glow 1200ms ease-out forwards;
     }
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-wire {
+    .slide[data-audio="11"].active .s09-wire, .slide[data-audio="11"].is-active .s09-wire{
       animation: s09-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
     }
     @keyframes s09-draw {
@@ -418,7 +418,7 @@
     .s09-col.left  .s09-row { --enter-x: -10px; }
     .s09-col.right .s09-row { --enter-x:  10px; }
 
-    .slide[data-audio="11"].active, .slide[data-audio="11"].is-active .s09-row {
+    .slide[data-audio="11"].active .s09-row, .slide[data-audio="11"].is-active .s09-row{
       animation: s09-row-in 480ms cubic-bezier(.2,.7,.2,1) forwards;
     }
 

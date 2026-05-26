@@ -273,7 +273,7 @@
       transform: translateY(6px);
       transition: transform 220ms ease;
     }
-    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-brain-cell {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active .s09-brain-cell, .slide[data-audio="09"].is-active .s09-brain-cell{
       animation: s09-brain-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
     }
     .s09-brain-cell:nth-child(1)  { animation-delay: 60ms; }
@@ -493,11 +493,11 @@
       filter: blur(4px);
       opacity: 0;
     }
-    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-wire-glow {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active .s09-wire-glow, .slide[data-audio="09"].is-active .s09-wire-glow{
       animation: s09-glow 1200ms ease-out forwards;
       animation-delay: var(--wd, 0ms);
     }
-    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-wire {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active .s09-wire, .slide[data-audio="09"].is-active .s09-wire{
       animation: s09-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
       animation-delay: var(--wd, 0ms);
     }
@@ -532,7 +532,7 @@
     .s09-col.left  .s09-row { --enter-x: -10px; }
     .s09-col.right .s09-row { --enter-x:  10px; }
 
-    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-row {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active .s09-row, .slide[data-audio="09"].is-active .s09-row{
       animation: s09-row-in 460ms cubic-bezier(.2,.7,.2,1) forwards;
     }
 
