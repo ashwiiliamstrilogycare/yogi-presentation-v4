@@ -7467,7 +7467,7 @@
   </script>
 </section>
 
-<section class="slide" data-audio="08" id="slide-06">
+<section class="slide" data-audio="08" id="slide-08-galaxy">
   <style>
     /* ============================================================
        SLIDE 06 · AGENT GALAXY 3D · v4 MEGA-UPGRADE
@@ -8261,7 +8261,7 @@
         const s = document.createElement('script');
         s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
         s.onload = cb;
-        s.onerror = () => console.error('[slide-06] failed to load three.js');
+        s.onerror = () => console.error('[slide-08] failed to load three.js');
         document.head.appendChild(s);
       }
 
@@ -9331,7 +9331,7 @@
         // Reusable projection scratch
         const _projOut = new THREE.Vector3();
         const _projVec = new THREE.Vector3();
-        const _slideEl = document.getElementById('slide-06');
+        const _slideEl = document.getElementById('slide-08-galaxy');
 
         function projectToScreen(worldVec3, outXY) {
           _projVec.copy(worldVec3).project(camera);
@@ -9802,25 +9802,25 @@
         };
       }
 
-      window.onSlideEnter[6] = function () {
+      window.onSlideEnter[9] = function () {
         if (state) return;
         loadThree(initGalaxy);
       };
 
-      window.onSlideLeave[6] = function () {
+      window.onSlideLeave[9] = function () {
         if (state) {
-          try { state.dispose(); } catch (e) { console.warn('[slide-06] dispose error', e); }
+          try { state.dispose(); } catch (e) { console.warn('[slide-08] dispose error', e); }
           state = null;
         }
       };
 
-      const slideEl = document.getElementById('slide-06');
+      const slideEl = document.getElementById('slide-08-galaxy');
       if (slideEl) {
         const rect = slideEl.getBoundingClientRect();
         const visible = rect.width > 0 && rect.height > 0 &&
                         rect.top < window.innerHeight && rect.bottom > 0;
         if (visible) {
-          requestAnimationFrame(() => window.onSlideEnter[6]());
+          requestAnimationFrame(() => window.onSlideEnter[9]());
         }
       }
     })();
