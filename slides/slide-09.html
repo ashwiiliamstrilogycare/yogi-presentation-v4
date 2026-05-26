@@ -273,7 +273,7 @@
       transform: translateY(6px);
       transition: transform 220ms ease;
     }
-    .slide[data-audio="09"].is-active .s09-brain-cell {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-brain-cell {
       animation: s09-brain-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
     }
     .s09-brain-cell:nth-child(1)  { animation-delay: 60ms; }
@@ -493,11 +493,11 @@
       filter: blur(4px);
       opacity: 0;
     }
-    .slide[data-audio="09"].is-active .s09-wire-glow {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-wire-glow {
       animation: s09-glow 1200ms ease-out forwards;
       animation-delay: var(--wd, 0ms);
     }
-    .slide[data-audio="09"].is-active .s09-wire {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-wire {
       animation: s09-draw 1600ms cubic-bezier(.6,.05,.25,1) forwards;
       animation-delay: var(--wd, 0ms);
     }
@@ -532,7 +532,7 @@
     .s09-col.left  .s09-row { --enter-x: -10px; }
     .s09-col.right .s09-row { --enter-x:  10px; }
 
-    .slide[data-audio="09"].is-active .s09-row {
+    .slide[data-audio="09"].active, .slide[data-audio="09"].active, .slide[data-audio="09"].is-active .s09-row {
       animation: s09-row-in 460ms cubic-bezier(.2,.7,.2,1) forwards;
     }
 
@@ -979,23 +979,23 @@
       <div class="s09-mark tr"></div>
       <div class="s09-mark bl"></div>
       <div class="s09-mark br"></div>
-      <div class="s09-stamp">SLIDE · 09 / MYTHOS · 24 THREADS · 14 BRAINS · MEASURED ON TC</div>
+      <div class="s09-stamp">SLIDE · 09 / RESEARCH FOUNDATIONS · 24 THREADS · 14 LABS · MEASURED ON TC</div>
 
       <!-- HEADER -->
       <header class="s09-head">
         <div>
           <div class="s09-eyebrow">
             <span class="dot"></span>
-            <span>Mythos</span>
+            <span>Research Foundations</span>
             <span class="sep">·</span>
-            <span>24 Research Threads</span>
+            <span>24 Threads</span>
             <span class="sep">·</span>
-            <span>14 Lab Brains</span>
+            <span>14 Labs</span>
             <span class="sep">·</span>
             <span>Measured on TC</span>
           </div>
           <h1 class="s09-headline">
-            <span class="accent">Many brains.</span> One Yogi.
+            <span class="accent">Research</span> Foundations.
           </h1>
         </div>
 
@@ -2194,7 +2194,7 @@
         <div class="s09-foot-left">
           <span class="s09-foot-chip">
             <span class="glyph"></span>
-            <span>Mythos · Many Brains · One Yogi</span>
+            <span>Research Foundations · 14 Labs · 24 Threads</span>
           </span>
           <div class="s09-legend">
             <span class="s09-legend-item" style="color: var(--s09-honey);"><span class="swatch"></span><span>Anthropic</span></span>

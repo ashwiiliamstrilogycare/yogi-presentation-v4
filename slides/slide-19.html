@@ -208,7 +208,7 @@
       opacity: 0;
       transform: translateY(-12px);
     }
-    .slide[data-audio="19"].is-active .s17-banner {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-banner {
       animation: s17-banner-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
     }
     @keyframes s17-banner-in {
@@ -238,7 +238,7 @@
       pointer-events: none;
       mix-blend-mode: screen;
     }
-    .slide[data-audio="19"].is-active .s17-banner::after {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-banner::after {
       animation: s17-banner-shimmer 6.4s ease-in-out infinite 1500ms;
     }
     @keyframes s17-banner-shimmer {
@@ -350,7 +350,7 @@
       transform: scaleX(0);
       transform-origin: left center;
     }
-    .slide[data-audio="19"].is-active .s17-bnr-bar .fill {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-bnr-bar .fill {
       animation: s17-bar-fill 1400ms cubic-bezier(.22,.61,.36,1) forwards 600ms;
     }
     @keyframes s17-bar-fill {
@@ -371,7 +371,7 @@
         0 0 14px rgba(254,189,51,0.75);
       opacity: 0;
     }
-    .slide[data-audio="19"].is-active .s17-bnr-bar .marker {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-bnr-bar .marker {
       animation: s17-marker-in 400ms ease forwards 1900ms;
     }
     @keyframes s17-marker-in {
@@ -446,7 +446,7 @@
       overflow: hidden;
       min-width: 0;
     }
-    .slide[data-audio="19"].is-active .s17-receipt {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt {
       animation: s17-card-in 720ms cubic-bezier(.22,.61,.36,1) forwards;
     }
     @keyframes s17-card-in {
@@ -624,7 +624,7 @@
       opacity: 0;
       border-radius: 2px;
     }
-    .slide[data-audio="19"].is-active .s17-r-figure::after {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-r-figure::after {
       animation:
         s17-underline-swell 1100ms cubic-bezier(.22,.61,.36,1) forwards,
         var(--bloom-anim, s17-bloom-a) var(--bloom-dur, 4.8s) ease-in-out infinite var(--bloom-after, 1500ms);
@@ -759,7 +759,7 @@
     .s17-stamp-block {
       display: none !important;
     }
-    .slide[data-audio="19"].is-active .s17-stamp-block {
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-stamp-block {
       opacity: 0.78;
       transform: rotate(-8deg) scale(1);
     }
@@ -776,13 +776,13 @@
     .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg) scale(0.86); }
     .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(0.86); }
     .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg) scale(0.86); }
-    .slide[data-audio="19"].is-active .s17-receipt.rw .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg)  scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg)  scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg)  scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(1); }
-    .slide[data-audio="19"].is-active .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.rw .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r1 .s17-stamp-block { transform: rotate(-9deg)  scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r2 .s17-stamp-block { transform: rotate(-6deg)  scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r3 .s17-stamp-block { transform: rotate(-11deg) scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r4 .s17-stamp-block { transform: rotate(-5deg)  scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r5 .s17-stamp-block { transform: rotate(-10deg) scale(1); }
+    .slide[data-audio="19"].active, .slide[data-audio="19"].is-active .s17-receipt.r6 .s17-stamp-block { transform: rotate(-7deg)  scale(1); }
 
     /* THIS WEEK card — heat treatment */
     .s17-receipt.rw {

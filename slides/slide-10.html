@@ -191,8 +191,8 @@
       filter: blur(4px);
       opacity: 0;
     }
-    .slide[data-audio="10"].is-active .s08-connector .glow { animation: s08-glow 1400ms ease-out 100ms forwards; }
-    .slide[data-audio="10"].is-active .s08-connector .path { animation: s08-draw 2200ms cubic-bezier(.6,.05,.25,1) 180ms forwards; }
+    .slide[data-audio="10"].active, .slide[data-audio="10"].is-active .s08-connector .glow { animation: s08-glow 1400ms ease-out 100ms forwards; }
+    .slide[data-audio="10"].active, .slide[data-audio="10"].is-active .s08-connector .path { animation: s08-draw 2200ms cubic-bezier(.6,.05,.25,1) 180ms forwards; }
     @keyframes s08-glow { from { opacity: 0; } to { opacity: 1; } }
     @keyframes s08-draw {
       0%   { stroke-dashoffset: 800; opacity: 0; }
@@ -232,7 +232,7 @@
         border-color 360ms ease,
         box-shadow 360ms ease;
     }
-    .slide[data-audio="10"].is-active .s08-card {
+    .slide[data-audio="10"].active, .slide[data-audio="10"].is-active .s08-card {
       opacity: 1;
       transform: translateY(0);
     }
